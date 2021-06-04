@@ -1,0 +1,437 @@
+init python:
+    class FAI:
+        def __init__(self,name,kind,HP,SP,ATK,DEF,deck,status):
+            self.name=name
+            self.HPmax = HP
+            self.HP= HP
+            self.SP= SP
+            self.ATK = ATK
+            self.DEF = DEF
+            self.kind = kind
+            self.deck = deck
+            self.status = status
+    class Card:
+        def __init__(self,NAME,TYPE,MAG,FXN,COST):
+            self.NAME = NAME
+            self.TYPE = TYPE
+            self.MAG = MAG
+            self.FXN = FXN
+            self.COST = COST
+
+
+    class Plugin:
+        def __init__(self,NAME,DESC,MAG,FXN,COST):
+            self.NAME = NAME
+            self.DESC = DESC
+            self.MAG = MAG
+            self.FXN = FXN
+            self.COST = COST
+    class Item:
+        def __init__(self,NAME,TYPE,DESC,FXN,MAG,COST):
+            self.NAME = NAME
+            self.TYPE = TYPE
+            self.DESC = DESC
+            self.FXN = FXN
+            self.MAG = MAG
+            self.COST = COST
+    # class Card:
+    #     def __init__(self,name,POW,SPD,fxn,rank):
+    #         self.name=name
+    #         # self.type =
+    #         self.POW = POW
+    #         self.SPD = SPD
+    #         self.fxn = fxn
+    #         self.rank = rank
+    class Fxn:
+        def __init__(self,name,code,text,params=[]):
+            self.name=name
+            #code to display
+            self.code=code
+            self.text=text
+            self.params=params
+            # self.displayname=name+"()"
+    class BattleStatus:
+        def __init__(self,name,text,magnitude):
+            self.name=name
+            self.text=text
+            self.magnitude=magnitude
+
+
+
+
+#     Freeze =    Fxn("Freeze()","Negate 1 execution")
+#     # Break = Fxn("Break","Break 1 execution")
+#     Breach = Fxn("Breach()","Inflict SP-Ignoring Damage.")
+#     ForEachEmail=Fxn("while E has Email:","Iterate enclosed function")
+#
+#
+#     Damage = Fxn("Damage(MAG)","Inflict Damage to enemy.")
+#     RemovEmailDamage = Fxn("  RemoveEmail()\n  Damage(MAG)","Remove Email. Inflict MAG * ATK Damage.")
+#     DamageSP = Fxn("DamageSP(MAG)","Inflict Damage to SP.")
+#     DamageSPself = Fxn("DamageSPself(MAG)","Inflict Damage to own SP.")
+#     Recover = Fxn("Recover(MAG)","Increase HP.")
+#     Shield = Fxn("Shield(MAG)","Increase SP.")
+#     Reflect = Fxn("Reflect(MAG)","Apply Reflect Status:{Negate incoming Damage; BoostATK;}")
+#     Burn_Self = Fxn("Burnself()","Append Burn status to self.")
+#     BoostATK = Fxn("BoostATK()","Increase ATK")
+#     BoostDEF = Fxn("BoostDEF()","Increase DEF")
+#     AntiAntiDamage = Fxn("AntiAntiDamage()","Remove all AntiDamage from your opponent")
+#     HalfHP_self = Fxn("HalfHP_self()","Half current HP of self.")
+#     Evade = Fxn("NegateDmg()","Negate a Damage function once.")
+#     ReduceBit = Fxn("reduceBit","ReduceBit()","Reduce opponent's bit value by 1.")
+#     BoostGun = Fxn("BoostGun()","Increase  MAG of \"Gun\" type Battleware")
+#     BoostSword = Fxn("BoostSword()","Increase  MAG of \"Sword\" type Battleware")
+# #Tokens
+#
+#
+#     Email=Fxn("Email()","Append Email token to opponent.")
+#     Burn = Fxn("Burn()","Append Burn token to opponent.")
+#     Saber = Fxn("Saber()","Gain a \"Saber\" token.")
+#     Bullet = Fxn("Bullet()","Gain a \"Bullet\" token.")
+    def Burn(burndmg):
+        return Fxn(
+            "Burn",
+            "Burn("+str(burndmg)+")",
+            "Apply Burn status to target, Burn token deals "+str(burndmg)+" each turn.",
+            burndmg
+            )
+    def GainToken(tokenname,quantity):
+        return Fxn(
+            "GainToken",
+            "GainToken(\""+str(tokenname)+"\","+str(quantity)+")",
+            "Gain "+str(quantity)+" \""+str(tokenname)+"\" token(s).",
+            [tokenname,quantity])
+    def GiveToken(tokenname,quantity):
+        return Fxn(
+            "GiveToken",
+            "GiveToken(\""+str(tokenname)+"\","+str(quantity)+")",
+            "Give a \""+str(tokenname)+"\" token(s).",
+            [tokenname,quantity])
+    def Boost(statname,MAG):
+        return Fxn(
+            "Boost"+statname,
+            "Boost("+str(statname)+","+str(MAG)+")",
+            "Increase "+str(statname)+" by "+str(MAG)+".",
+            [statname,MAG]
+            )
+    def Attack():
+        return Fxn(
+            "Attack",
+            "Attack(ATK*MAG)",
+            "Deal Damage to target.")
+    def AttackSP():
+        return Fxn(
+            "AttackSP",
+            "AttackSP(ATK*MAG)",
+            "Deal Damage to target's SP.")
+    def Defend():
+        return Fxn(
+            "Defend",
+            "Defend(DEF*MAG)",
+            "Gain Shield Points.")
+    def Recover(MAG):
+        return Fxn(
+            "Recover",
+            "Recover(MAXHP*MAG)",
+            "Recover (MAXHP * MAG) HP.",
+            MAG
+            )
+    #
+    def While(condition,token_name,fxns):
+        function1=fxns[0].code
+        if len(fxns)==2:
+            function2=fxns[1]
+            codepart2="\n  "+str(function2.code)
+        return Fxn(
+            "While",
+            "While("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "Execute enclosed functions while True",
+            (token_name,fxns)
+            )
+
+    def RemoveToken(token_name):
+        return Fxn(
+            "RemoveToken",
+            "RemoveToken(\""+token_name+"\")",
+            "Remove 1 \""+token_name+"\" token from enemy status.",
+            token_name
+            )
+    def NullFxn():
+        return Fxn(
+            "",
+            "",
+            ""
+            )
+    # GainToken("E-mail")
+
+    # Recover_EX = Fxn("Recover","EX","Recover all HP",,0)
+    # Recover_A = Fxn("Recover","A","Gain HP",1000,0)
+    # Recover_B = Fxn("Recover","B","Gain some HP",700,0)
+
+    # Empty = Fxn("","")
+
+    # 0 2 4 8 16 32 64 128 256 512 1024
+    """
+    Average COST for functions
+
+    BITS           1     2     3      4     5      6     7       8
+    MAG(Damage)    0.25  0.5   0.75   1.0   1.25   1.5   1.75    2.0
+    MAG(Shield)    0.5   0.75  1.0    1.25  1.5    1.75  2.0     2.25
+    BoostATK                           *
+    BoostDEF                           *
+    FXN
+    Freeze()       2
+    """
+
+    ##name              name                     TYPE       MAG    HITS    FXN List               COST
+    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
+    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
+    Concatenations=[FlameSaber]
+    Concat_strings=[concat.TYPE for concat in Concatenations]
+
+#ILY's cards
+    SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    1)
+    MailSaber=    Card("MailSaber",       "Sword",          0.2,  [While("enm_status has \"Email\"","Email",[RemoveToken("Email"),Attack()]),NullFxn()],   4)
+    HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
+    ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
+#Ave's cards
+    FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(),NullFxn()],              4)
+    DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
+    Bitbuster=    Card("Bitbuster",       "Gun",            0.25,     [Attack(),NullFxn()],             2)
+    #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
+    Laserbeam=    Card("Laserbeam",       "Gun",            2.0,      [Attack(),NullFxn()],             8)
+#Swords
+    # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
+    DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+
+    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP()],             3)
+    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend()],               4)
+
+    XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
+    YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
+    #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
+
+
+# Virus Exclusive
+    Vshot=        Card("V-Shot",         "Gun",      0.6,               [Attack(),NullFxn()],           3)
+    VirusFlame=   Card("V-Flame",        "Fire",      0.5,            [Attack(),Burn(20)],               3)
+    Vslash=       Card("V-Slash",        "Slash",    0.5,            [Attack(),NullFxn()],              2)
+
+#Antivirus Exclusive
+    Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
+
+#Bombs
+    DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Attack(),NullFxn()],          4)
+    Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Attack(),NullFxn()],          2)
+
+#Force
+    BruteForce=   Card("BruteForce",     "Force",    1.0,     [Attack(),Boost("ATK",0.25)],      8)
+    DataForce=    Card("DataForce",      "Force",    1.0,      [Boost("ATK",0.25),Boost("DEF",0.25)],       4)
+
+
+    DataDrill=    Card("DataDrill",       "Drill",   0.6,     [Attack(),Attack(),Attack()],       6)
+    Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
+    Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
+
+    Assault=      Card("Assault",       "Tech",    0.25,       [Boost("ATK",0.25),NullFxn()],  2)
+    # Bitbuster=    Card("Bitbuster",       "Gun",    0.25,     [Attack(),ReduceBit],       2)
+    # Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
+    Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(),NullFxn()],          8)
+
+
+
+    Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
+
+
+    ##NO ART
+    # Parasol=      Card("Parasol",      20,     256,     1, "Firewall",         'C')
+    # Chainsaw=     Card("Chainsaw",     550,     32,     1, "Break",            'B')
+    # SoftDrink=    Card("SoftDrink",    500,    256,     1, "Recover",          'D')
+    # Noisewave=    Card("Noisewave",    200,    256,     1, "Firewall",         'C')
+    # DataBarrier=  Card("DataBarrier",  300,    256,     1, "Firewall",         'C')
+
+    # Laserbeam=    Card("Laserbeam",    600,    128,     1, "Damage",           'A')
+    # WormSlayer=   Card("WormSlayer",   350,    128,     1, "Anti-Worm",        'A')
+    # HyperCannon=  Card("HyperCannon",  700,    32,      1,  "Damage",           'A')
+
+
+    # MegaBomb=    ("MegaBomb",    700,    70)
+    # GigaBomb=    ("GigaBomb",    1500,   60)
+    #ILY's Deck at the beginning of the game.
+    #24 Cards Per deck
+
+#    Plugins:
+    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, GiveToken("Email",1),4)
+    SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, Boost("ATK",0.1),4)
+    MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, Boost("ATK",0.1),4)
+    DigitalPressure=Plugin("Digital Pressure","",1.0,Attack(), 8)
+
+
+    #BEFORE BUILD:
+    ##CHANGE TO DEFAULT TO AVOID ERRORS
+    # [default deckdefault]
+    deckdefault = {
+        "name":"The Love Machine",
+        "content":[
+            VirusFlame,VirusFlame,
+            BlockSaber,Vslash,
+            Vslash,Vslash,
+            SpamAtk,SpamAtk,
+            SpamAtk,SpamAtk,
+            SpamAtk,DataSaber,
+            DataSaber,DataSaber,
+            ChocolateBar,ChocolateBar,
+            MailSaber,MailSaber,
+            BlockSaber,BreakSaber,
+            BlockSaber,BreakSaber,
+            Vslash,Vshot],
+        "plugins":[]
+        }
+
+    deckmelissa = [
+        VirusFlame,VirusFlame,
+        VirusFlame,DataSaber,
+        DataSaber,DataSaber,
+        Vslash,Vslash,
+        Vslash,DataBuster,
+        DataBuster,DataBuster,
+        SpamAtk,DataForce,
+        Shieldbit,Shieldbit,
+        Shieldbit,Shieldbit,
+        XAxess,Vslash,
+        Vslash,Bitbuster,
+        Bitbuster,Bitbuster]
+
+    # deckdefault = [
+    #     VirusFlame,DataBomb,
+    #     DataDrill,DataBuster,
+    #     Vshot,Vslash,
+    #     Vslash,DataDrill,
+    #     XAxess,XAxess,
+    #     XAxess,XAxess,
+    #     DataDrill,DataDrill,
+    #     BreakSaber,DataDrill,
+    #     HeartBurn,BreakSaber,
+    #     BreakSaber,BreakSaber]
+
+    #The first deck you will fight.
+    decktrojan = [
+        VirusFlame,VirusFlame,
+        VirusFlame,DataBomb,
+        DataBuster,DataBomb,
+        DataBuster,DataBuster,
+        DataBomb,Cursorclaw,
+        Cursorclaw,Cursorclaw,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vshot,Vshot,
+        Vshot,Vshot]
+
+    deckkeylogger = [
+        VirusFlame,VirusFlame,
+        VirusFlame,DataBuster,
+        DataBuster,DataBuster,
+        DataBuster,Vslash,
+        DataBomb,Cursorclaw,
+        Cursorclaw,Cursorclaw,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vshot,Vshot,
+        Vshot,Vshot]
+    deckransomware = [
+        VirusFlame,VirusFlame,
+        VirusFlame,DataBuster,
+        DataBuster,DataBuster,
+        DataBuster,DataBuster,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vshot,Vshot,
+        Vshot,Vshot]
+    deckrootkit = [
+        Vshot,Vshot,
+        Vshot,Vshot,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vshot,Vshot,
+        Vslash,Vslash,
+        Vslash,Vslash,
+        Vshot,Vshot,
+        Vshot,Vshot]
+    deckvira = [
+        Firewall,
+        Firewall,Firewall,
+        Firewall,DataBuster,
+        DataBuster,
+        Shieldbit,Shieldbit,
+        DataBuster,Shieldbit,
+        Shieldbit,
+        Powersol,Powersol,
+        Firewall,Firewall,
+        Shieldbit,
+        Powersol,Powersol,
+        DataForce,Firewall,
+
+        ]
+    deckave = [
+        DataBuster,
+        DataBuster,DataBuster,
+        DataBuster,Firewall,
+        Firewall,
+        Firewall,Shieldbit,
+        DataBomb,DataBomb,
+        Laserbeam,
+        Shieldbit,Shieldbit,
+        Shieldbit,Bitbuster,
+        Bitbuster,
+        Assault,Assault,
+        Assault,Assault]
+    deckred = [
+        DataSaber,DataSaber,
+        DataSaber,DataSaber,
+        VirusFlame,VirusFlame,
+        Vslash,Vslash,
+        Shieldbit,BruteForce,
+        DataBomb,BruteForce,
+        Laserbeam,Laserbeam,
+        Shieldbit,Shieldbit,
+        Shieldbit,Shieldbit,
+        DataForce,DataForce]
+
+
+    selectedcard = ""
+    currentcard = DataSaber
+
+    mydeck = deckdefault
+    Enmydeck = decktrojan
+    decknum = len(mydeck)
+    import random
+    random.shuffle(mydeck["content"])
+    random.shuffle(Enmydeck)
+    movecard = MoveTransition(0.2)
+
+    card1name = "DataSaber"
+    card2name = "FiberSword"
+    Enmycard1name = "DataSaber"
+    Enmycard2name = "FiberSword"
+
+
+    #DEFINE CHARACTERS BY
+            # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
+    ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
+    Trojan=FAI("Trojan Horse","Virus",1000,500,300,250,decktrojan,[])
+    Keylogger=FAI("Keylogger","Virus",500,250,300,250,deckkeylogger,[])
+    Ransomware=FAI("Ransomware","Virus",600,300,300,250,deckransomware,[])
+    Rootkit=FAI("Rootkit","Virus",700,350,300,250,deckrootkit,[])
+    Worm=FAI("Worm","Virus",800,400,300,250,deckrootkit,[])
+    Spyware=FAI("Spyware","Virus",800,400,300,250,deckrootkit,[])
+    Vira=FAI("Vira","Antivirus",3500,1750,450,550,deckvira,[])
+    CodeRed=FAI("Code Red","Virus",4000,2000,500,500,deckred,[])
+    Melissa=FAI("Melissa","Virus",2000,1000,500,500,deckmelissa,[])
+    Ave=FAI("Ave","Antivirus",3000,1500,550,440,deckave,[])
+
+
+    # Vira=FAI("Vira","Antivirus",4000,deckvira)
+default EnmySts = []
+default PlayerSts = []
+default Enmyname = "Trojan Horse"

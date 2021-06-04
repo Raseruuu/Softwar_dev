@@ -1,0 +1,1 @@
+{"layout": null, "package": "soft.war", "include_pil": false, "numeric_version": "100", "expansion": false, "name": "SoftWar - DEMO", "update_always": true, "source": false, "icon_name": "SoftWar", "version": "1.0", "heap_size": "3", "update_icons": true, "permissions": ["VIBRATE"], "include_sqlite": false, "store": "none", "orientation": "sensorLandscape"}

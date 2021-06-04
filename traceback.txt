@@ -1,0 +1,55 @@
+﻿I'm sorry, but an uncaught exception occurred.
+
+While running game code:
+  File "game/start.rpy", line 11, in script call
+    call game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 5, in script call
+    scene black
+  File "renpy/common/00console.rpy", line 1052, in script call
+    python in _console:
+  File "game/code/battle/battlev3_flow_screens.rpy", line 451, in script call
+    call enemyattack
+  File "game/code/battle/battlefxn.rpy", line 939, in script call
+    call enemyexecutecard
+  File "game/code/battle/battlefxn.rpy", line 870, in script call
+    call enemyfunctioneffects(runfxnstring)
+  File "game/code/battle/battlefxn.rpy", line 1058, in script
+    $ renpy.call(FxnDirectoryEnemy[runfxnstring])
+  File "game/code/battle/battlefxn.rpy", line 1058, in <module>
+    $ renpy.call(FxnDirectoryEnemy[runfxnstring])
+KeyError: u'Boost[statname]'
+
+-- Full Traceback ------------------------------------------------------------
+
+Full traceback:
+  File "game/start.rpy", line 11, in script call
+    call game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 5, in script call
+    scene black
+  File "renpy/common/00console.rpy", line 1052, in script call
+    python in _console:
+  File "<string>", line 1, in script call
+  File "game/code/battle/battlev3_flow_screens.rpy", line 451, in script call
+    call enemyattack
+  File "game/code/battle/battlefxn.rpy", line 939, in script call
+    call enemyexecutecard
+  File "game/code/battle/battlefxn.rpy", line 870, in script call
+    call enemyfunctioneffects(runfxnstring)
+  File "game/code/battle/battlefxn.rpy", line 1058, in script
+    $ renpy.call(FxnDirectoryEnemy[runfxnstring])
+  File "renpy/ast.py", line 922, in execute
+    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
+  File "renpy/python.py", line 2218, in py_exec_bytecode
+    exec(bytecode, globals, locals)
+  File "game/code/battle/battlefxn.rpy", line 1058, in <module>
+    $ renpy.call(FxnDirectoryEnemy[runfxnstring])
+KeyError: u'Boost[statname]'
+
+Windows-10-10.0.19041
+Ren'Py 7.4.5.1601
+SoftWar - DEMO 1.0
+Sat May 22 02:02:30 2021
