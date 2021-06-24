@@ -20,14 +20,11 @@ screen Card(cardobj,position,zoomvalue):
             )
         vbox:
             pos (13,240)
-            if len(cardobj.FXN[0].code)>18:
-                add At(FunctionList(cardobj.FXN),widthresize(0.66))
-            else:
-                add FunctionList(cardobj.FXN)
+            add FunctionList(cardobj.FXN)
         text "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}":
             pos (11,214)
         text "{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}"+cardobj.TYPE+"{/color}{/font}{/size}":
-            pos (155,237)
+            pos (165,237)
         text "{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}":
             pos (165,267)
 

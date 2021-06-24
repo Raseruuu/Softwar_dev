@@ -41,11 +41,20 @@ image damageeffect:
 
 label RemoveTokenEnemy:
     $ token_name = currentcard_fxn_params[0]
-    $ EnmySts.remove(token_name)
+    $ remove_target = currentcard_fxn_params[1]
+    if remove_target=="Self":
+        $ EnmySts.remove(token_name)
+    elif remove_target=="Enemy":
+        $ PlayerSts.remove(token_name)
     return
 label RemoveTokenPlayer:
     $ token_name = currentcard_fxn_params[0]
-    $ PlayerSts.remove(token_name)
+    $ remove_target = currentcard_fxn_params[1]
+
+    if remove_target=="Self":
+        $ PlayerSts.remove(token_name)
+    elif remove_target=="Enemy":
+        $ EnmySts.remove(token_name)
     return
 label Damageenemy:
   $ Magnitude = (currentcardMAG)
@@ -400,39 +409,95 @@ label BoostMAGenemy:
     hide BoostMAGsts
     return
 
-label WhileTokenInStatusPlayer:
+label WhileTokenInStatusEnemy:
+#Enemy Activates While Loop
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN=currentcardFXN[fxnindex]
     $ token_name=FXN.params[0]
     $ block_functions=FXN.params[1]
+    $ targetsts=FXN.params[2]
     # label WhileLoop:
-    while token_name in PlayerSts:
-        # if token_name in PlayerSts:
-        $ block_count = 0
-        label block_loop:
-            call functioneffects(runfxnstring)
-            $ block_count+=1
-            if block_count<len(block_funct ions):
-                jump block_loop
-            # jump WhileLoop
+    if targetsts = "Self":
+        while token_name in EnmySts:
+            # if token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop:
+                call functioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop
+                # jump WhileLoop
+    if targetsts = "Enemy":
+        while token_name in PlayerSts:
+            # if token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop1:
+                call functioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop1
+                # jump WhileLoop
     return
-label WhileTokenInStatusEnemy:
-
+label IfTokenInStatusPlayer:
+#Player Uses If
+    $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN=currentcardFXN[fxnindex]
     $ token_name=FXN.params[0]
     $ block_functions=FXN.params[1]
-    label WhileLoop2:
-        if token_name in EnmySts:
+    $ targetsts=FXN.params[2]
+    # label WhileLoop:
+    if targetsts == "Self":
+        if token_name in PlayerSts:
+            # if token_name in PlayerSts:
             $ block_count = 0
-            label block_loop2:
+            label block_loop3:
+                call functioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop3
+    elif targetsts == "Enemy":
+        if token_name in EnmySts:
+            # if token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop4:
+                call functioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop4
+            # jump WhileLoop
+    return
+label WhileTokenInStatusPlayer:
+#Player Activates While Loop
+    $ runfxnstring = currentcardFXN[fxnindex].name
+    $ FXN=currentcardFXN[fxnindex]
+    $ token_name=FXN.params[0]
+    $ block_functions=FXN.params[1]
+    $ targetsts=FXN.params[2]
+
+    if targetsts == "Self":
+        while token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop5:
                 $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call functioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop5
+
+    elif targetsts == "Enemy":
+        while token_name in EnmySts:
+            $ block_count = 0
+            label block_loop6:
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+            
                 call functioneffects(runfxnstring)
                 $ block_count+=1
                 if block_count<len(block_functions):
 
-                    jump block_loop2
+                    jump block_loop6
 
-            jump WhileLoop2
     return
 label BoostATKenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
@@ -976,8 +1041,9 @@ init python:
         "GiveToken":"GiveToken",
         "GainToken":"GainTokenPlayer",
         "BurnSelf":"Burnself",
-        "While":"WhileTokenInStatusEnemy",
-        "RemoveToken":"RemoveTokenEnemy",
+        "If":"IfTokenInStatusPlayer",
+        "While":"WhileTokenInStatusPlayer",
+        "RemoveToken":"RemoveTokenPlayer",
         "BoostATK":"BoostATK",
         "BoostDEF":"BoostDEF",
         "ReduceBit":"ReduceBit",
@@ -1024,8 +1090,9 @@ init python:
         "Burn":"Burnself",
         "GiveToken":"GiveTokenPlayer",
         "BurnSelf":"Burnenemy",
-        "While":"WhileTokenInStatusPlayer",
-        "RemoveToken":"RemoveTokenPlayer",
+        "If":"IfTokenInStatusEnemy",
+        "While":"WhileTokenInStatusEnemy",
+        "RemoveToken":"RemoveTokenEnemy",
         "BoostATK":"BoostATKenemy",
         "BoostDEF":"BoostDEFenemy",
         "Boost":"Boost",

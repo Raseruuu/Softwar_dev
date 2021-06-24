@@ -91,71 +91,83 @@ init python:
     def Burn(burndmg):
         return Fxn(
             "Burn",
-            "Burn("+str(burndmg)+")",
+            "burn("+str(burndmg)+")",
             "Apply Burn status to target, Burn token deals "+str(burndmg)+" each turn.",
             burndmg
             )
     def GainToken(tokenname,quantity):
         return Fxn(
             "GainToken",
-            "GainToken(\""+str(tokenname)+"\","+str(quantity)+")",
+            "gainToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Gain "+str(quantity)+" \""+str(tokenname)+"\" token(s).",
             [tokenname,quantity])
     def GiveToken(tokenname,quantity):
         return Fxn(
             "GiveToken",
-            "GiveToken(\""+str(tokenname)+"\","+str(quantity)+")",
+            "giveToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Give a \""+str(tokenname)+"\" token(s).",
             [tokenname,quantity])
+    def If(condition,token_name,fxns,target):
+        function1=fxns[0].code
+        if len(fxns)==2:
+            function2=fxns[1]
+            codepart2="\n  "+str(function2.code)
+        return Fxn(
+            "If",
+            "if ("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "Execute enclosed functions if condition is True",
+            (token_name,fxns,target)
+            )
     def Boost(statname,MAG):
         return Fxn(
             "Boost"+statname,
-            "Boost("+str(statname)+","+str(MAG)+")",
+            "boost("+str(statname)+","+str(MAG)+")",
             "Increase "+str(statname)+" by "+str(MAG)+".",
             [statname,MAG]
             )
     def Attack():
         return Fxn(
             "Attack",
-            "Attack(ATK*MAG)",
+            "attack(ATK*MAG)",
             "Deal Damage to target.")
     def AttackSP():
         return Fxn(
             "AttackSP",
-            "AttackSP(ATK*MAG)",
+            "attackSP(ATK*MAG)",
             "Deal Damage to target's SP.")
     def Defend():
         return Fxn(
             "Defend",
-            "Defend(DEF*MAG)",
+            "defend(DEF*MAG)",
             "Gain Shield Points.")
     def Recover(MAG):
         return Fxn(
             "Recover",
-            "Recover(MAXHP*MAG)",
+            "recover(MAXHP*MAG)",
             "Recover (MAXHP * MAG) HP.",
             MAG
             )
     #
-    def While(condition,token_name,fxns):
+    def While(condition,token_name,target,fxns):
         function1=fxns[0].code
         if len(fxns)==2:
             function2=fxns[1]
             codepart2="\n  "+str(function2.code)
         return Fxn(
             "While",
-            "While("+str(condition)+"):\n  "+str(function1)+codepart2,
-            "Execute enclosed functions while True",
-            (token_name,fxns)
+            "while("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "Execute enclosed functions while condition is True",
+            (token_name,fxns,target)
             )
 
-    def RemoveToken(token_name):
+    def RemoveToken(token_name,target):
         return Fxn(
             "RemoveToken",
-            "RemoveToken(\""+token_name+"\")",
-            "Remove 1 \""+token_name+"\" token from enemy status.",
-            token_name
+            "removeToken(\""+token_name+"\",\""+target+"\")",
+            "Remove 1 \""+token_name+"\" token from target's status.",
+            (token_name,target)
             )
+
     def NullFxn():
         return Fxn(
             "",
@@ -191,7 +203,10 @@ init python:
 
 #ILY's cards
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    1)
-    MailSaber=    Card("MailSaber",       "Sword",          0.2,  [While("enm_status has \"Email\"","Email",[RemoveToken("Email"),Attack()]),NullFxn()],   4)
+    MailSaber=    Card("MailSaber",       "Sword",          0.2,  [While("\"Email\" in enmy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
+
+    RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
+
     HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
     ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
 #Ave's cards
@@ -204,8 +219,8 @@ init python:
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
 
-    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP()],             3)
-    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend()],               4)
+    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],             3)
+    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],               4)
 
     XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)

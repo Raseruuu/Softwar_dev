@@ -347,11 +347,11 @@ init python:
         fxns=[]
         long_fxn_name=False
         for cardfunction in FXN:
-            if len(cardfunction.code)>18:
+            if len(cardfunction.code)>20:
                 long_fxn_name=True
             fxns.append(Text("{size=12}"+cardfunction.code+"{/size}"))
         if long_fxn_name:
-            return At(VBox(*fxns))
+            return At(VBox(*fxns),widthresize(0.7))
         else:
             return VBox(*fxns)
     def FunctionListDescript(FXN):
@@ -365,6 +365,18 @@ init python:
         #     return At(VBox(*fxns))
         # else:
         return VBox(*fxns)
+    def CardDisplay(cardobj):
+        return LiveComposite(
+            (225,300),
+            (0,0),"images/Cards/Cardblank.png",
+            (11,12),"images/Cards/[cardobj.NAME].png",
+            (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[cardobj.NAME]{/color}{/font}{/size}"),
+            (13,240),FunctionList(cardobj.FXN),
+            (165,175),"images/Cards/cardbit/[cardobj.COST].png",
+            (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[cardobj.TYPE]{/color}{/font}{/size}"),
+            (165,267),Text("{color=#ae81f2}{size=24}[cardobj.MAG]{/color}{/size}")
+            # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[currentcard.HIT]{/color}{/font}{/size}"),
+            )
 
 image cardflasher:
     LiveComposite(
@@ -374,7 +386,7 @@ image cardflasher:
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[currentcard.NAME]{/color}{/font}{/size}"),
         (13,240),FunctionList(currentcardFXN),
         (165,175),"images/Cards/cardbit/[currentcard.COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[currentcard.TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[currentcard.TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[currentcard.MAG]{/color}{/size}")
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[currentcard.HIT]{/color}{/font}{/size}"),
         )
@@ -387,7 +399,7 @@ image card1:
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard1name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard1FXN),
         (165,175),"images/Cards/cardbit/[playercard1COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[0].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].HIT]{/color}{/font}{/size}"),
         )
@@ -399,7 +411,7 @@ image card2:
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard2name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard2FXN),
         (165,175),"images/Cards/cardbit/[playercard2COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[1].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].HIT]{/color}{/font}{/size}"),
         )
@@ -412,7 +424,7 @@ image card3:
         # (13,240),FunctionList(playercard3FXN),
         (13,240),FunctionList(playercard3FXN),
         (165,175),"images/Cards/cardbit/[playercard3COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[2].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].HIT]{/color}{/font}{/size}"),
         )
@@ -424,7 +436,7 @@ image card4:
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard4name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard4FXN),
         (165,175),"images/Cards/cardbit/[playercard4COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[3].TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[3].TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[3].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[3].HIT]{/color}{/font}{/size}"),
         )
@@ -436,7 +448,7 @@ image card5:
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard5name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard5FXN),
         (165,175),"images/Cards/cardbit/[playercard5COST].png",
-        (155,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].TYPE]{/color}{/font}{/size}"),
+        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[4].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].HIT]{/color}{/font}{/size}"),
         )

@@ -519,8 +519,8 @@ screen Battleware_Edit():
             frame:
                 imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
                     action SetVariable("noscreentransformsfornow",True), Return("UnsaveDeck")
-    if hoverFXN!=[]:
-        use card_tooltip
+    # if hoverFXN!=[]:
+    #     use card_tooltip
 
 transform marquee:
    #on show:
