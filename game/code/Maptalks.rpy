@@ -17,12 +17,12 @@ label whatactor:
         a"YOU'RE A VIRUS!! I MUST DESTROY YOU!"
         hide screen mapB
         hide screen mapA
-        call battlev3(ILY,Ave)
+        call battlev3(ILY,Ave) from _call_battlev3_1
         if playerHP<=0:
             return
         $ enemy_encounter=False
         $ map_active=True
-        call mapresume
+        call mapresume from _call_mapresume
         return
       elif actornum == 'Melissa':
         $ ILYSprite("mad")
@@ -32,12 +32,12 @@ label whatactor:
         m"I'm a virus! what did you expect?"
         hide screen mapB
         hide screen mapA
-        call battlev3(ILY,Melissa)
+        call battlev3(ILY,Melissa) from _call_battlev3_2
         if playerHP<=0:
             return
         $ enemy_encounter=False
         $ map_active=True
-        call mapresume
+        call mapresume from _call_mapresume_1
         return
       elif actornum == 'CodeRed':
         if objectbelow=="CodeRed":
@@ -48,12 +48,12 @@ label whatactor:
         c"I'm just doing my job!"
         hide screen mapB
         hide screen mapA
-        call battlev3(ILY,CodeRed)
+        call battlev3(ILY,CodeRed) from _call_battlev3_3
         if playerHP<=0:
             return
         $ enemy_encounter=False
         $ map_active=True
-        call mapresume
+        call mapresume from _call_mapresume_2
         return
       elif actornum == 'Vira':
         if objectbelow=="Vira":
@@ -64,12 +64,12 @@ label whatactor:
         v"Uguu! What do you want!!"
         hide screen mapB
         hide screen mapA
-        call battlev3(ILY,Vira)
+        call battlev3(ILY,Vira) from _call_battlev3_4
         if playerHP<=0:
             return
         $ enemy_encounter=False
         $ map_active=True
-        call mapresume
+        call mapresume from _call_mapresume_3
         return
       elif actornum == 'Program-kun':
         $ILYSprite("smile")
@@ -106,15 +106,15 @@ label whatactor:
           "No":
             i"OK."
       elif actornum == 'Melissa':
-         call script2
+         call script2 from _call_script2
       show screen mapB
       call screen mapA
-      call Returns
+      call Returns from _call_Returns
       return
     else:
       show screen mapB
       call screen mapA
-      call Returns
+      call Returns from _call_Returns_1
     return
 label PlatformTalk:
     "Uguu"
@@ -138,10 +138,10 @@ label MapTalk:
 
       show screen mapB
       call screen mapA
-      call Returns
+      call Returns from _call_Returns_2
       return
     else:
       show screen mapB
       call screen mapA
-      call Returns
+      call Returns from _call_Returns_3
     return

@@ -8,7 +8,7 @@ image white = Solid("#fff")
 image Credits = "gui/Credits.png"
 image Maoudamashii = "Maoudamashii.png"
 label start:
-    call game_loop
+    call game_loop from _call_game_loop
 label credits:
     scene white with pixellate
     play music "bgm/Credits_bgm_maoudamashii_8bit08.mp3"

@@ -72,7 +72,7 @@ label Damageenemy:
       play sound "sfx/sfx_exp_short_hard8.wav"
     else:
       play sound "sfx/sfx_exp_short_hard9.wav"
-  call hurtnoise_Ave
+  call hurtnoise_Ave from _call_hurtnoise_Ave
   python:
     if enemySP>0:
         enemySP-=damagetoenemy
@@ -123,7 +123,7 @@ label DamageSPplayer:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave
+        call hurtnoise_Ave from _call_hurtnoise_Ave_1
         $ playerSP-=damagetoplayer
         if playerSP<0:
             $ playerSP=0
@@ -154,7 +154,7 @@ label DamageSPenemy:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave
+        call hurtnoise_Ave from _call_hurtnoise_Ave_2
         $ enemySP-=damagetoenemy
         if enemySP<0:
             $ enemySP=0
@@ -193,7 +193,7 @@ label DamageSPselfenemy:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave
+        call hurtnoise_Ave from _call_hurtnoise_Ave_3
         $ enemySP-=damagetoenemy
         if enemySP<0:
             $ enemySP=0
@@ -373,7 +373,7 @@ label BoostATK:
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
 
     $ PlayerSts=statusAppend(PlayerSts,["BoostATK",currentcard_fxn_params[1]])
-    call updatestats_player
+    call updatestats_player from _call_updatestats_player
     show BoostATKsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -387,7 +387,7 @@ label BoostDEF:
     $ Magnitude=currentcardMAG
     # $ PlayerSts.append("BoostATK")
     $ PlayerSts=statusAppend(PlayerSts,"BoostDEF")
-    call updatestats_player
+    call updatestats_player from _call_updatestats_player_1
     show BoostDEFsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -400,7 +400,7 @@ label BoostMAGenemy:
     $ Magnitude=currentcardMAG
     # $ PlayerSts.append("BoostATK")
     $ PlayerSts=statusAppend(PlayerSts,"BoostMAG")
-    call updatestats_enemy
+    call updatestats_enemy from _call_updatestats_enemy
     show BoostMAGsts onlayer overlay:
       zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -422,7 +422,7 @@ label WhileTokenInStatusEnemy:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop:
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop
@@ -432,7 +432,7 @@ label WhileTokenInStatusEnemy:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop1:
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_1
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop1
@@ -451,7 +451,7 @@ label IfTokenInStatusPlayer:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop3:
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_2
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop3
@@ -460,7 +460,7 @@ label IfTokenInStatusPlayer:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop4:
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_3
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop4
@@ -480,7 +480,7 @@ label WhileTokenInStatusPlayer:
             label block_loop5:
                 $ runfxnstring = block_functions[block_count].name
                 $ currentcard_fxn_params=block_functions[block_count].params
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_4
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop5
@@ -492,7 +492,7 @@ label WhileTokenInStatusPlayer:
                 $ runfxnstring = block_functions[block_count].name
                 $ currentcard_fxn_params=block_functions[block_count].params
             
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_5
                 $ block_count+=1
                 if block_count<len(block_functions):
 
@@ -505,7 +505,7 @@ label BoostATKenemy:
 
     # $ EnmySts.append("BoostDEF")
     $ EnmySts=statusAppend(EnmySts,"BoostATK")
-    call updatestats_enemy
+    call updatestats_enemy from _call_updatestats_enemy_1
     show BoostATKsts onlayer overlay:
       zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -519,7 +519,7 @@ label BoostDEFenemy:
 
     # $ EnmySts.append("BoostDEF")
     $ EnmySts=statusAppend(EnmySts,"BoostDEF")
-    call updatestats_enemy
+    call updatestats_enemy from _call_updatestats_enemy_2
     show BoostDEFsts onlayer overlay:
       zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -680,7 +680,7 @@ label Damageplayer:
   $ dmgdist = int(dmgdist*2)
   show playerdmgpoint onlayer overlay
   with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-  call hurtnoise
+  call hurtnoise from _call_hurtnoise_1
   $ renpy.pause(0.6,hard=True)
   return
 transform ringtransform:
@@ -744,7 +744,7 @@ label Concatenation:
     return
 
 label Concat_anim(prefix,suffix,concat_result):
-    call showphasemsg("CONCATENATE!")
+    call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
     python:
 
         playerbattlecode.pop(battle_index)
@@ -792,7 +792,7 @@ label FinishingFlash(dialogue):
 label Execution:
     $ runnumber = 0
     #Index of looper
-    call Concatenation
+    call Concatenation from _call_Concatenation
     $iterations =len(playerbattlecode)
     show screen phasemsg("EXECUTE")
     $renpy.pause(0.5,hard=True)
@@ -808,7 +808,7 @@ label Execution:
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(playerATK_m*Magnitude)
         $ damagecard = True#("attack" in currentcardFXN[0].name or "attack" in currentcardFXN[1].name)
-        call battlecry
+        call battlecry from _call_battlecry
         # show ring onlayer overlay:
         #     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
         #     linear 0.15 zoom 1.4 rotate 180 alpha 0.8
@@ -822,7 +822,7 @@ label Execution:
         label runfunctions:
             $ runfxnstring = currentcardFXN[fxnindex].name
             label hitloop:
-                call functioneffects(runfxnstring)
+                call functioneffects(runfxnstring) from _call_functioneffects_6
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
                 jump runfunctions
@@ -834,10 +834,10 @@ label Execution:
             jump exec_loop
         else:
 
-            call PlayerEndPhase
+            call PlayerEndPhase from _call_PlayerEndPhase
             info"[playerName]'s turn has ended."
             if not battle_done:
-                call enemyattack
+                call enemyattack from _call_enemyattack_1
     return
 
 label PlayerEndPhase:
@@ -861,7 +861,7 @@ label PlayerEndPhase:
             $ dmgdist = int(dmgdist*2)
 
             show dmgpointb
-            call hurtnoise_Ave
+            call hurtnoise_Ave from _call_hurtnoise_Ave_4
             show Enemy:
               linear 0.1 zoom 0.96
               xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
@@ -903,7 +903,7 @@ label EnemyEndPhase:
               linear 0.2 zoom 1.0 alpha 0.0
 
             show playerdmgpoint onlayer overlay
-            call hurtnoise
+            call hurtnoise from _call_hurtnoise_2
             with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
             $ renpy.pause(0.6,hard=True)
 
@@ -919,10 +919,10 @@ label enemyexecutecard:
         #   zoom 0.0 xalign 0.5 ypos 0.3 yanchor 0.5
         #   linear 0.15 zoom 1.4
         # show cardflashenemy onlayer overlay
-        call battlecry_Ave
-        call battlecry_Melissa
-        call battlecry_CodeRed
-        call battlecry_Vira
+        call battlecry_Ave from _call_battlecry_Ave
+        call battlecry_Melissa from _call_battlecry_Melissa
+        call battlecry_CodeRed from _call_battlecry_CodeRed
+        call battlecry_Vira from _call_battlecry_Vira
         play sound "sound/swing.wav"
         call screen cardflashscreenenemy
 
@@ -932,7 +932,7 @@ label enemyexecutecard:
 
             # $ hitindex=0
             label hitloop2:
-                call enemyfunctioneffects(runfxnstring)
+                call enemyfunctioneffects(runfxnstring) from _call_enemyfunctioneffects
 
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
@@ -1001,7 +1001,7 @@ label enemyattack:
         # elif choicecount ==4:
         #   call enemyexecutecard
         # else:
-        call enemyexecutecard
+        call enemyexecutecard from _call_enemyexecutecard
         $ enemyhand.pop(0)
         $ enemyrunnumber+=1
 
@@ -1011,7 +1011,7 @@ label enemyattack:
             jump enemyattackloop
 
         else:
-            call EnemyEndPhase
+            call EnemyEndPhase from _call_EnemyEndPhase
             info"[enemyName]'s turn has ended."
     return
 
@@ -1021,7 +1021,7 @@ label Saber:
     # $ Magnitude=currentcardMAG
     # # $ PlayerSts.append("BoostATK")
     $ PlayerSts=statusAppend(PlayerSts,"Saber")
-    call updatestats_player
+    call updatestats_player from _call_updatestats_player_2
     show BoostDEFsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98

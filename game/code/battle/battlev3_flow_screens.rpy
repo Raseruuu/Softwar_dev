@@ -439,7 +439,7 @@ label battlev3(PFAI,EFAI):
 
 
     show screen battlestats
-    call showphasemsg("SOFTWAR BEGIN!")
+    call showphasemsg("SOFTWAR BEGIN!") from _call_showphasemsg_1
     #Start Dialogue
     $ phasenum=0
     label battleloop:
@@ -448,7 +448,7 @@ label battlev3(PFAI,EFAI):
             pass
 
         if enemyfirst and (not first_turn_done):
-            call enemyattack
+            call enemyattack from _call_enemyattack
             $ first_turn_done =True
 
             if not battle_done:
@@ -461,7 +461,7 @@ label battlev3(PFAI,EFAI):
                 hide screen battlestats
                 if playerHP<=0:
                     stop music
-                    call lose
+                    call lose from _call_lose
                     return
                 else:
                     play music "bgm/bgm_maoudamashii_cyber16.mp3"
@@ -480,13 +480,13 @@ label battlev3(PFAI,EFAI):
                         xoffset 0 yoffset 0
                         linear 0.1 zoom 0.8 alpha 0.0
                     $ renpy.pause(0.4,hard=True)
-                    call win
+                    call win from _call_win
 
         label playerturn:
 
         # elif battle_done:
         #     call showphasemsg("BATTLE_END")
-            call drawcards
+            call drawcards from _call_drawcards
             call screen Activate_Battleware
             play sound "sound/Phase.wav" channel 1
             python:
@@ -497,7 +497,7 @@ label battlev3(PFAI,EFAI):
                 # call screen choosecardv3(playerhand)
                 call screen choosecardv2
 
-                call BattleReturns
+                call BattleReturns from _call_BattleReturns
                 $ card1usable = (playercard1COST<=playerbits) and (clickedcard[0]==False)
                 $ card2usable = (playercard2COST<=playerbits) and (clickedcard[1]==False)
                 $ card3usable = (playercard3COST<=playerbits) and (clickedcard[2]==False)
@@ -508,7 +508,7 @@ label battlev3(PFAI,EFAI):
                     jump Codephase
                 else:
                     call screen Execute
-                    call BattleReturns
+                    call BattleReturns from _call_BattleReturns_1
                     # if not enemyfirst:
                     #     call enemyattack
                 #Execute button runs "Execution" label
@@ -522,7 +522,7 @@ label battlev3(PFAI,EFAI):
                 hide screen battlestats
                 if playerHP<=0:
                     stop music
-                    call lose
+                    call lose from _call_lose_1
                 else:
                     play music "bgm/bgm_maoudamashii_cyber16.mp3"
                     show Enemy:
@@ -540,7 +540,7 @@ label battlev3(PFAI,EFAI):
                         xoffset 0 yoffset 0
                         linear 0.1 zoom 0.8 alpha 0.0
                     $ renpy.pause(0.4,hard=True)
-                    call win
+                    call win from _call_win_1
     return
 
 label BattleReturns:
@@ -574,7 +574,7 @@ label BattleReturns:
          if playerbattlecode != []:
            $ playerbattlecode.pop(-1)
      elif _return=="Execute":
-         call Execution
+         call Execution from _call_Execution
      if (playerHP<=0):
         return
      return

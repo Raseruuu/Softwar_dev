@@ -22,7 +22,7 @@ label pauseshow:
             show screen pauselayout("INBOX",True,True)
             call screen Mailbox
             if _return=="Read":
-                call ReadMessage(messageview["sender"],messageview["subject"],messageview["body"])
+                call ReadMessage(messageview["sender"],messageview["subject"],messageview["body"]) from _call_ReadMessage
                 jump Mailscreen
             elif _return!="Read":
                 jump Mailscreen
@@ -34,7 +34,7 @@ label pauseshow:
             $ noscreentransformsfornow=False
             call screen Items
             if _return=="Open":
-                call OpenItem(messageview["sender"],messageview["subject"],messageview["body"])
+                call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
                 jump Itemscreen
             elif _return!="Open":
                 jump Itemscreen
@@ -51,9 +51,9 @@ label pauseshow:
                 label Battleware_edit_screen:
                     call screen Battleware_Edit
                     if _return=="SaveDeck":
-                        call SaveDeck
+                        call SaveDeck from _call_SaveDeck
                     elif _return=="UnsaveDeck":
-                        call UnsaveDeck
+                        call UnsaveDeck from _call_UnsaveDeck
 
                     else:
                         jump Battleware_edit_screen

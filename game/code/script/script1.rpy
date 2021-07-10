@@ -143,7 +143,7 @@ label script1:
     "I clumsily stretch my arms forward to the laptop and press a random button on the keyboard."
 
     $ okdesktop = True
-    call download_complete
+    call download_complete from _call_download_complete
     pause 0.5
     $ JohnSprite("frown")
     j "Woah!"
@@ -154,7 +154,7 @@ label script1:
 
     "Download complete? What does that mean?"
 
-    call download_hide
+    call download_hide from _call_download_hide
     "Oh crap, is this thing monitoring me now?"
     hide screen checks
 
@@ -999,7 +999,7 @@ label date2:
         l"Do your best, ILY!"
         # call demo_battle_vs_trojanhorse
 
-        call battlev3(ILY,Trojan)
+        call battlev3(ILY,Trojan) from _call_battlev3
         if playerHP<=0:
             return
         scene blue
@@ -1597,7 +1597,7 @@ label date2:
                 direction = 'down'
                 for sprite in spritelist:
                     boxsheet[sprite.position[1]][sprite.position[0]]=sprite.dialogue
-        call addsprites(gridpos)
+        call addsprites(gridpos) from _call_addsprites
         # call mapcall([10,10],stagehome)
         # scene blue with dissolve
         scene scrollingBG at scroll with dissolve
@@ -1624,7 +1624,7 @@ label date2:
         play music "bgm/ost/Grid_noyemi_K.mp3"
         hide screen mapB
 
-        call mapcall([7,6],stagehome)
+        call mapcall([7,6],stagehome) from _call_mapcall
         if playerHP<=0:
             return
         $ILY_w = False

@@ -1027,21 +1027,21 @@ label doorjump:
     if (GRIDX,GRIDY) in globals()["GRID"]:
         $ griddestination = globals()["GRID"][(GRIDX,GRIDY)]
         $ transfercoordinates = nextlocation(griddestination,doordirection)
-        call maptransfer(transfercoordinates,griddestination)
+        call maptransfer(transfercoordinates,griddestination) from _call_maptransfer
 
     elif (((((Grid_D_root==1) or (Grid_D_root==2)) or (Grid_D_root==4)) or (Grid_D_root==5)) or (Grid_D_root==7)) or (Grid_D_root==8):
         $griddestination = stage124578
         $transfercoordinates = nextlocation(griddestination,doordirection)
-        call maptransfer(transfercoordinates,griddestination)
+        call maptransfer(transfercoordinates,griddestination) from _call_maptransfer_1
 
     elif ((Grid_D_root==3) or (Grid_D_root==6)) or (Grid_D_root==9):
         $griddestination = stage369
         $transfercoordinates = nextlocation(griddestination,doordirection)
-        call maptransfer(transfercoordinates,griddestination)
+        call maptransfer(transfercoordinates,griddestination) from _call_maptransfer_2
     else:
         $griddestination = stageemptyroom
         $transfercoordinates = nextlocation(griddestination,doordirection)
-        call maptransfer(transfercoordinates,stageemptyroom)
+        call maptransfer(transfercoordinates,stageemptyroom) from _call_maptransfer_3
 
 
     return
