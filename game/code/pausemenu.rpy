@@ -94,7 +94,7 @@ transform fxn_frame_pos(tooltip_position):
 screen card_tooltip:
 
     frame:
-        at fxn_frame_pos(tooltip_position())
+        # at fxn_frame_pos(tooltip_position())
         xsize 300
         ysize 200
         add FunctionListDescript(hoverFXN)

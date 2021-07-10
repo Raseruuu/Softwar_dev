@@ -13,6 +13,25 @@ init python:
             deckcurrent.append(card_inventory[index])
             return (card_inventory.pop(index))
 
+    standardrates={
+        "Blazebuster":100,
+        "VFlame":100
+        }
+    # class Shop:
+    #     def __init__(self,name,inventory,rate,location):
+    #         self.name=name
+    #         self.inventory=inventory
+    #         self.rate=rate
+    #         self.location=location
+    #     class ShopItem:
+    #         def __init__(self,name,object,type,price):
+    #             self.name=name
+    #             self.object=object
+    #             self.type=type
+    #             self.price=price
+    # shop_Blazebuster=ShopItem("Blazebuster",Blazebuster,"card",200)
+    # shop_Softdrink=ShopItem("Softdrink",Softdrink,"item",200)
+
 screen Plugins:
     use pauselayout("PLUGINS")
     # add "cardflasher" xalign 0.34 yalign 0.58 at pausecardsize, pausetrans1

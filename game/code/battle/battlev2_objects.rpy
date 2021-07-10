@@ -95,6 +95,7 @@ init python:
             "Apply Burn status to target, Burn token deals "+str(burndmg)+" each turn.",
             burndmg
             )
+
     def GainToken(tokenname,quantity):
         return Fxn(
             "GainToken",
@@ -125,6 +126,11 @@ init python:
             "Increase "+str(statname)+" by "+str(MAG)+".",
             [statname,MAG]
             )
+    def Freeze():
+        return Fxn(
+            "Freeze",
+            "Freeze()",
+            "Apply Freeze status to target, Freeze token negates the execution of a card function.")
     def Attack():
         return Fxn(
             "Attack",
@@ -197,8 +203,6 @@ init python:
 
     ##name              name                     TYPE       MAG    HITS    FXN List               COST
     FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
-    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
-    Concatenations=[FlameSaber]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards

@@ -16,9 +16,9 @@ init -3 python:
     Virasprite = SpriteinMap("Vira",[3,3],'down',"Vira")
     Melissasprite = SpriteinMap("Melissa",[5,3],'down',"Melissa")
     Bitwulf_C2 = SpriteinMap("Bitwulf",[2,7],'right',"Bitwulf")
-    Melissasprite = SpriteinMap("Melissa",[5,3],'down',"Melissa")
+    Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
-    Programkunsprite = SpriteinMap("Program-kun",[8,5],'down',"Program-kun")
+    Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[9,5],'down',"Bella")
 
     Chapter2events=EventInMap("storyevent",[

@@ -2,22 +2,8 @@
 label prescript2:
     $map_active=False
     hide screen mapB
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    ""
     "STUFF"
-
     #Call Scene after approaching tile on Connecht, North of Home area
     j"ILY, when you talk to an entity in there, they won't actually hear me right?"
     i"Yeah, they won't."
