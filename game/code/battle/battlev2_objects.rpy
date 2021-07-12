@@ -203,6 +203,8 @@ init python:
 
     ##name              name                     TYPE       MAG    HITS    FXN List               COST
     FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
+    FrostBuster=   Card("FrostBuster",       "IceGun",      1.75,    [Attack(),Freeze()],               0)
+    Concatenations=[FlameSaber,FrostBuster]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards

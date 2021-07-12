@@ -117,3 +117,5 @@ log.txt
 *.txt
 *.save
 *.json
+*.rpyb
+*.rpyc
