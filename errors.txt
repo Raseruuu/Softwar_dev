@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/code/battle/battlefxn.rpy", line 494: expected statement.
-    currentcard_fxn_params=block_functions[block_count].params
-                          ^
+File "game/script.rpy", line 358: u'keyup' is not a keyword argument or valid child for the screen statement.
+    keyup "K_SPACE" action SetVariable("speaking",None)
+         ^
 
-Ren'Py Version: Ren'Py 7.4.6.1693
-Wed Jun 23 03:00:14 2021
+Ren'Py Version: Ren'Py 7.4.8.1895
+Thu Nov 25 02:04:00 2021

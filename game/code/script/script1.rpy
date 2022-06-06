@@ -53,7 +53,7 @@ label script1:
     j "Great, I didn't get a chance to save."
     j "Well, there goes 2 hours worth of work."
     $ JohnSprite("mad")
-    j "COME ON! I spent aaaaages on that!"
+    j "Actually, that was probably worth more than just 2 hours. "
     "Damn, I guess I don't have a choice but to restart."
 
     play sound "sfx/sfx_sounds_interaction24.wav"
@@ -96,7 +96,7 @@ label script1:
     j "{i}sigh{/i}"
 
     hide ILOVEYOU with Dissolve(2.0)
-    scene JD_Space2 with dissolve
+    scene JD_Spacenight2 with dissolve
     "I go to the window to get some fresh air."
     "Hhmmmmmm... Ughhhhh.."
 
@@ -115,7 +115,7 @@ label script1:
     "I hit the send button, but..."
 
     play sound "sfx/sfx_coin_cluster6.wav"
-    h "Wtf man, my PC's not working! I'm getting this stupid message on my screen that won't go away."
+    h "What the heck man, my PC's not working! I'm getting this stupid message on my screen that won't go away."
     "Too late. He's suffering just like me now. I bet every one of my contacts is experiencing the same crap."
     "Hilbert restarted his PC. But I already knew that was pointless."
     scene JD_PC2 with dissolve
@@ -143,7 +143,7 @@ label script1:
     "I clumsily stretch my arms forward to the laptop and press a random button on the keyboard."
 
     $ okdesktop = True
-    call download_complete from _call_download_complete
+    call download_complete
     pause 0.5
     $ JohnSprite("frown")
     j "Woah!"
@@ -154,7 +154,7 @@ label script1:
 
     "Download complete? What does that mean?"
 
-    call download_hide from _call_download_hide
+    call download_hide
     "Oh crap, is this thing monitoring me now?"
     hide screen checks
 
@@ -222,15 +222,15 @@ label script1:
     "I have little trust in what this virus can do for me, or if any of my data is safe at all after this. After all, this IS hacking."
 
     $ JohnSprite("mad")
-    show John eyeszoom with Dissolve(0.3):
-       yzoom 0.0
-       linear 0.1 yzoom 1.0
+    # show John eyeszoom with Dissolve(0.3):
+    #    yzoom 0.0
+    #    linear 0.1 yzoom 1.0
 
     "I have to see it through... This \"Future Artificial Intelligence\"!"
-    show John eyeszoom:
-       linear 0.1 yzoom 0.0
-    pause 0.1
-    hide John eyeszoom
+    # show John eyeszoom:
+    #    linear 0.1 yzoom 0.0
+    # pause 0.1
+    # hide John eyeszoom
 
     j "I've got many questions about you and your purpose as a... virus assistant."
 
@@ -407,7 +407,7 @@ label script1:
             "That's exactly what happened."
 
             j "So an antivirus is useless against FAI viruses?"
-            i "It really depends. You can survive an attack if you meet these two condiditons:"
+            i "It really depends. You can survive an attack if you meet these two conditions:"
             i "First, the antivirus must exist in the grid, or be a FAI antivirus."
             i "Second, the antivirus must be stronger than I am, or be able to beat me in a cyber battle, called a Softwar."
             j "I see."
@@ -1332,12 +1332,13 @@ label date2:
         j"Hmmmm... Could it be?"
         j"If it really is a FAI Antivirus, that'd be a jackpot."
         i"Lucky!"
+        $Lisa_m = 'smile'
+        $Lisa_e = 'normal'
         l"Yeah, I guess I am lucky!"
         "Alright. I guess I can count Hilbert's problem as solved now.."
         "It's finally time to work on the assignment now, right?"
         j"So, now that SDS and Hilbert's problems have been dealt with for now, can we finally work on our assignment?"
-        $Lisa_m = 'smile'
-        $Lisa_e = 'normal'
+
         l"Sure, John! The side quests are over."
         j"Alright then."
         $Lisa_w = True

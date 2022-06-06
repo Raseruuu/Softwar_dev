@@ -65,6 +65,7 @@
 ##################
 
 init python:
+    # config.nearest_neighbor = True
     """
     def replace_text(s):
         ## Automatically add a small stop after punctuation to mimic the natural flow of words
@@ -341,3 +342,22 @@ label test:
     a"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     # hide Ave
     return
+label Vtuber:
+
+    $ game_over = False
+    while not game_over:
+        show John:
+            yalign 0.0
+        call screen speakbuttons
+
+    return
+screen speakbuttons:
+
+    key "K_DOWN" action SetVariable("John_e","normal")
+    key "K_UP" action SetVariable("John_e","up")
+    key "K_LEFT" action SetVariable("John_m","frown")
+    key "K_RIGHT" action SetVariable("John_m","smile")
+    key "K_SPACE" action SetVariable("speaking","John")
+    key "repeat_K_SPACE" action SetVariable("speaking","John")
+    key "keyup_K_SPACE" action SetVariable("speaking",None)
+    key "K_ESCAPE" action SetVariable("game_over",True),Return()

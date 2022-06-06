@@ -1,26 +1,34 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/start.rpy", line 72, in script
-    $ IlySprite('smile')
-  File "game/start.rpy", line 72, in <module>
-    $ IlySprite('smile')
-NameError: name 'IlySprite' is not defined
+  File "game/code/combine.rpy", line 2, in script
+    init python:
+  File "game/code/combine.rpy", line 2, in script
+    init python:
+  File "game/code/combine.rpy", line 13, in <module>
+    "DrainShield":DrainShield,
+NameError: name 'DrainShield' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/start.rpy", line 72, in script
-    $ IlySprite('smile')
-  File "renpy/ast.py", line 922, in execute
+  File "renpy/bootstrap.py", line 326, in bootstrap
+    renpy.main.main()
+  File "renpy/main.py", line 515, in main
+    renpy.game.context().run(node)
+  File "game/code/combine.rpy", line 2, in script
+    init python:
+  File "game/code/combine.rpy", line 2, in script
+    init python:
+  File "renpy/ast.py", line 923, in execute
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2218, in py_exec_bytecode
+  File "renpy/python.py", line 2235, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/start.rpy", line 72, in <module>
-    $ IlySprite('smile')
-NameError: name 'IlySprite' is not defined
+  File "game/code/combine.rpy", line 13, in <module>
+    "DrainShield":DrainShield,
+NameError: name 'DrainShield' is not defined
 
 Windows-10-10.0.19041
-Ren'Py 7.4.6.1693
+Ren'Py 7.4.8.1895
 SoftWar - DEMO 1.0
-Wed Jun 23 03:09:54 2021
+Sun Jun  5 21:51:13 2022

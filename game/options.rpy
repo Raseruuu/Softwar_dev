@@ -4,7 +4,6 @@
 ## them. Lines beginning with a single '#' mark are commented-out code, and you
 ## may want to uncomment them when appropriate.
 
-
 ## Disable rollback
 define config.rollback_enabled = True
 define config.emphasize_audio_channels = [ 'voice']
@@ -158,6 +157,15 @@ define config.window_icon = "gui/window_icon.png"
 
 init python:
 
+    config.keymap['dismiss'].append('z')
+    config.keymap['dismiss'].append('Z')
+    config.keymap['bar_activate'].append('z')
+    config.keymap['bar_activate'].append('Z')
+    config.keymap['bar_deactivate'].append('z')
+    config.keymap['bar_deactivate'].append('Z')
+    config.keymap['bar_deactivate'].append('x')
+    config.keymap['bar_deactivate'].append('X')
+    # bar_activate
     ## The following functions take file patterns. File patterns are case-
     ## insensitive, and matched against the path relative to the base directory,
     ## with and without a leading /. If multiple patterns match, the first is

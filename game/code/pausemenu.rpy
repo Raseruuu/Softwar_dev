@@ -27,42 +27,61 @@ label pauseshow:
             elif _return!="Read":
                 jump Mailscreen
 
-            return
+            # return
     elif _return=="Items":
         $ inventory= sorted( inventory,key=lambda x: x.NAME, reverse=False)
+        # label Items_manage:
+            # call screen Itemsmanage
+            # if _return=="Items":
         label Itemscreen:
             $ noscreentransformsfornow=False
             call screen Items
+
             if _return=="Open":
                 call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
                 jump Itemscreen
             elif _return!="Open":
                 jump Itemscreen
-            return
+            # return
+
+            # return
     elif _return=="Battleware":
         $ deckcurrent= sorted( deckcurrent,key=lambda x: x.NAME, reverse=False)
-        label Battlewarescreen:
-            $ noscreentransformsfornow=False
-            call screen Battleware
-            if _return=="Battleware_Edit":
-                python:
-                    deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
-                    card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
-                label Battleware_edit_screen:
-                    call screen Battleware_Edit
-                    if _return=="SaveDeck":
-                        call SaveDeck from _call_SaveDeck
-                    elif _return=="UnsaveDeck":
-                        call UnsaveDeck from _call_UnsaveDeck
+        label ware_menu:
+        call screen ware_menu
+        if _return=="Equipped":
+            label Battlewarescreen:
+                $ noscreentransformsfornow=False
+                call screen Battleware
+                if _return=="Battleware_Edit":
+                    python:
+                        deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
+                        card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
+                    label Battleware_edit_screen:
+                        call screen Battleware_Edit
+                        if _return=="SaveDeck":
+                            call SaveDeck
+                        elif _return=="UnsaveDeck":
+                            call UnsaveDeck
 
-                    else:
-                        jump Battleware_edit_screen
+                        else:
+                            jump Battleware_edit_screen
+                        # return
+        elif _return=="Decks":
+            label Deckmenu:
+                $ noscreentransformsfornow=False
 
-                    return
-            return
+        elif _return=="Create":
+            label MaterialCombination:
+                call screen CombineMenu
+        elif _return=="Collection":
+            label CardCollection:
+                "Colle"
+
+        # return
     elif _return=="Plugins":
         "This Feature Has Not Yet Been Implemented."
-        jump pauseshow
+        # jump pauseshow
         # label Plugins_screen:
         #     call screen Plugins
         #     if _return=="Plugins_Edit":
@@ -71,6 +90,9 @@ label pauseshow:
         #             if _return!="Return":
         #                 jump Plugins_edit_screen
         #             return
+    if _return!="Return":
+        jump pauseshow
+
     return
 init python:
     hoverFXN=[]
@@ -138,13 +160,6 @@ default inbox =  [
             "body":"Lorem Ipsum Dolor  Sit Amet"
             }
             ]
-init python:
-            #       NAME            TYPE        DESC                                            FXN         MAG     COST
-    SoftDrink=Item("SoftDrink", "Consumable",   "For thirsty Software! \nRecovers 100 HP.",        "Recover",  100,    20)
-    Unlocker=Item("Unlocker",   "Key",        "Unlock locked Mystery Data. \nSingle use only.",   "Unlock",   100,    20)
-
-
-
 
 
 
@@ -278,114 +293,22 @@ image blinky:
     linear 0.3 alpha 0.9
     linear 0.3 alpha 0.0
     repeat
-screen Items:
-    use pauselayout("ITEMS")
-    frame:
-        style "nvl_window"
-        top_padding 32
-        # left_margin 540
-        # right_margin 16
-        # top_margin 112
-        # bottom_margin 202
-        if not noscreentransformsfornow:
-            at pausetrans2
+transform zoom05:
+    zoom 0.5
 
-        viewport:
-            scrollbars "vertical"
-            mousewheel True
-            draggable True
-
-            hbox:
-                grid 2 50:
-                    xspacing 20
-                    for index, item in enumerate(inventory):
-                        button:
-                            xsize 300
-                            ysize 150
-                            frame:
-
-                                xpadding 20
-                                ypadding 20
-                                idle_background Frame("gui/framefxn.png",10,10)
-                                hover_background Frame("gui/framefxn2.png",10,10)
-                                hbox:
-                                    xalign 0.0 yalign 0.5
-                                    image "images/Cards/items/"+item.NAME+".png"
-
-                                    null width 10
-                                    frame:
-                                        background Null()
-                                        xsize 170
-                                        text item.NAME+"{size=12}\n\n"+item.DESC+"{/size}" yalign 0.0
-                            action Return()
-
-
-                                # text item.NAME
-                    for itemfiller in range(0,100-len(inventory)):
-
-                        button:
-                            xsize 300
-                            ysize 150
-                            frame:
-                                xpadding 20
-                                ypadding 20
-                                idle_background Frame("gui/framefxn.png",10,10)
-                                hover_background Frame("gui/framefxn2.png",10,10)
-                                hbox:
-                                    xalign 0.0 yalign 0.5
-                                    image  "images/Cards/items/empty.png"
-
-                                    null width 180
-
-                                    # text item.NAME yalign 0.5
-                            action Return()
-
-                null width 10
-    frame:
-        if not noscreentransformsfornow:
-            at pausetrans1
-        style_prefix "stats"
-        xalign 0.95 yalign 0.88
-        ysize 100
-        hbox:
-            # frame:
-            #     textbutton "Save" action SetVariable("noscreentransformsfornow",True), Return("SaveDeck")
-            null width 10
-            vbox:
-                # frame:
-                    # textbutton "Edit" action Return()
-                # null height 10
-                frame:
-                    textbutton "Back" action Jump("pauseshow")
-
-
-
-
-                    # grid 8 8:
-                    #     spacing 5
-                    #     for index, item in enumerate(inventory):
-                    #         imagebutton:
-                    #             idle "images/Cards/"+item.NAME+".png"
-                    #             hover Composite(
-                    #                 (100,100),
-                    #                 (0,0),"images/Cards/"+item.NAME+".png",
-                    #                 (0,0),"blinky",
-                    #                 (0,0),Text(index))
-                    #             action Return()
-                    #             at inventorysize
-                    #
-                    #     for itemfiller in range(0,64-len(inventory)):
-                    #         image "images/Cards/items/empty.png":
-                #     #             at inventorysize
-                # null width 10
-                # vbox:
-                #     # frame:
-                #         # textbutton "Edit" action Return()
-                #     # null height 10
-                #     frame:
-                #         textbutton "Back" action Jump("pauseshow")
 transform pausecardsize:
     zoom 0.8
+
+# elif itemsmode=="COMBINE":
+label getCardLibrary:
+    python:
+    # comb_list=combinationlibrary.values()
+        comb_obj_list=[comb.object for comb in combinationlibrary.values()]
+        inventory_counts= {z: ([y.NAME for y in [comb.object for comb in combinationlibrary.values()]].count(z)) for z in  [z.NAME for z in [comb.object for comb in combinationlibrary.values()]]}
+        inventory_objects=[]
+        for x in [comb.object for comb in combinationlibrary.values()]:
+            if (x.NAME not in [y.NAME for y in inventory_objects]):
+                inventory_objects.append(x)
 screen Battleware:
 
     use pauselayout("BATTLEWARE",True,True)
@@ -435,7 +358,7 @@ screen Battleware:
             null height 10
             frame:
                 imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
-                    action Call("pauseshow"), SetVariable("noscreentransformsfornow",False)
+                    action Jump("ware_menu"), SetVariable("noscreentransformsfornow",False)
 
 screen Battleware_Edit():
     use pauselayout("DECK EDIT",False,True)
@@ -536,6 +459,8 @@ transform vmarquee:
      repeat
 screen pauselayout(scrname,spritevisible=True,notransform=False):
     key "K_SPACE" action Return()
+    key 's'       action Return()
+    key 'S'       action Return()
     if notransform:
         image "black" at pausedim2
         text "{size=100}{b}"+scrname+"{/b}{/size}" ypos 0.03 xalign 0.6
@@ -578,10 +503,15 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
                             frame:
                                 style "deckframe"
-                                text "{size=18}Deck: [deckname]{/size}"
+                                text "{size=16}Deck: [deckname]{/size}"
+                            frame:
+                                style "deckframe"
+                                text "{size=16}Chapter [chapternum]{/size}"
                         frame:
+                            xminimum 460
                             style "deckframe"
-                            text "{size=14}Chapter [chapternum]{/size}"
+                            text "{size=24}Money: [Money] Zennys{/size}"
+
                 null height 10
 style deckframe:
     background Frame("gui/framefxn.png", 32, 32)
@@ -609,7 +539,12 @@ init python:
     pause_button_offset6 = 0
     pause_button_offset7 = 0
     pause_button_offset8 = 0
+    def set_focus(screen_name,id):
+        renpy.set_focus(screen_name,id)
 screen pausemenu:
+    timer 0.01:
+        action Function(set_focus,"pausemenu", "pausebattleware")
+
     use pauselayout("SOFTWAR")
 
     imagebutton idle "gui/rpgmenu/mail.png" hover "gui/rpgmenu/mail_h.png":
@@ -635,10 +570,13 @@ screen pausemenu:
         action ShowMenu('preferences')
 
     imagebutton idle "gui/rpgmenu/battleware.png" hover "gui/rpgmenu/battleware_h.png":
+        # default_focus True
+        id "pausebattleware"
         hovered SetVariable('pause_button_offset4',-15) unhovered SetVariable('pause_button_offset4',0)
         xanchor 0.5 xpos 0.675 yanchor 0.5 ypos 0.56
         at pausetrans2,pausetranshover(pause_button_offset4)
         action Return("Battleware")
+
 
     imagebutton idle "gui/rpgmenu/plugins.png" hover "gui/rpgmenu/plugins_h.png":
         hovered SetVariable('pause_button_offset5',-15) unhovered SetVariable('pause_button_offset5',0)
@@ -662,7 +600,8 @@ screen pausemenu:
         hovered SetVariable('pause_button_offset8',-15) unhovered SetVariable('pause_button_offset8',0)
         xanchor 0.5 xpos 0.85 yanchor 0.5 ypos 0.78
         at pausetrans2,pausetranshover(pause_button_offset8)
-        action Return()
+        action Return("Return")
+
 transform pausetranshover(pauseoffset=0):
     # linear 0.1 yoffset pauseoffset
     linear 0.1 yoffset 0

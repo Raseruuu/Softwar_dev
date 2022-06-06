@@ -27,13 +27,11 @@ init python:
             self.FXN = FXN
             self.COST = COST
     class Item:
-        def __init__(self,NAME,TYPE,DESC,FXN,MAG,COST):
+        def __init__(self,NAME,TYPE,DESC,FXN):
             self.NAME = NAME
             self.TYPE = TYPE
             self.DESC = DESC
             self.FXN = FXN
-            self.MAG = MAG
-            self.COST = COST
     # class Card:
     #     def __init__(self,name,POW,SPD,fxn,rank):
     #         self.name=name
@@ -202,13 +200,13 @@ init python:
     """
 
     ##name              name                     TYPE       MAG    HITS    FXN List               COST
-    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(20)],               0)
+    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(80)],               0)
     FrostBuster=   Card("FrostBuster",       "IceGun",      1.75,    [Attack(),Freeze()],               0)
     Concatenations=[FlameSaber,FrostBuster]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
-    SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    1)
+    SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    2)
     MailSaber=    Card("MailSaber",       "Sword",          0.2,  [While("\"Email\" in enmy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 
     RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
@@ -219,15 +217,15 @@ init python:
     FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(),NullFxn()],              4)
     DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
     Bitbuster=    Card("Bitbuster",       "Gun",            0.25,     [Attack(),NullFxn()],             2)
+    SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(),NullFxn()],           2)
     #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
-    Laserbeam=    Card("Laserbeam",       "Gun",            2.0,      [Attack(),NullFxn()],             8)
-#Swords
+    #Swords
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-
-    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],             3)
-    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],               4)
-
+    Katana=       Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
+    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],  3)
+    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],    4)
+    LambdaSaber=   Card("LambdaSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
     XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
@@ -253,6 +251,7 @@ init python:
     DataDrill=    Card("DataDrill",       "Drill",   0.6,     [Attack(),Attack(),Attack()],       6)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
+    RadioShield=  Card("RadioShield",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
 
     Assault=      Card("Assault",       "Tech",    0.25,       [Boost("ATK",0.25),NullFxn()],  2)
     # Bitbuster=    Card("Bitbuster",       "Gun",    0.25,     [Attack(),ReduceBit],       2)
@@ -265,7 +264,6 @@ init python:
 
 
     ##NO ART
-    # Parasol=      Card("Parasol",      20,     256,     1, "Firewall",         'C')
     # Chainsaw=     Card("Chainsaw",     550,     32,     1, "Break",            'B')
     # SoftDrink=    Card("SoftDrink",    500,    256,     1, "Recover",          'D')
     # Noisewave=    Card("Noisewave",    200,    256,     1, "Firewall",         'C')
@@ -285,7 +283,7 @@ init python:
     RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, GiveToken("Email",1),4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, Boost("ATK",0.1),4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, Boost("ATK",0.1),4)
-    DigitalPressure=Plugin("Digital Pressure","",1.0,Attack(), 8)
+    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,Attack(), 8)
 
 
     #BEFORE BUILD:
@@ -309,19 +307,23 @@ init python:
         "plugins":[]
         }
 
-    deckmelissa = [
-        VirusFlame,VirusFlame,
-        VirusFlame,DataSaber,
-        DataSaber,DataSaber,
-        Vslash,Vslash,
-        Vslash,DataBuster,
-        DataBuster,DataBuster,
-        SpamAtk,DataForce,
-        Shieldbit,Shieldbit,
-        Shieldbit,Shieldbit,
-        XAxess,Vslash,
-        Vslash,Bitbuster,
-        Bitbuster,Bitbuster]
+    deckmelissa = {
+        "name":"",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,DataSaber,
+            DataSaber,DataSaber,
+            Vslash,Vslash,
+            Vslash,DataBuster,
+            DataBuster,DataBuster,
+            SpamAtk,DataForce,
+            Shieldbit,Shieldbit,
+            Shieldbit,Shieldbit,
+            XAxess,Vslash,
+            Vslash,Bitbuster,
+            Bitbuster,Bitbuster],
+        "plugins":[]
+        }
 
     # deckdefault = [
     #     VirusFlame,DataBomb,
@@ -336,88 +338,115 @@ init python:
     #     BreakSaber,BreakSaber]
 
     #The first deck you will fight.
-    decktrojan = [
-        VirusFlame,VirusFlame,
-        VirusFlame,DataBomb,
-        DataBuster,DataBomb,
-        DataBuster,DataBuster,
-        DataBomb,Cursorclaw,
-        Cursorclaw,Cursorclaw,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vshot,Vshot,
-        Vshot,Vshot]
+    decktrojan = {
+        "name":"",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,DataBomb,
+            DataBuster,DataBomb,
+            DataBuster,DataBuster,
+            DataBomb,Cursorclaw,
+            Cursorclaw,Cursorclaw,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot
+            ],
+        "plugins":[]
+        }
 
-    deckkeylogger = [
-        VirusFlame,VirusFlame,
-        VirusFlame,DataBuster,
-        DataBuster,DataBuster,
-        DataBuster,Vslash,
-        DataBomb,Cursorclaw,
-        Cursorclaw,Cursorclaw,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vshot,Vshot,
-        Vshot,Vshot]
-    deckransomware = [
-        VirusFlame,VirusFlame,
-        VirusFlame,DataBuster,
-        DataBuster,DataBuster,
-        DataBuster,DataBuster,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vshot,Vshot,
-        Vshot,Vshot]
-    deckrootkit = [
-        Vshot,Vshot,
-        Vshot,Vshot,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vshot,Vshot,
-        Vslash,Vslash,
-        Vslash,Vslash,
-        Vshot,Vshot,
-        Vshot,Vshot]
-    deckvira = [
-        Firewall,
-        Firewall,Firewall,
-        Firewall,DataBuster,
-        DataBuster,
-        Shieldbit,Shieldbit,
-        DataBuster,Shieldbit,
-        Shieldbit,
-        Powersol,Powersol,
-        Firewall,Firewall,
-        Shieldbit,
-        Powersol,Powersol,
-        DataForce,Firewall,
-
-        ]
-    deckave = [
-        DataBuster,
-        DataBuster,DataBuster,
-        DataBuster,Firewall,
-        Firewall,
-        Firewall,Shieldbit,
-        DataBomb,DataBomb,
-        Laserbeam,
-        Shieldbit,Shieldbit,
-        Shieldbit,Bitbuster,
-        Bitbuster,
-        Assault,Assault,
-        Assault,Assault]
-    deckred = [
-        DataSaber,DataSaber,
-        DataSaber,DataSaber,
-        VirusFlame,VirusFlame,
-        Vslash,Vslash,
-        Shieldbit,BruteForce,
-        DataBomb,BruteForce,
-        Laserbeam,Laserbeam,
-        Shieldbit,Shieldbit,
-        Shieldbit,Shieldbit,
-        DataForce,DataForce]
+    deckkeylogger ={
+        "name":"",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,DataBuster,
+            DataBuster,DataBuster,
+            DataBuster,Vslash,
+            DataBomb,Cursorclaw,
+            Cursorclaw,Cursorclaw,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
+    deckransomware = {
+        "name":"",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,DataBuster,
+            DataBuster,DataBuster,
+            DataBuster,DataBuster,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
+    deckrootkit = {
+        "name":"",
+        "content":[
+            Vshot,Vshot,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
+    deckvira = {
+        "name":"",
+        "content":[
+            Firewall,
+            Firewall,Firewall,
+            Firewall,DataBuster,
+            DataBuster,
+            Shieldbit,Shieldbit,
+            DataBuster,Shieldbit,
+            Shieldbit,
+            Powersol,Powersol,
+            Firewall,Firewall,
+            Shieldbit,
+            Powersol,Powersol,
+            DataForce,Firewall],
+        "plugins":[]
+        }
+    deckave = {
+        "name":"",
+        "content":[
+            DataBuster,
+            DataBuster,DataBuster,
+            DataBuster,Firewall,
+            Firewall,
+            Firewall,Shieldbit,
+            DataBomb,DataBomb,
+            Laserbeam,
+            Shieldbit,Shieldbit,
+            Shieldbit,Bitbuster,
+            Bitbuster,
+            Assault,Assault,
+            Assault,Assault],
+        "plugins":[]
+        }
+    deckred = {
+        "name":"",
+        "content":[
+            DataSaber,DataSaber,
+            DataSaber,DataSaber,
+            VirusFlame,VirusFlame,
+            Vslash,Vslash,
+            Shieldbit,BruteForce,
+            DataBomb,BruteForce,
+            Laserbeam,Laserbeam,
+            Shieldbit,Shieldbit,
+            Shieldbit,Shieldbit,
+            DataForce,DataForce],
+        "plugins":[]
+        }
 
 
     selectedcard = ""
@@ -428,7 +457,7 @@ init python:
     decknum = len(mydeck)
     import random
     random.shuffle(mydeck["content"])
-    random.shuffle(Enmydeck)
+    random.shuffle(Enmydeck["content"])
     movecard = MoveTransition(0.2)
 
     card1name = "DataSaber"

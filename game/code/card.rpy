@@ -5,7 +5,10 @@ transform cardzoom(zoomvalue):
 transform widthresize(zoomvalue):
     xzoom zoomvalue
 screen Card(cardobj,position,zoomvalue):
+    zorder 50
     frame:
+        xsize 225
+        ysize 300
         pos (position)
         at cardzoom(zoomvalue)
         if not noscreentransformsfornow:

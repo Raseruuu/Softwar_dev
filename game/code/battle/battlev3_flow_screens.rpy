@@ -387,7 +387,7 @@ label battlev3(PFAI,EFAI):
         enemyHPMax = EnemyFAIstats["HP"]
         enemySP = EnemyFAIstats["SP"]
         enemySPMax = EnemyFAIstats["SPMAX"]
-        enemyDeck = EnemyFAIstats["Deck"]
+        enemyDeck = EnemyFAIstats["Deck"]["content"]
         enemyATK = EnemyFAIstats["ATK"]
         enemyDEF = EnemyFAIstats["DEF"]
         enemyATK_m = enemyATK
@@ -480,7 +480,7 @@ label battlev3(PFAI,EFAI):
                         xoffset 0 yoffset 0
                         linear 0.1 zoom 0.8 alpha 0.0
                     $ renpy.pause(0.4,hard=True)
-                    call win from _call_win
+                    call win
 
         label playerturn:
 
@@ -497,7 +497,7 @@ label battlev3(PFAI,EFAI):
                 # call screen choosecardv3(playerhand)
                 call screen choosecardv2
 
-                call BattleReturns from _call_BattleReturns
+                call BattleReturns
                 $ card1usable = (playercard1COST<=playerbits) and (clickedcard[0]==False)
                 $ card2usable = (playercard2COST<=playerbits) and (clickedcard[1]==False)
                 $ card3usable = (playercard3COST<=playerbits) and (clickedcard[2]==False)
@@ -508,7 +508,7 @@ label battlev3(PFAI,EFAI):
                     jump Codephase
                 else:
                     call screen Execute
-                    call BattleReturns from _call_BattleReturns_1
+                    call BattleReturns
                     # if not enemyfirst:
                     #     call enemyattack
                 #Execute button runs "Execution" label
@@ -574,19 +574,23 @@ label BattleReturns:
          if playerbattlecode != []:
            $ playerbattlecode.pop(-1)
      elif _return=="Execute":
-         call Execution from _call_Execution
+         call Execution
      if (playerHP<=0):
         return
      return
+
 screen Execute:
-    imagebutton idle "gui/Execute.png" hover "gui/Execute_hover.png" action  Play("sound","sound/Execute.wav"), Return("Execute") xalign 0.5 yalign 0.95
+    on "show":
+        action Function(renpy.set_focus,"Execute", "Executebutton")
+    imagebutton idle "gui/Execute.png" hover "gui/Execute_hover.png" action  Play("sound","sound/Execute.wav"), Return("Execute") xalign 0.5 yalign 0.95:
+        id "Executebutton"
     key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     key 'K_RETURN' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     key 'K_KP_ENTER' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95
-    key 'z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
-    key 'Z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
+    # key 'z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
+    # key 'Z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
 screen phasemsg(Message):
     frame:
 
@@ -713,5 +717,37 @@ screen card6hover:
 
 
 
-label ConcatenationExec:
-    ""
+label Battledrops:
+    python:
+        gainitems=[]
+        for item in battledrops[enemyName]:
+            shopitem = shop_item(item.NAME,item,"Material",0)
+            for gain_num in range(0,renpy.random.choice([0,0,0,0,1,1,1,2,2,3])):
+                gainitems.append(shopitem)
+        Moneygain = renpy.random.choice([20,50,100])
+        Money+=Moneygain
+        renpy.say(info,"Gained "+str(Moneygain)+" Zenny! \nTotal Zenny: [Money]")
+        renpy.call("GainItem",gainitems)
+
+    return
+
+label win:
+    #MAKE VICTORY ANIMATION
+    # show ILY_byTorakun14:
+    #   xalign 0.0
+    show screen phasemsg("VICTORY!")
+    info"ILY Wins!"
+    hide screen phasemsg
+    call Battledrops
+    # "VICTORY!"
+    #BATTLE DROPS
+    return
+label lose:
+    $ okdesktop = False
+    hide screen mapA
+    hide screen mapB
+    scene ILYgameover with pixellate
+    "I'm.. Sorry, John. "
+    extend"I'm sorry Lisa."
+
+return

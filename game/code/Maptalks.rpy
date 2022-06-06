@@ -1,5 +1,5 @@
 
-label maptalk_Ave_0:
+label maptalk_Ave_1:
     if objectbelow=="Ave":
       $ILY_m='smile'
       $ILY_e='2'
@@ -16,7 +16,7 @@ label maptalk_Ave_0:
     return
 label maptalk_Melissa_0:
     $ ILYSprite("mad")
-    i"Melissa Virus! You betrayed me!"
+    i"Melissa! You betrayed me!"
     m"So you've found out!"
     i"How could you!?"
     m"I'm a virus! what did you expect?"
@@ -29,7 +29,7 @@ label maptalk_Melissa_0:
     $ map_active=True
     call mapresume
     return
-label maptalk_CodeRed_0:
+label maptalk_CodeRed_1:
     if objectbelow=="CodeRed":
         $ILY_m='smile'
         $ILY_e='2'
@@ -45,7 +45,7 @@ label maptalk_CodeRed_0:
     $ map_active=True
     call mapresume
     return
-label maptalk_Vira_0:
+label maptalk_Vira_1:
     if objectbelow=="Vira":
         $ILY_m='smile'
         $ILY_e='2'
@@ -61,7 +61,7 @@ label maptalk_Vira_0:
     $ map_active=True
     call mapresume
     return
-label maptalk_ProgramKun_0:
+label maptalk_ProgramKun_1:
     $ILYSprite("smile")
     "Program-kun""Aren't you just curious to see what's on the other side of this door?"
     i"I'm curious too!"
@@ -69,60 +69,98 @@ label maptalk_ProgramKun_0:
     $ILYSprite("mad")
     i"..."
     return
-label maptalk_Stella_0:
-    "Stella""Hey! You're like us."
-    $ILYSprite("o")
-    i"You're a virus...!"
-    "Stella""They call me Stoned Virus, but Stella is a prettier name."
-    $ILYSprite("smile")
-    i"I love you already!"
-    "Stella""Heh!"
+default Stella_talk=0
+default shop_active=False
+label maptalk_Stella_1:
+    $ Stella_talk+=1
+    if Stella_talk==1:
+        s"Hey! You're like us."
+        $ILYSprite("o")
+        i"You're a virus...!"
+        s"They call me Stoned Virus, but Stella is a prettier name."
+        $ILYSprite("smile")
+        i"I love you already!"
+        s"Heh!"
+        i"What are you doing here?"
+        s"This is our turf! Nobody goes by this alley. You're here because you're like us!"
+        s"You don't see it, but there's a special invisible barrier there blocking regular avatars."
+        s"To them, this place is blocked by a wall!"
+        $ILYSprite("o")
+        i"I see!... wait, no I don't! it's invisible!"
+        s"Heh!"
+        s"You should come here often. i have lots of items for sale."
+        i"Woah! That's pretty cool!"
+
+        $ILYSprite("smile")
+
+    else:
+        # $ Stoned_m="sad"
+        s"What do you want?"
+
+    $ shop_active=True
+    $ Stoned_w = False
+
+    show screen item_shop()
+    $ renpy.set_focus("item_shop", "shop_button0")
+
+    while shop_active:
+        window hide
+        # show screen shop_image()
+
+
+        pause
+        hide screen shop_prompt
+        # hide screen item_shop
+        # if _return =="ItemModal":
+        #     # show screen shop_image
+        #     $ notransform=True
+        #     $ noscreentransformsfornow=True
+        #     call screen ItemModal
+
+    hide screen shop_image
+    hide screen item_shop
+    $ say_shop_mode=False
+    $ Stoned_w = True
+
     return
-label maptalk_Virus_0:
+label maptalk_Virus_1:
   i"It's a stray virus!"
   $ John_m = "sad"
   $ John_e = "mad"
-  j"Get Ready, Ily!"
+  j"Get Ready, ILY!"
   hide screen mapA
   hide screen mapB
   return
+label maptalk_Bella_1:
+      # elif actornum == 'Bella':
+    # "Bella""Hello ILY from SOFTWAR."
+    "Bella""Hi! Have you seen a small red robot around anywhere? Her name is Tetra!"
+    $ILYSprite("smile")
+    i"A Red Robot named Tetra? huh... Sorry, I didn't see her."
+    "Bella""Please tell me if you find her!"
+    return
+label maptalk_Heart_1:
+    i"Would you like to restore HP?"
+    menu:
+        "Would you like to restore HP?"
+        "Yes":
+          $playerHP=playerHPMax
+          play sound "sfx/heal.ogg"
+          "[playerName]'s Health Points have been restored."
+        "No":
+          i"OK."
+    return
 label maptalk_Melissa_1:
    call script2
    return
 label whatactor:
-
-    $ renpy.call("maptalk_"+str(actornum)+"_0")
+    if len(actornum)>2:
+        $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
     show screen mapB
     call screen mapA
     call Returns
     return
 
-      # elif actornum == 'Bella':
-      #   "Bella""Hello ILY from SOFTWAR."
-      #   $ILYSprite("smile")
-      #   i"Hello Bella from LunarLux!!"
-      #
-      #   "Bella""Heh!"
-      #   return
-      # elif actornum == 'Heart':
-      #   i"Would you like to restore HP?"
-      #   menu:
-      #     "Would you like to restore HP?"
-      #     "Yes":
-      #       $playerHP=playerHPMax
-      #       play sound "sfx/heal.ogg"
-      #       "[playerName]'s Health Points have been restored."
-      #     "No":
-      #       i"OK."
-      # elif actornum ==
-    #   show screen mapB
-    #   call screen mapA
-    #   call Returns
-    #   return
-    # else:
-    #   show screen mapB
-    #   call screen mapA
-    #   call Returns
 
 label PlatformTalk:
     "Uguu"
@@ -146,10 +184,10 @@ label MapTalk:
 
       show screen mapB
       call screen mapA
-      call Returns from _call_Returns_2
+      call Returns
       return
     else:
       show screen mapB
       call screen mapA
-      call Returns from _call_Returns_3
+      call Returns
     return

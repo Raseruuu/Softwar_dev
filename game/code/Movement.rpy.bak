@@ -92,10 +92,10 @@ label checkwalls:
       # return
    if HereisDoor:
       play sound"sfx/door-fr_0009.wav"
-      call doorjump
+      call doorjump from _call_doorjump
    if HereisEventDoor:
       play sound"sfx/door-fr_0009.wav"
-      call eventdoor
+      call eventdoor from _call_eventdoor
    return
 
 label eventdoor:
@@ -110,7 +110,7 @@ label mapcall(position,stage):
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
     play music "bgm/ost/Grid_noyemi_K.mp3"
-    call addsprites(gridpos)
+    call addsprites(gridpos) from _call_addsprites_1
     python:
         boxsheet = stage
         playerpos = position
@@ -130,7 +130,7 @@ label mapcall(position,stage):
 
       show screen mapB
       call screen mapA
-      call Returns
+      call Returns from _call_Returns_4
 
       if map_active==True:
         jump maploop
@@ -163,10 +163,10 @@ label mapresume:
     play music "bgm/ost/Grid_noyemi_K.mp3"
     scene scrollingBG at scroll
     # $ boxsheet = globals()["GRID"][(gridpos[0],gridpos[1])]
-    call addsprites(gridpos)
+    call addsprites(gridpos) from _call_addsprites_2
     show screen mapB
     call screen mapA
-    call Returns
+    call Returns from _call_Returns_5
     return
 
 label maptransfer(position,stage):
@@ -174,7 +174,7 @@ label maptransfer(position,stage):
     #position is an (x,y) tuple declaring place in map.
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
-    call addsprites(gridpos)
+    call addsprites(gridpos) from _call_addsprites_3
     python:
         linearmaptransform=False
         boxsheet = stage
@@ -191,7 +191,7 @@ label maptransfer(position,stage):
             eventlabel=str(event.label)
             for eventposition in event.positionlist:
                 boxsheet[eventposition[1]][eventposition[0]]=eventlabel
-    call checkwalls
+    call checkwalls from _call_checkwalls
     $ linearmaptransform=True
 
     return
@@ -475,12 +475,12 @@ label randomencounter:
           $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
           hide screen mapB
           hide screen mapA
-          call battlev3(ILY,enemyvirus)
+          call battlev3(ILY,enemyvirus) from _call_battlev3_5
           if playerHP<=0:
               return
           $ enemy_encounter=False
           $ map_active=True
-          call mapresume
+          call mapresume from _call_mapresume_4
           return
 
      return
@@ -545,27 +545,27 @@ label Returns:
 
    if FacingActor:
      if (_return=="OK"):
-       call whatactor
+       call whatactor from _call_whatactor
        return
    if (_return=="MapTalk"):
-       call MapTalk
+       call MapTalk from _call_MapTalk
        return
    if (_return=="Pause"):
        # "Pause"
-       call pauseshow
+       call pauseshow from _call_pauseshow
        return
    elif (_return=="End"):
         $map_active=False
         return
    else:
        $ pdirection = direction
-   call checkwalls
+   call checkwalls from _call_checkwalls_1
    # $safezone=True
-   call randomencounter
+   call randomencounter from _call_randomencounter
    if (playerHP<=0) or (map_active==False):
       return
    call screen mapA
-   call Returns
+   call Returns from _call_Returns_6
    return
   return
   # elif (_return=="card1"):
@@ -832,7 +832,7 @@ label Damage:
         hide card3
         hide card4
         #Calculate dmg here
-        call fxnCaller(PlayerFxn)
+        call fxnCaller(PlayerFxn) from _call_fxnCaller
         if EnmyHP <=0:
           $EnemyHP=0
           show Enemy:
@@ -860,7 +860,7 @@ label Damage:
 label EnmyDamage:
         #ILY LOSING HP
         #Calculate dmg here
-        call fxnCallerp(EnmyFxn)
+        call fxnCallerp(EnmyFxn) from _call_fxnCallerp
         if playerHP <=0:
           $playerHP=0
           #Losing Animation
@@ -915,7 +915,7 @@ return
 label fxnCallerp(fxn):
   #Enemy-to-Player Damage Calculation, based on Fxn.
   if "Damage" in fxn:
-    call hurtnoise
+    call hurtnoise from _call_hurtnoise
     with Shake((0, 0, 0, 0), 0.5, dist=EnmyDmg/10)
     $ playerHP = playerHP-EnmyDmg
   if "Burn" in fxn:

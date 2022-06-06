@@ -1,0 +1,42 @@
+NAME	Component 1	Component 2	Component 3	Description
+				
+SparkBuster	Volteum	DataBuster		Lightning Gun
+Katana	Datanium	W00D		sword style master weapon
+LambdaSaber	Data Saber	Lambdium		wave sword
+RadioShield	Lambdium	Binon		
+DrainShield	Datanium	Zereum	Oneum	
+FieryArc	W00D	Strinnium	Conflagrium	
+CosmicArc	Data Arc	Conflagrium	Streamine	
+SpiderAmulet	Strinnium	Fibonaccium		
+SnipeSensor	Photoceptor	Lambdium		
+LunexGunSaber	DataSaber	DataBuster	CosmicArc	Lux Force ultimate weapon
+CupidArc	Candyne	Strinnium	W00D	
+DataArc	Datanium	Strinnium		standard bow
+DataForce	Lambdium	Oneum	Zereum	standard powerup
+DataSaber	Datanium	Lambdium		standard sword
+VirusFlame	Conflagrium	Lambdium		Standard fire
+DataBomb	W00D	Combustium		Standard Bomb
+Gigamorph	Fibonaccium	Oneum	Iteratium	increase HP and Defense
+DataBuster	Datanium	Combustium		Standard Gun
+MachineBuster	Databuster	Iteratium		Gatling Gun
+Excalibrium	DataSaber	Oneum	Zereum	Sword of Balance
+ILYFlash	Cupid Arc	Oneum	Zereum	Attack enmy then Heal self
+RecursiveSlash	Datanium	Iteratium		attack x Saber token
+MailSaber	DataSaber	Fibonaccium	Iteratium	
+BruiseBash	Zereum	Zereum		attack reduces enemy defense
+ZSlash	Lambdium	Zereum	Zereum	
+FreezeWave	Lambdium	Streamine		
+FreezingBlade	DataSaber	Streamine	Lambdium	
+Salamandra	DataSaber	Conflagrium		
+BusterSword	DataSaber	Combustium		
+FlameFists	Fibonaccium	Conflagrium		
+GMechaArms	FlameFists	Gigamorph		
+LightningLegs	Fibonaccium	Volteum		
+GMechaLegs	LightningLegs	Gigamorph		
+GMechaHead	Fibonaccium	Neureum	Gigamorph	
+GUNVAR	GMechaHead	GMechaArms	GMechaLegs	Super Robot!!
+Shotgun	Databuster	Combustium		
+Laserbeam	DataBuster	Photoceptor	Volteum	
+SwordOfTruth	Data Saber	Oneum		Buff ATK of self
+SwordOfLies	DataSaber	Zereum		Debuff Enemy ATK
+VBlaze	Combustium	Conflagrium		high power Flame attack

@@ -116,19 +116,28 @@ transform blinky:
     repeat
 screen say(who, what):
     style_prefix "say"
-
+    if say_shop_mode:
+        key "dismiss" action Return()
     window:
-
-        xsize gui.textbox_width
+        if say_shop_mode:
+            pos(541,525) anchor (0,0)
+            xsize 526
+        else:
+            xsize gui.textbox_width
         id "window"
 
         if who is not None:
             window:
+
+
                 style "namebox"
                 text who id "who"
 
-        text what id "what"
-
+        text what id "what":
+            if say_shop_mode:
+                xmaximum 400
+    # if say_shop_mode:
+    #     timer 3.25 action Hide('say')
     ## If there's a side image, display it above the text. Do not display on the
     ## phone variant - there's no room.
     # if not renpy.variant("small"):
@@ -244,8 +253,8 @@ screen choice(items):
     style_prefix "choice"
 
     vbox:
-        for i in items:
-            textbutton i.caption action i.action  hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
+        for choice in items:
+            textbutton choice.caption action choice.action  hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
@@ -273,7 +282,7 @@ style choice_button_text is text_nooutline:#button_text:
 ## menus.
 
 screen quick_menu():
-  if okdesktop:
+  # if okdesktop:
     ## Ensure this appears on top of other screens.
     zorder 200
 
@@ -293,13 +302,13 @@ screen quick_menu():
             xalign 0.05
             yalign 0.0
             # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
-            textbutton _("{b}ILOVEYOU FAI{/b}")
+            textbutton _("{b}ILOVEYOU FAI{/b}") keyboard_focus False
             # textbutton _("History") action ShowMenu('history')
-            textbutton _("Save") action ShowMenu('save')
-            textbutton _("Load") action ShowMenu('load')
-            textbutton _("Settings") action ShowMenu('preferences')
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-            textbutton _("Auto") action Preference("auto-forward", "toggle")
+            textbutton _("Save") action ShowMenu('save') keyboard_focus False
+            textbutton _("Load") action ShowMenu('load') keyboard_focus False
+            textbutton _("Settings") action ShowMenu('preferences') keyboard_focus False
+            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) keyboard_focus False
+            textbutton _("Auto") action Preference("auto-forward", "toggle") keyboard_focus False
             #textbutton _("Back") action Rollback()
             # textbutton _("Help") action ShowMenu("help")
 

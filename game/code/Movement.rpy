@@ -110,7 +110,7 @@ label mapcall(position,stage):
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
     play music "bgm/ost/Grid_noyemi_K.mp3"
-    call addsprites(gridpos) from _call_addsprites_1
+    call addsprites(gridpos)
     python:
         boxsheet = stage
         playerpos = position
@@ -130,7 +130,7 @@ label mapcall(position,stage):
 
       show screen mapB
       call screen mapA
-      call Returns from _call_Returns_4
+      call Returns
 
       if map_active==True:
         jump maploop
@@ -166,7 +166,7 @@ label mapresume:
     call addsprites(gridpos) from _call_addsprites_2
     show screen mapB
     call screen mapA
-    call Returns from _call_Returns_5
+    call Returns
     return
 
 label maptransfer(position,stage):
@@ -174,7 +174,7 @@ label maptransfer(position,stage):
     #position is an (x,y) tuple declaring place in map.
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
-    call addsprites(gridpos) from _call_addsprites_3
+    call addsprites(gridpos)
     python:
         linearmaptransform=False
         boxsheet = stage
@@ -220,6 +220,7 @@ image shock:
 
 
 screen mapB:
+
     vbox:
       if linearmaptransform:
           at mover(objxanchor,objyanchor)
@@ -275,11 +276,11 @@ screen mapB:
     ##PLAYER CHARACTER
     if len(objectbelow)>1:
       use playersprite(playerypos)
-      for sprites in spritelist:
+    for sprites in spritelist:
           use npcsprite(sprites)
-    else:
-      for sprites in spritelist:
-        use npcsprite(sprites)
+    if len(objectbelow)<=1:
+      # for sprites in spritelist:
+      #   use npcsprite(sprites)
       use playersprite(playerypos)
     frame:
       style_prefix "overworld"
@@ -293,8 +294,12 @@ screen mapB:
         text "GRID ([gridpos[0]],[gridpos[1]])"
         text "{color=#fff}Position = ([playerxpos],[playerypos]){/color}"
         text "{color=#fff}Running = [Running]{/color}"
-        # text "{color=#fff}Here = [Here]{/color}"
+        # text "{color=#fff}Here = [Here]{/color    }"
+        # text "{color=#fff}Where = [Where]{/color}"
         text "{color=#fff}Where = [Where]{/color}"
+        # text "{color=#fff}direction = [direction]{/color}"
+        # text "{color=#fff}moving = [moving]{/color}"
+        # direction
         frame:
             style_prefix "healthbar"
             xsize bar_size(playerHP,playerHPMax,200)
@@ -302,23 +307,46 @@ screen mapB:
         null height 7
         text "HP: [playerHP]/[playerHPMax]"
         null height 10
-    if not anim_done:
-        image "gui/phone/direction.png":
-            at rotate(0) pos (0.1,0.7) align (0.5,0.5)
-        image "gui/phone/direction.png":
-            at rotate(180) pos (0.1,0.9) align (0.5,0.5)
-        image "gui/phone/direction.png":
-            at rotate(270) pos (0.04,0.8) align (0.5,0.5)
-        image "gui/phone/direction.png":
-            at rotate(90) pos (0.16,0.8) align (0.5,0.5)
-        image "gui/phone/buttonA.png":
-            pos (0.96,0.8) align (0.5,0.5) at zoombutton
-        image "gui/phone/buttonB.png":
-            pos (0.9,0.9) align (0.5,0.5) at zoombutton
-        image "gui/phone/buttonX.png":
-            pos (0.9,0.7) align (0.5,0.5) at zoombutton
-        image "gui/phone/buttonY.png":
-            pos (0.84,0.8) align (0.5,0.5) at zoombutton
+## MOBILE BUTTONS
+    # if not anim_done:
+    #
+    #     image "gui/phone/buttonA.png":
+    #         pos (0.96,0.8) align (0.5,0.5) at zoombutton
+    #     image "gui/phone/buttonB.png":
+    #         pos (0.9,0.9) align (0.5,0.5) at zoombutton
+    #     image "gui/phone/buttonX.png":
+    #         pos (0.9,0.7) align (0.5,0.5) at zoombutton
+    #     image "gui/phone/buttonY.png":
+    #         pos (0.84,0.8) align (0.5,0.5) at zoombutton
+###UNCOMMENT FOR MOBILE
+    # imagebutton idle "gui/phone/direction.png":
+    #     hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
+    #     unhovered SetVariable("direction2",None)
+    #     action SetVariable("direction","up")#,Return("up")
+    #     at rotate(0) pos (0.1,0.7) align (0.5,0.5)
+    # imagebutton idle "gui/phone/direction.png":
+    #     hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
+    #     unhovered SetVariable("direction2",None)
+    #     action SetVariable("direction","down")#,Return("down")
+    #     at rotate(180) pos (0.1,0.9) align (0.5,0.5)
+    # imagebutton idle "gui/phone/direction.png":
+    #     hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
+    #     unhovered SetVariable("direction2",None)
+    #     action SetVariable("direction","left")#,Return("left")
+    #     at rotate(270) pos (0.04,0.8) align (0.5,0.5)
+    # imagebutton idle "gui/phone/direction.png":
+    #     hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
+    #     unhovered SetVariable("direction2",None)
+    #     action SetVariable("direction","right")#,Return("right")
+    #     at rotate(90) pos (0.16,0.8) align (0.5,0.5)
+
+    # frame:
+    #     align (0.9,0.0)
+    #     vbox:
+    #         add Indicator():
+    #             align (0.5,0.5)
+    #         label "hold mouse":
+    #             align (0.5,0.5)
 transform zoombutton:
     zoom 0.1
 style overworld_text:
@@ -386,18 +414,36 @@ transform playerjump(jumphght):
 transform rotate(degree):
     rotate degree
     zoom 0.1
+init python:
+    directionpress={x:False for x in ["up","down","left","right"]}
+    direction2=None
 screen mapA:
+    # $ moving=False
     #CONTROLS
     key 'K_UP'          action SetVariable("direction","up"),     Return("up")
     key 'K_DOWN'        action SetVariable("direction","down"),   Return("down")
     key 'K_LEFT'        action SetVariable("direction","left"),   Return("left")
     key 'K_RIGHT'       action SetVariable("direction","right"),  Return("right")
+# for mobile stuff
+    # if direction2 is not None:
+    #     if moving and direction=="up":
+    #         timer 0.01 action Return("up") repeat True
+    #     if moving and direction=="down":
+    #         timer 0.01 action Return("down") repeat True
+    #     if moving and direction=="left":
+    #         timer 0.01 action Return("left") repeat True
+    #     if moving and direction=="right":
+    #         timer 0.01 action Return("right") repeat True
+    #
+    # key ["mousedown_1"] action Function(setmoving,(True))
+    # key ["mouseup_1"] action Function(setmoving,(False))
 
     if anim_done:
-      key 'repeat_K_UP'     action SetVariable("direction","up"),     Return("up")
-      key 'repeat_K_DOWN'   action SetVariable("direction","down"),   Return("down")
-      key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
-      key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
+
+        key 'repeat_K_UP'     action SetVariable("direction","up"),     Return("up")
+        key 'repeat_K_DOWN'   action SetVariable("direction","down"),   Return("down")
+        key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
+        key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
     # key 'K_ESCAPE'      action Return("End")
     # key 'K_RETURN'         action Return("Pause")
     key 'z'             action Return("OK")
@@ -409,52 +455,44 @@ screen mapA:
     key 'R'             action Return("running")
 
     key 'K_SPACE'       action Return("Pause")
+    key 's'       action Return("Pause")
+    key 'S'       action Return("Pause")
+    key 'a'       action Return("running")
+    key 'A'       action Return("running")
 
-    key 'J'action Return("jump")
-    key 'j'action Return("jump")
-    key 'repeat_J'action Return("jump")
-    key 'repeat_j'action Return("jump")
+    key 'c' action Return("jump")
+    key 'c' action Return("jump")
+    key 'repeat_c'action Return("jump")
+    key 'repeat_C'action Return("jump")
     # key 'repeat_K_SPACE'action Return("jump")
-    key 'E'             action Return("End")
-    key 'e'             action Return("End")
-    # if renpy.variant("small"):
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","up"),Return("up")
-        action SetVariable("direction","up"),Return("up")
-        at rotate(0) pos (0.1,0.7) align (0.5,0.5)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","down"),Return("down")
-        action SetVariable("direction","down"),Return("down")
-        at rotate(180) pos (0.1,0.9) align (0.5,0.5)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","left"),Return("left")
-        action SetVariable("direction","left"),Return("left")
-        at rotate(270) pos (0.04,0.8) align (0.5,0.5)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","right"),Return("right")
-        action SetVariable("direction","right"),Return("right")
-        at rotate(90) pos (0.16,0.8) align (0.5,0.5)
+    # key 'E'             action Return("End")
+    # key 'e'             action Return("End")
+    # add KeyCatcher()
+## MOBILE BUTTONS
+    # imagebutton idle "gui/phone/buttonA.png" action Return("OK"):
+    #     pos (0.96,0.8) align (0.5,0.5) at zoombutton
+    # imagebutton idle "gui/phone/buttonB.png" action Return("MapTalk"):
+    #     pos (0.9,0.9) align (0.5,0.5) at zoombutton
+    # imagebutton idle "gui/phone/buttonX.png" action Return("Pause"):
+    #     pos (0.9,0.7) align (0.5,0.5) at zoombutton
+    # imagebutton idle "gui/phone/buttonY.png" action Return("running"):
+    #     pos (0.84,0.8) align (0.5,0.5) at zoombutton
 
+init python:
+    def setmoving(mov):
+        global moving
+        moving=mov
 
-    # imagebutton idle "gui/phone/direction.png" action SetVariable("direction","up"),     Return("up"):
-    #     at rotate(0) pos (0.1,0.7) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png" action SetVariable("direction","down"),     Return("down"):
-    #     at rotate(180) pos (0.1,0.9) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png" action SetVariable("direction","left"),     Return("left"):
-    #     at rotate(270) pos (0.04,0.8) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png" action SetVariable("direction","right"),     Return("right"):
-    #     at rotate(90) pos (0.16,0.8) align (0.5,0.5)
+##################
+# label main_menu:
+#     return
+#
+# define _confirm_quit = False
+#
+init python:
+    moving=False
 
-    imagebutton idle "gui/phone/buttonA.png" action Return("OK"):
-        pos (0.96,0.8) align (0.5,0.5) at zoombutton
-    imagebutton idle "gui/phone/buttonB.png" action Return("MapTalk"):
-        pos (0.9,0.9) align (0.5,0.5) at zoombutton
-    imagebutton idle "gui/phone/buttonX.png" action Return("Pause"):
-        pos (0.9,0.7) align (0.5,0.5) at zoombutton
-    imagebutton idle "gui/phone/buttonY.png" action Return("running"):
-        pos (0.84,0.8) align (0.5,0.5) at zoombutton
-
-
+############################
 transform floatmov:
     linear 0.5 yoffset -2
     linear 0.5 yoffset 2
@@ -464,23 +502,22 @@ transform ilymov2:
 
     linear 1.0 yoffset 10
     repeat
-
+define safezones = ["Home_Page","Shady_Alley"]
 label randomencounter:
      $ randomenemy = renpy.random.randint(0,100)
-     $ safezone=(Where=="Home_Page")
+     $ safezone=(Where in safezones)
      # $safezone=True #for debugging
-     if ((randomenemy >99) and (safezone==False)) and not HereisDoor:
-       $ enemy_encounter = True
+     $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
      if enemy_encounter == True:
           $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
           hide screen mapB
           hide screen mapA
-          call battlev3(ILY,enemyvirus) from _call_battlev3_5
+          call battlev3(ILY,enemyvirus)
           if playerHP<=0:
               return
           $ enemy_encounter=False
           $ map_active=True
-          call mapresume from _call_mapresume_4
+          call mapresume
           return
 
      return
@@ -559,320 +596,66 @@ label Returns:
         return
    else:
        $ pdirection = direction
-   call checkwalls from _call_checkwalls_1
+   call checkwalls
    # $safezone=True
-   call randomencounter from _call_randomencounter
+   call randomencounter
    if (playerHP<=0) or (map_active==False):
       return
    call screen mapA
-   call Returns from _call_Returns_6
+   call Returns
    return
   return
-  # elif (_return=="card1"):
-  #       call makestats(0)
-  #       if PlayerSpd >=EnmySpd:
-  #         $ PlayerAttacked2nd = False
-  #         play sound "sfx/swing.wav"
-  #         show ring onlayer overlay:
-  #           zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #           linear 0.2 zoom 1.6
-  #         show card1 onlayer overlay:
-  #           xalign 0.5 ypos 0.7 yanchor 0.5
-  #           zoom 1.0
-  #           linear 0.1 zoom 1.5
-  #           linear 0.2 zoom 1.4
-  #         # pause 0.4
-  #         $ renpy.pause(0.4,hard=True)
-  #         call Damage#DAMAGE OPPONENT
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call EnemyAttack
-  #       elif PlayerSpd<EnmySpd:
-  #         $ PlayerAttacked2nd = True
-  #         call EnemyAttack
-  #         # pause 0.4
-  #         # hide card1
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call battlecry
-  #             play sound "sfx/swing.wav"
-  #             show ring onlayer overlay:
-  #               zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #               linear 0.2 zoom 1.6
-  #             show card1 onlayer overlay:
-  #               xalign 0.5 ypos 0.7 yanchor 0.5
-  #               zoom 1.0
-  #               linear 0.1 zoom 1.5
-  #               linear 0.2 zoom 1.4
-  #             # pause 0.4
-  #             $ renpy.pause(0.4,hard=True)
-  #             call Damage #DAMAGE OPPONENT
-  #       return
-  # elif (_return=="card2"):
-  #       call makestats(1)
-  #       if PlayerSpd >=EnmySpd:
-  #         $ PlayerAttacked2nd = False
-  #         play sound "sfx/swing.wav"
-  #         show ring onlayer overlay:
-  #           zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #           linear 0.2 zoom 1.6
-  #         show card2 onlayer overlay:
-  #           xalign 0.5 ypos 0.7 yanchor 0.5
-  #           zoom 1.0
-  #           linear 0.1 zoom 1.5
-  #           linear 0.2 zoom 1.4
-  #         # pause 0.4
-  #         $ renpy.pause(0.4,hard=True)
-  #         hide ring
-  #         hide card1
-  #         call Damage#DAMAGE OPPONENT
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call EnemyAttack
-  #       elif PlayerSpd<EnmySpd:
-  #         $ PlayerAttacked2nd = True
-  #         call EnemyAttack
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call battlecry
-  #             play sound "sfx/swing.wav"
-  #             show ring onlayer overlay:
-  #               zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #               linear 0.2 zoom 1.6
-  #             show card2 onlayer overlay:
-  #               xalign 0.5 ypos 0.7 yanchor 0.5
-  #               zoom 1.0
-  #               linear 0.1 zoom 1.5
-  #               linear 0.2 zoom 1.4
-  #             # pause 0.4
-  #             $ renpy.pause(0.4,hard=True)
-  #             call Damage #DAMAGE OPPONENT
-  #             hide ring
-  #             hide card2
-  #       return
-  # elif (_return=="card3"):
-  #       call makestats(2)
-  #       if PlayerSpd >=EnmySpd:
-  #         $ PlayerAttacked2nd = False
-  #         call battlecry
-  #         play sound "sfx/swing.wav"
 
-  #         show ring onlayer overlay:
-  #           zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #           linear 0.2 zoom 1.6
-  #         show card3 onlayer overlay:
-  #           xalign 0.5 ypos 0.7 yanchor 0.5
-  #           zoom 1.0
-  #           linear 0.1 zoom 1.5
-  #           linear 0.2 zoom 1.4
-  #         # pause 0.4
-  #         $ renpy.pause(0.4,hard=True)
-
-  #         call Damage #DAMAGE OPPONENT
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call EnemyAttack
-
-  #       elif PlayerSpd<EnmySpd:
-  #         $ PlayerAttacked2nd = True
-  #         call EnemyAttack
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call battlecry
-  #             play sound "sfx/swing.wav"
-  #             show ring onlayer overlay:
-  #               zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #               linear 0.2 zoom 1.6
-
-  #             show card3 onlayer overlay:
-  #               xalign 0.5 ypos 0.7 yanchor 0.5
-  #               zoom 1.0
-  #               linear 0.1 zoom 1.5
-  #               linear 0.2 zoom 1.4
-  #             # pause 0.4
-  #             $ renpy.pause(0.4,hard=True)
-  #             call Damage #DAMAGE OPPONENT
-
-  #       return
-  # elif (_return=="card4"):
-  #       call makestats(3)
-
-  #       if PlayerSpd >=EnmySpd:
-  #         $ PlayerAttacked2nd = False
-  #         call battlecry
-  #         play sound "sfx/swing.wav"
-
-  #         show ring onlayer overlay:
-  #           zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #           linear 0.2 zoom 1.6
-  #         show card4 onlayer overlay:
-  #           xalign 0.5 ypos 0.7 yanchor 0.5
-  #           zoom 1.0
-  #           linear 0.1 zoom 1.5
-  #           linear 0.2 zoom 1.4
-  #         # pause 0.4
-  #         $ renpy.pause(0.4,hard=True)
-
-  #         call Damage #DAMAGE OPPONENT
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call EnemyAttack
-
-  #       elif PlayerSpd<EnmySpd:
-  #         $ PlayerAttacked2nd = True
-  #         call EnemyAttack
-  #         if not Battle_End:
-  #             $ renpy.pause(0.1,hard=True)
-  #             call battlecry
-  #             play sound "sfx/swing.wav"
-  #             show ring onlayer overlay:
-  #               zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5
-  #               linear 0.2 zoom 1.6
-
-  #             show card4 onlayer overlay:
-  #               xalign 0.5 ypos 0.7 yanchor 0.5
-  #               zoom 1.0
-  #               linear 0.1 zoom 1.5
-  #               linear 0.2 zoom 1.4
-  #             # pause 0.4
-  #             $ renpy.pause(0.4,hard=True)
-  #             call Damage #DAMAGE OPPONENT
-
-  #       return
-  # elif (_return=="Concatenate"):
-  #       call screen Concatenate
-  #       return
-# label makestats(cardchosen):
-#   hide screen choosecard
-#   $ Playercardname = myhand[cardchosen].name
-#   $ PlayerDmg = myhand[cardchosen].POW
-#   $ PlayerSpd = myhand[cardchosen].SPD
-#   $ PlayerFxn = myhand[cardchosen].fxn
-#   $ PlayerRank = myhand[cardchosen].rank
-#   $ enmychoice=renpy.random.randint(0, (len(Enmyhand)-1))
-#   $ Enmycardname = Enmyhand[enmychoice].name
-#   $ EnmyDmg = Enmyhand[enmychoice].POW
-#   $ EnmySpd = Enmyhand[enmychoice].SPD
-#   $ EnmyFxn = Enmyhand[enmychoice].fxn
-#   $ EnmyRank = Enmyhand[enmychoice].rank
-
-#   if "SPD_Up" in PlayerSts:
-#     python:
-#       # for fxns in PlayerSts:
-#       #   if fxns=="Buffed":
-#       #     PlayerDmg = PlayerDmg+int(PlayerDmg*0.1)
-#       PlayerSpd = int(PlayerSpd*1.5)
-#       PlayerSts.remove('SPD_Up')
-#     if not ("SPD_Up" in PlayerSts):
-#       hide Blueframe
-
-#   return
-# label EnemyAttack:
-# ## Enemy's Attack. Checks for Status problems
-#       if "Frozen" in EnmySts:
-#         play sound "sfx/frz.wav"
-#         show Frzsts:
-#           zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-#           linear 0.1 zoom 0.98
-#           linear 0.2 zoom 1.0 alpha 0.0
-#         $ renpy.pause(0.4,hard=True)
-#         hide Frzsts
-#         "Enemy is Frozen and cannot attack!!"
-#         $ EnmySts.remove('Frozen')
-#       elif "Broken" in EnmySts:
-#         play sound "sfx/frz.wav"
-#         show Brksts:
-#           zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-#           linear 0.1 zoom 0.98
-#           linear 0.2 zoom 1.0 alpha 0.0
-#         $ renpy.pause(0.4,hard=True)
-#         hide Brksts
-#         "Enemy cannot attack with Broken Battleware!!"
-#         $ EnmySts.remove('Broken')
-
-#       else:
-#         play sound "sfx/swing.wav"
-#         show ring2 onlayer overlay:
-#           zoom 0.0 xalign 0.5 ypos 0.3 yanchor 0.5
-#           linear 0.2 zoom 1.6
-#         if enmychoice ==0:
-#           show Enmycard1 onlayer overlay:
-#             xalign 0.5 ypos 0.3 yanchor 0.5
-#             zoom 1.0
-#             linear 0.1 zoom 1.5
-#             linear 0.2 zoom 1.4
-#         elif enmychoice ==1:
-#           show Enmycard2 onlayer overlay:
-#             xalign 0.5 ypos 0.3 yanchor 0.5
-#             zoom 1.0
-#             linear 0.1 zoom 1.5
-#             linear 0.2 zoom 1.4
-#         elif enmychoice ==2:
-#           show Enmycard3 onlayer overlay:
-#             xalign 0.5 ypos 0.3 yanchor 0.5
-#             zoom 1.0
-#             linear 0.1 zoom 1.5
-#             linear 0.2 zoom 1.4
-#         elif enmychoice ==3:
-#           show Enmycard4 onlayer overlay:
-#             xalign 0.5 ypos 0.3 yanchor 0.5
-#             zoom 1.0
-#             linear 0.1 zoom 1.5
-#             linear 0.2 zoom 1.4
-#         # pause 0.4
-#         $ renpy.pause(0.4,hard=True)
-#         call EnmyDamage #DAMAGE PLAYER
-#       return
-label Damage:
-        # DAMAGING ENEMY USING OWN CARD
-
-        hide ring
-        hide card1
-        hide card2
-        hide card3
-        hide card4
-        #Calculate dmg here
-        call fxnCaller(PlayerFxn) from _call_fxnCaller
-        if EnmyHP <=0:
-          $EnemyHP=0
-          show Enemy:
-            linear 0.15 zoom 0.94
-            xoffset 0.12 yoffset 0.2 alpha 0.5
-            pause .05
-            xoffset 0.-17 yoffset 0.-17 alpha 0.8
-            pause .05
-            xoffset 0.13 yoffset 0.2 alpha 1.0
-            pause 0.1
-            xoffset 0.-19 yoffset 0.11
-            pause 0.4
-            linear 0.1 zoom 0.8 alpha 0.0
-          $ renpy.pause(0.4,hard=True)
-          $Battle_End = True
-          hide Enemy
-          hide screen stats
-          hide screen choosecard
-          stop music
-
-          # jump cardcycle
-        return
+# label Damage:
+#         # DAMAGING ENEMY USING OWN CARD
+#
+#         hide ring
+#         hide card1
+#         hide card2
+#         hide card3
+#         hide card4
+#         #Calculate dmg here
+#         call fxnCaller(PlayerFxn) from _call_fxnCaller
+#         if EnmyHP <=0:
+#           $EnemyHP=0
+#           show Enemy:
+#             linear 0.15 zoom 0.94
+#             xoffset 0.12 yoffset 0.2 alpha 0.5
+#             pause .05
+#             xoffset 0.-17 yoffset 0.-17 alpha 0.8
+#             pause .05
+#             xoffset 0.13 yoffset 0.2 alpha 1.0
+#             pause 0.1
+#             xoffset 0.-19 yoffset 0.11
+#             pause 0.4
+#             linear 0.1 zoom 0.8 alpha 0.0
+#           $ renpy.pause(0.4,hard=True)
+#           $Battle_End = True
+#           hide Enemy
+#           hide screen stats
+#           hide screen choosecard
+#           stop music
+#
+#           # jump cardcycle
+#         return
 
 
 label EnmyDamage:
-        #ILY LOSING HP
-        #Calculate dmg here
-        call fxnCallerp(EnmyFxn) from _call_fxnCallerp
-        if playerHP <=0:
-          $playerHP=0
-          #Losing Animation
-          "ILY Deleted!"
-          $Battle_End = True
-          hide Enemy
-          hide screen stats
-          hide screen choosecard
-          stop music
+    #ILY LOSING HP
+    #Calculate dmg here
+    call fxnCallerp(EnmyFxn) from _call_fxnCallerp
+    if playerHP <=0:
+      $playerHP=0
+      #Losing Animation
+      "ILY Deleted!"
+      $Battle_End = True
+      hide Enemy
+      hide screen stats
+      hide screen choosecard
+      stop music
 
-          # jump cardcycle
-        return
+      # jump cardcycle
+    return
 
 
 screen notif(notiftext):
@@ -889,63 +672,3 @@ transform notifanim:
 image ILY_byTorakun14:
   "images/characters/ILY/ILY nobg_by_Torakun.png"
   zoom 0.3
-
-label win:
-    #MAKE VICTORY ANIMATION
-    # show ILY_byTorakun14:
-    #   xalign 0.0
-    show screen phasemsg("VICTORY!")
-    "ILY Wins!"
-    hide screen phasemsg
-    # "VICTORY!"
-    #BATTLE DROPS
-    return
-label lose:
-    $ okdesktop = False
-    hide screen mapA
-    hide screen mapB
-    scene ILYgameover with pixellate
-    "I'm.. Sorry, John. "
-    extend"I'm sorry Lisa."
-
-return
-
-
-##Card Functions: FXN = Card effect
-label fxnCallerp(fxn):
-  #Enemy-to-Player Damage Calculation, based on Fxn.
-  if "Damage" in fxn:
-    call hurtnoise from _call_hurtnoise
-    with Shake((0, 0, 0, 0), 0.5, dist=EnmyDmg/10)
-    $ playerHP = playerHP-EnmyDmg
-  if "Burn" in fxn:
-    play sound "sfx/fire.wav"
-    $ PlayerSts.append("Burned")
-    $ PlayerSts.append("Burned")
-    $ PlayerSts.append("Burned")
-    $ PlayerSts.append("Burned")
-    show Brnsts onlayer overlay:
-      zoom 1.3 xanchor 0.5 xpos 0.15 yanchor 0.5 ypos 0.1 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
-    $ renpy.pause(0.5,hard=True)
-    hide Brnsts
-  if "Burned" in PlayerSts:
-        play sound "sfx/fire.wav"
-        python:
-          burndmg = 0
-          for fxns in PlayerSts:
-            if fxns=="Burned":
-              burndmg = burndmg +10
-        show Brnsts onlayer overlay:
-          zoom 1.3 xanchor 0.5 xpos 0.15 yanchor 0.5 ypos 0.1 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
-
-        $ playerHP = playerHP-burndmg
-
-        $ playerSts.remove('Burned')
-        play sound "sfx/fire.wav"
-        with Shake((0, 0, 0, 0), 0.5, dist=burndmg/10)
-        hide Brnsts
-  return

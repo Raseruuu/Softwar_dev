@@ -2,7 +2,8 @@
 label prescript2:
     $map_active=False
     hide screen mapB
-    ""
+
+    return
     "STUFF"
     #Call Scene after approaching tile on Connecht, North of Home area
     j"ILY, when you talk to an entity in there, they won't actually hear me right?"
@@ -36,8 +37,8 @@ label script2:
     #ILY strolls around their own personal cyberspace area:
     # There are a few Mini FAIS hanging around, representing computer systems inside his own device.
     # Explanation of Mini FAI
-
-
+    # jump credits
+    return
     show Melissa:
         xalign 0.5
     m"Hi there, ILY. Welcome back to the GRID."

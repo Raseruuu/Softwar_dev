@@ -384,7 +384,7 @@ image cardflasher:
         (0,0),"images/Cards/Cardblank.png",
         (11,12),"images/Cards/[currentcard.NAME].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[currentcard.NAME]{/color}{/font}{/size}"),
-        (13,240),FunctionList(currentcardFXN),
+        (13,240),FunctionList(currentcard.FXN),
         (165,175),"images/Cards/cardbit/[currentcard.COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[currentcard.TYPE]{/color}{/font}{/size}"),
         (165,267),Text("{color=#ae81f2}{size=24}[currentcard.MAG]{/color}{/size}")
@@ -749,6 +749,7 @@ screen stats:
                         grid 7 3:
                             for fxns in PlayerSts:
                                 image "images/battle/[fxns].png" at fxnicon
+                                # frame
                             for fillerz in range(0,21-len(PlayerSts)):
                                 null width 13
 transform fxnicon:

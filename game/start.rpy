@@ -10,6 +10,7 @@ image Maoudamashii = "Maoudamashii.png"
 label start:
     call game_loop from _call_game_loop
 label credits:
+    $ILY_m="smile"
     scene white with pixellate
     play music "bgm/Credits_bgm_maoudamashii_8bit08.mp3"
 
@@ -24,8 +25,9 @@ label credits:
     scene blue with dissolve
     show Folders
     $ direction = 'down'
-    show IlyRpg:
-        xalign 0.5 yalign 0.4
+    # show ILY:
+    #     xalign 0.5
+
 
     show text "We hope you had at least {size=32}a bit{/size} of fun!!":
         xalign 0.5 yalign 0.6
@@ -36,10 +38,10 @@ label credits:
     pause 3.0
     show text "Raseruuu/Zan Kizuna\n\nStory, Programming and Character Art" with dissolve
     pause 3.0
-    show text "Arsym\n\nProject Manager, Programmer, GUI, Co-writer" with dissolve
-    pause 3.0
-    show text "Opa\n\nStory, Co-writer" with dissolve
-    pause 3.0
+    # show text "Arsym\n\nProject Manager, Programmer, GUI, Co-writer" with dissolve
+    # pause 3.0
+    # show text "Opa\n\nStory, Co-writer" with dissolve
+    # pause 3.0
     show text "Jeroz\n\nStory, Co-writer" with dissolve
     pause 3.0
     show text "Kiora001/Julian\n\nCharacter Art, Logo, and Cover Art" with dissolve
@@ -69,8 +71,10 @@ label credits:
     hide text
     hide IlyRpg
     $ Ily_p='1'
-    $ IlySprite('smile')
-    show Ily
+    $ Ily_m='smile'
+
+    show ILY:
+        xalign 0.5
     i"Have a Lovely Day, User!"
 
     return
