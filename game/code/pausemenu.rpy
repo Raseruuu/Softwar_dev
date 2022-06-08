@@ -140,7 +140,7 @@ default deck_unedited=[]
 
 
 default card_inventory_unedited=[]
-default inventory =[SoftDrink]
+default inventory =[SoftDrink]*44
 
 
 default card_library=deckdefault["content"]

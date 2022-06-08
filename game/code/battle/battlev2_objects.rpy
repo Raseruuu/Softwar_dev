@@ -198,11 +198,13 @@ init python:
     FXN
     Freeze()       2
     """
-
-    ##name              name                     TYPE       MAG    HITS    FXN List               COST
-    FlameSaber=    Card("FlameSaber",       "FireSword",    1.75,    [Attack(),Burn(80)],               0)
-    FrostBuster=   Card("FrostBuster",       "IceGun",      1.75,    [Attack(),Freeze()],               0)
-    Concatenations=[FlameSaber,FrostBuster]
+#Concatenations
+    ##name              name                     TYPE               MAG        FXN List                      COST
+    FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),Burn(80)],                   0)
+    FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
+    Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
+    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [While("\"Armor\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()] ,Boost("DEF",2.0)],   0)
+    Concatenations=[FlameSaber,FrostBuster,Waveslash,GUNVAR]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
@@ -246,21 +248,48 @@ init python:
 #Force
     BruteForce=   Card("BruteForce",     "Force",    1.0,     [Attack(),Boost("ATK",0.25)],      8)
     DataForce=    Card("DataForce",      "Force",    1.0,      [Boost("ATK",0.25),Boost("DEF",0.25)],       4)
-
-
     DataDrill=    Card("DataDrill",       "Drill",   0.6,     [Attack(),Attack(),Attack()],       6)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
-
     Assault=      Card("Assault",       "Tech",    0.25,       [Boost("ATK",0.25),NullFxn()],  2)
     # Bitbuster=    Card("Bitbuster",       "Gun",    0.25,     [Attack(),ReduceBit],       2)
     # Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(),NullFxn()],          8)
-
-
-
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
+    #newcards
+
+    DrainShield=   Card("DrainShield",    "Shield",      1.0,     [Defend(),GainToken("Negate",1)],   4)
+    FieryArc=      Card("FieryArc",       "Bow",         1.0,     [Attack(),Burn(40)],   4)
+    CosmicArc=     Card("CosmicArc",      "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
+    # SnipeSensor=   Card("SnipeSensor",    "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    LunexGunSaber= Card("LunexGunSaber",  "Sword",       1.0,     [Attack(),GiveToken("Saber",1)],   4)
+    CupidArc=      Card("CupidArc",       "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
+    DataArc=       Card("DataArc",       "Bow",          1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Flashbang=     Card("Flashbang",      "Bomb",        1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Gigamorph=     Card("Gigamorph",      "Power",       1.0,     [Attack(),GainToken("Saber",1)],   4)
+    DataBuster=    Card("DataBuster",      "Gun",        1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Bitbuster=     Card("Bitbuster",      "Gun",         1.0,     [Attack(),GainToken("Saber",1)],   4)
+    MachineBuster= Card("MachineBuster",      "Gun",     1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Excalibrium=   Card("Excalibrium",      "Sword",     1.0,     [Attack(),GainToken("Saber",1)],   4)
+    ILYFlash=      Card("ILYFlash",      "Power",        1.0,     [Attack(),GainToken("Saber",1)],   4)
+    BruiseBash=    Card("BruiseBash",      "Skill",      1.0,     [Attack(),GiveToken("DEFdown",1)],   4)
+    ZSlash=        Card("ZSlash",          "Slash",      1.0,     [Attack(),GainToken("Saber",1)],   4)
+    FreezeWave=    Card("FreezeWave",      "Wave",       1.0,     [Attack(),Freeze()],   4)
+    FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
+    Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
+    FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Gigacore=      Card("G-GigaCore",       "G",         1.0,     [BoostDEF(),GainToken("Armor",1)],   2)
+    UltraHead=     Card("U-UltraHead",      "U",           1.0,     [Attack(),GainToken("Armor",1)],   2)
+    NitroArms=     Card("N-NitroArms",      "N",           1.0,     [Attack(),GainToken("Armor",1)],   2)
+    VoltLegs=      Card("V-VoltLegs",       "V",           1.0,     [Attack(),GainToken("Armor",1)],   2)
+    ArmorReactor=  Card("AR-AerialReactor",  "AR",           1.0,   [GainToken("Evade"),GainToken("Armor",1)],   2)
+
+    Shotgun=       Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    SwordOfTruth=  Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    SwordOfLies=   Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    VBlaze=        Card("VBlaze",      "Fire",           1.0,     [Attack(),Burn("Saber",1)],   4)
+
 
 
     ##NO ART
@@ -284,7 +313,7 @@ init python:
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, Boost("ATK",0.1),4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, Boost("ATK",0.1),4)
     DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,Attack(), 8)
-
+    SnipeSensor=Plugin("SnipeSensor","!",1.0,Attack(), 8)
 
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS

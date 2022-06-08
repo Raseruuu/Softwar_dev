@@ -119,3 +119,8 @@ log.txt
 *.json
 *.rpyb
 *.rpyc
+errors.txt
+*.rpyc
+*.json
+log.txt
+traceback.txt

@@ -1,60 +1,33 @@
-Sun Jun  5 21:51:10 2022
+Wed Jun  8 15:21:10 2022
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
  
 
-Bootstrap to the start of init.init took 0.17s
+Bootstrap to the start of init.init took 0.21s
 Early init took 0.01s
-Loader init took 0.18s
-Loading error handling took 0.11s
-Loading script took 1.18s
-Loading save slot metadata. took 0.36s
+Loader init took 0.17s
+Loading error handling took 0.13s
+Loading script took 2.40s
+Loading save slot metadata. took 0.46s
 Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
 
-Full traceback:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "renpy/ast.py", line 923, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2235, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/code/combine.rpy", line 13, in <module>
-    "DrainShield":DrainShield,
-NameError: name 'DrainShield' is not defined
-
-While running game code:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 13, in <module>
-    "DrainShield":DrainShield,
-NameError: name 'DrainShield' is not defined
+File "game/code/battle/battlev2_objects.rpy", line 206: invalid syntax
+    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [While("\"Armor\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()] ,Boost("DEF",2.0)],   0)
+                                                                                                                                                                                                   ^
+    
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: "Couldn't load nvlib." (can be ignored)
+Interface start took 0.46s
 
-Full traceback:
-  File "renpy/bootstrap.py", line 326, in bootstrap
-    renpy.main.main()
-  File "renpy/main.py", line 515, in main
-    renpy.game.context().run(node)
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "renpy/ast.py", line 923, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2235, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/code/combine.rpy", line 13, in <module>
-    "DrainShield":DrainShield,
-NameError: name 'DrainShield' is not defined
-
-While running game code:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 13, in <module>
-    "DrainShield":DrainShield,
-NameError: name 'DrainShield' is not defined
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096
+controller: '030000006d0400001dc2000000007200' 'Controller (Gamepad F310)' 1L

@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 358: u'keyup' is not a keyword argument or valid child for the screen statement.
-    keyup "K_SPACE" action SetVariable("speaking",None)
-         ^
+File "game/code/battle/battlev2_objects.rpy", line 206: invalid syntax
+    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [While("\"Armor\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()] ,Boost("DEF",2.0)],   0)
+                                                                                                                                                                                                   ^
+    
 
 Ren'Py Version: Ren'Py 7.4.8.1895
-Thu Nov 25 02:04:00 2021
+Wed Jun  8 15:21:13 2022

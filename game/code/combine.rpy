@@ -13,7 +13,7 @@ init python:
         "DrainShield":DrainShield,
         "FieryArc":FieryArc,
         "CosmicArc":CosmicArc,
-        "SpiderAmulet":SpiderAmulet,
+        # "SpiderAmulet":SpiderAmulet,
         "SnipeSensor":SnipeSensor,
         "LunexGunSaber":LunexGunSaber,
         "CupidArc":CupidArc,
