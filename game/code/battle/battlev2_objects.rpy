@@ -203,8 +203,8 @@ init python:
     FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),Burn(80)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
-    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [While("\"Armor\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()] ,Boost("DEF",2.0)],   0)
-    Concatenations=[FlameSaber,FrostBuster,Waveslash,GUNVAR]
+    # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
+    Concatenations=[FlameSaber,FrostBuster,Waveslash]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
@@ -264,6 +264,7 @@ init python:
     CosmicArc=     Card("CosmicArc",      "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
     # SnipeSensor=   Card("SnipeSensor",    "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     LunexGunSaber= Card("LunexGunSaber",  "Sword",       1.0,     [Attack(),GiveToken("Saber",1)],   4)
+    BusterSword=   Card("BusterSword",  "Sword",         1.0,     [Attack(),GiveToken("Saber",1)],   4)
     CupidArc=      Card("CupidArc",       "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
     DataArc=       Card("DataArc",       "Bow",          1.0,     [Attack(),GainToken("Saber",1)],   4)
     Flashbang=     Card("Flashbang",      "Bomb",        1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -279,16 +280,15 @@ init python:
     FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
     Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Gigacore=      Card("G-GigaCore",       "G",         1.0,     [BoostDEF(),GainToken("Armor",1)],   2)
     UltraHead=     Card("U-UltraHead",      "U",           1.0,     [Attack(),GainToken("Armor",1)],   2)
     NitroArms=     Card("N-NitroArms",      "N",           1.0,     [Attack(),GainToken("Armor",1)],   2)
     VoltLegs=      Card("V-VoltLegs",       "V",           1.0,     [Attack(),GainToken("Armor",1)],   2)
-    ArmorReactor=  Card("AR-AerialReactor",  "AR",           1.0,   [GainToken("Evade"),GainToken("Armor",1)],   2)
+    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
 
     Shotgun=       Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfTruth=  Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfLies=   Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    VBlaze=        Card("VBlaze",      "Fire",           1.0,     [Attack(),Burn("Saber",1)],   4)
+    VBlaze=        Card("VBlaze",      "Fire",           1.0,     [Attack(),Burn(40)],   4)
 
 
 

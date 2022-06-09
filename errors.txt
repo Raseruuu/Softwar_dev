@@ -8,4 +8,4 @@ File "game/code/battle/battlev2_objects.rpy", line 206: invalid syntax
     
 
 Ren'Py Version: Ren'Py 7.4.8.1895
-Wed Jun  8 15:21:13 2022
+Fri Jun 10 00:56:06 2022

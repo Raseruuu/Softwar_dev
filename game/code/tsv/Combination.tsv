@@ -1,8 +1,8 @@
-NAME	Component 1	Component 2	Component 3	Description
+	Component 1	Component 2	Component 3	Description
 				
 SparkBuster	Volteum	DataBuster		Lightning Gun
 Katana	Datanium	W00D		sword style master weapon
-LambdaSaber	Data Saber	Lambdium		wave sword
+LambdaSaber	DataSaber	Lambdium		wave sword
 RadioShield	Lambdium	Binon		
 DrainShield	Datanium	Zereum	Oneum	
 FieryArc	W00D	Strinnium	Conflagrium	
@@ -20,7 +20,7 @@ Gigamorph	Fibonaccium	Oneum	Iteratium	increase HP and Defense
 DataBuster	Datanium	Combustium		Standard Gun
 MachineBuster	Databuster	Iteratium		Gatling Gun
 Excalibrium	DataSaber	Oneum	Zereum	Sword of Balance
-ILYFlash	Cupid Arc	Oneum	Zereum	Attack enmy then Heal self
+ILYFlash	CupidArc	Oneum	Zereum	Attack enmy then Heal self
 RecursiveSlash	Datanium	Iteratium		attack x Saber token
 MailSaber	DataSaber	Fibonaccium	Iteratium	
 BruiseBash	Zereum	Zereum		attack reduces enemy defense
@@ -30,13 +30,12 @@ FreezingBlade	DataSaber	Streamine	Lambdium
 Salamandra	DataSaber	Conflagrium		
 BusterSword	DataSaber	Combustium		
 FlameFists	Fibonaccium	Conflagrium		
-GMechaArms	FlameFists	Gigamorph		
-LightningLegs	Fibonaccium	Volteum		
-GMechaLegs	LightningLegs	Gigamorph		
-GMechaHead	Fibonaccium	Neureum	Gigamorph	
-GUNVAR	GMechaHead	GMechaArms	GMechaLegs	Super Robot!!
+NitroArms	FlameFists	Gigamorph		
+VoltLegs	Fibonaccium	Volteum		
+UltraHead	Fibonaccium	Neureum	Gigamorph	
+GUNVAR	UltraHead	VoltLegs	NitroArms	Super Robot!!
 Shotgun	Databuster	Combustium		
 Laserbeam	DataBuster	Photoceptor	Volteum	
-SwordOfTruth	Data Saber	Oneum		Buff ATK of self
+SwordOfTruth	DataSaber	Oneum		Buff ATK of self
 SwordOfLies	DataSaber	Zereum		Debuff Enemy ATK
 VBlaze	Combustium	Conflagrium		high power Flame attack

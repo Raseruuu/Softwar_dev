@@ -5,9 +5,11 @@ While running game code:
     init python:
   File "game/code/combine.rpy", line 2, in script
     init python:
-  File "game/code/combine.rpy", line 29, in <module>
-    "MachineBuster":MachineBuster,
-NameError: name 'MachineBuster' is not defined
+  File "game/code/combine.rpy", line 71, in <module>
+    combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
+  File "game/code/combine.rpy", line 63, in read_combination_tsv
+    craft_dictionary[linearray[0]] = CraftItem(linearray[0],battleware_master_dict[linearray[0]],craftcomponents)
+KeyError: u'GUNVAR'
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -24,11 +26,13 @@ Full traceback:
     renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
   File "renpy/python.py", line 2235, in py_exec_bytecode
     exec(bytecode, globals, locals)
-  File "game/code/combine.rpy", line 29, in <module>
-    "MachineBuster":MachineBuster,
-NameError: name 'MachineBuster' is not defined
+  File "game/code/combine.rpy", line 71, in <module>
+    combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
+  File "game/code/combine.rpy", line 63, in read_combination_tsv
+    craft_dictionary[linearray[0]] = CraftItem(linearray[0],battleware_master_dict[linearray[0]],craftcomponents)
+KeyError: u'GUNVAR'
 
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
 SoftWar - DEMO 1.0
-Tue Jun  7 23:50:16 2022
+Fri Jun 10 02:28:36 2022

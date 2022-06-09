@@ -96,7 +96,7 @@ label script1:
     j "{i}sigh{/i}"
 
     hide ILOVEYOU with Dissolve(2.0)
-    scene JD_Spacenight2 with dissolve
+    scene JD_Space2_night with dissolve
     "I go to the window to get some fresh air."
     "Hhmmmmmm... Ughhhhh.."
 

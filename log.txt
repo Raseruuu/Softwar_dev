@@ -1,24 +1,41 @@
-Wed Jun  8 15:21:10 2022
+Fri Jun 10 02:29:06 2022
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
  
 
-Bootstrap to the start of init.init took 0.21s
-Early init took 0.01s
-Loader init took 0.17s
-Loading error handling took 0.13s
-Loading script took 2.40s
-Loading save slot metadata. took 0.46s
-Loading persistent took 0.01s
-
-File "game/code/battle/battlev2_objects.rpy", line 206: invalid syntax
-    GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [While("\"Armor\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()] ,Boost("DEF",2.0)],   0)
-                                                                                                                                                                                                   ^
-    
+Bootstrap to the start of init.init took 0.15s
+Early init took 0.00s
+Loader init took 0.05s
+Loading error handling took 0.06s
+Loading script took 0.56s
+Loading save slot metadata. took 0.09s
+Loading persistent took 0.00s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.29s
+Loading analysis data took 0.20s
+Analyze and compile ATL took 0.09s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
+Dump and make backups. took 0.18s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.13s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: "Couldn't load nvlib." (can be ignored)
-Interface start took 0.46s
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.15s
+Build styles took 0.01s
+Load screen analysis took 0.01s
+Analyze screens took 0.05s
+Save screen analysis took 0.29s
+Prepare screens took 0.24s
+Save pyanalysis. took 0.74s
+Save bytecode. took 0.08s
+Running _start took 0.00s
+Performance test:
+Interface start took 0.25s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1600, 900)
@@ -31,3 +48,226 @@ Display Info: None
 Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
 Maximum texture size: 4096x4096
 controller: '030000006d0400001dc2000000007200' 'Controller (Gamepad F310)' 1L
+Resetting cache.
+Bootstrap to the start of init.init took 337.56s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.05s
+Loading script took 0.64s
+Loading save slot metadata. took 0.11s
+Loading persistent took 0.01s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.24s
+Loading analysis data took 0.19s
+Analyze and compile ATL took 0.08s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.17s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.16s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.03s
+Save screen analysis took 0.20s
+Prepare screens took 0.21s
+Save pyanalysis. took 0.76s
+Save bytecode. took 0.03s
+Running _start took 0.00s
+Performance test:
+Interface start took 0.14s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 349.49s
+Early init took 0.00s
+Loader init took 0.07s
+Loading error handling took 0.03s
+Loading script took 0.53s
+Loading save slot metadata. took 0.19s
+Loading persistent took 0.01s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.25s
+Loading analysis data took 0.19s
+Analyze and compile ATL took 0.21s
+Index archives took 0.00s
+Dump and make backups. took 0.14s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.25s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.30s
+Build styles took 0.01s
+Load screen analysis took 0.83s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.22s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.14s
+Running _start took 0.00s
+Performance test:
+Interface start took 0.29s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 353.52s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.04s
+Loading script took 0.47s
+Loading save slot metadata. took 0.10s
+Loading persistent took 0.01s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.25s
+Loading analysis data took 0.19s
+Analyze and compile ATL took 0.08s
+Index archives took 0.00s
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.20s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.16s
+Build styles took 0.01s
+Load screen analysis took 0.11s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.21s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.00s
+Running _start took 0.00s
+Performance test:
+Interface start took 0.17s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 368.12s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.04s
+Loading script took 0.96s
+Loading save slot metadata. took 0.12s
+Loading persistent took 0.01s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.23s
+Loading analysis data took 0.19s
+Analyze and compile ATL took 0.07s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.20s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.17s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.04s
+Save screen analysis took 0.20s
+Prepare screens took 0.21s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.03s
+Running _start took 0.01s
+Performance test:
+Interface start took 0.18s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096
+Resetting cache.
+Bootstrap to the start of init.init took 395.93s
+Early init took 0.00s
+Loader init took 0.06s
+Loading error handling took 0.03s
+Loading script took 0.88s
+Loading save slot metadata. took 0.13s
+Loading persistent took 0.01s
+Importing _renpysteam: ImportError('No module named _renpysteam',)
+Running init code took 0.23s
+Loading analysis data took 0.19s
+Analyze and compile ATL took 0.08s
+Index archives took 0.00s
+Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
+Dump and make backups. took 0.12s
+Cleaning cache took 0.00s
+Making clean stores took 0.00s
+Initial gc. took 0.20s
+DPI scale factor: 1.000000
+nvdrs: Loaded, about to disable thread optimizations.
+nvdrs: "Couldn't load nvlib." (can be ignored)
+Creating interface object took 0.00s
+Cleaning stores took 0.00s
+Init translation took 0.17s
+Build styles took 0.01s
+Load screen analysis took 0.00s
+Analyze screens took 0.03s
+Save screen analysis took 0.20s
+Prepare screens took 0.20s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.03s
+Running _start took 0.01s
+Performance test:
+Interface start took 0.19s
+
+Initializing gl2 renderer:
+primary display bounds: (0, 0, 1600, 900)
+swap interval: 1 frames
+Windowed mode.
+Vendor: 'ATI Technologies Inc.'
+Renderer: 'AMD Radeon(TM) RX 560 Series'
+Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
+Display Info: None
+Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Maximum texture size: 4096x4096

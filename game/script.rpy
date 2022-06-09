@@ -139,10 +139,15 @@ image JD_Space1:
 image JD_Space2:
     "images/John's Room/Space2.jpg"
     zoom 0.7
+image JD_Space2_night:
+    "images/John's Room/Space2_night.jpg"
+    zoom 0.7
 image JD_Space3:
     "images/John's Room/Space3.jpg"
     zoom 0.7
-
+image JD_Space3_night:
+    "images/John's Room/Space3_night.jpg"
+    zoom 0.7
 image redwebsite:
     "images/computer/Webpage.png"
 image blackwindow:
