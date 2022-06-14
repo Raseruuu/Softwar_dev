@@ -1,41 +1,42 @@
-Fri Jun 10 02:29:06 2022
+Tue Jun 14 21:55:43 2022
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
  
 
-Bootstrap to the start of init.init took 0.15s
+Bootstrap to the start of init.init took 0.16s
 Early init took 0.00s
-Loader init took 0.05s
-Loading error handling took 0.06s
-Loading script took 0.56s
-Loading save slot metadata. took 0.09s
-Loading persistent took 0.00s
+Loader init took 0.08s
+Loading error handling took 0.10s
+Loading script took 1.44s
+Loading save slot metadata. took 0.23s
+Loading persistent took 0.01s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.29s
-Loading analysis data took 0.20s
-Analyze and compile ATL took 0.09s
+ - Init at renpy/common/00updater.rpy:23 took 0.30400 s.
+ - Init at game/code/Maps.rpy:3 took 0.30505 s.
+Running init code took 0.87s
+Loading analysis data took 0.34s
+Analyze and compile ATL took 0.15s
 Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
-Dump and make backups. took 0.18s
+Dump and make backups. took 0.23s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
-Initial gc. took 0.13s
+Initial gc. took 0.42s
 DPI scale factor: 1.000000
 nvdrs: Loaded, about to disable thread optimizations.
 nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
+Creating interface object took 0.07s
 Cleaning stores took 0.00s
-Init translation took 0.15s
+Init translation took 0.38s
 Build styles took 0.01s
-Load screen analysis took 0.01s
-Analyze screens took 0.05s
-Save screen analysis took 0.29s
-Prepare screens took 0.24s
-Save pyanalysis. took 0.74s
-Save bytecode. took 0.08s
+Load screen analysis took 0.23s
+Analyze screens took 0.00s
+Save screen analysis took 0.00s
+Prepare screens took 0.45s
+Save pyanalysis. took 0.00s
+Save bytecode. took 0.16s
 Running _start took 0.00s
 Performance test:
-Interface start took 0.25s
+Interface start took 0.38s
 
 Initializing gl2 renderer:
 primary display bounds: (0, 0, 1600, 900)
@@ -48,226 +49,459 @@ Display Info: None
 Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
 Maximum texture size: 4096x4096
 controller: '030000006d0400001dc2000000007200' 'Controller (Gamepad F310)' 1L
-Resetting cache.
-Bootstrap to the start of init.init took 337.56s
-Early init took 0.00s
-Loader init took 0.06s
-Loading error handling took 0.05s
-Loading script took 0.64s
-Loading save slot metadata. took 0.11s
-Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.24s
-Loading analysis data took 0.19s
-Analyze and compile ATL took 0.08s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
-Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.17s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
 Cleaning stores took 0.00s
-Init translation took 0.16s
-Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.03s
-Save screen analysis took 0.20s
-Prepare screens took 0.21s
-Save pyanalysis. took 0.76s
-Save bytecode. took 0.03s
-Running _start took 0.00s
-Performance test:
-Interface start took 0.14s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1600, 900)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) RX 560 Series'
-Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
-Display Info: None
-Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 349.49s
-Early init took 0.00s
-Loader init took 0.07s
-Loading error handling took 0.03s
-Loading script took 0.53s
-Loading save slot metadata. took 0.19s
-Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.25s
-Loading analysis data took 0.19s
-Analyze and compile ATL took 0.21s
-Index archives took 0.00s
-Dump and make backups. took 0.14s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.25s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.30s
-Build styles took 0.01s
-Load screen analysis took 0.83s
+Init translation took 0.00s
+Build styles took 0.02s
+Load screen analysis took 0.14s
 Analyze screens took 0.00s
-Save screen analysis took 0.00s
-Prepare screens took 0.22s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.14s
-Running _start took 0.00s
-Performance test:
-Interface start took 0.29s
+Prepare screens took 0.00s
+Running _start took 0.01s
+Traceback (most recent call last):
+  File "renpy/common/00console.rpy", line 647, in run
+    he.result = command_fn(l)
+  File "renpy/common/00console.rpy", line 912, in jump
+    raise Exception("Label %s not found." % label)
+Exception: Label chapter1 not found.
+Traceback (most recent call last):
+  File "renpy/common/00console.rpy", line 647, in run
+    he.result = command_fn(l)
+  File "renpy/common/00console.rpy", line 912, in jump
+    raise Exception("Label %s not found." % label)
+Exception: Label chapter_1 not found.
+Traceback (most recent call last):
+  File "renpy/common/00console.rpy", line 647, in run
+    he.result = command_fn(l)
+  File "renpy/common/00console.rpy", line 912, in jump
+    raise Exception("Label %s not found." % label)
+Exception: Label chapter_2 not found.
 
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1600, 900)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) RX 560 Series'
-Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
-Display Info: None
-Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 353.52s
-Early init took 0.00s
-Loader init took 0.06s
-Loading error handling took 0.04s
-Loading script took 0.47s
-Loading save slot metadata. took 0.10s
-Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.25s
-Loading analysis data took 0.19s
-Analyze and compile ATL took 0.08s
-Index archives took 0.00s
-Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.20s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
+Full traceback:
+  File "game/start.rpy", line 11, in script call
+    call game_loop from _call_game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 1628, in script call
+    call mapcall([7,6],stagehome) from _call_mapcall
+  File "game/code/Movement.rpy", line 133, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 601, in script call
+    call randomencounter
+  File "game/code/Movement.rpy", line 520, in script call
+    call mapresume
+  File "game/code/Movement.rpy", line 169, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 592, in script call
+    call pauseshow from _call_pauseshow
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 65, in script call
+    call UnsaveDeck
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 76, in script
+    call screen CombineMenu
+  File "renpy/ast.py", line 2010, in execute
+    self.call("execute")
+  File "renpy/ast.py", line 1998, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "renpy/statements.py", line 278, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/exports.py", line 3132, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3276, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3694, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 432, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3694, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 443, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 631, in update
+    self.screen.function(**self.scope)
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 94, in execute
+    frame:
+  File "game/code/combine.rpy", line 102, in execute
+    vbox:
+  File "game/code/combine.rpy", line 104, in execute
+    viewport:
+  File "game/code/combine.rpy", line 108, in execute
+    hbox:
+  File "game/code/combine.rpy", line 109, in execute
+    grid 1 40:
+  File "game/code/combine.rpy", line 111, in execute
+    for create_index, craftitem in enumerate(comb_library):
+  File "game/code/combine.rpy", line 112, in execute
+    frame:
+  File "game/code/combine.rpy", line 118, in execute
+    vbox:
+  File "game/code/combine.rpy", line 120, in execute
+    hbox:
+  File "game/code/combine.rpy", line 124, in execute
+    frame:
+  File "game/code/combine.rpy", line 127, in execute
+    hbox:
+  File "game/code/combine.rpy", line 128, in execute
+    vbox:
+  File "game/code/combine.rpy", line 131, in execute
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/combine.rpy", line 131, in <module>
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/battle/battlescript.rpy", line 349, in FunctionList
+    for cardfunction in FXN:
+TypeError: 'Fxn' object is not iterable
+
+While running game code:
+  File "game/start.rpy", line 11, in script call
+    call game_loop from _call_game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 1628, in script call
+    call mapcall([7,6],stagehome) from _call_mapcall
+  File "game/code/Movement.rpy", line 133, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 601, in script call
+    call randomencounter
+  File "game/code/Movement.rpy", line 520, in script call
+    call mapresume
+  File "game/code/Movement.rpy", line 169, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 592, in script call
+    call pauseshow from _call_pauseshow
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 65, in script call
+    call UnsaveDeck
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 76, in script
+    call screen CombineMenu
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 94, in execute
+    frame:
+  File "game/code/combine.rpy", line 102, in execute
+    vbox:
+  File "game/code/combine.rpy", line 104, in execute
+    viewport:
+  File "game/code/combine.rpy", line 108, in execute
+    hbox:
+  File "game/code/combine.rpy", line 109, in execute
+    grid 1 40:
+  File "game/code/combine.rpy", line 111, in execute
+    for create_index, craftitem in enumerate(comb_library):
+  File "game/code/combine.rpy", line 112, in execute
+    frame:
+  File "game/code/combine.rpy", line 118, in execute
+    vbox:
+  File "game/code/combine.rpy", line 120, in execute
+    hbox:
+  File "game/code/combine.rpy", line 124, in execute
+    frame:
+  File "game/code/combine.rpy", line 127, in execute
+    hbox:
+  File "game/code/combine.rpy", line 128, in execute
+    vbox:
+  File "game/code/combine.rpy", line 131, in execute
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/combine.rpy", line 131, in <module>
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/battle/battlescript.rpy", line 349, in FunctionList
+    for cardfunction in FXN:
+TypeError: 'Fxn' object is not iterable
 Cleaning stores took 0.00s
-Init translation took 0.16s
+Init translation took 0.00s
 Build styles took 0.01s
-Load screen analysis took 0.11s
+Load screen analysis took 0.09s
 Analyze screens took 0.00s
-Save screen analysis took 0.00s
-Prepare screens took 0.21s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.00s
-Running _start took 0.00s
-Performance test:
-Interface start took 0.17s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1600, 900)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) RX 560 Series'
-Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
-Display Info: None
-Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 368.12s
-Early init took 0.00s
-Loader init took 0.06s
-Loading error handling took 0.04s
-Loading script took 0.96s
-Loading save slot metadata. took 0.12s
-Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.23s
-Loading analysis data took 0.19s
-Analyze and compile ATL took 0.07s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
-Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.20s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.17s
-Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.04s
-Save screen analysis took 0.20s
-Prepare screens took 0.21s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.03s
+Prepare screens took 0.00s
 Running _start took 0.01s
-Performance test:
-Interface start took 0.18s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1600, 900)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) RX 560 Series'
-Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
-Display Info: None
-Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
-Maximum texture size: 4096x4096
-Resetting cache.
-Bootstrap to the start of init.init took 395.93s
-Early init took 0.00s
-Loader init took 0.06s
-Loading error handling took 0.03s
-Loading script took 0.88s
-Loading save slot metadata. took 0.13s
-Loading persistent took 0.01s
-Importing _renpysteam: ImportError('No module named _renpysteam',)
-Running init code took 0.23s
-Loading analysis data took 0.19s
-Analyze and compile ATL took 0.08s
-Index archives took 0.00s
-Backing up script files to 'C:\\Users\\Admin\\AppData\\Roaming/RenPy/backups\\Softwar_dev':
-Dump and make backups. took 0.12s
-Cleaning cache took 0.00s
-Making clean stores took 0.00s
-Initial gc. took 0.20s
-DPI scale factor: 1.000000
-nvdrs: Loaded, about to disable thread optimizations.
-nvdrs: "Couldn't load nvlib." (can be ignored)
-Creating interface object took 0.00s
-Cleaning stores took 0.00s
-Init translation took 0.17s
-Build styles took 0.01s
-Load screen analysis took 0.00s
-Analyze screens took 0.03s
-Save screen analysis took 0.20s
-Prepare screens took 0.20s
-Save pyanalysis. took 0.00s
-Save bytecode. took 0.03s
-Running _start took 0.01s
-Performance test:
-Interface start took 0.19s
-
-Initializing gl2 renderer:
-primary display bounds: (0, 0, 1600, 900)
-swap interval: 1 frames
-Windowed mode.
-Vendor: 'ATI Technologies Inc.'
-Renderer: 'AMD Radeon(TM) RX 560 Series'
-Version: '4.6.14800 Compatibility Profile Context 22.3.1 30.0.15002.1004'
-Display Info: None
-Screen sizes: virtual=(1280, 720) physical=(1205, 678) drawable=(1205, 678)
+Screen sizes: virtual=(1280, 720) physical=(1600, 877) drawable=(1600, 877)
 Maximum texture size: 4096x4096

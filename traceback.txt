@@ -1,38 +1,430 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 71, in <module>
-    combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
-  File "game/code/combine.rpy", line 63, in read_combination_tsv
-    craft_dictionary[linearray[0]] = CraftItem(linearray[0],battleware_master_dict[linearray[0]],craftcomponents)
-KeyError: u'GUNVAR'
+  File "game/start.rpy", line 11, in script call
+    call game_loop from _call_game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 1628, in script call
+    call mapcall([7,6],stagehome) from _call_mapcall
+  File "game/code/Movement.rpy", line 133, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 601, in script call
+    call randomencounter
+  File "game/code/Movement.rpy", line 520, in script call
+    call mapresume
+  File "game/code/Movement.rpy", line 169, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 592, in script call
+    call pauseshow from _call_pauseshow
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 65, in script call
+    call UnsaveDeck
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 76, in script
+    call screen CombineMenu
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 94, in execute
+    frame:
+  File "game/code/combine.rpy", line 102, in execute
+    vbox:
+  File "game/code/combine.rpy", line 104, in execute
+    viewport:
+  File "game/code/combine.rpy", line 108, in execute
+    hbox:
+  File "game/code/combine.rpy", line 109, in execute
+    grid 1 40:
+  File "game/code/combine.rpy", line 111, in execute
+    for create_index, craftitem in enumerate(comb_library):
+  File "game/code/combine.rpy", line 112, in execute
+    frame:
+  File "game/code/combine.rpy", line 118, in execute
+    vbox:
+  File "game/code/combine.rpy", line 120, in execute
+    hbox:
+  File "game/code/combine.rpy", line 124, in execute
+    frame:
+  File "game/code/combine.rpy", line 127, in execute
+    hbox:
+  File "game/code/combine.rpy", line 128, in execute
+    vbox:
+  File "game/code/combine.rpy", line 131, in execute
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/combine.rpy", line 131, in <module>
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/battle/battlescript.rpy", line 349, in FunctionList
+    for cardfunction in FXN:
+TypeError: 'Fxn' object is not iterable
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "renpy/bootstrap.py", line 326, in bootstrap
-    renpy.main.main()
-  File "renpy/main.py", line 515, in main
-    renpy.game.context().run(node)
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "game/code/combine.rpy", line 2, in script
-    init python:
-  File "renpy/ast.py", line 923, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "renpy/python.py", line 2235, in py_exec_bytecode
-    exec(bytecode, globals, locals)
-  File "game/code/combine.rpy", line 71, in <module>
-    combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
-  File "game/code/combine.rpy", line 63, in read_combination_tsv
-    craft_dictionary[linearray[0]] = CraftItem(linearray[0],battleware_master_dict[linearray[0]],craftcomponents)
-KeyError: u'GUNVAR'
+  File "game/start.rpy", line 11, in script call
+    call game_loop from _call_game_loop
+  File "game/code/scriptloop.rpy", line 9, in script call
+    $ renpy.call("script"+str(chapternum))
+  File "game/code/script/script1.rpy", line 1628, in script call
+    call mapcall([7,6],stagehome) from _call_mapcall
+  File "game/code/Movement.rpy", line 133, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 605, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 601, in script call
+    call randomencounter
+  File "game/code/Movement.rpy", line 520, in script call
+    call mapresume
+  File "game/code/Movement.rpy", line 169, in script call
+    call Returns
+  File "game/code/Movement.rpy", line 592, in script call
+    call pauseshow from _call_pauseshow
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 65, in script call
+    call UnsaveDeck
+  File "game/code/pausemenu.rpy", line 63, in script call
+    call SaveDeck
+  File "game/code/pausemenu.rpy", line 76, in script
+    call screen CombineMenu
+  File "renpy/ast.py", line 2010, in execute
+    self.call("execute")
+  File "renpy/ast.py", line 1998, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "renpy/statements.py", line 278, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 569, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/exports.py", line 3132, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "renpy/ui.py", line 298, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "renpy/display/core.py", line 3276, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, pause=pause, pause_start=pause_start, **kwargs)
+  File "renpy/display/core.py", line 3694, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/core.py", line 568, in visit_all
+    d.visit_all(callback, seen)
+  File "renpy/display/screen.py", line 432, in visit_all
+    callback(self)
+  File "renpy/display/core.py", line 3694, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "renpy/display/screen.py", line 443, in per_interact
+    self.update()
+  File "renpy/display/screen.py", line 631, in update
+    self.screen.function(**self.scope)
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 77, in execute
+    screen CombineMenu():
+  File "game/code/combine.rpy", line 94, in execute
+    frame:
+  File "game/code/combine.rpy", line 102, in execute
+    vbox:
+  File "game/code/combine.rpy", line 104, in execute
+    viewport:
+  File "game/code/combine.rpy", line 108, in execute
+    hbox:
+  File "game/code/combine.rpy", line 109, in execute
+    grid 1 40:
+  File "game/code/combine.rpy", line 111, in execute
+    for create_index, craftitem in enumerate(comb_library):
+  File "game/code/combine.rpy", line 112, in execute
+    frame:
+  File "game/code/combine.rpy", line 118, in execute
+    vbox:
+  File "game/code/combine.rpy", line 120, in execute
+    hbox:
+  File "game/code/combine.rpy", line 124, in execute
+    frame:
+  File "game/code/combine.rpy", line 127, in execute
+    hbox:
+  File "game/code/combine.rpy", line 128, in execute
+    vbox:
+  File "game/code/combine.rpy", line 131, in execute
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/combine.rpy", line 131, in <module>
+    add FunctionList(craftitem.object.FXN)
+  File "game/code/battle/battlescript.rpy", line 349, in FunctionList
+    for cardfunction in FXN:
+TypeError: 'Fxn' object is not iterable
 
 Windows-10-10.0.19041
 Ren'Py 7.4.8.1895
 SoftWar - DEMO 1.0
-Fri Jun 10 02:28:36 2022
+Tue Jun 14 22:33:35 2022

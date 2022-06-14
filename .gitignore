@@ -125,3 +125,4 @@ errors.txt
 log.txt
 traceback.txt
 *.save
+*.save
