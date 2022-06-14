@@ -123,6 +123,3 @@ dmypy.json
 
 # Files
 *.txt
-
-# Specific Folders
-saves/
