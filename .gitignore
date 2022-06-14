@@ -94,6 +94,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+.vscode/
 
 # Spyder project settings
 .spyderproject
@@ -112,17 +113,16 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
-log.txt
+
+# Compile files
 *.rpyb
+*.rpyc
+*.save
+*.json
+# --- <Keep .backup files for now> *.bak
+
+# Files
 *.txt
-*.save
-*.json
-*.rpyb
-*.rpyc
-errors.txt
-*.rpyc
-*.json
-log.txt
-traceback.txt
-*.save
-*.save
+
+# Specific Folders
+saves/
