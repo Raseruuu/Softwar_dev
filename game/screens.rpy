@@ -302,7 +302,7 @@ screen quick_menu():
             xalign 0.05
             yalign 0.0
             # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
-            textbutton _("{b}ILOVEYOU FAI{/b}") keyboard_focus False
+            textbutton _("{b}SOF{/b}") keyboard_focus False
             # textbutton _("History") action ShowMenu('history')
             textbutton _("Save") action ShowMenu('save') keyboard_focus False
             textbutton _("Load") action ShowMenu('load') keyboard_focus False

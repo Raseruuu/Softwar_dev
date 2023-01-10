@@ -131,6 +131,8 @@ screen item_shop:
             viewport:
                 scrollbars "vertical"
                 mousewheel True
+                arrowkeys True
+                pagekeys True
                 draggable True
                 hbox:
                     grid 2 20:
@@ -358,9 +360,12 @@ screen shop_quant():
         # textbutton "No" action  Hide("shop_quant"),Jump("shopNo")
 
 screen shop_prompt():
+    on "show":
+        action MouseMove(x=633, y=635, duration=.3)
+        # Function(renpy.set_focus,"shop_prompt", "buttonyes")
     style_prefix "say"
     zorder 30
-    key "dismiss" action Hide("shop_prompt"),Jump("shopNo")
+    # key "dismiss" action Hide("shop_prompt"),Jump("shop_prompt")
     key "x" action Hide("shop_prompt"),Jump("shopNo")
     key "X" action Hide("shop_prompt"),Jump("shopNo")
 
@@ -410,6 +415,7 @@ label buyitem(item_to_buy):
         label shopprompt:
             pass
         pause
+        hide screen shop_prompt
     return
 label shopYes:
     show screen shop_quant()
@@ -418,6 +424,7 @@ label shopYes:
     label shop_quant_confirm:
     # call shopquant
     #
+    hide screen shop_quant
     if (itemprice * int(itemquantity)) > Money:
         $ Stoned_m="sad"
         $ Stoned_e="up"
@@ -427,6 +434,7 @@ label shopYes:
         $ Stoned_e="normal"
         pause 0.8
         hide screen say
+
     else:
         $ MoneyDamage=itemprice*itemquantity
         $ Money -= MoneyDamage

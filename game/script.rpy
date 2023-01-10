@@ -287,10 +287,10 @@ image ILOVEYOU:
 image Folders:
         "images/computer/Folders.png"
         xalign 0.1 yalign 0.1
-        block:
-            linear 1.0 yoffset 2
-            linear 1.0 yoffset -2
-            repeat
+        # block:
+        #     linear 1.0 yoffset 2
+        #     linear 1.0 yoffset -2
+        #     repeat
 
 label test:
     python:

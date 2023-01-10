@@ -510,6 +510,7 @@ label randomencounter:
      $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
      if enemy_encounter == True:
           $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+          # $ enemyvirus = renpy.random.choice([Vira])
           hide screen mapB
           hide screen mapA
           call battlev3(ILY,enemyvirus)

@@ -1,125 +1,122 @@
-# Byte-compiled / optimized / DLL files
-__pycache__/
-*.py[cod]
-*$py.class
+# macOS-related files
+.DS_Store
+.AppleDouble
+.LSOverride
 
-# C extensions
-*.so
+# Windows-related files
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+[Dd]esktop.ini
 
-# Distribution / packaging
-.Python
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-MANIFEST
+# Python related files.
+*.pyc
+*.pyo
+*.pyi
 
-# PyInstaller
-#  Usually these files are written by a python script from a template
-#  before PyInstaller builds the exe, so as to inject date/other infos into it.
-*.manifest
-*.spec
+# Editor files.
+*~
+*.bak
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
-htmlcov/
-.tox/
-.nox/
-.coverage
-.coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
-.pytest_cache/
-
-# Translations
-*.mo
-*.pot
-
-# Django stuff:
-*.log
-local_settings.py
-db.sqlite3
-
-# Flask stuff:
-instance/
-.webassets-cache
-
-# Scrapy stuff:
-.scrapy
-
-# Sphinx documentation
-docs/_build/
-
-# PyBuilder
-target/
-
-# Jupyter Notebook
-.ipynb_checkpoints
-
-# IPython
-profile_default/
-ipython_config.py
-
-# pyenv
-.python-version
-
-# celery beat schedule file
-celerybeat-schedule
-
-# SageMath parsed files
-*.sage.py
-
-# Environments
-.env
-.venv
-env/
-venv/
-ENV/
-env.bak/
-venv.bak/
-.vscode/
-
-# Spyder project settings
-.spyderproject
-.spyproject
-
-# Rope project settings
-.ropeproject
-
-# mkdocs documentation
-/site
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
-
-# Pyre type checker
-.pyre/
-
-# Compile files
-*.rpyb
+# Compiled Ren'Py files.
 *.rpyc
-*.save
-*.json
-# --- <Keep .backup files for now> *.bak
+*.rpyb
+*.rpymc
 
-# Files
-*.txt
+# Ren'Py log files.
+log.txt
+errors.txt
+traceback.txt
+lint.txt
+
+# Created directories.
+saves/
+tmp/
+cache/
+
+# Executables.
+/renpy.exe
+/renpy2.exe
+/renpy3.exe
+/renpy-32.exe
+
+/renpy.sh
+/renpy2.sh
+/renpy3.sh
+
+/renpy.app
+/renpy2.app
+/renpy3.app
+
+/7z.sfx
+
+# Libraries.
+/lib
+
+# Platforms.
+/rapt
+/rapt2
+/rapt3
+
+/renios
+/renios2
+/renios3
+
+/web
+
+# Docs.
+/sphinx/source/inc
+/sphinx/source/thequestion.rst
+/doc
+/doc-web
+/LICENSE.txt
+
+# Gui template.
+/gui/game/gui
+
+# Editors.
+/jedit
+/atom
+/vscode
+
+# Generated source.
+/renpy/vc_version.py
+/module/gen/
+/module/gen3/
+/module/gen-static/
+/module/gen3-static/
+/tutorial/game/tutorial_director.rpy
+
+# Module build.
+/module/build
+/module/dist
+/module/emscripten-static
+
+# Download target.
+/dl
+
+# Pygame_sdl2.
+/pygame_sdl2
+
+# Steam.
+steam_appid.txt
+/steamapi.py
+
+# Type analysis.
+/typings
+
+# Live2D
+cubism
+CubismSdkForNative-4-*.zip
+
+# Created files.
+/screenshot*
+.android.json
+
+# Old files.
+/0old
+
+# Works in progress, throwaway scripts, etc.
+/scratch
+/*-dists

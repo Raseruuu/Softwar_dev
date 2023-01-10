@@ -25,7 +25,7 @@ define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40, image
 define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")
 define a = Character("Ave",callback=speaker("Ave"), color='#ff8a00', image ="Ave_side", ctc="ctc", ctc_position="fixed")
 define m = Character("Melissa",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
-define n = Character("Nick",callback=speaker("Nick"), color='#1c2718', image ="Nick_side", ctc="ctc", ctc_position="fixed")
+define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
 define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#f00', ctc="ctc", ctc_position="fixed")
 define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00', ctc="ctc", ctc_position="fixed")
 
@@ -357,7 +357,7 @@ image ILY small:
     linear 1.0 yoffset -10
     linear 1.0 yoffset 10
     repeat
-image ILYLayered:
+# image ILYLayered:
 image ILYFull:
     LiveComposite(
     (0.75, 0.75), #(544,600),
@@ -765,19 +765,19 @@ image JohnFull:
         )
     zoom 0.7
 image John sidew:
-    LiveCrop((352*0.7,74*0.7, 300,385), "JohnFull")
+    LiveCrop((246,52, 300,385), "JohnFull")
     zoom 0.56
 
-
-
 image John:
-   "JohnFull"
+    "JohnFull"
+   # yalign 0.1 xalign 1.0
+
 
 image side John_side:
     "John sidew"
-    # ConditionSwitch(
-    #     "John_w==True","John sidew",
-    #     "John_w==False","Null_side")
+    ConditionSwitch(
+        "John_w==True","John sidew",
+        "John_w==False","Null_side")
 
 #########
 ## Lisa
@@ -1434,7 +1434,7 @@ image NickMouthfrown:
     # pause .08
     "images/Characters/Nick/Nick_mouth_frown_midopen.png"
     pause .05
-    "images/Characters/Nick/.png"
+    "images/Characters/Nick/Nick_mouth_frown_open.png"
     pause .08
     "images/Characters/Nick/Nick_mouth_frown_midopen.png"
     pause .05

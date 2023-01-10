@@ -1622,10 +1622,9 @@ label date2:
         i"Well, in addition to that, You can talk to me anytime by pressing 'X'."
         j"Okay."
 
-        play music "bgm/ost/Grid_noyemi_K.mp3"
         hide screen mapB
 
-        call mapcall([7,6],stagehome) from _call_mapcall
+        call mapcall([7,6],stagehome)
         if playerHP<=0:
             return
         $ILY_w = False

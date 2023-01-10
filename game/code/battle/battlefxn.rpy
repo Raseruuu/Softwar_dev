@@ -7,8 +7,8 @@ init python:
         if len(stslist)==16:
             stslist.pop(0)
             #FIFO First in, First out.
-            print(stslist)
-            print(statusstring)
+            # print(stslist)
+            # print(statusstring)
         stslist.append(statusstring)
 
         return stslist
@@ -491,7 +491,7 @@ label WhileTokenInStatusPlayer:
             label block_loop6:
                 $ runfxnstring = block_functions[block_count].name
                 $ currentcard_fxn_params=block_functions[block_count].params
-            
+
                 call functioneffects(runfxnstring) from _call_functioneffects_5
                 $ block_count+=1
                 if block_count<len(block_functions):
@@ -532,8 +532,8 @@ label updatestats_player:
         playerATK_m=playerATK
         playerDEF_m=playerDEF
         for fxns in PlayerSts:
-                if fxns[0] == 'BoostATK':
-                    boostvalue = fxns[1]
+                if fxns == 'BoostATK':
+                    # boostvalue = fxns[1]
                     playerATK_m+=playerATK*boostvalue
                     playerATK_m = int(playerATK_m)
                     # "This shit happened"
@@ -548,16 +548,18 @@ label updatestats_enemy:
         enemyATK_m=enemyATK
         enemyDEF_m=enemyDEF
         for fxns in EnmySts:
-                if fxns[0] == 'BoostATK':
-                    boostvalue = fxns[1]
+                if fxns == 'BoostATK':
+                    # boostvalue = fxns[1]
+                    boostvalue = 0.25
                     enemyATK_m+=enemyATK*boostvalue
                     enemyATK_m = int(enemyATK_m)
                     # "This shit happened"
-                elif fxns[0] == 'BoostDEF':
-                    boostvalue = fxns[1]
+                elif fxns == 'BoostDEF':
+                    # boostvalue = fxns[1]
+                    boostvalue = 0.25
                     enemyDEF_m+=enemyDEF*boostvalue
                     enemyDEF_m = int(enemyDEF_m)
-                    # "This shit happened"
+                    
 
     return
 
@@ -919,10 +921,10 @@ label enemyexecutecard:
         #   zoom 0.0 xalign 0.5 ypos 0.3 yanchor 0.5
         #   linear 0.15 zoom 1.4
         # show cardflashenemy onlayer overlay
-        call battlecry_Ave from _call_battlecry_Ave
-        call battlecry_Melissa from _call_battlecry_Melissa
-        call battlecry_CodeRed from _call_battlecry_CodeRed
-        call battlecry_Vira from _call_battlecry_Vira
+        call battlecry_Ave
+        call battlecry_Melissa
+        call battlecry_CodeRed
+        call battlecry_Vira
         play sound "sound/swing.wav"
         call screen cardflashscreenenemy
 
@@ -1089,6 +1091,7 @@ init python:
         "Recover":"Recoverenemy",
         "Burn":"Burnself",
         "GiveToken":"GiveTokenPlayer",
+        "GainToken":"GainTokenEnemy",
         "BurnSelf":"Burnenemy",
         "If":"IfTokenInStatusEnemy",
         "While":"WhileTokenInStatusEnemy",

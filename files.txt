@@ -1,0 +1,926 @@
+gui.rpy
+gui.rpyc
+options.rpy
+options.rpyc
+screens.rpy
+screens.rpyc
+script.rpy
+script.rpyc
+start.rpy
+start.rpy.bak
+start.rpyc
+bgm\AAA_maoudamashii_8bit29.mp3
+bgm\Bossbattle_bgm_maoudamashii_fantasy11.mp3
+bgm\Cafella_bgm_maoudamashii_acoustic51.mp3
+bgm\Conversation_bgm_maoudamashii_cyber13.ogg
+bgm\Credits_bgm_maoudamashii_8bit08.mp3
+bgm\Down_bgm_maoudamashii_cyber17.ogg
+bgm\Enemy_bgm_maoudamashii_cyber19.ogg
+bgm\Fight_bgm_maoudamashii_cyber14.ogg
+bgm\Homepage_game_maoudamashii_5_town15.mp3
+bgm\Pre-BossBattle_bgm_maoudamashii_8bit25.mp3
+bgm\Pre-Fight_bgm_maoudamashii_cyber01.ogg
+bgm\Relax_bgm_maoudamashii_healing15.ogg
+bgm\Relieve_bgm_maoudamashii_acoustic52.mp3
+bgm\Roam_game_maoudamashii_5_town18.mp3
+bgm\Shop_bgm_maoudamashii_acoustic41.mp3
+bgm\Sunset_bgm_maoudamashii_acoustic42.mp3
+bgm\Town2.ogg
+bgm\bgm_maoudamashii_cyber16.mp3
+bgm\bgm_maoudamashii_cyber36.mp3
+bgm\downtime_bgm_maoudamashii_8bit17.mp3
+bgm\ost\BOSSBATTLE-A_by-Noyemi_K.ogg
+bgm\ost\BOSSBATTLE-C_by_StarryMarshmell_0.ogg
+bgm\ost\BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg
+bgm\ost\BOSSBATTLE-V_by-StarryMarshmell_0.ogg
+bgm\ost\Battle_Theme_Raseruu_7.0.mp3
+bgm\ost\Cover_01.jpg
+bgm\ost\Date_A.mp3
+bgm\ost\Date_B.mp3
+bgm\ost\Discussion-RLD_05-by- NoyemiK_.mp3
+bgm\ost\Grid_noyemi_K.mp3
+bgm\ost\Grid_noyemi_K.ogg
+bgm\ost\ILY's_Theme.mp3
+bgm\ost\ILY's_Theme_battle.mp3
+bgm\ost\ILY's_Theme_game.mp3
+bgm\ost\Serious_Noyemi_K.ogg
+cache\bytecode.rpyb
+cache\pyanalysis.rpyb
+cache\screens.rpyb
+cache\shaders.txt
+code\EnterVira.rpy
+code\EnterVira.rpyc
+code\Maps.rpy
+code\Maps.rpy.bak
+code\Maps.rpyc
+code\Mapsdefine.rpy
+code\Mapsdefine.rpyc
+code\Maptalks.rpy
+code\Maptalks.rpyc
+code\Movement.rpy
+code\Movement.rpy.bak
+code\Movement.rpyc
+code\Movement2.rpy
+code\Movement2.rpyc
+code\card.rpy
+code\card.rpyc
+code\characters.rpy
+code\characters.rpyc
+code\combine.rpy
+code\combine.rpyc
+code\inventory.rpy
+code\inventory.rpyc
+code\items.rpy
+code\items.rpyc
+code\pausemenu.rpy
+code\pausemenu.rpy.bak
+code\pausemenu.rpyc
+code\pausemenu2.rpy
+code\pausemenu2.rpyc
+code\rpg.rpy
+code\rpg.rpyc
+code\scriptloop.rpy
+code\scriptloop.rpy.bak
+code\scriptloop.rpyc
+code\shop.rpy
+code\shop.rpyc
+code\transitions.rpy
+code\transitions.rpyc
+code\battle\battlecry.rpy
+code\battle\battlecry.rpyc
+code\battle\battlefxn.rpy
+code\battle\battlefxn.rpy.bak
+code\battle\battlefxn.rpyc
+code\battle\battlescript.rpy
+code\battle\battlescript.rpyc
+code\battle\battlev2_objects.rpy
+code\battle\battlev2_objects.rpyc
+code\battle\battlev3_flow_screens.rpy
+code\battle\battlev3_flow_screens.rpy.bak
+code\battle\battlev3_flow_screens.rpyc
+code\script\script1.rpy
+code\script\script1.rpy.bak
+code\script\script1.rpyc
+code\script\script2.rpy
+code\script\script2.rpyc
+code\tsv\Combination.tsv
+font\Censor.ttf
+font\DejaVuSans.ttf
+font\Futura.ttc
+font\HelveticaNeue.dfont
+font\StoneSans.ttf
+font\adventpro-bold.ttf
+font\adventpro-medium.ttf
+font\alpha_echo.ttf
+font\lucon.ttf
+font\lucon0.ttf
+font\timeburnernormal.ttf
+gui\Execute.png
+gui\Execute_hover.png
+gui\ILYgameover.png
+gui\Maoudamashii.png
+gui\Softwarcover.png
+gui\bar.png
+gui\barblue.png
+gui\bit.png
+gui\bit2.png
+gui\bit_empty.png
+gui\credits.png
+gui\ctc.png
+gui\frame copy.png
+gui\frame.png
+gui\frame2.png
+gui\frame3.png
+gui\framefxn.png
+gui\framefxn2.png
+gui\frameopaque.png
+gui\framew.png
+gui\game_menu.png
+gui\heal_bit.png
+gui\logo.png
+gui\logo1.png
+gui\main_menu.png
+gui\messagebox.png
+gui\messagehover.png
+gui\namebox.png
+gui\notify.png
+gui\nvl.png
+gui\skip.png
+gui\softcover.png
+gui\softwar_logo.png
+gui\textbox.png
+gui\window_icon.png
+gui\zenny.png
+gui\bar\.DS_Store
+gui\bar\bottom.png
+gui\bar\framefxn.png
+gui\bar\left.png
+gui\bar\right.png
+gui\bar\top.png
+gui\battlests\Ammo.png
+gui\battlests\BoostATK.png
+gui\battlests\BoostDEF.png
+gui\battlests\Empty.png
+gui\battlests\Saber.png
+gui\battlests\boosthpmax.png
+gui\battlests\burn.png
+gui\battlests\dropatk.png
+gui\battlests\dropdef.png
+gui\battlests\drophpmax.png
+gui\battlests\email.png
+gui\battlests\evade.png
+gui\battlests\freeze.png
+gui\battlests\iconbattlests copy.png
+gui\battlests\iconbattlests.psd
+gui\battlests\regenhp.png
+gui\battlests\regensp.png
+gui\battlests\token.png
+gui\battlests\unused\BoostMAG.png
+gui\battlests\unused\blastdown.png
+gui\battlests\unused\blastup.png
+gui\battlests\unused\bombdown.png
+gui\battlests\unused\bombup.png
+gui\battlests\unused\slashdown.png
+gui\battlests\unused\slashup.png
+gui\button\.DS_Store
+gui\button\check_foreground.png
+gui\button\check_selected_foreground.png
+gui\button\choice_hover_background.png
+gui\button\choice_idle_background.png
+gui\button\hover_background.png
+gui\button\idle_background.png
+gui\button\quick_hover_background.png
+gui\button\quick_idle_background.png
+gui\button\radio_foreground.png
+gui\button\radio_selected_foreground.png
+gui\button\slot_hover_background.png
+gui\button\slot_idle_background.png
+gui\game_menu\.DS_Store
+gui\game_menu\About.png
+gui\game_menu\Extras.png
+gui\game_menu\Load.png
+gui\game_menu\Save.png
+gui\game_menu\Settings.png
+gui\game_menu\game_menu.png
+gui\game_menu\options ILYphantom.png
+gui\game_menu\options ILYtext.png
+gui\game_menu\options whiteframe.png
+gui\game_menu\save load slot.png
+gui\main_menu\.DS_Store
+gui\main_menu\Envelope.png
+gui\main_menu\background.jpg
+gui\main_menu\main menu ILY text.png
+gui\main_menu\main menu ILY.png
+gui\main_menu\main menu ILYphantom.png
+gui\main_menu\main menu Softwar Logo.png
+gui\main_menu\main menu TeamKizuna.png
+gui\main_menu\main menu bg.png
+gui\main_menu\main menu bg2.png
+gui\main_menu\main menu bglayer1.png
+gui\main_menu\main menu bglayer2.png
+gui\overlay\confirm.png
+gui\overlay\game_menu.png
+gui\overlay\main_menu.png
+gui\phone\.DS_Store
+gui\phone\buttonA.png
+gui\phone\buttonB.png
+gui\phone\buttonX.png
+gui\phone\buttonY.png
+gui\phone\direction.png
+gui\phone\frame.png
+gui\phone\frame2.png
+gui\phone\frame3.png
+gui\phone\framefxn.png
+gui\phone\nvl.png
+gui\phone\textbox.png
+gui\phone\bar\bottom.png
+gui\phone\bar\left.png
+gui\phone\bar\right.png
+gui\phone\bar\top.png
+gui\phone\button\check_foreground.png
+gui\phone\button\check_selected_foreground.png
+gui\phone\button\choice_hover_background.png
+gui\phone\button\choice_idle_background.png
+gui\phone\button\hover_background.png
+gui\phone\button\idle_background.png
+gui\phone\button\radio_foreground.png
+gui\phone\button\radio_selected_foreground.png
+gui\phone\button\slot_hover_background.png
+gui\phone\button\slot_idle_background.png
+gui\phone\overlay\game_menu.png
+gui\phone\overlay\main_menu.png
+gui\phone\scrollbar\horizontal_hover_bar.png
+gui\phone\scrollbar\horizontal_hover_thumb.png
+gui\phone\scrollbar\horizontal_idle_bar.png
+gui\phone\scrollbar\horizontal_idle_thumb.png
+gui\phone\scrollbar\vertical_hover_bar.png
+gui\phone\scrollbar\vertical_hover_thumb.png
+gui\phone\scrollbar\vertical_idle_bar.png
+gui\phone\scrollbar\vertical_idle_thumb.png
+gui\phone\slider\horizontal_hover_bar.png
+gui\phone\slider\horizontal_hover_thumb.png
+gui\phone\slider\horizontal_idle_bar.png
+gui\phone\slider\horizontal_idle_thumb.png
+gui\phone\slider\vertical_hover_bar.png
+gui\phone\slider\vertical_hover_thumb.png
+gui\phone\slider\vertical_idle_bar.png
+gui\phone\slider\vertical_idle_thumb.png
+gui\rpgmenu\battleware.png
+gui\rpgmenu\battleware_h.png
+gui\rpgmenu\fai.png
+gui\rpgmenu\fai_h.png
+gui\rpgmenu\frame1.png
+gui\rpgmenu\frame2.png
+gui\rpgmenu\items.png
+gui\rpgmenu\items_h.png
+gui\rpgmenu\load.png
+gui\rpgmenu\load_h.png
+gui\rpgmenu\mail.png
+gui\rpgmenu\mail_h.png
+gui\rpgmenu\options.png
+gui\rpgmenu\options_h.png
+gui\rpgmenu\plugins.png
+gui\rpgmenu\plugins_h.png
+gui\rpgmenu\return.png
+gui\rpgmenu\return_h.png
+gui\rpgmenu\saveload.png
+gui\rpgmenu\saveload_h.png
+gui\scrollbar\.DS_Store
+gui\scrollbar\horizontal_hover_bar.png
+gui\scrollbar\horizontal_hover_thumb.png
+gui\scrollbar\horizontal_idle_bar.png
+gui\scrollbar\horizontal_idle_thumb.png
+gui\scrollbar\vertical_hover_bar.png
+gui\scrollbar\vertical_hover_thumb.png
+gui\scrollbar\vertical_idle_bar.png
+gui\scrollbar\vertical_idle_thumb.png
+gui\slider\horizontal_hover_bar.png
+gui\slider\horizontal_hover_thumb.png
+gui\slider\horizontal_idle_bar.png
+gui\slider\horizontal_idle_thumb.png
+gui\slider\vertical_hover_bar.png
+gui\slider\vertical_hover_thumb.png
+gui\slider\vertical_idle_bar.png
+gui\slider\vertical_idle_thumb.png
+images\battle\BoostATK.png
+images\battle\BoostDEF.png
+images\battle\BoostMAG.png
+images\battle\Broken.png
+images\battle\Burned.png
+images\battle\Emailed.png
+images\battle\Frozen.png
+images\battle\Heal_bit.png
+images\battle\Heal_light.png
+images\battle\POW_Up.png
+images\battle\SPD_Up.png
+images\battle\Shield_bit.png
+images\battle\Shield_light.png
+images\battle\bar.png
+images\battle\battlering.png
+images\battle\battleroad.png
+images\battle\curve1.png
+images\battle\curve2.png
+images\battle\curve3.png
+images\battle\curve4.png
+images\battle\dmgeffect1.png
+images\battle\dmgeffect2.png
+images\battle\dmgeffect3.png
+images\battle\effects\effects.png
+images\battle\effects\effects.psd
+images\battle\effects\lightning1.png
+images\battle\effects\lightning2.png
+images\battle\effects\lightning3.png
+images\battle\effects\lightning4.png
+images\battle\effects\lightning5.png
+images\battle\effects\lightning6.png
+images\battle\Enemies\Ave.png
+images\battle\Enemies\Code Red.png
+images\battle\Enemies\Keylogger.png
+images\battle\Enemies\Melissa.png
+images\battle\Enemies\Ransomware.png
+images\battle\Enemies\Rootkit.png
+images\battle\Enemies\Spyware.png
+images\battle\Enemies\Trojan Horse.png
+images\battle\Enemies\Vira.png
+images\battle\Enemies\Worm.png
+images\battle\Enemies\battle_CodeRed-Drake.png
+images\battle\flashpanel\Ave.png
+images\battle\flashpanel\CodeRed.png
+images\battle\flashpanel\CodeRedWormDrake.png
+images\battle\flashpanel\ILY.png
+images\battle\flashpanel\Melissa.png
+images\battle\flashpanel\Vira.png
+images\battle\flashpanel\bar.png
+images\battle\flashpanel\diamondblue.png
+images\battle\flashpanel\diamondred.png
+images\battle\flashpanel\diamondwhite.png
+images\battle\flashpanel\frame.png
+images\Cafella\CoffeeShop_AFTERN_30.jpg
+images\Cafella\CoffeeShop_SATURATED_21.jpg
+images\Cafella\CoffeeShop_SATURATED_22.jpg
+images\Cafella\CoffeeShop_SATURATED_23-1.jpg
+images\Cafella\CoffeeShop_SATURATED_24.jpg
+images\Cafella\CoffeeShop_SATURATED_25.jpg
+images\Cafella\CoffeeShop_SATURATED_26.jpg
+images\Cafella\CoffeeShop_SATURATED_27.jpg
+images\Cafella\CoffeeShop_SATURATED_28.jpg
+images\Cafella\CoffeeShop_SATURATED_29.jpg
+images\Cafella\CoffeeShop_SATURATED_30-1.jpg
+images\Cafella\CoffeeShop_SATURATED_30-2.jpg
+images\Cards\Assault.png
+images\Cards\Bitbuster.png
+images\Cards\Blocksaber.png
+images\Cards\Breaksaber.png
+images\Cards\BruteForce.png
+images\Cards\CARDblank.png
+images\Cards\CARDblank2.png
+images\Cards\ChocolateBar.png
+images\Cards\CursorClaw.png
+images\Cards\DataBomb.png
+images\Cards\DataBuster.png
+images\Cards\DataDrill.png
+images\Cards\DataForce.png
+images\Cards\Datasaber.png
+images\Cards\Empty.png
+images\Cards\FiberSword.png
+images\Cards\Firewall.png
+images\Cards\FlameSaber.png
+images\Cards\HeartBurn.png
+images\Cards\Katana.png
+images\Cards\LambdaSaber.png
+images\Cards\Laserbeam.png
+images\Cards\MailSaber.png
+images\Cards\Powersol.png
+images\Cards\RecursiveSlash.png
+images\Cards\SaberDeflect.png
+images\Cards\SaberDeflect.psd
+images\Cards\Shieldbit.png
+images\Cards\SpamAtk.png
+images\Cards\SparkBuster.png
+images\Cards\V-Flame.png
+images\Cards\V-Shot.png
+images\Cards\V-Slash.png
+images\Cards\X-Axess.png
+images\Cards\cardback.png
+images\Cards\cardbacksmall.png
+images\Cards\cardreturn.png
+images\Cards\chocolate-bar-image-11525994759o2tngdgsmz.png
+images\Cards\datadrill example.png
+images\Cards\fxn-Break.png
+images\Cards\fxn-Damage.png
+images\Cards\fxn-Firewall.png
+images\Cards\fxn-Freeze.png
+images\Cards\fxn-Recover.png
+images\Cards\fxn-Tgt.png
+images\Cards\ring.png
+images\Cards\ring2.png
+images\Cards\selectring.png
+images\Cards\cardbit\0.png
+images\Cards\cardbit\1.png
+images\Cards\cardbit\10.png
+images\Cards\cardbit\2.png
+images\Cards\cardbit\3.png
+images\Cards\cardbit\4.png
+images\Cards\cardbit\5.png
+images\Cards\cardbit\6.png
+images\Cards\cardbit\7.png
+images\Cards\cardbit\8.png
+images\Cards\cardbit\9.png
+images\Cards\Items\LargeEnergy.png
+images\Cards\Items\Material.png
+images\Cards\Items\MediumEnergy.png
+images\Cards\Items\SmallEnergy.png
+images\Cards\Items\Softdrink.png
+images\Cards\Items\Unlocker.png
+images\Cards\Items\empty.png
+images\Cards\Items\itemicon.psd
+images\Cards\plugins\Ruby Revolver.png
+images\Characters\Alicia\Alicia.psd
+images\Characters\Ave\Ave-whitebg.png
+images\Characters\Ave\Ave.png
+images\Characters\Ave\Ave_emad.png
+images\Characters\Ave\Ave_enormal.png
+images\Characters\Ave\Ave_eyes.png
+images\Characters\Ave\Ave_mfrown.png
+images\Characters\Ave\Ave_mspeak1.png
+images\Characters\Ave\Ave_mspeak2.png
+images\Characters\Ave\Avebase.png
+images\Characters\Ave\Aveportrait.png
+images\Characters\Ave\Aveshades.png
+images\Characters\Ave\directions\.DS_Store
+images\Characters\Ave\directions\Avastback.png
+images\Characters\Ave\directions\Avastfront.png
+images\Characters\Ave\directions\Avastleft.png
+images\Characters\Ave\directions\Avastright.png
+images\Characters\Bella\EvatK3jVIAEx8cU.jfif
+images\Characters\Bella\image0.png
+images\Characters\Code Red\CODE RED.png
+images\Characters\Code Red\CODE RED.psd
+images\Characters\Code Red\CODE RED_base.png
+images\Characters\Code Red\CODE RED_mclosed.png
+images\Characters\Code Red\CODE RED_mopen1.png
+images\Characters\Code Red\CODE RED_mopen2.png
+images\Characters\Code Red\CODE REDnobg.png
+images\Characters\Code Red\CODERED.png
+images\Characters\Code Red\MODE RED W.png
+images\Characters\Code Red\MODE RED W2.png
+images\Characters\Code Red\MODE RED WD.png
+images\Characters\Code Red\MODE RED.jpg
+images\Characters\Code Red\MODE RED.png
+images\Characters\Code Red\MODE RED2.png
+images\Characters\Code Red\MODE RED3.png
+images\Characters\Code Red\MODE RED4.png
+images\Characters\Code Red\MODE RED5.png
+images\Characters\Code Red\MODE RED6.png
+images\Characters\Eve\Eve.psd
+images\Characters\HackerX\HackerX.png
+images\Characters\Hilbert\Hilbert.png
+images\Characters\Hilbert\Hilbert.psd
+images\Characters\Hilbert\Hilbert_base.png
+images\Characters\Hilbert\Hilbert_eyebrows_down.png
+images\Characters\Hilbert\Hilbert_eyebrows_down2.png
+images\Characters\Hilbert\Hilbert_eyebrows_up.png
+images\Characters\Hilbert\Hilbert_eyebrows_up2.png
+images\Characters\Hilbert\Hilbert_eyes.png
+images\Characters\Hilbert\Hilbert_eyes_closed.png
+images\Characters\Hilbert\Hilbert_eyes_lookaway.png
+images\Characters\Hilbert\Hilbert_eyes_lookaway_midclose.png
+images\Characters\Hilbert\Hilbert_eyes_midclose.png
+images\Characters\Hilbert\Hilbert_mouth_O.png
+images\Characters\Hilbert\Hilbert_mouth_O2.png
+images\Characters\Hilbert\Hilbert_mouth_frown.png
+images\Characters\Hilbert\Hilbert_mouth_frown_midopen.png
+images\Characters\Hilbert\Hilbert_mouth_frown_open.png
+images\Characters\Hilbert\Hilbert_mouth_smile.png
+images\Characters\Hilbert\Hilbert_mouth_smile_midopen.png
+images\Characters\Hilbert\Hilbert_mouth_smile_open.png
+images\Characters\Hilbert\Hilbertb.png
+images\Characters\ILY\ILY nobg_by_Torakun.png
+images\Characters\ILY\ILY.png
+images\Characters\ILY\ILY2.png
+images\Characters\ILY\ILY_2eyes.png
+images\Characters\ILY\ILY_2eyesclosed.png
+images\Characters\ILY\ILY_2eyesmclosed.png
+images\Characters\ILY\ILY_Alpha_game.png
+images\Characters\ILY\ILY_e01.png
+images\Characters\ILY\ILY_e02.png
+images\Characters\ILY\ILY_e11.png
+images\Characters\ILY\ILY_e12.png
+images\Characters\ILY\ILY_e21.png
+images\Characters\ILY\ILY_e22.png
+images\Characters\ILY\ILY_eyes.png
+images\Characters\ILY\ILY_eyesclosed.png
+images\Characters\ILY\ILY_eyesmclosed.png
+images\Characters\ILY\ILY_game.png
+images\Characters\ILY\ILY_heart0.png
+images\Characters\ILY\ILY_heart1.png
+images\Characters\ILY\ILY_heart2.png
+images\Characters\ILY\ILY_m2O.png
+images\Characters\ILY\ILY_m2O2.png
+images\Characters\ILY\ILY_m2frown.png
+images\Characters\ILY\ILY_m2smile.png
+images\Characters\ILY\ILY_m2smile2.png
+images\Characters\ILY\ILY_m2smile3.png
+images\Characters\ILY\ILY_mO.png
+images\Characters\ILY\ILY_mO2.png
+images\Characters\ILY\ILY_mfrown.png
+images\Characters\ILY\ILY_mmidopen.png
+images\Characters\ILY\ILY_msmile.png
+images\Characters\ILY\ILY_msmile2.png
+images\Characters\ILY\ILY_msmile3.png
+images\Characters\ILY\ILY_p0.png
+images\Characters\ILY\ILY_p1.png
+images\Characters\ILY\ILY_p2.png
+images\Characters\ILY\ILYdown.png
+images\Characters\ILY\ILYjump.png
+images\Characters\ILY\ILYleft.png
+images\Characters\ILY\ILYright.png
+images\Characters\ILY\ILYup.png
+images\Characters\ILY\small\.DS_Store
+images\Characters\ILY\small\ILY_2eyes.png
+images\Characters\ILY\small\ILY_2eyesclosed.png
+images\Characters\ILY\small\ILY_2eyesmclosed.png
+images\Characters\ILY\small\ILY_e01.png
+images\Characters\ILY\small\ILY_e02.png
+images\Characters\ILY\small\ILY_e11.png
+images\Characters\ILY\small\ILY_e12.png
+images\Characters\ILY\small\ILY_e21.png
+images\Characters\ILY\small\ILY_e22.png
+images\Characters\ILY\small\ILY_eyes.png
+images\Characters\ILY\small\ILY_eyesclosed.png
+images\Characters\ILY\small\ILY_eyesmclosed.png
+images\Characters\ILY\small\ILY_heart0.png
+images\Characters\ILY\small\ILY_heart1.png
+images\Characters\ILY\small\ILY_heart2.png
+images\Characters\ILY\small\ILY_m2O.png
+images\Characters\ILY\small\ILY_m2O2.png
+images\Characters\ILY\small\ILY_m2happy.png
+images\Characters\ILY\small\ILY_m2happy2.png
+images\Characters\ILY\small\ILY_m2happy3.png
+images\Characters\ILY\small\ILY_m2sad.png
+images\Characters\ILY\small\ILY_mO.png
+images\Characters\ILY\small\ILY_mO2.png
+images\Characters\ILY\small\ILY_mhappy.png
+images\Characters\ILY\small\ILY_mhappy2.png
+images\Characters\ILY\small\ILY_mhappy3.png
+images\Characters\ILY\small\ILY_mmidopen.png
+images\Characters\ILY\small\ILY_msad.png
+images\Characters\ILY\small\ILY_p0.png
+images\Characters\ILY\small\ILY_p1.png
+images\Characters\ILY\small\ILY_p2.png
+images\Characters\ILY\small\ILYdown.png
+images\Characters\ILY\small\ILYjump.png
+images\Characters\ILY\small\ILYleft.png
+images\Characters\ILY\small\ILYright.png
+images\Characters\ILY\small\ILYup.png
+images\Characters\John\John 2.psd
+images\Characters\John\John.png
+images\Characters\John\John_base.png
+images\Characters\John\John_eyebrows_mad.png
+images\Characters\John\John_eyebrows_normal.png
+images\Characters\John\John_eyebrows_up.png
+images\Characters\John\John_eyes.png
+images\Characters\John\John_eyes_closed.png
+images\Characters\John\John_eyes_midclose.png
+images\Characters\John\John_glasses.png
+images\Characters\John\John_mouth_O.png
+images\Characters\John\John_mouth_O2.png
+images\Characters\John\John_mouth_frown.png
+images\Characters\John\John_mouth_frown_midopen.png
+images\Characters\John\John_mouth_frown_open.png
+images\Characters\John\John_mouth_midopen.png
+images\Characters\John\John_mouth_open.png
+images\Characters\John\John_mouth_smile.png
+images\Characters\John\John_mouth_smile_midopen.png
+images\Characters\John\John_mouth_smile_open.png
+images\Characters\John\Johnb.png
+images\Characters\John\Johncorrectsize.psd
+images\Characters\Lisa\Lisa.jpg
+images\Characters\Lisa\Lisa.png
+images\Characters\Lisa\Lisa.psd
+images\Characters\Lisa\Lisa_eclose1.png
+images\Characters\Lisa\Lisa_eclose2.png
+images\Characters\Lisa\Lisa_emad.png
+images\Characters\Lisa\Lisa_enormal.png
+images\Characters\Lisa\Lisa_eyes.png
+images\Characters\Lisa\Lisa_mfrown.png
+images\Characters\Lisa\Lisa_mopen1.png
+images\Characters\Lisa\Lisa_mopen2.png
+images\Characters\Lisa\Lisa_mopen3.png
+images\Characters\Lisa\Lisa_msmile.png
+images\Characters\Lisa\Lisa_msmile2.png
+images\Characters\Lisa\Lisa_msmile3.png
+images\Characters\Lisa\Lisabase.png
+images\Characters\Lisa\lisaglasses.psd
+images\Characters\Melissa\Melissa.png
+images\Characters\Melissa\Melissa_base.png
+images\Characters\Melissa\Melissa_edown.png
+images\Characters\Melissa\Melissa_enormal.png
+images\Characters\Melissa\Melissa_eup.png
+images\Characters\Melissa\Melissa_eyes.png
+images\Characters\Melissa\Melissa_eyesclose1.png
+images\Characters\Melissa\Melissa_eyesclose2.png
+images\Characters\Melissa\Melissa_full.png
+images\Characters\Melissa\Melissa_mfrown.png
+images\Characters\Melissa\Melissa_mopen.png
+images\Characters\Melissa\Melissa_mopen1.png
+images\Characters\Melissa\Melissa_mopenD.png
+images\Characters\Melissa\Melissa_mopensmile.png
+images\Characters\Melissa\Melissa_msmile.png
+images\Characters\Melissa\Melissa_msmile2.png
+images\Characters\Melissa\Melissasprite.psd
+images\Characters\Melissa\Melissasprite2.psd
+images\Characters\Nick\Nick.psd
+images\Characters\Nick\Nick_base.png
+images\Characters\Nick\Nick_eyebrows_down.png
+images\Characters\Nick\Nick_eyebrows_up.png
+images\Characters\Nick\Nick_eyes.png
+images\Characters\Nick\Nick_eyes_closed.png
+images\Characters\Nick\Nick_eyes_midclose.png
+images\Characters\Nick\Nick_hair.png
+images\Characters\Nick\Nick_mouth_frown.png
+images\Characters\Nick\Nick_mouth_frown_midopen.png
+images\Characters\Nick\Nick_mouth_frown_open.png
+images\Characters\Nick\Nick_mouth_smile.png
+images\Characters\Nick\Nick_mouth_smile_midopen.png
+images\Characters\Nick\Nick_mouth_smile_open.png
+images\Characters\Softwares\Network-chan.png
+images\Characters\Softwares\Network-chan2.png
+images\Characters\Softwares\Power-kun.png
+images\Characters\Softwares\Power-kun2.png
+images\Characters\Softwares\Power-kun3.png
+images\Characters\Softwares\Software-kun.png
+images\Characters\Softwares\USB-chan1.png
+images\Characters\Softwares\USB-chan2.png
+images\Characters\Softwares\USB-kun1.png
+images\Characters\Softwares\USB-kun2.png
+images\Characters\Stoned\Stoned.png
+images\Characters\Stoned\Stoned.psd
+images\Characters\Stoned\Stoned_base.png
+images\Characters\Stoned\Stoned_enormal.png
+images\Characters\Stoned\Stoned_eup.png
+images\Characters\Stoned\Stoned_eyes.png
+images\Characters\Stoned\Stoned_eyes2.png
+images\Characters\Stoned\Stoned_eyes3.png
+images\Characters\Stoned\Stoned_glass.PNG
+images\Characters\Stoned\Stoned_guns.png
+images\Characters\Stoned\Stoned_mhappy.png
+images\Characters\Stoned\Stoned_mopen1.PNG
+images\Characters\Stoned\Stoned_mopen2.PNG
+images\Characters\Stoned\Stoned_mopenO.PNG
+images\Characters\Stoned\Stoned_mopenU.PNG
+images\Characters\Stoned\Stoned_msad.png
+images\Characters\Stoned\Stoned\.DS_Store
+images\Characters\Tabby\Tabby copy.png
+images\Characters\Tabby\Tabby.png
+images\Characters\Vira\Vira.png
+images\Characters\Vira\Vira_emad.png
+images\Characters\Vira\Vira_enormal.png
+images\Characters\Vira\Vira_eup.png
+images\Characters\Vira\Vira_eye_left.png
+images\Characters\Vira\Vira_eye_left_closed.png
+images\Characters\Vira\Vira_eye_left_miclose.png
+images\Characters\Vira\Vira_eye_left_midclose.png
+images\Characters\Vira\Vira_eye_right.png
+images\Characters\Vira\Vira_eye_right_closed.png
+images\Characters\Vira\Vira_eye_right_midclose.png
+images\Characters\Vira\Vira_eyes_1closed.png
+images\Characters\Vira\Vira_eyes_happy.png
+images\Characters\Vira\Vira_eyes_left.png
+images\Characters\Vira\Vira_eyes_open.png
+images\Characters\Vira\Vira_eyes_rightclosed.png
+images\Characters\Vira\Vira_mfrown.png
+images\Characters\Vira\Vira_mfrown2.png
+images\Characters\Vira\Vira_mfrown3.png
+images\Characters\Vira\Vira_msmile.png
+images\Characters\Vira\Vira_msmile2.png
+images\Characters\Vira\Vira_msmile3.png
+images\Characters\Vira\Vira_p.png
+images\Characters\Vira\Vira_sprite.psd
+images\Characters\Vira\Viraeright.png
+images\computer\Download Complete.png
+images\computer\Download-heart.png
+images\computer\E-mail.png
+images\computer\Folder.png
+images\computer\Folders.png
+images\computer\ILOVEYOU.png
+images\computer\Webpage.png
+images\computer\blackwindow.png
+images\computer\blackwindow2.png
+images\computer\explorer.png
+images\computer\iconalert.png
+images\computer\mouse.png
+images\computer\top_menu.png
+images\computer\top_menu_ground.png
+images\computer\top_menu_hover (1).png
+images\computer\top_menu_hover(1).png
+images\computer\top_menu_hover(2).png
+images\computer\top_menu_hover.png
+images\computer\transition_heart_wide.png
+images\computer\transition_text.png
+images\computer\white_noise.png
+images\computer\white_noise2.png
+images\computer\white_noise3.png
+images\computer\whitewindow.png
+images\John's room\Bed.jpg
+images\John's room\Bed2.jpg
+images\John's room\Bed3.jpg
+images\John's room\Bedroom_AFTERN_03.jpg
+images\John's room\Bedroom_AFTERN_04.jpg
+images\John's room\Bedroom_AFTERN_05.jpg
+images\John's room\Bedroom_AFTERN_06.jpg
+images\John's room\Bedroom_AFTERN_07.jpg
+images\John's room\Bedroom_AFTERN_08.jpg
+images\John's room\Bedroom_AFTERN_09.jpg
+images\John's room\Bedroom_AFTERN_10.jpg
+images\John's room\Bedroom_AFTERN_11.jpg
+images\John's room\Bedroom_AFTERN_12.jpg
+images\John's room\Bedroom_AFTERN_13.jpg
+images\John's room\Bedroom_AFTERN_14.jpg
+images\John's room\Bedroom_AFTERN_15.jpg
+images\John's room\Bedroom_AFTERN_16.jpg
+images\John's room\Bedroom_AFTERN_17.jpg
+images\John's room\Bedroom_AFTERN_18.jpg
+images\John's room\Bedroom_AFTERN_19.jpg
+images\John's room\Bedroom_NIGHT_02.jpg
+images\John's room\Bedroom_NIGHT_04.jpg
+images\John's room\Bedroom_NIGHT_05.jpg
+images\John's room\Bedroom_NIGHT_06.jpg
+images\John's room\Bedroom_NIGHT_07.jpg
+images\John's room\Bedroom_NIGHT_08.jpg
+images\John's room\Bedroom_NIGHT_09.jpg
+images\John's room\Bedroom_NIGHT_10.jpg
+images\John's room\Bedroom_NIGHT_11.jpg
+images\John's room\Bedroom_NIGHT_12.jpg
+images\John's room\Bedroom_NIGHT_13.jpg
+images\John's room\Bedroom_NIGHT_14.jpg
+images\John's room\Bedroom_NIGHT_15.jpg
+images\John's room\Bedroom_NIGHT_16.jpg
+images\John's room\Bedroom_NIGHT_17.jpg
+images\John's room\Bedroom_NIGHT_18.jpg
+images\John's room\Bedroom_NIGHT_19.jpg
+images\John's room\Door.jpg
+images\John's room\Door_afternoon.jpg
+images\John's room\Door_night.jpg
+images\John's room\Kitchen.jpg
+images\John's room\Kitchen_afternoon.jpg
+images\John's room\PC1.jpg
+images\John's room\PC2.jpg
+images\John's room\Space1.jpg
+images\John's room\Space2.jpg
+images\John's room\Space2_Night.jpg
+images\John's room\Space3.jpg
+images\John's room\rebgsoftwarbedroom (1).zip
+images\John's room\rebgsoftwarbedroom.zip
+images\rpg\overworld.rar
+images\rpg\overworld\Aidown.png
+images\rpg\overworld\Avedown.png
+images\rpg\overworld\Aveleft.png
+images\rpg\overworld\Averight.png
+images\rpg\overworld\Aveup.png
+images\rpg\overworld\Belladown.png
+images\rpg\overworld\Bitwulffront.PNG
+images\rpg\overworld\Bitwulfleft.PNG
+images\rpg\overworld\Bitwulfright.PNG
+images\rpg\overworld\Bitwulfup.PNG
+images\rpg\overworld\Braindown.png
+images\rpg\overworld\CodeReddown.png
+images\rpg\overworld\Doropiedown.png
+images\rpg\overworld\Folder.png
+images\rpg\overworld\Heartdown.png
+images\rpg\overworld\Herbydown.png
+images\rpg\overworld\ILYdown.png
+images\rpg\overworld\ILYleft.png
+images\rpg\overworld\ILYright.png
+images\rpg\overworld\ILYup.png
+images\rpg\overworld\Melissadown.png
+images\rpg\overworld\ProgramChan.png
+images\rpg\overworld\ProgramKun2down.png
+images\rpg\overworld\ProgramKundown.png
+images\rpg\overworld\Stelladown.png
+images\rpg\overworld\Stellaright.png
+images\rpg\overworld\Tabbydown.png
+images\rpg\overworld\Takadown.png
+images\rpg\overworld\Taudown.png
+images\rpg\overworld\Vira.png
+images\rpg\overworld\Viradown.png
+images\rpg\overworld\Yamidown.png
+images\rpg\overworld\bg.png
+images\rpg\overworld\bgsparkle.png
+images\rpg\overworld\bgsparkle2.png
+images\rpg\overworld\object.png
+images\rpg\overworld\object2.png
+images\rpg\overworld\objectd.png
+images\rpg\overworld\overworldILY.rar
+images\rpg\overworld\storyevent.png
+images\rpg\tile\Tilebg.png
+saves\.gitIgnore
+saves\1-6-LT1.save
+saves\_reload-2-LT1.save
+saves\auto-1-LT1.save
+saves\auto-10-LT1.save
+saves\auto-2-LT1.save
+saves\auto-3-LT1.save
+saves\auto-4-LT1.save
+saves\auto-5-LT1.save
+saves\auto-6-LT1.save
+saves\auto-7-LT1.save
+saves\auto-8-LT1.save
+saves\navigation.json
+saves\persistent
+sfx\Bust.wav
+sfx\Damage.wav
+sfx\Damage2.wav
+sfx\boost.wav
+sfx\bumpintowall_X5CNQPB.mp3
+sfx\door-fr_0009.wav
+sfx\fire.wav
+sfx\frz.wav
+sfx\heal.ogg
+sfx\healx.ogg
+sfx\noise.wav
+sfx\select.wav
+sfx\sfx-fwasshing.wav
+sfx\sfx_coin_cluster6.wav
+sfx\sfx_damage_hit4.wav
+sfx\sfx_damage_hit8.wav
+sfx\sfx_exp_medium8.wav
+sfx\sfx_exp_odd3.wav
+sfx\sfx_exp_short_hard12.wav
+sfx\sfx_exp_short_hard8.wav
+sfx\sfx_exp_short_hard9.wav
+sfx\sfx_movement_footstepsloop4_fast.wav
+sfx\sfx_sounds_interaction24.wav
+sfx\sfx_sounds_powerup16.wav
+sfx\sfx_sounds_powerup4.wav
+sfx\slash.wav
+sfx\swing.wav
+sound\Damage.wav
+sound\Execute.wav
+sound\Phase.wav
+sound\click.wav
+sound\hover.wav
+sound\swing.wav
+sound\character\blip.wav
+sound\character\high.ogg
+sound\character\low.ogg
+sound\character\low.wav
+sound\character\mid.ogg
+sound\character\mid.wav
+sound\character\mid2.ogg
+sound\character\sfx-blipfemale.wav
+sound\character\sfx-blipmale.wav
+tl\None\common.rpym
+tl\None\common.rpymc
+voice\ILY01 - It's ILY~.mp3
+voice\ILY01E - It's ILY~.mp3
+voice\ILY03 - Clear as a gigabyte!.mp3
+voice\ILY03B - Clear as a gigabyte!.mp3
+voice\ILY05 - Swing light sword sounds.mp3
+voice\ILY05B - Swing light sword sounds.mp3
+voice\ILY05C - Swing medium sword sounds.mp3
+voice\ILY05D - Swing heavy sword sounds.mp3
+voice\ILY07B - Thanks.mp3
+voice\ILY08 - This attack, receive it!.mp3
+voice\ILY10E - Thank you for playing demo.mp3
+voice\ILY11C - I'll show you.mp3
+voice\ILY16 - Cough.mp3
+voice\ILY17D - Gasp.mp3
+voice\ILY18 - No.mp3
+voice\ILY21C - Hmph.mp3
+voice\ILY22 - Giggle.mp3
+voice\ILY22C - Giggle.mp3
+voice\ILY24B - Break down & disappear!.mp3
+voice\ILY26 - I won't let you.mp3
+voice\Ave_voice\ErinEvansWalker_Ave.ogg
+voice\Ave_voice\Eugh!.ogg
+voice\Ave_voice\Euh!.ogg
+voice\Ave_voice\Hah!.ogg
+voice\Ave_voice\Heeaah.ogg
+voice\Ave_voice\Hhaagh.ogg
+voice\Ave_voice\Hrrah!.ogg
+voice\Ave_voice\I'm-The-Ultimate-Antivirus.ogg
+voice\Ave_voice\It's Over, ILY!.ogg
+voice\Ave_voice\No, I won't lose!.ogg
+voice\Ave_voice\Pathetic-You-think-you-can-erase-me.ogg
+voice\Ave_voice\hurt\Eugh!.ogg
+voice\Ave_voice\hurt\Euh!.ogg
+voice\hurt\ILY05B - Swing light sword sounds.wav
+voice\hurt\ILY05D - Swing heavy sword sounds.wav
+voice\hurt\ILY12 - Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY12B - Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY12H - Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY12H - Bullet Grazed, punched or hit.wav
+voice\hurt\ILY12I - Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY12J - Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY12J - Bullet Grazed, punched or hit.wav
+voice\hurt\ILY13B - Light Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY13B - Light Bullet Grazed, punched or hit.wav
+voice\hurt\ILY13C - Light Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY13C - Light Bullet Grazed, punched or hit.wav
+voice\hurt\ILY13D - Light Bullet Grazed, punched or hit.mp3
+voice\hurt\ILY13D - Light Bullet Grazed, punched or hit.wav
+voice\hurt\ILY14H - Fall.mp3
+voice\hurt\ILY14H - Fall.wav
+voice\hurt\ILY14I - Fall.mp3
+voice\hurt\ILY14I - Fall.wav
