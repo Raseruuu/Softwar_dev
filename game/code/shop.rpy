@@ -37,8 +37,6 @@ init python:
     shop_item_list = {item.NAME:shop_item(item.NAME,item,"Item",pricelist[item.NAME]) for item in item_list}
     shop_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in battleware_list}
 
-
-init python:
     shop_inventory=[item for item in shop_item_list.values()]
     for bwares in [item for item in shop_battleware_list.values()]:
         shop_inventory.append(bwares)

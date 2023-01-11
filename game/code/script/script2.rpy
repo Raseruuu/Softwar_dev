@@ -2,7 +2,18 @@
 label prescript2:
     $map_active=False
     hide screen mapB
-
+    i"This path takes us to Connecht City Cyber Square!"
+    j"To the west?"
+    "It's just like in real life!"
+    "So this is what the GRID's like."
+    "The shape of this map... it feels awfully familiar."
+    "A highway next to a \"Cafe\"..."
+    # "residential area down south, a tall building just around a crossroad, a monument at the center of a rotunda road..."
+    "It almost exactly resembles the area near my place, but the components are different."
+    "There aren't any cars, not as much people, and no actual stores or restaurants. What would you expect from a cyber town?"
+    j"That means going North from there leads to SDS office."
+    i"you figured that out already?"
+    
     return
     "STUFF"
     #Call Scene after approaching tile on Connecht, North of Home area
@@ -13,12 +24,7 @@ label prescript2:
     j"Sounds good."
 
     #John thinks to himself about the Grid
-    "So this is what the GRID's like."
-    "The shape of this map... it feels awfully familiar."
-    "A highway next to a \"Cafe\"..."
-    "residential area down south, a tall building just around a crossroad, a monument at the center of a rotunda road..."
-    "It almost exactly resembles the area near my place, but the components are different."
-    "There aren't any cars, not as much people, and no actual stores or restaurants. What would you expect from a cyber town?"
+    
 
     ##Arrived at a checkpoint: meet Melissa
 
