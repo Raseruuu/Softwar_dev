@@ -69,9 +69,9 @@ init python:
                 # print(num_lines)
             return craft_dictionary
     combinationlibrary=[]
-    combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
+    # combinationsraw=read_combination_tsv("code/tsv/Combination.tsv")
 
-    comb_library = combinationsraw.values()
+    # comb_library = combinationsraw.values()
     last_craftitem = 0
 
 screen CombineMenu():
