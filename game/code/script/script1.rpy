@@ -140,7 +140,7 @@ label script1:
     "Another dreamless night. If only the virus was just part of a dream."
     "I glance at the screen. Strangely, the screen had gone black."
     "I hadn't pulled the plug. And I live alone. I guess the computer went to sleep."
-    "I clumsily stretch my arms forward to the laptop and press a random button on the keyboard."
+    "I clumsily stretch my arms forward to the desktop and press a random button on the keyboard."
 
     $ okdesktop = True
     call download_complete
@@ -176,7 +176,7 @@ label script1:
     i "HELLO, USER! I am the ILOVEYOU virus!"
     i "Call me ILY! "
     extend "I'm signing up to be your personal assistant!\nI'd like to confirm your name!"
-    "Am I really awake? A kawaii anime girl virus is signing up to be my assistant. That's kinda sweet."
+    "Am I really awake? A virus is signing up to be my assistant. That's kinda sweet."
     i"Should I just call you master then?"
     "ILY, huh. The envelope on her head reminds me of last night's e-mail. I'm supposed to be mad now, but this is quite interesting."
 
