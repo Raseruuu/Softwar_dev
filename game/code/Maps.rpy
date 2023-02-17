@@ -262,7 +262,7 @@ init -2 python:
 
 
 label doorjump:
-
+    $ linearmaptransform=False
     $ doordirection = Here #abcd
     # a =North
     # b =East
@@ -304,5 +304,5 @@ label doorjump:
         $transfercoordinates = nextlocation(griddestination,doordirection)
         call maptransfer(transfercoordinates,stageemptyroom) from _call_maptransfer_3
 
-
+    $ linearmaptransform=True
     return

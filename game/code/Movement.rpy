@@ -194,6 +194,7 @@ label maptransfer(position,stage):
     call checkwalls from _call_checkwalls
     $ linearmaptransform=True
 
+
     return
 image shock:
     "images/rpg/overworld/shock1.png"
@@ -358,7 +359,7 @@ screen npcsprite(sprites):
     image "images/rpg/overworld/[sprites.name][sprites.direction].png" xpos 0.5 ypos 0.508:
         if linearmaptransform:
             at mover2((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans# zorder maplayering(sprites.position[1])
-        else:
+        elif not linearmaptransform:
             at mover2_nolinear((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans
 screen playersprite(yvalue):
     zorder yvalue
@@ -390,18 +391,18 @@ transform rpgsize:
 
 transform mover(objxanchor,objyanchor):
   xpos 0.5 ypos 0.5
-  linear 0.1 xanchor objxanchor yanchor objyanchor transform_anchor True
+  linear 0.1 xanchor int(objxanchor) yanchor int(objyanchor) transform_anchor True
 transform mover2(objxanchor,objyanchor):
   # xpos 1.0 ypos 1.0
   xanchor 0.5 yanchor 0.5
-  linear 0.1 xpos -1*(objxanchor)+(690) ypos -1*(objyanchor)+(405) transform_anchor True
+  linear 0.1 xpos int(-1*(objxanchor)+(690)) ypos int(-1*(objyanchor)+(405)) transform_anchor True
 transform mover_nolinear(objxanchor,objyanchor):
   xpos 0.5 ypos 0.5
-  xanchor objxanchor yanchor objyanchor transform_anchor True
+  xanchor int(objxanchor) yanchor int(objyanchor) transform_anchor True
 transform mover2_nolinear(objxanchor,objyanchor):
   # xpos 1.0 ypos 1.0
   xanchor 0.5 yanchor 0.5
-  xpos -1*(objxanchor)+(690) ypos -1*(objyanchor)+(405) transform_anchor True
+  xpos int(-1*(objxanchor)+(690)) ypos int(-1*(objyanchor)+(405)) transform_anchor True
 
 # transform maplayering(yvalue):
 #   zorder yvalue
@@ -537,9 +538,10 @@ label Returns:
       $ playerxpos = playerpos[0]
       $ playerypos = playerpos[1]
       $ anim_done = False
-
+      $ linearmaptransform=False
       if Upisempty:
        if (_return=="up"):
+        
         $ objyanchor = objyanchor-blockSize
         $ playerpos = [playerxpos,playerypos-1]
       else:
@@ -566,6 +568,7 @@ label Returns:
       else:
         if _return=="right":
           play sound "sfx/bumpintowall_X5CNQPB.mp3"
+      
       pause 0.02
       $ anim_done = True
       #call wildenemy

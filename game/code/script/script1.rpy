@@ -987,10 +987,15 @@ label date2:
 
         show screen Card(DataSaber,((2*138 )+300,200),1.0)
         i"In a Softwar, we use Battleware!!"
-
+        j"A sword?"
+        $ ILY_m = 'smile'
+        i"The sword is the weapon of the romantic hero!"
+        j"How are we going about this?"
         i"I gain 8 bits and 5 cards every turn, each card in my hand will cost Bits."
         i"You choose from those 5 cards which cards to use in a turn."
         i"Once you've expended enough bits, you can Execute the queue of cards!"
+        j"I have to call the shots?"
+        i"Of course! You're my operator!"
         hide screen Card
         i"After our turn, It'll be the enemy's chance to attack, so let's strike with all the data we have!"
         j"Got it!"
@@ -1599,7 +1604,7 @@ label date2:
                 for sprite in spritelist:
                     boxsheet[sprite.position[1]][sprite.position[0]]=sprite.dialogue
         call addsprites(gridpos) from _call_addsprites
-        # call mapcall([10,10],stagehome)
+        # call mapcall([7,6],stagehome)
         # scene blue with dissolve
         scene scrollingBG at scroll with dissolve
         show screen mapB
