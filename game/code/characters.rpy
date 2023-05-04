@@ -20,6 +20,7 @@ define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc"
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
 define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 # define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
+define b = Character("Bitwulf",callback=speaker("Bitwulf"),what_slow_cps=40, image = "Bitwulf_side", ctc="ctc", ctc_position="fixed")
 
 define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40, image = "Stoned_side", ctc="ctc", ctc_position="fixed")
 define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")

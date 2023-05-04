@@ -1,6 +1,6 @@
 
 label prescript2:
-    $map_active=False
+    $ map_active=False
     hide screen mapB
     i"This path takes us to Connecht City Cyber Square!"
     j"To the west?"
@@ -28,57 +28,11 @@ label prescript2:
 
     ##Arrived at a checkpoint: meet Melissa
 
-    i"John, Here's the new friend I told you about!"
-    "A fellow humanoid avatar."
-    "So far, there have been a few humanoids passing by, just like ILY. I wonder what's so special about this one?"
-    j"Is she a FAI?"
-    i"She is."
-    j"I see. What kind of FAI is she?"
-    i"(I'm actually not sure myself.)"
-    i"(But she does know a lot about the area.)"
-    i"(Her name's Melissa!)"
 
 label script2:
-    #ILY introduction to the Grid
-    #ILY strolls around their own personal cyberspace area:
-    # There are a few Mini FAIS hanging around, representing computer systems inside his own device.
-    # Explanation of Mini FAI
-    # jump credits
-    return
-    show Melissa:
-        xalign 0.5
-    m"Hi there, ILY. Welcome back to the GRID."
-    i"Hey Melissa!"
-    "I'll have to say.. this FAI is looking quite... fashionable."
-    j"Can you ask her about for directions?"
-    j"I'd like to confirm something."
-    j"We need to find the SDS area."
-    "the GRID world is directly basing their maps on real-life locations... I wonder why?"
-    "If my guess is right, then I will be able to find the road to SDS."
-    i"Can you show me around?"
-
-    m"Sure thing, let's exchange info for info. What are you up to?"
-    i"I'm just exploring."
-    m"Exploring? Are you perhaps... looking for a {i}victim{/i}?"
-    i"No! I'm not!"
-    m"*Smiles*"
-    j"She knows that you're a virus?"
-    i"(Ehhehehe..)"
-    i"(Actually, She's... also a Virus.)"
-    "A FAI Virus just like ILY? How rare is it to meet one?"
-    j"(ILY! that's dangerous!)"
-    m"What are you seeking?"
-    i"I'm doing my master's business. I'm his cyber assistant."
-    j"(ILY, I really have a bad feeling about this! And about this friend of yours!)"
-    m"Hahaha! That's interesting. You're a Virus, with a human master?"
-    m"In this world you will find that most of the viruses are like me."
-    m"I am free to roam, anywhere, any time. You could call me a Stray."
-    j"(ILY, We should go back.. I... really don't wanna interact with another Virus.)"
-    i"(But we need to find SDS!)"
-    i"(She's the only person around I can relate to...)"
 
 
-    #Approaching a road blocked by Antiviruses: Bitwulves
+    #Approaching a road blocked by Antivirus: Bitwulf
     m"Watch out, they're on patrol on these hours."
     m"I'll walk ahead of you and take a peek."
     i"??"
