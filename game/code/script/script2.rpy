@@ -8,7 +8,7 @@ label prescript2:
     "So this is what the GRID's like."
     "The shape of this map... it feels awfully familiar."
     "A highway next to a \"Cafe\"..."
-    # "residential area down south, a tall building just around a crossroad, a monument at the center of a rotunda road..."
+    "residential area down south, a tall building just around a crossroad, a monument at the center of a rotunda road..."
     "It almost exactly resembles the area near my place, but the components are different."
     "There aren't any cars, not as much people, and no actual stores or restaurants. What would you expect from a cyber town?"
     j"That means going North from there leads to SDS office."

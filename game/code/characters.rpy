@@ -1558,3 +1558,88 @@ image Stoned_msad:
     "images/Characters/Stoned/Stoned_msad.png"
     pause .08
     repeat
+
+#########
+## Bitwulf
+#########
+
+# image Stoned_eyes:
+#     "images/Characters/Stoned/Stoned_eyes.png"
+#     pause 1.0
+#     choice:
+#         "images/Characters/Stoned/Stoned_eyes.png"
+#         pause 2.0
+#     choice:
+#         "images/Characters/Stoned/Stoned_eyes.png"
+#         pause 3.0
+#     choice:
+
+#         "images/Characters/Stoned/Stoned_eyes2.png"
+#         pause 0.1
+#         "images/Characters/Stoned/Stoned_eyes3.png"
+#         pause 0.1
+#         "images/Characters/Stoned/Stoned_eyes2.png"
+#         pause 0.1
+
+#     choice:
+#         "images/Characters/Stoned/Stoned_eyes2.png"
+#         pause 0.05
+#         "images/Characters/Stoned/Stoned_eyes3.png"
+#         pause 0.1
+#         "images/Characters/Stoned/Stoned_eyes2.png"
+#         pause 0.05
+#         "images/Characters/Stoned/Stoned_eyes.png"
+#         pause 0.1
+
+#         repeat 2
+#     repeat
+
+# image Stoned_Guns:
+#     "images/Characters/Stoned/Stoned_Guns.png"
+#     linear 1.0 yoffset 40
+#     linear 1.0 yoffset 0
+#     repeat
+image Bitwulf:
+    LiveComposite(
+    (761,1695),
+    (0,0),"images/Characters/Bitwulf/Bitwulf_base.png",
+    (0,0),"images/Characters/Bitwulf/Bitwulf_e[Bitwulf_e].png",
+    (0,0),"Bitwulf_eyes",
+    (0,0),WhileSpeaking("Bitwulf",("Bitwulf_m[Bitwulf_m]"),"images/Characters/Bitwulf/Bitwulf_m[Bitwulf_m].png"),
+    (0,0),"images/Characters/Bitwulf/Bitwulf_glass.png"
+    # (0,0),"Bitwulf_Guns"
+    )
+    zoom 0.95 xalign 0.5 yanchor 0.05 ypos 0.0
+image Bitwulfsmall:
+    "Bitwulf"
+    zoom 0.80
+image side Bitwulf_side:
+    ConditionSwitch(
+            "Bitwulf_w==True",(LiveCrop((327,150,300,385),"Bitwulfsmall")),
+            "Bitwulf_w==False",Null()
+        )
+    zoom 0.56
+image Bitwulf_icon:
+    (LiveCrop((327,150,280,280),"Bitwulfsmall"))
+    zoom 0.4
+image Bitwulf_mhappy:
+
+    "images/Characters/Bitwulf/Bitwulf_mopenU.png"
+    pause .16
+    "images/Characters/Bitwulf/Bitwulf_mhappy.png"
+    pause .08
+    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    pause .16
+    "images/Characters/Bitwulf/Bitwulf_mhappy.png"
+    pause .08
+    repeat
+image Bitwulf_msad:
+    "images/Characters/Bitwulf/Bitwulf_mopen2.png"
+    pause .08
+    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    pause .08
+    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    pause .08
+    "images/Characters/Bitwulf/Bitwulf_msad.png"
+    pause .08
+    repeat
