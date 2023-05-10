@@ -51,7 +51,8 @@ init -1 python:
     globals()["ILY_m"] = "smile"
     globals()["ILY_p"] = "1"
     globals()["ILY_e"] = "1"
-    globals()["ILY_outfit"] = "uniform"
+    globals()["ILY_outfit"] = "uniform" #bunny, garden, 
+
     globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
 
