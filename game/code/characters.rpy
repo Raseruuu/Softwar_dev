@@ -51,6 +51,8 @@ init -1 python:
     globals()["ILY_m"] = "smile"
     globals()["ILY_p"] = "1"
     globals()["ILY_e"] = "1"
+    globals()["ILY_outfit"] = "uniform"
+    globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
 
     globals()["John_e"] = "normal"
@@ -343,8 +345,13 @@ image ILY:
     linear 1.0 yoffset 10
     repeat
 
+image ILYnew:
+    "ILYFullBody"
+    zoom 0.5
+    yalign 0.1
+
 image ILY big:
-    "ILYFull"
+    "ILYFullBody"
     zoom 0.75
     yalign 0.1
     linear 1.0 yoffset -10
@@ -352,7 +359,7 @@ image ILY big:
     repeat
 
 image ILY small:
-    "ILYFull"
+    "ILYFullBody"
     zoom 0.3
     yalign 0.3
     linear 1.0 yoffset -10
@@ -386,10 +393,45 @@ image ILYFull:
                             )
         )
     )
+transform ilyfix(deg):
+    zoom deg
+    xoffset 60
+    xpos 0
+    ypos 0
+image ILYFullBody:
+    LiveComposite(
+    (0.75, 0.75), #(544,600),
+    (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
+    (0, 0), At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)), #outfit
+    #(0, 0), "ILY_p[ILY_p].png",
+    (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
+    (0, 0), "ILYEyes[ILY_p]",#eyes
+    (0, 0), "images/Characters/ILY/ILY_heart0.png",
+    (0, 0), ConditionSwitch(
+        "((ILY_p=='1') or (ILY_p=='0'))", WhileSpeaking(
+            "ILY",
+            ConditionSwitch(
+                "('smile' in ILY_m)","ILYMouthsmile",
+                "('smile' not in ILY_m)","ILYMouthfrown"
+                ),
+            "images/Characters/ILY/ILY_m[ILY_m].png"
+            ),
+        "(ILY_p=='2')", WhileSpeaking(
+                            "ILY",
+                            ConditionSwitch(
+                                "('smile' in ILY_m)","ILYMouthsmile2",
+                                "('smile' not in ILY_m)","ILYMouthfrown2"
+                                ),
+                            "images/Characters/ILY/ILY_m2[ILY_m].png"
+                            )
+        )
+    )
+    
 image ILYVtuber:
     LiveComposite(
     (0.75, 0.75), #(544,600),
-    (0, 0), "images/Characters/ILY/ILY_p[ILY_p].png", #pose
+    (0, 0), "images/Characters/ILY/ILY_Full_base[ILY_p].png", #nude base
+    
     #(0, 0), "ILY_p[ILY_p].png",
     (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows
     (0, 0), "ILYEyes[ILY_p]",#eyes
