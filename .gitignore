@@ -121,3 +121,5 @@ CubismSdkForNative-4-*.zip
 /scratch
 /*-dists
 *.rpyb
+*.rpyc
+game/cache/shaders.txt
