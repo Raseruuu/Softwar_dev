@@ -13,8 +13,9 @@ define name_only = Character( color = '#fff',ctc="ctc", ctc_position="fixed", ca
 define j = Character("John", color = '#0b99f4', image = "John_side", callback = speaker("John"), ctc="ctc", ctc_position="fixed")
 define emailnvl = Character("", color = '#0b99f4',kind=nvl, callback = speaker("John"))
 
-define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", ctc="ctc", ctc_position="fixed",callback=speaker("Hilbert"))
+define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", callback=speaker("Hilbert"), ctc="ctc", ctc_position="fixed")
 define l = Character("Lisa",color = '#992e2c', image = "Lisa_side", callback=speaker("Lisa"), ctc="ctc", ctc_position="fixed")
+define al = Character("Alicia",color = '#992e2c', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
 define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc", ctc_position="fixed")
 
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
