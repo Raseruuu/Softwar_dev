@@ -52,9 +52,9 @@ init -1 python:
     globals()["ILY_m"] = "smile"
     globals()["ILY_p"] = "1"
     globals()["ILY_e"] = "1"
-    globals()["ILY_underwear"] = "" # "", "small", 
+    globals()["ILY_underwear"] = "red" # "red", "small", "" 
 
-    globals()["ILY_outfit"] = "uniform" #bunny, garden, 
+    globals()["ILY_outfit"] = "uniform" #bunny, garden, ""
 
     globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
@@ -406,7 +406,7 @@ image ILYFullBody:
     LiveComposite(
     (0.75, 0.75), #(544,600),
     (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
-    (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
+    (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
     (0, 0), ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()), #outfit
     #(0, 0), "ILY_p[ILY_p].png",
     (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
