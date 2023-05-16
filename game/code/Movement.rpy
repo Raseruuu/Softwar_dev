@@ -176,7 +176,7 @@ label maptransfer(position,stage):
     #call mapcall((5,5),stage1)
     call addsprites(gridpos)
     python:
-        linearmaptransform=False
+        linearmaptransform=True
         boxsheet = stage
         playerpos = position
         playerxpos = playerpos[0]
@@ -538,7 +538,7 @@ label Returns:
       $ playerxpos = playerpos[0]
       $ playerypos = playerpos[1]
       $ anim_done = False
-      $ linearmaptransform=False
+      $ linearmaptransform=True
       if Upisempty:
        if (_return=="up"):
         
