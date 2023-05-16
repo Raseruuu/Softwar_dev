@@ -1636,6 +1636,4 @@ label date2:
         hide screen mapB
         hide screen mapA
 
-        # call credits
-        # jump
         return
