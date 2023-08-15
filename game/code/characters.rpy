@@ -1165,7 +1165,7 @@ image MelissaFull:
         )
     zoom 0.22
 image Melissa sidew:
-    LiveCrop((75,60, 300,385), "MelissaFull")
+    LiveCrop((75,30, 300,385), "MelissaFull")
     zoom 0.56
 
 
