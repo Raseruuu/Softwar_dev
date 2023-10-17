@@ -2,7 +2,7 @@ screen finishingflash(say):
     image "black" at pausedim
     add "flashline" at flashtrans
 
-    text "{size=25}[say]{/size}" xalign 0.5 yalign 0.80
+    text "{size=25}[say]{/size}" xalign 0.5 yalign 0.82
 
     add "diamondblue" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.3 ypos 0.25
     add "diamondblue2" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.7 ypos 0.75

@@ -153,15 +153,50 @@ image scrollingBG:
     Tile("bgmap")
     # rotate 22.5
     xalign 0.0 yalign 0.0
+
+    # function WaveShader(amp=0.0, melt="vertical", melt_params=(20.0,12.0,0.25), repeat='repeat')
+image battlebg2:
+    # Tile("bgmap")
+    Tile('tilebg2',size=(616,342))
+    # rotate 22.5
+    xalign 0.0 yalign 0.0
+    function WaveShader(amp=0.0, melt="vertical", melt_params=(10.0,12.0,0.25), repeat='repeat')
 transform scroll:
     xpan 0 ypan 0
     linear 20.0 xpan 360 ypan 360
     repeat
+default wave_shader = TesterWaveShader()
+default amp_x = 12.0
+default amp_y = 10.0
+default period_x = 0.658
+default period_y = 0.395
+default speed_x = 1.0
+default speed_y = 1.408
+default direction = "Vertical"
+default damp_x = -0.887
+default damp_y = 1.0
+default double = None
+default double_amp_x = 12.0
+default double_period_x = 20.0
+default double_speed_x = 1.0
+default double_amp_y = 12.0
+default double_period_y = 20.0
+default double_speed_y = 1.0
+default melt = "Vertical"
+default melt_amp_x = 1.0
+default melt_period_x = 20.0
+default melt_speed_x = 1.0
+default melt_amp_y = 19.211
+default melt_period_y = 4.132
+default melt_speed_y = 0.987
+default repeat_x = "Repeat"
+default repeat_y = "Repeat"
 
 label mapresume:
-
+    
     play music "bgm/ost/Grid_noyemi_K.mp3"
-    scene scrollingBG at scroll
+    scene battlebg
+    show scrollingBG at scroll
     # $ boxsheet = globals()["GRID"][(gridpos[0],gridpos[1])]
     call addsprites(gridpos) from _call_addsprites_2
     show screen mapB

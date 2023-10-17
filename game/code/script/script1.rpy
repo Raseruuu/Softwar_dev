@@ -1606,7 +1606,8 @@ label date2:
         call addsprites(gridpos) from _call_addsprites
         # call mapcall([7,6],stagehome)
         # scene blue with dissolve
-        scene scrollingBG at scroll with dissolve
+        scene battlebg
+        show scrollingBG at scroll
         show screen mapB
         i"This is the Grid!"
         i"Listen John, and listen carefully!"

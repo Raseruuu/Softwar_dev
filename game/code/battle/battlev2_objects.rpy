@@ -93,7 +93,8 @@ init python:
             "Apply Burn status to target, Burn token deals "+str(burndmg)+" each turn.",
             burndmg
             )
-
+    def BurnSelf(burndmg) :
+        return Fxn("BurnSelf","burnself()","Append Burn status to self.")
     def GainToken(tokenname,quantity):
         return Fxn(
             "GainToken",
@@ -106,7 +107,25 @@ init python:
             "giveToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Give a \""+str(tokenname)+"\" token(s).",
             [tokenname,quantity])
-    def If(condition,token_name,fxns,target):
+    def ReduceBit(quantity):
+        return Fxn(
+            "ReduceBit",
+            "reduceBit("+str(quantity)+")",
+            "Reduce opponent's bit value by "+str(quantity)+"."
+            )
+    def While(condition,token_name,target,fxns):
+        function1=fxns[0].code
+        if len(fxns)==2:
+            function2=fxns[1]
+            codepart2="\n  "+str(function2.code)
+        return Fxn(
+            "While",
+            "while("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "Execute enclosed functions while condition is True",
+            (token_name,fxns,target)
+            )
+
+    def If(condition,token_name,target,fxns):
         function1=fxns[0].code
         if len(fxns)==2:
             function2=fxns[1]
@@ -120,7 +139,7 @@ init python:
     def Boost(statname,MAG):
         return Fxn(
             "Boost"+statname,
-            "boost("+str(statname)+","+str(MAG)+")",
+            "boost(\""+str(statname)+"\","+str(MAG)+")",
             "Increase "+str(statname)+" by "+str(MAG)+".",
             [statname,MAG]
             )
@@ -152,18 +171,7 @@ init python:
             MAG
             )
     #
-    def While(condition,token_name,target,fxns):
-        function1=fxns[0].code
-        if len(fxns)==2:
-            function2=fxns[1]
-            codepart2="\n  "+str(function2.code)
-        return Fxn(
-            "While",
-            "while("+str(condition)+"):\n  "+str(function1)+codepart2,
-            "Execute enclosed functions while condition is True",
-            (token_name,fxns,target)
-            )
-
+ 
     def RemoveToken(token_name,target):
         return Fxn(
             "RemoveToken",
@@ -218,10 +226,9 @@ init python:
 #Ave's cards
     FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(),NullFxn()],              4)
     DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
-    Bitbuster=    Card("Bitbuster",       "Gun",            0.25,     [Attack(),NullFxn()],             2)
     SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(),NullFxn()],           2)
     #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
-    #Swords
+#Swords
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     Katana=       Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
@@ -231,7 +238,8 @@ init python:
     XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
-
+#SaberSkills
+    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [If("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
 
 # Virus Exclusive
     Vshot=        Card("V-Shot",         "Gun",      0.6,               [Attack(),NullFxn()],           3)
@@ -253,7 +261,6 @@ init python:
     Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
     Assault=      Card("Assault",       "Tech",    0.25,       [Boost("ATK",0.25),NullFxn()],  2)
-    # Bitbuster=    Card("Bitbuster",       "Gun",    0.25,     [Attack(),ReduceBit],       2)
     # Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(),NullFxn()],          8)
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
@@ -270,7 +277,7 @@ init python:
     Flashbang=     Card("Flashbang",      "Bomb",        1.0,     [Attack(),GainToken("Saber",1)],   4)
     Gigamorph=     Card("Gigamorph",      "Power",       1.0,     [Attack(),GainToken("Saber",1)],   4)
     # DataBuster=    Card("DataBuster",      "Gun",        1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Bitbuster=     Card("Bitbuster",      "Gun",         1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Bitbuster=     Card("Bitbuster",      "Gun",         1.0,     [Attack(),ReduceBit(1)],   2)
     MachineBuster= Card("MachineBuster",      "Gun",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     Excalibrium=   Card("Excalibrium",      "Sword",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     ILYFlash=      Card("ILYFlash",      "Power",        1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -322,17 +329,17 @@ init python:
         "name":"The Love Machine",
         "content":[
             VirusFlame,VirusFlame,
-            BlockSaber,Vslash,
-            Vslash,Vslash,
+            DataForce,Vslash,
             SpamAtk,SpamAtk,
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
             DataSaber,DataSaber,
             ChocolateBar,ChocolateBar,
             MailSaber,MailSaber,
-            BlockSaber,BreakSaber,
-            BlockSaber,BreakSaber,
-            Vslash,Vshot],
+            BlockSaber,RecursiveSlash,
+            SaberDeflect,SaberDeflect,
+            SaberDeflect,BreakSaber,
+            HeartBurn,HeartBurn],
         "plugins":[]
         }
 
@@ -466,13 +473,13 @@ init python:
         "content":[
             DataSaber,DataSaber,
             DataSaber,DataSaber,
-            VirusFlame,VirusFlame,
-            Vslash,Vslash,
-            Shieldbit,BruteForce,
-            DataBomb,BruteForce,
-            Laserbeam,Laserbeam,
-            Shieldbit,Shieldbit,
-            Shieldbit,Shieldbit,
+            DataSaber,VirusFlame,
+            BlockSaber,BlockSaber,
+            RecursiveSlash,RecursiveSlash,
+            RecursiveSlash,RecursiveSlash,
+            RecursiveSlash,RecursiveSlash,
+            BlockSaber,BlockSaber,
+            BlockSaber,DataForce,
             DataForce,DataForce],
         "plugins":[]
         }

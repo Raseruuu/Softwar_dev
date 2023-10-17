@@ -480,7 +480,7 @@ label GainItem(items):
                 show screen gain_item(newitem,items_counts[newitem.name])
                 $ renpy.pause(1.2,hard=True)
             $ gainitemshown.append(newitem.name)
-            # hide screen gain_item
+            hide screen gain_item
             $ gain_index+=1
             if gain_index<len(items):
                 jump gainloop

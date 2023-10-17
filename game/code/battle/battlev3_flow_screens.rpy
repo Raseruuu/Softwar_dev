@@ -393,7 +393,9 @@ label battlev3(PFAI,EFAI):
         enemyATK_m = enemyATK
         enemyDEF_m = enemyDEF
         random.shuffle(enemyDeck)
+    # call battlebg_animation
     scene battlebg
+    show battlebg2
     with pixellate
 
     if enemyName=="Ave":
@@ -402,7 +404,8 @@ label battlev3(PFAI,EFAI):
         play music "<from 0 to 16.9>bgm/ost/BOSSBATTLE-V_by-StarryMarshmell_0.ogg"
         queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
         # queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
-
+    elif enemyName=="Code Red":
+        play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
     else:
         play music "bgm/Fight_bgm_maoudamashii_cyber14.ogg"
     show battlering:
@@ -448,7 +451,7 @@ label battlev3(PFAI,EFAI):
             pass
 
         if enemyfirst and (not first_turn_done):
-            call enemyattack from _call_enemyattack
+            call enemyattack
             $ first_turn_done =True
 
             if not battle_done:
@@ -486,6 +489,9 @@ label battlev3(PFAI,EFAI):
 
         # elif battle_done:
         #     call showphasemsg("BATTLE_END")
+            call showphasemsg(playerName+"'S TURN")
+            $renpy.pause(0.9,hard=True)
+            hide screen phasemsg
             call drawcards from _call_drawcards
             call screen Activate_Battleware
             play sound "sound/Phase.wav" channel 1

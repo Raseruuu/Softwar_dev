@@ -50,7 +50,6 @@ label RemoveTokenEnemy:
 label RemoveTokenPlayer:
     $ token_name = currentcard_fxn_params[0]
     $ remove_target = currentcard_fxn_params[1]
-
     if remove_target=="Self":
         $ PlayerSts.remove(token_name)
     elif remove_target=="Enemy":
@@ -61,6 +60,9 @@ label Damageenemy:
   $ damagetoenemy=int(playerATK_m*Magnitude)
   if currentcardTYPE == "Sword":
     play sound "sfx/slash.wav"
+  elif currentcardTYPE == "FireSword":
+    play sound "sfx/slash.wav"
+    play sound "sfx/sfx_exp_short_hard8.wav"
   elif currentcardTYPE == "Axe":
     play sound "sfx/slash.wav"
   elif currentcardTYPE == "Fire":
@@ -354,7 +356,7 @@ label GainTokenEnemy:
     $ counter=0
     label tokenquant_loop3:
 
-        $ PlayerSts=statusAppend(PlayerSts,token_name)
+        $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
           zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
           linear 0.1 zoom 0.98
@@ -372,8 +374,9 @@ label BoostATK:
     # $ PlayerSts.append("BoostATK")
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
 
-    $ PlayerSts=statusAppend(PlayerSts,["BoostATK",currentcard_fxn_params[1]])
-    call updatestats_player from _call_updatestats_player
+    # $ PlayerSts=statusAppend(PlayerSts,["BoostATK",currentcard_fxn_params[1]])
+    $ PlayerSts=statusAppend(PlayerSts,"BoostATK")
+    call updatestats_player 
     show BoostATKsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -385,7 +388,7 @@ label BoostDEF:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Magnitude=currentcardMAG
-    # $ PlayerSts.append("BoostATK")
+    # $ PlayerSts.append("BoostDEF")
     $ PlayerSts=statusAppend(PlayerSts,"BoostDEF")
     call updatestats_player from _call_updatestats_player_1
     show BoostDEFsts onlayer overlay:
@@ -417,25 +420,62 @@ label WhileTokenInStatusEnemy:
     $ block_functions=FXN.params[1]
     $ targetsts=FXN.params[2]
     # label WhileLoop:
-    if targetsts = "Self":
+    if targetsts == "Self":
         while token_name in EnmySts:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop:
-                call functioneffects(runfxnstring) from _call_functioneffects
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring)
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop
                 # jump WhileLoop
-    if targetsts = "Enemy":
+    if targetsts == "Enemy":
         while token_name in PlayerSts:
             # if token_name in PlayerSts:
             $ block_count = 0
             label block_loop1:
-                call functioneffects(runfxnstring) from _call_functioneffects_1
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring)
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop1
+                # jump WhileLoop
+    return
+label IfTokenInStatusEnemy:
+#Enemy Activates If
+    $ runfxnstring = currentcardFXN[fxnindex].name
+    $ FXN=currentcardFXN[fxnindex]
+    $ token_name=FXN.params[0]
+    $ block_functions=FXN.params[1]
+    $ targetsts=FXN.params[2]
+    # label WhileLoop:
+    if targetsts == "Self":
+        if token_name in EnmySts:
+            # if token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop2:
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop2
+                # jump WhileLoop
+    if targetsts == "Enemy":
+        if token_name in PlayerSts:
+            # if token_name in PlayerSts:
+            $ block_count = 0
+            label block_loop3:
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring)
+                $ block_count+=1
+                if block_count<len(block_functions):
+                    jump block_loop3
                 # jump WhileLoop
     return
 label IfTokenInStatusPlayer:
@@ -450,20 +490,26 @@ label IfTokenInStatusPlayer:
         if token_name in PlayerSts:
             # if token_name in PlayerSts:
             $ block_count = 0
-            label block_loop3:
-                call functioneffects(runfxnstring) from _call_functioneffects_2
+            label block_loop4:
+                
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call functioneffects(runfxnstring)
                 $ block_count+=1
                 if block_count<len(block_functions):
-                    jump block_loop3
+                    jump block_loop4
+                
     elif targetsts == "Enemy":
         if token_name in EnmySts:
             # if token_name in PlayerSts:
             $ block_count = 0
-            label block_loop4:
-                call functioneffects(runfxnstring) from _call_functioneffects_3
+            label block_loop5:
+                $ runfxnstring = block_functions[block_count].name
+                $ currentcard_fxn_params=block_functions[block_count].params
+                call functioneffects(runfxnstring)
                 $ block_count+=1
                 if block_count<len(block_functions):
-                    jump block_loop4
+                    jump block_loop5
             # jump WhileLoop
     return
 label WhileTokenInStatusPlayer:
@@ -477,18 +523,18 @@ label WhileTokenInStatusPlayer:
     if targetsts == "Self":
         while token_name in PlayerSts:
             $ block_count = 0
-            label block_loop5:
+            label block_loop6:
                 $ runfxnstring = block_functions[block_count].name
                 $ currentcard_fxn_params=block_functions[block_count].params
                 call functioneffects(runfxnstring) from _call_functioneffects_4
                 $ block_count+=1
                 if block_count<len(block_functions):
-                    jump block_loop5
+                    jump block_loop6
 
     elif targetsts == "Enemy":
         while token_name in EnmySts:
             $ block_count = 0
-            label block_loop6:
+            label block_loop7:
                 $ runfxnstring = block_functions[block_count].name
                 $ currentcard_fxn_params=block_functions[block_count].params
 
@@ -496,7 +542,7 @@ label WhileTokenInStatusPlayer:
                 $ block_count+=1
                 if block_count<len(block_functions):
 
-                    jump block_loop6
+                    jump block_loop7
 
     return
 label BoostATKenemy:
@@ -534,11 +580,13 @@ label updatestats_player:
         for fxns in PlayerSts:
                 if fxns == 'BoostATK':
                     # boostvalue = fxns[1]
+                    boostvalue = 0.25
                     playerATK_m+=playerATK*boostvalue
                     playerATK_m = int(playerATK_m)
                     # "This shit happened"
                 elif fxns == 'BoostDEF':
-                    playerDEF_m+=playerDEF*0.25
+                    boostvalue = 0.25
+                    playerDEF_m+=playerDEF*boostvalue
                     playerDEF_m = int(playerDEF_m)
                     # "This shit happened"
 
@@ -567,7 +615,7 @@ label updatestats_enemy:
 image shieldbit = "images/battle/Shield_bit.png"
 image shieldlight = "images/battle/Shield_light.png"
 label Shieldplayer:
-    play sound "sfx/healx.ogg"
+    play sound "sfx/defense.wav"
     $ Magnitude = (currentcardMAG)
     $ shieldtoplayer=int(playerDEF_m*Magnitude)
     python:
@@ -618,7 +666,7 @@ label Recoverplayer:
     return
 
 label Shieldenemy:
-    play sound "sfx/healx.ogg"
+    play sound "sfx/defense.wav"
     $ Magnitude = (currentcardMAG)
     $ shieldtoenemy=int(enemyDEF_m*Magnitude)
     python:
@@ -681,6 +729,7 @@ label Damageplayer:
   $ dmgdist = ((currentcard.MAG*100)/20)
   $ dmgdist = int(dmgdist*2)
   show playerdmgpoint onlayer overlay
+
   with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
   call hurtnoise from _call_hurtnoise_1
   $ renpy.pause(0.6,hard=True)
@@ -739,20 +788,22 @@ label Concatenation:
                             concat_card_name = concat_card.NAME
                             renpy.call("Concat_anim",prefix_card,suffix_card,concat_result)
 
-                            anim_done=False
-                            flashuser = "ILY"
-                            flashdialogue = prefix_card.NAME+","+suffix_card.NAME+",\n Concatenate! " +concat_card_name+"!"
-                            # renpy.call("FinishingFlash",flashdialogue)
+                            
+                           
     return
 
 label Concat_anim(prefix,suffix,concat_result):
     call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
+    $ flashuser = "ILY"
+    $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n Concatenate! " +concat_card_name+"!"
+    $ renpy.call("FinishingFlash",flashdialogue)
+    $ anim_done=False
     python:
 
         playerbattlecode.pop(battle_index)
         playerbattlecode.pop(battle_index)
         playerbattlecode.insert(battle_index,concat_result)
-    $noscreentransformsfornow=True
+    $ noscreentransformsfornow=True
     play sound "sfx/swing.wav"
     show screen concat_anim(prefix,suffix)
     show screen whiteflash
@@ -764,17 +815,19 @@ label Concat_anim(prefix,suffix,concat_result):
         alpha 1.0 xzoom 0.0 xalign 0.5 yzoom 1.0
         linear 0.2 xzoom 1.0 alpha 0.0
     play sound "sfx/slash.wav"
-    show screen Card(concat_result,((1280/2)-150,100),1.0)
+    show screen Card(concat_result,((640)-150,400),1.0)
     pause
     hide screen Card
+    
     return
 screen concat_anim(prefix,suffix):
     image "black" at pausedim2
 
+    use Card(prefix,(200,400),1.0)
+    use Card(suffix,(780,400),1.0)
+    
     text "[prefix.TYPE]" at prefixanim
     text "[suffix.TYPE]" at suffixanim
-    use Card(prefix,(200,100),1.0)
-    use Card(suffix,(780,100),1.0)
 screen whiteflash:
     image "white" at flashbang2
 
@@ -837,7 +890,7 @@ label Execution:
         else:
 
             call PlayerEndPhase from _call_PlayerEndPhase
-            info"[playerName]'s turn has ended."
+            # info"[playerName]'s turn has ended."
             if not battle_done:
                 call enemyattack from _call_enemyattack_1
     return
@@ -948,13 +1001,15 @@ label enemyattack:
     $ enemynumberofattacks = 5 #renpy.random.randint(1,3)+renpy.random.randint(0,2)
     $ enemybits= 8
     $ enemyhand = [enemyDeck[0],enemyDeck[1],enemyDeck[2],enemyDeck[3],enemyDeck[4]]
-
+    show screen phasemsg(enemyName+"'S TURN")
+    $renpy.pause(0.9,hard=True)
+    hide screen phasemsg
     python:
       for enemyhandcards in range(0,5):
         enemyDeck.pop(0)
     #Buffs Priority
     $ enemyhand.sort(key=lambda x: x.FXN[1].name)
-    if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts):
+    if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts) or ("Saber" in EnmySts):
       #Damage priority
       $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     elif (enemySP==0) and (enemyHP<=enemyHPMax):
@@ -1014,7 +1069,7 @@ label enemyattack:
 
         else:
             call EnemyEndPhase from _call_EnemyEndPhase
-            info"[enemyName]'s turn has ended."
+            # info"[enemyName]'s turn has ended."
     return
 
 label Saber:
@@ -1023,7 +1078,7 @@ label Saber:
     # $ Magnitude=currentcardMAG
     # # $ PlayerSts.append("BoostATK")
     $ PlayerSts=statusAppend(PlayerSts,"Saber")
-    call updatestats_player from _call_updatestats_player_2
+    call updatestats_player 
     show BoostDEFsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
