@@ -58,9 +58,11 @@ init python:
             for i, line in enumerate(file):
 
                 if i > 1:
-                    line = line.replace("\n", '').replace('\r', '')
+                    line = str(line).replace("\n", '').replace('\r', '')
                     linearray = line.split('\t')
-                    craftcomponents=[linearray[1],linearray[2],linearray[3]]
+                    print(linearray)
+                    # craftcomponents=[linearray[1],linearray[2],linearray[3]]
+                    craftcomponents=[linearray]
                     craft_dictionary[linearray[0]] = CraftItem(linearray[0],battleware_master_dict[linearray[0]],craftcomponents)
                     # lines.append(line.split('\t'))
                 # num_lines=[]

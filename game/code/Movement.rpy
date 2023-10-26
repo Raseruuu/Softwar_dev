@@ -157,9 +157,10 @@ image scrollingBG:
     # function WaveShader(amp=0.0, melt="vertical", melt_params=(20.0,12.0,0.25), repeat='repeat')
 image battlebg2:
     # Tile("bgmap")
-    Tile('tilebg2',size=(616,342))
+    Tile('tilebg2')
     # rotate 22.5
     xalign 0.0 yalign 0.0
+    # zoom 0.50
     function WaveShader(amp=0.0, melt="vertical", melt_params=(10.0,12.0,0.25), repeat='repeat')
 transform scroll:
     xpan 0 ypan 0

@@ -213,7 +213,7 @@ label script1:
     j "What is this all about? You hacked my PC, and suddenly offer some service. Nothing in this world's free."
 
     i "[plrname]. I am the ILOVEYOU virus."
-    $ ILYSprite("smile",2)
+    $ ILYSprite("smile")
     extend" True love is...{w=0.5}{nw}"
     play sound "sfx/Damage2.wav"
     extend" Unconditional!" with Shake((0, 0, 0, 0), 0.5, dist=5)
@@ -522,11 +522,11 @@ label date1:
     $ ILYSprite("smile")
     play sound "sfx/Damage.wav"
     extend" I knew it!" with Shake((0, 0, 0, 0), 0.5, dist=5)
-    $ILY_p = '2'
+    # $ILY_p = '2'
     play sound "sfx/Damage.wav"
     extend" Virus intuition!" with Shake((0, 0, 0, 0), 0.5, dist=5)
     extend" I knew it, John's going to a date!" with Shake((0, 0, 0, 0), 0.5, dist=5)
-    $ ILY_p = '0'
+    # $ ILY_p = '0'
     $ ILYSprite('frown')
     j"We're meeting for business sake only,{w=.3}{nw}"
     extend" okay?"
@@ -536,10 +536,10 @@ label date1:
     j"Wait a minute."
     extend" How do I exit you?"
     i"You don't. FAIs are always active!"
-    $ ILY_p='2'
+    # $ ILY_p='2'
     extend" But don't worry about your RAM, I divided my body in half to reserve processing power!"
     "That's... kinda gross."
-    $ ILY_p='0'
+    # $ ILY_p='0'
     j"Okay."
     extend" I'm still shutting down."
     $ ILYSprite("O")
@@ -910,7 +910,7 @@ label date2:
         j"You serious?"
         $ Lisa_m = 'open3'
         l"What do we do now, ILY?"
-        $ ILY_p = '2'
+        # $ ILY_p = '2'
         i"We'll engage it in a Softwar!"
         play sound "sfx/Damage.wav"
         j"A Softwar? That's crazy! I wasn't ready for this!" with Shake((0, 0, 0, 0), 0.5, dist=5)
@@ -942,7 +942,7 @@ label date2:
             xalign 0.8 yalign 0.5 zoom 1.2
         show USBkun:
             xalign 0.12 yalign 0.5 xzoom -1.0
-        $ ILY_p = '0'
+        # $ ILY_p = '0'
 
         show ILY:
             xpos 0.0 xanchor 1.0
@@ -1060,7 +1060,7 @@ label date2:
         j"I'm only concerned about our assignment, Lisa."
         l"Hey, wasn't that fun for you in the least bit?"
         i"I'm sure it was, John!"
-        $ ILY_p = '2'
+        # $ ILY_p = '2'
         voice "voice/ILY03B - Clear as a gigabyte!.mp3"
         i"It's Clear as a gigabyte!"
         j"Hmph.. You Viruses are troublesome creatures."
@@ -1075,7 +1075,7 @@ label date2:
         extend"\nOr so I thought."
         "Just after I open the folder containing Lisa's files, my phone rings."
         play sound "sfx/sfx_coin_cluster6.wav"
-        $ ILY_p = '0'
+        # $ ILY_p = '0'
         $ ILYSprite('smile3')
         h"John, bro. My second PC just got hacked through my website."
         $ JohnSprite('frown')
@@ -1127,7 +1127,7 @@ label date2:
         stop music fadeout 1
         $ILY_e='2'
         i"Hmph..."
-        $ILY_p='2'
+        # $ILY_p='2'
         $ILY_m='smile3'
         $ILY_e='2'
         play music "bgm/ost/ILY's_Theme_game.mp3"
@@ -1135,9 +1135,9 @@ label date2:
         l"That's an unusual line.."
         j"Did you look into my anime collection?"
         i"FAIs are really quick, so yes."
-        $ILY_p='1'
+        # $ILY_p='1'
         i"As for your request, Lisa... The answer is yes! I did save the files from my vicitm's computers."
-        $ILY_p='0'
+        # $ILY_p='0'
         j"Wait, does this mean you can really return the files you stole?"
         $ILY_m='frown'
         play sound "sfx/Damage.wav"
@@ -1168,12 +1168,12 @@ label date2:
         "I'll be in huge trouble if she shows {i}my{/i} files...!"
         i"Sure thing, but we have to connect to the internet first."
         j"Hmph. Don't do anything suspicious."
-        $ILY_p='1'
+        # $ILY_p='1'
         i"Don't worry John, I won't."
         show screen notifwindow("{color=000}Connected to the Internet.{/color}")
         j"You're connected now. Show us!"
         hide screen notifwindow
-        $ILY_p='2'
+        # $ILY_p='2'
         i"Well then, let's begin!"
         i"HEART DRIVE ACTIVATE!"
         $okdesktop = False
@@ -1197,10 +1197,10 @@ label date2:
         i"Do the impossible, see the invisible, right?"
         j"Stop quoting from my favorite anime."
         i"I'm more than just a PC destroying virus now, aren't I?"
-        $ILY_p = '1'
+        # $ILY_p = '1'
         "Why would a virus do this? This is beyond crazy."
         "Moreover...  Who made her to be this way?"
-        $ILY_p = '0'
+        # $ILY_p = '0'
 
         j"With this, do you propose to stop further attacks to Hilbert and SDS?"
         i"Now that you're convinced that we have the files safe with me..."
@@ -1233,7 +1233,7 @@ label date2:
         $ okdesktop = True
         scene blue with dissolve
         show Folders
-        $ILY_p = '0'
+        # $ILY_p = '0'
         $ILY_w = False
         show ILY with dissolve:
             xalign 0.78
@@ -1253,19 +1253,19 @@ label date2:
         show ILY with move:
             xalign 0.5
         j"ILY, didn't you say that there were FAI antiviruses?"
-        $ILY_p = '1'
+        #$ILY_p = '1'
         i"Yes, I did say."
         j"Where do we get one?"
         $ILY_m = 'frown'
-        $ILY_p = '0'
+        #$ILY_p = '0'
         i"No, John."
         $ILY_m = 'smile'
-        $ILY_p = '2'
+        #$ILY_p = '2'
         extend" The proper question is \"Where do we {i}befriend{/i} one?\"."
         $ILY_m = 'smile3'
         j"... Okay, whatever."
         i"Remember, John. FAIs are people too!"
-        $ILY_p = '0'
+        #$ILY_p = '0'
         j"Sure. So where do I, er.. {i}befriend{/i} one?"
         $ILY_m = 'frown'
         $ILY_e = '1'
@@ -1552,7 +1552,7 @@ label date2:
         $ okdesktop = True
         scene blue with dissolve
         show Folders
-        $ILY_p = '0'
+        #$ILY_p = '0'
         $ILY_m = 'smile'
         $ILY_e = '2'
 
@@ -1585,7 +1585,7 @@ label date2:
         i"If you're thinking that I contacted my evil hacker creators, I'll destroy this PC!"
         "..."
         j"Fine."
-        $ILY_p = '0'
+        #$ILY_p = '0'
         $ILY_m = 'smile'
         $ILY_e = '2'
         label map_phase_chapter1:

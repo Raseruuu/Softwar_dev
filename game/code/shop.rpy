@@ -38,6 +38,7 @@ init python:
     shop_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in battleware_list}
 
     shop_inventory=[item for item in shop_item_list.values()]
+    
     for bwares in [item for item in shop_battleware_list.values()]:
         shop_inventory.append(bwares)
     def moneyvalue():
@@ -127,15 +128,15 @@ screen item_shop:
         vbox:
             null height 32
             viewport:
-                scrollbars "vertical"
-                mousewheel True
-                arrowkeys True
+                # scrollbars "vertical"
+                # mousewheel True
+                # arrowkeys True
                 pagekeys True
-                draggable True
+                # draggable True
                 hbox:
-                    grid 2 20:
+                    grid 2 2:
                         xspacing 20
-                        for shop_index, item in enumerate(shop_inventory):
+                        for shop_index, item in enumerate(shop_inventory[:4]):
                             frame:
                                 xsize 320
                                 ysize 175
@@ -206,26 +207,26 @@ screen item_shop:
                                                         action SetVariable("lastshop_item",shop_index),Call("buyitem",item)
 
                                     # text item.NAME
-                        for itemfiller in range(0,40-len(shop_inventory)):
+                        # for itemfiller in range(0,40-len(shop_inventory)):
 
-                            # frame:
-                            #     xsize 320
-                            #     ysize 175
-                                frame:
-                                    xsize 320
-                                    ysize 175
-                                    xpadding 20
-                                    ypadding 20
-                                    background Frame("gui/framefxn.png",10,10)
-                                    # hover_background Frame("gui/framefxn2.png",10,10)
-                                    hbox:
-                                        xalign 0.0 yalign 0.5
-                                        image  "images/Cards/items/empty.png"
+                        #     # frame:
+                        #     #     xsize 320
+                        #     #     ysize 175
+                        #         frame:
+                        #             xsize 320
+                        #             ysize 175
+                        #             xpadding 20
+                        #             ypadding 20
+                        #             background Frame("gui/framefxn.png",10,10)
+                        #             # hover_background Frame("gui/framefxn2.png",10,10)
+                        #             hbox:
+                        #                 xalign 0.0 yalign 0.5
+                        #                 image  "images/Cards/items/empty.png"
 
-                                        null width 180
+                        #                 null width 180
 
-                                        # text item.NAME yalign 0.5
-                                # action NullAction()
+                        #                 # text item.NAME yalign 0.5
+                        #         # action NullAction()
 
                     null width 10
     frame:

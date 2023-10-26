@@ -115,6 +115,7 @@ init python:
             )
     def While(condition,token_name,target,fxns):
         function1=fxns[0].code
+        codepart2=""
         if len(fxns)==2:
             function2=fxns[1]
             codepart2="\n  "+str(function2.code)
@@ -123,6 +124,18 @@ init python:
             "while("+str(condition)+"):\n  "+str(function1)+codepart2,
             "Execute enclosed functions while condition is True",
             (token_name,fxns,target)
+            )
+    def ForInRange(condition,iterations,fxns):
+        function1=fxns[0].code
+        codepart2=""
+        if len(fxns)==2:
+            function2=fxns[1]
+            codepart2="\n  "+str(function2.code)
+        return Fxn(
+            "ForInRange",
+            "for("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "Execute enclosed functions for each item in list",
+            (iterations,fxns)
             )
 
     def If(condition,token_name,target,fxns):
@@ -208,11 +221,12 @@ init python:
     """
 #Concatenations
     ##name              name                     TYPE               MAG        FXN List                      COST
-    FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),Burn(80)],                   0)
+    FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
+    FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
-    Concatenations=[FlameSaber,FrostBuster,Waveslash]
+    Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
@@ -256,7 +270,8 @@ init python:
 #Force
     BruteForce=   Card("BruteForce",     "Force",    1.0,     [Attack(),Boost("ATK",0.25)],      8)
     DataForce=    Card("DataForce",      "Force",    1.0,      [Boost("ATK",0.25),Boost("DEF",0.25)],       4)
-    DataDrill=    Card("DataDrill",       "Drill",   0.6,     [Attack(),Attack(),Attack()],       6)
+   
+    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [Attack(),Attack(),Attack()],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
@@ -277,7 +292,7 @@ init python:
     Flashbang=     Card("Flashbang",      "Bomb",        1.0,     [Attack(),GainToken("Saber",1)],   4)
     Gigamorph=     Card("Gigamorph",      "Power",       1.0,     [Attack(),GainToken("Saber",1)],   4)
     # DataBuster=    Card("DataBuster",      "Gun",        1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Bitbuster=     Card("Bitbuster",      "Gun",         1.0,     [Attack(),ReduceBit(1)],   2)
+    Bitbuster=     Card("Bitbuster",      "Gun",         0.5,     [Attack(),ReduceBit(1)],   4)
     MachineBuster= Card("MachineBuster",      "Gun",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     Excalibrium=   Card("Excalibrium",      "Sword",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     ILYFlash=      Card("ILYFlash",      "Power",        1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -329,20 +344,36 @@ init python:
         "name":"The Love Machine",
         "content":[
             VirusFlame,VirusFlame,
-            DataForce,Vslash,
+            VirusFlame,Vslash,
             SpamAtk,SpamAtk,
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
             DataSaber,DataSaber,
             ChocolateBar,ChocolateBar,
-            MailSaber,MailSaber,
-            BlockSaber,RecursiveSlash,
-            SaberDeflect,SaberDeflect,
-            SaberDeflect,BreakSaber,
-            HeartBurn,HeartBurn],
+            DataDrill,MailSaber,
+            VirusFlame,RecursiveSlash,
+            VirusFlame,SaberDeflect,
+            DataDrill,DataDrill,
+            DataDrill,HeartBurn],
         "plugins":[]
         }
-
+    deckalpha = {
+        "name":"The Love Machine",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,DataSaber,
+            Laserbeam,Laserbeam,
+            Laserbeam,Laserbeam,
+            SaberDeflect,DataSaber,
+            DataSaber,DataSaber,
+            SaberDeflect,SaberDeflect,
+            Katana,Katana,
+            Katana,Katana,
+            RecursiveSlash,SaberDeflect,
+            Katana,RecursiveSlash,
+            DataForce,DataForce],
+        "plugins":[]
+        }
     deckmelissa = {
         "name":"",
         "content":[
@@ -505,6 +536,7 @@ init python:
     #DEFINE CHARACTERS BY
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
+    ILYAlpha=FAI("ILY","Virus",2500,1250,500,500,deckalpha,[])
     Trojan=FAI("Trojan Horse","Virus",1000,500,300,250,decktrojan,[])
     Keylogger=FAI("Keylogger","Virus",500,250,300,250,deckkeylogger,[])
     Ransomware=FAI("Ransomware","Virus",600,300,300,250,deckransomware,[])

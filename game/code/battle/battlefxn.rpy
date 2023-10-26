@@ -70,10 +70,13 @@ label Damageenemy:
   elif currentcardTYPE == "Gun":
     play sound "sfx/Bust.wav"
   else:
-    if runnumber>1:
-      play sound "sfx/sfx_exp_short_hard8.wav"
+    $ attacknumber+=1
+    if attacknumber<=3:
+        play sound "sfx/sfx_exp_short_hard9.wav"
+    elif attacknumber>3:
+        play sound "sfx/sfx_exp_short_hard8.wav"
     else:
-      play sound "sfx/sfx_exp_short_hard9.wav"
+        play sound "sfx/sfx_exp_short_hard8.wav"
   call hurtnoise_Ave from _call_hurtnoise_Ave
   python:
     if enemySP>0:
@@ -104,7 +107,11 @@ label Damageenemy:
     xoffset 0 yoffset 0
     linear 0.05 zoom 1.0
 
-  $ renpy.pause(0.6,hard=True)
+#   $ renpy.pause(0.6,hard=True)
+  if "Drill" in currentcardTYPE:
+    $ renpy.pause(0.2,hard=True)
+  else:
+    $ renpy.pause(0.6,hard=True)
   hide damageeffect
   return
 label DamageSPplayer:
@@ -224,7 +231,10 @@ label Burnenemy:
       zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
       linear 0.2 zoom 1.0 alpha 0.0
-    $ renpy.pause(0.6,hard=True)
+    if "Drill" in currentcardTYPE:
+        $ renpy.pause(0.2,hard=True)
+    else:
+        $ renpy.pause(0.6,hard=True)
     hide Brnsts
     return
 label ReduceBitself:
@@ -291,7 +301,11 @@ label Burnself:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
       linear 0.2 zoom 1.0 alpha 0.0
-    $ renpy.pause(0.6,hard=True)
+    # $ renpy.pause(0.6,hard=True)
+    if "Drill" in currentcardTYPE:
+        $ renpy.pause(0.2,hard=True)
+    else:
+        $ renpy.pause(0.6,hard=True)
     hide Brnsts
     return
 label Emailenemy:
@@ -306,7 +320,7 @@ label Emailenemy:
     hide Emailsts
     return
 label GiveToken:
-    play sound "sfx/sfx_coin_cluster6.wav"
+    play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
@@ -327,7 +341,7 @@ label GiveToken:
             jump tokenquant_loop
     return
 label GainTokenPlayer:
-    play sound "sfx/sfx_coin_cluster6.wav"
+    play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
@@ -348,7 +362,7 @@ label GainTokenPlayer:
             jump tokenquant_loop2
     return
 label GainTokenEnemy:
-    play sound "sfx/sfx_coin_cluster6.wav"
+    play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
@@ -444,6 +458,29 @@ label WhileTokenInStatusEnemy:
                 if block_count<len(block_functions):
                     jump block_loop1
                 # jump WhileLoop
+    return
+label ForInRangePlayer:
+#Enemy Activates For Loop
+    $ runfxnstring = currentcardFXN[fxnindex].name
+    $ FXN=currentcardFXN[fxnindex]
+    $ for_iterations=FXN.params[0]
+    $ block_functions=FXN.params[1]
+    # $ targetsts=FXN.params[2]
+    # label WhileLoop:
+    $ for_index = 0
+    while for_index < for_iterations:
+        # if token_name in PlayerSts:
+        $ block_count = 0
+        label block_loop8:
+            $ runfxnstring = block_functions[block_count].name
+            $ currentcard_fxn_params=block_functions[block_count].params
+            call functioneffects(runfxnstring)
+            $ block_count+=1
+            if block_count<len(block_functions):
+                jump block_loop8
+                # jump WhileLoop
+        $ for_index+=1  
+    
     return
 label IfTokenInStatusEnemy:
 #Enemy Activates If
@@ -732,7 +769,10 @@ label Damageplayer:
 
   with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
   call hurtnoise from _call_hurtnoise_1
-  $ renpy.pause(0.6,hard=True)
+  if "Drill" in currentcardTYPE:
+    $ renpy.pause(0.2,hard=True)
+  else:
+    $ renpy.pause(0.6,hard=True)
   return
 transform ringtransform:
     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
@@ -846,6 +886,8 @@ label FinishingFlash(dialogue):
     return
 label Execution:
     $ runnumber = 0
+    $ attacknumber = 0
+    
     #Index of looper
     call Concatenation from _call_Concatenation
     $iterations =len(playerbattlecode)
@@ -1100,6 +1142,7 @@ init python:
         "BurnSelf":"Burnself",
         "If":"IfTokenInStatusPlayer",
         "While":"WhileTokenInStatusPlayer",
+        "ForInRange":"ForInRangePlayer",
         "RemoveToken":"RemoveTokenPlayer",
         "BoostATK":"BoostATK",
         "BoostDEF":"BoostDEF",
@@ -1145,7 +1188,7 @@ init python:
         "Defend":"Shieldenemy",
         "Recover":"Recoverenemy",
         "Burn":"Burnself",
-        "GiveToken":"GiveTokenPlayer",
+        "GiveToken":"GainTokenPlayer",
         "GainToken":"GainTokenEnemy",
         "BurnSelf":"Burnenemy",
         "If":"IfTokenInStatusEnemy",

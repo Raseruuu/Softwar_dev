@@ -42,7 +42,7 @@ init python:
     Strinnium = Item("Strinnium", "Material","Essence of string data.\n Connects things together.",[])
     Duplirium = Item("Duplirium", "Material","Gives Viruses the ability to duplicate.",[])
     Conflagrium = Item("Conflagrium", "Material","Material that stores Data Fire.",[]) #FIRE ELEMENT
-    Combustium = Item("Combustium", "Material","Digital gunpowder.",[])
+    Combustium = Item("Combustium", "Material","Digital gunpowder.",[]) #Gunpowder
     Streamine = Item("Streamine", "Material","Azure fluid data.",[]) #WATER ELEMENT
     Neuron = Item("Neuron", "Material","Cybernetic brain cell.",[]) #Brain
     Hematocyte = Item("Hematocyte", "Material","Cybernetic blood cell.",[]) #Blood
@@ -58,5 +58,7 @@ init python:
         "Worm":[Duplirium,Lambdium],
         "Spyware":[Photoceptor,Streamine],
         "Vira":[Hematocyte,Informium],
+        "Code Red":[Lambdium,Lambdium],
+        "ILY":[Datanium,Hematocyte],
 
     }

@@ -251,29 +251,47 @@ style input:
 
 screen choice(items):
     style_prefix "choice"
-
-    vbox:
+    #TODO: MAKE IT LOOK LIKE A PROMPT WINDOW
+    
+    hbox:
+        
+        
         for choice in items:
-            textbutton choice.caption action choice.action  hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
+            textbutton choice.caption :
+                xmaximum 400
+                action choice.action  
+                hover_sound "sound/hover.wav" 
+                activate_sound "sound/click.wav"
 
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
 define config.narrator_menu = True
-
-
-style choice_vbox is vbox:
-    xalign 0.5
-    ypos 270
-    yanchor 0.5
-
-    spacing gui.choice_spacing
+style choice_frame is frame:
+    
+    yalign 0.5
+    top_padding 100
+    xsize 500
+    background Frame("gui/frame3.png", 72, 32)
+style choice_hbox is hbox:
+    
+    ypos 0.9
+    xpos 0.7
+    xanchor 1.0
+    # spacing gui.choice_spacing
 
 style choice_button is button:
-    properties gui.button_properties("choice_button")
+    top_padding 20
+    bottom_padding 20
+    left_padding 20
+    right_padding 20
+    
+    background Frame("gui/framebtn.png", 32, 32)
+    hover_background Frame("gui/framebtn_hover.png", 32, 32)
+    # properties gui.button_properties("button")
 
-style choice_button_text is text_nooutline:#button_text:
-    properties gui.button_text_properties("choice_button")
+# style choice_button_text is text_nooutline:#button_text:
+#     properties gui.button_text_properties("button")
 
 
 ## Quick Menu screen ###########################################################
@@ -843,7 +861,7 @@ screen file_slots(title):
 
                 ## range(1, 10) gives the numbers from 1 to 9.
                 for page in range(1, 10):
-                    textbutton "[page]" action FilePage(page) ypos
+                    textbutton "[page]" action FilePage(page) #ypos 
 
                 textbutton _(">") action FilePageNext()
 

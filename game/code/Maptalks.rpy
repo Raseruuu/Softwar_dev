@@ -140,9 +140,9 @@ label maptalk_Bella_1:
     "Bella""Please tell me if you find her!"
     return
 label maptalk_Heart_1:
-    i"Would you like to restore HP?"
+    # i"Would you like to restore HP?"
     menu:
-        "Would you like to restore HP?"
+        i"Would you like to restore HP?"
         "Yes":
           $playerHP=playerHPMax
           play sound "sfx/heal.ogg"

@@ -333,22 +333,29 @@ image ILYside2:
     LiveCrop((200,60, 440,565), "ILYside3")
 
 image ILYside3:
-    "ILYFull"
+    "ILYFullBody"
     zoom 0.9
 
 image Icon_ILY:
-    LiveCrop((230,100, 440,565), "ILYFull")
+    LiveCrop((230,100, 440,565), "ILYFullBody")
     zoom 0.22
 
 
 image ILY:
-    "ILYFull"
+    "ILYFullBody"
     zoom 0.5
     yalign 0.1
+    # linear 1.0 yoffset -10
+    # linear 1.0 yoffset 10
+    # repeat
+
+image ILYold:
+    "ILYFull"
+    zoom 0.5
+    yalign 0.1 xalign 0.0
     linear 1.0 yoffset -10
     linear 1.0 yoffset 10
     repeat
-
 image ILYnew:
     "ILYFullBody"
     zoom 0.5
@@ -411,9 +418,9 @@ image ILYFullBody:
     #(0, 0), "ILY_p[ILY_p].png",
     (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
     (0, 0), "ILYEyes[ILY_p]",#eyes
+    (0, 0), At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5)),
     (0, 0), "images/Characters/ILY/ILY_heart0.png",
-    (0, 0), ConditionSwitch(
-        "((ILY_p=='1') or (ILY_p=='0'))", WhileSpeaking(
+    (0, 0), WhileSpeaking(
             "ILY",
             ConditionSwitch(
                 "('smile' in ILY_m)","ILYMouthsmile",
@@ -421,15 +428,6 @@ image ILYFullBody:
                 ),
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),
-        "(ILY_p=='2')", WhileSpeaking(
-                            "ILY",
-                            ConditionSwitch(
-                                "('smile' in ILY_m)","ILYMouthsmile2",
-                                "('smile' not in ILY_m)","ILYMouthfrown2"
-                                ),
-                            "images/Characters/ILY/ILY_m2[ILY_m].png"
-                            )
-        )
     )
     
 image ILYVtuber:
