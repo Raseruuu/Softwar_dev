@@ -30,7 +30,7 @@ label prescript2:
 
 
 label script2:
-
+    ""
 
     #Approaching a road blocked by Antivirus: Bitwulf
     m"Watch out, they're on patrol on these hours."

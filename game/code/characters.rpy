@@ -416,9 +416,10 @@ image ILYFullBody:
     (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
     (0, 0), ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()), #outfit
     #(0, 0), "ILY_p[ILY_p].png",
-    (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
+    
     (0, 0), "ILYEyes[ILY_p]",#eyes
     (0, 0), At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5)),
+    (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
     (0, 0), "images/Characters/ILY/ILY_heart0.png",
     (0, 0), WhileSpeaking(
             "ILY",

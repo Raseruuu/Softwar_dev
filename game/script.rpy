@@ -350,19 +350,33 @@ label test:
 label Vtuber:
 
     $ game_over = False
+    play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
     while not game_over:
-        show John:
-            yalign 0.0
+
+
+        scene cafeoutside2
+        ""
+        $ ILY_m='smile'
+        show ILY:
+            # yalign 0.0
+            xalign 0.5
         call screen speakbuttons
+        # i "Thank You For Watching!"
+        # show ILY:
+        #     linear 0.2 yoffset -30
+        #     linear 0.2 yoffset 0
+        # $ ILY_m='smile3'
+    
+        # i "Don't forget to Like, Share and Subscribe!!"
 
     return
 screen speakbuttons:
 
-    key "K_DOWN" action SetVariable("John_e","normal")
-    key "K_UP" action SetVariable("John_e","up")
-    key "K_LEFT" action SetVariable("John_m","frown")
-    key "K_RIGHT" action SetVariable("John_m","smile")
-    key "K_SPACE" action SetVariable("speaking","John")
-    key "repeat_K_SPACE" action SetVariable("speaking","John")
+    key "K_DOWN" action SetVariable("ILY_e","2")
+    key "K_UP" action SetVariable("ILY_e","1")
+    key "K_LEFT" action SetVariable("ILY_m","frown")
+    key "K_RIGHT" action SetVariable("ILY_m","smile3")
+    key "K_SPACE" action SetVariable("speaking","ILY")
+    key "repeat_K_SPACE" action SetVariable("speaking","ILY")
     key "keyup_K_SPACE" action SetVariable("speaking",None)
     key "K_ESCAPE" action SetVariable("game_over",True),Return()
