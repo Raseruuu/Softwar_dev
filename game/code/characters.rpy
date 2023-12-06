@@ -1609,42 +1609,38 @@ image Stoned_msad:
 ## Bitwulf
 #########
 
-# image Stoned_eyes:
-#     "images/Characters/Stoned/Stoned_eyes.png"
-#     pause 1.0
-#     choice:
-#         "images/Characters/Stoned/Stoned_eyes.png"
-#         pause 2.0
-#     choice:
-#         "images/Characters/Stoned/Stoned_eyes.png"
-#         pause 3.0
-#     choice:
+image Bitwulf_eyes:
+    "images/Characters/Bitwulf/Bitwulf_eyes.png"
+    pause 1.0
+    choice:
+        "images/Characters/Bitwulf/Bitwulf_eyes.png"
+        pause 2.0
+    choice:
+        "images/Characters/Bitwulf/Bitwulf_eyes.png"
+        pause 3.0
+    choice:
 
-#         "images/Characters/Stoned/Stoned_eyes2.png"
-#         pause 0.1
-#         "images/Characters/Stoned/Stoned_eyes3.png"
-#         pause 0.1
-#         "images/Characters/Stoned/Stoned_eyes2.png"
-#         pause 0.1
+        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        pause 0.1
+        "images/Characters/Bitwulf/Bitwulf_eyes3.png"
+        pause 0.1
+        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        pause 0.1
 
-#     choice:
-#         "images/Characters/Stoned/Stoned_eyes2.png"
-#         pause 0.05
-#         "images/Characters/Stoned/Stoned_eyes3.png"
-#         pause 0.1
-#         "images/Characters/Stoned/Stoned_eyes2.png"
-#         pause 0.05
-#         "images/Characters/Stoned/Stoned_eyes.png"
-#         pause 0.1
+    choice:
+        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        pause 0.05
+        "images/Characters/Bitwulf/Bitwulf_eyes3.png"
+        pause 0.1
+        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        pause 0.05
+        "images/Characters/Bitwulf/Bitwulf_eyes.png"
+        pause 0.1
 
-#         repeat 2
-#     repeat
+        repeat 2
+    repeat
 
-# image Stoned_Guns:
-#     "images/Characters/Stoned/Stoned_Guns.png"
-#     linear 1.0 yoffset 40
-#     linear 1.0 yoffset 0
-#     repeat
+
 image Bitwulf:
     LiveComposite(
     (761,1695),
