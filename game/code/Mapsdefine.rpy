@@ -62,7 +62,7 @@ init -3 python:
         newmap.append([ch for ch in rows])
 
       return (newmap)
-    stage0 = [b
+    stage0 = [
         '1111111',
         '1000001',
         '1000001',
