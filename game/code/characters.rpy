@@ -342,9 +342,12 @@ image Icon_ILY:
 
 
 image ILY:
+    mesh True
+    subpixel True
     "ILYFullBody"
     zoom 0.5
-    yalign 0.1
+    yanchor 0.52
+    ypos 1.0
     # linear 1.0 yoffset -10
     # linear 1.0 yoffset 10
     # repeat
@@ -409,8 +412,9 @@ transform ilyfix(deg):
     xoffset 60
     xpos 0
     ypos 0
-image ILYFullBody:
-    LiveComposite(
+image ILYFullBodyOld:
+    
+    Composite(
     (0.75, 0.75), #(544,600),
     (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
     (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
@@ -430,6 +434,53 @@ image ILYFullBody:
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),
     )
+layeredimage ILYFullBody:
+    always:
+        
+        At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)) #pose
+    # group clothes:
+    attribute underwear default:
+            ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
+    group outfit:
+        attribute outfit default:
+            ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
+    always:
+        "ILYEyes[ILY_p]"
+    always:
+        At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5))
+    always:
+        "images/Characters/ILY/ILY_e1[ILY_e].png"
+    always:
+        "images/Characters/ILY/ILY_heart0.png"
+    always:
+        WhileSpeaking(
+            "ILY",
+            ConditionSwitch(
+                "('smile' in ILY_m)","ILYMouthsmile",
+                "('smile' not in ILY_m)","ILYMouthfrown"
+                ),
+            "images/Characters/ILY/ILY_m[ILY_m].png"
+            )
+    # Composite(
+    # (0.75, 0.75), #(544,600),
+    # (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
+    # (0, 0), 
+    # (0, 0), 
+    # #(0, 0), "ILY_p[ILY_p].png",
+    
+    # (0, 0), "ILYEyes[ILY_p]",#eyes
+    # (0, 0), At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5)),
+    # (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
+    # (0, 0), "images/Characters/ILY/ILY_heart0.png",
+    # (0, 0), WhileSpeaking(
+    #         "ILY",
+    #         ConditionSwitch(
+    #             "('smile' in ILY_m)","ILYMouthsmile",
+    #             "('smile' not in ILY_m)","ILYMouthfrown"
+    #             ),
+    #         "images/Characters/ILY/ILY_m[ILY_m].png"
+    #         ),
+    # )
     
 image ILYVtuber:
     LiveComposite(

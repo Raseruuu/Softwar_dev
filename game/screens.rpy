@@ -1623,13 +1623,15 @@ screen quick_menu():
         # textbutton _("Menu") action ShowMenu()
     image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
     hbox:
-        style_prefix "quick"
+        # style_prefix "quick"
 
         xalign 0.05
         yalign 0.0
         # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
         textbutton _("{b}SOFTWAR{/b}")
         # textbutton _("History") action ShowMenu('history')
+        textbutton _("Back") action Rollback()
+
         textbutton _("Save") action ShowMenu('save')
         textbutton _("Load") action ShowMenu('load')
         textbutton _("Settings") action ShowMenu('preferences')

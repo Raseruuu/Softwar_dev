@@ -1,3 +1,7 @@
+transform newdissolve:
+    # mesh True
+    alpha 0.0
+    linear 1.0 alpha 1.0 
 
 label script1:
     # jump test
@@ -170,7 +174,7 @@ label script1:
     hide whitewindow
     hide dlheart
 
-    show ILY with pixellate
+    show ILY at newdissolve
     play music "bgm/ost/ILY's_Theme_game.mp3"  fadeout 1 loop
     $ persistent.has_met_ILY=True
     i "HELLO, USER! I am the ILOVEYOU virus!"
