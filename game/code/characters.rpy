@@ -343,7 +343,7 @@ image Icon_ILY:
 
 image ILY:
     mesh True
-    subpixel True
+
     "ILYFullBody"
     zoom 0.5
     yanchor 0.52

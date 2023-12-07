@@ -248,21 +248,51 @@ style input:
 ## and action fields.
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
+init -1 python:
+    # we use display.get_info() because it persists between reloads so we don't end up with an endless loop
+    if getattr(renpy.display.get_info(), 'oldmenu', None) is None:
+        renpy.display.get_info().oldmenu = renpy.exports.menu
 
+    # append " (disabled)" to any choices that fail their conditions
+    # while also pretending that they've all succeeded and calling the built-in menu
+    def menu_override(items, set_expr,*args,**kwargs):
+        items = [ (renpy.exports.substitute(label) + (" (disabled)" if not renpy.python.py_eval(condition) else ""), "True", value)
+                  for label, condition, value in items ]
+
+        return renpy.display.get_info().oldmenu(items, set_expr)
+
+    # intercept the built-in menu
+    renpy.exports.menu = menu_override
 screen choice(items):
     style_prefix "choice"
     #TODO: MAKE IT LOOK LIKE A PROMPT WINDOW
-    
     hbox:
-        
-        
         for choice in items:
-            textbutton choice.caption :
-                xmaximum 400
-                action choice.action  
-                hover_sound "sound/hover.wav" 
-                activate_sound "sound/click.wav"
+            $ hiddenchoice = "hidden" in choice.kwargs.keys()
+            $ print(choice.kwargs.keys())
+            if hiddenchoice:
 
+                pass
+            else:
+                if choice.action:
+                    if "(disabled)" in choice.caption:
+                        
+                        textbutton choice.caption.replace("(disabled)","") :
+                            xmaximum 400
+                    else:
+                        textbutton choice.caption :
+                            xmaximum 400
+                            action choice.action  
+                            hover_sound "sound/hover.wav" 
+                            activate_sound "sound/click.wav"
+                         
+                else:
+                    textbutton choice.caption :
+                            xmaximum 400
+                            action choice.action  
+                            hover_sound "sound/hover.wav" 
+                            activate_sound "sound/click.wav"
+            
 
 ## When this is true, menu captions will be spoken by the narrator. When false,
 ## menu captions will be displayed as empty buttons.
@@ -276,8 +306,8 @@ style choice_frame is frame:
 style choice_hbox is hbox:
     
     ypos 0.9
-    xpos 0.7
-    xanchor 1.0
+    xpos 0.5
+    xanchor 0.5
     # spacing gui.choice_spacing
 
 style choice_button is button:
@@ -320,7 +350,9 @@ screen quick_menu():
             xalign 0.05
             yalign 0.0
             # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
-            textbutton _("{b}SOF{/b}") keyboard_focus False
+            textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
+            textbutton _("Back") action Rollback()
+        
             # textbutton _("History") action ShowMenu('history')
             textbutton _("Save") action ShowMenu('save') keyboard_focus False
             textbutton _("Load") action ShowMenu('load') keyboard_focus False

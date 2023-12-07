@@ -174,7 +174,7 @@ label script1:
     hide whitewindow
     hide dlheart
 
-    show ILY at newdissolve
+    show ILY with pixellate
     play music "bgm/ost/ILY's_Theme_game.mp3"  fadeout 1 loop
     $ persistent.has_met_ILY=True
     i "HELLO, USER! I am the ILOVEYOU virus!"
@@ -253,8 +253,8 @@ label script1:
       else:
           play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
       menu:
-        "What [q1_else]do I want to ask?"
-        "ILY" if not q1_read_ily:
+        "What [q1_else]do I want to ask about?"
+        "ILY" if q1_read_ily == False:
             $ q1_else="else "
             $ ILYSprite("smile3")
             $ JohnSprite("normal")
@@ -319,7 +319,7 @@ label script1:
             j "So you're suggesting that I become a hacker?"
             play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg"  fadeout 1 loop
             i "I'm not suggesting. It is your destiny."
-            "Serious words for someone that looks so cute."
+            "Serious words coming from someone with a deeply unserious character design."
             i "[plrname], I will assist you with any digital matters as your assistant... And as a hacking tool."
             i "With me, you can hack another system, for whatever reason."
             i "It isn't that simple, though."
@@ -396,7 +396,7 @@ label script1:
             $q1_read_pc = True
             jump question1_demo
 
-        "The Grid" if q1_read_pc and not q1_read_grid:
+        "The Grid" (hidden=True) if q1_read_pc and not q1_read_grid:
             $ ILYSprite("smile3")
             j "What's this Grid all about?"
             i "The Grid is the name for the place we cyberpeople step into!"
@@ -427,7 +427,7 @@ label script1:
             $q1_read_grid = True
             jump question1_demo
 
-        "Softwar" if q1_read_ily and q1_read_grid:
+        "Softwar" (hidden=True) if q1_read_ily and q1_read_grid:
             j "Alright. Tell me about Softwar. You sounded serious when you mentioned it earlier."
 
             i "Only FAIs can take part in Softwars. They are battles between programs."
@@ -500,7 +500,7 @@ label script1:
             $ ILYSprite("smile3")
             i "Of course you can trust me! Trust is an essential part of love!"
 
-            # jump demo_battle
+        
 
 label date1:
     j"There are some things you have to do for me to trust you."
