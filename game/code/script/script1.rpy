@@ -230,7 +230,7 @@ label script1:
     #    yzoom 0.0
     #    linear 0.1 yzoom 1.0
 
-    "I have to see it through... This \"Future Artificial Intelligence\"!"
+    "I'm curious about... This \"Future Artificial Intelligence\"!"
     # show John eyeszoom:
     #    linear 0.1 yzoom 0.0
     # pause 0.1
@@ -246,8 +246,16 @@ label script1:
     $ q1_read_ily  = False
     $ q1_read_pc   = False
     $ q1_read_grid = False
-
+    
+    $ q_TheGrid = "???"
+    $ q_Softwar = "???"
+    
     label question1_demo:
+      
+      $ q_TheGrid = "The Grid" if q1_read_pc and not q1_read_grid else "???" 
+      if q1_read_grid:
+        $ q_TheGrid = "The Grid"
+      $ q_Softwar = "Softwar" if q1_read_ily and q1_read_grid else "???" 
       if q1_read_ily and q1_read_grid:
           play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadeout 1 loop
       else:
@@ -396,7 +404,7 @@ label script1:
             $q1_read_pc = True
             jump question1_demo
 
-        "The Grid" (hidden=True) if q1_read_pc and not q1_read_grid:
+        "[q_TheGrid]" if q1_read_pc and not q1_read_grid:
             $ ILYSprite("smile3")
             j "What's this Grid all about?"
             i "The Grid is the name for the place we cyberpeople step into!"
@@ -427,7 +435,7 @@ label script1:
             $q1_read_grid = True
             jump question1_demo
 
-        "Softwar" (hidden=True) if q1_read_ily and q1_read_grid:
+        "[q_Softwar]" if q1_read_ily and q1_read_grid:
             j "Alright. Tell me about Softwar. You sounded serious when you mentioned it earlier."
 
             i "Only FAIs can take part in Softwars. They are battles between programs."
