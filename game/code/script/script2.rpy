@@ -26,11 +26,13 @@ label prescript2:
     #John thinks to himself about the Grid
     
 
-    ##Arrived at a checkpoint: meet Melissa
-
+    
 
 label script2:
+    $ map_active=False
+    hide screen mapB
     ""
+    ##Arrived at a checkpoint: meet Melissa
 
     #Approaching a road blocked by Antivirus: Bitwulf
     m"Watch out, they're on patrol on these hours."
