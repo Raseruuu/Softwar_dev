@@ -27,6 +27,7 @@ define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40, image
 define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")
 define a = Character("Ave",callback=speaker("Ave"), color='#ff8a00', image ="Ave_side", ctc="ctc", ctc_position="fixed")
 define m = Character("Melissa",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
+define mu = Character("???",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
 define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
 define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#f00', ctc="ctc", ctc_position="fixed")
 define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00', ctc="ctc", ctc_position="fixed")
@@ -90,6 +91,11 @@ init -1 python:
     globals()["Melissa_e"] = "up"
     globals()["Melissa_m"] = "smile"
     globals()["Melissa_w"] = True
+    
+    globals()["Bitwulf_e"] = "normal"
+    globals()["Bitwulf_m"] = "1"
+    globals()["Bitwulf_w"] = True
+
     globals()["Stoned_e"] = "normal"
     globals()["Stoned_m"] = "happy"
     globals()["Stoned_w"] = True
@@ -348,9 +354,9 @@ image ILY:
     zoom 0.5
     yanchor 0.52
     ypos 1.0
-    # linear 1.0 yoffset -10
-    # linear 1.0 yoffset 10
-    # repeat
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
 
 image ILYold:
     "ILYFull"
@@ -376,8 +382,8 @@ image ILY small:
     "ILYFullBody"
     zoom 0.3
     yalign 0.3
-    linear 1.0 yoffset -10
-    linear 1.0 yoffset 10
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
     repeat
 # image ILYLayered:
 image ILYFull:
@@ -1671,19 +1677,19 @@ image Bitwulf_eyes:
         pause 3.0
     choice:
 
-        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_midclose.png"
         pause 0.1
-        "images/Characters/Bitwulf/Bitwulf_eyes3.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_closed.png"
         pause 0.1
-        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_midclose.png"
         pause 0.1
 
     choice:
-        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_midclose.png"
         pause 0.05
-        "images/Characters/Bitwulf/Bitwulf_eyes3.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_closed.png"
         pause 0.1
-        "images/Characters/Bitwulf/Bitwulf_eyes2.png"
+        "images/Characters/Bitwulf/Bitwulf_eyes_midclose.png"
         pause 0.05
         "images/Characters/Bitwulf/Bitwulf_eyes.png"
         pause 0.1
@@ -1694,45 +1700,47 @@ image Bitwulf_eyes:
 
 image Bitwulf:
     LiveComposite(
-    (761,1695),
+    (5951,6324),
+    (0,0),"images/Characters/Bitwulf/Bitwulf_eyes.png",
     (0,0),"images/Characters/Bitwulf/Bitwulf_base.png",
-    (0,0),"images/Characters/Bitwulf/Bitwulf_e[Bitwulf_e].png",
+    # (0,0),"images/Characters/Bitwulf/Bitwulf_e[Bitwulf_e].png",
     (0,0),"Bitwulf_eyes",
-    (0,0),WhileSpeaking("Bitwulf",("Bitwulf_m[Bitwulf_m]"),"images/Characters/Bitwulf/Bitwulf_m[Bitwulf_m].png"),
-    (0,0),"images/Characters/Bitwulf/Bitwulf_glass.png"
+    (0,0),WhileSpeaking("Bitwulf",("Bitwulf_jaw[Bitwulf_m]"),"images/Characters/Bitwulf/Bitwulf_jaw[Bitwulf_m].png"),
+    (0,0),"images/Characters/Bitwulf/Bitwulf_fang.png",
+    # (0,0),"images/Characters/Bitwulf/Bitwulf_glass.png"
     # (0,0),"Bitwulf_Guns"
     )
-    zoom 0.95 xalign 0.5 yanchor 0.05 ypos 0.0
+    zoom 0.25 xalign 0.5 yanchor 0.05 ypos 0.0
 image Bitwulfsmall:
     "Bitwulf"
     zoom 0.80
 image side Bitwulf_side:
     ConditionSwitch(
-            "Bitwulf_w==True",(LiveCrop((327,150,300,385),"Bitwulfsmall")),
+            "Bitwulf_w==True",(LiveCrop((260,90,300,385),"Bitwulfsmall")),
             "Bitwulf_w==False",Null()
         )
     zoom 0.56
 image Bitwulf_icon:
-    (LiveCrop((327,150,280,280),"Bitwulfsmall"))
+    (LiveCrop((260,90,280,280),"Bitwulfsmall"))
     zoom 0.4
-image Bitwulf_mhappy:
+image Bitwulf_jaw1:
 
-    "images/Characters/Bitwulf/Bitwulf_mopenU.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw1.png"
     pause .16
-    "images/Characters/Bitwulf/Bitwulf_mhappy.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw2.png"
     pause .08
-    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw3.png"
     pause .16
-    "images/Characters/Bitwulf/Bitwulf_mhappy.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw2.png"
     pause .08
     repeat
 image Bitwulf_msad:
-    "images/Characters/Bitwulf/Bitwulf_mopen2.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw1.png"
     pause .08
-    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw2.png"
     pause .08
-    "images/Characters/Bitwulf/Bitwulf_mopenO.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw3.png"
     pause .08
-    "images/Characters/Bitwulf/Bitwulf_msad.png"
+    "images/Characters/Bitwulf/Bitwulf_jaw2.png"
     pause .08
     repeat

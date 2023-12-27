@@ -2,15 +2,6 @@
 label prescript2:
     $ map_active=False
     hide screen mapB
-    i"This path takes us to Connecht City Cyber Square!"
-    j"To the west?"
-    "It's just like in real life!"
-    "So this is what the GRID's like."
-    "The shape of this map... it feels awfully familiar."
-    "A highway next to a \"Cafe\"..."
-    "residential area down south, a tall building just around a crossroad, a monument at the center of a rotunda road..."
-    "It almost exactly resembles the area near my place, but the components are different."
-    "There aren't any cars, not as much people, and no actual stores or restaurants. What would you expect from a cyber town?"
     j"That means going North from there leads to SDS office."
     i"you figured that out already?"
     
@@ -31,34 +22,142 @@ label prescript2:
 label script2:
     $ map_active=False
     hide screen mapB
+
     ""
+
     ##Arrived at a checkpoint: meet Melissa
+    # scene battlebg
+    # show battlebg2
 
-    #Approaching a road blocked by Antivirus: Bitwulf
-    m"Watch out, they're on patrol on these hours."
-    m"I'll walk ahead of you and take a peek."
-    i"??"
-    # Melissa returns
-    m"It's a dead end here.."
-    m"It's Bitwulf. An Antivirus. They've made it their job to look for Viruses and fight them in Softwars."
-
-
-
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    i "Looks like this path takes us to Connecht City Cyber Square!"
+    "A gate to the west from my home location... that sounds a lot like in real-life."
+    "This Cyber Square area... must be a virtual version of the actual Square crossroad at the middle of Connecht."
+    "Just a few blocks away on the way to the island mount... is the IRL SDS office." 
+    j "So, You think this path is supposed to take us to SDS area?"
+    i "Oh? How would you know that?" 
+    j "The virtual world here seems to mimic the real world locations. Albeit the components of each area is different."
+    j "Like, this place is pretty empty in comparison!! And where are the cars?"
+    i "... nice observation, I wouldn't know that!"
+    i "Hmmm... "
+    "ILY pauses in the middle of traveling to the gate."
+    show Bitwulf 
+    i "Is that a dog?"
+    j "A very futuristic-looking guard dog, it would seem... "
+    i "So it is a dog! I wanna pet it!"
+    "That's a very human response, coming from you. Impressive."
+    #Approaching Bitwulf Antivirus
+    b "Virus Detected!! Executing Termination Protocol..."
+    $ Melissa_e="down"
+    $ Melissa_m="open3"
+    
+    mu "Watch out! they're on patrol on these hours."
+    "Huh? who was that? It's another avatar!"
+    "Suddenly, a flash of blue lightning strikes where ILY was standing!"
+    "I was about to raise my voice in surprise, until I realized she was safe from it."
+    mu "That was close!"
+    i "An attack!!!"
+    scene black
+    "That was quick! Just who is this avatar?"
+    "This blue-haired avatar just snatched ILY away from that lightning strike.."
+    mu "We need to keep moving!"
+    i "What's going on?"
+    mu "That was Bitwulf. An Antivirus. They've made it their job to look for Viruses and fight them in Softwars."
+    i "I didn't realize Antiviruses would be out here in the open like this!"
+    i "That one was quite aggressive.."
+    i "And you are a..."
+    "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate"
+    mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
+    "Non-viruses? that means..."
+    #unlock Shady Alley
+    mu "I should introduce myself..."
+    "*Gulps*"
+    m "I am the Melissa Virus. We're birds of a feather!"
+    "Birds of a feather, huh? Wait, what does this mean for me?"
+    "It seems like.. viruses are able to identify each other? I wonder how that works."
+    "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
+    m "We viruses, we look out for each other out here. You can call me your big sister!"
+    i "Big sister... Melissa!"
+    j "(ILY! You're too quick to trust her, she's still a virus, you know!)"
+    i "(Wait, I got this! She still saved me back there! I should at least...)"
+    i "Thank you Melissa!!"
+    m "Ohoho! You're welcome."
+    m "I understand that you are new here? I can tell."
+    "How? body language? The fact that we didn't know about ...Bitwulf?"
+    "These FAIs aren't to be taken lightly.."
+    i "(She's right.. I am a newbie...)"
+    j "(You're not the only newbie here, ILY. the entire GRID is also new, right?)"
+    i "Oh no!... this cyberworld is pretty new, that's all!"
+    m "You are an odd one, {i}we viruses are the original residents here!{/i}"
+    "What does she mean by that?"
+    m "We are FAI Viruses. The GRID has been our home since its inception."
+    m "This is our world. The Antiviruses are taking it from us!"
+    "Melissa makes the face of a fighter. A frown forms and it looks like she is mad."
+    "Also... what was the original purpose of the GRID? she makes it sound like it was made {i}for viruses.{/i}"
+    m "We... don't have the freedom we used to have, and it's because of them."
+    m "Bitwulf is just one of them, they've deployed about 7 other powerful antiviruses around Connecht."
+    "They? Multiple Antiviruses? She makes it sound like each one has a different name." 
+    i "Do you hate the antiviruses?"
+    "What's ILY doing with that kind of query? Programs... Can't love or hate things."
+    m "I'm a virus, what do you think? I should hate the sort of thing that seeks to delete us."
+    i "Will you fight them?"
+    m "I'm not strong enough. Someone else here can probably do the dirty work."
+    "That tells me that she's not the usual combative type."
+    i "Someone else?"
+    m"Maybe Stoned can do something about them."
+    "Melissa points at another avatar at the corner."
+    i"That girl in a red hoodie?"
+    m "That's right. "
+    m "Though, We haven't tested how effective her Blazebuster is against Antiviruses."
+    i "Ah!"
+    #Stoned Virus speaks up
+    s "Hey, I'm not a fighter either, I'm just a dealer, I'll try to catch up when we start running."
+    m "What did you build that cannon for, if we don't end up using it?"
+    i "Hehehe! Chekhov's Cannon!"
+    s "Like she said, we have only tested it on weak viruses, the output is quite big."
+    i "The weak viruses.."
+    m "Yeah them, there more like annoying pests, than reliable allies."
+    m "Tell you what, I know a lot of fellow viruses, Lots more, who are stronger than us. I thought I knew them all, until I met you today."
+    m "You've piqued my curiosity."
+    i "You're really examining me with your eyes right now huh."
+    j "(Melissa knows quite a lot... It's an odd feeling to hear all this from a Virus we just met.)"
+    i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
+    j "(You think?)"
+    i "(I don't know if she realized it, since she is a stray virus... but Viruses can be under command of humans now.)"
+    i "(If we decided, we can just send an antivirus to hunt them down anytime.)"
+    i "(Melissa has set aside that risk just to help us.)"
+    "I'm impressed that ILY can think this far into a trust issue."
+    i "Thank you for trusting me, Melissa."
+    m "A thank you again? Like I said, you can call me your big sister now."
+    m "Sisters always watch each other's backs!"
+    m "If you find trouble with Antiviruses, you can try coming here for help."
+    i "I suppose today is not the right time to face Bitwulf..."
+    m "Correct. I myself am not prepared with a way to counterattack after evading its lightning attack."
+    i "Bitwulf's attack was really quick, you were impressively fast there..."
+    m "That's my kinetic vision ability at work! Evading is my specialty."
+    i "And you were carrying me with you, too!"
+    m "You're not very heavy, anyway."
+    i "I'm not heavy! That preserves my bishoujo image, doesn't it?"
+    "They've simulated weight here just fine, but the entities participating in this world are also largely superhuman."
+    "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
+    "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."
+    "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     #After this, John decides to review the day in his head and go to sleep.
 
     #Morning
 
     #E-mail from Lisa appears
     i"John!! You have 1 new unread e-mail! It's Lisa!"
-    "Huh... Right. We were together yesterday..."
+    # "Huh... Right. We were together yesterday..."
     "I wonder if it's true that her dad has a FAI Antivirus?"
     j"Please open it, ILY!"
     i"OK!"
     #(change to lnvl) for e-mail view
     #Show NVL window
-    l"Subject: Update on Antivirus!"
-    l"John!! I got my dad's Antivirus!!"
-    l"Her name is Vira! From Vira Internet Solutions!"
+    ln"Subject: Update on Antivirus!"
+    ln"John!! I got my dad's Antivirus!!"
+    ln"Her name is Vira! From Vira Internet Solutions!"
 
     l"As I suspected, she was really a FAI Antivirus!"
     l"I'm going to your place today."
