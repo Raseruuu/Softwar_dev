@@ -139,7 +139,7 @@ label script2:
     m "That's my kinetic vision ability at work! Evading is my specialty."
     i "And you were carrying me with you, too!"
     m "You're not very heavy, anyway."
-    i "I'm not heavy! That preserves my bishoujo image, doesn't it?"
+    i "(I'm not heavy! That preserves my bishoujo image, doesn't it?)"
     "They've simulated weight here just fine, but the entities participating in this world are also largely superhuman."
     "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
     i "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
@@ -158,7 +158,8 @@ label script2:
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
     j "Do.. we have that much?"
-
+    if money >=3000:
+       "" 
     
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
