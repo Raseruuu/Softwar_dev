@@ -452,10 +452,11 @@ layeredimage ILYFullBody:
             ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
     always:
         At("images/Characters/ILY/Full/ILY_Full_face.png",ilyfix(0.5))
-    always:
-        "ILYEyes[ILY_p]"
+    
     always:
         At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5))
+    always:
+        At("ILYEyes[ILY_p]",ilyfix(0.5))
     always:
         "images/Characters/ILY/ILY_e1[ILY_e].png"
     always:
