@@ -76,6 +76,7 @@ default item_selected=None
 transform shopcardsize:
     zoom 0.5
 default shop_view = False
+default shop_page = 0
 default lastshop_item =0
 style itembuttontext:
     insensitive_color "#808182"
@@ -136,7 +137,9 @@ screen item_shop:
                 hbox:
                     grid 2 2:
                         xspacing 20
-                        for shop_index, item in enumerate(shop_inventory[:4]):
+                        # page*page_size:page*page_size+page_size
+                        for shop_index, item in enumerate(shop_inventory[shop_page*4:shop_page*4+4]):
+                        # for shop_index, item in enumerate(shop_inventory[:4]):
                             frame:
                                 xsize 320
                                 ysize 175
