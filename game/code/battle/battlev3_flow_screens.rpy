@@ -338,7 +338,7 @@ label battlev3(PFAI,EFAI):
     $ quick_menu=False
     $ ILY_w=True
     $ ILY_m="frown"
-    $ ILY_e="2"
+    $ ILY_e="down"
     $ ILY_p="0"
 
     $ battle_done=False

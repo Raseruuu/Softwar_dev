@@ -52,7 +52,7 @@ init -1 python:
 
     globals()["ILY_m"] = "smile"
     globals()["ILY_p"] = "1"
-    globals()["ILY_e"] = "1"
+    globals()["ILY_e"] = "normal"
     globals()["ILY_underwear"] = "red" # "red", "small", "" 
 
     globals()["ILY_outfit"] = "uniform" #bunny, garden, ""
@@ -233,25 +233,25 @@ init -1 python:
 
         if (emotion == "smile"):
             globals()["ILY_m"] = "smile"
-            globals()["ILY_e"] = '1'
+            globals()["ILY_e"] = 'up'
 
         elif (emotion == "smile2"):
             globals()["ILY_m"] = "smile2"
-            globals()["ILY_e"] = '1'
+            globals()["ILY_e"] = 'up'
 
         elif (emotion == "smile3"):
             globals()["ILY_m"] = "smile3"
-            globals()["ILY_e"] = '2'
+            globals()["ILY_e"] = 'up'
 
         elif(emotion == "frown"):
             globals()["ILY_m"] = "frown"
-            globals()["ILY_e"] = '1'
+            globals()["ILY_e"] = 'normal'
         elif(emotion == "mad"):
             globals()["ILY_m"] = "frown"
-            globals()["ILY_e"] = '2'
+            globals()["ILY_e"] = 'down'
         elif(emotion == "o"):
             globals()["ILY_m"] = "o"
-            globals()["ILY_e"] = '1'
+            globals()["ILY_e"] = 'up'
 
         else:
             raise ValueError("Unknown emotion entered: " + emotion)
@@ -352,7 +352,7 @@ image ILY:
 
     "ILYFullBody"
     zoom 0.5
-    yanchor 0.52
+    yanchor 0.50
     ypos 1.0
     linear 1.0 yoffset 0
     linear 1.0 yoffset 5
@@ -458,18 +458,18 @@ layeredimage ILYFullBody:
     always:
         At("ILYEyes[ILY_p]",ilyfix(0.5))
     always:
-        "images/Characters/ILY/ILY_e1[ILY_e].png"
+        At("images/Characters/ILY/ILY_e[ILY_e].png",ilyfix(0.5))
     always:
-         At("images/Characters/ILY/ILY_heart0.png",ilyfix(0.5))
+        At("images/Characters/ILY/ILY_heart0.png",ilyfix(0.5))
     always:
-        WhileSpeaking(
+        At(WhileSpeaking(
             "ILY",
             ConditionSwitch(
                 "('smile' in ILY_m)","ILYMouthsmile",
                 "('smile' not in ILY_m)","ILYMouthfrown"
                 ),
             "images/Characters/ILY/ILY_m[ILY_m].png"
-            )
+            ),ilyfix(0.5))
     # Composite(
     # (0.75, 0.75), #(544,600),
     # (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
@@ -1190,18 +1190,20 @@ image MelissaMouthsmile:
     repeat
 
 image MelissaMouthfrown:
-    "images/Characters/Melissa/Melissa_msmile2.png"
-    pause .05
-    "images/Characters/Melissa/Melissa_mopen2.png"
-    pause .05
-    "images/Characters/Melissa/Melissa_mopen3.png"
+    "images/Characters/Melissa/Melissa_mopen1.png"
+    pause .1
+    "images/Characters/Melissa/Melissa_mopen.png"
     pause .08
-    "images/Characters/Melissa/Melissa_mopen2.png"
-    pause .05
-    "images/Characters/Melissa/Melissa_msmile2.png"
-    pause .05
+    "images/Characters/Melissa/Melissa_mopen1.png"
+    pause .1
     "images/Characters/Melissa/Melissa_mfrown.png"
-    pause .05
+    pause .1
+    "images/Characters/Melissa/Melissa_mopen1.png"
+    pause .1
+    "images/Characters/Melissa/Melissa_mopen2.png"
+    pause .12
+    "images/Characters/Melissa/Melissa_mopen1.png"
+    pause .1
     repeat
 image MelissaFull:
     # "images/Characters/Melissa/Melissa_full.png"

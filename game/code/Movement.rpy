@@ -255,7 +255,8 @@ image shock:
       yzoom 1.0
     repeat
 
-
+transform alphatrans(value):
+  alpha (value)
 screen mapB:
 
     vbox:
@@ -272,6 +273,8 @@ screen mapB:
              elif j == 'n':
                null height blockSize width blockSize
     vbox:
+      if objxanchor == 0 and objyanchor== 0:
+          at alphatrans(0.0)
       if linearmaptransform:
           at mover(objxanchor,objyanchor)
       else:

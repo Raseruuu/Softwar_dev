@@ -22,9 +22,6 @@ label prescript2:
 label script2:
     $ map_active=False
     hide screen mapB
-
-    ""
-
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
@@ -51,29 +48,40 @@ label script2:
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     b "Virus Detected!! Executing Termination Protocol..."
     $ Melissa_e="down"
-    $ Melissa_m="open3"
+    $ Melissa_m="open"
     
     mu "Watch out! they're on patrol on these hours."
     "Huh? who was that? It's another avatar!"
     "Suddenly, a flash of blue lightning strikes where ILY was standing!"
     "I was about to raise my voice in surprise, until I realized she was safe from it."
     mu "That was close!"
+    $ ILY_m ="frown"
+    $ ILY_e ="2"
+    
     i "An attack!!!"
     scene black
     "That was quick! Just who is this avatar?"
     "This blue-haired avatar just snatched ILY away from that lightning strike.."
     mu "We need to keep moving!"
     i "What's going on?"
+    $ Melissa_e="normal"
+    $ Melissa_m="frown"
     mu "That was Bitwulf. An Antivirus. They've made it their job to look for Viruses and fight them in Softwars."
     i "I didn't realize Antiviruses would be out here in the open like this!"
     i "That one was quite aggressive.."
     i "And you are a..."
     "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate"
+    $ Melissa_m="smile"
     mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
     "Non-viruses? that means..."
     #unlock Shady Alley
+    play music "bgm/ost/Serious_Noyemi_K.ogg"
+    scene battlebg
+    show battleroad:
+        yalign 1.0 xalign 0.5
     mu "I should introduce myself..."
     "*Gulps*"
+    $ Melissa_e="up"
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
     "It seems like.. viruses are able to identify each other? I wonder how that works."
@@ -103,7 +111,7 @@ label script2:
     "What's ILY doing with that kind of query? Programs... Can't love or hate things."
     m "I'm a virus, what do you think? I should hate the sort of thing that seeks to delete us."
     i "Will you fight them?"
-    m "I'm not strong enough. Someone else here can probably do the dirty work."
+    m "Fighting isn't my strong suit. Someone else here can probably do the dirty work."
     "That tells me that she's not the usual combative type."
     i "Someone else?"
     m"Maybe Stoned can do something about them."

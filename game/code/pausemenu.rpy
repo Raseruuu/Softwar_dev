@@ -608,19 +608,19 @@ transform pausetranshover(pauseoffset=0):
     # linear 0.1 yoffset pauseoffset
     linear 0.1 yoffset 0
 transform pausetrans0:
-    # alpha 0.0
+    alpha 0.0
     xoffset -20
     on show:
         ease 0.3 alpha 1.0 xoffset 0
     alpha 1.0
 transform pausetrans1:
-    # alpha 0.0
+    alpha 0.0
     xoffset -20
     on show:
         ease 0.3 alpha 1.0 xoffset 0
     alpha 1.0
 transform pausetrans2:
-    # alpha 0.0
+    alpha 0.0
     xoffset 20
     on show:
         ease 0.3 alpha 1.0 xoffset 0

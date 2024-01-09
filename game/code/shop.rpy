@@ -25,13 +25,17 @@ init python:
         "LargeEnergy":480,
         "Unlocker":1000,
         "Antibody":350,
+
         "V-Flame":600,
-        "Laserbeam":2000
+        "Laserbeam":3000,
+        "LambdaSaber":1000,
+        "BlockSaber":1000,
+        "DataBuster":2000
 
     }
 
     item_list = [SoftDrink,Unlocker,SmallEnergy,MediumEnergy]
-    battleware_list =[VirusFlame,Laserbeam]
+    battleware_list =[VirusFlame,LambdaSaber,BlockSaber,DataBuster,Laserbeam]
 
 
     shop_item_list = {item.NAME:shop_item(item.NAME,item,"Item",pricelist[item.NAME]) for item in item_list}
@@ -82,6 +86,15 @@ style itembuttontext:
     insensitive_color "#808182"
 
     # insensitive_color "#000"
+# init python:
+#     def page_change(dir):
+#         # pagelimit = 
+#         if dir=="Prev" and shop_page!=0:
+#             return SetVariable("shop_page",shop_page-1)
+#         elif dir=="Next" and shop_page <= int(len(shop_inventory)/4):
+#             return SetVariable("shop_page",shop_page+1)
+#         else:
+#             pass
 screen item_shop:
 
     on "show":
@@ -105,6 +118,7 @@ screen item_shop:
             null width 4
             vbox:
                 text "{b}STELLA SHOP{/b}"
+                
                 null height 7
                 fixed:
                     vbox:
@@ -123,18 +137,62 @@ screen item_shop:
 
         text "{b}FOR SALE{/b}"
         top_padding 2
-
+        ysize 720
         if not noscreentransformsfornow:
             at pausetrans2
         vbox:
             null height 32
-            viewport:
-                # scrollbars "vertical"
-                # mousewheel True
-                # arrowkeys True
-                pagekeys True
+            hbox:
+                xalign 0.5
+                yanchor 0.0 ypos 0.0
+                button:
+                    top_padding 0
+                    top_margin 0
+                    
+                    frame:
+                        style_prefix "stats"
+                        text "Prev. Page"
+                        xsize 200
+                        idle_background Frame("gui/framefxn.png",10,10)
+                        hover_background Frame("gui/framefxn2.png",10,10)
+                        # hbox:
+                        #     style "itembuttontext"
+                        #     yalign 0.5 xalign 0.5
+                        #     text "Buy" yalign 0.5
+                        #     null width 10
+                        #     add ItemPriceDisplay(item)
+                    action If((shop_page>0) ,SetVariable("shop_page",shop_page-1))
+                frame:
+                    xsize 200
+                    ysize 56
+                    yalign 0.5
+                    top_margin 4
+                    text ("Page "+str(shop_page+1))
+                button:
+                    top_padding 0
+                    top_margin 0
+                    frame:
+                        style_prefix "stats"
+                        text "Next Page"
+                        xsize 200
+                        idle_background Frame("gui/framefxn.png",10,10)
+                        hover_background Frame("gui/framefxn2.png",10,10)
+                        # hbox:
+                        #     style "itembuttontext"
+                        #     yalign 0.5 xalign 0.5
+                        #     text "Buy" yalign 0.5
+                        #     null width 10
+                        #     add ItemPriceDisplay(item)
+                    action If((shop_page+1 < int(len(shop_inventory)/4+(1 if (len(shop_inventory)%4>0) else 0))) ,SetVariable("shop_page",shop_page+1))
+            null height 7
+            
+            # viewport:
+            #     # scrollbars "vertical"
+            #     # mousewheel True
+            #     # arrowkeys True
+            #     pagekeys True
                 # draggable True
-                hbox:
+            hbox:
                     grid 2 2:
                         xspacing 20
                         # page*page_size:page*page_size+page_size
@@ -142,11 +200,12 @@ screen item_shop:
                         # for shop_index, item in enumerate(shop_inventory[:4]):
                             frame:
                                 xsize 320
-                                ysize 175
-                                xpadding 10
-                                ypadding 10
+                                ysize 150
+                                xpadding 8
+                                ypadding 8
                                 background Frame("gui/framefxn.png",10,10)
                                 vbox:
+                                    
                                     if item.type=="Item":
                                         hbox:
                                             xalign 0.0 yalign 0.5
@@ -155,9 +214,11 @@ screen item_shop:
                                             null width 10
                                             frame:
                                                 background Null()
+                                                top_padding 0
                                                 xsize 170
                                                 vbox:
-                                                    text item.object.NAME+"{size=12}\n\n"+item.object.DESC+"{/size}" yalign 0.0
+                                                    yalign 0.0
+                                                    text "{size=22}"+item.object.NAME+"{/size}{size=12}\n\n"+item.object.DESC+"{/size}" yalign 0.0
                                                     button:
                                                         id "shop_button"+str(shop_index)
 
@@ -170,7 +231,7 @@ screen item_shop:
                                                             hbox:
                                                                 style "itembuttontext"
                                                                 yalign 0.5 xalign 0.5
-                                                                text "Buy" yalign 0.5
+                                                                text "{size=16} Buy {/size}" yalign 0.5
                                                                 null width 10
                                                                 add ItemPriceDisplay(item)
                                                         action SetVariable("lastshop_item",shop_index),Call("buyitem",item)
@@ -182,9 +243,10 @@ screen item_shop:
                                             null width 10
                                             frame:
                                                 background Null()
+                                                top_padding 0
                                                 xsize 170
                                                 vbox:
-                                                    text item.object.NAME yalign 0.0
+                                                    text "{size=22}"+item.object.NAME+"{/size}" yalign 0.0
                                                     text "{size=12}MAG = "+str(item.object.MAG)+"\nBITS = "+str(item.object.COST)+"{/size}" yalign 0.0
 
                                                     add FunctionList(item.object.FXN)
@@ -203,7 +265,7 @@ screen item_shop:
                                                             # style "buttoninsens"
                                                             hbox:
                                                                 yalign 0.5 xalign 0.5
-                                                                text "Buy" yalign 0.5
+                                                                text "{size=16} Buy {/size}" yalign 0.5
                                                                 null width 10
                                                                 add ItemPriceDisplay(item)
                                                         # sensitive (item.price<=money)
@@ -311,6 +373,7 @@ init python:
     def buyitem(item_to_buy):
         global Money
         itemprice = item_to_buy.price
+        renpy.say("info","Itemconfirm")
         if itemprice > Money:
 
             renpy.say("info","You can't afford this item!")
@@ -372,7 +435,7 @@ screen shop_prompt():
     key "X" action Hide("shop_prompt"),Jump("shopNo")
 
     hbox:
-        pos(604,618) anchor (0,0)
+        pos(603,617) anchor (0,0)
 
         textbutton "Yes" action Hide("shop_prompt"), Jump("shopYes"):
             id "buttonyes"

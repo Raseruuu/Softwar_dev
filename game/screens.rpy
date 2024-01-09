@@ -407,7 +407,7 @@ screen navigation():
             else:
                 textbutton _("MainMenu();") action MainMenu()
                 null height gui.button_text_size
-                # textbutton _("History();") action ShowMenu("history")
+                textbutton _("History();") action ShowMenu("history")
                 textbutton _("Save();") action ShowMenu("save")
 
             textbutton _("Load();") action ShowMenu("load")
@@ -1661,7 +1661,7 @@ screen quick_menu():
         yalign 0.0
         # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
         textbutton _("{b}SOFTWAR{/b}")
-        # textbutton _("History") action ShowMenu('history')
+        textbutton _("History") action ShowMenu('history')
         textbutton _("Back") action Rollback()
 
         textbutton _("Save") action ShowMenu('save')

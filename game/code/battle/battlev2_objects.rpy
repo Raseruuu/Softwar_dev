@@ -138,7 +138,7 @@ init python:
             (iterations,fxns)
             )
 
-    def If(condition,token_name,target,fxns):
+    def IfFunction(condition,token_name,target,fxns):
         function1=fxns[0].code
         if len(fxns)==2:
             function2=fxns[1]
@@ -253,7 +253,7 @@ init python:
     YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 #SaberSkills
-    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [If("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
 
 # Virus Exclusive
     Vshot=        Card("V-Shot",         "Gun",      0.6,               [Attack(),NullFxn()],           3)

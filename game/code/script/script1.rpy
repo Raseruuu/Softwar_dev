@@ -335,7 +335,7 @@ label script1:
 
             j "This is getting really shady."
             j "I'm... not really all that interested in hacking anybody now..."
-            $ILY_e='2'
+            $ILY_e='down'
             i "[plrname], I was made also to participate in this war."
             extend" A Softwar."
 
@@ -1137,11 +1137,11 @@ label date2:
         j"There's no way. The equivalent is too high in gigabytes."
         j"You couldn't have uploaded THAT much to your botnet in just one night."
         stop music fadeout 1
-        $ILY_e='2'
+        $ILY_e='normal'
         i"Hmph..."
         # $ILY_p='2'
         $ILY_m='smile3'
-        $ILY_e='2'
+        $ILY_e='down'
         play music "bgm/ost/ILY's_Theme_game.mp3"
         i"\"Just who the hell do you think I am?\""
         l"That's an unusual line.."
@@ -1280,7 +1280,7 @@ label date2:
         #$ILY_p = '0'
         j"Sure. So where do I, er.. {i}befriend{/i} one?"
         $ILY_m = 'frown'
-        $ILY_e = '1'
+        $ILY_e = 'up'
         i"You're gonna install an antivirus here?"
         j"No. This is for Hilbert and SDS."
         "Alright. If this world has come to an age where antiviruses have to fight Softwars just for security..."
@@ -1291,12 +1291,12 @@ label date2:
 
         j"Do as you promised, ILY. We need SDS to be active."
         $ILY_m = 'smile3'
-        $ILY_e = '2'
+        $ILY_e = 'normal'
         i"Gotcha. As soon as they reconnect, they should be able to run their computers fine."
         i"I've turned off the switch that disables any inputs from the user."
         j"So that's all it was all this time?"
         $ILY_m = 'smile'
-        $ILY_e = '1'
+        $ILY_e = 'up'
         i"Yep."
         l"So, what do we do about the incoming attack, John?"
         $ILY_m = 'smile3'
@@ -1305,15 +1305,15 @@ label date2:
         j"Then the only way to counter it properly is by using a FAI antivirus."
         l"Do you have any idea where we can download one?"
         $ILY_m = 'frown'
-        $ILY_e = '2'
+        $ILY_e = 'normal'
         i"The correct term is \"befriend\", OK?"
         j"I was just asking the same thing to ILY, Lisa."
         $ILY_m = 'smile3'
-        $ILY_e = '1'
+        $ILY_e = 'up'
         l"Ah. so ILY... where do we {i}befriend{/i} one?"
         i"That's..."
         $ILY_m = 'frown'
-        $ILY_e = '2'
+        $ILY_e = 'normal'
         extend" I really don't know."
         i"FAIs are really hard to come by, being hidden and all, they return mismatches from searches."
         "FAIs are THAT rare? no matches in Googz?"
@@ -1482,7 +1482,7 @@ label date2:
         $Lisa_m = 'smile'
         $Lisa_e = 'normal'
         l"See ya again."
-        $ILY_e = '1'
+        $ILY_e = 'up'
         $ILY_m = 'smile'
         $ILY_w = False
         $Lisa_w = True
@@ -1520,7 +1520,7 @@ label date2:
         $JohnSprite('normal')
         j"You should go home before it's late, Lisa."
         $ILY_m = 'frown'
-        $ILY_e = '2'
+        $ILY_e = 'down'
         i"Turn it back on, John! I wanna wave goodbye!"
         $Lisa_m = 'smile'
         l"Hahaha! Bye ILY!"
@@ -1566,7 +1566,7 @@ label date2:
         show Folders
         #$ILY_p = '0'
         $ILY_m = 'smile'
-        $ILY_e = '2'
+        $ILY_e = 'normal'
 
         $ILY_w = False
         show ILY at sidesteps_effect("images/Characters/ILY/ILY_game.png", 0.5, 0.1, 0.25):
@@ -1599,7 +1599,7 @@ label date2:
         j"Fine."
         #$ILY_p = '0'
         $ILY_m = 'smile'
-        $ILY_e = '2'
+        $ILY_e = 'normal'
         label map_phase_chapter1:
             python:
                 gridpos = [192,168]
