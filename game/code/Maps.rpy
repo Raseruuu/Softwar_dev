@@ -238,8 +238,8 @@ init -2 python:
         }
     mapspritesdict={
         (192,168):[Heartsprite],
-        # (192,164):[Avesprite,CodeRedsprite,Virasprite]
-        (192,164):[Stellasprite],
+        # (192,164):[Melissasprite],
+        (192,164):[Stellasprite,Melissasprite],
         (192,165):[Bellasprite],
 
         (191,167):[Bitwulf_C2],

@@ -218,6 +218,8 @@ label script2:
     j "Do we... have that much?"
     if Money >=3000:
         label payMelissa:
+        
+        $ gameprogress+=1
         i"Should we give her 3000 Zenny? (We have [Money]Zenny left.)"
         menu:
             i"Should we give her 3000 Zenny?"
@@ -235,7 +237,7 @@ label script2:
         j "Are we able to get that much over night?"
         i "Yeah, it should be easy enough, if I could just roam and bust some viruses!"
         j "Hurry up, then."
-        
+        $ gameprogress+=1
         $ gridpos = [192,164]
         call addsprites(gridpos)
         call mapcall([6,5],stage_ShadyAlley)
@@ -249,7 +251,12 @@ label script2:
 
 
 label paidMelissa:
-    m "Ah, you fellows "
+    m "You got the 3K?"
+    i "Yeah! here ya go!"
+    $ Money-=3000
+    
+    m "Ah, Thanks. I may be your big sis, but hey, business never dies."
+    j "(She's moneysmart, it looks like.)"
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
     j ""

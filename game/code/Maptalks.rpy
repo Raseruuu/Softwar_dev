@@ -152,7 +152,7 @@ label maptalk_Heart_1:
           i"OK."
     return
 label maptalk_Melissa_1:
-   call script2
+   call paidMelissa
    return
 label whatactor:
     if len(actornum)>2:
