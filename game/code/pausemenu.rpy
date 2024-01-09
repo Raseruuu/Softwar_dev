@@ -1,7 +1,7 @@
 label pauseshow:
     $ILY_p = '0'
     $ILY_m = 'smile3'
-    $ILY_e = '1'
+    $ILY_e = 'normal'
     python:
         pause_button_offset1 = 0
         pause_button_offset2 = 0

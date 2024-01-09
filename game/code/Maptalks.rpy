@@ -46,10 +46,10 @@ label maptalk_CodeRed_1:
     call mapresume
     return
 label maptalk_Vira_1:
-    if objectbelow=="Vira":
-        $ILY_m='smile'
-        $ILY_e='2'
-        i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
+    # if objectbelow=="Vira":
+    #     $ILY_m='smile'
+    #     $ILY_e='down'
+    #     i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
     $Vira_w=True
     v"Uguu! What do you want!!"
     hide screen mapB
@@ -95,6 +95,7 @@ label maptalk_Stella_1:
 
     else:
         # $ Stoned_m="sad"
+        $ shop_page=0
         s"What do you want?"
 
     $ shop_active=True
@@ -165,20 +166,45 @@ label whatactor:
 label PlatformTalk:
     "Uguu"
     return
+default gameprogress=0
 label MapTalk:
     # if boxsheet == stagehome:
     if boxsheet:
       $ maptalks+=1
-      if maptalks==1:
-        i"John! Let's try to locate SDS."
-        j"Where is it again?"
-        i"There should be a gateway to the west from here!"
-      elif maptalks==2:
-        i"Are you enjoying the GRID?"
-        j"I'll say. it's quite interesting."
-        i"How?"
-        j"It resembles the real world, here at Connecht City."
-        $ maptalks=0
+      if gameprogress==0:
+        if maptalks==1:
+          $ ILY_m="frown"
+          $ ILY_e="down"
+          i"John! Let's try to locate SDS."
+          $ John_m="frown"
+          $ John_e="normal"
+          j"Which direction was it again?"
+          $ ILY_m="smile3"
+          $ ILY_e="normal"
+          i"There should be a gateway to the west from here!"
+        elif maptalks==2:
+          $ ILY_m="smile3"
+          $ ILY_e="normal"
+          i"Are you enjoying the GRID?"
+          j"I'll say. it's quite interesting."
+          i"How?"
+          j"It resembles the real world, here at Connecht City."
+          $ maptalks=0
+############## MELISSA PAY QUEST
+      elif gameprogress==1:
+        if maptalks==1:
+          i"We gotta pay Melissa 3000 Zenny, John!"
+          j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
+          j"How do we earn 3000 Zenny?"
+          i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
+
+        elif maptalks==2:
+          i"What do you think of Melissa?"
+          j"She's pretty hot stuff."
+          i"Whaaa!?"
+          j"What's that reaction for?"
+          $ maptalks=0
+
 
 
 

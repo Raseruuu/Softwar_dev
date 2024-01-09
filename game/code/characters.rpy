@@ -1622,7 +1622,7 @@ image Stoned_Guns:
     linear 1.0 yoffset 40
     linear 1.0 yoffset 0
     repeat
-image Stoned:
+image StonedFull:
     LiveComposite(
     (761,1695),
     (0,0),"images/Characters/Stoned/Stoned_base.png",
@@ -1632,9 +1632,18 @@ image Stoned:
     (0,0),"images/Characters/Stoned/Stoned_glass.png"
     # (0,0),"Stoned_Guns"
     )
-    zoom 0.95 xalign 0.5 yanchor 0.05 ypos 0.0
+    zoom 0.95 xalign 0.5 
+
+image Stoned:
+    "StonedFull"
+    xalign 0.5 yanchor 0.62 ypos 1.0 zoom 0.8
+    linear 1.0 yoffset 0
+    pause .5
+    linear 1.0 yoffset 5
+    pause .5
+    repeat
 image Stonedsmall:
-    "Stoned"
+    "StonedFull"
     zoom 0.80
 image side Stoned_side:
     ConditionSwitch(

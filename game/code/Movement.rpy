@@ -270,6 +270,8 @@ screen mapB:
            for j in i:
              if j !='n':
                image "images/rpg/tile/Tilebg.png"
+             elif j =='m':
+               image "images/rpg/tile/Tilebg.png"
              elif j == 'n':
                null height blockSize width blockSize
     vbox:

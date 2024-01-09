@@ -17,15 +17,18 @@ label prescript2:
     #John thinks to himself about the Grid
     
 
-    
-
+transform shakinginanger():
+    xoffset (renpy.random.randint(-5,5)) 
+    yoffset (renpy.random.randint(-5,5))
+    pause 0.2
+    repeat
 label script2:
     $ map_active=False
     hide screen mapB
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
-
+    show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
     i "Looks like this path takes us to Connecht City Cyber Square!"
@@ -46,6 +49,7 @@ label script2:
     "That's a very human response, coming from you. Impressive."
     #Approaching Bitwulf Antivirus
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    $ Bitwulf_w=False
     b "Virus Detected!! Executing Termination Protocol..."
     $ Melissa_e="down"
     $ Melissa_m="open"
@@ -56,7 +60,7 @@ label script2:
     "I was about to raise my voice in surprise, until I realized she was safe from it."
     mu "That was close!"
     $ ILY_m ="frown"
-    $ ILY_e ="2"
+    $ ILY_e ="down"
     
     i "An attack!!!"
     scene black
@@ -70,66 +74,112 @@ label script2:
     i "I didn't realize Antiviruses would be out here in the open like this!"
     i "That one was quite aggressive.."
     i "And you are a..."
-    "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate"
+    "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate."
     $ Melissa_m="smile"
     mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
     "Non-viruses? that means..."
     #unlock Shady Alley
     play music "bgm/ost/Serious_Noyemi_K.ogg"
     scene battlebg
+    show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
     mu "I should introduce myself..."
     "*Gulps*"
     $ Melissa_e="up"
+    $ Melissa_w=False
+    show Melissa with pixellate
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
     "It seems like.. viruses are able to identify each other? I wonder how that works."
     "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
     m "We viruses, we look out for each other out here. You can call me your big sister!"
+    $ ILY_e="up"
+    $ ILY_m="smile3"
     i "Big sister... Melissa!"
     j "(ILY! You're too quick to trust her, she's still a virus, you know!)"
     i "(Wait, I got this! She still saved me back there! I should at least...)"
     i "Thank you Melissa!!"
     m "Ohoho! You're welcome."
+    
     m "I understand that you are new here? I can tell."
     "How? body language? The fact that we didn't know about ...Bitwulf?"
     "These FAIs aren't to be taken lightly.."
     i "(She's right.. I am a newbie...)"
     j "(You're not the only newbie here, ILY. the entire GRID is also new, right?)"
     i "Oh no!... this cyberworld is pretty new, that's all!"
+    $ Melissa_e="normal"
+    $ Melissa_m="open"
     m "You are an odd one, {i}we viruses are the original residents here!{/i}"
     "What does she mean by that?"
+    $ Melissa_m="frown"
     m "We are FAI Viruses. The GRID has been our home since its inception."
+    $ Melissa_e="down"
+    show Melissa:
+        xoffset -2
+        pause 0.1
+        xoffset 2
+        pause 0.1
+        repeat
     m "This is our world. The Antiviruses are taking it from us!"
+    
     "Melissa makes the face of a fighter. A frown forms and it looks like she is mad."
     "Also... what was the original purpose of the GRID? she makes it sound like it was made {i}for viruses.{/i}"
+    $ Melissa_e="normal"
+    hide Melissa
+    show Melissa with dissolve
     m "We... don't have the freedom we used to have, and it's because of them."
     m "Bitwulf is just one of them, they've deployed about 7 other powerful antiviruses around Connecht."
     "They? Multiple Antiviruses? She makes it sound like each one has a different name." 
+    $ ILY_m="frown"
     i "Do you hate the antiviruses?"
     "What's ILY doing with that kind of query? Programs... Can't love or hate things."
+    $ Melissa_e="down"
     m "I'm a virus, what do you think? I should hate the sort of thing that seeks to delete us."
     i "Will you fight them?"
+    $ Melissa_e="up"
+    $ Melissa_m="smile"
     m "Fighting isn't my strong suit. Someone else here can probably do the dirty work."
-    "That tells me that she's not the usual combative type."
+    "That tells me that she's not the usual combative type. And that... There's more of them!"
     i "Someone else?"
     m"Maybe Stoned can do something about them."
     "Melissa points at another avatar at the corner."
     i"That girl in a red hoodie?"
+    $ Melissa_e="normal"
+    $ Melissa_m="smile"
     m "That's right. "
+    $ Melissa_e="down"
+    $ Melissa_m="frown"
     m "Though, We haven't tested how effective her Blazebuster is against Antiviruses."
     i "Ah!"
     #Stoned Virus speaks up
+    show Stoned with dissolve:
+        xalign 0.7
+    show Melissa with ease:
+        xalign 0.3
     s "Hey, I'm not a fighter either, I'm just a dealer, I'll try to catch up when we start running."
     m "What did you build that cannon for, if we don't end up using it?"
     i "Hehehe! Chekhov's Cannon!"
     s "Like she said, we have only tested it on weak viruses, the output is quite big."
     i "The weak viruses.."
+    
     m "Yeah them, there more like annoying pests, than reliable allies."
+    $ Melissa_e="normal"
+    $ Melissa_m="smile"
     m "Tell you what, I know a lot of fellow viruses, Lots more, who are stronger than us. I thought I knew them all, until I met you today."
+    $ Melissa_e="up"
     m "You've piqued my curiosity."
-    i "You're really examining me with your eyes right now huh."
+    i "(John, she's examining me, I can feel it)"
+    m "ILY, huh..."
+    show Stoned:
+        linear 0.2 yoffset -20
+        linear 0.1 yoffset 5
+        linear 0.1 yoffset 0
+    s "Tell me when something interesting happens! I'll be sorting out through my stash."
+    s "You, new girl. You're welcome to drop by my shop."
+    hide Stoned with dissolve
+    show Melissa with ease:
+        xalign 0.5
     j "(Melissa knows quite a lot... It's an odd feeling to hear all this from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
     j "(You think?)"
@@ -150,7 +200,7 @@ label script2:
     i "(I'm not heavy! That preserves my bishoujo image, doesn't it?)"
     "They've simulated weight here just fine, but the entities participating in this world are also largely superhuman."
     "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
-    i "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
+    j "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
     i "(Oh! She did mention... That \"they were on patrol around these hours\")"
     j "(Yeah. It could be a schedule or something.)"
     i "Is there a way to get past Bitwulf without fighting?"
@@ -162,13 +212,44 @@ label script2:
     i "A secret! What is it?"
     m "I'd tell you, But I'm kind of an info-broker of sorts, I've already spilt a bunch of beans on you..."
     i "(What does that mean, John?)"
-    j "(It means she is selling that info for buck. Information really is valuable after all.)"
+    j "(It means she is selling that info for buck. Information really is valuable after all. Especially in this world...)"
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
-    j "Do.. we have that much?"
-    if money >=3000:
-       "" 
-    
+    j "Do we... have that much?"
+    if Money >=3000:
+        label payMelissa:
+        i"Should we give her 3000 Zenny? (We have [Money]Zenny left.)"
+        menu:
+            i"Should we give her 3000 Zenny?"
+            "Yeah sure.":
+                j "Okay... We need that info. Do it, ILY!"
+                i "Aye, sir!"
+                jump paidMelissa
+            "Wait a minute!":
+                j"How did we get this much?"
+                i"Stray viruses drop them all the time when I beat them in Softwars."
+                j"Right..."
+                jump payMelissa
+    else:
+        i "We can't afford it..."
+        j "Are we able to get that much over night?"
+        i "Yeah, it should be easy enough, if I could just roam and bust some viruses!"
+        j "Hurry up, then."
+        
+        $ gridpos = [192,164]
+        call addsprites(gridpos)
+        call mapcall([6,5],stage_ShadyAlley)
+        if playerHP<=0:
+            return
+        $ILY_w = False
+        hide screen mapB
+        hide screen mapA
+
+        return
+
+
+label paidMelissa:
+    m "Ah, you fellows "
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
     j ""
