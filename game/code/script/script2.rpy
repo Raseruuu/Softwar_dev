@@ -91,9 +91,9 @@ label script2:
     show Melissa with pixellate
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
-    "It seems like.. viruses are able to identify each other? I wonder how that works."
+    "It seems like.. Viruses are able to identify each other? I wonder how that works."
     "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
-    m "We viruses, we look out for each other out here. You can call me your big sister!"
+    m "We Viruses, we look out for each other out here. You can call me your big sister!"
     $ ILY_e="up"
     $ ILY_m="smile3"
     i "Big sister... Melissa!"
@@ -275,13 +275,13 @@ label paidMelissa:
     i"OK!"
     #(change to lnvl) for e-mail view
     #Show NVL window
-    ln"Subject: Update on Antivirus!"
-    ln"John!! I got my dad's Antivirus!!"
-    ln"Her name is Vira! From Vira Internet Solutions!"
+    emailnvl"Subject: Update on Antivirus!"
+    emailnvl"John!! I got my dad's Antivirus!!"
+    emailnvl"Her name is Vira! From Vira Internet Solutions!"
 
-    l"As I suspected, she was really a FAI Antivirus!"
-    l"I'm going to your place today."
-    l"We have to install her as soon as possible!"
+    emailnvl"As I suspected, she was really a FAI Antivirus!"
+    emailnvl"I'm going to your place today."
+    emailnvl"We have to install her as soon as possible!"
     #nvl hide
 
 
