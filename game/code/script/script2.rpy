@@ -17,11 +17,6 @@ label prescript2:
     #John thinks to himself about the Grid
     
 
-transform shakinginanger():
-    xoffset (renpy.random.randint(-5,5)) 
-    yoffset (renpy.random.randint(-5,5))
-    pause 0.2
-    repeat
 label script2:
     $ map_active=False
     hide screen mapB
@@ -91,9 +86,9 @@ label script2:
     show Melissa with pixellate
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
-    "It seems like.. Viruses are able to identify each other? I wonder how that works."
+    "It seems like.. viruses are able to identify each other? I wonder how that works."
     "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
-    m "We Viruses, we look out for each other out here. You can call me your big sister!"
+    m "We viruses, we look out for each other out here. You can call me your big sister!"
     $ ILY_e="up"
     $ ILY_m="smile3"
     i "Big sister... Melissa!"
@@ -220,7 +215,7 @@ label script2:
         label payMelissa:
         
         $ gameprogress+=1
-        i"Should we give her 3000 Zenny? (We have [Money]Zenny left.)"
+        i"Should we give her 3000 Zenny? (We have [Money] Zenny left.)"
         menu:
             i"Should we give her 3000 Zenny?"
             "Yeah sure.":
@@ -275,6 +270,7 @@ label paidMelissa:
     i"OK!"
     #(change to lnvl) for e-mail view
     #Show NVL window
+    nvl show
     emailnvl"Subject: Update on Antivirus!"
     emailnvl"John!! I got my dad's Antivirus!!"
     emailnvl"Her name is Vira! From Vira Internet Solutions!"
@@ -282,7 +278,7 @@ label paidMelissa:
     emailnvl"As I suspected, she was really a FAI Antivirus!"
     emailnvl"I'm going to your place today."
     emailnvl"We have to install her as soon as possible!"
-    #nvl hide
+    nvl hide
 
 
     "So it's true. What luck! So we do have a chance at saving our company from that Virus."
