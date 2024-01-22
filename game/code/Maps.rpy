@@ -236,15 +236,43 @@ init -2 python:
         # (192,168):[homeevents],
         (191,167):[Chapter2events]
         }
-    mapspritesdict={
+    mapspritesdictdefault={
         (192,168):[Heartsprite],
         # (192,164):[Melissasprite],
-        (192,164):[Stellasprite,Melissasprite],
+        (192,164):[Melissasprite],
         (192,165):[Bellasprite],
 
         (191,167):[Bitwulf_C2],
         (193,167):[Programkunsprite]
         }
+    mapspriteschapter0 = {
+        
+    }
+    mapspriteschapter1 = {
+        (192,164):[Stellasprite,Melissasprite],
+    }
+    mapspriteschapter2 = {
+        
+    }
+    mapspriteschapter3 = {
+        
+    }
+    mapspriteschapter4 = {
+        
+    }
+    mapspriteschapter5 = {
+        
+    }
+    mapspriteschapter6 = {
+        
+    }
+    mapspriteschapter7 = {
+        
+    }
+    mapspriteschapter8 = {
+        
+    }
+    mapspritesdicts=[mapspriteschapter0,mapspriteschapter1,mapspriteschapter2,mapspriteschapter3,mapspriteschapter4,mapspriteschapter5,mapspriteschapter6,mapspriteschapter7,mapspriteschapter8]
     mapwheredict={
         (192,168):"Home_Page",
         (192,164):"Shady_Alley",

@@ -142,12 +142,20 @@ label maptalk_Bella_1:
     return
 label maptalk_Heart_1:
     # i"Would you like to restore HP?"
+    $ ILY_m="smile3"
+    $ ILY_e="up"
+    
     menu:
         i"Would you like to restore HP?"
         "Yes":
+          $ HPalreadyfull=playerHP==playerHPMax
           $playerHP=playerHPMax
           play sound "sfx/heal.ogg"
-          "[playerName]'s Health Points have been restored."
+          if HPalreadyfull:
+            "[playerName]'s Health Points are already full."
+          else
+            "[playerName]'s Health Points have been restored."
+
         "No":
           i"OK."
     return

@@ -16,7 +16,7 @@ init -3 python:
     Virasprite = SpriteinMap("Vira",[3,3],'down',"Vira")
     Melissasprite = SpriteinMap("Melissa",[5,3],'down',"Melissa")
     Bitwulf_C2 = SpriteinMap("Bitwulf",[2,7],'right',"Bitwulf")
-    Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa")
+    Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa2")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[9,5],'down',"Bella")
@@ -44,10 +44,16 @@ label addsprites(gridplace):
         # renpy.say("",str(gridplace))
         spritelist=[]
         eventlist = []
-        if gridplace in mapspritesdict:
-            for key in mapspritesdict:
+        if gridplace in mapspritesdictdefault:
+            for key in mapspritesdictdefault:
                 if gridplace == key:
-                    for sprite in mapspritesdict[gridplace]:
+                    for sprite in mapspritesdictdefault[gridplace]:
+                        spritelist.append(sprite)
+        if gridplace in mapspritesdicts[chapternum]:
+            map_dict=mapspritesdicts[chapternum]
+            for key in map_dict:
+                if gridplace == key:
+                    for sprite in map_dict[gridplace]:
                         spritelist.append(sprite)
         if gridplace in mapeventsdict:
             for key in mapeventsdict:
@@ -58,8 +64,16 @@ label addsprites(gridplace):
             #     spritelist = []
                 #
 
+    return
+label mapcallquest():
 
-
-
+    $ gridpos = [192,164]
+    call addsprites(gridpos)
+    call mapcall([6,5],stage_ShadyAlley)
+    if playerHP<=0:
+        return
+    $ILY_w = False
+    hide screen mapB
+    hide screen mapA
 
     return

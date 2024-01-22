@@ -1,3 +1,7 @@
+default norandomencounters= 0
+
+
+
 init python:
     def UseItem(item):
         if len(item.FXN)!=0:
