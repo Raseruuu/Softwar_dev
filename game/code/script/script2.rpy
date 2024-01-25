@@ -256,10 +256,10 @@ label paidMelissa:
     "!!!... That sounds really convenient."
     j ""
 
-    # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."
+    # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."de
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     #After this, John decides to review the day in his head and go to sleep.
-
+    #TRANSITION TO MORNING
     #Morning
 
     #E-mail from Lisa appears
