@@ -153,7 +153,7 @@ label maptalk_Heart_1:
           play sound "sfx/heal.ogg"
           if HPalreadyfull:
             "[playerName]'s Health Points are already full."
-          else
+          else:
             "[playerName]'s Health Points have been restored."
 
         "No":
