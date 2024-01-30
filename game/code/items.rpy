@@ -34,14 +34,15 @@ init python:
     Unlocker=Item("Unlocker",   "Key",        "Unlock locked Mystery Data. \nSingle use only.",   ["Unlock"])
     Antibody=Item("Antibody", "Consumable",   "Activates a temporary Safe Mode!\nRepels Viruses.",["Repel"])
 
+    W00D = Item("W00D", "Material","Wave-00-Data. Versatile material from Trojans. Could this be what they call the OO-Part?",[])
     Datanium=Item("Datanium", "Material", "Data metal alloy.\nConducts electricity.",[])
     Informium=Item("Informium", "Material", "Processed Datanium.",[])
-    W00D = Item("W00D", "Material","Wave-00-Data. Versatile material from Trojans.",[])
     Zereum = Item("Zereum", "Material","The element of Nothingness.",[])
     Oneum = Item("Oneum", "Material","The element of Somethingness.",[])
     Binon = Item("Binon", "Material","The Binary element.",[])
-    Lambdium = Item("Lambdium", "Material","Essential wave component.",[])#WIND ELEMENT
+    Lambdium = Item("Lambdium", "Material","Essential wave component.",[])#WAVE
     Photoceptor =  Item("Photoceptor", "Material","Spyware's eye component.",[])
+    Imperceptium = Item("Imperceptium", "Material","Grants Viruses the ability to hide from detection.",[])
     Iteratium =  Item("Iteratium", "Material","Gathered energy from loop iterations.",[])
     Strinnium = Item("Strinnium", "Material","Essence of string data.\n Connects things together.",[])
     Duplirium = Item("Duplirium", "Material","Gives Viruses the ability to duplicate.",[])
@@ -50,6 +51,7 @@ init python:
     Streamine = Item("Streamine", "Material","Azure fluid data.",[]) #WATER ELEMENT
     Neuron = Item("Neuron", "Material","Cybernetic brain cell.",[]) #Brain
     Hematocyte = Item("Hematocyte", "Material","Cybernetic blood cell.",[]) #Blood
+
 
     # Turbulene = Item("Turbulene", "Material","Turbulent data.",[])
     # Laminum = Item("Laminium", "Material","Laminar data.",[])

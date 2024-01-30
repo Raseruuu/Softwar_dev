@@ -254,7 +254,8 @@ label paidMelissa:
     j "(She's moneysmart, it looks like.)"
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
-    j ""
+    i "What kind of item is it?"
+    m ""
 
     # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."de
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
