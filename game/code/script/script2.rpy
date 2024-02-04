@@ -18,11 +18,11 @@ label prescript2:
     
 
 label script2:
-    $ map_active=False
-    hide screen mapB
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
+    $ map_active=False
+    hide screen mapB
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -41,7 +41,7 @@ label script2:
     i "Is that a dog?"
     j "A very futuristic-looking guard dog, it would seem... "
     i "So it is a dog! I wanna pet it!"
-    "That's a very human response, coming from you. Impressive."
+    "That's quite the human response, coming from you. Impressive."
     #Approaching Bitwulf Antivirus
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     $ Bitwulf_w=False
@@ -211,28 +211,17 @@ label script2:
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
     j "Do we... have that much?"
+    
+    $ gameprogress+=1
     if Money >=3000:
-        label payMelissa:
+        jump payMelissa
         
-        $ gameprogress+=1
-        i"Should we give her 3000 Zenny? (We have [Money] Zenny left.)"
-        menu:
-            i"Should we give her 3000 Zenny?"
-            "Yeah sure.":
-                j "Okay... We need that info. Do it, ILY!"
-                i "Aye, sir!"
-                jump paidMelissa
-            "Wait a minute!":
-                j"How did we get this much?"
-                i"Stray viruses drop them all the time when I beat them in Softwars."
-                j"Right..."
-                jump payMelissa
+        
     else:
         i "We can't afford it..."
         j "Are we able to get that much over night?"
         i "Yeah, it should be easy enough, if I could just roam and bust some viruses!"
         j "Hurry up, then."
-        $ gameprogress+=1
         $ gridpos = [192,164]
         call addsprites(gridpos)
         call mapcall([6,5],stage_ShadyAlley)
@@ -244,10 +233,54 @@ label script2:
 
         return
 
+label payMelissa:
+        
+        $ gameprogress+=1
+        i"Should we give her 3000 Zenny? (We have [Money] Zenny left.)"
+        menu:
+            i"Should we give her 3000 Zenny?"
+            "Yeah sure.":
+                j "We still don't have enough."
+                i"Stray viruses drop Zenny all the time when I beat them in Softwars."
+                if Money < 3000:
+                    call addsprites(gridpos)
+                    call mapcall([6,5],stage_ShadyAlley)
+                    if playerHP<=0:
+                        return
+                    $ILY_w = False
+                    hide screen mapB
+                    hide screen mapA
+                    return
+                else:
+                    j "Okay... We need that info. Do it, ILY!"
+                    i "Aye, sir!"
+                    jump paidMelissa2
+            "Wait a minute!":
+
+                j"We need more Zenny."
+                i"Stray viruses drop Zenny all the time when I beat them in Softwars."
+                j"Right..."
+                call addsprites(gridpos)
+                call mapcall([6,5],stage_ShadyAlley)
+                if playerHP<=0:
+                    return
+                $ILY_w = False
+                hide screen mapB
+                hide screen mapA
+
+                return
 
 label paidMelissa:
+    $ map_active=False
+    hide screen mapB
+    scene scrollingBG at scroll
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    $ Melissa_w=True
     m "You got the 3K?"
-    i "Yeah! here ya go!"
+    jump payMelissa
+    label paidMelissa2:
+    i "I got it! Here ya go!"
     $ Money-=3000
     
     m "Ah, Thanks. I may be your big sis, but hey, business never dies."
@@ -255,6 +288,29 @@ label paidMelissa:
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
     i "What kind of item is it?"
+    m "Hahaha.."
+    i "You're... laughing?"
+    m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
+    m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
+    i "Uguu..."
+    m "Alright, Listen!"
+    i "Yes!"
+    m "The GRID we reside in is composed of a lot of things."
+    m "Every entity is not merely built with values inside variables, or a collection of vertices on a 3D axis."
+    m "We're made of Data Materials. Us Viruses, We are composed of virus cells, and tissues."
+    m "Our composition allows us to utilize materials with special abilities."
+    m "The special data material you want to find is called \"Imperceptium\"."
+    i "Imperceptium! right!"
+    m "Imperceptium is what Viruses use to stay hidden in the GRID!"
+    i "Ah! That does sound like something I should have known."
+    m "Imperceptium is hard to find as its surface projects a false image of its true appearance."
+    m "Some like to say that it's in constant camouflage."
+    m "Viruses can consume imperceptium to absorb that special trait, albeit for a limited time."
+    i "If it's practically invisible.. How do we find something like that?"
+    m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
+    i "Ah! VirusFlame?"
+    m "VirusFlame. You know, every Virus is capable of using that technique. You really are behind in all this, aren't you?"
+    i "Ah, i was just jogging my memory, hehehe!!"
     m ""
 
     # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."de
@@ -273,7 +329,8 @@ label paidMelissa:
     #Show NVL window
     nvl show
     emailnvl"Subject: Update on Antivirus!"
-    emailnvl"John!! I got my dad's Antivirus!!"
+
+    emailnvl"\n\nJohn!! I got my dad's Antivirus!!"
     emailnvl"Her name is Vira! From Vira Internet Solutions!"
 
     emailnvl"As I suspected, she was really a FAI Antivirus!"
