@@ -16,8 +16,9 @@ label script1:
     scene Email with dissolve_heart
 
     "What's this? Someone sent me a love letter?"
-    "I wonder who it's from..."
-
+    "I wonder who it's from... Wait, Lisa?"
+    "This attachment.. She's... confessing, using a script? That's something only a shut-in programmer would do."
+    "I didn't know she was that kind of person... sending such a thing to me."
     show Mouse:
         xalign 1.0 yalign 0
         linear 0.5 yalign 0.4 xalign 0.3
@@ -53,7 +54,10 @@ label script1:
     play sound "sfx/sfx_damage_hit8.wav"
     extend "*zxcvbnm,./*" with Shake((0, 0, 0, 0), 0.5, dist=20)
     "Keyboard commands aren't working. I can't close this thing."
+
     $ JohnSprite("frown")
+    "A... {i}Virus{/i}?"
+    "That means.. Lisa was... no way."
     j "Great, I didn't get a chance to save."
     j "Well, there goes 2 hours worth of work."
     $ JohnSprite("mad")
@@ -80,7 +84,7 @@ label script1:
 
     "I can't believe it! How did I fall for an email virus?!"
     "I program software all day. I should have known better!"
-    "I blame my lack of sleep. I've been up for 30 hours working on this project and I'm still not done."
+    "I blame my lack of sleep. I've been up for 30 hours working on this project.. and others... and I'm still not done."
 
     "This looks like the end of my computer. "
     extend "And my career. "
@@ -127,9 +131,8 @@ label script1:
     scene black with dissolve
     show ILOVEYOU with Dissolve(2.0)
     "I head back to the desktop. That awful message is still controlling my screen."
-    "ILOVEYOU, huh? Well, I hate you. And your creator."
-    "The only love is from the jerk that loves to destroy people's computers."
-
+    "\"ILOVEYOU\" is a name of an old virus that infects by tricking the users that they received a love letter."
+    extend "\nI must admit it only worked because it was from Lisa. I thought she was... noticing me..."
     "..."
     j "{i}yawn{/i}"
     "Oh man, I've gotta get some sleep. I was hoping to finish today, but there's no point anymore."
