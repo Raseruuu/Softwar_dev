@@ -248,21 +248,21 @@ style input:
 ## and action fields.
 ##
 ## http://www.renpy.org/doc/html/screen_special.html#choice
-# init -1 python:
-#     # we use display.get_info() because it persists between reloads so we don't end up with an endless loop
-#     if getattr(renpy.display.get_info(), 'oldmenu', None) is None:
-#         renpy.display.get_info().oldmenu = renpy.exports.menu
+init -1 python:
+    # we use display.get_info() because it persists between reloads so we don't end up with an endless loop
+    if getattr(renpy.display.get_info(), 'oldmenu', None) is None:
+        renpy.display.get_info().oldmenu = renpy.exports.menu
 
-#     # append " (disabled)" to any choices that fail their conditions
-#     # while also pretending that they've all succeeded and calling the built-in menu
-#     def menu_override(items, set_expr,*args,**kwargs):
-#         items = [ (renpy.exports.substitute(label) + (" (disabled)" if not renpy.python.py_eval(condition) else ""), "True", value)
-#                   for label, condition, value in items ]
+    # append " (disabled)" to any choices that fail their conditions
+    # while also pretending that they've all succeeded and calling the built-in menu
+    def menu_override(items, set_expr,*args,**kwargs):
+        items = [ (renpy.exports.substitute(label) + (" (disabled)" if not renpy.python.py_eval(condition) else ""), "True", value)
+                  for label, condition, value in items ]
 
-#         return renpy.display.get_info().oldmenu(items, set_expr)
+        return renpy.display.get_info().oldmenu(items, set_expr)
 
-#     # intercept the built-in menu
-#     renpy.exports.menu = menu_override
+    # intercept the built-in menu
+    renpy.exports.menu = menu_override
 screen choice(items):
     style_prefix "choice"
     #TODO: MAKE IT LOOK LIKE A PROMPT WINDOW
@@ -386,48 +386,50 @@ style quick_button_text is text_nooutline:
 ## to other menus, and to start the game.
 
 screen navigation():
+    # if map_active:
+    #     use pausemenu
+    # else:
+        window:
+            at slideindown3
+            style_prefix "navigation"
 
-    window:
-        at slideindown3
-        style_prefix "navigation"
+            vbox:
+                xpos gui.navigation_xpos
+                xanchor 1.0
+                yalign 0.5
 
-        vbox:
-            xpos gui.navigation_xpos
-            xanchor 1.0
-            yalign 0.5
+                spacing gui.navigation_spacing
 
-            spacing gui.navigation_spacing
+                if _in_replay:
+                    textbutton _("End Replay") action EndReplay(confirm=True)
 
-            if _in_replay:
-                textbutton _("End Replay") action EndReplay(confirm=True)
+                if main_menu:
+                    textbutton _("Start();") action Start()
 
-            if main_menu:
-                textbutton _("Start();") action Start()
+                else:
+                    textbutton _("MainMenu();") action MainMenu()
+                    null height gui.button_text_size
+                    textbutton _("History();") action ShowMenu("history")
+                    textbutton _("Save();") action ShowMenu("save")
 
-            else:
-                textbutton _("MainMenu();") action MainMenu()
+                textbutton _("Load();") action ShowMenu("load")
+
                 null height gui.button_text_size
-                textbutton _("History();") action ShowMenu("history")
-                textbutton _("Save();") action ShowMenu("save")
 
-            textbutton _("Load();") action ShowMenu("load")
+                textbutton _("Options();") action ShowMenu("preferences")
+                textbutton _("About();") action ShowMenu("about")
 
-            null height gui.button_text_size
+                if renpy.variant("pc"):
+                    ## Help isn't necessary or relevant to mobile devices.
+                    # textbutton _("Help();") action ShowMenu("help")
 
-            textbutton _("Options();") action ShowMenu("preferences")
-            textbutton _("About();") action ShowMenu("about")
+                    ## The quit button is banned on iOS and unnecessary on Android.
+                    textbutton _("Quit();") action Quit(confirm=not main_menu)
 
-            if renpy.variant("pc"):
-                ## Help isn't necessary or relevant to mobile devices.
-                # textbutton _("Help();") action ShowMenu("help")
+                null height gui.button_text_size*1.5
 
-                ## The quit button is banned on iOS and unnecessary on Android.
-                textbutton _("Quit();") action Quit(confirm=not main_menu)
-
-            null height gui.button_text_size*1.5
-
-            textbutton _("Return();"):
-                action Return()
+                textbutton _("Return();"):
+                    action Return()
 
 
 style navigation_button is gui_button:

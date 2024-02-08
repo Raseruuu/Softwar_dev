@@ -1135,7 +1135,7 @@ image ModeRedFull:
 #########
 image Melissa:
     "MelissaFull"
-    yanchor 0.6 ypos 1.0 zoom 0.9
+    yanchor 0.62 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1241,7 +1241,7 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.9 ypos 1.0 zoom 0.9
+    yanchor 0.48 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1251,7 +1251,7 @@ image Ave:
 
 image AveFull:
     LiveComposite(
-        (486,861),
+        (4189,7278),
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(
             "Ave",
@@ -1262,6 +1262,7 @@ image AveFull:
         (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
+    zoom 0.24
 image AveEyes:
     "images/Characters/Ave/Ave_eyes.png"
 
@@ -1632,11 +1633,11 @@ image StonedFull:
     (0,0),"images/Characters/Stoned/Stoned_glass.png"
     # (0,0),"Stoned_Guns"
     )
-    zoom 0.95 xalign 0.5 
+    zoom 0.56 xalign 0.5 
 
 image Stoned:
     "StonedFull"
-    xalign 0.5 yanchor 0.62 ypos 1.0 zoom 0.8
+    xalign 0.5 yanchor 0.87 ypos 1.0
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1644,10 +1645,10 @@ image Stoned:
     repeat
 image Stonedsmall:
     "StonedFull"
-    zoom 0.80
+    
 image side Stoned_side:
     ConditionSwitch(
-            "Stoned_w==True",(LiveCrop((327,150,300,385),"Stonedsmall")),
+            "Stoned_w==True",(LiveCrop((312,164,300,385),"Stonedsmall")),
             "Stoned_w==False",Null()
         )
     zoom 0.56

@@ -1,7 +1,10 @@
-
-label prescript2:
+label hideMapview:
     $ map_active=False
+    $ quick_menu=True
     hide screen mapB
+    return
+label prescript2:
+    call hideMapview
     j"That means going North from there leads to SDS office."
     i"you figured that out already?"
     
@@ -309,10 +312,16 @@ label paidMelissa:
     i "If it's practically invisible.. How do we find something like that?"
     m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
     i "Ah! VirusFlame?"
-    m "VirusFlame. You know, every Virus is capable of using that technique. You really are behind in all this, aren't you?"
-    i "Ah, i was just jogging my memory, hehehe!!"
+    m "VirusFlame. You know, every Virus is capable of using that technique. The one where you launch fire from the palm of your hands!"
+    m "You really are behind in all this, aren't you?"
+    i "Ah, i was just jogging my memory, Ahehehe!!"
     m ""
+    j "ILY, what's stopping Melissa from making a run using Imperceptium?" 
+    ""
 
+
+
+label teammeeting:
     # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."de
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     #After this, John decides to review the day in his head and go to sleep.
