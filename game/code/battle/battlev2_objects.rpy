@@ -95,6 +95,12 @@ init python:
             )
     def BurnSelf(burndmg) :
         return Fxn("BurnSelf","burnself()","Append Burn status to self.")
+    def Evade(quantity):
+        return Fxn(
+            "Evade",
+            "evade("+str(quantity)+")",
+            "Gain "+str(quantity)+" \"Evade\" token(s). This will allow you to evade Attack() functions.",
+            [tokenname,quantity])
     def GainToken(tokenname,quantity):
         return Fxn(
             "GainToken",
