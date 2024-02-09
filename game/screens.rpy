@@ -265,6 +265,9 @@ init -1 python:
     renpy.exports.menu = menu_override
 screen choice(items):
     style_prefix "choice"
+    
+    on "show":
+        action If(MouseMove(x=633, y=635, duration=.3))
     #TODO: MAKE IT LOOK LIKE A PROMPT WINDOW
     hbox:
         for menu_choice in items:
