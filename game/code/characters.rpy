@@ -896,7 +896,7 @@ image side John_side:
 image Lisafull:
 
         LiveComposite(
-        (507,730),
+        (1860,5202),
         (0, 0), "images/Characters/Lisa/Lisabase.png",
         (0, 0), WhileSpeaking(
             "Lisa",
@@ -910,6 +910,8 @@ image Lisafull:
         (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
         (0, 0), "LisaEyes",#eyes
         )
+        zoom 0.32
+
 image Lisa:
     "Lisafull"
     # yanchor 0.0 ypos 0.01
