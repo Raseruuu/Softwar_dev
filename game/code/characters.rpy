@@ -1678,6 +1678,16 @@ image Stoned_msad:
     "images/Characters/Stoned/Stoned_msad.png"
     pause .08
     repeat
+image Stoned_mopen2:
+    "images/Characters/Stoned/Stoned_mopen2.png"
+    pause .08
+    "images/Characters/Stoned/Stoned_mopenO.png"
+    pause .08
+    "images/Characters/Stoned/Stoned_mopenO.png"
+    pause .08
+    "images/Characters/Stoned/Stoned_msad.png"
+    pause .08
+    repeat
 
 #########
 ## Bitwulf

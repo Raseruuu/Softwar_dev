@@ -105,6 +105,18 @@ screen item_shop:
 
     # zorder 201
     key "x" action SetVariable("shop_active",False), Return()
+    if notransform:
+        image "black" at pausedim2
+        # text "{size=100}{b}"+scrname+"{/b}{/size}" ypos 0.03 xalign 0.6
+        image "gui/rpgmenu/frame1.png" xalign 0.0 yalign 0.0
+        image "gui/rpgmenu/frame2.png" xalign 1.0 yalign 1.0
+
+    else:
+        image "black" at pausedim
+        # text "{size=100}{b}"+scrname+"{/b}{/size}"  ypos 0.03 xalign 0.6
+        image "gui/rpgmenu/frame1.png" at pausetrans3 xalign 0.0 yalign 0.0
+        image "gui/rpgmenu/frame2.png" at pausetrans4 xalign 1.0 yalign 1.0
+
     add "Stoned":
         xpos 0.06 xanchor 0.5
         yoffset -40

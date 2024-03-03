@@ -4,7 +4,7 @@ label hideMapview:
     hide screen mapB
     return
 label prescript2:
-    call hideMapview
+    
     j"That means going North from there leads to SDS office."
     i"you figured that out already?"
     
@@ -24,8 +24,10 @@ label script2:
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
-    $ map_active=False
-    hide screen mapB
+    call hideMapview
+    if gameprogress==1:
+        ""
+        return
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -142,7 +144,7 @@ label script2:
     i "Someone else?"
     m"Maybe Stoned can do something about them."
     "Melissa points at another avatar at the corner."
-    i"That girl in a red hoodie?"
+    i"Stoned? That girl in a red hoodie?"
     $ Melissa_e="normal"
     $ Melissa_m="smile"
     m "That's right. "
@@ -214,8 +216,8 @@ label script2:
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
     j "Do we... have that much?"
-    
     $ gameprogress+=1
+    
     if Money >=3000:
         jump payMelissa
         
@@ -238,7 +240,6 @@ label script2:
 
 label payMelissa:
         
-        $ gameprogress+=1
         i"Should we give her 3000 Zenny? (We have [Money] Zenny left.)"
         menu:
             i"Should we give her 3000 Zenny?"
@@ -274,19 +275,21 @@ label payMelissa:
                 return
 
 label paidMelissa:
+    
+    m "You got the 3K?"
+    jump payMelissa
+    label paidMelissa2:
+    $ gameprogress+=1
+    i "I got it! Here ya go!"
+    $ Money-=3000
     $ map_active=False
+    
     hide screen mapB
     scene scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
     $ Melissa_w=True
-    m "You got the 3K?"
-    jump payMelissa
-    label paidMelissa2:
-    i "I got it! Here ya go!"
-    $ Money-=3000
-    
-    m "Ah, Thanks. I may be your big sis, but hey, business never dies."
+    m "Ah, Thanks. I may be your big sis, but hey, business is business!"
     j "(She's moneysmart, it looks like.)"
     m "There's a special item you can use to get past their detectors."
     "!!!... That sounds really convenient."
