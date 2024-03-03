@@ -459,7 +459,7 @@ transform vmarquee:
      linear 6.0 ypos 0.0 yanchor 1.0
      repeat
 screen pauselayout(scrname,spritevisible=True,notransform=False):
-    key "K_SPACE" action Return()
+    
     key 's'       action Return()
     key 'S'       action Return()
     if notransform:
@@ -546,7 +546,7 @@ screen pausemenu:
     tag menu
     timer 0.01:
         action Function(set_focus,"pausemenu", "pausebattleware")
-
+    key "K_SPACE" action Return("Return")
     use pauselayout("SOFTWAR")
 
     imagebutton idle "gui/rpgmenu/mail.png" hover "gui/rpgmenu/mail_h.png":

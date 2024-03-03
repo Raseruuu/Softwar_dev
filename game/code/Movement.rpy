@@ -105,7 +105,8 @@ label eventdoor:
 #     ""
 #     return
 label mapcall(position,stage):
-    # scene bg
+    scene scrollingBG at scroll
+    # show scrollingBG 
     #position is an (x,y) tuple declaring place in map.
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
@@ -339,6 +340,7 @@ screen mapB:
         # text "{color=#fff}Here = [Here]{/color    }"
         # text "{color=#fff}Where = [Where]{/color}"
         text "{color=#fff}Where = [Where]{/color}"
+        text "{color=#fff}Gameprogress = [gameprogress]{/color}"
         # text "{color=#fff}direction = [direction]{/color}"
         # text "{color=#fff}moving = [moving]{/color}"
         # direction
@@ -348,6 +350,7 @@ screen mapB:
             # xsize
         null height 7
         text "HP: [playerHP]/[playerHPMax]"
+        text "Money: [Money] Zenny"
         null height 10
 ## MOBILE BUTTONS
     # if not anim_done:

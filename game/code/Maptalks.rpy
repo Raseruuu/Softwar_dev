@@ -94,10 +94,14 @@ label maptalk_Stella_1:
         $ILYSprite("smile")
 
     else:
-        # $ Stoned_m="sad"
+        $ Stoned_m="open2"
+        $ Stoned_e="up"
+        
         $ shop_page=0
         s"What do you want?"
-
+        $ Stoned_m="happy"
+        $ Stoned_e="normal"
+        
     $ shop_active=True
     $ Stoned_w = False
 

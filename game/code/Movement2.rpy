@@ -19,9 +19,15 @@ init -3 python:
     Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa2")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
-    Bellasprite = SpriteinMap("Bella",[9,5],'down',"Bella")
+    Bellasprite = SpriteinMap("Bella",[8,4],'down',"Bella")
+    Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],'down',"a")
 
     Chapter2events=EventInMap("storyevent",[
+       [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
+       [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
+       [8,9],[8,8],[8,7],[8,6],[8,5]
+       ],"script2")
+    Chapter3events=EventInMap("storyevent",[
        [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
        [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
        [8,9],[8,8],[8,7],[8,6],[8,5]
@@ -55,10 +61,10 @@ label addsprites(gridplace):
                 if gridplace == key:
                     for sprite in map_dict[gridplace]:
                         spritelist.append(sprite)
-        if gridplace in mapeventsdict:
-            for key in mapeventsdict:
+        if gridplace in mapeventsdicts[chapternum]:
+            for key in mapeventsdicts[chapternum]:
                 if gridplace == key:
-                    for event in mapeventsdict[gridplace]:
+                    for event in mapeventsdicts[chapternum][gridplace]:
                         eventlist.append(event)
         # else:
             #     spritelist = []

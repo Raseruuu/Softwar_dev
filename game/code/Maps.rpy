@@ -104,7 +104,7 @@ init -2 python:
         (189,165):deepcopy(stageAB),
         (190,165):deepcopy(stageCD),
         (191,165):deepcopy(stageBD),
-        (192,165):deepcopy(stageABCD),
+        (192,165):deepcopy(stageBCD),
         (193,165):deepcopy(stageCD),
         (194,165):deepcopy(stageAD),
         (195,165):deepcopy(stageAB),
@@ -232,10 +232,45 @@ init -2 python:
         (185,175):deepcopy(stageBCD),
         (186,175):deepcopy(stageBCD),
         }
+    mapeventsdictdefault={
+
+    }
     mapeventsdict={
         # (192,168):[homeevents],
-        (191,167):[Chapter2events]
+        
         }
+    mapeventschapter0={
+        
+    }
+    mapeventschapter1={
+        (191,167):[Chapter2events]
+    }
+    mapeventschapter2={
+    }
+    mapeventschapter3={
+    }
+    mapeventschapter4={
+    }
+    mapeventschapter5={
+    }
+    mapeventschapter6={
+    }
+    mapeventschapter7={
+    }
+    mapeventschapter8={
+    }
+
+    mapeventsdicts=[
+            mapeventschapter0,
+            mapeventschapter1,
+            mapeventschapter2,
+            mapeventschapter3,
+            mapeventschapter4,
+            mapeventschapter5,
+            mapeventschapter6,
+            mapeventschapter7,
+            mapeventschapter8
+        ]
     mapspritesdictdefault={
         (192,168):[Heartsprite],
         # (192,164):[Melissasprite],
