@@ -20,14 +20,14 @@ init -3 python:
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[8,4],'down',"Bella")
-    Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],'down',"a")
+    Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],"a")
 
-    Chapter2events=EventInMap("storyevent",[
+    Chapter1events=EventInMap("storyevent",[
        [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
        [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
        [8,9],[8,8],[8,7],[8,6],[8,5]
        ],"script2")
-    Chapter3events=EventInMap("storyevent",[
+    Chapter2events=EventInMap("storyevent",[
        [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
        [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
        [8,9],[8,8],[8,7],[8,6],[8,5]
@@ -69,7 +69,7 @@ label addsprites(gridplace):
         # else:
             #     spritelist = []
                 #
-
+        Chapter2unlockdoor
     return
 label mapcallquest():
 
