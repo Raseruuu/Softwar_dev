@@ -260,7 +260,8 @@ init python:
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 #SaberSkills
     SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-
+    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    
 # Virus Exclusive
     Vshot=        Card("V-Shot",         "Gun",      0.6,               [Attack(),NullFxn()],           3)
     VirusFlame=   Card("V-Flame",        "Fire",      0.5,            [Attack(),Burn(20)],               3)

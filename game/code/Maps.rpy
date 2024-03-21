@@ -243,7 +243,8 @@ init -2 python:
         
     }
     mapeventschapter1={
-        (191,167):[Chapter2events]
+        (191,167):[Chapter1events]
+        
     }
     mapeventschapter2={
     }
