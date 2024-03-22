@@ -58,6 +58,7 @@ label RemoveTokenPlayer:
 label Damageenemy:
   $ Magnitude = (currentcardMAG)
   $ damagetoenemy=int(playerATK_m*Magnitude)
+
   if currentcardTYPE == "Sword":
     play sound "sfx/slash.wav"
   elif currentcardTYPE == "FireSword":
@@ -149,7 +150,6 @@ label DamageSPenemy:
     if enemySP>0:
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(playerATK_m*Magnitude)
-
         if currentcardTYPE == "Sword":
           play sound "sfx/slash.wav"
         elif currentcardTYPE == "Axe":
@@ -362,6 +362,26 @@ label GainTokenPlayer:
             jump tokenquant_loop2
     return
 label GainTokenEnemy:
+    play sound "sfx/sfx_sounds_powerup4.wav"
+    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    $ token_name = currentcard_fxn_params[0]
+    $ quantity = currentcard_fxn_params[1]
+    # $ EnmySts.append("burn")
+    $ counter=0
+    label tokenquant_loop3:
+
+        $ EnmySts=statusAppend(EnmySts,token_name)
+        show text "{size=20}[token_name]{/size}":
+          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+          linear 0.1 zoom 0.98
+          linear 0.2 zoom 1.0 alpha 0.0
+        $ renpy.pause(0.6,hard=True)
+        hide text
+        $ counter+=1
+        if counter<quantity:
+            jump tokenquant_loop3
+    return
+label EvadeEnemy:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
@@ -1147,37 +1167,11 @@ init python:
         "BoostATK":"BoostATK",
         "BoostDEF":"BoostDEF",
         "ReduceBit":"ReduceBit",
+        "Evade":"Evadeplayer",
+        "Block":"Blockplayer",
         "":"DoNothing"
     }
 label functioneffects(runfxnstring,params=[]):
-    # if runfxnstring=="Damage(MAG)":
-    #     call Damageenemy
-    # elif runfxnstring=="  RemoveEmail()\n  Damage(MAG)":
-    #     call RemoveEmailDamageenemy
-    # elif runfxnstring=="DamageSP(MAG)":
-    #     call DamageSPenemy
-    # elif runfxnstring=="DamageSPself(MAG)":
-    #     call DamageSPplayer
-    # elif runfxnstring=="Shield(MAG)":
-    #     call Shieldplayer
-    # elif runfxnstring=="Recover(MAG)":
-    #     call Recoverplayer
-    # elif runfxnstring=="Burn()":
-    #     call Burnenemy
-    # elif runfxnstring=="Email()":
-    #     call Emailenemy
-    # elif runfxnstring=="Burnself()":
-    #     call Burnself
-    # elif runfxnstring=="while E has Email:":
-    #     call ForEachEmail
-    # elif runfxnstring=="BoostATK()":
-    #     call BoostATK
-    # elif runfxnstring=="BoostDEF()":
-    #     call BoostDEF
-    # elif runfxnstring=="ReduceBit()":
-    #     call ReduceBit
-
-
     $ renpy.call(FxnDirectoryPlayer[runfxnstring])
     return
 init python:
@@ -1198,30 +1192,11 @@ init python:
         "BoostDEF":"BoostDEFenemy",
         "Boost":"Boost",
         "ReduceBit":"ReduceBitself",
+        "Evade":"EvadeEnemy",
+        "Block":"BlockEnemy",
+        # "":"",
         "":"DoNothing"
     }
 label enemyfunctioneffects(runfxnstring):
-    # if runfxnstring=="Damage(MAG)":
-    #     call Damageplayer
-    # elif runfxnstring=="DamageSP(MAG)":
-    #     call DamageSPplayer
-    # elif runfxnstring=="DamageSPself(MAG)":
-    #     call DamageSPselfenemy
-    # elif runfxnstring=="Shield(MAG)":
-    #     call Shieldenemy
-    # elif runfxnstring=="Recover(MAG)":
-    #     call Recoverenemy
-    # elif runfxnstring=="Burn()":
-    #     call Burnself
-    # elif runfxnstring=="Burnself()":
-    #     call Burnenemy
-    # elif runfxnstring=="BoostATK()":
-    #     call BoostATKenemy
-    # elif runfxnstring=="BoostDEF()":
-    #     call BoostDEFenemy
-    # elif runfxnstring=="ReduceBit()":
-    #     call ReduceBitself
-    # elif runfxnstring=="ReduceBit()":
-    #     call ReduceBitself
     $ renpy.call(FxnDirectoryEnemy[runfxnstring])
     return
