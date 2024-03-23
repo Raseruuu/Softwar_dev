@@ -66,5 +66,6 @@ init python:
         "Vira":[Hematocyte,Informium],
         "Code Red":[Lambdium,Lambdium],
         "ILY":[Datanium,Hematocyte],
+        "Sephiroth":[Datanium,Lambdium]
 
     }

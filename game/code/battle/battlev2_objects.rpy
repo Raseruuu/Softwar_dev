@@ -513,15 +513,27 @@ init python:
             DataSaber,DataSaber,
             DataSaber,VirusFlame,
             BlockSaber,BlockSaber,
-            RecursiveSlash,RecursiveSlash,
-            RecursiveSlash,RecursiveSlash,
-            RecursiveSlash,RecursiveSlash,
+            Katana,Katana,
+            Katana,Katana,
             BlockSaber,BlockSaber,
             BlockSaber,DataForce,
             DataForce,DataForce],
         "plugins":[]
         }
-
+    decksephiroth = {
+        "name":"",
+        "content":[
+            DataSaber,DataSaber,
+            DataSaber,DataSaber,
+            DataSaber,VirusFlame,
+            BlockSaber,BlockSaber,
+            Katana,Katana,
+            Katana,Katana,
+            BlockSaber,BlockSaber,
+            BlockSaber,DataForce,
+            DataForce,DataForce],
+        "plugins":[]
+        }
 
     selectedcard = ""
     currentcard = DataSaber
@@ -552,6 +564,7 @@ init python:
     Spyware=FAI("Spyware","Virus",800,400,300,250,deckrootkit,[])
     Vira=FAI("Vira","Antivirus",3500,1750,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,2000,500,500,deckred,[])
+    Sephiroth=FAI("Sephiroth","Virus",4000,2000,500,500,decksephiroth,[])
     Melissa=FAI("Melissa","Virus",2000,1000,500,500,deckmelissa,[])
     Ave=FAI("Ave","Antivirus",3000,1500,550,440,deckave,[])
 

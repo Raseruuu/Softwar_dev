@@ -388,7 +388,7 @@ label EvadeEnemy:
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("burn")
     $ counter=0
-    label tokenquant_loop3:
+    label tokenquant_loop4:
 
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
@@ -399,7 +399,7 @@ label EvadeEnemy:
         hide text
         $ counter+=1
         if counter<quantity:
-            jump tokenquant_loop3
+            jump tokenquant_loop4
     return
 label BoostATK:
 
