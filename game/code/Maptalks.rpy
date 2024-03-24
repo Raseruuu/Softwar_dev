@@ -33,7 +33,7 @@ label maptalk_CodeRed_1:
     if objectbelow=="CodeRed":
         $ILY_m='smile'
         $ILY_e='2'
-        i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
+        i"!!"
     $CodeRed_w=True
     c"I'm just doing my job!"
     hide screen mapB
