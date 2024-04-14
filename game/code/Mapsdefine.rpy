@@ -652,6 +652,7 @@ init -3 python:
         'n111111111n'
     ]
     stageBCD=map_token(stageBCD)
+    
     stageA=[
         'n111111111n',
         'n1111a1111n',
