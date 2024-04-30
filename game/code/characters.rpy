@@ -964,41 +964,41 @@ image LisaEyes:
 
 image LisaMouthsmile:
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .08
+    pause .1
     "images/Characters/Lisa/Lisa_msmile3.png"
     pause .1
     "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile.png"
-    pause .08
+    pause .1
     repeat
 
 image LisaMouthfrown:
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .08
+    pause .1
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mfrown.png"
-    pause .05
+    pause .1
     
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mfrown3.png"
-    pause .08
+    pause .1
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mfrown.png"
-    pause .05
+    pause .1
     
     repeat
 #########

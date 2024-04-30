@@ -579,8 +579,7 @@ label date1:
     "She said her name."
     extend" Lisa."
 
-    show Lisa with dissolve:
-        xalign 0.5 yalign 1.0
+    show Lisa with dissolve
     "Lisa Fairfield."
     extend" A genius programmer girl. We're batchmates currently taking internship at Hilbert's family company."
     "We've been working on this website for a client for quite a while now."
@@ -616,7 +615,7 @@ label date2:
         "I walk towards the cafe. There she is, waiting for me by the entrance."
         "It's been 30 minutes since our designated meeting time. If it hadn't been for that virus on my PC!"
         extend" I wonder if she's frustrated that I'm late?"
-        show Lisa at center with dissolve
+        show Lisa with dissolve
         $ Lisa_w=False
         l"John!"
         $JohnSprite('normal')
