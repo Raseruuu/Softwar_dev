@@ -123,29 +123,29 @@ transform excitement: #oh my gawd, it's coming!!
         linear 0.3 ypos 1.1
         linear 0.3 ypos 1.0
         repeat
-transform sidesteps_effect(image_path, start_pos, end_pos, duration):
-    subpixel True
-    yalign 1.0
-    contains:
-        Image(image_path)
-        xalign start_pos alpha 0.2
-        easein duration + 0.4 xalign end_pos
-    contains:
-        Image(image_path)
-        xalign start_pos alpha 0.4
-        easein duration + 0.3 xalign end_pos
-    contains:
-        Image(image_path)
-        xalign start_pos alpha 0.6
-        easein duration + 0.2 xalign end_pos
-    contains:
-        Image(image_path)
-        xalign start_pos alpha 0.8
-        easein duration + 0.1 xalign end_pos
-    contains:
-        Image(image_path)
-        xalign start_pos alpha 1
-        easein duration xalign end_pos
+# transform sidesteps_effect(image_path, start_pos, end_pos, duration):
+#     subpixel True
+#     yalign 1.0
+#     contains:
+#         Image(image_path)
+#         xalign start_pos alpha 0.2
+#         easein duration + 0.4 xalign end_pos
+#     contains:
+#         Image(image_path)
+#         xalign start_pos alpha 0.4
+#         easein duration + 0.3 xalign end_pos
+#     contains:
+#         Image(image_path)
+#         xalign start_pos alpha 0.6
+#         easein duration + 0.2 xalign end_pos
+#     contains:
+#         Image(image_path)
+#         xalign start_pos alpha 0.8
+#         easein duration + 0.1 xalign end_pos
+#     contains:
+#         Image(image_path)
+#         xalign start_pos alpha 1
+#         easein duration xalign end_pos
 
 
 
@@ -154,62 +154,62 @@ transform sidesteps_effect(image_path, start_pos, end_pos, duration):
     subpixel True
 
     contains:
-        Image(image_path)
-        xalign start_pos alpha 0.1 yalign 1.0
+        image_path
+        xalign start_pos alpha 0.1 
         easein duration + 0.4 xalign end_pos
         block:
-         Image(image_path)
+         image_path
          xalign end_pos alpha 0.1
          easein duration xalign start_pos
-         Image(image_path)
-         xalign start_pos alpha 0.1 yalign 1.0
+         image_path
+         xalign start_pos alpha 0.1
          easein duration  xalign end_pos
          repeat
     contains:
-        Image(image_path)
-        xalign start_pos alpha 0.2 yalign 1.0
+        image_path
+        xalign start_pos alpha 0.2 
         easein duration + 0.3 xalign end_pos
         block:
-         Image(image_path)
-         xalign end_pos alpha 0.2 yalign 1.0
+         image_path
+         xalign end_pos alpha 0.2 
          easein duration xalign start_pos
-         Image(image_path)
-         xalign start_pos alpha 0.2 yalign 1.0
+         image_path
+         xalign start_pos alpha 0.2 
          easein duration  xalign end_pos
          repeat
     contains:
-        Image(image_path)
-        xalign start_pos alpha 0.3  yalign 1.0
+        image_path
+        xalign start_pos alpha 0.3  
         easein duration + 0.2 xalign end_pos
         block:
-         Image(image_path)
-         xalign end_pos alpha 0.3 yalign 1.0
+         image_path
+         xalign end_pos alpha 0.3 
          easein duration xalign start_pos
-         Image(image_path)
-         xalign start_pos alpha 0.3 yalign 1.0
+         image_path
+         xalign start_pos alpha 0.3 
          easein duration  xalign end_pos
          repeat
 
     contains:
-        Image(image_path)
-        xalign start_pos alpha 0.5 yalign 1.0
+        image_path
+        xalign start_pos alpha 0.5 
         easein duration + 0.1 xalign end_pos
         block:
-         Image(image_path)
-         xalign end_pos alpha 0.5 yalign 1.0
+         image_path
+         xalign end_pos alpha 0.5 
          easein duration  xalign start_pos
-         Image(image_path)
-         xalign start_pos alpha 0.5 yalign 1.0
+         image_path
+         xalign start_pos alpha 0.5 
          easein duration  xalign end_pos
 
          repeat
 
     contains:
-        Image(image_path)
-        xalign start_pos alpha 0.9 yalign 1.0
+        image_path
+        xalign start_pos alpha 0.9 
         easein duration xalign end_pos
-        Image(image_path)
-        xalign end_pos alpha 0.9 yalign 1.0
+        image_path
+        xalign end_pos alpha 0.9 
         easein duration xalign start_pos
 
         repeat

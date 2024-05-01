@@ -924,7 +924,7 @@ label Execution:
         $ currentcardTYPE = currentcard.TYPE
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(playerATK_m*Magnitude)
-        $ damagecard = True#("attack" in currentcardFXN[0].name or "attack" in currentcardFXN[1].name)
+        $ damagecard = ("attack" in currentcardFXN[0].name or "attack" in currentcardFXN[1].name) 
         call battlecry from _call_battlecry
         # show ring onlayer overlay:
         #     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0

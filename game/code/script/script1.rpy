@@ -197,7 +197,7 @@ label script1:
     $plrname = 'John Doe'
     #$plrname = renpy.input(_("Input your name(Default = John Doe):")) or _("John Doe")
 
-    # @TODO: make sure john's sprite appears
+    # @TODO  : make sure john's sprite appears
 
     $ JohnSprite("frown")
     j "[plrname]. That's my name."
@@ -579,7 +579,8 @@ label date1:
     "She said her name."
     extend" Lisa."
 
-    show Lisa with dissolve
+    show Lisa with dissolve:
+        xalign 0.5
     "Lisa Fairfield."
     extend" A genius programmer girl. We're batchmates currently taking internship at Hilbert's family company."
     "We've been working on this website for a client for quite a while now."
@@ -615,7 +616,7 @@ label date2:
         "I walk towards the cafe. There she is, waiting for me by the entrance."
         "It's been 30 minutes since our designated meeting time. If it hadn't been for that virus on my PC!"
         extend" I wonder if she's frustrated that I'm late?"
-        show Lisa with dissolve
+        show Lisa at center with dissolve
         $ Lisa_w=False
         l"John!"
         $JohnSprite('normal')
@@ -658,6 +659,7 @@ label date2:
         l"Hey, just tell me if you want my other cup."
         j"I didn't mean that at all!"
         l"Go on, you can have it."
+        "Did Lisa just read my mind?"
         "Wow, what just happened? Does this mean she actually did buy this for me?"
         $JohnSprite('mad')
         j"Uh, Thank you very much!!"
@@ -780,7 +782,7 @@ label date2:
         j"Despite being a Virus and all, that'd be really hard to do."
         j"Internet connection and speed aren't guaranteed, especially when the screen's all black with just ILOVEYOU on it."
         $ John_e='normal'
-        j"But it may work. The probability in my opinion is just really slim."
+        j"But it might work. The probability in my opinion is just really slim."
         l"Count on her to be a kind virus and hope for the best, John!"
         "She's awfully optimistic about this AI virus girl."
         l"Oh, one more thing... Nick told me something..."
@@ -816,11 +818,9 @@ label date2:
         l"John!"
         $JohnSprite('normal')
         j"Yeah?"
-        l"{font=font/Censor.ttf}I{/font} {font=font/Censor.ttf}love{/font} {font=font/Censor.ttf}You{/font}!"
-        j"What?"
         $ Lisa_m="frown"
         $ Lisa_e="mad"
-        l"I'm really excited to see that AI Virus you got!"
+        l"I'm really excited to see that A.I. Virus you got!"
         j"Trust me, she's a total mess."
         l"Don't say that about {i}people you've just met!{/i}"
         "I can say what I want about {i}programs I just downloaded{/i}."
@@ -866,7 +866,7 @@ label date2:
         "Lisa is in my room. "
         "All she's gonna do here is work on our website database with me."
         "How do I feel about this?"
-        "I feel smile."
+        "I feel happy."
         extend" It's not that I like her or anything, I just think I'm lucky to have a nice programmer girl as a friend."
         "She's also very reliable and smart."
         extend" The type you don't see just anywhere."
@@ -1571,8 +1571,8 @@ label date2:
         $ILY_e = 'normal'
 
         $ILY_w = False
-        show ILY at sidesteps_effect("images/Characters/ILY/ILY_game.png", 0.5, 0.1, 0.25):
-            zoom 0.5 xalign 0.5 yalign 0.8
+        show ILY at sidesteps_effect("ILY", 0.5, 0.1, 0.25):
+            xalign 0.5 
         i"Waaaahh! I'm free!!"
         hide ILY
         $ okdesktop = False
