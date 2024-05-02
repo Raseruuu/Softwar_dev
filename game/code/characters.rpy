@@ -871,8 +871,11 @@ image JohnFull:
         # (0, 0), "images/Characters/John/Johnshades.png",
         )
     zoom 0.7
+image JohnFullside:
+    "JohnFull"
+    zoom 0.97
 image John sidew:
-    LiveCrop((246,52, 300,385), "JohnFull")
+    LiveCrop((242,38, 300,385), "JohnFullside")
     zoom 0.56
 
 image John:
@@ -910,19 +913,20 @@ image Lisafull:
         (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
         (0, 0), "LisaEyes",#eyes
         )
-        zoom 0.32
-
+        zoom 0.31
 image Lisa:
     "Lisafull"
-    # yanchor 0.0 ypos 0.01
+    yanchor 0.0 ypos 0.01
     # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
     # pause .5
     # repeat
-
+image Lisafullside:
+    "Lisafull"
+    zoom 1.13
 image Lisa sidew:
-    LiveCrop((150,20, 300,385), "Lisafull")
+    LiveCrop((130,20, 300,385), "Lisafullside")
     zoom 0.56
 image side Lisa_side:
     ConditionSwitch(
@@ -965,40 +969,42 @@ image LisaEyes:
 
 image LisaMouthsmile:
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .05
-    "images/Characters/Lisa/Lisa_mopen3.png"
-    pause .08
-    "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_mopen1.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .08
+    pause .1
     "images/Characters/Lisa/Lisa_msmile3.png"
     pause .1
     "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .05
+    pause .1
     "images/Characters/Lisa/Lisa_msmile.png"
-    pause .08
+    pause .1
     repeat
 
 image LisaMouthfrown:
-    "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .05
+    "images/Characters/Lisa/Lisa_mopen1.png"
+    pause .1
     "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .05
-    "images/Characters/Lisa/Lisa_mopen3.png"
-    pause .08
-    "images/Characters/Lisa/Lisa_mopen2.png"
-    pause .05
-    "images/Characters/Lisa/Lisa_msmile2.png"
-    pause .05
+    pause .1
+    "images/Characters/Lisa/Lisa_mopen1.png"
+    pause .1
     "images/Characters/Lisa/Lisa_mfrown.png"
-    pause .05
+    pause .1
+    
+    "images/Characters/Lisa/Lisa_mopen1.png"
+    pause .1
+    "images/Characters/Lisa/Lisa_mfrown3.png"
+    pause .1
+    "images/Characters/Lisa/Lisa_mopen1.png"
+    pause .1
+    "images/Characters/Lisa/Lisa_mfrown.png"
+    pause .1
+    
     repeat
 #########
 ## Vira
@@ -1137,7 +1143,7 @@ image ModeRedFull:
 #########
 image Melissa:
     "MelissaFull"
-    yanchor 0.62 ypos 1.0 zoom 0.9
+    yanchor 0.6 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1243,7 +1249,7 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.48 ypos 1.0 zoom 0.9
+    yanchor 0.9 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1253,7 +1259,7 @@ image Ave:
 
 image AveFull:
     LiveComposite(
-        (4189,7278),
+        (486,861),
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(
             "Ave",
@@ -1264,7 +1270,6 @@ image AveFull:
         (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
-    zoom 0.24
 image AveEyes:
     "images/Characters/Ave/Ave_eyes.png"
 
@@ -1635,11 +1640,11 @@ image StonedFull:
     (0,0),"images/Characters/Stoned/Stoned_glass.png"
     # (0,0),"Stoned_Guns"
     )
-    zoom 0.56 xalign 0.5 
+    zoom 0.95 xalign 0.5 
 
 image Stoned:
     "StonedFull"
-    xalign 0.5 yanchor 0.87 ypos 1.0
+    xalign 0.5 yanchor 0.8 ypos 1.0 zoom 0.60
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1647,10 +1652,10 @@ image Stoned:
     repeat
 image Stonedsmall:
     "StonedFull"
-    
+    zoom 0.60
 image side Stoned_side:
     ConditionSwitch(
-            "Stoned_w==True",(LiveCrop((312,164,300,385),"Stonedsmall")),
+            "Stoned_w==True",(LiveCrop((320,150,300,385),"Stonedsmall")),
             "Stoned_w==False",Null()
         )
     zoom 0.56
@@ -1672,19 +1677,9 @@ image Stoned_msad:
     "images/Characters/Stoned/Stoned_mopen2.png"
     pause .08
     "images/Characters/Stoned/Stoned_mopenO.png"
-    pause .08
-    "images/Characters/Stoned/Stoned_mopenO.png"
-    pause .08
-    "images/Characters/Stoned/Stoned_msad.png"
-    pause .08
-    repeat
-image Stoned_mopen2:
-    "images/Characters/Stoned/Stoned_mopen2.png"
-    pause .08
-    "images/Characters/Stoned/Stoned_mopenO.png"
-    pause .08
-    "images/Characters/Stoned/Stoned_mopenO.png"
-    pause .08
+    pause .16
+    # "images/Characters/Stoned/Stoned_mopen2.png"
+    # pause .08
     "images/Characters/Stoned/Stoned_msad.png"
     pause .08
     repeat
