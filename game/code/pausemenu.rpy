@@ -13,8 +13,32 @@ label pauseshow:
     hide screen pauselayout
     call screen pausemenu
     if _return=="FAI":
-        "This feature has not yet been implemented."
-        jump pauseshow
+        
+        
+        # jump pauseshow
+        label FAI_menu:
+        call screen FAI_menu
+        if _return=="Customize":
+            label FAICustomizescreen:
+                $ noscreentransformsfornow=False
+                call screen Items_dress
+                # if _return=="Battleware_Edit":
+                   
+                #     label Battleware_edit_screen:
+                #         call screen Battleware_Edit
+                #         if _return=="SaveDeck":
+                #             call SaveDeck
+                #         elif _return=="UnsaveDeck":
+                #             call UnsaveDeck
+
+                #         else:
+                #             jump Battleware_edit_screen
+                        # return
+        elif _return=="ActiveFAI":
+            "Switch FAI: Select a FAI other than ILY"
+            
+    
+
     elif _return=="Mail":
         # call screen Items
 
@@ -45,6 +69,7 @@ label pauseshow:
             # return
 
             # return
+    
     elif _return=="Battleware":
         $ deckcurrent= sorted( deckcurrent,key=lambda x: x.NAME, reverse=False)
         label ware_menu:
@@ -94,6 +119,8 @@ label pauseshow:
         call screen save()
     elif _return=="Load":
         call screen load()
+    elif _return=="Pref":
+        call screen preferences()
     if _return=="Return":
         return
     elif _return!="Return":
@@ -301,7 +328,7 @@ image blinky:
     linear 0.3 alpha 0.9
     linear 0.3 alpha 0.0
     repeat
-transform zoom05:
+transform zoom05():
     zoom 0.5
 
 transform pausecardsize:
@@ -465,6 +492,8 @@ transform vmarquee:
      ypos 1.0 yanchor 0.0
      linear 6.0 ypos 0.0 yanchor 1.0
      repeat
+transform zoomtrans(zoomvalue):
+    zoom zoomvalue
 screen pauselayout(scrname,spritevisible=True,notransform=False):
     
     key 's'       action Return()
@@ -483,44 +512,47 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
 
     if spritevisible:
-        add "ILY":
-            xalign 0.08
+        image At("ILY",zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )) :
+            xpos 0.25 xanchor 0.5
+            ypos (0.2 if scrname=="CUSTOMIZE" else 0.4 ) yanchor 0.2
             if not notransform:
                 at pausetrans1
-    frame:
-        if not notransform:
-            at pausetrans1
-        style "pausestats"
-        hbox:
 
-            null width 4
-            vbox:
-                text "{b}[playerName]{/b}"
-                null height 7
-                fixed:
+    if scrname!="CUSTOMIZE":
+        frame:
+            if not notransform:
+                at pausetrans1
+            style "pausestats"
+            hbox:
 
-                    frame:
-                        style_prefix "healthbar"
-                        xsize bar_size(playerHP,playerHPMax, 420)
-                    hbox:
-                        null width 40
-                        text "HP: [playerHP]/[playerHPMax]"
-                    vbox:
-                        null height 32
-                        hbox:
+                null width 4
+                vbox:
+                    text "{b}[playerName]{/b}"
+                    null height 7
+                    fixed:
 
-                            frame:
-                                style "deckframe"
-                                text "{size=16}Deck: [deckname]{/size}"
-                            frame:
-                                style "deckframe"
-                                text "{size=16}Chapter [chapternum]{/size}"
                         frame:
-                            xminimum 460
-                            style "deckframe"
-                            text "{size=24}Money: [Money] {/size}{image=gui/zenny.png} Zennys"
+                            style_prefix "healthbar"
+                            xsize bar_size(playerHP,playerHPMax, 420)
+                        hbox:
+                            null width 40
+                            text "HP: [playerHP]/[playerHPMax]"
+                        vbox:
+                            null height 32
+                            hbox:
 
-                null height 10
+                                frame:
+                                    style "deckframe"
+                                    text "{size=16}Deck: [deckname]{/size}"
+                                frame:
+                                    style "deckframe"
+                                    text "{size=16}Chapter [chapternum]{/size}"
+                            frame:
+                                xminimum 460
+                                style "deckframe"
+                                text "{size=24}Money: [Money] {/size}{image=gui/zenny.png} Zennys"
+
+                    null height 10
 style deckframe:
     background Frame("gui/framefxn.png", 32, 32)
     xpadding 8

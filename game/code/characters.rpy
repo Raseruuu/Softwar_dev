@@ -1644,7 +1644,7 @@ image StonedFull:
     (0,0),"images/Characters/Stoned/Stoned_glass.png"
     # (0,0),"Stoned_Guns"
     )
-    zoom 0.95 xalign 0.5 
+    zoom 0.93 xalign 0.5 
 
 image Stoned:
     "StonedFull"

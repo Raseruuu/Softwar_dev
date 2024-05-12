@@ -205,7 +205,7 @@ label script1:
     $ ILYSprite("smile3")
     i "Identity confirmed."
 
-    $ ILYSprite("frown")
+    $ ILYSprite("smile")
     i "[plrname], do you accept my offer to be your assistant? I've worked so hard just to get to your PC!"
 
     menu:

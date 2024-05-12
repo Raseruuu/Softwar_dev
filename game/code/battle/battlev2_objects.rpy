@@ -32,6 +32,11 @@ init python:
             self.TYPE = TYPE
             self.DESC = DESC
             self.FXN = FXN
+    class Item_dress:
+        def __init__(self,NAME,TYPE,DESC):
+            self.NAME = NAME
+            self.TYPE = TYPE
+            self.DESC = DESC
     # class Card:
     #     def __init__(self,name,POW,SPD,fxn,rank):
     #         self.name=name

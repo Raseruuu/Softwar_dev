@@ -187,6 +187,7 @@ label script2:
     i "(If we decided, we can just send an antivirus to hunt them down anytime.)"
     i "(Melissa has set aside that risk just to help us.)"
     "I'm impressed that ILY can think this far into a trust issue."
+    $ ILY_m="smile"
     i "Thank you for trusting me, Melissa."
     m "A thank you again? Like I said, you can call me your big sister now."
     m "Sisters always watch each other's backs!"

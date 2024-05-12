@@ -181,6 +181,39 @@ style game_grid_button:
 style game_grid_text:
     size 40
     xalign 0.5 yalign 0.5
+screen FAI_menu:
+    use pauselayout("FAI")
+    frame:
+        style "game_menu_content_frame"
+        at pausetrans2
+        xanchor 0.0 xpos 0.5 yanchor 0.0 ypos 0.24
+        vbox:
+            style_prefix "game_grid"
+            button:
+
+                text "Active FAI"
+                action Return("ActiveFAI")
+                # xanchor 0.5 xpos 0.50 yanchor 0.5 ypos 0.34
+            button:
+
+                text "Customize"
+                action Return("Customize")
+                # xanchor 0.5 xpos 0.50 yanchor 0.5 ypos 0.34
+    frame:
+        if not noscreentransformsfornow:
+            at pausetrans1
+        style_prefix "stats"
+        xalign 0.95 yalign 0.88
+        hbox:
+            # frame:
+            #     # textbutton "Save" action SetVariable("noscreentransformsfornow",True), Return("SaveDeck")
+            #     imagebutton idle Text("{size=35}Save{/size}") hover Text("{size=35}{color=f00}Save{/size}") action SetVariable("noscreentransformsfornow",True), Return("SaveDeck")
+
+            # null height 10
+            frame:
+                imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
+                    action SetVariable("noscreentransformsfornow",True), Return()
+
 screen ware_menu:
     use pauselayout("BATTLEWARE")
     frame:

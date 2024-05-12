@@ -263,31 +263,41 @@ init -1 python:
 
     # intercept the built-in menu
     renpy.exports.menu = menu_override
+    def RenpysetFocusChoice():
+        
+        return renpy.set_focus("choice", "button1")
+
 screen choice(items):
     style_prefix "choice"
+    # $ renpy.set_focus("choice", "button1")
+    $ currentchoiceindex=0
+    on "show":
     
-    # on "show":
-    #     action If(MouseMove(x=633, y=635, duration=.3))
+        # action MouseMove(x=613, y=655, duration=.3)
+        action Function(RenpysetFocusChoice)
     #TODO: MAKE IT LOOK LIKE A PROMPT WINDOW
     hbox:
         for menu_choice in items:
             # $ hiddenchoice = "hidden" in choice.kwargs.keys()
             # $ print(choice.kwargs.keys())
             # if hiddenchoice:
-
+           
             #     pass
             # else:
+            $ currentchoiceindex+=1
             if menu_choice.action:
                 if "(disabled)" in menu_choice.caption:
                     
                     textbutton menu_choice.caption.replace("(disabled)","") :
                         xmaximum 400
+                        id "button"+str(currentchoiceindex)
                 else:
                     textbutton menu_choice.caption :
                         xmaximum 400
                         action menu_choice.action  
                         hover_sound "sound/hover.wav" 
                         activate_sound "sound/click.wav"
+                        id "button"+str(currentchoiceindex)
                         
             else:
                 textbutton menu_choice.caption :
@@ -295,6 +305,7 @@ screen choice(items):
                         action menu_choice.action  
                         hover_sound "sound/hover.wav" 
                         activate_sound "sound/click.wav"
+                        id "button"+str(currentchoiceindex)
             
 
 ## When this is true, menu captions will be spoken by the narrator. When false,

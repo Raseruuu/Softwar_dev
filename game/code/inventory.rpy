@@ -71,7 +71,7 @@ screen Items(itemsmode="ITEMS"):
                                 hover_background Frame("gui/framefxn2.png",10,10)
                                 hbox:
                                     xalign 0.0 yalign 0.5
-                                    xsize 634
+                                    xsize 480+70
                                     ysize 50
                                     image  "images/Cards/items/empty.png" at zoom05
 
