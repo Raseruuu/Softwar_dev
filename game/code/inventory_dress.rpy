@@ -7,12 +7,13 @@ init python:
     Garden = Item_dress("Garden","Outfit","A Green Gardener's dress.")
     BladeArmor = Item_dress("BladeArmor","Outfit","ILY's Most powerful armor!")
     Bloomers = Item_dress("Bloomers","Outfit","Bloomers are good for Physical exercise!")
+    PinkDress = Item_dress("PinkDress","Outfit","A cute casual outfit!")
     
     Red_underwear=Item_dress("Red","Underwear","Default.")
     White_underwear = Item_dress("White","Underwear","Classic.")
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! This one is a gift from Melissa.")
     
-    inventory_dress=[Unequip,Uniform,Red_underwear ,Garden,Bloomers,Bunny_underwear ,White_underwear,BladeArmor,]
+    inventory_dress=[Unequip,Uniform,Red_underwear ,PinkDress]
     def EquipDress(dresstype,dressname):
         if dressname=="Unequip":
             globals()["ILY_outfit"]=""

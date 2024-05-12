@@ -654,7 +654,20 @@ init -3 python:
         'nnnnnnnnnnn'
     ]
     stageBCD=map_token(stageBCD)
-    
+    stageBCD2=[
+        'nnnnnnnnnnn',
+        'n1111111a1n',
+        'n100000001n',
+        'n100000001n',
+        'n100000001n',
+        'nc0000000bn',
+        'n100000001n',
+        'n100000001n',
+        'n100000001n',
+        'n1111d1111n',
+        'nnnnnnnnnnn'
+    ]
+    stageBCD2=map_token(stageBCD2)
     stageA=[
         'n111111111n',
         'n1111a1111n',

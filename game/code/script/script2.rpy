@@ -217,6 +217,7 @@ label script2:
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
     j "Do we... have that much?"
+    $ globals()["GRID"][(192,165)]=stageBCD2
     $ gameprogress+=1
     
     if Money >=3000:
