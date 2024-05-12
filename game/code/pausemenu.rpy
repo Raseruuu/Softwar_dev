@@ -90,8 +90,15 @@ label pauseshow:
         #             if _return!="Return":
         #                 jump Plugins_edit_screen
         #             return
-    if _return!="Return":
+    if _return=="Save":
+        call screen save()
+    elif _return=="Load":
+        call screen load()
+    if _return=="Return":
+        return
+    elif _return!="Return":
         jump pauseshow
+        
 
     return
 init python:
@@ -511,7 +518,7 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
                         frame:
                             xminimum 460
                             style "deckframe"
-                            text "{size=24}Money: [Money] Zennys{/size}"
+                            text "{size=24}Money: [Money] {/size}{image=gui/zenny.png} Zennys"
 
                 null height 10
 style deckframe:
@@ -569,8 +576,8 @@ screen pausemenu:
         hovered SetVariable('pause_button_offset3',-15) unhovered SetVariable('pause_button_offset3',0)
         xanchor 0.5 xpos 0.50 yanchor 0.5 ypos 0.56
         at pausetrans2,pausetranshover(pause_button_offset3)
-        action ShowMenu('preferences')
-
+        # action ShowMenu('preferences')
+        action Return("Pref")
     imagebutton idle "gui/rpgmenu/battleware.png" hover "gui/rpgmenu/battleware_h.png":
         # default_focus True
         id "pausebattleware"
@@ -590,14 +597,14 @@ screen pausemenu:
         hovered SetVariable('pause_button_offset6',-15) unhovered SetVariable('pause_button_offset6',0)
         xanchor 0.5 xpos 0.5 yanchor 0.5 ypos 0.78
         at pausetrans2,pausetranshover(pause_button_offset6)
-        action ShowMenu("save")
-
+        # action ShowMenu("save")
+        action Return("Save")
     imagebutton idle "gui/rpgmenu/load.png" hover "gui/rpgmenu/load_h.png":
         hovered SetVariable('pause_button_offset7',-15) unhovered SetVariable('pause_button_offset7',0)
         xanchor 0.5 xpos 0.675 yanchor 0.5 ypos 0.78
         at pausetrans2,pausetranshover(pause_button_offset7)
-        action ShowMenu("load")
-
+        # action ShowMenu("load")
+        action Return("Load")
     imagebutton idle "gui/rpgmenu/return.png" hover "gui/rpgmenu/return_h.png":
         hovered SetVariable('pause_button_offset8',-15) unhovered SetVariable('pause_button_offset8',0)
         xanchor 0.5 xpos 0.85 yanchor 0.5 ypos 0.78

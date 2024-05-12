@@ -422,7 +422,7 @@ image ILYFullBodyOld:
     
     Composite(
     (0.75, 0.75), #(544,600),
-    (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
+    (0, 0), At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)), #pose
     (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
     (0, 0), ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()), #outfit
     #(0, 0), "ILY_p[ILY_p].png",
@@ -443,7 +443,11 @@ image ILYFullBodyOld:
 layeredimage ILYFullBody:
     always:
         
-        At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)) #pose
+        At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)) #pose
+    # group clothes:
+    always:
+        # ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null())
+        ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",ilyfix(0.5)),"ILY_stockings==''",Null()) #stockings
     # group clothes:
     attribute underwear default:
             ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
