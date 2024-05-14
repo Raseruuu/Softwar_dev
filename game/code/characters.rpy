@@ -54,8 +54,8 @@ init -1 python:
     globals()["ILY_p"] = "1"
     globals()["ILY_e"] = "normal"
     globals()["ILY_underwear"] = "red" # "red", "small", "" 
-
     globals()["ILY_outfit"] = "uniform" #bunny, garden, ""
+    globals()["ILY_hair"] = "default" #""", "down", ""
 
     globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
@@ -442,6 +442,9 @@ image ILYFullBodyOld:
     )
 layeredimage ILYFullBody:
     always:
+        ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())
+        # At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5))
+    always:
         
         At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)) #pose
     # group clothes:
@@ -458,7 +461,7 @@ layeredimage ILYFullBody:
         At("images/Characters/ILY/Full/ILY_Full_face.png",ilyfix(0.5))
     
     always:
-        At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5))
+        At("images/Characters/ILY/Full/ILY_Full_hair_[ILY_hair].png",ilyfix(0.5))
     always:
         At("ILYEyes[ILY_p]",ilyfix(0.5))
     always:
