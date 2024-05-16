@@ -616,7 +616,7 @@ label date2:
         "I walk towards the cafe. There she is, waiting for me by the entrance."
         "It's been 30 minutes since our designated meeting time. If it hadn't been for that virus on my PC!"
         extend" I wonder if she's frustrated that I'm late?"
-        show Lisa at center with dissolve
+        show Lisa with dissolve
         $ Lisa_w=False
         l"John!"
         $JohnSprite('normal')
@@ -1330,7 +1330,7 @@ label date2:
         scene JD_Bed3
         show Lisa
         with dissolve
-        j"Lisa. Got any clue?"
+        j"Lisa, got any clue?"
         l"I just might know where to get one..."
         $Lisa_m = 'smile'
         l"Recently..."
