@@ -1149,13 +1149,26 @@ image ModeRedFull:
 ## Melissa
 #########
 image Melissa:
+    mesh True
     "MelissaFull"
-    yanchor 0.6 ypos 1.0 zoom 0.9
+    yanchor 0.55 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
     pause .5
     repeat
+image Melissajump:
+    mesh True
+    "MelissaFull base_jump"
+    yanchor 0.55 ypos 1.0 zoom 0.9
+    ease 0.3 yoffset -30
+    ease 0.1 yoffset 5
+    ease 0.2 yoffset 0
+    # linear 1.0 yoffset 0
+    # pause .5
+    # linear 1.0 yoffset 5
+    # pause .5
+    # repeat
 image MelissaEyes:
     choice:
         "images/Characters/Melissa/Melissa_eyes.png"
@@ -1220,8 +1233,61 @@ image MelissaMouthfrown:
     "images/Characters/Melissa/Melissa_mopen1.png"
     pause .1
     repeat
-image MelissaFull:
+image Melissa_base_jump:
+    "images/Characters/Melissa/Melissa_base_down1.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_down2.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_up1.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_up1.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base.png"
+    
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_down1.png"
+    
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down2.png"
+    
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base.png"
+    
+    pause 0.1
+    
+layeredimage MelissaFull:
+    # always:
+    #     "images/Characters/Melissa/Melissa_base.png"
+    group base:
+        attribute base_normal default:
+            "images/Characters/Melissa/Melissa_base.png"
+        attribute base_jump:   
+            "Melissa_base_jump"
+    always:
+        WhileSpeaking(
+            "Melissa",
+            ConditionSwitch(
+                "('smile' in Melissa_m)","MelissaMouthsmile",
+                "('smile' not in Melissa_m)","MelissaMouthfrown"
+            ),
+            "images/Characters/Melissa/Melissa_m[Melissa_m].png"
+            )
+    always:
+        "images/Characters/Melissa/Melissa_e[Melissa_e].png"
+    always:
+        "MelissaEyes"
+    zoom 0.22
+    
+image MelissaFullBody:
     # "images/Characters/Melissa/Melissa_full.png"
+    
     LiveComposite(
         (1956,5716),
         (0, 0), "images/Characters/Melissa/Melissa_base.png",

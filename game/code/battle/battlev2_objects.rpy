@@ -561,7 +561,7 @@ init python:
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
     ILYAlpha=FAI("ILY","Virus",2500,1250,500,500,deckalpha,[])
-    Trojan=FAI("Trojan Horse","Virus",1000,500,300,250,decktrojan,[])
+    Trojan=FAI("Trojan Horse","Virus",2000,600,300,250,decktrojan,[])
     Keylogger=FAI("Keylogger","Virus",500,250,300,250,deckkeylogger,[])
     Ransomware=FAI("Ransomware","Virus",600,300,300,250,deckransomware,[])
     Rootkit=FAI("Rootkit","Virus",700,350,300,250,deckrootkit,[])

@@ -8,7 +8,18 @@ image white = Solid("#fff")
 image Credits = "gui/Credits.png"
 image Maoudamashii = "Maoudamashii.png"
 label start:
+    scene cafeoutside
+    play music "bgm/Cafella_bgm_maoudamashii_acoustic51.mp3"
+    "Test"
+
+    show Melissa
+    m"Hello there."
+    pause
+    hide Melissa
+    show Melissajump
+    "Test Over."
     call game_loop from _call_game_loop
+    return
 label credits:
     $ILY_m="smile"
     scene white with pixellate
