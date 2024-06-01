@@ -17,7 +17,7 @@ label start:
     pause
     hide Melissa
     show Melissajump
-    "Test Over."
+    ""
     call game_loop from _call_game_loop
     return
 label credits:

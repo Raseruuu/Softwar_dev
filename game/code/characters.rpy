@@ -1151,7 +1151,7 @@ image ModeRedFull:
 image Melissa:
     mesh True
     "MelissaFull"
-    yanchor 0.55 ypos 1.0 zoom 0.9
+    yanchor 0.5 ypos 1.0 zoom 0.9
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1160,7 +1160,7 @@ image Melissa:
 image Melissajump:
     mesh True
     "MelissaFull base_jump"
-    yanchor 0.55 ypos 1.0 zoom 0.9
+    yanchor 0.50 ypos 1.0 zoom 0.9
     ease 0.3 yoffset -30
     ease 0.1 yoffset 5
     ease 0.2 yoffset 0
@@ -1242,10 +1242,11 @@ image Melissa_base_jump:
     pause 0.1
     "images/Characters/Melissa/Melissa_base.png"
     
-    pause 0.1
+    pause 0.025
     "images/Characters/Melissa/Melissa_base_up1.png"
-    
-    pause 0.1
+    pause 0.025
+    "images/Characters/Melissa/Melissa_base_up2.png"
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up1.png"
     
     pause 0.1
