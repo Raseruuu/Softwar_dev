@@ -362,11 +362,11 @@ init python:
             SpamAtk,DataSaber,
             DataSaber,DataSaber,
             ChocolateBar,ChocolateBar,
-            DataDrill,MailSaber,
+            DataSaber,MailSaber,
             VirusFlame,RecursiveSlash,
             VirusFlame,SaberDeflect,
-            DataDrill,DataDrill,
-            DataDrill,HeartBurn],
+            DataSaber,Katana,
+            HeartBurn,HeartBurn],
         "plugins":[]
         }
     deckalpha = {

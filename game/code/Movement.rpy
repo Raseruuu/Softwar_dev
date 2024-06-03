@@ -195,7 +195,8 @@ default repeat_x = "Repeat"
 default repeat_y = "Repeat"
 
 label mapresume:
-    
+    if game_over==True:
+      return
     play music "bgm/ost/Grid_noyemi_K.mp3"
     scene battlebg
     show scrollingBG at scroll
@@ -336,11 +337,15 @@ screen mapB:
         null width 260
         text "GRID ([gridpos[0]],[gridpos[1]])"
         text "{color=#fff}Position = ([playerxpos],[playerypos]){/color}"
-        text "{color=#fff}Running = [Running]{/color}"
+        
         # text "{color=#fff}Here = [Here]{/color    }"
         # text "{color=#fff}Where = [Where]{/color}"
         text "{color=#fff}Where = [Where]{/color}"
-        text "{color=#fff}Gameprogress = [gameprogress]{/color}"
+        text "{color=#fff}Running = [Running]{/color}"
+        text "## Press R to toggle running ##"
+        text "## Press SPACE to open the menu ##"
+        text "## Press X to talk to ILY ##"
+        # text "{color=#fff}Gameprogress = [gameprogress]{/color}"
         # text "{color=#fff}direction = [direction]{/color}"
         # text "{color=#fff}moving = [moving]{/color}"
         # direction
@@ -469,7 +474,14 @@ screen mapA:
     key 'K_DOWN'        action SetVariable("direction","down"),   Return("down")
     key 'K_LEFT'        action SetVariable("direction","left"),   Return("left")
     key 'K_RIGHT'       action SetVariable("direction","right"),  Return("right")
-# for mobile stuff
+
+    if anim_done:
+
+        key 'repeat_K_UP'     action SetVariable("direction","up"),     Return("up")
+        key 'repeat_K_DOWN'   action SetVariable("direction","down"),   Return("down")
+        key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
+        key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
+    # for mobile stuff
     # if direction2 is not None:
     #     if moving and direction=="up":
     #         timer 0.01 action Return("up") repeat True
@@ -483,12 +495,6 @@ screen mapA:
     # key ["mousedown_1"] action Function(setmoving,(True))
     # key ["mouseup_1"] action Function(setmoving,(False))
 
-    if anim_done:
-
-        key 'repeat_K_UP'     action SetVariable("direction","up"),     Return("up")
-        key 'repeat_K_DOWN'   action SetVariable("direction","down"),   Return("down")
-        key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
-        key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
     # key 'K_ESCAPE'      action Return("End")
     # key 'K_RETURN'         action Return("Pause")
     key 'z'             action Return("OK")
@@ -554,7 +560,7 @@ label randomencounter:
      # $safezone=True #for debugging
      $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
      if enemy_encounter == True:
-          $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+          $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware,Sephiroth])
           # $ enemyvirus = renpy.random.choice([Vira])
           hide screen mapB
           hide screen mapA

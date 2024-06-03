@@ -18,7 +18,10 @@ label prescript2:
     j"Sounds good."
 
     #John thinks to himself about the Grid
-    
+    return
+label script2_1:
+    "End of Demo"
+    return
 
 label script2:
     ##Arrived at a checkpoint: meet Melissa
@@ -26,8 +29,9 @@ label script2:
     # show battlebg2
     call hideMapview
     if gameprogress==1:
-        ""
+        "End of Demo"
         return
+    $ globals()["GRID"][(192,165)]=stageBCD2
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -93,7 +97,12 @@ label script2:
     "Birds of a feather, huh? Wait, what does this mean for me?"
     "It seems like.. viruses are able to identify each other? I wonder how that works."
     "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
-    m "We viruses, we look out for each other out here. You can call me your big sister!"
+    m "We viruses, we look out for each other out here. "
+    hide Melissa
+    show Melissajump
+    extend "You can call me your big sister!"
+    show Melissa
+    hide Melissajump
     $ ILY_e="up"
     $ ILY_m="smile3"
     i "Big sister... Melissa!"
@@ -246,9 +255,10 @@ label payMelissa:
         menu:
             i"Should we give her 3000 Zenny?"
             "Yeah sure.":
-                j "We still don't have enough."
-                i"Stray viruses drop Zenny all the time when I beat them in Softwars."
+                
                 if Money < 3000:
+                    j "We still don't have enough."
+                    i"Stray viruses drop Zenny all the time when I beat them in Softwars."
                     call addsprites(gridpos)
                     call mapcall([6,5],stage_ShadyAlley)
                     if playerHP<=0:
@@ -261,6 +271,7 @@ label payMelissa:
                     j "Okay... We need that info. Do it, ILY!"
                     i "Aye, sir!"
                     jump paidMelissa2
+
             "Wait a minute!":
 
                 j"We need more Zenny."
@@ -281,26 +292,35 @@ label paidMelissa:
     m "You got the 3K?"
     jump payMelissa
     label paidMelissa2:
-    $ gameprogress+=1
-    i "I got it! Here ya go!"
-    $ Money-=3000
-    $ map_active=False
-    
-    hide screen mapB
-    scene scrollingBG at scroll
-    show battleroad:
-        yalign 1.0 xalign 0.5
-    $ Melissa_w=True
-    m "Ah, Thanks. I may be your big sis, but hey, business is business!"
-    j "(She's moneysmart, it looks like.)"
-    m "There's a special item you can use to get past their detectors."
-    "!!!... That sounds really convenient."
-    i "What kind of item is it?"
-    m "Hahaha.."
-    i "You're... laughing?"
-    m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
-    m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
-    i "Uguu..."
+        $ gameprogress+=1
+        i "I got it! Here ya go!"
+        $ Money-=3000
+        $ map_active=False
+        
+        hide screen mapB
+        scene scrollingBG at scroll
+        show battleroad:
+            yalign 1.0 xalign 0.5
+        $ Melissa_w=True
+        m "Ah, Thanks. I may be your big sis, but hey, business is business!"
+        j "(She's moneysmart, it looks like.)"
+        m "There's a special item you can use to get past their detectors."
+        "!!!... That sounds really convenient."
+        i "What kind of item is it?"
+        m "Hahaha.."
+        i "You're... laughing?"
+        m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
+        m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
+        i "Uguu..."
+        m "Whoops, our time is up, time to end the demo here."
+        $ ILY_m="frown"
+        $ ILY_e="down"
+        i "You tricked us!"
+        $ map_active=False
+        $ game_over=True
+        # jump mapresume
+        return
+    return
     m "Alright, Listen!"
     i "Yes!"
     m "The GRID we reside in is composed of a lot of things."

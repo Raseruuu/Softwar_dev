@@ -913,7 +913,7 @@ image Lisafull:
             # ConditionSwitch(
             ConditionSwitch(
                 "('smile' in Lisa_m)","LisaMouthsmile",
-                "('smile' not in Lisa_m)","LisaMouthfrown"
+                "('smile' not in Lisa_m)","LisaMouthfrown",
                 ),
             "images/Characters/Lisa/Lisa_m[Lisa_m].png"
             ),
@@ -1490,24 +1490,24 @@ image HilbertFull:
     # "images/Characters/Hilbert/Hilbert_full.png"
     LiveComposite(
         (704,2016),
-        (0, 0), "images/Characters/Hilbert/Hilbert_base.png",
+        (0, 0), At("images/Characters/Hilbert/Hilbert_base.png",ilyfix(0.5)),
         (0, 0), WhileSpeaking(
             "Hilbert",
             ConditionSwitch(
-                "('smile' in Hilbert_m)","HilbertMouthsmile",
-                "('smile' not in Hilbert_m)","HilbertMouthfrown"
+                "('smile' in Hilbert_m)",At("HilbertMouthsmile",ilyfix(0.5)),
+                "('smile' not in Hilbert_m)",At("HilbertMouthfrown",ilyfix(0.5))
             ),
-            "images/Characters/Hilbert/Hilbert_mouth_[Hilbert_m].png"
+            At("images/Characters/Hilbert/Hilbert_mouth_[Hilbert_m].png",ilyfix(0.5))
 
 
             ),
-        (0, 0), "images/Characters/Hilbert/Hilbert_eyebrows_[Hilbert_e].png",
-        (0, 0), "HilbertEyes"#eyes
+        (0, 0), At("images/Characters/Hilbert/Hilbert_eyebrows_[Hilbert_e].png",ilyfix(0.5)),
+        (0, 0), At("HilbertEyes",ilyfix(0.5))#eyes
         # (0, 0), "images/Characters/Hilbert/Hilbertshades.png",
         )
     zoom 0.7
 image Hilbert sidew:
-    LiveCrop((93,24, 300,385), "HilbertFull")
+    LiveCrop((120,24, 300,385), "HilbertFull")
     zoom 0.56
 
 

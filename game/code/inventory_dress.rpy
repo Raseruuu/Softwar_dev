@@ -13,7 +13,10 @@ init python:
     White_underwear = Item_dress("White","Underwear","Classic.")
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! This one is a gift from Melissa.")
     
-    inventory_dress=[Unequip,Uniform,Red_underwear ,PinkDress]
+
+
+    inventory_dress=[Unequip,Uniform,Red_underwear ,PinkDress,White_underwear]
+    
     def EquipDress(dresstype,dressname):
         if dressname=="Unequip":
             globals()["ILY_outfit"]=""

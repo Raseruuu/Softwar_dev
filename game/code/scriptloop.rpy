@@ -5,11 +5,12 @@ label game_loop:
     # call showphasemsg("Chapter "+str(chapternum))
 
     #Chapter Novel_Mode
-
-    $ renpy.call("script"+str(chapternum))
-    if chapternum==2:
-        return
+    if not game_over:
+        $ renpy.call("script"+str(chapternum))
+    # if chapternum==2:
+    #     return
     if not playerHP<=0:
-        jump game_loop
+        if not game_over:
+            jump game_loop
     call credits
     return

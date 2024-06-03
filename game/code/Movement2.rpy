@@ -32,6 +32,11 @@ init -3 python:
        [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
        [8,9],[8,8],[8,7],[8,6],[8,5]
        ],"script3")
+    Chapter2events2=EventInMap("storyevent",[
+       [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
+       [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
+       [8,9],[8,8],[8,7],[8,6],[8,5]
+       ],"script3-1")
 default spritelist = []
 default eventlist = []
 
@@ -69,7 +74,8 @@ label addsprites(gridplace):
         # else:
             #     spritelist = []
                 #
-        Chapter2unlockdoor
+        
+        # Chapter2unlockdoor
     return
 label mapcallquest():
 

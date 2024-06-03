@@ -126,7 +126,7 @@ label script1:
     h "What the heck man, my PC's not working! I'm getting this stupid message on my screen that won't go away."
     "Too late. He's suffering just like me now. I bet every one of my contacts is experiencing the same crap."
     "Hilbert restarted his PC. But I already knew that was pointless."
-    scene JD_PC2 with dissolve
+    scene JD_PCN with dissolve
     $renpy.pause(0.8,hard=True)
     scene black with dissolve
     show ILOVEYOU with Dissolve(2.0)
@@ -529,7 +529,7 @@ label date1:
     i"May I ask who?"
     "It's Lisa Fairfield."
     $ JohnSprite('mad')
-    j"A friend from school."
+    j"Lisa.. is a friend from uni."
     $ ILYSprite("O")
     i"Is it a date?"
     j"She's not into me."
@@ -696,7 +696,7 @@ label date2:
         "I should probably tell her."
         j"..."
         j"Lisa. I have to confess.."
-        $ Lisa_m="open3"
+        $ Lisa_m="open"
         l"Confess? What is it John?"
         $ Lisa_m="smile"
         show black:
@@ -721,7 +721,7 @@ label date2:
         "Something definitely was super odd."
         j"An AI person appeared on my screen and introduced itself as the virus."
         j"The AI virus registered herself as my assistant, and told me to call her \"ILY\""
-        $ Lisa_m="open3"
+        $ Lisa_m="open"
         l"No way! "
         extend "You're kidding!"
         scene black with dissolve
@@ -827,8 +827,8 @@ label date2:
         l"What does your house look like?"
         j"It's an apartment, I live alone."
         l"When we get there, I'll pass over the project files."
-        l"You'll just have to continue from where we left off with last year's bugs in the database side."
-        j"Then, after that I'll go implement the new changes, right?"
+        l"You'll just have to continue from where the former project coders left off with last year's bugs in the database side."
+        j"Then, after that I'll go implement the new changes from our last meeting, right?"
         l"I placed a really long to do list there so you gotta work on it!"
         play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3" fadeout 1 loop
         scene black with dissolve
@@ -844,24 +844,38 @@ label date2:
         $ Lisa_w = True
         $ Lisa_m="smile"
         $ Lisa_e="normal"
-        l"Ah, Hello there! You're a cute Virus girl! I'm Lisa!"
+        l"Ah, Hello there! I'm Lisa!"
         $ ILY_m='smile'
 
         voice "voice/ILY07B - Thanks.mp3"
         i"Thanks!"
+        
         extend" Nice to meet you Lisa! I'm ILY!"
+        i"I am now taking the role of \"Virtual Assistant\" for John!"
         i"John's quite something else, bringing a girl back home after a date!"
         $ JohnSprite('mad')
         j"It's not a date! Lisa just came over so we could continue working on our website thing."
-        l"It'd be much better with a desktop computer around."
+        "It'd be much better with a desktop computer around."
+        j"Mhh... here she is, Lisa. Meet ILY."
+        $ Lisa_m="smile"
+        l"ILY! "
+        $ Lisa_m="open"
+        l"She kinda looks like a virtual streamer don't you think?"
         $ JohnSprite('normal')
-        j"This is Lisa. "
+        "!!!"
+
+        j"That is true. "
+        $ JohnSprite('mad')
+        extend"And quite odd."
+        j"Ok, uhh..."
         $ JohnSprite('mad')
         extend"We're doing work, so you better behave."
+        $ Lisa_m="smile"
+        
         l"We're gonna work on our website here, ILY."
 
         i"Speak over the mic if you need any help, then!"
-        l"Yup. Appreciate it, Virus assistant ILY!"
+        l"Yup. Appreciate it, virtual assistant ILY!"
         scene JD_Space2 with dissolve
         "Lisa is in my room. "
         "All she's gonna do here is work on our website database with me."
@@ -900,7 +914,7 @@ label date2:
             zoom 0.0 xalign 0.0 yalign 0.0
             linear 0.25 zoom 1.0 xalign 0.2 yalign 0.5
         "Lisa is trying to access her files from her drive while i sit on a corner of my room, trying to fix and hide the messed up stuff."
-        $ Lisa_m = 'open3'
+        $ Lisa_m = 'open'
         l"J-John.. I can't see my files."
         $ JohnSprite('mad')
         j"Wait a sec.. this should solve that.."
@@ -922,7 +936,7 @@ label date2:
         play sound "sfx/Damage2.wav"
         i"It's a virus from the USB!" with Shake((0, 0, 0, 0), 0.5, dist=5)
         j"You serious?"
-        $ Lisa_m = 'open3'
+        $ Lisa_m = 'open'
         l"What do we do now, ILY?"
         # $ ILY_p = '2'
         i"We'll engage it in a Softwar!"
@@ -1158,7 +1172,7 @@ label date2:
         i"I didn't steal them!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         i"I kept them safe in my online database! What's the word... backup! I made a backup!"
         j"That's... kind of the same thing."
-        $ Lisa_m='open3'
+        $ Lisa_m='open'
         l"Kept them safe from what?"
         $ILY_m='smile3'
         i"Well, you see, among viruses, I am special."
@@ -1255,7 +1269,7 @@ label date2:
             xalign 0.0 yalign 0.0 zoom 0.0
             linear 0.2 xalign 0.4 ypos 0.07 yanchor 0.0 zoom 0.9
         "There it is..."
-        extend" It says our website is... \"Hacked By Chinese\"."
+        extend" It says our website is... \"Hacked By ...\" -What?"
         "Where have I heard or seen this from before?"
         show redwebsite:
             linear 0.2 xalign 0.0 yalign 0.0 zoom 0.0
@@ -1322,7 +1336,7 @@ label date2:
         j"..."
         j"Damn."
         "This is a dead end. I don't want to lose my job, dammit. We gotta find one somehow."
-        $Lisa_m = 'open3'
+        $Lisa_m = 'open'
         l"Ah... John!"
         $Lisa_w = False
         $Lisa_m = 'smile'

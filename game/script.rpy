@@ -63,7 +63,7 @@
 #
 ##################
 ##################
-
+default game_over=False
 init python:
     # config.nearest_neighbor = True
     """
@@ -133,6 +133,11 @@ image JD_PC1:
 image JD_PC2:
     "images/John's Room/PC2.jpg"
     zoom 0.7
+image JD_PCN:
+    "images/John's Room/Bedroom_NIGHT_09.jpg"
+    zoom 0.7
+    
+    
 image JD_Space1:
     "images/John's Room/Space1.jpg"
     zoom 0.7

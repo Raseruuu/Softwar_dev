@@ -95,13 +95,14 @@ label pauseshow:
         elif _return=="Decks":
             label Deckmenu:
                 $ noscreentransformsfornow=False
-
+                "Sorry, Click \"Equipped\" for now, to check and edit your deck."
         elif _return=="Create":
-            label MaterialCombination:
-                call screen CombineMenu
+            "Battleware Creation is Not Yet Implemented"
+            # label MaterialCombination:
+            #     call screen CombineMenu
         elif _return=="Collection":
             label CardCollection:
-                "Colle"
+                "Collection cannot be accessed atm"
 
         # return
     elif _return=="Plugins":

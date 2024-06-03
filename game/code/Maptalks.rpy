@@ -166,12 +166,16 @@ label maptalk_Heart_1:
 label maptalk_Melissa_1:
    call paidMelissa
    return
+
 label whatactor:
     if len(actornum)>2:
         $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
+    if game_over:
+        return    
     show screen mapB
     call screen mapA
     call Returns
+
     return
 
 
