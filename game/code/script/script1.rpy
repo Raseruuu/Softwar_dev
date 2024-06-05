@@ -1394,7 +1394,7 @@ label date2:
         l"The server-side fetching of data hasn't been implemented yet, so I was hoping you could help on that."
         j"I see."
         "I've worked on web applications like this before, so this should be a piece of cake."
-        j"Give me a few minutes, I'll add in the GET and POST codes for this part."
+        j"Give me a few minutes, I'll add in the GET and POST request scripts for this part."
         l"I'll help out on the front-end side while you're working."
         "Lisa and I have become indulged in coding for the website."
         scene black with dissolve
@@ -1410,7 +1410,7 @@ label date2:
         show CodeRed with move:
             xalign 0.93
         show Ave with dissolve:
-            xalign 0.05
+            xpos 0.25
         aa"I find it insulting that you would push your human limitations on us."
         cv"I want you to give us orders."
         hx"Be patient, both of you."
@@ -1431,6 +1431,8 @@ label date2:
         "Their operation continues. And SDS will be in danger."
         scene black with dissolve
         play music "bgm/Sunset_bgm_maoudamashii_acoustic42.mp3"
+        show John with dissolve:
+            xalign 0.5
         "As I thoroughly edit through my messed up code, I think carefully about the recent, and upcoming events."
         "Today, I've been dragged into a mess involving the company I work in."
         "This assistant virus, while very interesting, has increased my concerns in life, and stress."
@@ -1549,12 +1551,12 @@ label date2:
         "ILY... stop it!"
         $Lisa_m = 'frown'
         $Lisa_e = 'normal'
-        l"Will you come with me back?"
+        l"Will you come back with me outside?"
         $JohnSprite('mad')
         j"Fine,"
         $JohnSprite('normal')
         $Lisa_m = 'smile'
-        extend" just until the street where you can ride."
+        extend" just until the street where you can commute home."
         l"Around Cafella! Good."
         scene black with dissolve
 
@@ -1655,7 +1657,14 @@ label date2:
         $ ILY_m = 'smile3'
         i"Well, in addition to that, You can talk to me anytime by pressing 'X'."
         j"Okay."
-
+        
+        j"There's one thing I am curious about since this crossroad area resembles the one we have IRL."
+        i"IRL?"
+        j"Could it be that we can find a path to SDS using this GRID?"
+        i"You mean using its geological location?"
+        j"Yes. to the west of here, approaching Connecht Square, we can get to my internship office."
+        i"There's one way to find out!"
+        j"Alright, let's explore the area then"
         hide screen mapB
 
         call mapcall([7,6],stagehome)

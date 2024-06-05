@@ -37,6 +37,8 @@ define hx = Character("Hacker X",color = '#088', image = "HackerX_side", ctc="ct
 
 define uc = Character("USB-chan",callback=speaker("USB-chan"),color='#f9b9f9', ctc="ctc", ctc_position="fixed")
 define uk = Character("USB-kun",callback=speaker("USB-kun"),color='#7ce7ed', ctc="ctc", ctc_position="fixed")
+
+define config.side_image_only_not_showing = True
 ########
 ## Functions
 ########
@@ -1317,13 +1319,14 @@ image Melissa sidew:
 image side Melissa_side:
     ConditionSwitch(
         "Melissa_w==True","Melissa sidew",
-        "Melissa_w==False",Null(width=100))
+        "Melissa_w==False",Null())
 #########
 ## Ave
 #########
 image Ave:
     "AveFull"
-    yanchor 0.9 ypos 1.0 zoom 0.9
+    yanchor 0.48 ypos 1.0 zoom 0.9
+
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1333,7 +1336,7 @@ image Ave:
 
 image AveFull:
     LiveComposite(
-        (486,861),
+        (4189,7278),
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(
             "Ave",
@@ -1344,6 +1347,8 @@ image AveFull:
         (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
+    xanchor 0.6
+    zoom 0.25
 image AveEyes:
     "images/Characters/Ave/Ave_eyes.png"
 
@@ -1363,7 +1368,7 @@ image Ave sidew:
 image side Ave_side:
     ConditionSwitch(
         "Ave_w==True","Ave sidew",
-        "Ave_w==False",Null(width=100))
+        "Ave_w==False","Null_side")
 
 image Icon_Ave:
     LiveCrop((240,100, 440,565), "AveFull")

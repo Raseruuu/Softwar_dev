@@ -31,7 +31,7 @@ label script2:
     if gameprogress==1:
         "End of Demo"
         return
-    $ globals()["GRID"][(192,165)]=stageBCD2
+    $ GRID[(192,165)]=stageBCD2
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -172,7 +172,7 @@ label script2:
     s "Like she said, we have only tested it on weak viruses, the output is quite big."
     i "The weak viruses.."
     
-    m "Yeah them, there more like annoying pests, than reliable allies."
+    m "Yeah them, they're more like annoying pests, than reliable allies."
     $ Melissa_e="normal"
     $ Melissa_m="smile"
     m "Tell you what, I know a lot of fellow viruses, Lots more, who are stronger than us. I thought I knew them all, until I met you today."
@@ -226,7 +226,7 @@ label script2:
     i "Then... how much is it?"
     m "I'll sell it to you for 3000 Zenny."
     j "Do we... have that much?"
-    $ globals()["GRID"][(192,165)]=stageBCD2
+    $ GRID[(192,165)]=stageBCD2
     $ gameprogress+=1
     
     if Money >=3000:
