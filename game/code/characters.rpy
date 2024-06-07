@@ -57,8 +57,10 @@ init -1 python:
     globals()["ILY_e"] = "normal"
     globals()["ILY_underwear"] = "red" # "red", "small", "" 
     globals()["ILY_outfit"] = "uniform" #bunny, garden, ""
+    
     globals()["ILY_hair"] = "default" #""", "down", ""
-
+    # def ILY_damaged():
+    #     return 
     globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
 
@@ -109,9 +111,6 @@ init -1 python:
     globals()["showsideimage"] = False
 
 
-    # import numpy as np
-    # import scipy
-
     speaking = None
     def while_speaking(name, speak_d, done_d, st, at):
         if speaking == name:
@@ -131,7 +130,9 @@ init -1 python:
 
     renpy.music.register_channel("blipsound", mixer="sfx", stop_on_mute=True, tight=False, buffer_queue=True, movie=False)
 
-
+    def ILY_outfit_function():
+        return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/4 else "")+".png"
+    
 
 
     def speaker_callback(name, event, **kwargs):
@@ -442,6 +443,9 @@ image ILYFullBodyOld:
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),
     )
+image ILY_outfit:
+    ILY_outfit_function()
+
 layeredimage ILYFullBody:
     always:
         ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())
@@ -454,11 +458,10 @@ layeredimage ILYFullBody:
         # ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null())
         ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",ilyfix(0.5)),"ILY_stockings==''",Null()) #stockings
     # group clothes:
-    attribute underwear default:
-            ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
-    group outfit:
-        attribute outfit default:
-            ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
+    always:
+            ConditionSwitch("ILY_underwear!=''",At(("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png"),ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
+    always:
+            ConditionSwitch("ILY_outfit!=''",At("ILY_outfit",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
     always:
         At("images/Characters/ILY/Full/ILY_Full_face.png",ilyfix(0.5))
     

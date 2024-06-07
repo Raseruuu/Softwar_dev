@@ -477,6 +477,36 @@ init python:
             Vshot,Vshot],
         "plugins":[]
         }
+    deckworm = {
+        "name":"",
+        "content":[
+            Vshot,Vshot,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
+    deckspyware = {
+        "name":"",
+        "content":[
+            Vshot,Vshot,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
     deckvira = {
         "name":"",
         "content":[
@@ -556,17 +586,17 @@ init python:
     Enmycard1name = "DataSaber"
     Enmycard2name = "FiberSword"
 
-
+    # BASE STATSO
     #DEFINE CHARACTERS BY
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
     ILYAlpha=FAI("ILY","Virus",2500,1250,500,500,deckalpha,[])
-    Trojan=FAI("Trojan Horse","Virus",2000,600,300,250,decktrojan,[])
+    Trojan=FAI("Trojan Horse","Virus",2000,600,350,250,decktrojan,[])
     Keylogger=FAI("Keylogger","Virus",500,250,300,250,deckkeylogger,[])
     Ransomware=FAI("Ransomware","Virus",600,300,300,250,deckransomware,[])
     Rootkit=FAI("Rootkit","Virus",700,350,300,250,deckrootkit,[])
-    Worm=FAI("Worm","Virus",800,400,300,250,deckrootkit,[])
-    Spyware=FAI("Spyware","Virus",800,400,300,250,deckrootkit,[])
+    Worm=FAI("Worm","Virus",800,400,300,250,deckworm,[])
+    Spyware=FAI("Spyware","Virus",800,400,300,250,deckspyware,[])
     Vira=FAI("Vira","Antivirus",3500,1750,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,2000,500,500,deckred,[])
     Sephiroth=FAI("Sephiroth","Virus",4000,2000,500,500,decksephiroth,[])
