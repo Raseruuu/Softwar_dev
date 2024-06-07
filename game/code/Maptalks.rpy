@@ -71,9 +71,9 @@ label maptalk_ProgramKun_1:
     return
 default Stella_talk=0
 default shop_active=False
-label maptalk_Stella_1:
-    $ Stella_talk+=1
-    if Stella_talk==1:
+label maptalk_Stella:
+    
+    if Stella_talk==0:
         s"Hey! You're like us."
         $ILYSprite("o")
         i"You're a virus...!"
@@ -92,7 +92,7 @@ label maptalk_Stella_1:
         i"Woah! That's pretty cool!"
 
         $ILYSprite("smile")
-
+        $ Stella_talk+=1
     else:
         $ Stoned_m="sad"
         $ Stoned_e="up"
@@ -143,8 +143,25 @@ label maptalk_Bella_1:
     $ILYSprite("smile")
     i"A Red Robot named Tetra? huh... Sorry, I didn't see her."
     "Bella""Please tell me if you find her!"
+    i"Got it!"
     return
-label maptalk_Heart_1:
+label maptalk_Tetra_1:
+  
+  "Tetra" "I'm lost."
+  i "Ah! By any chance are you the Red Robot named Tetra?"
+  "Tetra" "Yes! how did you know?"
+  i "A pink-haired girl with a sleek red battle suit was just looking for you!"
+  "Tetra" "That must have been Bella!! "
+  i "What happened? How did you get separated?"
+  "Tetra" "We must have been split when we reached this narrow street while exploring."
+  i"But this is the Undernet!!"
+  j "(Could it be that Tetra was tricked by some virus?)"
+  "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
+  i "Let's go back!
+  "
+
+  return
+label maptalk_Heart:
     # i"Would you like to restore HP?"
     $ ILY_m="smile3"
     $ ILY_e="up"
@@ -164,18 +181,22 @@ label maptalk_Heart_1:
           i"OK."
     return
 label maptalk_Melissa_1:
-   call paidMelissa
-   return
-
+   jump paidMelissa
+   
+define samedialog = ["Heart","Stella"]
 label whatactor:
-    if len(actornum)>2:
-        $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
+    if actornum not in samedialog:
+      if len(actornum)>2:
+          $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
+      else:
+          $ renpy.call("maptalk_"+str(actornum))
+
     if game_over:
         return    
     show screen mapB
     call screen mapA
     call Returns
-
+    
     return
 
 

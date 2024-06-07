@@ -100,7 +100,7 @@ label checkwalls:
 
 label eventdoor:
     $renpy.jump(str(Here))
-    return
+    
 # label poschange:
 #     ""
 #     return
