@@ -346,6 +346,7 @@ image ILYside3:
     zoom 0.9
 
 image Icon_ILY:
+    mesh True
     LiveCrop((230,100, 440,565), "ILYFullBody")
     zoom 0.22
 
@@ -444,8 +445,8 @@ image ILYFullBodyOld:
             ),
     )
 image ILY_outfit:
-    ILY_outfit_function()
-
+    ""+ILY_outfit_function()
+    # "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/4 else "")+".png"
 layeredimage ILYFullBody:
     always:
         ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())

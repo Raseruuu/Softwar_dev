@@ -760,7 +760,8 @@ label Damageplayer:
   #     play sound "sfx/sfx_exp_short_hard8.wav"
   #   else:
   #     play sound "sfx/sfx_exp_short_hard9.wav"
-
+  
+  
   $ Magnitude = (currentcardMAG)
   $ damagetoplayer=int(enemyATK_m*Magnitude)
   if currentcardTYPE == "Sword":
@@ -772,7 +773,7 @@ label Damageplayer:
   elif currentcardTYPE == "Gun":
     play sound "sfx/Bust.wav" channel 1
   if playerSP>0:
-    play sound "sfx/noise.wav"
+    play sound "sfx/noise.wav" channel 1
     $ playerSP-=damagetoplayer
     if playerSP<0:
        $ playerHP+=playerSP
@@ -786,13 +787,20 @@ label Damageplayer:
   $ dmgdist = ((currentcard.MAG*100)/20)
   $ dmgdist = int(dmgdist*2)
   show playerdmgpoint onlayer overlay
-
+  call hurtnoise
+  $ ILY_m="O"
+  $ ILY_e="up"
   with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-  call hurtnoise from _call_hurtnoise_1
-  if "Drill" in currentcardTYPE:
-    $ renpy.pause(0.2,hard=True)
-  else:
-    $ renpy.pause(0.6,hard=True)
+
+#   if "Drill" in currentcardTYPE:
+#     $ renpy.pause(0.2,hard=True)
+#   else:
+  $ renpy.pause(0.6,hard=True)
+  $ ILY_m="frown"
+  $ ILY_e="down"
+  
+  hide screen battlestats
+  show screen battlestats
   return
 transform ringtransform:
     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
@@ -1020,12 +1028,14 @@ label EnemyEndPhase:
               linear 0.2 zoom 1.0 alpha 0.0
 
             show playerdmgpoint onlayer overlay
-            call hurtnoise from _call_hurtnoise_2
+            call hurtnoise
             with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
             $ renpy.pause(0.6,hard=True)
 
 
             hide Brnsts
+    hide screen battlestats
+    show screen battlestats
     return
 label enemyexecutecard:
     if enemybits>=currentcardCOST:

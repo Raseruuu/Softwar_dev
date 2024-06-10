@@ -79,7 +79,7 @@ label battlecry_Ave:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="attack" or currentcardFXN[1].name=="attack")
+      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -117,7 +117,7 @@ label battlecry_Melissa:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="attack" or currentcardFXN[1].name=="attack")
+      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -136,7 +136,7 @@ label battlecry_CodeRed:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="attack" or currentcardFXN[1].name=="attack")
+      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -155,7 +155,7 @@ label battlecry_Vira:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="attack" or currentcardFXN[1].name=="attack")
+      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -173,6 +173,7 @@ label battlecry:
         if fxns=="burn":
           burndmg = burndmg +40
     $ damagetoenemy += burndmg
+    $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
     if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True):
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
       voice "voice/ILY24B - Break down & disappear!.mp3"
@@ -209,6 +210,8 @@ label hurtnoise_Ave:
         $ ahcount=0
     return
 label hurtnoise:
+    
+    
     $ hcount=hcount+1
     if hcount ==1:
       play sound "voice/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"

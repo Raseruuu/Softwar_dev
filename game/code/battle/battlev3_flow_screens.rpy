@@ -28,7 +28,7 @@ init python:
     map_active=False
     playerbattlecode=[]
 
-screen battlestats:
+screen battlestats():
     frame:
         style_prefix "statsb"
         xsize 425 ysize 120
@@ -53,7 +53,7 @@ screen battlestats:
         vbox:
             hbox:
                 style_prefix "battlestats"
-                add "Icon_[playerName]"
+                image "Icon_[playerName]"
                 null width 8
                 vbox:
                     text "{b}[playerName]{/b}"
@@ -446,12 +446,15 @@ label battlev3(PFAI,EFAI):
     #Start Dialogue
     $ phasenum=0
     label battleloop:
+        hide screen battlestats
+        show screen battlestats
 
         if not battle_done:
             pass
 
         if enemyfirst and (not first_turn_done):
             call enemyattack
+            
             $ first_turn_done =True
 
             if not battle_done:
