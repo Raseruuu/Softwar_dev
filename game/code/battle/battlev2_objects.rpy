@@ -364,8 +364,8 @@ init python:
             ChocolateBar,ChocolateBar,
             DataSaber,MailSaber,
             VirusFlame,RecursiveSlash,
-            VirusFlame,SaberDeflect,
-            DataSaber,Katana,
+            BlockSaber,SaberDeflect,
+            DataSaber,BlockSaber,
             HeartBurn,HeartBurn],
         "plugins":[]
         }
