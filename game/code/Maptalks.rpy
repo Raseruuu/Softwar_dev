@@ -185,7 +185,9 @@ label maptalk_Melissa_1:
    
 define samedialog = ["Heart","Stella"]
 label whatactor:
-    if actornum not in samedialog:
+    if actornum in samedialog:
+      $ renpy.call("maptalk_"+str(actornum))
+    else:
       if len(actornum)>2:
           $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
       else:

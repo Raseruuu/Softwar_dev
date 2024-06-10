@@ -354,8 +354,8 @@ screen quick_menu():
     # key "repeat_K_PAGEUP" action ShowMenu("history")
     # key "K_AC_BACK" action ShowMenu("history")
 
-
-    if quick_menu:
+    # if quick_menu:
+    if (map_active==False and battle_active==False):
 
         image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
         hbox:

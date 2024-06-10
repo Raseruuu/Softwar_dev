@@ -340,7 +340,7 @@ label battlev3(PFAI,EFAI):
     $ ILY_m="frown"
     $ ILY_e="down"
     $ ILY_p="0"
-
+    $ battle_active=True
     $ battle_done=False
     $ playerName = PFAI.name
     # $ playerHP = PFAI.HP
@@ -583,6 +583,7 @@ label BattleReturns:
          call Execution
      if (playerHP<=0):
         return
+     $ battle_active=False
      return
 
 screen Execute:
