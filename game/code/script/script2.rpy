@@ -21,6 +21,7 @@ label prescript2:
     return
 label script2_1:
     "End of Demo"
+    $ game_over=True
     return
 
 label script2:
@@ -30,6 +31,7 @@ label script2:
     call hideMapview
     if gameprogress==1:
         "End of Demo"
+        $ game_over=True
         return
     $ GRID[(192,165)]=stageBCD2
     show scrollingBG at scroll

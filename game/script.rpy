@@ -64,6 +64,7 @@
 ##################
 ##################
 default game_over=False
+default battle_active=False
 init python:
     # config.nearest_neighbor = True
     """

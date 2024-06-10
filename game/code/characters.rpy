@@ -82,6 +82,7 @@ init -1 python:
 
     globals()["Lisa_e"] = "normal"
     globals()["Lisa_m"] = "smile"
+    globals()["Lisa_blush"]= False
     globals()["Lisa_w"] = True
 
     globals()["Vira_m"] = "smile"
@@ -291,6 +292,7 @@ init -1 python:
         if (emotion == "smile"):
             globals()["Lisa_m"] = "smile"
             globals()["Lisa_e"] = "normal"
+           
 
         else:
             raise ValueError("Unknown emotion entered: " + emotion)
@@ -893,6 +895,7 @@ image John sidew:
 
 image John:
     "JohnFull"
+    zoom 0.8
    # yalign 0.1 xalign 1.0
 
 
@@ -924,6 +927,10 @@ image Lisafull:
             "images/Characters/Lisa/Lisa_m[Lisa_m].png"
             ),
         (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
+        (0, 0), ConditionSwitch(
+                "Lisa_blush==True","images/Characters/Lisa/Lisa_blush.png",
+                "Lisa_blush==False",Null(),
+                ),
         (0, 0), "LisaEyes",#eyes
         )
         zoom 0.31
@@ -1039,17 +1046,17 @@ image Vira:
 image ViraFull:
     LiveComposite(
         (680,961),
-        (0, 0), "images/Characters/Vira/Vira_p.png",
-        (0, 0), "images/Characters/Vira/Vira_e[Vira_e].png", #eyebrows
-        (0, 0), "images/Characters/Vira/Vira_eopen.png",#eyes
-        (0, 0), WhileSpeaking(
+        (0, 0), At("images/Characters/Vira/Vira_p.png",zoomtrans(0.36697247706)),
+        (0, 0), At("images/Characters/Vira/Vira_e[Vira_e].png",zoomtrans(0.36697247706)), #eyebrows
+        (0, 0), "images/Characters/Vira/Vira_eyes_open.png",#eyes
+        (0, 0), At(WhileSpeaking(
             "Vira",
             ConditionSwitch(
                 "('smile' in Vira_m)","ViraMouthsmile",
                 "('smile' not in Vira_m)","ViraMouthfrown"
             ),
             "images/Characters/Vira/Vira_m[Vira_m].png"
-        )
+        ),zoomtrans(0.36697247706))
     )
 
 image Vira sidew:

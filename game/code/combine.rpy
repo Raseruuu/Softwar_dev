@@ -189,10 +189,10 @@ screen FAI_menu:
         xanchor 0.0 xpos 0.5 yanchor 0.0 ypos 0.24
         vbox:
             style_prefix "game_grid"
-            button:
+            # button:
 
-                text "Active FAI"
-                action Return("ActiveFAI")
+            #     text "Active FAI"
+            #     action Return("ActiveFAI")
                 # xanchor 0.5 xpos 0.50 yanchor 0.5 ypos 0.34
             button:
 

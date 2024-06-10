@@ -354,27 +354,28 @@ screen quick_menu():
     # key "repeat_K_PAGEUP" action ShowMenu("history")
     # key "K_AC_BACK" action ShowMenu("history")
 
-    # if quick_menu:
-    if (map_active==False and battle_active==False):
+    if quick_menu:
+        if (map_active==False):
+            if battle_active==False:
 
-        image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
-        hbox:
-            style_prefix "quick"
+                image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
+                hbox:
+                    style_prefix "quick"
 
-            xalign 0.05
-            yalign 0.0
-            # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
-            textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
-            textbutton _("Back") action Rollback()
-        
-            # textbutton _("History") action ShowMenu('history')
-            textbutton _("Save") action ShowMenu('save') keyboard_focus False
-            textbutton _("Load") action ShowMenu('load') keyboard_focus False
-            textbutton _("Settings") action ShowMenu('preferences') keyboard_focus False
-            textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) keyboard_focus False
-            textbutton _("Auto") action Preference("auto-forward", "toggle") keyboard_focus False
-            #textbutton _("Back") action Rollback()
-            # textbutton _("Help") action ShowMenu("help")
+                    xalign 0.05
+                    yalign 0.0
+                    # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
+                    textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
+                    # textbutton _("Back") action Rollback() keyboard_focus False
+                
+                    # textbutton _("History") action ShowMenu('history')
+                    textbutton _("Save") action ShowMenu('save') keyboard_focus False
+                    textbutton _("Load") action ShowMenu('load') keyboard_focus False
+                    textbutton _("Settings") action ShowMenu('preferences') keyboard_focus False
+                    textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) keyboard_focus False
+                    textbutton _("Auto") action Preference("auto-forward", "toggle") keyboard_focus False
+                    #textbutton _("Back") action Rollback()
+                    # textbutton _("Help") action ShowMenu("help")
 
 
 ## This code ensures that the quick_menu screen is displayed in-game, whenever

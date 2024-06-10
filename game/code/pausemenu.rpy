@@ -190,9 +190,9 @@ default inbox =  [
             "body":"John, the SDS server is located northwest of here. Let's go!"
             },
         {
-            "sender":"Lisa",
-            "subject":"Lorem Ipsum",
-            "body":"Lorem Ipsum Dolor  Sit Amet"
+            "sender":"Lisa lsfrfld@vmail.com",
+            "subject":"Love Letter For You!",
+            "body":" Happy Valentines Day! Attached: A very special message <3 "
             }
             ]
 
@@ -544,14 +544,18 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
                                 frame:
                                     style "deckframe"
-                                    text "{size=16}Deck: [deckname]{/size}"
+                                    text "{size=14}Deck: [deckname]{/size}"
+                                
                                 frame:
                                     style "deckframe"
-                                    text "{size=16}Chapter [chapternum]{/size}"
+                                    text "{size=14}ATK: [playerATK] DEF: [playerDEF] {/size}"
+                                frame:
+                                    style "deckframe"
+                                    text "{size=14}Chapter [chapternum]{/size}"
                             frame:
                                 xminimum 460
                                 style "deckframe"
-                                text "{size=24}Money: [Money] {/size}{image=gui/zenny.png} Zennys"
+                                text "{size=16}Money: [Money] {image=gui/zenny.png} Zennys{/size}"
 
                     null height 10
 style deckframe:

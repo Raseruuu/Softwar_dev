@@ -34,7 +34,7 @@ init -2 python:
 
 
     from copy import deepcopy
-    globals()["GRID"] ={
+default GRID ={
         #x y
         (188,160):deepcopy(stageABC),
         (191,160):deepcopy(stageABC),
@@ -232,6 +232,7 @@ init -2 python:
         (185,175):deepcopy(stageBCD),
         (186,175):deepcopy(stageBCD),
         }
+init -2 python:
     mapeventsdictdefault={
 
     }
@@ -277,7 +278,7 @@ init -2 python:
         # (192,164):[Melissasprite],
         (192,164):[Melissasprite],
         (192,165):[Bellasprite],
-
+        (193,169):[Virasprite],
         (191,167):[Bitwulf_C2],
         (193,167):[Programkunsprite]
         }

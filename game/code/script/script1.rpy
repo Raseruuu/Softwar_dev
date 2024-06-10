@@ -1473,10 +1473,32 @@ label date2:
         l"Did I get it wrong?"
         j"You're right, Lisa, glad you understand."
         "In my head, I want to hug her."
+        l"If you... Didn't want to be bothered with many plates..."
+        $Lisa_e = 'mad'
+        l"That kind of makes me think that... You aren't ever expecting guests to come here."
+        $John_m="frown"
+        j"!!"
+        "She just sees through me, reading me like an open book."
+        $ Lisa_e = "normal"
+        $ Lisa_blush=True
+        l"M-maybe that should change!"
+        $Lisa_e = 'mad'
+        $ Lisa_m = 'frown'
+        l"Being a loner isn't a good thing!"
+        "..."
+        extend "She's right."
+        $JohnSprite('mad')
+        j"You're right... I'll... think about it!"
         $ Lisa_m = 'smile'
+        $ Lisa_blush=False
+        scene black with dissolve
+        pause
+        scene JD_PC2 with dissolve
         l"About your code..."
         l"It's pretty well done. I didn't encounter any bugs."
+        $JohnSprite('normal')
         j"That's relieving to hear."
+        $Lisa_e = 'normal'
         l"It's your work, after all!"
         l"Well, here are my improvements to the website design."
         j"This looks so much better than before, Lisa."
@@ -1664,7 +1686,7 @@ label date2:
         i"You mean using its geological location?"
         j"Yes. to the west of here, approaching Connecht Square, we can get to my internship office."
         i"There's one way to find out!"
-        j"Alright, let's explore the area then"
+        j"Alright, let's explore the area then."
         hide screen mapB
 
         call mapcall([7,6],stagehome)
