@@ -52,6 +52,10 @@ label maptalk_Vira_1:
     #     i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
     $Vira_w=True
     v"Uguu! What do you want!!"
+    i"Gah, it's an Antivirus!"
+    j"Brace yourself!!"
+    v"Take this!!"
+    "(Vira is here for DEMO ONLY)"
     hide screen mapB
     hide screen mapA
     call battlev3(ILY,Vira)
@@ -181,6 +185,7 @@ label maptalk_Heart:
           i"OK."
     return
 label maptalk_Melissa_1:
+   $ Melissa_w=True
    jump paidMelissa
    
 define samedialog = ["Heart","Stella"]
