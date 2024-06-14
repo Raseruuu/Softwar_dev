@@ -392,33 +392,33 @@ image ILY small:
     linear 1.0 yoffset 5
     repeat
 # image ILYLayered:
-image ILYFull:
-    LiveComposite(
-    (0.75, 0.75), #(544,600),
-    (0, 0), "images/Characters/ILY/ILY_p[ILY_p].png", #pose
-    #(0, 0), "ILY_p[ILY_p].png",
-    (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows
-    (0, 0), "ILYEyes[ILY_p]",#eyes
-    (0, 0), "images/Characters/ILY/ILY_heart[ILY_p].png",
-    (0, 0), ConditionSwitch(
-        "((ILY_p=='1') or (ILY_p=='0'))", WhileSpeaking(
-            "ILY",
-            ConditionSwitch(
-                "('smile' in ILY_m)","ILYMouthsmile",
-                "('smile' not in ILY_m)","ILYMouthfrown"
-                ),
-            "images/Characters/ILY/ILY_m[ILY_m].png"
-            ),
-        "(ILY_p=='2')", WhileSpeaking(
-                            "ILY",
-                            ConditionSwitch(
-                                "('smile' in ILY_m)","ILYMouthsmile2",
-                                "('smile' not in ILY_m)","ILYMouthfrown2"
-                                ),
-                            "images/Characters/ILY/ILY_m2[ILY_m].png"
-                            )
-        )
-    )
+# image ILYFull:
+#     LiveComposite(
+#     (0.75, 0.75), #(544,600),
+#     (0, 0), "images/Characters/ILY/ILY_p[ILY_p].png", #pose
+#     #(0, 0), "ILY_p[ILY_p].png",
+#     (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows
+#     (0, 0), "ILYEyes[ILY_p]",#eyes
+#     (0, 0), "images/Characters/ILY/ILY_heart[ILY_p].png",
+#     (0, 0), ConditionSwitch(
+#         "((ILY_p=='1') or (ILY_p=='0'))", WhileSpeaking(
+#             "ILY",
+#             ConditionSwitch(
+#                 "('smile' in ILY_m)","ILYMouthsmile",
+#                 "('smile' not in ILY_m)","ILYMouthfrown"
+#                 ),
+#             "images/Characters/ILY/ILY_m[ILY_m].png"
+#             ),
+#         "(ILY_p=='2')", WhileSpeaking(
+#                             "ILY",
+#                             ConditionSwitch(
+#                                 "('smile' in ILY_m)","ILYMouthsmile2",
+#                                 "('smile' not in ILY_m)","ILYMouthfrown2"
+#                                 ),
+#                             "images/Characters/ILY/ILY_m2[ILY_m].png"
+#                             )
+#         )
+#     )
 transform ilyfix(deg):
     zoom deg
     xoffset 60
@@ -1175,6 +1175,7 @@ image Melissajump:
     "MelissaFull base_jump"
     yanchor 0.50 ypos 1.0 zoom 0.9
     ease 0.3 yoffset -30
+    pause 0.1
     ease 0.1 yoffset 5
     ease 0.2 yoffset 0
     # linear 1.0 yoffset 0
@@ -1259,7 +1260,7 @@ image Melissa_base_jump:
     "images/Characters/Melissa/Melissa_base_up1.png"
     pause 0.025
     "images/Characters/Melissa/Melissa_base_up2.png"
-    pause 0.05
+    pause 0.1
     "images/Characters/Melissa/Melissa_base_up1.png"
     
     pause 0.1
