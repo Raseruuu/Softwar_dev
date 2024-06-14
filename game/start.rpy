@@ -12,6 +12,8 @@ label start:
     call game_loop from _call_game_loop
     return
 label credits:
+    hide screen mapB
+    hide screen mapA
     $ILY_m="smile"
     scene white with pixellate
     play music "bgm/Credits_bgm_maoudamashii_8bit08.mp3"

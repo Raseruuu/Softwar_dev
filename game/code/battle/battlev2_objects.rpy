@@ -242,9 +242,10 @@ init python:
 
 #ILY's cards
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    2)
-    MailSaber=    Card("MailSaber",       "Sword",          0.2,  [While("\"Email\" in enmy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
+    MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in enmy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 
     RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
+    SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
 
     HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
     ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
@@ -253,7 +254,7 @@ init python:
     DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
     SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(),NullFxn()],           2)
     #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
-#Swords
+#Swords and Blades
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     Katana=       Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
@@ -262,6 +263,7 @@ init python:
     LambdaSaber=   Card("LambdaSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
     XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
+    
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 #SaberSkills
     SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)

@@ -225,17 +225,19 @@ label DamageSPselfenemy:
     return
 label Burnenemy:
     play sound "sfx/fire.wav"
-    # $ EnmySts.append("burn")
-    $ EnmySts=statusAppend(EnmySts,"burn")
+    # $ EnmySts.append("Burn")
+    $ EnmySts=statusAppend(EnmySts,"Burn")
     show Brnsts:
       zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
       linear 0.2 zoom 1.0 alpha 0.0
+    call updatestats_enemy
     if "Drill" in currentcardTYPE:
         $ renpy.pause(0.2,hard=True)
     else:
         $ renpy.pause(0.6,hard=True)
     hide Brnsts
+    
     return
 label ReduceBitself:
     play sound "sfx/sfx_exp_odd3.wav"
@@ -295,8 +297,8 @@ label AddBitself:
     return
 label Burnself:
     play sound "sfx/fire.wav"
-    # $ PlayerSts.append("burn")
-    $ PlayerSts=statusAppend(PlayerSts,"burn")
+    # $ PlayerSts.append("Burn")
+    $ PlayerSts=statusAppend(PlayerSts,"Burn")
     show Brnsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
@@ -310,7 +312,7 @@ label Burnself:
     return
 label Emailenemy:
     play sound "sfx/sfx_coin_cluster6.wav"
-    # $ EnmySts.append("burn")
+    # $ EnmySts.append("Burn")
     $ EnmySts=statusAppend(EnmySts,"email")
     show Emailsts:
       zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
@@ -324,7 +326,7 @@ label GiveToken:
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
-    # $ EnmySts.append("burn")
+    # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop:
 
@@ -339,13 +341,14 @@ label GiveToken:
         if counter<quantity:
 
             jump tokenquant_loop
+    call updatestats_enemy
     return
 label GainTokenPlayer:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
-    # $ EnmySts.append("burn")
+    # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop2:
 
@@ -366,7 +369,7 @@ label GainTokenEnemy:
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
-    # $ EnmySts.append("burn")
+    # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop3:
 
@@ -380,13 +383,14 @@ label GainTokenEnemy:
         $ counter+=1
         if counter<quantity:
             jump tokenquant_loop3
+    call updatestats_enemy
     return
 label EvadeEnemy:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
-    # $ EnmySts.append("burn")
+    # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop4:
 
@@ -410,11 +414,12 @@ label BoostATK:
 
     # $ PlayerSts=statusAppend(PlayerSts,["BoostATK",currentcard_fxn_params[1]])
     $ PlayerSts=statusAppend(PlayerSts,"BoostATK")
-    call updatestats_player 
+    call updatestats_player
     show BoostATKsts onlayer overlay:
       zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
       linear 0.1 zoom 0.98
       linear 0.2 zoom 1.0 alpha 0.0
+      
     $ renpy.pause(0.6,hard=True)
     hide text
     return
@@ -646,6 +651,8 @@ label updatestats_player:
                     playerDEF_m+=playerDEF*boostvalue
                     playerDEF_m = int(playerDEF_m)
                     # "This shit happened"
+    hide screen battlestats
+    show screen battlestats
 
     return
 label updatestats_enemy:
@@ -664,7 +671,8 @@ label updatestats_enemy:
                     boostvalue = 0.25
                     enemyDEF_m+=enemyDEF*boostvalue
                     enemyDEF_m = int(enemyDEF_m)
-                    
+    hide screen battlestats
+    show screen battlestats              
 
     return
 
@@ -871,6 +879,9 @@ label Concat_anim(prefix,suffix,concat_result):
         playerbattlecode.pop(battle_index)
         playerbattlecode.pop(battle_index)
         playerbattlecode.insert(battle_index,concat_result)
+    
+    hide screen battlestats
+    show screen battlestats
     $ noscreentransformsfornow=True
     play sound "sfx/swing.wav"
     show screen concat_anim(prefix,suffix)
@@ -925,7 +936,8 @@ label Execution:
 
     label exec_loop:
 
-        $ currentcard = playerbattlecode.pop(0)
+        $ currentcard = playerbattlecode[0]
+        $ playerbattlecode.pop(0)
         # $ currentcard = (playerbattlecode[runnumber])
         $ currentcardFXN = currentcard.FXN
         $ currentcardMAG = currentcard.MAG
@@ -933,6 +945,9 @@ label Execution:
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(playerATK_m*Magnitude)
         $ damagecard = ("attack" in currentcardFXN[0].name or "attack" in currentcardFXN[1].name) 
+        
+        hide screen battlestats
+        show screen battlestats
         call battlecry from _call_battlecry
         # show ring onlayer overlay:
         #     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
@@ -966,13 +981,14 @@ label Execution:
     return
 
 label PlayerEndPhase:
-    if "burn" in EnmySts:
+    if "Burn" in EnmySts:
             play sound "sfx/fire.wav"
             python:
               burndmg = 0
               for fxns in EnmySts:
-                if fxns=="burn":
+                if fxns=="Burn":
                   burndmg = burndmg +80
+            
             show Brnsts:
               zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
               linear 0.1 zoom 0.98
@@ -1004,11 +1020,11 @@ label PlayerEndPhase:
     $ playerbits = 8
     return
 label EnemyEndPhase:
-    if "burn" in PlayerSts:
+    if "Burn" in PlayerSts:
             python:
               burndmg = 0
               for fxns in PlayerSts:
-                if fxns=="burn":
+                if fxns=="Burn":
                   burndmg = burndmg +80
 
             # i"[playerName] receives [burndmg] burn damage!"

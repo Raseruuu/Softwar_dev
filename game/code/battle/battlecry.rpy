@@ -2,7 +2,7 @@ screen finishingflash(say):
     image "black" at pausedim
     add "flashline" at flashtrans
 
-    text "{size=25}[say]{/size}" xalign 0.5 yalign 0.82
+    
 
     add "diamondblue" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.3 ypos 0.25
     add "diamondblue2" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.7 ypos 0.75
@@ -11,6 +11,7 @@ screen finishingflash(say):
     add "diamondwhite" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.1 ypos 0.9
     add "diamondwhite2" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.9 ypos 0.1
     # if anim_done:
+    text "{size=25}[say]{/size}" xalign 0.5 yalign 0.82
     key 'mouseup_1' action Return()
     key 'K_RETURN' action Return()
     key 'K_SPACE' action Return()
@@ -85,27 +86,27 @@ label battlecry_Ave:
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
         $flashuser="Ave"
-        voice "voice/Ave_voice/No, I won't lose!.ogg"
+        voice "voice/Ave/No, I won't lose!.ogg"
         $ anim_done=False
         pause 0.1
         call screen finishingflash("No, I won't lose, It's over ILY!")
 
-      elif (enemyHP <=2800):# and 'POW_Up' not in PlayerFxn:
+      elif (enemyHP <=2800):
         $ avcount=avcount+1
         if avcount == 1:
-          voice "voice/Ave_voice/Heeaah.ogg"
+          voice "voice/Ave/Heeaah.ogg"
           a"Heeaah!"
         elif avcount == 2:
-          voice "voice/Ave_voice/Hhaagh.ogg"
+          voice "voice/Ave/Hhaagh.ogg"
           a"Hhagh!!"
         elif avcount == 3:
-          voice "voice/Ave_voice/Hrrah!.ogg"
+          voice "voice/Ave/Hrrah!.ogg"
           a"Hrrah!"
         elif avcount == 4:
-          voice "voice/Ave_voice/Hah!.ogg"
+          voice "voice/Ave/Hah!.ogg"
           a"Hah!"
         elif avcount >= 5:
-          voice "voice/Ave_voice/It's Over, ILY!.ogg"
+          voice "voice/Ave/It's Over, ILY!.ogg"
           a"It's over, ILY!"
           $avcount=1
     return
@@ -164,7 +165,26 @@ label battlecry_Vira:
         # voice "voice/Vira_voice/batlecry1.ogg"
         $ anim_done=False
         pause 0.1
+        voice "voice/Vira/My_next_attack_will_definitely_take_you_down.mp3"
         call screen finishingflash("Fine! My next attack will definitely take you down!!")
+      else:
+        $ avcount=avcount+1
+        if avcount == 1:
+          voice "voice/Vira/hahh.mp3"
+          v"Haahh!"
+        elif avcount == 2:
+          voice "voice/Vira/yah.mp3"
+          v"Yah!!"
+        elif avcount == 3:
+          voice "voice/Vira/hah.mp3"
+          v"Hah!"
+        elif avcount == 4:
+          voice "voice/Vira/hoh.mp3"
+          v"Hoh!"
+        elif avcount >= 5:
+          voice "voice/Vira/toh.mp3"
+          v"Toh!"
+          $avcount=1
     return
 label battlecry:
     python:
@@ -181,7 +201,7 @@ label battlecry:
       $ flashuser = "ILY"
       call screen finishingflash("Break down and disappear!")
 
-    elif (playerHP <=1500):# and 'POW_Up' not in PlayerFxn:
+    elif (playerHP <=1500):
       $ vcount=vcount+1
       if vcount == 1:
         voice "voice/ILY26 - I won't let you.mp3"
