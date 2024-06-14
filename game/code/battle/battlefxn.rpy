@@ -78,7 +78,7 @@ label Damageenemy:
         play sound "sfx/sfx_exp_short_hard8.wav"
     else:
         play sound "sfx/sfx_exp_short_hard8.wav"
-  call hurtnoise_Ave from _call_hurtnoise_Ave
+  call hurtnoise_enemy
   python:
     if enemySP>0:
         enemySP-=damagetoenemy
@@ -133,7 +133,7 @@ label DamageSPplayer:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave from _call_hurtnoise_Ave_1
+        call hurtnoise_enemy
         $ playerSP-=damagetoplayer
         if playerSP<0:
             $ playerSP=0
@@ -163,7 +163,7 @@ label DamageSPenemy:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave from _call_hurtnoise_Ave_2
+        call hurtnoise_enemy
         $ enemySP-=damagetoenemy
         if enemySP<0:
             $ enemySP=0
@@ -202,7 +202,7 @@ label DamageSPselfenemy:
             play sound "sfx/sfx_exp_short_hard8.wav"
           else:
             play sound "sfx/sfx_exp_short_hard9.wav"
-        call hurtnoise_Ave from _call_hurtnoise_Ave_3
+        call hurtnoise_enemy
         $ enemySP-=damagetoenemy
         if enemySP<0:
             $ enemySP=0
@@ -979,7 +979,10 @@ label Execution:
             if not battle_done:
                 call enemyattack from _call_enemyattack_1
     return
-
+label hurtnoise_enemy:
+    call hurtnoise_Ave
+    call hurtnoise_Vira
+    return
 label PlayerEndPhase:
     if "Burn" in EnmySts:
             play sound "sfx/fire.wav"
@@ -1002,7 +1005,7 @@ label PlayerEndPhase:
             $ dmgdist = int(dmgdist*2)
 
             show dmgpointb
-            call hurtnoise_Ave from _call_hurtnoise_Ave_4
+            call hurtnoise_enemy
             show Enemy:
               linear 0.1 zoom 0.96
               xoffset (dmgdist) yoffset (dmgdist) alpha 0.7

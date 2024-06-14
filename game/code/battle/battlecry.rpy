@@ -170,7 +170,7 @@ label battlecry_Vira:
       else:
         $ avcount=avcount+1
         if avcount == 1:
-          voice "voice/Vira/hahh.mp3"
+          voice "voice/Vira/yeahah.mp3"
           v"Haahh!"
         elif avcount == 2:
           voice "voice/Vira/yah.mp3"
@@ -227,6 +227,25 @@ label hurtnoise_Ave:
         play sound "voice/Ave_voice/hurt/Eugh!.ogg" channel "voice"
       elif ahcount == 2:
         play sound "voice/Ave_voice/hurt/Euh!.ogg" channel "voice"
+        $ ahcount=0
+    return
+label hurtnoise_Vira:
+    
+    if enemyName=="Vira":
+      
+      $ ahcount=ahcount+1
+      if ahcount ==1:
+        voice "voice/Vira/hurt/augh.mp3"
+      elif ahcount == 2:
+        voice "voice/Vira/hurt/ahhw.mp3" 
+      elif ahcount == 3:
+        voice "voice/Vira/hurt/oww.mp3" 
+      elif ahcount == 4:
+        voice "voice/Vira/hurt/ouugh.mp3" 
+      elif ahcount == 5:
+        voice "voice/Vira/hurt/owhw.mp3" 
+      elif ahcount == 6:
+        voice "voice/Vira/hurt/puppysound.mp3" 
         $ ahcount=0
     return
 label hurtnoise:
