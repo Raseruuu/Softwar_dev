@@ -11,3 +11,5 @@ label samplenpcdialogue:
     j"You're right, Lisa, glad you understand."
     "In my head, I want to"
     return
+
+
