@@ -314,20 +314,18 @@ label paidMelissa:
         m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
         m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
         i "Uguu..."
-        m "Whoops, our time is up, time to end the demo here."
-        $ ILY_m="frown"
-        $ ILY_e="down"
-        i "You tricked us!"
-        $ map_active=False
-        $ game_over=True
+        
+        
+        # $ map_active=False
+        # $ game_over=True
         # jump mapresume
-        return
-    return
+        # return
+    # return
     m "Alright, Listen!"
     i "Yes!"
     m "The GRID we reside in is composed of a lot of things."
     m "Every entity is not merely built with values inside variables, or a collection of vertices on a 3D axis."
-    m "We're made of Data Materials. Us Viruses, We are composed of virus cells, and tissues."
+    m "We're made of Data Materials. Us Viruses, we are composed of virus cells, and tissues."
     m "Our composition allows us to utilize materials with special abilities."
     m "The special data material you want to find is called \"Imperceptium\"."
     i "Imperceptium! right!"
@@ -339,11 +337,11 @@ label paidMelissa:
     i "If it's practically invisible.. How do we find something like that?"
     m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
     i "Ah! VirusFlame?"
-    m "VirusFlame. You know, every Virus is capable of using that technique. The one where you launch fire from the palm of your hands!"
+    m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
     m "You really are behind in all this, aren't you?"
     i "Ah, i was just jogging my memory, Ahehehe!!"
     m ""
-    j "ILY, what's stopping Melissa from making a run using Imperceptium?" 
+    j "(ILY, what's stopping Melissa from making a run using Imperceptium?)" 
     ""
 
 
