@@ -325,7 +325,7 @@ label paidMelissa:
     i "Yes!"
     m "The GRID we reside in is composed of a lot of things."
     m "Every entity is not merely built with values inside variables, or a collection of vertices on a 3D axis."
-    m "We're made of Data Materials. Us Viruses, we are composed of virus cells, and tissues."
+    m "We're made of Data Materials. Us Viruses, we are composed of virus cells and tissues."
     m "Our composition allows us to utilize materials with special abilities."
     m "The special data material you want to find is called \"Imperceptium\"."
     i "Imperceptium! right!"
@@ -334,20 +334,31 @@ label paidMelissa:
     m "Imperceptium is hard to find as its surface projects a false image of its true appearance."
     m "Some like to say that it's in constant camouflage."
     m "Viruses can consume imperceptium to absorb that special trait, albeit for a limited time."
-    i "If it's practically invisible.. How do we find something like that?"
+    i "How do we find something like that's practically invisible?"
     m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
     i "Ah! VirusFlame?"
     m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
     m "You really are behind in all this, aren't you?"
     i "Ah, i was just jogging my memory, Ahehehe!!"
-    m ""
-    j "(ILY, what's stopping Melissa from making a run using Imperceptium?)" 
+    m "Hah! Well, do you plan on searching for it tonight?"
+    # j "(ILY, what's stopping Melissa from making a run using Imperceptium?)" 
+    # i "I have no idea. Maybe it's not in her interests right now? To pass by that "
+    j"(Tonight... I assume it will take a while. Do viruses sleep?)"
+    i"(No, us Viruses can stay active as long as we can.)"
+    j"(ILY, let's try to gather Imperceptium now.)"
+    i "... That's right. I'll try to gather Imperceptium tonight!"
+    "If ILY stays here with the Viruses while I'm asleep, I don't know what could happen.{w} She has to leave them alone tonight."
+    "This is the perfect excuse to disappear."
+    "If ILY follows a schedule just like mine, a human, she might get perceived as a non-stray Virus. A Virus with a Master."
+    "I should be extra careful when interacting with these Viruses."
+    
+    m "Sounds like you're in a hurry then! See you when I see you!" 
+    i "I'll be off!"
     ""
 
 
 
 label teammeeting:
-    # "Now, if we could somehow get past Bitwulf and check out SDS tomorrow... All wil go smoothly."de
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     #After this, John decides to review the day in his head and go to sleep.
     #TRANSITION TO MORNING

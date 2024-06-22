@@ -180,10 +180,10 @@ default deck_unedited=[]
 
 default card_inventory_unedited=[]
 default inventory =[SoftDrink]
-
+default inventory_key = [] #(KEY ITEMS)
 
 default card_library=deckdefault["content"]
-default card_inventory=[DataDrill,DataDrill,Cursorclaw,DataBuster,Vshot,Vshot,Vslash,Vslash]
+default card_inventory=[DataDrill,DataDrill,BlockSaber,DataBuster,Vshot,Vshot,Vslash,Vslash]
 
 
 

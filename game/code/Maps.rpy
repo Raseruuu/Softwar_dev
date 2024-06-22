@@ -327,6 +327,14 @@ init -2 python:
 
 
 label doorjump:
+    #####
+    # IF ILY owns ImperceptiumAmulet:
+    #     and an Antivirus is in the area:
+    #     1. make ILY tranparent
+    #     2. make the alert tiles disappear
+
+
+    ####
     $ linearmaptransform=False
     $ doordirection = Here #abcd
     # a =North
