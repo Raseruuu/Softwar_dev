@@ -1,15 +1,11 @@
 label samplenpcdialogue:
-    l"Hmmm. I think it's smart! Thanks John."
-    "Lisa gulps it down quickly and replies."
-    l"Bowls can double as plates for food, and cups to drink from."
-    l"It's a way to reserve energy having to wash plates and cups."
-    l"Living alone, you won't have to deal with a lot of extra chores this way."
-    "I am so glad I didn't have to explain it!"
-    j"Waugh.."
-    $ Lisa_m = 'frown'
-    l"Did I get it wrong?"
-    j"You're right, Lisa, glad you understand."
-    "In my head, I want to"
+    "Robin""Did you know that in a SoftWar, you can combine battleware cards with certain Types?"
+    i"Combine? What's this about?"
+    "Robin" "It's called Concatenation!"
+    "Robin" "If the Type attributes of your cards in the battle code form a special word, they combine into a new Battleware card!"
+    i"Ah!"
+    "Robin" "Have you tried it? My go-to combo has been FIRESWORD, a combination of \"FIRE\" and \"SWORD\"! Simple but strong eh?"
+    ""
     return
 
 
