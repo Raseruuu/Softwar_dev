@@ -5,8 +5,6 @@ label hideMapview:
     return
 label prescript2:
     
-    j"That means going North from there leads to SDS office."
-    i"you figured that out already?"
     
     return
     "STUFF"
@@ -37,11 +35,13 @@ label script2:
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
+    
     i "Looks like this path takes us to Connecht City Cyber Square!"
     "A gate to the west from my home location... that sounds a lot like in real-life."
     "This Cyber Square area... must be a virtual version of the actual Square crossroad at the middle of Connecht."
     "Just a few blocks away on the way to the island mount... is the IRL SDS office." 
     j "So, You think this path is supposed to take us to SDS area?"
+    
     i "Oh? How would you know that?" 
     j "The virtual world here seems to mimic the real world locations. Albeit the components of each area is different."
     j "Like, this place is pretty empty in comparison!! And where are the cars?"
@@ -345,8 +345,8 @@ label paidMelissa:
     # i "I have no idea. Maybe it's not in her interests right now? To pass by that "
     j"(Tonight... I assume it will take a while. Do viruses sleep?)"
     i"(No, us Viruses can stay active as long as we can.)"
-    j"(ILY, let's try to gather Imperceptium now.)"
-    i "... That's right. I'll try to gather Imperceptium tonight!"
+    j"(ILY, let's try to hunt for Imperceptium now.)"
+    i "... That's right. Let's do it tonight!"
     "If ILY stays here with the Viruses while I'm asleep, I don't know what could happen.{w} She has to leave them alone tonight."
     "This is the perfect excuse to disappear."
     "If ILY follows a schedule just like mine, a human, she might get perceived as a non-stray Virus. A Virus with a Master."
@@ -354,12 +354,27 @@ label paidMelissa:
     
     m "Sounds like you're in a hurry then! See you when I see you!" 
     i "I'll be off!"
-    ""
+    scene black with dissolve
+    "ILY exits the shady alley area of the GRID."
+    "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
+    
+    show scrollingBG at scroll
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    show ILY with dissolve
+    i"..."
+    j"Listen, ILY."
+    j"I know I said we should try to hunt for Imperceptium... but now I think it's time to rest."
+    i"We aren't hunting tonight?"
+    j"Maybe tomorrow."
+    i"Ok then, John! Good night! Get a good rest."
+    i"I'd try to wake you up but I can't do that unless this device is on."
+    j"I'm never leaving my computer open again. Not without me watching you!"
+    i"Ehh! I'm not a naughty Virus, I promise!"
 
 
 
 label teammeeting:
-    "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     #After this, John decides to review the day in his head and go to sleep.
     #TRANSITION TO MORNING
     #Morning
