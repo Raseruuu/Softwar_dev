@@ -20,6 +20,7 @@ define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc"
 
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
 define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
+define br= Character("Brain",callback=speaker("Brain"), color ='#f842d6',image ="Brain_side", ctc="ctc", ctc_position="fixed")
 # define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 define b = Character("Bitwulf",callback=speaker("Bitwulf"),what_slow_cps=40, image = "Bitwulf_side", ctc="ctc", ctc_position="fixed")
 
@@ -55,6 +56,8 @@ init -1 python:
     globals()["ILY_m"] = "smile"
     globals()["ILY_p"] = "1"
     globals()["ILY_e"] = "normal"
+    
+    globals()["ILY_eyes"] = "open"
     globals()["ILY_underwear"] = "red" # "red", "small", "" 
     globals()["ILY_outfit"] = "uniform" #bunny, garden, ""
     
@@ -108,6 +111,14 @@ init -1 python:
     globals()["CodeRed_e"] = "normal"
     globals()["CodeRed_m"] = "frown"
     globals()["CodeRed_w"] = True
+
+    globals()["Brain_m"] = "smile"
+    globals()["Brain_p"] = "1"
+    globals()["Brain_e"] = "down"
+    globals()["Brain_eyes"] = "open"
+    globals()["Brain_w"] = True
+    
+    
 
     globals()["showsideimage"] = False
 
@@ -332,7 +343,6 @@ image ILYjumpRpg:
     linear 0.1 yoffset -80
     linear 0.05 yoffset 0
 
-
 image side ILY_side:
 
     ConditionSwitch(
@@ -391,34 +401,6 @@ image ILY small:
     linear 1.0 yoffset 0
     linear 1.0 yoffset 5
     repeat
-# image ILYLayered:
-# image ILYFull:
-#     LiveComposite(
-#     (0.75, 0.75), #(544,600),
-#     (0, 0), "images/Characters/ILY/ILY_p[ILY_p].png", #pose
-#     #(0, 0), "ILY_p[ILY_p].png",
-#     (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows
-#     (0, 0), "ILYEyes[ILY_p]",#eyes
-#     (0, 0), "images/Characters/ILY/ILY_heart[ILY_p].png",
-#     (0, 0), ConditionSwitch(
-#         "((ILY_p=='1') or (ILY_p=='0'))", WhileSpeaking(
-#             "ILY",
-#             ConditionSwitch(
-#                 "('smile' in ILY_m)","ILYMouthsmile",
-#                 "('smile' not in ILY_m)","ILYMouthfrown"
-#                 ),
-#             "images/Characters/ILY/ILY_m[ILY_m].png"
-#             ),
-#         "(ILY_p=='2')", WhileSpeaking(
-#                             "ILY",
-#                             ConditionSwitch(
-#                                 "('smile' in ILY_m)","ILYMouthsmile2",
-#                                 "('smile' not in ILY_m)","ILYMouthfrown2"
-#                                 ),
-#                             "images/Characters/ILY/ILY_m2[ILY_m].png"
-#                             )
-#         )
-#     )
 transform ilyfix(deg):
     zoom deg
     xoffset 60
@@ -471,7 +453,12 @@ layeredimage ILYFullBody:
     always:
         At("images/Characters/ILY/Full/ILY_Full_hair_[ILY_hair].png",ilyfix(0.5))
     always:
-        At("ILYEyes[ILY_p]",ilyfix(0.5))
+        ConditionSwitch(
+            "ILY_eyes=='open'",
+            At("ILYEyes[ILY_p]",ilyfix(0.5)),
+            "ILY_eyes!='open'",
+            At("images/Characters/ILY/ILY_eyes[ILY_eyes].png",ilyfix(0.5)),
+            )
     always:
         At("images/Characters/ILY/ILY_e[ILY_e].png",ilyfix(0.5))
     always:
@@ -1065,7 +1052,7 @@ image Vira sidew:
 image side Vira_side:
     ConditionSwitch(
         "Vira_w==True","Vira sidew",
-        "Vira_w==False",Null(width=100))
+        "Vira_w==False","Null_side")
 
 image Icon_Vira:
     LiveCrop((280,100, 440,565), "ViraFull")
@@ -1125,7 +1112,7 @@ image CodeRed sidew:
 image side CodeRed_side:
     ConditionSwitch(
         "CodeRed_w==True","CodeRed sidew",
-        "CodeRed_w==False",Null(width=100))
+        "CodeRed_w==False","Null_side")
 image Icon_CodeRedFull:
     LiveCrop((280,100, 440,565), "CodeRedFull")
     zoom 0.22
@@ -1331,7 +1318,7 @@ image Melissa sidew:
 image side Melissa_side:
     ConditionSwitch(
         "Melissa_w==True","Melissa sidew",
-        "Melissa_w==False",Null())
+        "Melissa_w==False","Null_side")
 #########
 ## Ave
 #########
@@ -1533,7 +1520,7 @@ image Hilbert sidew:
 image side Hilbert_side:
     ConditionSwitch(
         "Hilbert_w==True","Hilbert sidew",
-        "Hilbert_w==False",Null(width=100))
+        "Hilbert_w==False","Null_side")
 #########
 ## Hacker X
 #########
@@ -1679,7 +1666,7 @@ image Nick sidew:
 image side Nick_side:
     ConditionSwitch(
         "Nick_w==True","Nick sidew",
-        "Nick_w==False",Null(width=100))
+        "Nick_w==False","Null_side")
 
 
 #########
@@ -1747,7 +1734,7 @@ image Stonedsmall:
 image side Stoned_side:
     ConditionSwitch(
             "Stoned_w==True",(LiveCrop((320,150,300,385),"Stonedsmall")),
-            "Stoned_w==False",Null()
+            "Stoned_w==False","Null_side"
         )
     zoom 0.56
 image Stoned_icon:
@@ -1830,7 +1817,7 @@ image Bitwulfsmall:
 image side Bitwulf_side:
     ConditionSwitch(
             "Bitwulf_w==True",(LiveCrop((260,90,300,385),"Bitwulfsmall")),
-            "Bitwulf_w==False",Null()
+            "Bitwulf_w==False","Null_side"
         )
     zoom 0.56
 image Bitwulf_icon:
@@ -1857,3 +1844,131 @@ image Bitwulf_msad:
     "images/Characters/Bitwulf/Bitwulf_jaw2.png"
     pause .08
     repeat
+
+### BRAIN
+
+image Brain:
+    mesh True
+
+    "BrainFullBody"
+    zoom 0.5
+    yanchor 0.50
+    ypos 1.0
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
+
+
+
+image BrainEyes:
+    choice:
+        "images/Characters/Brain/Brain_eyes.png"
+        pause 1.0
+        "images/Characters/Brain/Brain_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Brain/Brain_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Brain/Brain_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Brain/Brain_eyes.png"
+        pause 8.0
+    choice:
+        "images/Characters/Brain/Brain_eyes.png"
+        pause 4.0
+    choice:
+        "images/Characters/Brain/Brain_eyes.png"
+        pause 1.5
+        "images/Characters/Brain/Brain_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Brain/Brain_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Brain/Brain_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Brain/Brain_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Brain/Brain_eyes.png"
+        pause 1.5
+    repeat
+
+
+
+
+image BrainMouthsmile:
+    "images/Characters/Brain/Brain_mouthsmileopen2.png"
+    pause .08
+    "images/Characters/Brain/Brain_mouthsmileopen.png"
+    pause .05
+    "images/Characters/Brain/Brain_mouthsmileopen2.png"
+    pause .05
+    "images/Characters/Brain/Brain_mouthsmile.png"
+    pause .08
+    "images/Characters/Brain/Brain_mouthopen2.png"
+    pause .05
+    "images/Characters/Brain/Brain_mouthopen.png"
+    pause .1
+    "images/Characters/Brain/Brain_mouthopen2.png"
+    pause .08
+    "images/Characters/Brain/Brain_mouthsmile.png"
+    pause .08
+    repeat
+
+
+
+
+image BrainMouthfrown:
+    "images/Characters/Brain/Brain_mouthopen2.png"
+    pause .08
+    "images/Characters/Brain/Brain_mouthopen.png"
+    pause .1
+    "images/Characters/Brain/Brain_mouthopen2.png"
+    pause .08
+    "images/Characters/Brain/Brain_mouthfrown.png"
+    pause .08
+    repeat
+
+
+
+
+image side Brain_side:
+
+    ConditionSwitch(
+        "Brain_w==True",LiveCrop((830,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
+        "Brain_w==False","Null_side"
+    )
+    zoom 0.38
+
+
+layeredimage BrainFullBody:
+    always:
+        "images/Characters/Brain/Brain_backring.png"
+    always:
+        "images/Characters/Brain/Brain_backhair.png"
+    always:
+        "images/Characters/Brain/Brain_backcloth.png"
+    always:
+        "images/Characters/Brain/Brain_body.png"
+   
+    always:
+        "images/Characters/Brain/Brain_face.png"
+    
+    always:
+        ConditionSwitch(
+            "Brain_eyes=='open'",
+            "BrainEyes",
+            "Brain_eyes!='open'",
+            "images/Characters/Brain/Brain_eyes_[Brain_eyes].png",
+            )
+    always:
+        "images/Characters/Brain/Brain_eyebrows_[Brain_e].png"
+    always:
+        "images/Characters/Brain/Brain_helmet.png"
+    always:
+       WhileSpeaking(
+            "Brain",
+            ConditionSwitch(
+                "('smile' in Brain_m)","BrainMouthsmile",
+                "('smile' not in Brain_m)","BrainMouthfrown"
+                ),
+            "images/Characters/Brain/Brain_mouth[Brain_m].png"
+            )

@@ -3,6 +3,7 @@ label script3:
         $ map_active=False
         hide screen mapB
         ""
+        jump installvira
         return
 """    Outline
     Part 1
@@ -37,12 +38,10 @@ label script3:
 
 """    
 # Part 1
+label installvira:
     h "Alright I've decided!."
-    j "What is it this time now?"
+    j "What is it this time?"
     "Hilbert always comes up with the most stupid of plans, and I guess this is another one of those instances."
-
-
-
 
 
 
@@ -54,15 +53,9 @@ label script3:
 
 
 
-
-
-
-
-
     i "John, it's done now."
-    "I look toward the screen, ILY is waving at us excitedly from the other side.
+    "I look toward the screen, ILY is waving at us excitedly from the other side."
     "One of her arms is wrapped around Vira who's positioned awkwardly next to her."
-
 
     # Part 2
     j "So let's get to it now then."
@@ -131,7 +124,7 @@ label script3:
     h "YEAH, WE DEMAND AN ENCORE"
     v "But I don't need to--"
     i "I WANT TO SEE YOU DANCE AGAIN!"
-    i&h "MORE! MORE! MORE! MORE!"
+    i "MORE! MORE! MORE! MORE!"
     v "Ehhhh????"
     "Vira nervously looks towards the monitor, searching for a response from me."
     "Lisa has dragged Hilbert away from the screen, with one hand firmly pressed on his mouth to stop him from chanting further." 
@@ -206,38 +199,38 @@ label script3:
     u "Who are you talking to?"
     v "???"
     j "?!"
-    ??? "I SAID. WHO. ARE. YOU. TALKING. TO?"
+    u "I SAID. WHO. ARE. YOU. TALKING. TO?"
     v "None of your business."
-    ??? "Oh?"
-    ??? "Guess I'll need to cut off your limbs before you'll tell me then?"
-    ??? "Challenge accepted."
+    u "Oh?"
+    u "Guess I'll need to cut off your limbs before you'll tell me then?"
+    u "Challenge accepted."
     "The entity draws his big oversized sword and points at Vira again."
 
     "Vira pulled up her parasol in between them."
-    ??? "heh"
-    *clunk*
+    u "heh"
+    # *clunk*
     "Another strike"
     "But this time, it's the blue one whose weapon flings behind. His arm arches all the way behind him after the impact."
-    ??? "What is this!?"
+    u "What is this!?"
     l "(to john) Vira is our company's top creation. We've put in a lot of effort into boosting her defensive capabilities."
     l "That one might've caught us by surprise before, but now there's no way he can get through Vira's parasol."
     l "Let's trust her on this."
     v "I thought you were better than that."
-    ??? "Huh. This is unexpected."
-    ??? "I wasn't expecting to fight you here, but this should be a good warmup before I find her."
+    u "Huh. This is unexpected."
+    u "I wasn't expecting to fight you here, but this should be a good warmup before I find her."
     "Another energy wave flies out from his sword, which gets deflected by the parasol in the final moment."
-    "The structure behind Vira fractures into fragments by the impact, the debris glitches around her.
-    ??? "Hoh?"
+    "The structure behind Vira fractures into fragments by the impact, the debris glitches around her."
+    u "Hoh?"
     v "Come at me you overcompensating idiot!"
     "He pulls up another stance, the sword now high up above his head."
-    ??? "Well then."
-    ??? "If I can't get you in one strike, then it just means I just need to hit it more times."
+    u "Well then."
+    u "If I can't get you in one strike, then it just means I just need to hit it more times."
 
-    [add more stuff here]
+    # [add more stuff here]
 
-    ====[Softwar]====
+    # ====[Softwar]====
 
-    Part 3
+    # Part 3
     l "Vira, retreat right now. You are in no shape to fight against this one."
     v "You didn't think I thought about it?"
     v "This one is smart. He cornered me throughout the fight by his positioning."
@@ -247,7 +240,7 @@ label script3:
     v "My arms are really sore."
     v "Sorry ILY, don't think I can give you an encore today."
 
-    [Room background]
+    # [Room background]
     j "..."
     i "John I'm going in."
     h "No you won't. We are not losing both of you to this insane monster."
@@ -272,22 +265,22 @@ label script3:
     j "Smash. Go bring her home."
     i "ROGER THAT!"
 
-    ====[GRID]====
+    # ====[GRID]====
 
 
 
-    [segment of more Vira and CR]
-    [ILY triumphant entry]
-    [CR interrogates ILY]
+    # [segment of more Vira and CR]
+    # [ILY triumphant entry]
+    # [CR interrogates ILY]
 
-    [SW]
+    # [SW]
 
 
-    Part 4
-    ??? "Gah!"
+    # Part 4
+    u "Gah!"
     "The blue enemy leans onto his massive weapon, one knee down to the ground."
     i "Now get away and never come back!"
-    ??? "Heheh"
+    u "Heheh"
 
 
 
