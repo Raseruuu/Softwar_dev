@@ -373,7 +373,9 @@ label paidMelissa:
     i"I'd try to wake you up but I can't do that unless this device is on."
     j"I'm never leaving my computer open again. Not without me watching you!"
     i"Ehh! I'm not a naughty Virus, I promise!"
-
+    j"Funny you say that."
+    j"You've been oddly cooperative today."
+    i"What did I tell you, I'm your personal assistant now!."
 
 
 label teammeeting:
@@ -401,7 +403,7 @@ label teammeeting:
     nvl hide
 
 
-    "So it's true. What luck! So we do have a chance at saving our company from that Virus."
+    "So it's true. What luck! So we do have a chance at saving the company from that Virus."
     "Vira Internet Solutions... Of course! Their brand is quite popular for their age."
     "A company of that caliber would know about something as secret as FAI Viruses. I didn't know they were working on AI as well!"
     "Are they simply making FAI to counteract the new Softwar system?"
@@ -409,10 +411,10 @@ label teammeeting:
     "SDS is the one that needs it."
     "What am I gonna do?"
     "I should fix up the place!"
-    i"John!! We're getting another new friend?"
+    i"John!! We really are getting a new friend?"
     j"Well, yeah. But I don't think she'd be friends with you. You're a Virus, remember?"
     i"We wouldn't know until we try!!"
-
+    
     #Hilbert arrives
     "Knock Knock!!"
     "Oh no, She's here already?"
