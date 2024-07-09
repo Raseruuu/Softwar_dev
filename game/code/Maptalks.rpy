@@ -190,7 +190,7 @@ label maptalk_Melissa_1:
    
 define samedialog = ["Heart","Stella"]
 label whatactor:
-
+    $ pausemenu=True
     if len(actornum)>2:
       if actornum in samedialog:
         $ renpy.call("maptalk_"+str(actornum))
@@ -201,7 +201,8 @@ label whatactor:
       #     $ renpy.call("maptalk_"+str(actornum))
 
     if game_over:
-        return    
+        return 
+    $ pausemenu=False
     show screen mapB
     call screen mapA
     call Returns

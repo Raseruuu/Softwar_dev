@@ -1,4 +1,5 @@
 label pauseshow:
+    $ pausemenu =True
     $ILY_p = '0'
     $ILY_m = 'smile3'
     $ILY_e = 'normal'
@@ -127,10 +128,12 @@ label pauseshow:
         hide screen pausemenu
         call screen preferences()
     if _return=="Return":
+        $ pausemenu =False
+        
         return
     elif _return!="Return":
         jump pauseshow
-        
+    $ pausemenu =False
 
     return
 init python:
@@ -590,7 +593,9 @@ init python:
     pause_button_offset8 = 0
     def set_focus(screen_name,id):
         renpy.set_focus(screen_name,id)
+default pausemenu =False
 screen pausemenu:
+    
     tag menu
     timer 0.01:
         action Function(set_focus,"pausemenu", "pausebattleware")

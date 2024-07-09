@@ -197,6 +197,7 @@ default repeat_y = "Repeat"
 label mapresume:
     if game_over==True:
       return
+    $ pausemenu=False 
     play music "bgm/ost/Grid_noyemi_K.mp3"
     scene battlebg
     show scrollingBG at scroll
@@ -214,6 +215,7 @@ label maptransfer(position,stage):
     #call mapcall((5,5),stage1)
     call addsprites(gridpos)
     python:
+        pausemenu=False 
         linearmaptransform=True
         boxsheet = stage
         playerpos = position
@@ -313,7 +315,9 @@ screen mapB:
                null height blockSize width blockSize
              elif len(j)>1:
                null height blockSize width blockSize
-
+    if not pausemenu:
+      image "ILYFullBody":
+        xpos 0.85 xanchor 0.5 ypos 0.9 yanchor 0.5 zoom 0.4
 ##NPC SPRITES
 
 
@@ -326,37 +330,38 @@ screen mapB:
       # for sprites in spritelist:
       #   use npcsprite(sprites)
       use playersprite(playerypos)
-    frame:
-      style_prefix "overworld"
-      xpadding 15
-      ypadding 15
-      yalign 0.11 xalign 0.01
-      vbox:
+    if not pausemenu:
+      frame:
+        style_prefix "overworld"
+        xpadding 15
+        ypadding 15
+        yalign 0.11 xalign 0.01
+        vbox:
 
 
-        null width 260
-        text "GRID ([gridpos[0]],[gridpos[1]])"
-        text "{color=#fff}Position = ([playerxpos],[playerypos]){/color}"
-        
-        # text "{color=#fff}Here = [Here]{/color    }"
-        # text "{color=#fff}Where = [Where]{/color}"
-        text "{color=#fff}Where = [Where]{/color}"
-        text "{color=#fff}Running = [Running]{/color}"
-        text "## Press R to toggle running ##"
-        text "## Press SPACE to open the menu ##"
-        text "## Press X to talk to ILY ##"
-        # text "{color=#fff}Gameprogress = [gameprogress]{/color}"
-        # text "{color=#fff}direction = [direction]{/color}"
-        # text "{color=#fff}moving = [moving]{/color}"
-        # direction
-        frame:
-            style_prefix "healthbar"
-            xsize bar_size(playerHP,playerHPMax,200)
-            # xsize
-        null height 7
-        text "HP: [playerHP]/[playerHPMax]"
-        text "Money: [Money] Zenny"
-        null height 10
+          null width 260
+          text "GRID ([gridpos[0]],[gridpos[1]])"
+          text "{color=#fff}Position = ([playerxpos],[playerypos]){/color}"
+          
+          # text "{color=#fff}Here = [Here]{/color    }"
+          # text "{color=#fff}Where = [Where]{/color}"
+          text "{color=#fff}Where = [Where]{/color}"
+          text "{color=#fff}Running = [Running]{/color}"
+          text "## Press R to toggle running ##"
+          text "## Press SPACE to open the menu ##"
+          text "## Press X to talk to ILY ##"
+          # text "{color=#fff}Gameprogress = [gameprogress]{/color}"
+          # text "{color=#fff}direction = [direction]{/color}"
+          # text "{color=#fff}moving = [moving]{/color}"
+          # direction
+          frame:
+              style_prefix "healthbar"
+              xsize bar_size(playerHP,playerHPMax,200)
+              # xsize
+          null height 7
+          text "HP: [playerHP]/[playerHPMax]"
+          text "Money: [Money] Zenny"
+          null height 10
 ## MOBILE BUTTONS
     # if not anim_done:
     #
@@ -528,7 +533,7 @@ screen mapA:
     #     pos (0.9,0.7) align (0.5,0.5) at zoombutton
     # imagebutton idle "gui/phone/buttonY.png" action Return("running"):
     #     pos (0.84,0.8) align (0.5,0.5) at zoombutton
-
+    
 init python:
     def setmoving(mov):
         global moving

@@ -179,6 +179,7 @@ label script2:
     $ Melissa_m="smile"
     m "Tell you what, I know a lot of fellow viruses, Lots more, who are stronger than us. I thought I knew them all, until I met you today."
     $ Melissa_e="up"
+    
     m "You've piqued my curiosity."
     i "(John, she's examining me, I can feel it)"
     m "ILY, huh..."
@@ -200,11 +201,12 @@ label script2:
     "I'm impressed that ILY can think this far into a trust issue."
     $ ILY_m="smile"
     i "Thank you for trusting me, Melissa."
+    $ ILY_m="smile3"
     m "A thank you again? Like I said, you can call me your big sister now."
     m "Sisters always watch each other's backs!"
     m "If you find trouble with Antiviruses, you can try coming here for help."
     i "I suppose today is not the right time to face Bitwulf..."
-    m "Correct. I myself am not prepared with a way to counterattack after evading its lightning attack."
+    m "Correct. I myself am not prepared with a way to counterattack after evading its lightning strike."
     i "Bitwulf's attack was really quick, you were impressively fast there..."
     m "That's my kinetic vision ability at work! Evading is my specialty."
     i "And you were carrying me with you, too!"
@@ -261,13 +263,13 @@ label payMelissa:
                 if Money < 3000:
                     j "We still don't have enough."
                     i"Stray viruses drop Zenny all the time when I beat them in Softwars."
-                    call addsprites(gridpos)
-                    call mapcall([6,5],stage_ShadyAlley)
-                    if playerHP<=0:
-                        return
-                    $ILY_w = False
-                    hide screen mapB
-                    hide screen mapA
+                    # call addsprites(gridpos)
+                    # call mapcall([6,5],stage_ShadyAlley)
+                    # if playerHP<=0:
+                    #     return
+                    # $ILY_w = False
+                    # hide screen mapB
+                    # hide screen mapA
                     return
                 else:
                     j "Okay... We need that info. Do it, ILY!"
@@ -279,13 +281,13 @@ label payMelissa:
                 j"We need more Zenny."
                 i"Stray viruses drop Zenny all the time when I beat them in Softwars."
                 j"Right..."
-                call addsprites(gridpos)
-                call mapcall([6,5],stage_ShadyAlley)
-                if playerHP<=0:
-                    return
-                $ILY_w = False
-                hide screen mapB
-                hide screen mapA
+                # call addsprites(gridpos)
+                # call mapcall([6,5],stage_ShadyAlley)
+                # if playerHP<=0:
+                #     return
+                # $ILY_w = False
+                # hide screen mapB
+                # hide screen mapA
 
                 return
 

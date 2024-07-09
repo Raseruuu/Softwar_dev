@@ -796,19 +796,26 @@ label Damageplayer:
   $ dmgdist = int(dmgdist*2)
   show playerdmgpoint onlayer overlay
   call hurtnoise
-  $ ILY_m="O"
-  $ ILY_e="up"
+  $ hurtface=(renpy.random.randint(0,1))
+  if hurtface==0:
+    $ ILY_m="O"
+    $ ILY_e="up"
+  elif hurtface==1:
+    $ ILY_m="O"
+    $ ILY_e="up2"
+    $ ILY_eyes="closedup"
+  hide screen battlestats
+  show screen battlestats
   with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-
+  
 #   if "Drill" in currentcardTYPE:
 #     $ renpy.pause(0.2,hard=True)
 #   else:
   $ renpy.pause(0.6,hard=True)
   $ ILY_m="frown"
   $ ILY_e="down"
+  $ ILY_eyes="open"
   
-  hide screen battlestats
-  show screen battlestats
   return
 transform ringtransform:
     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0

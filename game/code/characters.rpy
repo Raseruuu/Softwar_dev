@@ -143,7 +143,14 @@ init -1 python:
     renpy.music.register_channel("blipsound", mixer="sfx", stop_on_mute=True, tight=False, buffer_queue=True, movie=False)
 
     def ILY_outfit_function():
-        return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/4 else "")+".png"
+        global ILY_outfit
+        if playerHP<=playerHPMax/8:
+            ILY_outfit =""
+            return "Null"
+        elif playerHP>playerHPMax/8:
+            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/2 else "")+".png"
+        else:
+            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+".png"
     
 
 
@@ -155,6 +162,12 @@ init -1 python:
             globals()["showsideimage"]=John_w
         elif (name == "Hilbert"):
             globals()["showsideimage"]=Hilbert_w
+        elif (name == "Melissa"):
+            globals()["showsideimage"]=Melissa_w
+        elif (name == "Stoned"):
+            globals()["showsideimage"]=Stoned_w
+        elif (name == "Brain"):
+            globals()["showsideimage"]=Brain_w
         elif (name == "ILY"):
             globals()["showsideimage"]=ILY_w
         elif (name == "Lisa"):
@@ -346,7 +359,7 @@ image ILYjumpRpg:
 image side ILY_side:
 
     ConditionSwitch(
-        "ILY_w==True","ILYside2",
+        "ILY_w==True",LiveCrop((200,60, 440,565), (At("ILYFullBody", zoomtrans(0.9)))),
         "ILY_w==False","Null_side"
     )
     zoom 0.38
@@ -359,8 +372,8 @@ image ILYside3:
 
 image Icon_ILY:
     mesh True
-    LiveCrop((230,100, 440,565), "ILYFullBody")
-    zoom 0.22
+    LiveCrop((230,90, 520,760), "ILYFullBody")
+    zoom 0.25
 
 
 image ILY:

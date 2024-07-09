@@ -46,6 +46,7 @@ screen battlestats():
                 for fillers in range(0,5-len(playerbattlecode)):
 
                     add "images/Cards/Empty.png" at codesize
+            
 
     frame:
         style_prefix "statsb"
@@ -88,20 +89,24 @@ screen battlestats():
                                 text "DEF: {color=#f00}[playerDEF_m]{/color}"
                             else:
                                 text "DEF: [playerDEF_m]"
+                        vbox:
+                            text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
+                            frame:
+                                style_prefix "bit"
+                                hbox:
+                                    
+                                    # null width 0
+                                    grid 8 1:
+                                        for bit in range(0,playerbits):
+                                            add "gui/Bit.png":
+                                                zoom 0.75
+                                        for fillers in range(0,8-playerbits):
+                                            add "gui/Bit_empty.png":
+                                                zoom 0.75
+                        null height 5
             null height 5
 
-            vbox:
-                text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
-                frame:
-                    style_prefix "bit"
-                    hbox:
-                        # null width 0
-                        grid 8 1:
-                            for bit in range(0,playerbits):
-                                add "gui/Bit.png"
-                            for fillers in range(0,8-playerbits):
-                                add "gui/Bit_empty.png"
-            null height 5
+            
             vbox:
                 text "{size=14}{b}STATUS{/size}{/b}" xalign 0.0
                 grid 8 2:
@@ -734,7 +739,7 @@ label Battledrops:
             shopitem = shop_item(item.NAME,item,"Material",0)
             for gain_num in range(0,renpy.random.choice([0,0,0,0,1,1,1,2,2,3])):
                 gainitems.append(shopitem)
-        Moneygain = renpy.random.choice([20,50,100])
+        Moneygain = renpy.random.choice([40,50,100,100,400,500,250,250])
         Money+=Moneygain
         renpy.say(info,"Gained "+str(Moneygain)+" Zenny! \nTotal Zenny: [Money]")
         renpy.call("GainItem",gainitems)
