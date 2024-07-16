@@ -4,7 +4,7 @@ label samplenpcdialogue:
     "Robin" "It's called Concatenation!"
     "Robin" "If the Type attributes of your cards in the battle code form a special word, they combine into a new Battleware card!"
     i"Ah!"
-    "Robin" "Have you tried it? My go-to combo has been FIRESWORD, a combination of \"FIRE\" and \"SWORD\"! Simple but strong eh?"
+    "Robin" "Have you tried it? My go-to combo has been FIRESWORD, a combination of \"FIRE\" and \"SWORD\"! It's simple but powerful!"
     ""
     return
 

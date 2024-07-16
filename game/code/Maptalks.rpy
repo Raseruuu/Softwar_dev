@@ -202,7 +202,7 @@ label whatactor:
 
     if game_over:
         return 
-    $ pausemenu=False
+    
     show screen mapB
     call screen mapA
     call Returns
