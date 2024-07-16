@@ -847,42 +847,42 @@ image JohnMouthsmile:
 
 image JohnMouthfrown:
     "images/Characters/John/John_mouth_frown.png"
-    pause .05
-    # "images/Characters/John/John_mouth_O2.png"
-    # pause .05
+    pause .1
+    "images/Characters/John/John_mouth_O2.png"
+    pause .1
     "images/Characters/John/John_mouth_O.png"
-    pause .08
-    # "images/Characters/John/John_mouth_O2.png"
-    # pause .05
+    pause .1
+    "images/Characters/John/John_mouth_O2.png"
+    pause .1
     "images/Characters/John/John_mouth_frown.png"
-    pause .08
+    pause .1
     "images/Characters/John/John_mouth_frown_midopen.png"
-    pause .05
+    pause .1
     "images/Characters/John/John_mouth_frown_open.png"
-    pause .08
+    pause .1
     "images/Characters/John/John_mouth_frown_midopen.png"
-    pause .05
+    pause .1
     "images/Characters/John/John_mouth_frown.png"
-    pause .05
+    pause .1
     repeat
 image JohnFull:
     # "images/Characters/John/John_full.png"
     LiveComposite(
-        (1076,2368),
-        (0, 0), "images/Characters/John/John_base.png",
+        (999,2353),
+        (0, 0), At("images/Characters/John/John_base.png",zoomtrans(0.5)),
         (0, 0), WhileSpeaking(
             "John",
             ConditionSwitch(
-                "('smile' in John_m)","JohnMouthsmile",
-                "('smile' not in John_m)","JohnMouthfrown"
+                "('smile' in John_m)",At("JohnMouthsmile",zoomtrans(0.5)),
+                "('smile' not in John_m)",At("JohnMouthfrown",zoomtrans(0.5))
             ),
-            "images/Characters/John/John_mouth_[John_m].png"
+            At("images/Characters/John/John_mouth_[John_m].png",zoomtrans(0.5))
 
 
             ),
-        (0, 0), "images/Characters/John/John_eyebrows_[John_e].png",
-        (0, 0), "JohnEyes",
-        (0, 0), "images/Characters/John/John_glasses.png"
+        (0, 0), At("images/Characters/John/John_eyebrows_[John_e].png",zoomtrans(0.5)),
+        (0, 0), At("JohnEyes",zoomtrans(0.5)),
+        (0, 0), At("images/Characters/John/John_glasses.png",zoomtrans(0.5))
         # (0, 0), "images/Characters/John/Johnshades.png",
         )
     zoom 0.7
