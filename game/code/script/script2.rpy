@@ -228,12 +228,12 @@ label script2:
     i "(What does that mean, John?)"
     j "(It means she is selling that info for buck. Information really is valuable after all. Especially in this world...)"
     i "Then... how much is it?"
-    m "I'll sell it to you for 3000 Zenny."
+    m "I'll sell it to you for 1000 Zenny."
     j "Do we... have that much?"
     $ GRID[(192,165)]=stageBCD2
     $ gameprogress+=1
     
-    if Money >=3000:
+    if Money >=1000:
         jump payMelissa
         
         
@@ -255,12 +255,12 @@ label script2:
 
 label payMelissa:
         
-        i"Should we give her 3000 Zenny? (We have [Money] Zenny left.)"
+        i"Should we give her 1000 Zenny? (We have [Money] Zenny left.)"
         menu:
-            i"Should we give her 3000 Zenny?"
+            i"Should we give her 1000 Zenny?"
             "Yeah sure.":
                 
-                if Money < 3000:
+                if Money < 1000:
                     j "We still don't have enough."
                     i"Stray viruses drop Zenny all the time when I beat them in Softwars."
                     # call addsprites(gridpos)
@@ -298,7 +298,7 @@ label paidMelissa:
     label paidMelissa2:
         $ gameprogress+=1
         i "I got it! Here ya go!"
-        $ Money-=3000
+        $ Money-=1000
         $ map_active=False
         
         hide screen mapB
@@ -357,7 +357,7 @@ label paidMelissa:
     m "Sounds like you're in a hurry then! See you when I see you!" 
     i "I'll be off!"
     scene black with dissolve
-    "ILY exits the shady alley area of the GRID."
+    "ILY exits the Shady Alley area of the GRID."
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
     
     show scrollingBG at scroll
@@ -376,7 +376,13 @@ label paidMelissa:
     j"Funny you say that."
     j"You've been oddly cooperative today."
     i"What did I tell you, I'm your personal assistant now!."
+    "For a program, she really seems supportive and easy to talk to."
+    "As for the real reason why I don't want to hunt tonight..."
+    "I'm afraid It'll take another long session for that."
+    "And... Lisa told me she might come to meet me again tomorrow."
+    "So... I have to catch on some Z's and not be late!!"
 
+    scene black with dissolve
 
 label teammeeting:
     #After this, John decides to review the day in his head and go to sleep.
@@ -407,8 +413,9 @@ label teammeeting:
     "Vira Internet Solutions... Of course! Their brand is quite popular for their age."
     "A company of that caliber would know about something as secret as FAI Viruses. I didn't know they were working on AI as well!"
     "Are they simply making FAI to counteract the new Softwar system?"
-    "Huh.. We have to install it, but why at my house?"
-    "SDS is the one that needs it."
+    "Huh.. We have to install it, but why at my place?"
+    "SDS is the one that needs it. Maybe this is a test run?"
+    "I thought we were gonna meet at Cafella again."
     "What am I gonna do?"
     "I should fix up the place!"
     i"John!! We really are getting a new friend?"
@@ -500,17 +507,52 @@ label teammeeting:
     j "No. I stopped working on my own AI some time ago."
     h "But you did work on AI! I knew it."
     j "It's an abandoned project now."
-    h "That's kind of a waste. It's like we're living in a Sci-fi story with tech like that."
+    h "That's kind of a waste."
+    h "It's like we're living in a Sci-fi story with tech like that!"
     j "Tell me about it.."
     h "Don't you think it's crazy, what's been going on at my Dad's company?"
-    h "I bet some AI is involved with last night's events."
+    h "I bet some bot is involved with last night's events."
     j "!!!"
     "What does Hilbert know?"
     "I should ask him if he's heard of any clues about FAI. or the GRID."
-    j ""
-
+    j "What makes you say that?"
+    h "Nothing, just a hunch."
+    "There's gotta be something in his mind that he isn't telling me." #(Hilbert knows about Nick, former employee at Salcedo, Nick worked on AI)
+    j "You... haven't heard of Artificial Intelligence Viruses before, have you?"
+    h "Wait, like viruses that are like, smart? Hmmmm... not really."
+    h "But I've heard of A.I. Anti-Viruses."
+    j "So you know something!"
+    h "Well I kinda pieced together that there might be an advancement of Virus technology somewhere that makes AI Antiviruses necessary.."
+    j "..."
+    "How do I tell him properly that ILY is also a virus, on top of being AI..."
+    h "Artificial Intelligence is going to be everywhere now, is it?"
+    j "In a way."
+    i "Hilbert, you are correct. SDS was being attacked by an AI Virus!"
+    j "ILY just breaks the ice when I couldn't say what's going on..."
+    h "Ah! How'd you find that out? I had a hunch that John really was a super hacker."
+    j "Am not. It's uhhh.. hard to explain."
+    i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
+    i "And I'm also the virus that infected SDS with love letters last night. I'm sorry!"
+    i "My name is ILOVEYOU, but you can call me ILY!"
+    h "No way."
+    "She... just confessed? That... makes this kind of difficult."
+    h "So you hacked us, John? You commanded the attack on SDS?"
+    j "No!! It's more complex than that, ILY entered the PC on that same time!"
+    i "I signed up to be John's assistant after the attack."
+    h "Huh?"
+    h "So why the attack? We.. almost lost all our digital progress as a company there."
+    h "Though.. yeah. They did get recovered soon after. Which was odd."
+    i "I encountered a different virus, the one currently infecting one of SDS' web servers now."
+    h "Another virus? That does check out. There appears to be 2 occasions of virus attacks. 2 of them are the same, infecting our web servers.."
+    h "And the ILOVEYOU attack on e-mail.. That was you."
+    j "I couldn't put into words what happened. But you have to believe her, Hilbert."
+    h "What were you doing on SDS?"
+    i "That's... a secret!! But "
+    i "I met that virus before activating my E-mail algorithm."
+    i "It was a very blue virus... I couldn't fight it."
+    i 
     #Lisa Arrives
-
+    "Knock Knock"
     $ game_over=True
     return
 
@@ -518,11 +560,3 @@ label teammeeting:
 
 
 
-label vscodered:
-    "Now, Vira and Ily are together in the Hilbert's host computer."
-    "I sent Ily over without Hilbert's knowledge,{w} He couldn't possibly be up all night right now,{w} waiting for the hacker."
-    "I didn't tell him about the FAIs. but somehow, their company got Vira in there."
-    "Hopefully this will go as planned!"
-    v"Alert!! Threat has been detected!"
-    i"John! Here it comes!!"
-    return
