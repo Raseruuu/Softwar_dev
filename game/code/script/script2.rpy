@@ -550,7 +550,7 @@ label teammeeting:
     i "That's... a secret!! But "
     i "I met that virus before activating my E-mail algorithm."
     i "It was a very blue virus... I couldn't fight it."
-    i 
+    i ""
     #Lisa Arrives
     "Knock Knock"
     $ game_over=True
