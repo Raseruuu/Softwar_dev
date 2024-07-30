@@ -661,32 +661,6 @@ image ILYMouthsmile:
     pause .08
     repeat
 
-image ILYMouthsmile2:
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .05
-    "images/Characters/ILY/ILY_m2smile.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .05
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2smile3.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .05
-    "images/Characters/ILY/ILY_m2O2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2O.png"
-    pause .1
-    "images/Characters/ILY/ILY_m2O2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2smile2.png"
-    pause .05
-    "images/Characters/ILY/ILY_m2smile3.png"
-    pause .08
-    repeat
 
 image ILYMouthfrown:
     "images/Characters/ILY/ILY_mO2.png"
@@ -699,16 +673,6 @@ image ILYMouthfrown:
     pause .08
     repeat
 
-image ILYMouthfrown2:
-    "images/Characters/ILY/ILY_m2O2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2O.png"
-    pause .1
-    "images/Characters/ILY/ILY_m2O2.png"
-    pause .08
-    "images/Characters/ILY/ILY_m2frown.png"
-    pause .08
-    repeat
 
 #########
 ## John
