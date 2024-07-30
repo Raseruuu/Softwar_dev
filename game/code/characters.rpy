@@ -87,6 +87,9 @@ init -1 python:
     globals()["Lisa_m"] = "smile"
     globals()["Lisa_blush"]= False
     globals()["Lisa_w"] = True
+    globals()["Lisa_underwear"] = "red"
+    globals()["Lisa_outfit"] = "uniform"
+    globals()["Lisa_glasses"] = False
 
     globals()["Vira_m"] = "smile"
     globals()["Vira_e"] = "mad"
@@ -144,11 +147,13 @@ init -1 python:
 
     def ILY_outfit_function():
         global ILY_outfit
+        
+        # el
         if playerHP<=playerHPMax/8:
-            ILY_outfit =""
-            return "Null"
-        elif playerHP>playerHPMax/8:
-            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/2 else "")+".png"
+            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/8 else "")+".png"
+        # elif playerHP>playerHPMax/8:
+        #     ILY_outfit =""
+        #     return "Null"
         else:
             return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+".png"
     
@@ -896,7 +901,7 @@ image John sidew:
 image John:
     "JohnFull"
     zoom 0.8
-   # yalign 0.1 xalign 1.0
+    yanchor 0.5 ypos 1.0 xalign 1.0
 
 
 image side John_side:
@@ -911,13 +916,15 @@ image side John_side:
 # image Lisa:
 #     "Lisafull"
 #     zoom 0.5
-
-image Lisafull:
-
-        LiveComposite(
-        (1860,5202),
-        (0, 0), "images/Characters/Lisa/Lisabase.png",
-        (0, 0), WhileSpeaking(
+layeredimage Lisafull:
+    always:
+        "images/Characters/Lisa/Lisa_base.png"
+    always:
+        "images/Characters/Lisa/Lisa_underwear_[Lisa_underwear].png"
+    always:
+        "images/Characters/Lisa/Lisa_dress_[Lisa_outfit].png"
+    always:
+        WhileSpeaking(
             "Lisa",
             # ConditionSwitch(
             ConditionSwitch(
@@ -925,15 +932,47 @@ image Lisafull:
                 "('smile' not in Lisa_m)","LisaMouthfrown",
                 ),
             "images/Characters/Lisa/Lisa_m[Lisa_m].png"
-            ),
-        (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
-        (0, 0), ConditionSwitch(
-                "Lisa_blush==True","images/Characters/Lisa/Lisa_blush.png",
-                "Lisa_blush==False",Null(),
-                ),
-        (0, 0), "LisaEyes",#eyes
-        )
-        zoom 0.31
+            )
+    always:
+        "images/Characters/Lisa/Lisa_e[Lisa_e].png"
+    always:
+        ConditionSwitch(
+            "Lisa_blush==True","images/Characters/Lisa/Lisa_blush.png",
+            "Lisa_blush==False",Null(),
+            )
+    always:
+        "LisaEyes"
+    always:
+        # "images/Characters/Lisa/LisaGlasses.png"
+        ConditionSwitch(
+            "Lisa_glasses==True","images/Characters/Lisa/LisaGlasses.png",
+            "Lisa_glasses==False",Null(),
+            )
+    zoom 0.31
+# image Lisafull:
+
+#         LiveComposite(
+#         (1860,5202),
+#         (0, 0), "images/Characters/Lisa/Lisanude.png",
+#         (0, 0), WhileSpeaking(
+#             "Lisa",
+#             # ConditionSwitch(
+#             ConditionSwitch(
+#                 "('smile' in Lisa_m)","LisaMouthsmile",
+#                 "('smile' not in Lisa_m)","LisaMouthfrown",
+#                 ),
+#             "images/Characters/Lisa/Lisa_m[Lisa_m].png"
+#             ),
+#         (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
+#         (0, 0), ConditionSwitch(
+#                 "Lisa_blush==True","images/Characters/Lisa/Lisa_blush.png",
+#                 "Lisa_blush==False",Null(),
+#                 ),
+#         (0, 0), "LisaEyes",#eyes
+#         (0, 0), "LisaGlasses",#eyes
+        
+#         )
+#         zoom 0.31
 image Lisa:
     "Lisafull"
     yanchor 0.0 ypos 0.01
