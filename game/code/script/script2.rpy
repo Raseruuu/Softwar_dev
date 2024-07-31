@@ -293,7 +293,7 @@ label payMelissa:
 
 label paidMelissa:
     
-    m "You got the 3K?"
+    m "You got the 1K Zenny?"
     jump payMelissa
     label paidMelissa2:
         $ gameprogress+=1
@@ -356,6 +356,7 @@ label paidMelissa:
     
     m "Sounds like you're in a hurry then! See you when I see you!" 
     i "I'll be off!"
+    $ playerHP=playerHPMax
     scene black with dissolve
     "ILY exits the Shady Alley area of the GRID."
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
@@ -533,7 +534,7 @@ label teammeeting:
     j "Am not. It's uhhh.. hard to explain."
     i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
     i "And I'm also the virus that infected SDS with love letters last night. I'm sorry!"
-    i "My name is ILOVEYOU, but you can call me ILY!"
+    i "I am the ILOVEYOU Virus, but you can call me ILY!"
     h "No way."
     "She... just confessed? That... makes this kind of difficult."
     h "So you hacked us, John? You commanded the attack on SDS?"
@@ -543,14 +544,19 @@ label teammeeting:
     h "So why the attack? We.. almost lost all our digital progress as a company there."
     h "Though.. yeah. They did get recovered soon after. Which was odd."
     i "I encountered a different virus, the one currently infecting one of SDS' web servers now."
-    h "Another virus? That does check out. There appears to be 2 occasions of virus attacks. 2 of them are the same, infecting our web servers.."
+    h "Another virus? That does check out. There were to be 2 occasions of virus attacks. 2 of them are the same, infecting our web servers.."
     h "And the ILOVEYOU attack on e-mail.. That was you."
+    
+    i "I was on a mission! SDS was in trouble and I came to help!"
+    h "A mission huh.. I should be more skeptic right now, but you know that does sound cool to me."
     j "I couldn't put into words what happened. But you have to believe her, Hilbert."
     h "What were you doing on SDS?"
-    i "That's... a secret!! But "
-    i "I met that virus before activating my E-mail algorithm."
-    i "It was a very blue virus... I couldn't fight it."
+    j "This virus thinks she can help out by using destruction.."
+    i "But I can!!"
+    h "And you've held John's PC as a hostage to do so, it looks like. "
     i ""
+    
+    i "I  didn't think"
     #Lisa Arrives
     "Knock Knock"
     $ game_over=True
