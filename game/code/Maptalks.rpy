@@ -197,6 +197,8 @@ label whatactor:
       else:
 
           $ renpy.call("maptalk_"+str(actornum)+"_"+str(chapternum))
+      $ map_active=True
+      call mapresume
       # else:
       #     $ renpy.call("maptalk_"+str(actornum))
 
