@@ -307,6 +307,8 @@ screen mapB:
                image "images/rpg/overworld/objectd.png"
              elif j =='d':
                image "images/rpg/overworld/objectd.png"
+             elif j =='r':
+               image "images/rpg/overworld/objectr.png"
              elif 'script' in j:
                image "images/rpg/overworld/storyevent.png"
              elif j=='0':
