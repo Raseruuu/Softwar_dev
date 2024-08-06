@@ -253,7 +253,7 @@ init python:
     FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(),NullFxn()],              4)
     DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
     SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(),NullFxn()],           2)
-    #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
+    Snipe=        Card("Snipe",           "Gun",              0.0,     [BoostGun,Evade()],              6)
 #Swords and Blades
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
