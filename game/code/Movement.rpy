@@ -32,10 +32,10 @@ init python:
   objxanchor = ((playerpos[0]+1)*blockSize)-(blockSize/2)
   objyanchor = ((playerpos[1]+1)*blockSize)-(blockSize/2)
 
-  Upisempty = (boxsheet[playerypos-1][playerxpos]=='0')
-  Downisempty = (boxsheet[playerypos+1][playerxpos]=='0')
-  Leftisempty = (boxsheet[playerypos][playerxpos-1]=='0')
-  Rightisempty = (boxsheet[playerypos][playerxpos+1]=='0')
+  Upisempty = (boxsheet[playerypos-1][playerxpos]=='0'or boxsheet[playerypos-1][playerxpos]=='r')
+  Downisempty = (boxsheet[playerypos+1][playerxpos]=='0' or boxsheet[playerypos+1][playerxpos]=='r')
+  Leftisempty = (boxsheet[playerypos][playerxpos-1]=='0' or boxsheet[playerypos][playerxpos-1]=='r')
+  Rightisempty = (boxsheet[playerypos][playerxpos+1]=='0' or boxsheet[playerypos][playerxpos+1]=='r')
 
   objectabove = boxsheet[playerypos-1][playerxpos]
   objectbelow = boxsheet[playerypos+1][playerxpos]
@@ -68,10 +68,10 @@ label checkwalls:
       objectleft = boxsheet[playerypos][playerxpos-1]
       objectright = boxsheet[playerypos][playerxpos+1]
 
-      Upisempty = (objectabove=='0') or (objectabove=='d') or (objectabove=='c') or (objectabove=='b') or (objectabove=='a') or ('script'in objectabove)
-      Downisempty = (objectbelow=='0') or (objectbelow=='d') or (objectbelow=='c') or (objectbelow=='b') or (objectbelow=='a') or ('script'in objectbelow)
-      Leftisempty = (objectleft=='0') or (objectleft=='d') or (objectleft=='c') or (objectleft=='b') or (objectleft=='a') or ('script'in objectleft)
-      Rightisempty = (objectright=='0') or (objectright=='d') or (objectright=='c') or (objectright=='b') or (objectright=='a') or ('script'in objectright)
+      Upisempty = (objectabove=='r') or (objectabove=='0') or (objectabove=='d') or (objectabove=='c') or (objectabove=='b') or (objectabove=='a') or ('script'in objectabove)
+      Downisempty = (objectbelow=='r') or (objectbelow=='0') or (objectbelow=='d') or (objectbelow=='c') or (objectbelow=='b') or (objectbelow=='a') or ('script'in objectbelow)
+      Leftisempty = (objectleft=='r') or (objectleft=='0') or (objectleft=='d') or (objectleft=='c') or (objectleft=='b') or (objectleft=='a') or ('script'in objectleft)
+      Rightisempty = (objectright=='r') or (objectright=='0') or (objectright=='d') or (objectright=='c') or (objectright=='b') or (objectright=='a') or ('script'in objectright)
 
 
       UpisActor = (objectabove!='0') and (direction == 'up')

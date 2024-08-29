@@ -101,6 +101,7 @@ init python:
     def BurnSelf(burndmg) :
         return Fxn("BurnSelf","burnself()","Append Burn status to self.")
     def Evade(quantity):
+        tokenname="Evade"
         return Fxn(
             "Evade",
             "evade("+str(quantity)+")",
@@ -249,11 +250,13 @@ init python:
 
     HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
     ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
+    
+    BurstTransfer= Card("BurstTransfer",    "Maneuver",      0.0,   [Evade(1),RemoveToken("Evade","Enemy")],          2)
 #Ave's cards
     FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(),NullFxn()],              4)
     DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(),NullFxn()],              3)
     SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(),NullFxn()],           2)
-    #Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
+    Snipe=        Card("Snipe",           "Gun",    0.0,     [Boost("ATK",0.25),Evade(1)],       6)
 #Swords and Blades
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
     DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
