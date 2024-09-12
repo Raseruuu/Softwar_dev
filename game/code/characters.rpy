@@ -84,6 +84,7 @@ init -1 python:
     # globals()["HackerX_w"] = True
 
     globals()["Lisa_e"] = "normal"
+    globals()["Lisa_eyes"] = "open"
     globals()["Lisa_m"] = "smile"
     globals()["Lisa_blush"]= False
     globals()["Lisa_w"] = True
@@ -905,7 +906,11 @@ layeredimage Lisafull:
             "Lisa_blush==False",Null(),
             )
     always:
-        "LisaEyes"
+        
+        ConditionSwitch(
+            "('close' in Lisa_eyes)","images/Characters/Lisa/Lisa_e[Lisa_eyes].png",
+            "('close' not in Lisa_eyes)","LisaEyes",
+            )
     always:
         # "images/Characters/Lisa/LisaGlasses.png"
         ConditionSwitch(
@@ -961,32 +966,32 @@ image Null_side:
 
 image LisaEyes:
     choice:
-        "images/Characters/Lisa/Lisa_eyes.png"
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.0
         "images/Characters/Lisa/Lisa_eclose1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclose2.png"
+        "images/Characters/Lisa/Lisa_eclosedown.png"
         pause 0.1
         "images/Characters/Lisa/Lisa_eclose1.png"
         pause 0.07
     choice:
-        "images/Characters/Lisa/Lisa_eyes.png"
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 5.0
     choice:
-        "images/Characters/Lisa/Lisa_eyes.png"
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 4.0
     choice:
-        "images/Characters/Lisa/Lisa_eyes.png"
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.5
         "images/Characters/Lisa/Lisa_eclose1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclose2.png"
+        "images/Characters/Lisa/Lisa_eclosedown.png"
         pause 0.1
         "images/Characters/Lisa/Lisa_eclose1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclose2.png"
+        "images/Characters/Lisa/Lisa_eclosedown.png"
         pause 0.1
-        "images/Characters/Lisa/Lisa_eyes.png"
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.5
     repeat
 

@@ -1,4 +1,5 @@
-transform gravity():
+transform gravity(groundpos):
+    ease 0.9 ypos (groundpos)
 init python:    
     field=[
         ["0000000000000000000000000000000000000000000000000"],

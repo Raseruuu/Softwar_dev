@@ -552,8 +552,8 @@ label date1:
     extend" How do I exit you?"
     i"You don't. FAIs are always active!"
     # $ ILY_p='2'
-    extend" But don't worry about your RAM, I divided my body in half to reserve processing power!"
-    "That's... kinda gross."
+    extend" But don't worry about your RAM, I've integrated myself to your OS to reserve processing power!"
+    "My mental image of that \"integration\" was not so pleasant."
     # $ ILY_p='0'
     j"Okay."
     extend" I'm still shutting down."
@@ -671,7 +671,7 @@ label date2:
         "Looking straight to her eyes makes me think of a lot of my shortcomings."
         $ Lisa_m="smile"
         l"Th-that's good!"
-        $ Lisa_e="mad"
+        
         l"Umm... In exchange you have to code a lot tonight!"
         "Ah. So it's about work now."
         l"I'm giving you this as your subordinate, ok?"
@@ -687,10 +687,17 @@ label date2:
         $ Lisa_e="normal"
         extend" but I'm sure you can handle it."
         j"I see."
+        "Lisa lifts her tablet on me to show her notes."
+        j"Wait a minute... This isn't very exciting news. I was hoping for a hackathon."
+        $ Lisa_e="mad"
+        $ Lisa_m="frown"
+        l"The hackathon can wait!"
         scene cafeoutside2 with dissolve
         "After that, we discussed a lot."
         "Time passed quickly as I stared at her, jotting down notes regarding our assignment."
         "We've sipped our last drops of coffee."
+        $ Lisa_e="normal"
+        $ Lisa_m="smile"
         $Lisa_w = True
         l"John, If anything comes up, you're free to call me, OK?"
         "I should probably tell her."
@@ -705,6 +712,10 @@ label date2:
             alpha 0.5
         with dissolve
         j"Erhm. My computer got infected by a virus last night."
+        $ Lisa_m="open"
+        $ Lisa_e="up"
+        $ Lisa_eyes="raised"
+        l"A Virus! You too?"
         j"The ILOVEYOU Virus. Have you heard of it?"
         $ Lisa_m="frown"
         $ Lisa_e="mad"
@@ -717,11 +728,13 @@ label date2:
         j"No doubt.. It's the virus that did it."
         l"Ah, that's it. My PC got infected too."
         j"I see. Hilbert's PC as well. His PC didn't recover though, unlike mine."
+        $ Lisa_eyes="open"
         l"Did you notice anything odd?"
         "Something definitely was super odd."
         j"An AI person appeared on my screen and introduced itself as the virus."
         j"The AI virus registered herself as my assistant, and told me to call her \"ILY\""
         $ Lisa_m="open"
+        $ Lisa_eyes="raised"
         l"No way! "
         extend "You're kidding!"
         scene black with dissolve
@@ -733,6 +746,7 @@ label date2:
         $ Lisa_m="frown"
         $ Lisa_e="mad"
         $ Lisa_w = False
+        $ Lisa_eyes="open"
         scene cafetable
         show Lisa
         with dissolve
@@ -753,8 +767,10 @@ label date2:
         l"You told me she looked harmless! Maybe she's a kind virus, you know?"
         "A kind virus. Like that'll ever exist."
         j"So you'll beg to her personally?"
+        $ Lisa_eyes="closeup" 
         l"I'm gonna talk with her, woman to woman."
         "More like, woman to program."
+        $ Lisa_eyes="open" 
         $ Lisa_m="frown"
         $ Lisa_e="mad"
         l"She destroyed my PC. We should grab any chance we see to reset the damages."
