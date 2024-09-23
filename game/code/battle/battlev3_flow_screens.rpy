@@ -31,30 +31,47 @@ init python:
 screen battlestats():
     frame:
         style_prefix "statsb"
-        xsize 425 ysize 120
-        xpos 0.02 xanchor 0.0 yalign 0.62
+        xsize 380 ysize 190
+        xpos 0.02 xanchor 0.0 yalign 0.5
         vbox:
-            text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
-            hbox:
+            vbox:
+                text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
+                hbox:
 
-                xalign 0.0
+                    xalign 0.0
 
-                for cards in playerbattlecode:
-                    add "images/Cards/[cards.NAME].png" at codesize
-                # for cards in playerbattlecode:
-                #     add "images/Cards/[cards.NAME].png" at codesize
-                for fillers in range(0,5-len(playerbattlecode)):
+                    for cards in playerbattlecode:
+                        add "images/Cards/[cards.NAME].png" at codesize
+                    # for cards in playerbattlecode:
+                    #     add "images/Cards/[cards.NAME].png" at codesize
+                    for fillers in range(0,5-len(playerbattlecode)):
 
-                    add "images/Cards/Empty.png" at codesize
+                        add "images/Cards/Empty.png" at codesize
+            null height 5
+            vbox:
+                
+                text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
+                frame:
+                    style_prefix "bit"
+                    hbox:
+                        
+                        # null width 0
+                        grid 8 1:
+                            for bit in range(0,playerbits):
+                                add "gui/Bit.png":
+                                    zoom 0.75
+                            for fillers in range(0,8-playerbits):
+                                add "gui/Bit_empty.png":
+                                    zoom 0.75
             
 
     frame:
         style_prefix "statsb"
-        xpos 0.02 xanchor 0.0 yalign 0.06 xsize 425
+        xpos 0.02 xanchor 0.0 yalign 0.06 xsize 380
         vbox:
             hbox:
                 style_prefix "battlestats"
-                image "Icon_[playerName]"
+                image "Icon_[playerName]" at zoomtrans(0.8)
                 null width 8
                 vbox:
                     text "{b}[playerName]{/b}"
@@ -89,46 +106,34 @@ screen battlestats():
                                 text "DEF: {color=#f00}[playerDEF_m]{/color}"
                             else:
                                 text "DEF: [playerDEF_m]"
-                        vbox:
-                            text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
-                            frame:
-                                style_prefix "bit"
-                                hbox:
-                                    
-                                    # null width 0
-                                    grid 8 1:
-                                        for bit in range(0,playerbits):
-                                            add "gui/Bit.png":
-                                                zoom 0.75
-                                        for fillers in range(0,8-playerbits):
-                                            add "gui/Bit_empty.png":
-                                                zoom 0.75
+                        
                         null height 5
+                    vbox:
+                        text "{size=14}{b}STATUS{/size}{/b}" xalign 0.0
+                        grid 8 2:
+                            for fxns in PlayerSts:
+                                # image "gui/battlests/[fxns].png"
+
+                                if type(fxns)== list:
+
+                                    # else:
+                                    image "gui/battlests/[fxns[0]].png" at zoomtrans(0.5)
+                                elif type(fxns) == str:
+
+
+                                        # frame:
+                                        #     background Null()
+                                        #     image "gui/battlests/token.png"
+                                        #     text "{size=3}{font=font/adventpro-bold.ttf}[fxns]{/size}{/font}" xalign 0.5 yalign 0.82
+
+                                    image "gui/battlests/[fxns].png" at zoomtrans(0.6)
+                            for fillerz in range(0,16-len(PlayerSts)):
+                                # null width 50 height 50
+                                image "gui/battlests/Empty.png" at zoomtrans(0.6)
             null height 5
 
             
-            vbox:
-                text "{size=14}{b}STATUS{/size}{/b}" xalign 0.0
-                grid 8 2:
-                    for fxns in PlayerSts:
-                        # image "gui/battlests/[fxns].png"
-
-                        if type(fxns)== list:
-
-                            # else:
-                            image "gui/battlests/[fxns[0]].png"
-                        elif type(fxns) == str:
-
-
-                                # frame:
-                                #     background Null()
-                                #     image "gui/battlests/token.png"
-                                #     text "{size=3}{font=font/adventpro-bold.ttf}[fxns]{/size}{/font}" xalign 0.5 yalign 0.82
-
-                            image "gui/battlests/[fxns].png"
-                    for fillerz in range(0,16-len(PlayerSts)):
-                        # null width 50 height 50
-                        image "gui/battlests/Empty.png"
+            
 
 
                         # hbox:
@@ -145,7 +150,7 @@ screen battlestats():
 
     frame:
         style_prefix "statsb"
-        xpos 0.98 xanchor 1.0 yalign 0.06 xsize 425
+        xpos 0.98 xanchor 1.0 yalign 0.06 xsize 380
         hbox:
                 style_prefix "battlestats"
                 # add "Icon_[enemyName]"
@@ -200,13 +205,13 @@ screen battlestats():
                                 for fxns in EnmySts:
                                     # image "gui/battlests/[fxns].png"
                                     if type(fxns)== list:
-                                        image "gui/battlests/[fxns[0]].png"
+                                        image "gui/battlests/[fxns[0]].png" at zoomtrans(0.8)
                                     elif type(fxns) == str:
-                                        image "gui/battlests/[fxns].png"
+                                        image "gui/battlests/[fxns].png" at zoomtrans(0.8)
 
                                 for fillerz in range(0,16-len(EnmySts)):
                                     # null width 50 height 50
-                                    image "gui/battlests/Empty.png"
+                                    image "gui/battlests/Empty.png" at zoomtrans(0.8)
                         #     text "{b}ATK: [enemyATK]{/b}"
                         #     null width 10
                         #     text "{b}DEF: [enemyDEF]{/b}"

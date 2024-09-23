@@ -378,7 +378,7 @@ image ILYside3:
 
 image Icon_ILY:
     mesh True
-    LiveCrop((230,90, 520,760), "ILYFullBody")
+    LiveCrop((230,80, 520,860), "ILYFullBody")
     zoom 0.25
 
 

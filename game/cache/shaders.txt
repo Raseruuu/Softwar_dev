@@ -1,24 +1,24 @@
-renpy.alpha renpy.alpha renpy.texture
-renpy.alpha renpy.geometry renpy.solid
-renpy.imagedissolve renpy.imagedissolve
->>>>>>> Stashed changes
-renpy.alpha renpy.alpha renpy.solid
-renpy.dissolve renpy.dissolve
-renpy.matrixcolor renpy.texture
-renpy.ftl
+renpy.dissolve renpy.geometry
+renpy.texture
+renpy.geometry renpy.matrixcolor renpy.texture
 renpy.geometry renpy.texture watt.wave
 renpy.texture renpy.texture
-renpy.geometry renpy.matrixcolor renpy.texture
+renpy.dissolve renpy.dissolve
 renpy.geometry renpy.imagedissolve
-renpy.texture
-renpy.geometry renpy.texture
-renpy.solid
+renpy.imagedissolve renpy.imagedissolve
+renpy.ftl
 renpy.alpha renpy.texture renpy.texture
-=======
-watt.wave renpy.texture renpy.texture
-<<<<<<< Updated upstream
+>>>>>>> Stashed changes
 renpy.alpha renpy.texture
-renpy.geometry renpy.solid
-renpy.dissolve renpy.geometry
+renpy.alpha renpy.alpha renpy.solid
+renpy.alpha renpy.geometry renpy.solid
+renpy.geometry renpy.texture
+watt.wave renpy.texture renpy.texture
+renpy.matrixcolor renpy.texture
+renpy.alpha renpy.alpha renpy.texture
 renpy.alpha renpy.geometry renpy.texture
+=======
+renpy.solid
+<<<<<<< Updated upstream
 renpy.alpha renpy.solid
+renpy.geometry renpy.solid
