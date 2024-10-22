@@ -4,7 +4,7 @@ transform playerattack:
     linear 0.2 zoom 1.0 xpos (tarx+origx)/2 ypos tary+((origy-tary)/2)
     linear 0.2 zoom 1.0 xpos origx ypos origy
 
-transform cardpos1:
+# transform cardpos1:
 
 transform sway:
     transform_anchor True

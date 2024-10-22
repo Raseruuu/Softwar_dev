@@ -27,10 +27,10 @@ label script2:
     # scene battlebg
     # show battlebg2
     call hideMapview
-    if gameprogress==1:
-        "End of Demo"
-        $ game_over=True
-        return
+    # if gameprogress==1:
+    #     "End of Demo"
+    #     $ game_over=True
+    #     return
     $ GRID[(192,165)]=stageBCD2
     show scrollingBG at scroll
     show battleroad:
@@ -326,7 +326,8 @@ label paidMelissa:
     m "Alright, Listen!"
     i "Yes!"
     m "The GRID we reside in is composed of a lot of things."
-    m "Every entity is not merely built with values inside variables, or a collection of vertices on a 3D axis."
+    m "Every entity is not merely built with values inside variables, or a collection of points plotted on 3D space."
+    m "Humans will call this place a simulation, just like a game.. But it goes much deeper and more detailed than usual."
     m "We're made of Data Materials. Us Viruses, we are composed of virus cells and tissues."
     m "Our composition allows us to utilize materials with special abilities."
     m "The special data material you want to find is called \"Imperceptium\"."
@@ -341,14 +342,14 @@ label paidMelissa:
     i "Ah! VirusFlame?"
     m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
     m "You really are behind in all this, aren't you?"
-    i "Ah, i was just jogging my memory, Ahehehe!!"
+    i "Ah, I was just jogging my memory, Ahehehe!!"
     m "Hah! Well, do you plan on searching for it tonight?"
     # j "(ILY, what's stopping Melissa from making a run using Imperceptium?)" 
     # i "I have no idea. Maybe it's not in her interests right now? To pass by that "
     j"(Tonight... I assume it will take a while. Do viruses sleep?)"
     i"(No, us Viruses can stay active as long as we can.)"
     j"(ILY, let's try to hunt for Imperceptium now.)"
-    i "... That's right. Let's do it tonight!"
+    i "Yes! I'll hunt for Imperceptium tonight!"
     "If ILY stays here with the Viruses while I'm asleep, I don't know what could happen.{w} She has to leave them alone tonight."
     "This is the perfect excuse to disappear."
     "If ILY follows a schedule just like mine, a human, she might get perceived as a non-stray Virus. A Virus with a Master."
@@ -376,20 +377,26 @@ label paidMelissa:
     i"Ehh! I'm not a naughty Virus, I promise!"
     j"Funny you say that."
     j"You've been oddly cooperative today."
-    i"What did I tell you, I'm your personal assistant now!."
+    i"What did I tell you, I'm your personal assistant now!"
     "For a program, she really seems supportive and easy to talk to."
     "As for the real reason why I don't want to hunt tonight..."
     "I'm afraid It'll take another long session for that."
     "And... Lisa told me she might come to meet me again tomorrow."
     "So... I have to catch on some Z's and not be late!!"
+    
+    scene JD_PCN with dissolve
+    j"Good night, ILY."
+    i"Good night, John!"
+
 
     scene black with dissolve
+
 
 label teammeeting:
     #After this, John decides to review the day in his head and go to sleep.
     #TRANSITION TO MORNING
     #Morning
-
+    play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     #E-mail from Lisa appears
     i"John!! You have 1 new unread e-mail! It's Lisa!"
     # "Huh... Right. We were together yesterday..."
@@ -554,12 +561,96 @@ label teammeeting:
     j "This virus thinks she can help out by using destruction.."
     i "But I can!!"
     h "And you've held John's PC as a hostage to do so, it looks like. "
-    i ""
-    
-    i "I  didn't think"
+    i "Hostage? I know nothing of the sort!"
+    j "She hacked SDS so that the other virus that was there... Wouldn't be able to infect."
+    i "I thought I had him... I was supposed to take him down with me.."
+    h "That's crazy... But.. seeing as it's still around, does that mean it survived?"
+    i "He escaped at the last second!"
+    j "It was a guy? You didn't tell me this!"
+    h "So the virus was like you, but it was a male one! How interesting!"
+    h "Well, could you tell us what he looked like?"
+    i "I can, actually! At first... I thought it was an Antivirus." 
+    i "He looked like a knight in shining armor!"
+    h "No way."
+    j "A Knight? like how?"
+    i "He carried a sword, and was about to charge at me.."
+    i "We crossed blades a few times as I drew out my own sword."
+    i "I thought I had him, when I struck his side with a quick slash.. But the blade didn't faze him."
+    i "I leapt far, but he caught up to me so quickly... That's why I had to activate my Virus Algorithm!"
+    h "Not very chivalrous to attack a woman. He was but a coldblooded mercenary."
+    j "You're way invested in the scenario now huh, Hilbert."
+    "It's getting much clearer now, what happened at SDS... How does this help us fight back?"
+
+    h "Then... If we have to deal with him..."
+    j "Huh?"
+    h "It's time to strategize!!"
+    j "You're actually planning to strike back? We can still think this through!"
+    h "We should! I won't forgive him for messing with my father's company!"
+    j "F-fine."
+    h "The basics of battle!"
+    h "If we're to face this armored knight virus, A melee fighter, you have to beat him with ranged attacks!"
+    j "Makes sense. But will it really be that simple?"
+    h "There's only one way to find out huh! We are going back to scout the servers... "
+    h "When ILY arrives at SDS... She has to NOT activate her Virus Algorithm thing!"
+    j "About that... "
     #Lisa Arrives
-    "Knock Knock"
-    $ game_over=True
+    show Lisa with dissolve
+    l"Knock! Knock!"
+    l "Hello?"
+    j "Ah! It's Lisa."
+    # h :O
+    h "Lisa? What's she doing here?"
+    j "She's... Here for our internship project thing. And... testing something out."
+    h "No way, you got her to come to your place!"
+    j "Sshhh!! Get outta here! I was going to tell you! This was supposed to be my meeting time with Lisa."
+    h "Huuhh!!?"
+    l "Am I interrupting something?"
+    "Gah!! I gotta get the door!"
+    "Lisa walks in.. She has a curious expression on her. I wonder what she thinks now!?"
+    "Lisa makes gavel slam out of her 2 hands as if she's come up with some sort of realization."
+    l "Hilbert! It's you!"
+    j "Uhh, Hilbert is..."
+    l "I suppose you're curious as to what happened with SDS too?"
+    l "And you're here at John's place because he's the more experienced computer guy with good grades at our class, who also works at SDS!!"
+    "So that's what she thinks."
+    h "Hey! That's not exactly right. I'm here because John is my best friend! This is my first time here though."
+    l "I didn't know!"
+    i "Hey Lisa! Welcome back!"
+    l "I-ILY!!"
+    h "And you're... closer to John than I am, now?! Sounds like you've been here before! I can't believe I've been set aside, John."
+    j "Woah slow down!"
+    l "Wha!? It's just right to meet, we have an internship project together!"
+    h "Actually... I'm more impressed that John invited you to his place. You're the actual top of our class! He must be quite the guy now. I should learn from him."
+    l "He didn't!! Ah! I mean John is a reliable coworker now! Face-to-face inquiries are much better!"
+    j "So uhhh!"
+    j "I'm not great in this kind of situation, you both just keep speaking your minds!"
+    j "I'd like to say that Hilbert knows quite a bit about the new FAI Virus situation now, Lisa."
+    i "That's right! I was just explaining my part in hacking SDS. I had to confess to Hilbert what I did."
+    l "Ah! I'm sorry, we could have started this conversation more properly..."
+    h "Right! you interrupted our conversation on ILY's strike-back against our hacker!"
+    l "Strike-back?"
+    h "An armored virus caused all this! That's why ILY needs to win fair and square with the big guns!"
+    j "No, slow down! There's something else we can do.."
+    l "Right, Hilbert! It was an armored virus?"
+    j "Yeah, ILY just told us it looked like a knight in shining armor."
+    h "She was forced to use her virus power, so I'm thinking a rematch with a different strategy might work."
+    l "If ILY had almost lost the first time, the Virus could probably still overpower her yet again... It's too risky!"
+    h "What are you suggesting now?"
+    l "Me and John already... talked about this, my father's company is called V.I.S.."
+    l "Vira Internet Solutions. I looked into my dad's research and found it..."
+    h "Vira Internet Solutions? You mean an Antivirus!"
+    l "That's right! A FAI Antivirus! It's here with me now. It should be.. Just what we need to combat that virus!"
+    h "No way, you two planned to solve this SDS problem by yourselves!"
+    j "I'm sor-"
+    l "We intended to. There's no certainty, but we're about to see just what we can do."
+    l "We just have to test installing Vira!"
+    j "Right. Let's see what we got here, Lisa!"
+    h "A drive, huh! So you planned on testing it here first, before SDS."
+    l "Yes!"
+
+
+
+    
     return
 
 

@@ -3,40 +3,41 @@ label script3:
         $ map_active=False
         hide screen mapB
         ""
-        jump installvira
+        call installvira
+        $ game_over=True
         return
-"""    Outline
-    Part 1
-    Hilbert forms team
-    Vira travels on to SDS server via Hilbert's admin privilege. 
-    [Preparation Time]
-    Some character moments between Vira and ILY
-    More info about Lisa's family business
-    Slight link made with Alicia perhaps.
-    Part 2
-    SDS server boots up again, Vira scouts in to diagnose. 
-    Code Red pops up
-    intercepted by Vira 
-    Part 3
-    CR starts to overwhelm Vira's defence, so ILY jumps in to help.
-    ==============================[FIGHT]================================
+# """    Outline
+#     Part 1
+#     Hilbert forms team
+#     Vira travels on to SDS server via Hilbert's admin privilege. 
+#     [Preparation Time]
+#     Some character moments between Vira and ILY
+#     More info about Lisa's family business
+#     Slight link made with Alicia perhaps.
+#     Part 2
+#     SDS server boots up again, Vira scouts in to diagnose. 
+#     Code Red pops up
+#     intercepted by Vira 
+#     Part 3
+#     CR starts to overwhelm Vira's defence, so ILY jumps in to help.
+#     ==============================[FIGHT]================================
 
-    CR retreated after being badly hurt by ILY. 
-    He wanted to go berzerk but was pulled back into the void again against his wishes. 
-    A couple of massive slashing damages (from his worm forms) near the exit..
+#     CR retreated after being badly hurt by ILY. 
+#     He wanted to go berzerk but was pulled back into the void again against his wishes. 
+#     A couple of massive slashing damages (from his worm forms) near the exit..
 
 
 
-    Addendums:
-    Vira to be able to block Code Red’s first attacks, 
-    then Vira continues to block while Code Red attacks repeatedly. 
-    Code Red can talk in the middle of this.
-    "(That he) wasn’t expecting Vira. but he doesn’t mind getting someone to fight with"
-    (Hinting at his goal to pursue ILY)
-    Maybe he also kinda didn’t want to reveal his goals but it just came out of his mouth
-    ⇒ blabbermouth
+#     Addendums:
+#     Vira to be able to block Code Red’s first attacks, 
+#     then Vira continues to block while Code Red attacks repeatedly. 
+#     Code Red can talk in the middle of this.
+#     "(That he) wasn’t expecting Vira. but he doesn’t mind getting someone to fight with"
+#     (Hinting at his goal to pursue ILY)
+#     Maybe he also kinda didn’t want to reveal his goals but it just came out of his mouth
+#     ⇒ blabbermouth
 
-"""    
+# """    
 # Part 1
 label installvira:
     h "Alright I've decided!."
