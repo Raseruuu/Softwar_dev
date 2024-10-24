@@ -95,10 +95,12 @@ label checkwalls:
       call doorjump from _call_doorjump
    if HereisEventDoor:
       play sound"sfx/door-fr_0009.wav"
+      $ map_active=False
       call eventdoor from _call_eventdoor
    return
 
 label eventdoor:
+  
     $renpy.jump(str(Here))
     
 # label poschange:

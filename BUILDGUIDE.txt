@@ -1,0 +1,7 @@
+Before Building for WEB:
+DELETE:
+.git
+.psd
+.zip
+.rar
+others

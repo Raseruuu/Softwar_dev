@@ -22,16 +22,26 @@ label script2_1:
     $ game_over=True
     return
 
+
+
+# label script2:
+
+#     call script2_dialog1
+#     call script2_map1
+#     call script2_dialog2
+#     call script2_map2
 label script2:
+
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
     call hideMapview
-    # if gameprogress==1:
-    #     "End of Demo"
-    #     $ game_over=True
-    #     return
+    if gameprogress==1:
+        "End of Demoaaa"
+        # $ game_over=True
+        return 
     $ GRID[(192,165)]=stageBCD2
+    # $ GRID[(192,165)]=stageBCD2
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -45,7 +55,7 @@ label script2:
     i "Oh? How would you know that?" 
     j "The virtual world here seems to mimic the real world locations. Albeit the components of each area is different."
     j "Like, this place is pretty empty in comparison!! And where are the cars?"
-    i "... nice observation, I wouldn't know that!"
+    i "... Nice observation, I wouldn't know that!"
     i "Hmmm... "
     "ILY pauses in the middle of traveling to the gate."
     show Bitwulf 
@@ -189,9 +199,18 @@ label script2:
         linear 0.1 yoffset 0
     s "Tell me when something interesting happens! I'll be sorting out through my stash."
     s "You, new girl. You're welcome to drop by my shop."
+    $ gridpos = [192,164]
+    call addsprites(gridpos)
+    call mapcall([6,5],stage_ShadyAlley)
+    if playerHP<=0:
+        return
+    $ILY_w = False
+    hide screen mapB
+    hide screen mapA
     hide Stoned with dissolve
     show Melissa with ease:
         xalign 0.5
+    label Melissascript2:
     j "(Melissa knows quite a lot... It's an odd feeling to hear all this from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
     j "(You think?)"
@@ -263,13 +282,14 @@ label payMelissa:
                 if Money < 1000:
                     j "We still don't have enough."
                     i"Stray viruses drop Zenny all the time when I beat them in Softwars."
-                    # call addsprites(gridpos)
-                    # call mapcall([6,5],stage_ShadyAlley)
-                    # if playerHP<=0:
-                    #     return
-                    # $ILY_w = False
-                    # hide screen mapB
-                    # hide screen mapA
+                    $ gridpos = [192,164]
+                    call addsprites(gridpos)
+                    call mapcall([6,5],stage_ShadyAlley)
+                    if playerHP<=0:
+                        return
+                    $ILY_w = False
+                    hide screen mapB
+                    hide screen mapA
                     return
                 else:
                     j "Okay... We need that info. Do it, ILY!"
@@ -281,13 +301,14 @@ label payMelissa:
                 j"We need more Zenny."
                 i"Stray viruses drop Zenny all the time when I beat them in Softwars."
                 j"Right..."
-                # call addsprites(gridpos)
-                # call mapcall([6,5],stage_ShadyAlley)
-                # if playerHP<=0:
-                #     return
-                # $ILY_w = False
-                # hide screen mapB
-                # hide screen mapA
+                $ gridpos = [192,164]
+                call addsprites(gridpos)
+                call mapcall([6,5],stage_ShadyAlley)
+                if playerHP<=0:
+                    return
+                $ILY_w = False
+                hide screen mapB
+                hide screen mapA
 
                 return
 
@@ -557,19 +578,21 @@ label teammeeting:
     i "I was on a mission! SDS was in trouble and I came to help!"
     h "A mission huh.. I should be more skeptic right now, but you know that does sound cool to me."
     j "I couldn't put into words what happened. But you have to believe her, Hilbert."
-    h "What were you doing on SDS?"
+    i "I battled that other virus! That was my mission!"
     j "This virus thinks she can help out by using destruction.."
     i "But I can!!"
-    h "And you've held John's PC as a hostage to do so, it looks like. "
-    i "Hostage? I know nothing of the sort!"
-    j "She hacked SDS so that the other virus that was there... Wouldn't be able to infect."
+    j "I suppose, if I were to add context... Since you're interested... A new system that allows the battle of FAI has arisen."
+    h "A battle system?"
+    j "It's called a \"Softwar\". The victor of a Softwar gets to decide what happens to the systems."
+    h "A \"Softwar\" huh... Heh.. So ILY isn't only an advanced AI, but a battle virus? Sick!"
+    j "Apparently ILY hacked SDS so that the other virus that was there... Wouldn't be able to infect."
     i "I thought I had him... I was supposed to take him down with me.."
     h "That's crazy... But.. seeing as it's still around, does that mean it survived?"
     i "He escaped at the last second!"
     j "It was a guy? You didn't tell me this!"
     h "So the virus was like you, but it was a male one! How interesting!"
     h "Well, could you tell us what he looked like?"
-    i "I can, actually! At first... I thought it was an Antivirus." 
+    i "I can, actually! At first... I thought it was an Antivirus. He had a striking blue color on him and a dashing cape..." 
     i "He looked like a knight in shining armor!"
     h "No way."
     j "A Knight? like how?"
@@ -607,7 +630,7 @@ label teammeeting:
     l "Am I interrupting something?"
     "Gah!! I gotta get the door!"
     "Lisa walks in.. She has a curious expression on her. I wonder what she thinks now!?"
-    "Lisa makes gavel slam out of her 2 hands as if she's come up with some sort of realization."
+    "Lisa makes gavel slam gesture out of her 2 hands as if she's come up with some sort of realization."
     l "Hilbert! It's you!"
     j "Uhh, Hilbert is..."
     l "I suppose you're curious as to what happened with SDS too?"
@@ -619,11 +642,10 @@ label teammeeting:
     l "I-ILY!!"
     h "And you're... closer to John than I am, now?! Sounds like you've been here before! I can't believe I've been set aside, John."
     j "Woah slow down!"
-    l "Wha!? It's just right to meet, we have an internship project together!"
+    l "Wha!? It's just right to meet as workmates, we have an internship project together!"
     h "Actually... I'm more impressed that John invited you to his place. You're the actual top of our class! He must be quite the guy now. I should learn from him."
     l "He didn't!! Ah! I mean John is a reliable coworker now! Face-to-face inquiries are much better!"
     j "So uhhh!"
-    j "I'm not great in this kind of situation, you both just keep speaking your minds!"
     j "I'd like to say that Hilbert knows quite a bit about the new FAI Virus situation now, Lisa."
     i "That's right! I was just explaining my part in hacking SDS. I had to confess to Hilbert what I did."
     l "Ah! I'm sorry, we could have started this conversation more properly..."

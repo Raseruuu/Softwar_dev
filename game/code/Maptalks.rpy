@@ -186,7 +186,10 @@ label maptalk_Heart:
     return
 label maptalk_Melissa_1:
    $ Melissa_w=True
-   jump paidMelissa
+   if gameprogress==0:
+      jump Melissascript2
+   else:
+      jump paidMelissa
    
 define samedialog = ["Heart","Stella"]
 label whatactor:

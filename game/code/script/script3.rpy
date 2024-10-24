@@ -40,8 +40,7 @@ label script3:
 # """    
 # Part 1
 label installvira:
-    h "Alright I've decided!."
-    j "What is it this time?"
+    h "Alright I've decided!"
     "Hilbert always comes up with the most stupid of plans, and I guess this is another one of those instances."
 
 
