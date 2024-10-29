@@ -41,17 +41,8 @@ label script3:
 # Part 1
 label installvira:
     h "Alright I've decided!"
-    "Hilbert always comes up with the most stupid of plans, and I guess this is another one of those instances."
-
-
-
+    
     # ~~~~[to be filled in later]~~~~
-
-    j "Why are we "
-
-
-
-
 
     i "John, it's done now."
     "I look toward the screen, ILY is waving at us excitedly from the other side."

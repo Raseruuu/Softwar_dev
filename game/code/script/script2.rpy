@@ -30,16 +30,16 @@ label script2_1:
 #     call script2_map1
 #     call script2_dialog2
 #     call script2_map2
-label script2:
+label script2_dialog1:
 
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2
     call hideMapview
-    if gameprogress==1:
-        "End of Demoaaa"
-        # $ game_over=True
-        return 
+    # if gameprogress==1:
+    #     "End of Demoaaa"
+    #     # $ game_over=True
+    #     return 
     $ GRID[(192,165)]=stageBCD2
     # $ GRID[(192,165)]=stageBCD2
     show scrollingBG at scroll
@@ -416,6 +416,9 @@ label paidMelissa:
 label teammeeting:
     #After this, John decides to review the day in his head and go to sleep.
     #TRANSITION TO MORNING
+    scene white with dissolve
+    scene JD_Room with dissolve
+
     #Morning
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     #E-mail from Lisa appears

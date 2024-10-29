@@ -353,6 +353,8 @@ screen mapB:
           text "{color=#fff}Running = [Running]{/color}"
           text "## Press R to toggle running ##"
           text "## Press SPACE to open the menu ##"
+          
+          text "## Press Z to Confirm ##"
           text "## Press X to talk to ILY ##"
           # text "{color=#fff}Gameprogress = [gameprogress]{/color}"
           # text "{color=#fff}direction = [direction]{/color}"
@@ -366,38 +368,38 @@ screen mapB:
           text "HP: [playerHP]/[playerHPMax]"
           text "Money: [Money] Zenny"
           null height 10
-## MOBILE BUTTONS
+# MOBILE BUTTONS
     # if not anim_done:
-    #
-    #     image "gui/phone/buttonA.png":
-    #         pos (0.96,0.8) align (0.5,0.5) at zoombutton
-    #     image "gui/phone/buttonB.png":
-    #         pos (0.9,0.9) align (0.5,0.5) at zoombutton
-    #     image "gui/phone/buttonX.png":
-    #         pos (0.9,0.7) align (0.5,0.5) at zoombutton
-    #     image "gui/phone/buttonY.png":
-    #         pos (0.84,0.8) align (0.5,0.5) at zoombutton
-###UNCOMMENT FOR MOBILE
-    # imagebutton idle "gui/phone/direction.png":
-    #     hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
-    #     unhovered SetVariable("direction2",None)
-    #     action SetVariable("direction","up")#,Return("up")
-    #     at rotate(0) pos (0.1,0.7) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png":
-    #     hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
-    #     unhovered SetVariable("direction2",None)
-    #     action SetVariable("direction","down")#,Return("down")
-    #     at rotate(180) pos (0.1,0.9) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png":
-    #     hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
-    #     unhovered SetVariable("direction2",None)
-    #     action SetVariable("direction","left")#,Return("left")
-    #     at rotate(270) pos (0.04,0.8) align (0.5,0.5)
-    # imagebutton idle "gui/phone/direction.png":
-    #     hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
-    #     unhovered SetVariable("direction2",None)
-    #     action SetVariable("direction","right")#,Return("right")
-    #     at rotate(90) pos (0.16,0.8) align (0.5,0.5)
+    
+    image "gui/phone/buttonA.png":
+        pos (0.96,0.8) at zoombutton
+    image "gui/phone/buttonB.png":
+        pos (0.9,0.9)  at zoombutton
+    image "gui/phone/buttonX.png":
+        pos (0.9,0.7) at zoombutton
+    image "gui/phone/buttonY.png":
+        pos (0.8,0.8)  at zoombutton
+##UNCOMMENT FOR MOBILE
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","up")#,Return("up")
+        at rotate(0) pos (0.1,0.7)
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","down")#,Return("down")
+        at rotate(180) pos (0.1,0.9)
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","left")#,Return("left")
+        at rotate(270) pos (0.04,0.8)
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","right")#,Return("right")
+        at rotate(90) pos (0.16,0.8) 
 
     # frame:
     #     align (0.9,0.0)
@@ -410,13 +412,12 @@ transform zoombutton:
     zoom 0.1
 style overworld_text:
     size 14
-    # zorder yvalue
 screen npcsprite(sprites):
     zorder sprites.position[1]
 
     image "images/rpg/overworld/[sprites.name][sprites.direction].png" xpos 0.5 ypos 0.508:
         if linearmaptransform:
-            at mover2((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans# zorder maplayering(sprites.position[1])
+            at mover2((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans
         elif not linearmaptransform:
             at mover2_nolinear((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans
 screen playersprite(yvalue):
@@ -491,18 +492,18 @@ screen mapA:
         key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
         key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
     # for mobile stuff
-    # if direction2 is not None:
-    #     if moving and direction=="up":
-    #         timer 0.01 action Return("up") repeat True
-    #     if moving and direction=="down":
-    #         timer 0.01 action Return("down") repeat True
-    #     if moving and direction=="left":
-    #         timer 0.01 action Return("left") repeat True
-    #     if moving and direction=="right":
-    #         timer 0.01 action Return("right") repeat True
+    if direction2 is not None:
+        if moving and direction=="up":
+            timer 0.05 action Return("up") repeat True
+        if moving and direction=="down":
+            timer 0.05 action Return("down") repeat True
+        if moving and direction=="left":
+            timer 0.05 action Return("left") repeat True
+        if moving and direction=="right":
+            timer 0.05 action Return("right") repeat True
     #
-    # key ["mousedown_1"] action Function(setmoving,(True))
-    # key ["mouseup_1"] action Function(setmoving,(False))
+    key ["mousedown_1"] action Function(setmoving,(True))
+    key ["mouseup_1"] action Function(setmoving,(False))
 
     # key 'K_ESCAPE'      action Return("End")
     # key 'K_RETURN'         action Return("Pause")
@@ -528,15 +529,15 @@ screen mapA:
     # key 'E'             action Return("End")
     # key 'e'             action Return("End")
     # add KeyCatcher()
-## MOBILE BUTTONS
-    # imagebutton idle "gui/phone/buttonA.png" action Return("OK"):
-    #     pos (0.96,0.8) align (0.5,0.5) at zoombutton
-    # imagebutton idle "gui/phone/buttonB.png" action Return("MapTalk"):
-    #     pos (0.9,0.9) align (0.5,0.5) at zoombutton
-    # imagebutton idle "gui/phone/buttonX.png" action Return("Pause"):
-    #     pos (0.9,0.7) align (0.5,0.5) at zoombutton
-    # imagebutton idle "gui/phone/buttonY.png" action Return("running"):
-    #     pos (0.84,0.8) align (0.5,0.5) at zoombutton
+# # MOBILE BUTTONS
+#     imagebutton idle "gui/phone/buttonA.png" action Return("OK"):
+#         pos (0.96,0.8) align (0.5,0.5) at zoombutton
+#     imagebutton idle "gui/phone/buttonB.png" action Return("MapTalk"):
+#         pos (0.9,0.9) align (0.5,0.5) at zoombutton
+#     imagebutton idle "gui/phone/buttonX.png" action Return("Pause"):
+#         pos (0.9,0.7) align (0.5,0.5) at zoombutton
+#     imagebutton idle "gui/phone/buttonY.png" action Return("running"):
+#         pos (0.84,0.8) align (0.5,0.5) at zoombutton
     
 init python:
     def setmoving(mov):
