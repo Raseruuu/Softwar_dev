@@ -30,6 +30,16 @@ label script2_1:
 #     call script2_map1
 #     call script2_dialog2
 #     call script2_map2
+label script2_map1:
+    $ gridpos = [192,164]
+    call addsprites(gridpos)
+    call mapcall([6,5],stage_ShadyAlley)
+    if playerHP<=0:
+        return
+    $ILY_w = False
+    hide screen mapB
+    hide screen mapA
+    return
 label script2_dialog1:
 
     ##Arrived at a checkpoint: meet Melissa
@@ -274,33 +284,14 @@ label script2_dialog1:
 
 label payMelissa:
         
-        i"Should we give her 1000 Zenny? (We have [Money] Zenny left.)"
-        menu:
-            i"Should we give her 1000 Zenny?"
-            "Yeah sure.":
-                
-                if Money < 1000:
-                    j "We still don't have enough."
-                    i"Stray viruses drop Zenny all the time when I beat them in Softwars."
-                    $ gridpos = [192,164]
-                    call addsprites(gridpos)
-                    call mapcall([6,5],stage_ShadyAlley)
-                    if playerHP<=0:
-                        return
-                    $ILY_w = False
-                    hide screen mapB
-                    hide screen mapA
-                    return
-                else:
-                    j "Okay... We need that info. Do it, ILY!"
-                    i "Aye, sir!"
-                    jump paidMelissa2
-
-            "Wait a minute!":
-
-                j"We need more Zenny."
+    i"Should we give her 1000 Zenny? (We have [Money] Zenny left.)"
+    menu:
+        i"Should we give her 1000 Zenny?"
+        "Yeah sure.":
+            
+            if Money < 1000:
+                j "We still don't have enough."
                 i"Stray viruses drop Zenny all the time when I beat them in Softwars."
-                j"Right..."
                 $ gridpos = [192,164]
                 call addsprites(gridpos)
                 call mapcall([6,5],stage_ShadyAlley)
@@ -309,8 +300,27 @@ label payMelissa:
                 $ILY_w = False
                 hide screen mapB
                 hide screen mapA
-
                 return
+            else:
+                j "Okay... We need that info. Do it, ILY!"
+                i "Aye, sir!"
+                jump paidMelissa2
+
+        "Wait a minute!":
+
+            j"We need more Zenny."
+            i"Stray viruses drop Zenny all the time when I beat them in Softwars."
+            j"Right..."
+            $ gridpos = [192,164]
+            call addsprites(gridpos)
+            call mapcall([6,5],stage_ShadyAlley)
+            if playerHP<=0:
+                return
+            $ILY_w = False
+            hide screen mapB
+            hide screen mapA
+
+            return
 
 label paidMelissa:
     
@@ -418,8 +428,10 @@ label teammeeting:
     #TRANSITION TO MORNING
     scene white with dissolve
     scene JD_Room with dissolve
-
     #Morning
+    "Great, that's so much better. A good rest!!"
+    "Today... I'll meet with Lisa again. Right?"
+    ""
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     #E-mail from Lisa appears
     i"John!! You have 1 new unread e-mail! It's Lisa!"

@@ -4,12 +4,19 @@ transform cardzoom(zoomvalue):
     zoom zoomvalue
 transform widthresize(zoomvalue):
     xzoom zoomvalue
-screen Card(cardobj,position,zoomvalue):
+style cardoutlines:
+
+   outlines [(2, "#000", -1, 2),(2, "#fff", 0, 0)]
+style cardshadows:
+
+   outlines [(1, "#000", -1, 2)]
+screen Card(cardobj,position=(0.5,0.5),zoomvalue=1.0):
     zorder 50
     frame:
         xsize 225
         ysize 300
         pos (position)
+        # anchor (anchor)
         at cardzoom(zoomvalue)
         if not noscreentransformsfornow:
             at pausetrans2
@@ -19,15 +26,22 @@ screen Card(cardobj,position,zoomvalue):
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
             (10,10),"images/Cards/"+cardobj.NAME+".png",
-            (160,172),"images/Cards/cardbit/"+str(cardobj.COST)+".png"
+            # (160,169),"images/Cards/cardbit/"+str(cardobj.COST)+".png"
+            (170,169),At("images/Cards/cardbit/bit.png",zoomtrans(0.5))
             )
         vbox:
-            pos (13,240)
+            pos (13,231)
             add FunctionList(cardobj.FXN)
-        text "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}":
-            pos (11,214)
-        text "{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}"+cardobj.TYPE+"{/color}{/font}{/size}":
-            pos (165,237)
+        text "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}" style "cardshadows":
+            pos (11,204)
+        text "{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}" style "cardoutlines" :
+            pos (168,196)
+        text "{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}":
+            pos (164,231)
+        text "{color=#ffcc00}{font=font/consolas.ttf}{size=10}\""+cardobj.TYPE+"\"{/color}{/font}{/size}":
+            pos (164,242)
+        text "{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}":
+            pos (164,255)
         text "{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}":
             pos (165,267)
 

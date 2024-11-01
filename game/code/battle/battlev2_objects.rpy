@@ -176,23 +176,23 @@ init python:
     def Attack():
         return Fxn(
             "Attack",
-            "attack(ATK*MAG)",
+            "attack(ATK*POW)",
             "Deal Damage to target.")
     def AttackSP():
         return Fxn(
             "AttackSP",
-            "attackSP(ATK*MAG)",
+            "attackSP(ATK*POW)",
             "Deal Damage to target's SP.")
     def Defend():
         return Fxn(
             "Defend",
-            "defend(DEF*MAG)",
+            "defend(DEF*POW)",
             "Gain Shield Points.")
     def Recover(MAG):
         return Fxn(
             "Recover",
-            "recover(MAXHP*MAG)",
-            "Recover (MAXHP * MAG) HP.",
+            "recover(MAXHP*POW)",
+            "Recover (MAXHP*POW) HP.",
             MAG
             )
     #
@@ -242,6 +242,8 @@ init python:
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
+    FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
+        
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(),GiveToken("Email",3)],    2)
     MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in enmy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 

@@ -258,24 +258,17 @@ label installvira:
 
     # ====[GRID]====
 
-
-
     # [segment of more Vira and CR]
     # [ILY triumphant entry]
     # [CR interrogates ILY]
 
     # [SW]
 
-
     # Part 4
     u "Gah!"
     "The blue enemy leans onto his massive weapon, one knee down to the ground."
     i "Now get away and never come back!"
     u "Heheh"
-
-
-
-
 
 
     return
