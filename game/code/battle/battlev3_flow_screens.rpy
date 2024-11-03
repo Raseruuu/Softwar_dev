@@ -634,52 +634,72 @@ label showphasemsg(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
-    #CARD 1
-        if (playercard1COST<=playerbits) and (clickedcard[0]==False):
-            ###TODO:: ADD HOVER DESCRIPTION Layered Images
-            imagebutton idle "card1":
-                action Play("sound","sound/Phase.wav"), Hide("card1hover"), Return("card1")
-                hovered Show("card1hover"), Play("sound","sfx/select.wav")
-                unhovered Hide("card1hover")
-                at zoomBattlecards xpos 0.26 xanchor 0.5 yalign 0.95
-        elif clickedcard[0]:
-            add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.95
-        else:
-            add "card1" xpos 0.26 xanchor 0.5 yalign 0.95 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos 0.26 xanchor 0.5 yalign 0.95
-    #CARD 2
-        if (playercard2COST<=playerbits) and (clickedcard[1]==False):
-            imagebutton idle "card2" action Play("sound","sound/Phase.wav"), Hide("card2hover"), Return("card2")  hovered Show("card2hover"), Play("sound","sfx/select.wav") unhovered Hide("card2hover") at zoomBattlecards xpos 0.38 xanchor 0.5 yalign 0.95
-        elif clickedcard[1]:
-            add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.95
-        else:
-            add "card2" xpos 0.38 xanchor 0.5 yalign 0.95 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos 0.38 xanchor 0.5 yalign 0.95
-    #CARD 3
-        if (playercard3COST<=playerbits) and (clickedcard[2]==False):
-            imagebutton idle "card3" action Play("sound","sound/Phase.wav"), Hide("card3hover"), Return("card3")  hovered Show("card3hover"), Play("sound","sfx/select.wav") unhovered Hide("card3hover") at zoomBattlecards xpos 0.5 xanchor 0.5 yalign 0.95
-        elif clickedcard[2]:
-            add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5 yalign 0.95
-        else:
-            add "card3" xpos 0.5 xanchor 0.5 yalign 0.95 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos 0.5 xanchor 0.5 yalign 0.95
-    #CARD 4
-        if (playercard4COST<=playerbits) and (clickedcard[3]==False):
-            imagebutton idle "card4" action Play("sound","sound/Phase.wav"), Hide("card4hover"), Return("card4")  hovered Show("card4hover"), Play("sound","sfx/select.wav") unhovered Hide("card4hover") at zoomBattlecards xpos 0.62 xanchor 0.5 yalign 0.95
-        elif clickedcard[3]:
-            add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.95
-        else:
-            add "card4" xpos 0.62 xanchor 0.5 yalign 0.95 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos 0.62 xanchor 0.5 yalign 0.95
+        for cardindex in range(0,5):
+            $ playercardobj = playerhand[cardindex]
+            $ card_distance = 0.12
+            $ cardxpos=0.26+(cardindex*card_distance)
 
-    #CARD 5
-        if (playercard5COST<=playerbits) and (clickedcard[4]==False):
-            imagebutton idle "card5" action Play("sound","sound/Phase.wav"), Hide("card5hover"), Return("card5") hovered Show("card5hover"), Play("sound","sfx/select.wav") unhovered Hide("card5hover") at zoomBattlecards xpos 0.74 xanchor 0.5 yalign 0.95
-        elif clickedcard[4]:
-            add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.95
-        else:
-            add "card5" xpos 0.74 xanchor 0.5 yalign 0.95 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos 0.74 xanchor 0.5 yalign 0.95
+            if (playerhand[cardindex].COST<=playerbits) and (clickedcard[cardindex]==False):
+                ###TODO:: ADD HOVER DESCRIPTION Layered Images
+                imagebutton idle CardDisplay(playercardobj):
+                    action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
+                    hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
+                    unhovered Hide("cardhover")
+                    at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.95
+            elif clickedcard[cardindex]:
+                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.95
+            else:
+                add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.95 at zoomBattlecards
+                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.95
+
+
+    # ###############        
+    # #CARD 1
+    #     if (playercard1COST<=playerbits) and (clickedcard[0]==False):
+    #         ###TODO:: ADD HOVER DESCRIPTION Layered Images
+    #         imagebutton idle CardDisplay(playercard1obj):
+    #             action Play("sound","sound/Phase.wav"), Hide("card1hover"), Return("card1")
+    #             hovered Show("card1hover"), Play("sound","sfx/select.wav")
+    #             unhovered Hide("card1hover")
+    #             at zoomBattlecards xpos 0.26 xanchor 0.5 yalign 0.95
+    #     elif clickedcard[0]:
+    #         add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.95
+    #     else:
+    #         add CardDisplay(playercard1obj) xpos 0.26 xanchor 0.5 yalign 0.95 at zoomBattlecards
+    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.26 xanchor 0.5 yalign 0.95
+    # #CARD 2
+    #     if (playercard2COST<=playerbits) and (clickedcard[1]==False):
+    #         imagebutton idle CardDisplay(playercard2obj) action Play("sound","sound/Phase.wav"), Hide("card2hover"), Return("card2")  hovered Show("card2hover"), Play("sound","sfx/select.wav") unhovered Hide("card2hover") at zoomBattlecards xpos 0.38 xanchor 0.5 yalign 0.95
+    #     elif clickedcard[1]:
+    #         add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.95
+    #     else:
+    #         add CardDisplay(playercard2obj) xpos 0.38 xanchor 0.5 yalign 0.95 at zoomBattlecards
+    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.38 xanchor 0.5 yalign 0.95
+    # #CARD 3
+    #     if (playercard3COST<=playerbits) and (clickedcard[2]==False):
+    #         imagebutton idle CardDisplay(playercard3obj) action Play("sound","sound/Phase.wav"), Hide("card3hover"), Return("card3")  hovered Show("card3hover"), Play("sound","sfx/select.wav") unhovered Hide("card3hover") at zoomBattlecards xpos 0.5 xanchor 0.5 yalign 0.95
+    #     elif clickedcard[2]:
+    #         add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5 yalign 0.95
+    #     else:
+    #         add CardDisplay(playercard3obj) xpos 0.5 xanchor 0.5 yalign 0.95 at zoomBattlecards
+    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.5 xanchor 0.5 yalign 0.95
+    # #CARD 4
+    #     if (playercard4COST<=playerbits) and (clickedcard[3]==False):
+    #         imagebutton idle CardDisplay(playercard4obj) action Play("sound","sound/Phase.wav"), Hide("card4hover"), Return("card4")  hovered Show("card4hover"), Play("sound","sfx/select.wav") unhovered Hide("card4hover") at zoomBattlecards xpos 0.62 xanchor 0.5 yalign 0.95
+    #     elif clickedcard[3]:
+    #         add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.95
+    #     else:
+    #         add CardDisplay(playercard4obj) xpos 0.62 xanchor 0.5 yalign 0.95 at zoomBattlecards
+    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.62 xanchor 0.5 yalign 0.95
+
+    # #CARD 5
+    #     if (playercard5COST<=playerbits) and (clickedcard[4]==False):
+    #         imagebutton idle CardDisplay(playercard5obj) action Play("sound","sound/Phase.wav"), Hide("card5hover"), Return("card5") hovered Show("card5hover"), Play("sound","sfx/select.wav") unhovered Hide("card5hover") at zoomBattlecards xpos 0.74 xanchor 0.5 yalign 0.95
+    #     elif clickedcard[4]:
+    #         add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.95
+    #     else:
+    #         add CardDisplay(playercard5obj) xpos 0.74 xanchor 0.5 yalign 0.95 at zoomBattlecards
+    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.74 xanchor 0.5 yalign 0.95
 
 
         if playerbattlecode!=[]:
@@ -716,21 +736,24 @@ image selectring:
     rotate 0 zoom 1.4
     linear 4.0 rotate 360
     repeat
-screen card1hover:
-    # image "selectring" xanchor 0.5 xpos 0.26 yanchor 0.5 ypos 0.75
-    image "card1" xanchor 0.5 xpos 0.26 yalign 0.95 at cardtrans
-screen card2hover:
-    # image "selectring" xanchor 0.5 xpos 0.38 yanchor 0.5 ypos 0.75
-    image "card2" xanchor 0.5 xpos 0.38 yalign 0.95 at cardtrans
-screen card3hover:
-    # image "selectring" xanchor 0.5 xpos 0.5 yanchor 0.5 ypos 0.75
-    image "card3" xanchor 0.5 xpos 0.5 yalign 0.95 at cardtrans
-screen card4hover:
-    # image "selectring" xanchor 0.5 xpos 0.62 yanchor 0.5 ypos 0.75
-    image "card4" xanchor 0.5 xpos 0.62 yalign 0.95 at cardtrans
-screen card5hover:
-    # image "selectring" xanchor 0.5 xpos 0.74 yanchor 0.5 ypos 0.75
-    image "card5" xanchor 0.5 xpos 0.74 yalign 0.95 at cardtrans
+
+screen cardhover(cardobject,cardhoverxpos):
+    image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.95 at cardtrans
+# screen card1hover:
+#     # image "selectring" xanchor 0.5 xpos 0.26 yanchor 0.5 ypos 0.75
+#     image CardDisplay(playercard1obj) xanchor 0.5 xpos 0.26 yalign 0.95 at cardtrans
+# screen card2hover:
+#     # image "selectring" xanchor 0.5 xpos 0.38 yanchor 0.5 ypos 0.75
+#     image CardDisplay(playercard2obj) xanchor 0.5 xpos 0.38 yalign 0.95 at cardtrans
+# screen card3hover:
+#     # image "selectring" xanchor 0.5 xpos 0.5 yanchor 0.5 ypos 0.75
+#     image CardDisplay(playercard3obj) xanchor 0.5 xpos 0.5 yalign 0.95 at cardtrans
+# screen card4hover:
+#     # image "selectring" xanchor 0.5 xpos 0.62 yanchor 0.5 ypos 0.75
+#     image CardDisplay(playercard4obj) xanchor 0.5 xpos 0.62 yalign 0.95 at cardtrans
+# screen card5hover:
+#     # image "selectring" xanchor 0.5 xpos 0.74 yanchor 0.5 ypos 0.75
+#     image CardDisplay(playercard5obj) xanchor 0.5 xpos 0.74 yalign 0.95 at cardtrans
 screen card6hover:
     # image "selectring" xanchor 0.5 xpos 0.86 yanchor 0.5 ypos 0.75
     image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.95 at cardtrans2

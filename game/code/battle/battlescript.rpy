@@ -1,4 +1,4 @@
-   # init python:
+z``   # init python:
 
 image cardback:
     "images/cards/cardback.png"
@@ -343,15 +343,16 @@ image battleroad = "images/battle/battleroad.png"
 # image TrojanH = "TrojanHsmall.png"
 
 init python:
+    
     def FunctionList(FXN):
         fxns=[]
         long_fxn_name=False
         for cardfunction in FXN:
             if len(cardfunction.code)>20:
                 long_fxn_name=True
-            fxns.append(Text("{size=12}"+cardfunction.code+"{/size}"))
+            fxns.append(Text("{size=12}{k=-1}"+cardfunction.code+"{/size}{/k}"))
         if long_fxn_name:
-            return At(VBox(*fxns),widthresize(0.7))
+            return At(VBox(*fxns),widthresize(0.8))
         else:
             return VBox(*fxns)
     def FunctionListDescript(FXN):
@@ -366,16 +367,21 @@ init python:
         # else:
         return VBox(*fxns)
     def CardDisplay(cardobj):
+        print( cardobj.NAME)
         return LiveComposite(
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
-            (11,12),"images/Cards/[cardobj.NAME].png",
-            (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[cardobj.NAME]{/color}{/font}{/size}"),
-            (13,240),FunctionList(cardobj.FXN),
-            (165,175),"images/Cards/cardbit/[cardobj.COST].png",
-            (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[cardobj.TYPE]{/color}{/font}{/size}"),
-            (165,267),Text("{color=#ae81f2}{size=24}[cardobj.MAG]{/color}{/size}")
-            # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[currentcard.HIT]{/color}{/font}{/size}"),
+            (11,12),"images/Cards/"+cardobj.NAME+".png",
+            (14,231),
+                FunctionList(cardobj.FXN),
+            (170,169),
+                At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
+            (11,204),Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows"),
+            (168,196),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
+            (164,231),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}"),
+            (164,242),Text("{color=#ffcc00}{font=font/consolas.ttf}{size=10}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}"),
+            (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
+            (165,267),Text("{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}"),
             )
 
 image cardflasher:
@@ -383,12 +389,19 @@ image cardflasher:
         (225,300),
         (0,0),"images/Cards/Cardblank.png",
         (11,12),"images/Cards/[currentcard.NAME].png",
-        (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[currentcard.NAME]{/color}{/font}{/size}"),
-        (13,240),FunctionList(currentcard.FXN),
-        (165,175),"images/Cards/cardbit/[currentcard.COST].png",
-        (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[currentcard.TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[currentcard.MAG]{/color}{/size}")
-        # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[currentcard.HIT]{/color}{/font}{/size}"),
+        # (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[cardobj.NAME]{/color}{/font}{/size}"),
+        
+        (14,231),
+            FunctionList(currentcard.FXN),
+        (170,169),
+            At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
+        # (165,175),"images/Cards/cardbit/[currentcard.COST].png",
+        (11,204),Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+currentcard.NAME+"{/color}{/font}{/size}",style="cardshadows"),
+        (168,196),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(currentcard.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
+        (164,231),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}"),
+        (164,242),Text("{color=#ffcc00}{font=font/consolas.ttf}{size=10}{k=-1}\""+currentcard.TYPE+"\"{/k}{/color}{/font}{/size}"),
+        (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[currentcard.MAG]{/color}{/size}"),
         )
 
 image card1:
@@ -844,7 +857,7 @@ transform cardtrans:
 
     on show:
         zoom 0.6
-        linear 0.05 zoom 1.0
+        linear 0.05 zoom 1.1
 
 transform cardtrans2:
 

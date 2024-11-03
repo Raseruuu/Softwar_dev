@@ -92,16 +92,18 @@ label checkwalls:
       # return
    if HereisDoor:
       play sound"sfx/door-fr_0009.wav"
-      call doorjump from _call_doorjump
+      call doorjump
    if HereisEventDoor:
       play sound"sfx/door-fr_0009.wav"
       $ map_active=False
-      call eventdoor from _call_eventdoor
+      call eventdoor 
    return
 
 label eventdoor:
-  
-    $renpy.jump(str(Here))
+    if "script" in Here:
+      return
+    else:
+      $renpy.jump(str(Here))
     
 # label poschange:
 #     ""
@@ -371,35 +373,35 @@ screen mapB:
 # MOBILE BUTTONS
     # if not anim_done:
     
-    image "gui/phone/buttonA.png":
-        pos (0.96,0.8) at zoombutton
-    image "gui/phone/buttonB.png":
-        pos (0.9,0.9)  at zoombutton
-    image "gui/phone/buttonX.png":
-        pos (0.9,0.7) at zoombutton
-    image "gui/phone/buttonY.png":
-        pos (0.8,0.8)  at zoombutton
-##UNCOMMENT FOR MOBILE
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","up")#,Return("up")
-        at rotate(0) pos (0.1,0.7)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","down")#,Return("down")
-        at rotate(180) pos (0.1,0.9)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","left")#,Return("left")
-        at rotate(270) pos (0.04,0.8)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","right")#,Return("right")
-        at rotate(90) pos (0.16,0.8) 
+#     image "gui/phone/buttonA.png":
+#         pos (0.96,0.8) at zoombutton
+#     image "gui/phone/buttonB.png":
+#         pos (0.9,0.9)  at zoombutton
+#     image "gui/phone/buttonX.png":
+#         pos (0.9,0.7) at zoombutton
+#     image "gui/phone/buttonY.png":
+#         pos (0.8,0.8)  at zoombutton
+# ##UNCOMMENT FOR MOBILE
+#     imagebutton idle "gui/phone/direction.png":
+#         hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
+#         unhovered SetVariable("direction2",None)
+#         action SetVariable("direction","up")#,Return("up")
+#         at rotate(0) pos (0.1,0.7)
+#     imagebutton idle "gui/phone/direction.png":
+#         hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
+#         unhovered SetVariable("direction2",None)
+#         action SetVariable("direction","down")#,Return("down")
+#         at rotate(180) pos (0.1,0.9)
+#     imagebutton idle "gui/phone/direction.png":
+#         hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
+#         unhovered SetVariable("direction2",None)
+#         action SetVariable("direction","left")#,Return("left")
+#         at rotate(270) pos (0.04,0.8)
+#     imagebutton idle "gui/phone/direction.png":
+#         hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
+#         unhovered SetVariable("direction2",None)
+#         action SetVariable("direction","right")#,Return("right")
+#         at rotate(90) pos (0.16,0.8) 
 
     # frame:
     #     align (0.9,0.0)
@@ -492,18 +494,18 @@ screen mapA:
         key 'repeat_K_RIGHT'  action SetVariable("direction","right"),  Return("right")
         key 'repeat_K_LEFT'   action SetVariable("direction","left"),   Return("left")
     # for mobile stuff
-    if direction2 is not None:
-        if moving and direction=="up":
-            timer 0.05 action Return("up") repeat True
-        if moving and direction=="down":
-            timer 0.05 action Return("down") repeat True
-        if moving and direction=="left":
-            timer 0.05 action Return("left") repeat True
-        if moving and direction=="right":
-            timer 0.05 action Return("right") repeat True
-    #
-    key ["mousedown_1"] action Function(setmoving,(True))
-    key ["mouseup_1"] action Function(setmoving,(False))
+    # if direction2 is not None:
+    #     if moving and direction=="up":
+    #         timer 0.05 action Return("up") repeat True
+    #     if moving and direction=="down":
+    #         timer 0.05 action Return("down") repeat True
+    #     if moving and direction=="left":
+    #         timer 0.05 action Return("left") repeat True
+    #     if moving and direction=="right":
+    #         timer 0.05 action Return("right") repeat True
+    # #
+    # key ["mousedown_1"] action Function(setmoving,(True))
+    # key ["mouseup_1"] action Function(setmoving,(False))
 
     # key 'K_ESCAPE'      action Return("End")
     # key 'K_RETURN'         action Return("Pause")

@@ -1703,13 +1703,6 @@ label date2:
         j"Yes. to the west of here, approaching Connecht Square, we can get to my internship office."
         i"There's one way to find out!"
         j"Alright, let's explore the area then."
-        hide screen mapB
+        
 
-        call mapcall([7,6],stagehome)
-        if playerHP<=0:
-            return
-        $ILY_w = False
-        hide screen mapB
-        hide screen mapA
-
-        return
+        jump script1_2

@@ -178,11 +178,21 @@ init python:
             "Attack",
             "attack(ATK*POW)",
             "Deal Damage to target.")
+    def AttackMelee():
+        return Fxn(
+            "Attack",
+            "attack(ATK*POW,\"Melee\")",
+            "Deal close-range attack damage to the target.")
+    def AttackMidrange():
+        return Fxn(
+            "Attack",
+            "attack(ATK*POW,\"Midrange\")",
+            "Deal ranged attack damage to the target.")
     def AttackSP():
         return Fxn(
             "AttackSP",
             "attackSP(ATK*POW)",
-            "Deal Damage to target's SP.")
+            "Deal Damage to target's Shield Points.")
     def Defend():
         return Fxn(
             "Defend",
@@ -261,7 +271,7 @@ init python:
     Snipe=        Card("Snipe",           "Gun",    0.0,     [Boost("ATK",0.25),Evade(1)],       6)
 #Swords and Blades
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
-    DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    DataSaber=    Card("DataSaber",      "Sword",           1.0,     [AttackMelee(),GainToken("Saber",1)],   4)
     Katana=       Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
     BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],  3)
     BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],    4)

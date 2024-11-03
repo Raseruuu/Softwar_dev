@@ -372,7 +372,7 @@ screen quick_menu():
                     textbutton _("Save") action ShowMenu('save') keyboard_focus False
                     textbutton _("Load") action ShowMenu('load') keyboard_focus False
                     textbutton _("Settings") action ShowMenu('preferences') keyboard_focus False
-                    textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True) keyboard_focus False
+                    textbutton _("Skip") action Skip(fast=True) alternate Skip(fast=True, confirm=True) keyboard_focus False
                     textbutton _("Auto") action Preference("auto-forward", "toggle") keyboard_focus False
                     #textbutton _("Back") action Rollback()
                     # textbutton _("Help") action ShowMenu("help")
@@ -1162,7 +1162,8 @@ screen history():
             button:
                 ysize None
                 action RollbackConfirm(h)
-                hover_background "#ddd"
+                hover_background Frame("gui/framew_hover.png", 10, 10)
+                background Frame("gui/framew.png", 10, 10)
 
 
                 window:
@@ -1182,6 +1183,7 @@ screen history():
                                 text_color h.who_args["color"]
 
                     text h.what
+            
 
         if not _history_list:
             label _("The dialogue history is empty.")
@@ -1684,7 +1686,7 @@ screen quick_menu():
         textbutton _("Save") action ShowMenu('save')
         textbutton _("Load") action ShowMenu('load')
         textbutton _("Settings") action ShowMenu('preferences')
-        textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+        textbutton _("Skip") action Skip(fast=True) alternate Skip(fast=True, confirm=True)
         textbutton _("Auto") action Preference("auto-forward", "toggle")
 
 style window:
