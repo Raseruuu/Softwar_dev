@@ -330,6 +330,7 @@ label script1:
             j "So you're suggesting that I become a hacker?"
             play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg"  fadeout 1 loop
             i "I'm not suggesting. It is your destiny."
+            $ ILYSprite("smile3")
             "Serious words coming from someone with a deeply unserious character design."
             i "[plrname], I will assist you with any digital matters as your assistant... And as a hacking tool."
             i "With me, you can hack another system, for whatever reason."

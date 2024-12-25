@@ -11,7 +11,7 @@ screen finishingflash(say):
     add "diamondwhite" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.1 ypos 0.9
     add "diamondwhite2" at diamondtrans xanchor 0.5 yanchor 0.5 xpos 0.9 ypos 0.1
     # if anim_done:
-    text "{size=25}[say]{/size}" xalign 0.5 yalign 0.82
+    text "{size=25}[say]{/size}" xalign 0.5 ypos 0.74 yanchor 0.0 
     key 'mouseup_1' action Return()
     key 'K_RETURN' action Return()
     key 'K_SPACE' action Return()
@@ -80,7 +80,9 @@ label battlecry_Ave:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      $ currentcardfunctions=[a.name for a in currentcardFXN]
+      $ damagecard = ("attack" in currentcardfunctions) 
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -88,9 +90,9 @@ label battlecry_Ave:
         $flashuser="Ave"
         voice "voice/Ave/No, I won't lose!.ogg"
         $ anim_done=False
-        pause 0.1
+        
         call screen finishingflash("No, I won't lose, It's over ILY!")
-
+        
       elif (enemyHP <=2800):
         $ avcount=avcount+1
         if avcount == 1:
@@ -118,7 +120,10 @@ label battlecry_Melissa:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      $ currentcardfunctions=[a.name for a in currentcardFXN]
+      $ damagecard = ("attack" in currentcardfunctions) 
+        
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -137,7 +142,10 @@ label battlecry_CodeRed:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      $ currentcardfunctions=[a.name for a in currentcardFXN]
+      $ damagecard = ("attack" in currentcardfunctions) 
+       
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -156,7 +164,10 @@ label battlecry_Vira:
           if fxns=="burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
-      $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+      $ currentcardfunctions=[a.name for a in currentcardFXN]
+      $ damagecard = ("attack" in currentcardfunctions) 
+       
       $ Magnitude = (currentcardMAG)
       $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
       if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
@@ -186,15 +197,23 @@ label battlecry_Vira:
           v"Toh!"
           $avcount=1
     return
+init python:
+  forcefinish=False
 label battlecry:
+    
     python:
       burndmg = 0
       for fxns in EnmySts:
         if fxns=="burn":
           burndmg = burndmg +40
     $ damagetoenemy += burndmg
-    $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
-    if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True):
+
+    # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
+    $ currentcardfunctions=[a.name for a in currentcardFXN]
+    $ damagecard = ("attack" in currentcardfunctions) 
+    if currentcard.NAME=="MailSaber" or currentcard.NAME=="FlameSaber":
+      $ forcefinish = True
+    if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True) or forcefinish:
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
       voice "voice/ILY24B - Break down & disappear!.mp3"
       $ anim_done=False

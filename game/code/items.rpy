@@ -57,7 +57,7 @@ init python:
     # Laminum = Item("Laminium", "Material","Laminar data.",[])
 
     battledrops={
-        "Trojan Horse":[Datanium,W00D],
+        "TrojanHorse":[Datanium,W00D],
         "Keylogger":[Datanium,Iteratium],
         "Ransomware":[Conflagrium,Iteratium],
         "Rootkit":[Datanium,Strinnium],
@@ -66,6 +66,7 @@ init python:
         "Vira":[Hematocyte,Informium],
         "Code Red":[Lambdium,Lambdium],
         "ILY":[Datanium,Hematocyte],
+        "Ave":[Datanium,Datanium],
         "Sephiroth":[Datanium,Lambdium]
 
     }

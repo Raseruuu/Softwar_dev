@@ -283,60 +283,6 @@ image dmgpointb:
         pause .05
         xoffset 0 yoffset 0
         linear 0.1 zoom 1.0 alpha 0.0
-# image Enmycard1 = "images/Cards/.png"
-# image Enmycard1:
-#     LiveComposite(
-#         (225,300),
-#         (0,0),"images/Cards/Cardblank.png",
-#         (11,14),"images/Cards/[Enmycard1name].png",
-#         (11,219),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[Enmycard1name]{/color}{/font}{/size}"),
-#         # (17,244),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=20}Blablablah{/color}{/font}{/size}"),
-#         (17,244),Text("{size=20}[Enmycard1.fxn]();{/size}"),
-#         (57,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard1.POW]{/color}{/font}{/size}"),
-#         (132,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard1.SPD]{/color}{/font}{/size}"),
-#         (169,260),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}RANK {/color}{color=#FFFF00}[Enmycard1.rank]{/color}{/font}{/size}")
-#     )    #         )
-# image Enmycard2:
-#     LiveComposite(
-#         (225,300),
-#         (0,0),"images/Cards/Cardblank.png",
-#         (11,14),"images/Cards/[Enmycard2name].png",
-#         (11,219),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[Enmycard2name]{/color}{/font}{/size}"),
-#         # (17,244),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=20}Blablablah{/color}{/font}{/size}"),
-#         (17,244),Text("{size=20}[Enmycard2.fxn]();{/size}"),
-#         (57,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard2.POW]{/color}{/font}{/size}"),
-#         (132,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard2.SPD]{/color}{/font}{/size}"),
-#         (169,260),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}RANK {/color}{color=#FFFF00}[Enmycard2.rank]{/color}{/font}{/size}")
-#     )
-# image Enmycard3:
-#     LiveComposite(
-#         (225,300),
-#         (0,0),"images/Cards/Cardblank.png",
-#         (11,14),"images/Cards/[Enmycard3name].png",
-#         (11,219),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[Enmycard3name]{/color}{/font}{/size}"),
-#         # (17,244),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=20}Blablablah{/color}{/font}{/size}"),
-#         (17,244),Text("{size=20}[Enmycard3.fxn]();{/size}"),
-#         (57,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard3.POW]{/color}{/font}{/size}"),
-#         (132,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard3.SPD]{/color}{/font}{/size}"),
-#         (169,260),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}RANK {/color}{color=#FFFF00}[Enmycard3.rank]{/color}{/font}{/size}")
-#                 # (160,272),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}16-BIT{/color}{/font}{/size}")
-#     )    #         )
-# image Enmycard4:
-#     LiveComposite(
-#         (225,300),
-#         (0,0),"images/Cards/Cardblank.png",
-#         (11,14),"images/Cards/[Enmycard4name].png",
-#         (11,219),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[Enmycard4name]{/color}{/font}{/size}"),
-#         # (17,244),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=20}Blablablah{/color}{/font}{/size}"),
-#         (17,244),Text("{size=20}[Enmycard4.fxn]();{/size}"),
-#         (57,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard4.POW]{/color}{/font}{/size}"),
-#         (132,268),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=20}[Enmycard4.SPD]{/color}{/font}{/size}"),
-#         (169,260),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}RANK {/color}{color=#FFFF00}[Enmycard4.rank]{/color}{/font}{/size}")
-#                 # (160,272),Text("{color=#FFF}{font=font/adventpro-bold.ttf}{size=16}16-BIT{/color}{/font}{/size}")
-#     )
-
-
-# image Enmycard2 = "images/Cards/[Enmycard2name].png"
 image battlebg = Solid("#1a1a1a")
 image battlering = "images/battle/battlering.png"
 image battleroad = "images/battle/battleroad.png"
@@ -367,7 +313,6 @@ init python:
         # else:
         return VBox(*fxns)
     def CardDisplay(cardobj):
-        print( cardobj.NAME)
         return LiveComposite(
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
@@ -465,16 +410,22 @@ image card5:
         (165,267),Text("{color=#ae81f2}{size=24}[playerhand[4].MAG]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].HIT]{/color}{/font}{/size}"),
         )
+init python:
+    def battle_distance_function(bd):
+        return 0.8-(bd/30)
+    def battle_distance_function2(bd):
+        return (bd*3.5)
 image Enemy:
     "images/battle/Enemies/[enemyName].png"
-    linear 1.0 yoffset 10
-    linear 1.0 yoffset -10
-    repeat
+    zoom battle_distance_function(battle_distance)
+    linear 0.2 zoom battle_distance_function(battle_distance)
+    # ypos -battle_distance_function2(battle_distance)
+    # linear 1.0 yoffset 10
+    # linear 1.0 yoffset -10
+    # repeat
 image Trojan:
-    "images/battle/Enemies/Trojan Horse.png"
-    linear 1.0 yoffset 10
-    linear 1.0 yoffset -10
-    repeat
+    "images/battle/Enemies/TrojanHorse.png"
+    zoom 2.0
 image cardflip1:
     "images/cards/cardback.png"
     xzoom 1.0
@@ -533,136 +484,6 @@ transform choosecardsize:
 
 
 
-# label drawcards:
-#     show cardback at poscarddeck as cardback4
-#     show cardback at poscarddeck as cardback3
-#     show cardback at poscarddeck as cardback2
-#     show cardback at poscarddeck as cardback1
-
-#     #TO DO: ADD  IF CONDITION TO CHECK DECK LENGTH
-#     # AVOID INDEX OUT OF RANGE
-
-#     $ myhand=[]
-#     if PlayerRank == 'S':
-#         $ Drawnumber = 4
-#     elif PlayerRank == 'A':
-#         $ Drawnumber = 1
-#     elif PlayerRank == 'B':
-#         $ Drawnumber = 2
-#     elif PlayerRank == 'C':
-#         $ Drawnumber = 3
-#     elif PlayerRank == 'D':
-#         $ Drawnumber = 4
-
-#     if mydeck == 0:
-#         "NO Battleware in Deck!"
-#         "GAME OVER."
-#         $PlayerHP=0
-#         #Losing Animation
-#         "ILY Deleted!"
-#         $Battle_End = True
-#         hide Enemy
-#         hide screen stats
-#         hide screen choosecard
-#         stop music
-
-#           # jump cardcycle
-#         return
-#     if len(mydeck)>0 and Drawnumber >=1:
-
-#         $ myhand.append(mydeck[0])
-#         $ card1c = mydeck[0]
-#         $ card1name = mydeck[0].name
-#         $ mydeck.pop(0)
-#         show cardflip1 at card1pos as cardback1 with movecard
-#         $ decknum = len(mydeck)
-#     #draw 2nd card
-#     if len(mydeck)>0 and Drawnumber >=2:
-
-#         $ myhand.append(mydeck[0])
-#         $ card2c = mydeck[0]
-#         $ card2name = mydeck[0].name
-#         $ mydeck.pop(0)
-#         show cardflip2 at card2pos as cardback2 with movecard
-#         $ decknum = len(mydeck)
-#     #draw 3rd card
-#     if len(mydeck)>0  and Drawnumber >=3:
-
-#         $ myhand.append(mydeck[0])
-#         $ card3c = mydeck[0]
-#         $ card3name = mydeck[0].name
-#         $ mydeck.pop(0)
-#         show cardflip3 at card3pos as cardback3 with movecard
-#         $ decknum = len(mydeck)
-#     #draw 4th card
-#     if len(mydeck)>0 and Drawnumber >=4:
-#         $ myhand.append(mydeck[0])
-#         $ card4c = mydeck[0]
-#         $ card4name = mydeck[0].name
-#         $ mydeck.pop(0)
-#         show cardflip4 at card4pos as cardback4 with movecard
-#         $ decknum = len(mydeck)
-#     if EnmyRank == 'S':
-#         $ EnmyDrawnumber = 4
-#     elif EnmyRank == 'A':
-#         $ EnmyDrawnumber = 1
-#     elif EnmyRank == 'B':
-#         $ EnmyDrawnumber = 2
-#     elif EnmyRank == 'C':
-#         $ EnmyDrawnumber = 3
-#     elif EnmyRank == 'D':
-#         $ EnmyDrawnumber = 4
-#     $ Enmyhand=[]
-#     if len(Enmydeck)>0 and EnmyDrawnumber >=1:
-#         $ Enmyhand.append(Enmydeck[0])
-#         $ Enmycard1 = Enmydeck[0]
-#         $ Enmycard1name = Enmydeck[0].name
-#         $ Enmydeck.pop(0)
-#     #draw 2nd card
-#     if len(Enmydeck)>0 and EnmyDrawnumber >=2:
-#         $ Enmyhand.append(Enmydeck[0])
-#         $ Enmycard2 = Enmydeck[0]
-#         $ Enmycard2name = Enmydeck[0].name
-#         $ Enmydeck.pop(0)
-#     #draw 3rd card
-#     if len(Enmydeck)>0 and EnmyDrawnumber >=3:
-#         $ Enmyhand.append(Enmydeck[0])
-#         $ Enmycard3 = Enmydeck[0]
-#         $ Enmycard3name = Enmydeck[0].name
-#         $ Enmydeck.pop(0)
-#     #draw 4th card
-#     if len(Enmydeck)>0 and EnmyDrawnumber >=4:
-#         $ Enmyhand.append(Enmydeck[0])
-#         $ Enmycard4 = Enmydeck[0]
-#         $ Enmycard4name = Enmydeck[0].name
-#         $ Enmydeck.pop(0)
-#         # Edecknum = len(mydeck)
-#     elif len(Enmydeck)==0:
-#         "Opponent has run out of usable cards!"
-#         $ Battle_End=True
-#         $EnemyHP=0
-#         show Enemy:
-#             linear 0.15 zoom 0.94
-#             xoffset 0.12 yoffset 0.2 alpha 0.5
-#             pause .05
-#             xoffset 0.-17 yoffset 0.-17 alpha 0.8
-#             pause .05
-#             xoffset 0.13 yoffset 0.2 alpha 1.0
-#             pause 0.1
-#             xoffset 0.-19 yoffset 0.11
-#             pause 0.4
-#             linear 0.1 zoom 0.8 alpha 0.0
-#         $ renpy.pause(0.4,hard=True)
-#         $Battle_End = True
-#         hide Enemy
-#         hide screen stats
-#         hide screen choosecard
-#         stop music
-
-#           # jump cardcycle
-
-#     return
-
 label Enemydisappear:
     show Enemy:
         linear 0.15 zoom 0.94
@@ -674,33 +495,33 @@ label Enemydisappear:
         pause 0.1
         xoffset 0.-19 yoffset 0.11
         pause 0.4
-        linear 0.1 zoom 0.8 alpha 0.0
+        linear 0.1 zoom 0.7 alpha 0.0
     return
 
-label TurnEnd:
+# label TurnEnd:
 
 
-    ##RETURN CARDS FROM HAND TO DECK
-    # if selectedcard=="card1":
-    if len(myhand) >=1:
-        $ mydeck.append(myhand[0])
-    if len(myhand) >=2:
-        $ mydeck.append(myhand[1])
-    if len(myhand) >=3:
-        $ mydeck.append(myhand[2])
-    if len(myhand) >=4:
-        $ mydeck.append(myhand[3])
-    $ decknum = len(mydeck)
-    if len(Enmyhand) >=1:
-        $ Enmydeck.append(Enmyhand[0])
-    if len(Enmyhand) >=2:
-        $ Enmydeck.append(Enmyhand[1])
-    if len(Enmyhand) >=3:
-        $ Enmydeck.append(Enmyhand[2])
-    if len(Enmyhand) >=4:
-        $ Enmydeck.append(Enmyhand[3])
-    # "deck = [mydeck]\nhand = [myhand]"
-    return
+#     ##RETURN CARDS FROM HAND TO DECK
+#     # if selectedcard=="card1":
+#     if len(myhand) >=1:
+#         $ mydeck.append(myhand[0])
+#     if len(myhand) >=2:
+#         $ mydeck.append(myhand[1])
+#     if len(myhand) >=3:
+#         $ mydeck.append(myhand[2])
+#     if len(myhand) >=4:
+#         $ mydeck.append(myhand[3])
+#     $ decknum = len(mydeck)
+#     if len(Enmyhand) >=1:
+#         $ Enmydeck.append(Enmyhand[0])
+#     if len(Enmyhand) >=2:
+#         $ Enmydeck.append(Enmyhand[1])
+#     if len(Enmyhand) >=3:
+#         $ Enmydeck.append(Enmyhand[2])
+#     if len(Enmyhand) >=4:
+#         $ Enmydeck.append(Enmyhand[3])
+#     # "deck = [mydeck]\nhand = [myhand]"
+#     return
 
 # show cardbacks at deck as cardbacks2
 # show cardbacks at deck as cardbacks1
@@ -711,60 +532,7 @@ init -2 python:
         if value > maxvalue:
             barsize=int(barwidth*float(maxvalue)/float(maxvalue))
         return barsize
-screen stats:
-    style_prefix "battlestats"
-    frame:
-        xpos 0.95 ypos 0.05 xanchor 1.0 yanchor 0.0
-        xsize 240
-        vbox:
-            text "[Enmyname]"
-            null height 10
-            hbox:
-                style_prefix "healthbar"
-                #null width 80
-                vbox:
-                    text "HP: [EnmyHP]/[EnmyHPmax]"
-                    null height 10
-                    frame:
-                        style_prefix "healthbar"
-                        xsize bar_size(EnmyHP,EnmyHPmax,100)
-                        ysize 8
-                    null height 10
-                    hbox:
-                        null height 57
-                        grid 7 3:
-                            for fxns in EnmySts:
-                                image "images/battle/[fxns].png"
-                            for fillers in range(0,21-len(EnmySts)):
 
-                                null width 13
-
-    frame:
-        xpos 0.05 ypos 0.05 xanchor 0.0 yanchor 0.0
-        xsize 320
-        vbox:
-            text "[PlayerFAI.name]"
-            null height 10
-            hbox:
-                style_prefix "healthbar"
-                add "Icon_Ily"
-                null width 20
-                vbox:
-                    text "HP: [PlayerHP]/[PlayerHPmax]"
-                    null height 10
-                    frame:
-                        style_prefix "healthbar"
-
-                        xsize bar_size(PlayerHP,PlayerHPmax, 100)
-                        ysize 8
-                    hbox:
-                        null height 57
-                        grid 7 3:
-                            for fxns in PlayerSts:
-                                image "images/battle/[fxns].png" at fxnicon
-                                # frame
-                            for fillerz in range(0,21-len(PlayerSts)):
-                                null width 13
 transform fxnicon:
     zoom 0.07
         #hbox:

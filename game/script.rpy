@@ -299,40 +299,26 @@ image Folders:
         #     repeat
 
 label test:
-    python:
-        ILY_w=True
-        maptalks = 0
-        maptalks2 = 0
-        enemy_encounter = False
-        spritelist = []
-        boxsheet = Connecht_square
-        gridpos = [192,168]
-        playerpos = [7,5]
-        playerxpos = playerpos[0]
-        playerypos = playerpos[1]
-        objxanchor = ((playerpos[0]+1)*blockSize)-(blockSize/2)
-        objyanchor = ((playerpos[1]+1)*blockSize)-(blockSize/2)
-        direction = 'down'
-        for sprite in spritelist:
-            boxsheet[sprite.position[1]][sprite.position[0]]=sprite.dialogue
-    scene blue with dissolve
-    # $where="Home"
-    # call mapcall([4,6],Connecht_square)
-    hide screen mapB
-    hide screen mapA
-    if playerHP<=0:
+
+
+
+    "test"
+    call battlev3(pbitsMax=8,ebitsMax=8)
+    if playerHP==0:
         return
+    ""
+    stop music
     scene cafeoutside:
         zoom 1.1
     # call var_init
     # call iptest\
-    $hands=[VirusFlame,XAxess,DataDrill,MailSaber,BreakSaber]
+    # $hands=[VirusFlame,XAxess,DataDrill,MailSaber,BreakSaber]
 
-    call screen choosecardv3(hands)
-    $ index=0
+    # call screen choosecardv3(hands)
+    # $ index=0
 
     # call screen Card(DataForce,(0,0),Return())
-
+    $ Vira_w= True
     show Vira with dissolve:
         xanchor 0.5 xpos 0.85
     v"Lorem Ipsum dolor sit amet consectetur adipiscing elit."

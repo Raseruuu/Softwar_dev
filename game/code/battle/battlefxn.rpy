@@ -44,8 +44,12 @@ label RemoveTokenEnemy:
     $ remove_target = currentcard_fxn_params[1]
     if remove_target=="Self":
         $ EnmySts.remove(token_name)
+        show screen tokenremove_anim(token_name)
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
     elif remove_target=="Enemy":
         $ PlayerSts.remove(token_name)
+    
     return
 label RemoveTokenPlayer:
     $ token_name = currentcard_fxn_params[0]
@@ -54,67 +58,98 @@ label RemoveTokenPlayer:
         $ PlayerSts.remove(token_name)
     elif remove_target=="Enemy":
         $ EnmySts.remove(token_name)
+        
+        show screen tokenremove_anim(token_name)
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
     return
 label Damageenemy:
-  $ Magnitude = (currentcardMAG)
-  $ damagetoenemy=int(playerATK_m*Magnitude)
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:    
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    
+    # if currentcard_fxn_params[0]!="POW" and currentcard_fxn_params[0]: 
+    $ damagemultiplier = currentcard_fxn_params[0]
+    
+    $ Power = (currentcardMAG)
+    if damagemultiplier=="POW":
+        $ damagetoenemy=int(playerATK_m*Power)
+    elif damagemultiplier=="POW": 
+        $ damagetoenemy=int(playerATK_m*damagemultiplier)
+    $ attackrange = currentcard_fxn_params[1]
+    $ attackhit=True
+    $ battle_distance_old=battle_distance
+    
+    if battle_distance>=attackrange:
+        call Advanceenemy(1)
+        $ attackhit=False
+        show Enemy:
+            xalign 0.5 yanchor 0.32 ypos 0.3
+        play sound "sfx/miss.wav"
+        call showphasemsg("MISSED!")
+        if battle_distance==0 and battle_distance_old>0:
+            call showphasemsg("DISTANCE:ZERO")
+        $ renpy.pause(0.6,hard=True)
+        return
+    if attackhit:
+        
+        if currentcardTYPE == "Sword":
+            play sound "sfx/slash.wav"
+        elif currentcardTYPE == "FireSword":
+            play sound "sfx/slash.wav"
+            play sound "sfx/sfx_exp_short_hard8.wav"
+        elif currentcardTYPE == "Axe":
+            play sound "sfx/slash.wav"
+        elif currentcardTYPE == "Fire":
+            play sound "sfx/Bust.wav"
+        elif currentcardTYPE == "Gun":
+            play sound "sfx/Bust.wav"
+        else:
+            $ attacknumber+=1
+        if attacknumber<=3:
+            play sound "sfx/sfx_exp_short_hard9.wav"
+        elif attacknumber>3:
+            play sound "sfx/sfx_exp_short_hard8.wav"
+        else:
+            play sound "sfx/sfx_exp_short_hard8.wav"
+        call hurtnoise_enemy
+        python:
+            if enemySP>0:
+                enemySP-=damagetoenemy
+                if enemySP<0:
+                    enemyHP+=enemySP
+                    enemySP = 0
+            else:
+                enemyHP-=damagetoenemy
 
-  if currentcardTYPE == "Sword":
-    play sound "sfx/slash.wav"
-  elif currentcardTYPE == "FireSword":
-    play sound "sfx/slash.wav"
-    play sound "sfx/sfx_exp_short_hard8.wav"
-  elif currentcardTYPE == "Axe":
-    play sound "sfx/slash.wav"
-  elif currentcardTYPE == "Fire":
-    play sound "sfx/Bust.wav"
-  elif currentcardTYPE == "Gun":
-    play sound "sfx/Bust.wav"
-  else:
-    $ attacknumber+=1
-    if attacknumber<=3:
-        play sound "sfx/sfx_exp_short_hard9.wav"
-    elif attacknumber>3:
-        play sound "sfx/sfx_exp_short_hard8.wav"
-    else:
-        play sound "sfx/sfx_exp_short_hard8.wav"
-  call hurtnoise_enemy
-  python:
-    if enemySP>0:
-        enemySP-=damagetoenemy
-        if enemySP<0:
-            enemyHP+=enemySP
-            enemySP = 0
-    else:
-        enemyHP-=damagetoenemy
+            if enemyHP <=0:
+                enemyHP = 0
+                battle_done=True
+            dmgdist = ((currentcard.MAG*100)/20)
+            dmgdist = int(dmgdist*2)
+        show damageeffect
+        show dmgpoint onlayer overlay
+        show Enemy:
+            linear 0.05 zoom 0.96
+            xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+            pause .05
+            xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+            pause .05
+            xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+            pause 0.05
+            xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+            pause 0.05
+            xoffset 0 yoffset 0
+            linear 0.05 zoom 1.0
 
-    if enemyHP <=0:
-        enemyHP = 0
-        battle_done=True
-    dmgdist = ((currentcard.MAG*100)/20)
-    dmgdist = int(dmgdist*2)
-  show damageeffect
-  show dmgpoint
-  show Enemy:
-    linear 0.05 zoom 0.96
-    xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-    pause .05
-    xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
-    pause .05
-    xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
-    pause 0.05
-    xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-    pause 0.05
-    xoffset 0 yoffset 0
-    linear 0.05 zoom 1.0
-
-#   $ renpy.pause(0.6,hard=True)
-  if "Drill" in currentcardTYPE:
-    $ renpy.pause(0.2,hard=True)
-  else:
-    $ renpy.pause(0.6,hard=True)
-  hide damageeffect
-  return
+        #   $ renpy.pause(0.6,hard=True)
+        if "Drill" in currentcardTYPE:
+            $ renpy.pause(0.2,hard=True)
+        else:
+            $ renpy.pause(0.6,hard=True)
+        hide damageeffect
+    return
 label DamageSPplayer:
     if playerSP>0:
         $ Magnitude = (currentcardMAG)
@@ -169,7 +204,7 @@ label DamageSPenemy:
             $ enemySP=0
         $ dmgdist = ((currentcard.MAG*100)/20)
         $ dmgdist = int(dmgdist*2)
-        show dmgpoint
+        show dmgpoint onlayer overlay
         show Enemy:
             linear 0.05 zoom 0.96
             xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
@@ -237,6 +272,71 @@ label Burnenemy:
     else:
         $ renpy.pause(0.6,hard=True)
     hide Brnsts
+    
+    return
+label Retreatenemy(distanceamount=0):
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+          pass
+    else:    
+          $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+
+    if distanceamount==0:
+        $ distance_quantity = currentcard_fxn_params[0]
+    else:
+         $distance_quantity=distanceamount
+    python:
+        for dist in range(0,distance_quantity):
+            # if battle_distance!=0:
+            battle_distance=battle_distance+1
+            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+            
+            renpy.pause(0.6,hard=True)
+    call updatestats_enemy
+    return
+label Advanceenemy(distanceamount=0):
+    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if distanceamount==0:
+        $ distance_quantity = currentcard_fxn_params[0]
+    else:
+         $distance_quantity=distanceamount
+    python:
+        for dist in range(0,distance_quantity):
+            if battle_distance!=0:
+                battle_distance=battle_distance-1
+                renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+                dist+=1
+                renpy.pause(0.6,hard=True)
+    call updatestats_enemy
+    return
+label Advanceplayer(distanceamount=0):
+    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if distanceamount==0:
+        $ distance_quantity = currentcard_fxn_params[0]
+    else:
+         $distance_quantity=distanceamount
+    python:
+        for dist in range(0,distance_quantity):
+            if battle_distance!=0:
+                battle_distance=battle_distance-1
+                renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+                renpy.pause(0.6,hard=True)
+    call updatestats_player
+    
+    
+    return
+label Retreatplayer(distanceamount=0):
+    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if distanceamount==0:
+        $ distance_quantity = currentcard_fxn_params[0]
+    else:
+         $distance_quantity=distanceamount
+    python:
+        for dist in range(0,distance_quantity):
+            battle_distance=battle_distance+1
+            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+            renpy.pause(0.6,hard=True)
+    call updatestats_player
+    
     
     return
 label ReduceBitself:
@@ -321,6 +421,22 @@ label Emailenemy:
     $ renpy.pause(0.6,hard=True)
     hide Emailsts
     return
+screen tokenappend_anim(tokenname):
+    text "[tokenname]" at tokenappend_trans:
+        style "statusoutlines"
+screen tokenremove_anim(tokenname):
+    text "[tokenname]" at tokenremove_trans:
+        style "statusoutlines"
+transform tokenappend_trans:
+    zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.41 alpha 0.0
+    linear 0.1 zoom 0.98 alpha 1.0
+    pause 0.2
+    ease 0.1 zoom 1.0 yoffset 24 alpha 0.0
+transform tokenremove_trans:
+    zoom 0.9 xalign 0.5 yanchor 1.0 ypos 0.41 alpha 1.0
+    linear 0.1 zoom 1.0
+    pause 0.2
+    ease 0.1 zoom 1.2 yoffset -24 alpha 0.0
 label GiveToken:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -331,16 +447,14 @@ label GiveToken:
     label tokenquant_loop:
 
         $ EnmySts=statusAppend(EnmySts,token_name)
-        show text "[token_name]":
-          zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
-        $ renpy.pause(0.1,hard=True)
-        hide text
+        show screen tokenappend_anim(token_name)
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenappend_anim
         $ counter+=1
         if counter<quantity:
 
             jump tokenquant_loop
+    
     call updatestats_enemy
     return
 label GainTokenPlayer:
@@ -364,6 +478,7 @@ label GainTokenPlayer:
 
             jump tokenquant_loop2
     return
+
 label GainTokenEnemy:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -385,6 +500,7 @@ label GainTokenEnemy:
             jump tokenquant_loop3
     call updatestats_enemy
     return
+
 label EvadeEnemy:
     play sound "sfx/sfx_sounds_powerup4.wav"
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -404,6 +520,29 @@ label EvadeEnemy:
         $ counter+=1
         if counter<quantity:
             jump tokenquant_loop4
+    return
+
+label EvadePlayer:
+    play sound "sfx/sfx_sounds_powerup4.wav"
+    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    # $ token_name = currentcard_fxn_params[0]
+    $ quantity = currentcard_fxn_params[1]
+    $ token_name = "Evade"
+    # $ EnmySts.append("Burn")
+    $ counter=0
+    label tokenquant_loop5:
+
+        $ PlayerSts=statusAppend(PlayerSts,token_name)
+        show text "{size=20}[token_name]{/size}":
+          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+          linear 0.1 zoom 0.98
+          linear 0.2 zoom 1.0 alpha 0.0
+        $ renpy.pause(0.6,hard=True)
+        hide text
+        
+        $ counter+=1
+        if counter<quantity:
+            jump tokenquant_loop5
     return
 label BoostATK:
 
@@ -759,64 +898,82 @@ label DoNothing:
     pass
     return
 label Damageplayer:
-  # if currentcardTYPE == "Sword":
-  #   play sound "sfx/slash.wav"
-  # elif currentcardTYPE == "Fire":
-  #   play sound "sfx/fire.wav"
-  # else:
-  #   if runnumber>1:
-  #     play sound "sfx/sfx_exp_short_hard8.wav"
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+          pass
+    else:    
+          $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    # if currentcard_fxn_params[0]!="POW" and currentcard_fxn_params[0]: 
+    $ damagemultiplier = currentcard_fxn_params[0]
+    # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    $ Power = (currentcardMAG)
+    if damagemultiplier=="POW":
+        $ damagetoplayer=int(enemyATK_m*Power)
+    elif damagemultiplier!="POW": 
+        $ damagetoplayer=int(enemyATK_m*damagemultiplier)
+    $ attackrange = currentcard_fxn_params[1]
+    $ attackhit=True
+    $ battle_distance_old=battle_distance
+      
+    if battle_distance>=attackrange:
+      call Advanceplayer(1)
+      $ attackhit=False
+      show Enemy:
+          xalign 0.5 yanchor 0.32 ypos 0.3
+      play sound "sfx/miss.wav"
+      call showphasemsg("MISSED")
+      $ renpy.pause(0.3,hard=True)
+      if battle_distance==0 and battle_distance_old>0:
+          call showphasemsg("DISTANCE:ZERO")
+      $ renpy.pause(0.3,hard=True)
+      return
+    else:
+      if currentcardTYPE == "Sword":
+          play sound "sfx/slash.wav" channel 1
+      elif currentcardTYPE == "Axe":
+          play sound "sfx/slash.wav" channel 1
+      elif currentcardTYPE == "Fire":
+          play sound "sfx/Bust.wav" channel 1
+      elif currentcardTYPE == "Gun":
+          play sound "sfx/Bust.wav" channel 1
+      if playerSP>0:
+          play sound "sfx/noise.wav" channel 1
+          $ playerSP-=damagetoplayer
+          if playerSP<0:
+              #playerSP becomes a negative value if damage exceeds its value
+              $ playerHP+=playerSP
+              $ playerSP = 0
+      else:
+          play sound "sfx/damage2.wav"
+
+          $ playerHP-=damagetoplayer
+      if playerHP <=0:
+          $ playerHP = 0
+          $ battle_done=True
+      $ dmgdist = ((currentcard.MAG*100)/20)
+      $ dmgdist = int(dmgdist*2)
+      show playerdmgpoint onlayer overlay
+      call hurtnoise
+      $ hurtface=(renpy.random.randint(0,1))
+      if hurtface==0:
+          $ ILY_m="O"
+          $ ILY_e="up"
+      elif hurtface==1:
+          $ ILY_m="O"
+          $ ILY_e="up2"
+          $ ILY_eyes="closedup"
+      hide screen battlestats
+      show screen battlestats
+      with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
+    
+  #   if "Drill" in currentcardTYPE:
+  #     $ renpy.pause(0.2,hard=True)
   #   else:
-  #     play sound "sfx/sfx_exp_short_hard9.wav"
-  
-  
-  $ Magnitude = (currentcardMAG)
-  $ damagetoplayer=int(enemyATK_m*Magnitude)
-  if currentcardTYPE == "Sword":
-    play sound "sfx/slash.wav" channel 1
-  elif currentcardTYPE == "Axe":
-    play sound "sfx/slash.wav" channel 1
-  elif currentcardTYPE == "Fire":
-    play sound "sfx/Bust.wav" channel 1
-  elif currentcardTYPE == "Gun":
-    play sound "sfx/Bust.wav" channel 1
-  if playerSP>0:
-    play sound "sfx/noise.wav" channel 1
-    $ playerSP-=damagetoplayer
-    if playerSP<0:
-       $ playerHP+=playerSP
-       $ playerSP = 0
-  else:
-    play sound "sfx/damage2.wav"
-    $ playerHP-=damagetoplayer
-  if playerHP <=0:
-    $ playerHP = 0
-    $ battle_done=True
-  $ dmgdist = ((currentcard.MAG*100)/20)
-  $ dmgdist = int(dmgdist*2)
-  show playerdmgpoint onlayer overlay
-  call hurtnoise
-  $ hurtface=(renpy.random.randint(0,1))
-  if hurtface==0:
-    $ ILY_m="O"
-    $ ILY_e="up"
-  elif hurtface==1:
-    $ ILY_m="O"
-    $ ILY_e="up2"
-    $ ILY_eyes="closedup"
-  hide screen battlestats
-  show screen battlestats
-  with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-  
-#   if "Drill" in currentcardTYPE:
-#     $ renpy.pause(0.2,hard=True)
-#   else:
-  $ renpy.pause(0.6,hard=True)
-  $ ILY_m="frown"
-  $ ILY_e="down"
-  $ ILY_eyes="open"
-  
-  return
+    $ renpy.pause(0.6,hard=True)
+    $ ILY_m="frown"
+    $ ILY_e="down"
+    $ ILY_eyes="open"
+    
+    return
 transform ringtransform:
     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
     linear 0.15 zoom 1.4 rotate 180 alpha 0.8
@@ -850,9 +1007,16 @@ screen cardflashscreenenemy:
 
 
 label Concatenation:
+    
     # "[playerbattlecode]"
     python:
+        battlecodetypes=""
+        for battlewarecode in playerbattlecode:
+            battlecodetypes+=battlewarecode.TYPE
+    # "[battlecodetypes]"   
+    python:    
         concat_true=False
+        card3concatenation=False
         playerbattlecode_b4concat=copy.deepcopy(playerbattlecode)
         for battle_index,card in enumerate(playerbattlecode):
 
@@ -862,61 +1026,106 @@ label Concatenation:
                 if card.TYPE in Concat_str:
                     if battle_index<len(playerbattlecode)-1:
                         suffix_card=playerbattlecode[battle_index+1]
+                        suffix_card2 = None
+                        suffix_card2TYPE=""
+                        if len(playerbattlecode)>battle_index+2:
+                            suffix_card2=playerbattlecode[battle_index+2]
+                            suffix_card2TYPE=suffix_card2.TYPE
                         nextcard=suffix_card
-                        concatenated=(card.TYPE)+(nextcard.TYPE)
-                        concat_true=(concatenated==Concat_str)
+                        concatenated=(card.TYPE)+(nextcard.TYPE)+suffix_card2TYPE
+                        # renpy.say("","[concatenated]")
+                        concat_true =(Concat_str in battlecodetypes)
+                        
+                        if suffix_card2TYPE!="" and concat_true :
+                            card3concatenation=True
+                        # concat_true=(concatenated==Concat_str)
                         if concat_true:
                             concat_result= Concatenations[concat_index]
                             concat_card = Concatenations[concat_index]
                             concat_card_name = concat_card.NAME
-                            renpy.call("Concat_anim",prefix_card,suffix_card,concat_result)
+                            renpy.call("Concat_anim",prefix_card,suffix_card,suffix_card2,concat_result)
 
                             
                            
     return
-
-label Concat_anim(prefix,suffix,concat_result):
+style concatoutlines:
+    size 40
+    outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
+label Concat_anim(prefix,suffix,suffix2,concat_result):
     call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
     $ flashuser = "ILY"
-    $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n Concatenate! " +concat_card_name+"!"
+    if card3concatenation:
+         $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n"+suffix2.TYPE+"-type Battleware "+suffix2.NAME+"\n Concatenate! " +concat_card_name+"!"
+    else:
+        $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n Concatenate! " +concat_card_name+"!"
     $ renpy.call("FinishingFlash",flashdialogue)
     $ anim_done=False
     python:
 
         playerbattlecode.pop(battle_index)
         playerbattlecode.pop(battle_index)
+        if card3concatenation:
+            playerbattlecode.pop(battle_index)
         playerbattlecode.insert(battle_index,concat_result)
     
     hide screen battlestats
     show screen battlestats
     $ noscreentransformsfornow=True
     play sound "sfx/swing.wav"
-    show screen concat_anim(prefix,suffix)
-    show screen whiteflash
-    pause 0.5
-    hide screen concat_anim
+    show screen concat_anim(prefix,suffix,suffix2)
+    pause 1.0
+    # show screen whiteflash
+    
     pause 0.3
-    hide screen whiteflash
+    # hide screen whiteflash
+    hide screen concat_anim
     show white:
         alpha 1.0 xzoom 0.0 xalign 0.5 yzoom 1.0
         linear 0.2 xzoom 1.0 alpha 0.0
     play sound "sfx/slash.wav"
-    show screen Card(concat_result,((640)-150,400),1.0)
+    show screen concatresultscreen
     pause
-    hide screen Card
+    hide screen concatresultscreen
     
     return
-screen concat_anim(prefix,suffix):
+screen concatresultscreen():
+    add CardDisplay(concat_result):
+        xalign 0.5 yalign 0.9
+screen concat_anim(prefix,suffix,suffix2):
     image "black" at pausedim2
-
-    use Card(prefix,(200,400),1.0)
-    use Card(suffix,(780,400),1.0)
+    # add 
+    # use Card(prefix,(200,400),1.0)
+    # use Card(suffix,(780,400),1.0)
+    # if card3concatenation:
     
-    text "[prefix.TYPE]" at prefixanim
-    text "[suffix.TYPE]" at suffixanim
+    #     use Card(suffix,(780,400),1.0)
+    hbox:
+        xalign 0.5 yalign 0.9
+        add CardDisplay(prefix)
+        text " " at concat_spacing()
+        add CardDisplay(suffix)
+        
+        if card3concatenation:
+            text " " at concat_spacing()
+            add CardDisplay(suffix2)
+    hbox:
+        xalign 0.5 yalign 0.4
+    
+        text "[prefix.TYPE]" style "concatoutlines"
+        text " " at concat_spacing()
+        text "[suffix.TYPE]" style "concatoutlines"
+        
+        if card3concatenation:
+            text " " at concat_spacing()
+            text "[suffix2.TYPE]" style "concatoutlines"
+
 screen whiteflash:
     image "white" at flashbang2
-
+transform concat_spacing:
+    xzoom 4.0
+    pause 0.8
+    linear 0.2 xzoom 0.0
+    
 transform prefixanim:
     yalign 0.7 xalign 0.2 zoom 2.0
     pause 0.1
@@ -935,7 +1144,7 @@ label Execution:
     $ attacknumber = 0
     
     #Index of looper
-    call Concatenation from _call_Concatenation
+    call Concatenation
     $iterations =len(playerbattlecode)
     show screen phasemsg("EXECUTE")
     $renpy.pause(0.5,hard=True)
@@ -951,7 +1160,8 @@ label Execution:
         $ currentcardTYPE = currentcard.TYPE
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(playerATK_m*Magnitude)
-        $ damagecard = ("attack" in currentcardFXN[0].name or "attack" in currentcardFXN[1].name) 
+        $ currentcardfunctions=[a.name for a in currentcardFXN]
+        $ damagecard = ("attack" in currentcardfunctions) 
         
         hide screen battlestats
         show screen battlestats
@@ -969,7 +1179,7 @@ label Execution:
         label runfunctions:
             $ runfxnstring = currentcardFXN[fxnindex].name
             label hitloop:
-                call functioneffects(runfxnstring) from _call_functioneffects_6
+                call functioneffects(runfxnstring)
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
                 jump runfunctions
@@ -1011,7 +1221,7 @@ label PlayerEndPhase:
             $ dmgdist = (burndmg/20)
             $ dmgdist = int(dmgdist*2)
 
-            show dmgpointb
+            show dmgpointb onlayer overlay
             call hurtnoise_enemy
             show Enemy:
               linear 0.1 zoom 0.96
@@ -1027,9 +1237,10 @@ label PlayerEndPhase:
               linear 0.1 zoom 1.0
             $ renpy.pause(0.6,hard=True)
             hide Brnsts
-    $ playerbits = 8
+    $ playerbits = playerbitsmax
     return
 label EnemyEndPhase:
+    
     if "Burn" in PlayerSts:
             python:
               burndmg = 0
@@ -1060,6 +1271,7 @@ label EnemyEndPhase:
 
 
             hide Brnsts
+    $ enemybits= enemybitsmax
     hide screen battlestats
     show screen battlestats
     return
@@ -1085,7 +1297,7 @@ label enemyexecutecard:
 
             # $ hitindex=0
             label hitloop2:
-                call enemyfunctioneffects(runfxnstring) from _call_enemyfunctioneffects
+                call enemyfunctioneffects(runfxnstring) 
 
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
@@ -1097,7 +1309,7 @@ label enemyexecutecard:
 label enemyattack:
     $ enemyrunnumber = 0
     $ enemynumberofattacks = 5 #renpy.random.randint(1,3)+renpy.random.randint(0,2)
-    $ enemybits= 8
+    
     $ enemyhand = [enemyDeck[0],enemyDeck[1],enemyDeck[2],enemyDeck[3],enemyDeck[4]]
     show screen phasemsg(enemyName+"'S TURN")
     $renpy.pause(0.9,hard=True)
@@ -1134,6 +1346,7 @@ label enemyattack:
         $ currentcardTYPE = currentcard.TYPE
         $ currentcardCOST = currentcard.COST
 
+        
         # $ enemycannotaffordtoattack = currentcardCOST>enemybits
 
         # $ goodcardtouse = True
@@ -1188,6 +1401,8 @@ label Saber:
 init python:
     FxnDirectoryPlayer={
         "Attack":"Damageenemy",
+        # "AttackMelee":"Damageenemy",
+        # "AttackRanged":"Damageenemy",
         "AttackSP":"DamageSPenemy",
         "ReduceSPself":"DamageSPplayer",
         "Defend":"Shieldplayer",
@@ -1203,8 +1418,13 @@ init python:
         "BoostATK":"BoostATK",
         "BoostDEF":"BoostDEF",
         "ReduceBit":"ReduceBit",
-        "Evade":"Evadeplayer",
+        "Evade":"EvadePlayer",
         "Block":"Blockplayer",
+        
+        "Retreat":"Retreatplayer",
+        
+        "Advance":"Advanceplayer",
+
         "":"DoNothing"
     }
 label functioneffects(runfxnstring,params=[]):
@@ -1230,6 +1450,8 @@ init python:
         "ReduceBit":"ReduceBitself",
         "Evade":"EvadeEnemy",
         "Block":"BlockEnemy",
+        "Retreat":"Retreatenemy",
+        "Advance":"Advanceenemy",
         # "":"",
         "":"DoNothing"
     }

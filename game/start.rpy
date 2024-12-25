@@ -8,7 +8,7 @@ image white = Solid("#fff")
 image Credits = "gui/Credits.png"
 image Maoudamashii = "Maoudamashii.png"
 label start:
-    
+    # jump test
     call game_loop from _call_game_loop
     return
 label credits:

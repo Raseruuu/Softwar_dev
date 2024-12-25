@@ -98,7 +98,7 @@ init -1 python:
     globals()["Vira_e"] = "mad"
     globals()["Vira_w"] = False
 
-    globals()["Ave_e"] = "mad"
+    globals()["Ave_e"] = "down"
     globals()["Ave_m"] = "frown"
     globals()["Ave_w"] = True
 
@@ -111,6 +111,7 @@ init -1 python:
     globals()["Bitwulf_w"] = True
 
     globals()["Stoned_e"] = "normal"
+    globals()["Stoned_eyes"] = "open"
     globals()["Stoned_m"] = "happy"
     globals()["Stoned_w"] = True
 
@@ -380,7 +381,7 @@ image ILYside3:
 
 image Icon_ILY:
     mesh True
-    LiveCrop((230,80, 520,860), "ILYFullBody")
+    LiveCrop((230,80, 520,700), "ILYFullBody")
     zoom 0.25
 
 
@@ -493,27 +494,7 @@ layeredimage ILYFullBody:
                 ),
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),ilyfix(0.5))
-    # Composite(
-    # (0.75, 0.75), #(544,600),
-    # (0, 0), At("images/Characters/ILY/Full/ILY_Full_base_[ILY_stockings].png",ilyfix(0.5)), #pose
-    # (0, 0), 
-    # (0, 0), 
-    # #(0, 0), "ILY_p[ILY_p].png",
-    
-    # (0, 0), "ILYEyes[ILY_p]",#eyes
-    # (0, 0), At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5)),
-    # (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
-    # (0, 0), "images/Characters/ILY/ILY_heart0.png",
-    # (0, 0), WhileSpeaking(
-    #         "ILY",
-    #         ConditionSwitch(
-    #             "('smile' in ILY_m)","ILYMouthsmile",
-    #             "('smile' not in ILY_m)","ILYMouthfrown"
-    #             ),
-    #         "images/Characters/ILY/ILY_m[ILY_m].png"
-    #         ),
-    # )
-    
+
 image ILYVtuber:
     LiveComposite(
     (0.75, 0.75), #(544,600),
@@ -1078,9 +1059,8 @@ image side Vira_side:
         "Vira_w==False","Null_side")
 
 image Icon_Vira:
-    LiveCrop((280,100, 440,565), "ViraFull")
+    LiveCrop((280,100, 520,700), "ViraFull")
     zoom 0.22
-
 image ViraMouthsmile:
     "images/Characters/Vira/Vira_msmile2.png"
     pause .08
@@ -1106,13 +1086,19 @@ image ViraMouthfrown:
 
 
 
+
+image Icon_TrojanHorse:
+
+    mesh True
+    LiveCrop((0,0, 520,700), "Trojan")
+    zoom 0.25
 #########
 ## Code Red
 #########
 
 image CodeRed:
     "CodeRedFull"
-    yanchor 0.0 ypos 0.01
+    yanchor 0.76 ypos 1.0
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1122,13 +1108,16 @@ image CodeRed:
 image CodeRedFull:
     LiveComposite(
         (714,1025),
-        (0, 0), "images/Characters/Code Red/CODE RED_base.png",
+        (0, 0), At("images/Characters/Code Red/CODE RED_base.png",zoomtrans(0.36)),
+        (0, 0),At("images/Characters/Code Red/CODE RED_eyes.png",zoomtrans(0.36)),
+        (0, 0),At("images/Characters/Code Red/CODE RED_e[CodeRed_e].png",zoomtrans(0.36)),
         (0, 0), WhileSpeaking(
             "CodeRed",
-            "CodeRed mouth",
-            "images/Characters/Code Red/CODE RED_mclosed.png"
+            At("CodeRed mouth",zoomtrans(0.36)),
+            At("images/Characters/Code Red/CODE RED_mclosed.png",zoomtrans(0.36))
         )
     )
+    
 image CodeRed sidew:
     LiveCrop((140,40, 300,385), "CodeRedFull")
     zoom 0.56
@@ -1136,7 +1125,7 @@ image side CodeRed_side:
     ConditionSwitch(
         "CodeRed_w==True","CodeRed sidew",
         "CodeRed_w==False","Null_side")
-image Icon_CodeRedFull:
+image Icon_CodeRed:
     LiveCrop((280,100, 440,565), "CodeRedFull")
     zoom 0.22
 image CodeRed mouth:
@@ -1347,7 +1336,7 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.48 ypos 1.0 zoom 0.9
+    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5
 
     linear 1.0 yoffset 0
     pause .5
@@ -1369,7 +1358,7 @@ image AveFull:
         (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
-    xanchor 0.6
+    
     zoom 0.25
 image AveEyes:
     "images/Characters/Ave/Ave_eyes.png"
@@ -1385,16 +1374,20 @@ image Ave mouth:
     pause .08
     repeat
 image Ave sidew:
-    LiveCrop((140,40, 300,385), "AveFull")
+    LiveCrop((150,40, 300,385), "AveFull")
     zoom 0.56
 image side Ave_side:
     ConditionSwitch(
         "Ave_w==True","Ave sidew",
         "Ave_w==False","Null_side")
 
+image AveFullzoom:
+    "AveFull"
+    zoom 1.58
 image Icon_Ave:
-    LiveCrop((240,100, 440,565), "AveFull")
-    zoom 0.22
+    mesh True
+    LiveCrop((220,80, 520,700), "AveFullzoom")
+    zoom 0.25
 
 
 #########
@@ -1696,56 +1689,108 @@ image side Nick_side:
 ## Stella
 #########
 
-image Stoned_eyes:
-    "images/Characters/Stoned/Stoned_eyes.png"
+image Stoned_eyes_open:
+    "images/Characters/Stoned/Stoned_eyes_[Stoned_eyes].png"
     pause 1.0
     choice:
-        "images/Characters/Stoned/Stoned_eyes.png"
+        "images/Characters/Stoned/Stoned_eyes_[Stoned_eyes].png"
         pause 2.0
     choice:
-        "images/Characters/Stoned/Stoned_eyes.png"
+        "images/Characters/Stoned/Stoned_eyes_[Stoned_eyes].png"
         pause 3.0
     choice:
 
-        "images/Characters/Stoned/Stoned_eyes2.png"
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
         pause 0.1
-        "images/Characters/Stoned/Stoned_eyes3.png"
+        "images/Characters/Stoned/Stoned_eyes_closed.png"
         pause 0.1
-        "images/Characters/Stoned/Stoned_eyes2.png"
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
         pause 0.1
 
     choice:
-        "images/Characters/Stoned/Stoned_eyes2.png"
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
         pause 0.05
-        "images/Characters/Stoned/Stoned_eyes3.png"
+        "images/Characters/Stoned/Stoned_eyes_closed.png"
         pause 0.1
-        "images/Characters/Stoned/Stoned_eyes2.png"
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
         pause 0.05
-        "images/Characters/Stoned/Stoned_eyes.png"
+        "images/Characters/Stoned/Stoned_eyes_[Stoned_eyes].png"
         pause 0.1
 
         repeat 2
     repeat
+image Stoned_eyes_midclose:
+    "images/Characters/Stoned/Stoned_eyes_midclose.png"
+    pause 1.0
+    choice:
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 2.0
+    choice:
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Stoned/Stoned_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Stoned/Stoned_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Stoned/Stoned_eyes_midclose.png"
+        pause 0.15
+
+        repeat 2
+    repeat
 image Stoned_Guns:
-    "images/Characters/Stoned/Stoned_Guns.png"
+    "images/Characters/Stoned/Stoned_Cannons.png"
+    
     linear 1.0 yoffset 40
     linear 1.0 yoffset 0
     repeat
-image StonedFull:
-    LiveComposite(
-    (761,1695),
-    (0,0),"images/Characters/Stoned/Stoned_base.png",
-    (0,0),"images/Characters/Stoned/Stoned_e[Stoned_e].png",
-    (0,0),"Stoned_eyes",
-    (0,0),WhileSpeaking("Stoned",("Stoned_m[Stoned_m]"),"images/Characters/Stoned/Stoned_m[Stoned_m].png"),
-    (0,0),"images/Characters/Stoned/Stoned_glass.png"
-    # (0,0),"Stoned_Guns"
-    )
-    zoom 0.93 xalign 0.5 
+layeredimage StonedFull:
+    always:
+        "images/Characters/Stoned/Stoned_base.png"
+    group eyebrows:
+        attribute normal default:
+            "images/Characters/Stoned/Stoned_e[Stoned_e].png"
+    group eyebrows:
+        attribute open default:
+            "Stoned_eyes_[Stoned_eyes]"
+        attribute midclose:
+            "Stoned_eyes_midclose"
+        attribute closed:
+            "images/Characters/Stoned/Stoned_eyes_closed.png"
+    always:
+        WhileSpeaking("Stoned",("Stoned_m[Stoned_m]"),"images/Characters/Stoned/Stoned_m[Stoned_m].png")
+    always:
+        "images/Characters/Stoned/Stoned_glass.png"
+    # always:
+    #     "Stoned_Guns"
+    xalign 0.5
+
+
+
+    # LiveComposite(
+    # (761,1695),
+    # (0,0),"images/Characters/Stoned/Stoned_base.png",
+    # (0,0),"images/Characters/Stoned/Stoned_e[Stoned_e].png",
+    # (0,0),"Stoned_eyes",
+    # (0,0),WhileSpeaking("Stoned",("Stoned_m[Stoned_m]"),"images/Characters/Stoned/Stoned_m[Stoned_m].png"),
+    # (0,0),"images/Characters/Stoned/Stoned_glass.png"
+    # # (0,0),"Stoned_Guns"
+
+    # )
+    # zoom 0.93 xalign 0.5 
 
 image Stoned:
     "StonedFull"
-    xalign 0.5 yanchor 0.8 ypos 1.0 zoom 0.60
+    yanchor 0.54 ypos 1.0 zoom 0.56
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1784,7 +1829,17 @@ image Stoned_msad:
     "images/Characters/Stoned/Stoned_msad.png"
     pause .08
     repeat
+image Stoned_mopen2:
 
+    "images/Characters/Stoned/Stoned_mopen2.png"
+    pause .08
+    "images/Characters/Stoned/Stoned_mopenO.png"
+    pause .16
+    "images/Characters/Stoned/Stoned_mopen2.png"
+    pause .08
+    "images/Characters/Stoned/Stoned_msad.png"
+    pause .08
+    repeat
 #########
 ## Bitwulf
 #########

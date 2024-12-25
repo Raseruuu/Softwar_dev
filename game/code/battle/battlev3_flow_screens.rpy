@@ -13,7 +13,6 @@ init python:
     statuslist=["BoostATK","BoostDEF","Email"]
     playerbits = 8
     playerstats = ILYStatsnow
-
     playerName = ILYStatsnow["name"]
     playerHP = ILYStatsnow["HP"]
     playerHPMax = ILYStatsnow["HPMax"]
@@ -27,12 +26,66 @@ init python:
     enemyfirst =False
     map_active=False
     playerbattlecode=[]
+default battle_distance = 3
+transform flip_image:
+    xzoom -1.0
+transform xZoom(value):
+    xzoom (value)
 
+style statusoutlines:
+    size 40
+    outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
+style HPbaroutlines:
+    size 14
+    outlines [(2, "#79000b", 0, 0)]
+style SPbaroutlines:
+    size 14
+    outlines [(2, "#022168", 0, 0)]
+
+define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa"]
 screen battlestats():
+    
+    $ playerbitsfirsthalf=(int(playerbitsmax/2) if (playerbits-int(playerbitsmax/2))>0 else playerbits)
+    $ playerbitssecondhalf=(0 if playerbits<=int(playerbitsmax/2) else playerbits-playerbitsfirsthalf)
+    $ enemybitsfirsthalf=(int(enemybitsmax/2) if (enemybits-int(enemybitsmax/2))>0 else enemybits)
+    $ enemybitssecondhalf=(0 if enemybits<=int(enemybitsmax/2) else enemybits-enemybitsfirsthalf)
+    frame:
+            yalign 0.01
+            xalign 0.5
+            xsize 520
+            ysize 80
+            vbox:
+                
+                xalign 0.5
+                text "{font=font/lucon.ttf}{size=18}{b}VS{/font}{/size}{/b}" xalign 0.5
+                frame:
+                    style_prefix "bit"
+                    xfill True
+                    
+                    vbox:
+                        xalign 0.5 
+                        hbox:
+                            xalign 0.5 
+                            add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                            null width 2
+                            add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4),flip_image
+                            null width 1
+                            for dist in range(0,battle_distance):
+                                null width 2
+                                add "gui/dist.png" yalign 0.5 at xZoom(2.0)
+                                null width 2    
+                            null width 1
+                            add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
+                            null width 2
+                            add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                        text "{font=font/lucon.ttf}{size=14}{b}DISTANCE{/font}{/size}{/b}" xalign 0.5
+
+                
     frame:
         style_prefix "statsb"
-        xsize 380 ysize 190
-        xpos 0.02 xanchor 0.0 yalign 0.5
+        xsize 380 ysize 120
+        xpos 0.01 xanchor 0.0 ypos 0.54 yanchor 0.5
+        
         vbox:
             vbox:
                 text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
@@ -48,48 +101,47 @@ screen battlestats():
 
                         add "images/Cards/Empty.png" at codesize
             null height 5
-            vbox:
-                
-                text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
-                frame:
-                    style_prefix "bit"
-                    hbox:
-                        
-                        # null width 0
-                        grid 8 1:
-                            for bit in range(0,playerbits):
-                                add "gui/Bit.png":
-                                    zoom 0.75
-                            for fillers in range(0,8-playerbits):
-                                add "gui/Bit_empty.png":
-                                    zoom 0.75
+            
             
 
     frame:
         style_prefix "statsb"
-        xpos 0.02 xanchor 0.0 yalign 0.06 xsize 380
+        xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
         vbox:
             hbox:
                 style_prefix "battlestats"
                 image "Icon_[playerName]" at zoomtrans(0.8)
                 null width 8
                 vbox:
-                    text "{b}[playerName]{/b}"
+                    text "{b}{size=16}[playerName]{/b}{/size}"
                     vbox:
-                        frame:
-                            style_prefix "healthbar"
-                            xsize bar_size(playerHP,playerHPMax,200)
-                            ysize 8
-                            # xsize
-                        null height 7
-                        text "HP: [playerHP]/[playerHPMax]"
-                        null height 10
-                        frame:
-                            style_prefix "healthbar2"
-                            xsize bar_size(playerSP,playerSPMax,200)
-                            ysize 8
-                        null height 7
-                        text "SP: [playerSP]/[playerSPMax]"
+                        fixed:
+                            ysize 24
+                            frame:
+                                    style_prefix "healthbar_bg"
+                                    xsize 235
+                                    ysize 24
+                            frame:
+                                yalign 0.5
+                                style_prefix "healthbar"
+                                xsize bar_size(playerHP,playerHPMax,235)
+                                ysize 22
+                            
+                            text "{b}HP: [playerHP]/[playerHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
+                        null height 4
+                        fixed:
+                            ysize 24
+                            frame:
+                                style_prefix "healthbar2_bg"
+                                xsize 235
+                                ysize 24
+                            frame:
+                                yalign 0.5
+                                style_prefix "healthbar2"
+                                xsize bar_size(playerSP,playerSPMax,235)
+                                ysize 22
+                            
+                            text "{b}SP: [playerSP]/[playerSPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
                         null height 10
                         # text "ATK: [playerATK]  DEF: [playerDEF]"
                         hbox:
@@ -119,59 +171,80 @@ screen battlestats():
                                     # else:
                                     image "gui/battlests/[fxns[0]].png" at zoomtrans(0.5)
                                 elif type(fxns) == str:
-
-
                                         # frame:
                                         #     background Null()
                                         #     image "gui/battlests/token.png"
                                         #     text "{size=3}{font=font/adventpro-bold.ttf}[fxns]{/size}{/font}" xalign 0.5 yalign 0.82
-
                                     image "gui/battlests/[fxns].png" at zoomtrans(0.6)
                             for fillerz in range(0,16-len(PlayerSts)):
                                 # null width 50 height 50
                                 image "gui/battlests/Empty.png" at zoomtrans(0.6)
-            null height 5
-
+            vbox:
+        
+                text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
+                frame:
+                    style_prefix "bit"
+                    ysize 80
+                    hbox:
+                        
+                        for bit in range(0,playerbitsfirsthalf):
+                            add "gui/Bit.png"
+                        for fillers in range(0,int(playerbitsmax/2)-playerbitsfirsthalf):
+                                add "gui/Bit_empty.png"
+                                    
+                    hbox:
+                        xoffset 20 yoffset 22
+                        for bit in range(0,playerbitssecondhalf):
+                            add "gui/Bit.png"
+                        for fillers in range(0,int(playerbitsmax/2)-playerbitssecondhalf):
+                                add "gui/Bit_empty.png"
             
-            
-
-
-                        # hbox:
-                        #     text "{b}ATK: [playerATK]{/b}"
-                        #     null width 10
-                        #     text "{b}DEF: [playerDEF]{/b}"
-
-
-                    # grid 4 2:
-                    #     for bit in range(0,playerbits):
-                    #         add "gui/Bit.png"
-                    #     for fillers in range(0,8-playerbits):
-                    #         null width 28 height 33
-
     frame:
         style_prefix "statsb"
-        xpos 0.98 xanchor 1.0 yalign 0.06 xsize 380
-        hbox:
+        xpos 0.99 xanchor 1.0 yalign 0.01 xsize 380
+        vbox:
+            hbox:
+                xalign 1.0
                 style_prefix "battlestats"
-                # add "Icon_[enemyName]"
+                box_reverse True
+                if enemyName in boss_list: 
+                    image "Icon_[enemyName]" xalign 1.0  at zoomtrans(0.8)
+                else:
+                    null width 130 height 175
                 vbox:
-                    text "{b}[enemyName]{/b}"
+                    xalign 1.0
+                    text "{b}{size=16}[enemyName]{/b}{/size}" xalign 1.0
                     vbox:
-                        frame:
-                            style_prefix "healthbar"
-                            xsize bar_size(enemyHP,enemyHPMax,200)
-                            ysize 8
-                        null height 7
-                        text "HP: [enemyHP]/[enemyHPMax]"
-                        null height 10
-                        frame:
-                            style_prefix "healthbar2"
-                            xsize bar_size(enemySP,enemySPMax,200)
-                            ysize 8
-                        null height 7
-                        text "SP: [enemySP]/[enemySPMax]"
+                        fixed:
+                            ysize 24
+                            frame:
+                                    style_prefix "healthbar_bg"
+                                    xsize 235
+                                    ysize 24
+                            frame:
+                                yalign 0.5
+                                style_prefix "healthbar"
+                                xsize bar_size(enemyHP,enemyHPMax,235)
+                                ysize 22
+                            
+                            text "{b}HP: [enemyHP]/[enemyHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
+                        null height 4
+                        fixed:
+                            ysize 24
+                            frame:
+                                style_prefix "healthbar2_bg"
+                                xsize 235
+                                ysize 24
+                            frame:
+                                yalign 0.5
+                                style_prefix "healthbar2"
+                                xsize bar_size(enemySP,enemySPMax,235)
+                                ysize 22
+                            
+                            text "{b}SP: [enemySP]/[enemySPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
                         null height 10
                         hbox:
+                            xalign 1.0
                             if (enemyATK<enemyATK_m):
                                 text "ATK: {color=#0ff} [enemyATK_m]{/color}"
                             elif (enemyATK>enemyATK_m):
@@ -186,39 +259,62 @@ screen battlestats():
                             else:
                                 text "DEF: [enemyDEF_m]"
                         null height 5
-                        vbox:
-                            text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
-                            frame:
-                                style_prefix "bit"
-                                hbox:
-                                    # null width 0
-                                    grid 8 1:
-                                        for bit in range(0,enemybits):
-                                            add "gui/Bit.png"
-                                        for fillers in range(0,8-enemybits):
-                                            add "gui/Bit_empty.png"
+                        
                         null height 5
-                        vbox:
+                        vbox:  
                             # null height 57
-                            text "{size=14}{b}STATUS{/size}{/b}" xalign 0.0
+                            text "{size=14}{b}STATUS{/size}{/b}" xalign 1.0
                             grid 8 2:
+                                xalign 1.0
                                 for fxns in EnmySts:
                                     # image "gui/battlests/[fxns].png"
                                     if type(fxns)== list:
-                                        image "gui/battlests/[fxns[0]].png" at zoomtrans(0.8)
+                                        image "gui/battlests/[fxns[0]].png" at zoomtrans(0.6)
                                     elif type(fxns) == str:
-                                        image "gui/battlests/[fxns].png" at zoomtrans(0.8)
+                                        image "gui/battlests/[fxns].png" at zoomtrans(0.6)
 
                                 for fillerz in range(0,16-len(EnmySts)):
                                     # null width 50 height 50
-                                    image "gui/battlests/Empty.png" at zoomtrans(0.8)
-                        #     text "{b}ATK: [enemyATK]{/b}"
-                        #     null width 10
-                        #     text "{b}DEF: [enemyDEF]{/b}"
+                                    image "gui/battlests/Empty.png" at zoomtrans(0.6)
+                        
+            vbox:    
+                text "{size=14}{b}BITS{/size}{/b}" xalign 1.0
+                frame:
+                    style_prefix "bit"
+                    ysize 80
+                    xalign 1.0
+                    hbox:
+                        box_reverse True
+                        xalign 1.0
+                        for bit in range(0,enemybitsfirsthalf):
+                            add "gui/Bit.png"
+                        for fillers in range(0,int(enemybitsmax/2)-enemybitsfirsthalf):
+                                add "gui/Bit_empty.png"              
+                    hbox:
+                        box_reverse True
+                        xalign 1.0
+                        xoffset -20 yoffset 22
+                        for bit in range(0,enemybitssecondhalf):
+                            add "gui/Bit.png"
+                        for fillers in range(0,int(enemybitsmax/2)-enemybitssecondhalf):
+                                add "gui/Bit_empty.png"
+                        null width 0       
+                        
+                            # grid 4 2:
+                            #     for bit in range(0,playerbits):
+                            #         add "gui/Bit.png":
+                            #             zoom 0.75
+                            #     for fillers in range(0,8-playerbits):
+                            #         add "gui/Bit_empty.png":
+                            #             zoom 0.75
+                    #     text "{b}ATK: [enemyATK]{/b}"
+                    #     null width 10
+                    #     text "{b}DEF: [enemyDEF]{/b}"
+            
 style battlestats_text is text:
     color "#fff"
-    size 18
-
+    font "font/lucon.ttf"
+    size 14
 
 style statsb_frame is gui_frame:
     background Frame("gui/framew.png", 4, 4, tile=gui.frame_tile)
@@ -249,8 +345,24 @@ style healthbar_frame is gui_frame:
     left_padding 0
     bottom_padding 0
     top_padding 0
+style healthbar_bg_frame is gui_frame:
+    background Frame("gui/bar_bg.png", 4, 4, tile=gui.frame_tile)
+    ysize 25
+
+    right_padding 0
+    left_padding 0
+    bottom_padding 0
+    top_padding 0
 style healthbar2_frame is gui_frame:
     background Frame("gui/barblue.png", 4, 4, tile=gui.frame_tile)
+    ysize 25
+
+    right_padding 0
+    left_padding 0
+    bottom_padding 0
+    top_padding 0
+style healthbar2_bg_frame is gui_frame:
+    background Frame("gui/barblue_bg.png", 4, 4, tile=gui.frame_tile)
     ysize 25
 
     right_padding 0
@@ -336,7 +448,7 @@ image cardflash:
 
 image cardflashenemy:
     "cardflasher"
-    xalign 0.5 ypos 0.3 yanchor 0.5 zoom 0.9
+    xalign 0.5 ypos 0.36 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.3
     linear 0.05 zoom 1.2
 
@@ -344,7 +456,7 @@ image cardflashenemy:
 
 
 
-label battlev3(PFAI,EFAI):
+label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
     $ ILY_w=True
     $ ILY_m="frown"
@@ -353,7 +465,6 @@ label battlev3(PFAI,EFAI):
     $ battle_active=True
     $ battle_done=False
     $ playerName = PFAI.name
-    # $ playerHP = PFAI.HP
     $ playerSP = PFAI.SP
     $ playerATK = PFAI.ATK
     $ playerDEF = PFAI.DEF
@@ -366,15 +477,18 @@ label battlev3(PFAI,EFAI):
         ahcount=0
         avcount=0
 
-        playerbits = 8
-        enemybits= 8
+        playerbits = pbitsMax
+        enemybits= ebitsMax
+        
+        playerbitsmax=pbitsMax
+        enemybitsmax=pbitsMax
         random.shuffle(playerDeck)
         # playerstats = ILYStatsnow
+        battle_distance = 2
         battle_done = False
         enemyfirst =renpy.random.choice([True,False])
         map_active=False
         playerbattlecode=[]
-        playerSP = 0
         playerATK_m = playerATK
         playerDEF_m = playerDEF
 
@@ -385,7 +499,7 @@ label battlev3(PFAI,EFAI):
             "name":EFAI.name,
             "HP":EFAI.HP,
             "HPMAX":EFAI.SP,
-            "SP":0,
+            "SP":EFAI.SP,
             "SPMAX":EFAI.SP,
             "Deck":EFAI.deck,
             "ATK":EFAI.ATK,
@@ -419,7 +533,7 @@ label battlev3(PFAI,EFAI):
     else:
         play music "bgm/Fight_bgm_maoudamashii_cyber14.ogg"
     show battlering:
-        xalign 0.5 ypos 0.15 yanchor 0.5
+        xalign 0.5 ypos 0.20 yanchor 0.5
         block:
             rotate 0
             linear 15.0 rotate 360
@@ -432,17 +546,22 @@ label battlev3(PFAI,EFAI):
 
     show battleroad:
         yalign 1.0 xalign 0.5
-    $Enemy="Trojan"
     show Enemy:
-        xalign 0.5 yanchor 0.32 ypos 0.25
+        xalign 0.5 yanchor 0.32 ypos 0.3
 
-
-    voice "voice/ILY11C - I'll show you.mp3"
-
-    $ ILY_m = 'frown'
-    i"I'll show you... What love can do!"
+    if playerName=="ILY":
+        voice "voice/ILY11C - I'll show you.mp3"
+        $ ILY_m = 'frown'
+        $ ILY_e = 'down'
+        i"{cps=100}I'll show you... {nw}{/cps}"
+        $ ILY_m = 'smile3'
+        $ ILY_e = 'normal'
+        voice "voice/ILY11C - What love can do.mp3"
+        extend "{cps=50} What love can do!{/cps}"
     if enemyName=="Ave":
-       voice "voice/Ave_voice/I'm-The-Ultimate-Antivirus.ogg"
+       voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
+       $ Ave_m = 'frown'
+       $ Ave_e = 'down'
        a"I'm the Ultimate Antivirus!"
     # show screen decknum
     # with pixellate
@@ -452,7 +571,7 @@ label battlev3(PFAI,EFAI):
 
 
     show screen battlestats
-    call showphasemsg("SOFTWAR BEGIN!") from _call_showphasemsg_1
+    call showphasemsg("SOFTWAR BEGIN!") 
     #Start Dialogue
     $ phasenum=0
     label battleloop:
@@ -477,7 +596,7 @@ label battlev3(PFAI,EFAI):
                 hide screen battlestats
                 if playerHP<=0:
                     stop music
-                    call lose from _call_lose
+                    call lose 
                     return
                 else:
                     play music "bgm/bgm_maoudamashii_cyber16.mp3"
@@ -653,55 +772,6 @@ screen choosecardv2:
                 add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.95
 
 
-    # ###############        
-    # #CARD 1
-    #     if (playercard1COST<=playerbits) and (clickedcard[0]==False):
-    #         ###TODO:: ADD HOVER DESCRIPTION Layered Images
-    #         imagebutton idle CardDisplay(playercard1obj):
-    #             action Play("sound","sound/Phase.wav"), Hide("card1hover"), Return("card1")
-    #             hovered Show("card1hover"), Play("sound","sfx/select.wav")
-    #             unhovered Hide("card1hover")
-    #             at zoomBattlecards xpos 0.26 xanchor 0.5 yalign 0.95
-    #     elif clickedcard[0]:
-    #         add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.95
-    #     else:
-    #         add CardDisplay(playercard1obj) xpos 0.26 xanchor 0.5 yalign 0.95 at zoomBattlecards
-    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.26 xanchor 0.5 yalign 0.95
-    # #CARD 2
-    #     if (playercard2COST<=playerbits) and (clickedcard[1]==False):
-    #         imagebutton idle CardDisplay(playercard2obj) action Play("sound","sound/Phase.wav"), Hide("card2hover"), Return("card2")  hovered Show("card2hover"), Play("sound","sfx/select.wav") unhovered Hide("card2hover") at zoomBattlecards xpos 0.38 xanchor 0.5 yalign 0.95
-    #     elif clickedcard[1]:
-    #         add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.95
-    #     else:
-    #         add CardDisplay(playercard2obj) xpos 0.38 xanchor 0.5 yalign 0.95 at zoomBattlecards
-    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.38 xanchor 0.5 yalign 0.95
-    # #CARD 3
-    #     if (playercard3COST<=playerbits) and (clickedcard[2]==False):
-    #         imagebutton idle CardDisplay(playercard3obj) action Play("sound","sound/Phase.wav"), Hide("card3hover"), Return("card3")  hovered Show("card3hover"), Play("sound","sfx/select.wav") unhovered Hide("card3hover") at zoomBattlecards xpos 0.5 xanchor 0.5 yalign 0.95
-    #     elif clickedcard[2]:
-    #         add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5 yalign 0.95
-    #     else:
-    #         add CardDisplay(playercard3obj) xpos 0.5 xanchor 0.5 yalign 0.95 at zoomBattlecards
-    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.5 xanchor 0.5 yalign 0.95
-    # #CARD 4
-    #     if (playercard4COST<=playerbits) and (clickedcard[3]==False):
-    #         imagebutton idle CardDisplay(playercard4obj) action Play("sound","sound/Phase.wav"), Hide("card4hover"), Return("card4")  hovered Show("card4hover"), Play("sound","sfx/select.wav") unhovered Hide("card4hover") at zoomBattlecards xpos 0.62 xanchor 0.5 yalign 0.95
-    #     elif clickedcard[3]:
-    #         add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.95
-    #     else:
-    #         add CardDisplay(playercard4obj) xpos 0.62 xanchor 0.5 yalign 0.95 at zoomBattlecards
-    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.62 xanchor 0.5 yalign 0.95
-
-    # #CARD 5
-    #     if (playercard5COST<=playerbits) and (clickedcard[4]==False):
-    #         imagebutton idle CardDisplay(playercard5obj) action Play("sound","sound/Phase.wav"), Hide("card5hover"), Return("card5") hovered Show("card5hover"), Play("sound","sfx/select.wav") unhovered Hide("card5hover") at zoomBattlecards xpos 0.74 xanchor 0.5 yalign 0.95
-    #     elif clickedcard[4]:
-    #         add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.95
-    #     else:
-    #         add CardDisplay(playercard5obj) xpos 0.74 xanchor 0.5 yalign 0.95 at zoomBattlecards
-    #         add "images/Cards/cardblank2.png" at alpha08 xpos 0.74 xanchor 0.5 yalign 0.95
-
-
         if playerbattlecode!=[]:
             imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95
             key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
@@ -739,21 +809,6 @@ image selectring:
 
 screen cardhover(cardobject,cardhoverxpos):
     image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.95 at cardtrans
-# screen card1hover:
-#     # image "selectring" xanchor 0.5 xpos 0.26 yanchor 0.5 ypos 0.75
-#     image CardDisplay(playercard1obj) xanchor 0.5 xpos 0.26 yalign 0.95 at cardtrans
-# screen card2hover:
-#     # image "selectring" xanchor 0.5 xpos 0.38 yanchor 0.5 ypos 0.75
-#     image CardDisplay(playercard2obj) xanchor 0.5 xpos 0.38 yalign 0.95 at cardtrans
-# screen card3hover:
-#     # image "selectring" xanchor 0.5 xpos 0.5 yanchor 0.5 ypos 0.75
-#     image CardDisplay(playercard3obj) xanchor 0.5 xpos 0.5 yalign 0.95 at cardtrans
-# screen card4hover:
-#     # image "selectring" xanchor 0.5 xpos 0.62 yanchor 0.5 ypos 0.75
-#     image CardDisplay(playercard4obj) xanchor 0.5 xpos 0.62 yalign 0.95 at cardtrans
-# screen card5hover:
-#     # image "selectring" xanchor 0.5 xpos 0.74 yanchor 0.5 ypos 0.75
-#     image CardDisplay(playercard5obj) xanchor 0.5 xpos 0.74 yalign 0.95 at cardtrans
 screen card6hover:
     # image "selectring" xanchor 0.5 xpos 0.86 yanchor 0.5 ypos 0.75
     image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.95 at cardtrans2
@@ -778,6 +833,8 @@ label win:
     #MAKE VICTORY ANIMATION
     # show ILY_byTorakun14:
     #   xalign 0.0
+    $ battle_done = True
+    $ quick_menu=True
     show screen phasemsg("VICTORY!")
     info"ILY Wins!"
     hide screen phasemsg
@@ -787,6 +844,8 @@ label win:
     return
 label lose:
     $ okdesktop = False
+    $ quick_menu=False
+
     hide screen mapA
     hide screen mapB
     scene ILYgameover with pixellate

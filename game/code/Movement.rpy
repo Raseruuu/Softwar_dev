@@ -35,7 +35,7 @@ init python:
   Upisempty = (boxsheet[playerypos-1][playerxpos]=='0'or boxsheet[playerypos-1][playerxpos]=='r')
   Downisempty = (boxsheet[playerypos+1][playerxpos]=='0' or boxsheet[playerypos+1][playerxpos]=='r')
   Leftisempty = (boxsheet[playerypos][playerxpos-1]=='0' or boxsheet[playerypos][playerxpos-1]=='r')
-  Rightisempty = (boxsheet[playerypos][playerxpos+1]=='0' or boxsheet[playerypos][playerxpos+1]=='r')
+  Rightisempty = (boxsheet [playerypos][playerxpos+1]=='0' or boxsheet[playerypos][playerxpos+1]=='r')
 
   objectabove = boxsheet[playerypos-1][playerxpos]
   objectbelow = boxsheet[playerypos+1][playerxpos]

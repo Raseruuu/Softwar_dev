@@ -25,7 +25,7 @@ label script1_2:
         call script1_2_map1
         call script1_2_dialog1
         call script1_2_map2
-    "Turn back!"
+    
     # $ renpy.Rollback()
     # call script1_2_map2
     return
@@ -60,10 +60,38 @@ label script1_2_dialog1:
     #     return 
     $ GRID[(192,165)]=stageBCD2
     # $ GRID[(192,165)]=stageBCD2
+    ""
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
+    with pixellate
+    $ ILY_w =False
+    $ ILY_m ="frown"
+    $ ILY_e ="down"
+    $ Ave_w =False
+    $ Ave_m ="frown"
+    $ Ave_e ="down"
+
+    show Ave:
+        xpos 0.9 xanchor 0.5
+    show ILY:
+        xpos 0.3 xanchor 0.5
+    a"ILY! There you are!! You escaped me before, but I'll delete you this time, worm!!"
+    i"No, you've got it all wrong!"
+    i"I'm not the same as the virus you once fought!"
+    show Ave:
+        xpos 0.911
+        pause 0.1
+        xpos 0.914
+        pause 0.1
+        repeat
+    a"Silence! I won't hear another word from a filthy Virus!"
+
+    $ ILY_w =True
+    $ ILY_m ="smile"
+    $ ILY_e ="up"
     
+
     i "Looks like this path takes us to Connecht City Cyber Square!"
     "A gate to the west from my home location... that sounds a lot like in real-life."
     "This Cyber Square area... must be a virtual version of the actual Square crossroad at the middle of Connecht."
@@ -102,37 +130,37 @@ label script1_2_dialog1:
     "This blue-haired avatar just snatched ILY away from that lightning strike.."
     mu "We need to keep moving!"
     i "What's going on?"
-    # $ Melissa_e="normal"
-    # $ Melissa_m="frown"
-    # mu "That was Bitwulf. An Antivirus. They've made it their job to look for Viruses and fight them in Softwars."
-    # i "I didn't realize Antiviruses would be out here in the open like this!"
-    # i "That one was quite aggressive.."
-    # i "And you are a..."
-    # "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate."
-    # $ Melissa_m="smile"
-    # mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
-    # "Non-viruses? that means..."
-    # #unlock Shady Alley
-    # play music "bgm/ost/Serious_Noyemi_K.ogg"
-    # scene battlebg
-    # show scrollingBG at scroll
-    # show battleroad:
-    #     yalign 1.0 xalign 0.5
-    # mu "I should introduce myself..."
-    # "*Gulps*"
-    # $ Melissa_e="up"
-    # $ Melissa_w=False
-    # show Melissa with pixellate
-    # m "I am the Melissa Virus. We're birds of a feather!"
-    # "Birds of a feather, huh? Wait, what does this mean for me?"
-    # "It seems like.. viruses are able to identify each other? I wonder how that works."
-    # "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
-    # m "We viruses, we look out for each other out here. "
-    # hide Melissa
-    # show Melissajump
-    # extend "You can call me your big sister!"
-    # show Melissa
-    # hide Melissajump
+    $ Melissa_e="normal"
+    $ Melissa_m="frown"
+    mu "That was Bitwulf. An Antivirus. They've made it their job to look for Viruses and fight them in Softwars."
+    i "I didn't realize Antiviruses would be out here in the open like this!"
+    i "That one was quite aggressive.."
+    i "And you are a..."
+    "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate."
+    $ Melissa_m="smile"
+    mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
+    "Non-viruses? that means..."
+    #unlock Shady Alley
+    play music "bgm/ost/Serious_Noyemi_K.ogg"
+    scene battlebg
+    show scrollingBG at scroll
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    mu "I should introduce myself..."
+    "*Gulps*"
+    $ Melissa_e="up"
+    $ Melissa_w=False
+    show Melissa with pixellate
+    m "I am the Melissa Virus. We're birds of a feather!"
+    "Birds of a feather, huh? Wait, what does this mean for me?"
+    "It seems like.. viruses are able to identify each other? I wonder how that works."
+    "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
+    m "We viruses, we look out for each other out here. "
+    hide Melissa
+    show Melissajump
+    extend "You can call me your big sister!"
+    show Melissa
+    hide Melissajump
     $ ILY_e="up"
     $ ILY_m="smile3"
     i "Big sister... Melissa!"
@@ -193,7 +221,7 @@ label script1_2_dialog1:
     i "Ah!"
     #Stoned Virus speaks up
     show Stoned with dissolve:
-        xalign 0.7
+        xalign 0.7 
     show Melissa with ease:
         xalign 0.3
     s "Hey, I'm not a fighter either, I'm just a dealer, I'll try to catch up when we start running."
@@ -223,6 +251,7 @@ label script1_2_dialog1:
     return
 
 label Melissascript2:
+    $ ILY_w=True
     j "(Melissa knows quite a lot... It's an odd feeling to hear all this from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
     j "(You think?)"
