@@ -1173,7 +1173,7 @@ image Melissajump:
     mesh True
     "MelissaFull base_jump"
     yanchor 0.50 ypos 1.0 zoom 0.9
-    ease 0.3 yoffset -30
+    ease 0.35 yoffset -30
     pause 0.1
     ease 0.1 yoffset 5
     ease 0.2 yoffset 0
@@ -1181,7 +1181,20 @@ image Melissajump:
     # pause .5
     # linear 1.0 yoffset 5
     # pause .5
-    # repeat
+    
+image Melissajumping:
+    mesh True
+    "MelissaFull base_jump"
+    yanchor 0.50 ypos 1.0 zoom 0.9
+    ease 0.35 yoffset -30
+    pause 0.1
+    ease 0.1 yoffset 5
+    ease 0.2 yoffset 0
+    # linear 1.0 yoffset 0
+    # pause .5
+    # linear 1.0 yoffset 5
+    # pause .5
+    repeat
 image MelissaEyes:
     choice:
         "images/Characters/Melissa/Melissa_eyes.png"
@@ -1255,9 +1268,13 @@ image Melissa_base_jump:
     pause 0.1
     "images/Characters/Melissa/Melissa_base.png"
     
-    pause 0.025
+    pause 0.1
     "images/Characters/Melissa/Melissa_base_up1.png"
-    pause 0.025
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_up2.png"
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_up3.png"
+    pause 0.1
     "images/Characters/Melissa/Melissa_base_up2.png"
     pause 0.1
     "images/Characters/Melissa/Melissa_base_up1.png"
