@@ -118,8 +118,8 @@ screen item_shop:
         image "gui/rpgmenu/frame2.png" at pausetrans4 xalign 1.0 yalign 1.0
 
     add "Stoned":
-        xpos 0.2 xanchor 0.5 ypos 1.0 
-        
+        xpos 0.25 xanchor 0.5 yanchor 0.60 ypos 1.0 
+        # xpos 0.06 xanchor 0.5
         if not notransform:
             at pausetrans1
     frame:
@@ -144,6 +144,7 @@ screen item_shop:
                             style "deckframe"
                             text "{size=24}Money: [Money] Zennys{/size}"
                 null height 10
+   
     frame:
         style "nvl_window"
 
@@ -165,7 +166,7 @@ screen item_shop:
                         style_prefix "stats"
                         text "Prev. Page"
                         xsize 200
-                        idle_background Frame("gui/framefxn.png",10,10)
+                        idle_background Frame("gui/framebtn.png",10,10)
                         hover_background Frame("gui/framefxn2.png",10,10)
                         # hbox:
                         #     style "itembuttontext"
@@ -187,7 +188,7 @@ screen item_shop:
                         style_prefix "stats"
                         text "Next Page"
                         xsize 200
-                        idle_background Frame("gui/framefxn.png",10,10)
+                        idle_background Frame("gui/framebtn.png",10,10)
                         hover_background Frame("gui/framefxn2.png",10,10)
                         # hbox:
                         #     style "itembuttontext"
@@ -238,7 +239,7 @@ screen item_shop:
                                                         yalign 1.0
                                                         frame:
                                                             xsize 150
-                                                            idle_background Frame("gui/framefxn.png",10,10)
+                                                            idle_background Frame("gui/framebtn.png",10,10)
                                                             hover_background Frame("gui/framefxn2.png",10,10)
                                                             hbox:
                                                                 style "itembuttontext"
@@ -270,7 +271,7 @@ screen item_shop:
                                                         xalign 1.0
                                                         frame:
                                                             xsize 150
-                                                            idle_background Frame("gui/framefxn.png",10,10)
+                                                            idle_background Frame("gui/framebtn.png",10,10)
                                                             hover_background Frame("gui/framefxn2.png",10,10)
                                                             # insensitive_background Frame("gui/framefxn2.png",10,10)
 
@@ -320,6 +321,7 @@ screen item_shop:
                     textbutton "Back" action SetVariable("shop_active",False), Return()
     if shop_view:
         use ItemModal
+    
 screen ItemModal:
     zorder 201
 
@@ -327,7 +329,7 @@ screen ItemModal:
         xpos 0.5 xanchor 0.0 yalign 0.9
         xpadding 20
         ypadding 20
-        idle_background Frame("gui/framefxn.png",10,10)
+        idle_background Frame("gui/framebtn.png",10,10)
         hover_background Frame("gui/framefxn2.png",10,10)
         # foreground ItemPriceDisplay(item_selected)
         vbox:
@@ -364,7 +366,7 @@ screen ItemModal:
                                     id "button1"
                                     frame:
                                         xsize 150
-                                        idle_background Frame("gui/framefxn.png",10,10)
+                                        idle_background Frame("gui/framebtn.png",10,10)
                                         hover_background Frame("gui/framefxn2.png",10,10)
                                         hbox:
                                             yalign 0.5 xalign 0.5
@@ -376,7 +378,7 @@ screen ItemModal:
                                 button:
                                     frame:
                                         xsize 150
-                                        idle_background Frame("gui/framefxn.png",10,10)
+                                        idle_background Frame("gui/framebtn.png",10,10)
                                         hover_background Frame("gui/framefxn2.png",10,10)
                                         text "Cancel" yalign 0.5 xalign 0.5
                                     action SetVariable("shop_view",False), Return("Cancel")

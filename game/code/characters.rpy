@@ -901,30 +901,6 @@ layeredimage Lisafull:
             "Lisa_glasses==False",Null(),
             )
     zoom 0.31
-# image Lisafull:
-
-#         LiveComposite(
-#         (1860,5202),
-#         (0, 0), "images/Characters/Lisa/Lisanude.png",
-#         (0, 0), WhileSpeaking(
-#             "Lisa",
-#             # ConditionSwitch(
-#             ConditionSwitch(
-#                 "('smile' in Lisa_m)","LisaMouthsmile",
-#                 "('smile' not in Lisa_m)","LisaMouthfrown",
-#                 ),
-#             "images/Characters/Lisa/Lisa_m[Lisa_m].png"
-#             ),
-#         (0, 0), "images/Characters/Lisa/Lisa_e[Lisa_e].png",
-#         (0, 0), ConditionSwitch(
-#                 "Lisa_blush==True","images/Characters/Lisa/Lisa_blush.png",
-#                 "Lisa_blush==False",Null(),
-#                 ),
-#         (0, 0), "LisaEyes",#eyes
-#         (0, 0), "LisaGlasses",#eyes
-        
-#         )
-#         zoom 0.31
 image Lisa:
     "Lisafull"
     yanchor 0.0 ypos 0.01
@@ -1017,6 +993,142 @@ image LisaMouthfrown:
     pause .1
     
     repeat
+
+###########
+## Lucida
+###########
+
+
+layeredimage Lucidafull:
+    always:
+        "images/Characters/Lucida/Lucida_base.png"
+    always:
+        "images/Characters/Lucida/Lucida_underwear_[Lucida_underwear].png"
+    always:
+        "images/Characters/Lucida/Lucida_dress_[Lucida_outfit].png"
+    always:
+        WhileSpeaking(
+            "Lucida",
+            # ConditionSwitch(
+            ConditionSwitch(
+                "('smile' in Lucida_m)","LucidaMouthsmile",
+                "('smile' not in Lucida_m)","LucidaMouthfrown",
+                ),
+            "images/Characters/Lucida/Lucida_m[Lucida_m].png"
+            )
+    always:
+        "images/Characters/Lucida/Lucida_e[Lucida_e].png"
+    always:
+        ConditionSwitch(
+            "Lucida_blush==True","images/Characters/Lucida/Lucida_blush.png",
+            "Lucida_blush==False",Null(),
+            )
+    always:
+        
+        ConditionSwitch(
+            "('close' in Lucida_eyes)","images/Characters/Lucida/Lucida_e[Lucida_eyes].png",
+            "('close' not in Lucida_eyes)","LucidaEyes",
+            )
+    always:
+        # "images/Characters/Lucida/LucidaGlasses.png"
+        ConditionSwitch(
+            "Lucida_glasses==True","images/Characters/Lucida/LucidaGlasses.png",
+            "Lucida_glasses==False",Null(),
+            )
+    zoom 0.31
+image Lucida:
+    "Lucidafull"
+    yanchor 0.0 ypos 0.01
+    # linear 1.0 yoffset 0
+    # pause .5
+    # linear 1.0 yoffset 5
+    # pause .5
+    # repeat
+image Lucidafullside:
+    "Lucidafull"
+    zoom 1.13
+image Lucida sidew:
+    LiveCrop((130,20, 300,385), "Lucidafullside")
+    zoom 0.56
+image side Lucida_side:
+    ConditionSwitch(
+        "Lucida_w==True","Lucida sidew",
+        "Lucida_w==False","Null_side")
+
+image Null_side:
+    Null(width=440,height=565)
+
+image LucidaEyes:
+    choice:
+        "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
+        pause 1.0
+        "images/Characters/Lucida/Lucida_eclose1.png"
+        pause 0.07
+        "images/Characters/Lucida/Lucida_eclosedown.png"
+        pause 0.1
+        "images/Characters/Lucida/Lucida_eclose1.png"
+        pause 0.07
+    choice:
+        "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
+        pause 5.0
+    choice:
+        "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
+        pause 4.0
+    choice:
+        "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
+        pause 1.5
+        "images/Characters/Lucida/Lucida_eclose1.png"
+        pause 0.07
+        "images/Characters/Lucida/Lucida_eclosedown.png"
+        pause 0.1
+        "images/Characters/Lucida/Lucida_eclose1.png"
+        pause 0.07
+        "images/Characters/Lucida/Lucida_eclosedown.png"
+        pause 0.1
+        "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
+        pause 1.5
+    repeat
+
+image LucidaMouthsmile:
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mopen2.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_msmile.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_msmile2.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_msmile3.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_msmile2.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_msmile.png"
+    pause .1
+    repeat
+
+image LucidaMouthfrown:
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mopen2.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mfrown.png"
+    pause .1
+    
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mfrown3.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mopen1.png"
+    pause .1
+    "images/Characters/Lucida/Lucida_mfrown.png"
+    pause .1
+    
+    repeat
+
 #########
 ## Vira
 #########
@@ -1560,9 +1672,6 @@ image side Hilbert_side:
 image side HackerX_side:
     "images/Characters/HackerX/HackerX.png"
     zoom 0.38
-    # ConditionSwitch(
-    #     "Lisa_w==True","Lisa sidew",
-    #     "Lisa_w==False",Null(width=100))
 
 image Nick:
     "NickFull"
@@ -1791,28 +1900,30 @@ layeredimage StonedFull:
     #     "Stoned_Guns"
     xalign 0.5
 
-
+# zoom 0.60
 
     # LiveComposite(
     # (761,1695),
     # (0,0),"images/Characters/Stoned/Stoned_base.png",
     # (0,0),"images/Characters/Stoned/Stoned_e[Stoned_e].png",
-    # (0,0),"Stoned_eyes",
+    # (0,0),"Stoned_eyes_[Stoned_eyes]",
     # (0,0),WhileSpeaking("Stoned",("Stoned_m[Stoned_m]"),"images/Characters/Stoned/Stoned_m[Stoned_m].png"),
     # (0,0),"images/Characters/Stoned/Stoned_glass.png"
-    # # (0,0),"Stoned_Guns"
-
+    # (0,0),"Stoned_Guns"
     # )
     # zoom 0.93 xalign 0.5 
 
 image Stoned:
+    # (LiveCrop((479,0,611,2413),"StonedFull"))
     "StonedFull"
-    yanchor 0.54 ypos 1.0 zoom 0.56
-    linear 1.0 yoffset 0
-    pause .5
-    linear 1.0 yoffset 5
-    pause .5
-    repeat
+    xoffset -200
+    yanchor 0.54 ypos 1.0  zoom 0.56
+    # zoom 0.56 
+    # linear 1.0 yoffset 0
+    # pause .5
+    # linear 1.0 yoffset 5
+    # pause .5
+    # repeat
 image Stonedsmall:
     "StonedFull"
     zoom 0.60

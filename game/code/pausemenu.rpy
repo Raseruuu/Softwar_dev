@@ -322,8 +322,7 @@ label UnsaveDeck:
 transform inventorysize:
     zoom 0.4
 transform selectedItem:
-    on show:
-        ease 0.1 zoom 0.1
+    ease 0.1 zoom 0.1
 transform alphablinky:
     alpha 0.9
     linear 0.1 alpha 0.0
@@ -504,8 +503,8 @@ transform zoomtrans(zoomvalue):
     zoom zoomvalue
 screen pauselayout(scrname,spritevisible=True,notransform=False):
     
-    key 's'       action Return()
-    key 'S'       action Return()
+    # key 's'       action Return()
+    # key 'S'       action Return()
     if notransform:
         image "black" at pausedim2
         text "{size=100}{b}"+scrname+"{/b}{/size}" ypos 0.03 xalign 0.6
@@ -663,40 +662,37 @@ transform pausetranshover(pauseoffset=0):
 transform pausetrans0:
     alpha 0.0
     xoffset -20
-    on show:
-        ease 0.3 alpha 1.0 xoffset 0
+    ease 0.3 alpha 1.0 xoffset 0
     alpha 1.0
+# transform pausetrans1:
+#     alpha 0.0
+#     xoffset -20
+#     on show:
+#         ease 0.3 alpha 1.0 xoffset 0
+#     alpha 1.0
 transform pausetrans1:
-    alpha 0.0
-    xoffset -20
-    on show:
-        ease 0.3 alpha 1.0 xoffset 0
+    alpha 0.0 xoffset -20
+    ease 0.3 alpha 1.0 xoffset 0
     alpha 1.0
 transform pausetrans2:
-    alpha 0.0
-    xoffset 20
-    on show:
-        ease 0.3 alpha 1.0 xoffset 0
+    alpha 0.0 xoffset 20
+    ease 0.3 alpha 1.0 xoffset 0
     alpha 1.0
     on hide:
         ease 0.3 alpha 0.0 xoffset -20
 transform pausetrans3:
     xanchor 1.0
-    on show:
-        linear 0.1 alpha 1.0 xanchor 0.0
+    ease 0.1 alpha 1.0 xanchor 0.0
 transform pausetrans4:
     xanchor 0.0
-    on show:
-        linear 0.1 alpha 1.0 xanchor 1.0
+    ease 0.1 alpha 1.0 xanchor 1.0
 transform pausedim:
     alpha 0.0
-    on show:
-        ease 0.3 alpha 0.77
+    ease 0.3 alpha 0.77
     alpha 0.77
 transform pausedim2:
     alpha 0.77
 transform pauseshow:
     alpha 0.0
-    on show:
-        ease 0.3 alpha 1.0
+    ease 0.3 alpha 1.0
     alpha 1.0
