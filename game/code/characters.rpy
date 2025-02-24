@@ -1151,7 +1151,7 @@ image ViraFull:
         (680,961),
         (0, 0), At("images/Characters/Vira/Vira_p.png",zoomtrans(0.36697247706)),
         (0, 0), At("images/Characters/Vira/Vira_e[Vira_e].png",zoomtrans(0.36697247706)), #eyebrows
-        (0, 0), "images/Characters/Vira/Vira_eyes_open.png",#eyes
+        (0, 0), At("images/Characters/Vira/Vira_eyes_open.png",zoomtrans(0.36697247706)),#eyes
         (0, 0), At(WhileSpeaking(
             "Vira",
             ConditionSwitch(
