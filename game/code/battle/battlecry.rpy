@@ -213,6 +213,7 @@ label battlecry:
     $ damagecard = ("attack" in currentcardfunctions) 
     if currentcard.NAME=="MailSaber" or currentcard.NAME=="FlameSaber":
       $ forcefinish = True
+    
     if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True) or forcefinish:
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
       voice "voice/ILY24B - Break down & disappear!.mp3"
@@ -238,6 +239,8 @@ label battlecry:
         voice "voice/ILY05 - Swing light sword sounds.mp3"
         i"Nnnhhhh!"
         $vcount=0
+    if forcefinish:
+      $ forcefinish=False
     return
 label hurtnoise_Ave:
     if enemyName=="Ave":

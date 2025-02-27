@@ -1,11 +1,3 @@
-
-label script2:
-        $ map_active=False
-        hide screen mapB
-        ""
-        call installvira
-        $ game_over=True
-        return
 # """    Outline
 #     Part 1
 #     Hilbert forms team
@@ -35,19 +27,77 @@ label script2:
 #     "(That he) wasn’t expecting Vira. but he doesn’t mind getting someone to fight with"
 #     (Hinting at his goal to pursue ILY)
 #     Maybe he also kinda didn’t want to reveal his goals but it just came out of his mouth
-#     ⇒ blabbermouth
 
 # """    
-# Part 1
-label installvira:
-    h "Alright I've decided!"
+label script2:
+
+    "Chapter 2: A New Friend" #(Can change chapter name anytime)
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
+    play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
+    "TODO: SHOW LOADING SCREEN INSTALLING VIRA"
+
+    "Hilbert and Lisa are now waiting for the installation to finish."
+    "V.I.S. or Vira Internet Solutions is a long-running company with rich history."
+    "Lisa's father, who works there, made this all possible, even though this copy we have is still a test version."
+    "Something about this seems really convenient, but I'll take it."
+  
     
-    # ~~~~[to be filled in later]~~~~
+    "TODO: SHOW FULL LOADING SCREEN INSTALLING VIRA"
+    "INSTALLATION COMPLETE"
 
     i "John, it's done now."
-    "I look toward the screen, ILY is waving at us excitedly from the other side."
-    "One of her arms is wrapped around Vira who's positioned awkwardly next to her."
+    j "Here it is.."
+    show Vira
+    $ Lisa_w=True
+    v "Greetings, My name is Vira. I am an Antivirus. The Next Generation: FAI."
+    v "At your service!"
+    v "Pleased to meet you, John Doe."
+    j "P-pleasure."
+    h "Woah, isn't she kind of cute?"
+    l "Yeah... "
+    "Suddenly-  Vira's eyes brightly shone, alerting for danger."
+    "Out of the air, projected at the palm of her hand, she draws out her weapon, a gun, and points it at ILY."
+    v "Virus Detected! Identifying Target...  identity: ILOVEYOU Virus!"
+    v "Error... Unfamiliar Virus Signature..."
+    j "Vira, no! Don't attack ILY, She's on our side!"
+    v "Viruses must be eliminated. SoftWar ENGAGE!"
+    i "No, don't fight me! We're supposed to be friends!"
+    v "I cannot disobey my... protocols. Delete!!!"
+    call battlev3(ILY,Vira)
+    if playerHP<=0:
+      return
+    
+    "ILY's holding her ground...!"
+    l "No, You shouldn't fight!"
+    v "My Powersol Shield has been... bypassed?"
+    v "How.. I can't win.. the Virus Signature, is different from the ILOVEYOU Virus in my Database...?"
+    i "I'm.. different! I've been altered!"
+    v "No! altered or not, a Virus is Virus... I should be able to.. override your control!"
+    i "I'm on your side, listen to me!"
+    i "Our operator wants us to work together!"
+    v "I don't believe you!"
+    j "She's telling the truth, I installed you here so you can both work together!!"
+    v "!!"
+    v "Say that again?"
+    j "You should work together with ILY!! I have use for the ILOVEYOU Virus!"
+    v "You... should have spoken sooner."
+    j "I did speak.."
+    h "Yeah, like once."
+    j "I was... observing..."
+    v "I will stop fighting the ILOVEYOU Virus for now."
+    h "Looks like she will only listen to you. Tell them to cooperate or something."
+    j "Vira, ILY will serve as my assistant here, So you two have to cooperate. Don't try to delete her!!"
+    v "Yes. Ok then.."
+    j "Vira, show me what you can do! We have to try to detect for traces of FAI Viruses in SDS."
+    v "Show me where this SDS area is..!"
 
+
+    return
+
+
+label SDS_Encounter:
+    
     # Part 2
     j "So let's get to it now then."
     l "Right."
@@ -57,8 +107,8 @@ label installvira:
     h "Alright looks like everything is going nicely. This is perfect."
     "Lisa shoots him a concerned look."
     h "What? It's going pretty good so far right?"
-    j "Too early to say it right now."
-    l "Anything could still happen in a remote access, we don't know what happened back then either."
+    # j "Too early to say it right now."
+    # l "Anything could still happen in a remote access, we don't know what happened back then either."
     l "All the diagnostic runs turned back alright, but something could still go wrong."
     i "It's okay, I'm here if anything happens."
     j "Thank you ILY"
@@ -66,7 +116,7 @@ label installvira:
     v "Hey I'm the one scouting here, cut me some credits will you?"
     i "I'm cheering for you Vira. Show us how it's done by an Anti-virus."
     v "O-okay! Definitely! This is what I'm good at."
-    h "Yeah we got nothing to worry about. Those should be the top of the class ai right? Nothing I know can affect them."
+    h "Yeah we got nothing to worry about. Those should be the top of the class AI right? Nothing I know can affect them."
     "Maybe I should brief him about Bitwulf later, but now's probably not a good time."
     i "?"
     # ["Port Access:granted"]

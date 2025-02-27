@@ -114,6 +114,12 @@ transform blinky:
     linear 0.1 alpha 0.0
     linear 0.1 alpha 1.0
     repeat
+init python:
+    def NullSideImage():
+
+        global showsideimage
+        showsideimage=False
+        return Null()
 screen say(who, what):
     style_prefix "say"
     if say_shop_mode:

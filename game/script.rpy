@@ -222,25 +222,6 @@ image whitewindow = "images/computer/whitewindow.png"
 image dlcomp = "images/computer/Download Complete.png"
 image dlheart = "images/computer/Download-heart.png"
 image iconalert = "images/computer/iconalert.png"
-label download_complete:
-    scene blue with Dissolve(0.2)
-    show Folders with dissolve
-
-    show whitewindow:
-        zoom 0.0  xpos 0.5 xanchor 0.5 yalign 0.5
-        linear 0.2 zoom 1.0
-
-    pause 0.5
-    show dlcomp:
-        alpha 0.0 xalign 0.5 yalign 0.5
-        linear 0.3 alpha 1.0 xalign 0.5 yalign 0.45
-    pause 0.5
-    show dlheart with Dissolve(0.1):
-        xalign 0.5 yalign 0.52
-        alpha 0.0
-        linear 0.3 alpha 1.0
-    return
-
 label download_hide:
     hide dlcomp
     hide dlheart

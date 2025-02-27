@@ -175,6 +175,8 @@ init -1 python:
             globals()["showsideimage"]=Melissa_w
         elif (name == "Stoned"):
             globals()["showsideimage"]=Stoned_w
+        elif (name == "Bitwulf"):
+            globals()["showsideimage"]=Bitwulf_w
         elif (name == "Brain"):
             globals()["showsideimage"]=Brain_w
         elif (name == "ILY"):
@@ -921,7 +923,7 @@ image side Lisa_side:
         "Lisa_w==False","Null_side")
 
 image Null_side:
-    Null(width=440,height=565)
+    Null()
 
 image LisaEyes:
     choice:
@@ -1184,7 +1186,17 @@ image ViraMouthsmile:
     pause .05
 
     repeat
+image ViraEyes:
+    "images/Characters/Vira/Vira_msmile2.png"
+    pause .08
+    "images/Characters/Vira/Vira_msmile.png"
+    pause .05
+    "images/Characters/Vira/Vira_msmile2.png"
+    pause .1
+    "images/Characters/Vira/Vira_msmile.png"
+    pause .05
 
+    repeat
 image ViraMouthfrown:
     "images/Characters/Vira/Vira_mO2.png"
     pause .08
@@ -1899,7 +1911,7 @@ layeredimage StonedFull:
     # always:
     #     "Stoned_Guns"
     xalign 0.5
-
+    
 # zoom 0.60
 
     # LiveComposite(
@@ -1916,14 +1928,17 @@ layeredimage StonedFull:
 image Stoned:
     # (LiveCrop((479,0,611,2413),"StonedFull"))
     "StonedFull"
-    xoffset -200
-    yanchor 0.54 ypos 1.0  zoom 0.56
+    # xoffset -200
+    yanchor 0.58 ypos 1.0  zoom 0.56
     # zoom 0.56 
     # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
     # pause .5
     # repeat
+image Stonedshop:
+    "Stoned"
+    xoffset -200
 image Stonedsmall:
     "StonedFull"
     zoom 0.60
@@ -2018,11 +2033,10 @@ image Bitwulf:
     )
     zoom 0.25 xalign 0.5 yanchor 0.05 ypos 0.0
 image Bitwulfsmall:
-    "Bitwulf"
-    zoom 0.80
+    (LiveCrop((260,90,300,385),At("Bitwulf",zoomtrans(0.8))))
 image side Bitwulf_side:
     ConditionSwitch(
-            "Bitwulf_w==True",(LiveCrop((260,90,300,385),"Bitwulfsmall")),
+            "Bitwulf_w==True","Bitwulfsmall",
             "Bitwulf_w==False","Null_side"
         )
     zoom 0.56

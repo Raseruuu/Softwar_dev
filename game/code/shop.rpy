@@ -117,7 +117,7 @@ screen item_shop:
         image "gui/rpgmenu/frame1.png" at pausetrans3 xalign 0.0 yalign 0.0
         image "gui/rpgmenu/frame2.png" at pausetrans4 xalign 1.0 yalign 1.0
 
-    add "Stoned":
+    add "Stonedshop":
         xpos 0.25 xanchor 0.5 yanchor 0.60 ypos 1.0 
         # xpos 0.06 xanchor 0.5
         if not notransform:

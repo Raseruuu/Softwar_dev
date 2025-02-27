@@ -1012,9 +1012,16 @@ label Concatenation:
     python:
         battlecodetypes=""
         for battlewarecode in playerbattlecode:
-            battlecodetypes+=battlewarecode.TYPE
+            battlecodetypes+=battlewarecode.type
+
     # "[battlecodetypes]"   
     python:    
+        import re
+
+        def replace_whole_word_from_string(word, string, replacement=""):
+            regular_expression = rf"\b{word}\b"
+            return re.sub(regular_expression, replacement, string)
+
         concat_true=False
         card3concatenation=False
         playerbattlecode_b4concat=copy.deepcopy(playerbattlecode)
@@ -1023,7 +1030,7 @@ label Concatenation:
             prefix_card=card
             for concat_index,Concat_str in enumerate(Concat_strings):
 
-                if card.TYPE in Concat_str:
+                if card.TYPE in Concat_str and not concat_true:
                     if battle_index<len(playerbattlecode)-1:
                         suffix_card=playerbattlecode[battle_index+1]
                         suffix_card2 = None
@@ -1036,6 +1043,7 @@ label Concatenation:
                         # renpy.say("","[concatenated]")
                         concat_true =(Concat_str in battlecodetypes)
                         
+                        battlecodereduced=replace_whole_word_from_string("",battlecodetypes)
                         if suffix_card2TYPE!="" and concat_true :
                             card3concatenation=True
                         # concat_true=(concatenated==Concat_str)

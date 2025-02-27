@@ -65,27 +65,27 @@ label script1_2_dialog1:
     show battleroad:
         yalign 1.0 xalign 0.5
     with pixellate
-    $ ILY_w =False
-    $ ILY_m ="frown"
-    $ ILY_e ="down"
-    $ Ave_w =False
-    $ Ave_m ="frown"
-    $ Ave_e ="down"
+    # $ ILY_w =False
+    # $ ILY_m ="frown"
+    # $ ILY_e ="down"
+    # $ Ave_w =False
+    # $ Ave_m ="frown"
+    # $ Ave_e ="down"
 
-    show Ave:
-        xpos 0.9 xanchor 0.5
-    show ILY:
-        xpos 0.3 xanchor 0.5
-    a"ILY! There you are!! You escaped me before, but I'll delete you this time, worm!!"
-    i"No, you've got it all wrong!"
-    i"I'm not the same as the virus you once fought!"
-    show Ave:
-        xpos 0.911
-        pause 0.1
-        xpos 0.914
-        pause 0.1
-        repeat
-    a"Silence! I won't hear another word from a filthy Virus!"
+    # show Ave:
+    #     xpos 0.9 xanchor 0.5
+    # show ILY:
+    #     xpos 0.3 xanchor 0.5
+    # a"ILY! There you are!! You escaped me before, but I'll delete you this time, worm!!"
+    # i"No, you've got it all wrong!"
+    # i"I'm not the same as the virus you once fought!"
+    # show Ave:
+    #     xpos 0.911
+    #     pause 0.1
+    #     xpos 0.914
+    #     pause 0.1
+    #     repeat
+    # a"Silence! I won't hear another word from a filthy Virus!"
 
     $ ILY_w =True
     $ ILY_m ="smile"
@@ -252,7 +252,7 @@ label script1_2_dialog1:
 
 label Melissascript2:
     $ ILY_w=True
-    j "(Melissa knows quite a lot... It's an odd feeling to hear all this from a Virus we just met.)"
+    j "(Melissa knows quite a lot... It's an odd feeling to hear all that from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
     j "(You think?)"
     i "(I don't know if she realized it, since she is a stray virus... but Viruses can be under command of humans now.)"
@@ -419,14 +419,13 @@ label paidMelissa:
     show battleroad:
         yalign 1.0 xalign 0.5
     show ILY with dissolve
+    $ ILY_w=False
     i"..."
-    j"Listen, ILY."
-    j"I know I said we should try to hunt for Imperceptium... but now I think it's time to rest."
-    i"We aren't hunting tonight?"
-    j"Maybe tomorrow."
-    i"Ok then, John! Good night! Get a good rest."
-    i"I'd try to wake you up but I can't do that unless this device is on."
-    j"I'm never leaving my computer open again. Not without me watching you!"
+    j"Let's go find that imperceptium!"
+
+    # TODO: ADD Imperceptium Hunting section here!!
+    # Need to fight one Virus and finish it with FIRE
+    
     i"Ehh! I'm not a naughty Virus, I promise!"
     j"Funny you say that."
     j"You've been oddly cooperative today."
@@ -449,13 +448,19 @@ label teammeeting:
     #After this, John decides to review the day in his head and go to sleep.
     #TRANSITION TO MORNING
     scene white with dissolve
-    scene JD_Room with dissolve
+    scene JD_Space2 with dissolve
+    
+    
+    
     #Morning
     "Great, that's so much better. A good rest!!"
     "Today... I'll meet with Lisa again. Right?"
-    ""
+    "I'll go get dressed and clean up a bit..."
+    "There we go!"
+    scene JD_PC2 with dissolve
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     #E-mail from Lisa appears
+    $ ILY_w=True
     i"John!! You have 1 new unread e-mail! It's Lisa!"
     # "Huh... Right. We were together yesterday..."
     "I wonder if it's true that her dad has a FAI Antivirus?"
@@ -463,6 +468,8 @@ label teammeeting:
     i"OK!"
     #(change to lnvl) for e-mail view
     #Show NVL window
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
     nvl show
     emailnvl"Subject: Update on Antivirus!"
 
@@ -482,8 +489,10 @@ label teammeeting:
     "Huh.. We have to install it, but why at my place?"
     "SDS is the one that needs it. Maybe this is a test run?"
     "I thought we were gonna meet at Cafella again."
+    scene JD_Space2 with dissolve
+    
     "What am I gonna do?"
-    "I should fix up the place!"
+    "I should fix up the place some more!"
     i"John!! We really are getting a new friend?"
     j"Well, yeah. But I don't think she'd be friends with you. You're a Virus, remember?"
     i"We wouldn't know until we try!!"
@@ -498,6 +507,8 @@ label teammeeting:
     "???""Hello? anybody home?"
     "Eh?"
     "I take hold of the knob and open the door quite hastily."
+    scene JD_Door with dissolve
+    
     j"It's just Hilbert."
     h"Your pal, Hilbert!"
     h"I knew it! This is where you live!"
@@ -527,8 +538,10 @@ label teammeeting:
     j"ILY, can you umm... be quiet for a sec?"
     i"I refuse."
     j"What?"
+
     h"Hey John?"
-    
+    show Hilbert with dissolve
+    $ Hilbert_w=False
     h"Nice place you got here."
     j"HEY! Aren't you trespassing?"
     h"Come on, we're friends!"
@@ -536,6 +549,10 @@ label teammeeting:
     h"You left the door unlocked so I came in."
     "I really did?"
     "..."
+    scene JD_PC1 with dissolve
+    scene JD_PC2 with dissolve
+    show Hilbert with dissolve:
+        xalign 0.8
     "Hilbert stares at my PC."
     h"A Virtual Streamer? I didn't know you were into that, John!"
     h"That's quite the impressive and cute avatar model!"
@@ -551,13 +568,18 @@ label teammeeting:
     j"No, it's not super cool."
     h"But like, she can talk, right?"
     "Hilbert moves closer to my computer."
-
+    
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
+    show ILY
+    $ ILY_w=False
+    $ Hilbert_w=True
     #Transition to ILY screen
     h "Hello there, I'm Hilbert, John's best friend!"
     i "Confirmed. You are indeed Hilbert, from John's contacts."
     j "I don't know about \"Best friend\"."
     h "Hey! She recognized my face!"
-    j "Yeah, she's pretty high tech."
+    j "Yeah, she's pretty advanced."
     h "Also, you ARE my best friend, because I'm your ONLY friend!"
     j "Wha, you don't know that for certain."
     h "It's true, at least at uni. I never see you with anyone else!"
@@ -576,6 +598,7 @@ label teammeeting:
     h "That's kind of a waste."
     h "It's like we're living in a Sci-fi story with tech like that!"
     j "Tell me about it.."
+
     h "Don't you think it's crazy, what's been going on at my Dad's company?"
     h "I bet some bot is involved with last night's events."
     j "!!!"
@@ -654,7 +677,7 @@ label teammeeting:
     h "When ILY arrives at SDS... She has to NOT activate her Virus Algorithm thing!"
     j "About that... "
     #Lisa Arrives
-    show Lisa with dissolve
+    $Lisa_w=True
     l"Knock! Knock!"
     l "Hello?"
     j "Ah! It's Lisa."
@@ -668,6 +691,10 @@ label teammeeting:
     "Gah!! I gotta get the door!"
     "Lisa walks in.. She has a curious expression on her. I wonder what she thinks now!?"
     "Lisa makes gavel slam gesture out of her 2 hands as if she's come up with some sort of realization."
+    $Lisa_w=False
+    scene JD_Space2 with dissolve
+    $ ILY_w=True
+    show Lisa with dissolve
     l "Hilbert! It's you!"
     j "Uhh, Hilbert is..."
     l "I suppose you're curious as to what happened with SDS too?"
@@ -706,6 +733,12 @@ label teammeeting:
     j "Right. Let's see what we got here, Lisa!"
     h "A drive, huh! So you planned on testing it here first, before SDS."
     l "Yes!"
+    "Lisa hands me the Drive with Vira in it... Could I not have been able to download it through some cloud storage?"
+    "I know this isn't some final version of the software, so she can't hand me a \"For Sale\" copy. Perhaps it requires faster transfer speeds then?"
+    "Like.. Lisa wants to be sure it works, it looks like.."
+    "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
+    scene black
+
     "Chapter1 End"
 
 
