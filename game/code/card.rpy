@@ -34,7 +34,7 @@ screen Card(cardobj,position=(0.5,0.5),zoomvalue=1.0):
             add FunctionList(cardobj.FXN)
         text "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}" style "cardshadows":
             pos (11,204)
-            zoom 20*len(cardobj.NAME)/400
+            xzoom 20*len(cardobj.NAME)/400
 
         text "{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}" style "cardoutlines" :
             pos (168,196)
