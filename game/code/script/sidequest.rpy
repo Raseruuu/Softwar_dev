@@ -44,7 +44,7 @@ label milk_adventure:
     i"Ah! This must be it?"
     sv"Yup, here we are."
     i"Suddenly I'm a bit exhausted, I'm not used to my chest being this heavy.. What happened?"
-    sv"You asking me? No clue, but that circumstance is just perfect for your job here today!
+    sv"You asking me? No clue, but that circumstance is just perfect for your job here today!"
     i"What do you mean?"
     sv"Let's get to work! will you put this on, it'll be perfect for you!"
     i"gah! Why that's a bit.."
