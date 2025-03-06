@@ -45,8 +45,8 @@ label milk_adventure:
     sv"Yup, here we are."
     i"Suddenly I'm a bit exhausted, I'm not used to my chest being this heavy.. What happened?"
     sv"You asking me? No clue, but that circumstance is just perfect for your job here today!
-    i"What do you mean?
-    sv"Let's get to work! will you put this on, it'll be perfect for you!
+    i"What do you mean?"
+    sv"Let's get to work! will you put this on, it'll be perfect for you!"
     i"gah! Why that's a bit.."
     sv"It's a uniform in here, someone just like you is rocking it in there, too."
     sv"You two could probably get along well!"
