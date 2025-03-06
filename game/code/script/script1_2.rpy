@@ -1,8 +1,4 @@
-label hideMapview:
-    $ map_active=False
-    $ quick_menu=True
-    hide screen mapB
-    return
+
 label prescript1_2:
     
     
@@ -23,8 +19,13 @@ label prescript1_2:
 label script1_2:
     if gameprogress==0:
         call script1_2_map1
-        call script1_2_dialog1
+        if playerHP<=0:
+            return
+        # call script1_2_dialog1
+        # Imperceptium Hunt Mission Dialogue
         call script1_2_map2
+        if playerHP<=0:
+            return
     
     # $ renpy.Rollback()
     # call script1_2_map2
@@ -60,7 +61,6 @@ label script1_2_dialog1:
     #     return 
     $ GRID[(192,165)]=stageBCD2
     # $ GRID[(192,165)]=stageBCD2
-    ""
     show scrollingBG at scroll
     show battleroad:
         yalign 1.0 xalign 0.5
@@ -173,7 +173,7 @@ label script1_2_dialog1:
     "How? body language? The fact that we didn't know about ...Bitwulf?"
     "These FAIs aren't to be taken lightly.."
     i "(She's right.. I am a newbie...)"
-    j "(You're not the only newbie here, ILY. the entire GRID is also new, right?)"
+    j "(You're not the only newbie here, ILY. The entire GRID is also new, right?)"
     i "Oh no!... this cyberworld is pretty new, that's all!"
     $ Melissa_e="normal"
     $ Melissa_m="open"
@@ -224,7 +224,10 @@ label script1_2_dialog1:
         xalign 0.7 
     show Melissa with ease:
         xalign 0.3
-    s "Hey, I'm not a fighter either, I'm just a dealer, I'll try to catch up when we start running."
+    $ Stoned_w=False
+    s "Hey."
+    s"You can call me Stella. Stoned is a bit of an awkward name."
+    s"I'm not a fighter either, I'm just a dealer, I'll try to catch up when we start running."
     m "What did you build that cannon for, if we don't end up using it?"
     i "Hehehe! Chekhov's Cannon!"
     s "Like she said, we have only tested it on weak viruses, the output is quite big."
@@ -248,9 +251,6 @@ label script1_2_dialog1:
     hide Stoned with dissolve
     show Melissa with ease:
         xalign 0.5
-    return
-
-label Melissascript2:
     $ ILY_w=True
     j "(Melissa knows quite a lot... It's an odd feeling to hear all that from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
@@ -274,6 +274,11 @@ label Melissascript2:
     i "(I'm not heavy! That preserves my bishoujo image, doesn't it?)"
     "They've simulated weight here just fine, but the entities participating in this world are also largely superhuman."
     "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
+    m"I suggest that you speak with Stoned, she'll be staying right here, so check her wares! "
+    i"Alrighty!"
+    return
+
+label Melissascript2:
     j "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
     i "(Oh! She did mention... That \"they were on patrol around these hours\")"
     j "(Yeah. It could be a schedule or something.)"
@@ -424,7 +429,7 @@ label paidMelissa:
     j"Let's go find that imperceptium!"
 
     # TODO: ADD Imperceptium Hunting section here!!
-    # Need to fight one Virus and finish it with FIRE
+    # Need to fight one Virus and finish it with FIRE / BURN status
     
     i"Ehh! I'm not a naughty Virus, I promise!"
     j"Funny you say that."

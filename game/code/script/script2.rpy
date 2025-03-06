@@ -50,12 +50,14 @@ label script2:
     j "Here it is.."
     show Vira
     $ Lisa_w=True
+    
     v "Greetings, My name is Vira. I am an Antivirus. The Next Generation: FAI."
     v "At your service!"
     v "Pleased to meet you, John Doe."
     j "P-pleasure."
     h "Woah, isn't she kind of cute?"
     l "Yeah... "
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     "Suddenly-  Vira's eyes brightly shone, alerting for danger."
     "Out of the air, projected at the palm of her hand, she draws out her weapon, a gun, and points it at ILY."
     v "Virus Detected! Identifying Target...  identity: ILOVEYOU Virus!"
@@ -67,7 +69,8 @@ label script2:
     call battlev3(ILY,Vira)
     if playerHP<=0:
       return
-    
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
     "ILY's holding her ground...!"
     l "No, You shouldn't fight!"
     v "My Powersol Shield has been... bypassed?"

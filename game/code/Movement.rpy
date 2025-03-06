@@ -98,12 +98,19 @@ label checkwalls:
       $ map_active=False
       call eventdoor 
    return
+label hideMapview:
+    $ map_active=False
+    $ quick_menu=True
+    hide screen mapB
+    return
 
 label eventdoor:
-    if "script" in Here:
-      return
-    else:
-      $renpy.jump(str(Here))
+    $renpy.jump(str(Here))
+    # python:
+    #   print("aaaa")
+    return
+    # else:
+    #   $renpy.jump(str(Here))
     
 # label poschange:
 #     ""
@@ -114,7 +121,7 @@ label mapcall(position,stage):
     #position is an (x,y) tuple declaring place in map.
     #stage is declared by stage number: stage = stage1
     #call mapcall((5,5),stage1)
-    play music "bgm/ost/Grid_noyemi_K.mp3"
+    play music "bgm/ost/Grid_noyemi_K.ogg"
     call addsprites(gridpos)
     python:
         boxsheet = stage
@@ -202,7 +209,7 @@ label mapresume:
     if game_over==True:
       return
     $ pausemenu=False 
-    play music "bgm/ost/Grid_noyemi_K.mp3"
+    play music "bgm/ost/Grid_noyemi_K.ogg"
     scene battlebg
     show scrollingBG at scroll
     # $ boxsheet = globals()["GRID"][(gridpos[0],gridpos[1])]
@@ -578,6 +585,8 @@ label randomencounter:
           hide screen mapA
           call battlev3(ILY,enemyvirus)
           if playerHP<=0:
+              $ game_over=True
+              $ map_active=False
               return
           $ enemy_encounter=False
           $ map_active=True

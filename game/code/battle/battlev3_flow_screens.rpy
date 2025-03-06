@@ -35,6 +35,9 @@ transform xZoom(value):
 style statusoutlines:
     size 40
     outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
+style statusoutlines_red:
+    size 40
+    outlines [(2, "#bf0505", -1, 1),(4, "#bf0505", 0, 0)]
 style HPbaroutlines:
     size 14
     outlines [(2, "#79000b", 0, 0)]
@@ -84,7 +87,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xsize 380 ysize 120
-        xpos 0.01 xanchor 0.0 ypos 0.54 yanchor 0.5
+        xpos 0.01 xanchor 0.0 ypos 0.58 yanchor 0.5
         
         vbox:
             vbox:
@@ -111,9 +114,10 @@ screen battlestats():
             hbox:
                 style_prefix "battlestats"
                 image "Icon_[playerName]" at zoomtrans(0.8)
-                null width 8
+                spacing 10
                 vbox:
-                    text "{b}{size=16}[playerName]{/b}{/size}"
+                    
+                    text "{b}{size=24}[playerName]{/b}{/size}"
                     vbox:
                         fixed:
                             ysize 24
@@ -126,9 +130,11 @@ screen battlestats():
                                 style_prefix "healthbar"
                                 xsize bar_size(playerHP,playerHPMax,235)
                                 ysize 22
-                            
-                            text "{b}HP: [playerHP]/[playerHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
-                        null height 4
+                            hbox:
+                                yalign 0.5 xalign 0.05
+                                add "gui/HP_Heart.png" yalign 0.5 
+                                text "{b}[playerHP]/[playerHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
+                        null height 10
                         fixed:
                             ysize 24
                             frame:
@@ -141,7 +147,11 @@ screen battlestats():
                                 xsize bar_size(playerSP,playerSPMax,235)
                                 ysize 22
                             
-                            text "{b}SP: [playerSP]/[playerSPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
+                            hbox:
+                                yalign 0.5 xalign 0.05
+                                add "gui/SP_Shield.png" yalign 0.5 
+                                text "{b}[playerSP]/[playerSPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
+                                
                         null height 10
                         # text "ATK: [playerATK]  DEF: [playerDEF]"
                         hbox:
@@ -160,27 +170,28 @@ screen battlestats():
                                 text "DEF: [playerDEF_m]"
                         
                         null height 5
-                    vbox:
-                        text "{size=14}{b}STATUS{/size}{/b}" xalign 0.0
-                        grid 8 2:
-                            for fxns in PlayerSts:
-                                # image "gui/battlests/[fxns].png"
-
-                                if type(fxns)== list:
-
-                                    # else:
-                                    image "gui/battlests/[fxns[0]].png" at zoomtrans(0.5)
-                                elif type(fxns) == str:
-                                        # frame:
-                                        #     background Null()
-                                        #     image "gui/battlests/token.png"
-                                        #     text "{size=3}{font=font/adventpro-bold.ttf}[fxns]{/size}{/font}" xalign 0.5 yalign 0.82
-                                    image "gui/battlests/[fxns].png" at zoomtrans(0.6)
-                            for fillerz in range(0,16-len(PlayerSts)):
-                                # null width 50 height 50
-                                image "gui/battlests/Empty.png" at zoomtrans(0.6)
+                    
+                        
             vbox:
-        
+                null height 8
+                text "{size=14}{b}Self_Status{/size}{/b}" xalign 0.0
+                grid 8 2:
+                    for fxns in PlayerSts:
+                        # image "gui/battlests/[fxns].png"
+
+                        if type(fxns)== list:
+
+                            # else:
+                            image "gui/battlests/[fxns[0]].png" at zoomtrans(0.9)
+                        elif type(fxns) == str:
+                                # frame:
+                                #     background Null()
+                                #     image "gui/battlests/token.png"
+                                #     text "{size=3}{font=font/adventpro-bold.ttf}[fxns]{/size}{/font}" xalign 0.5 yalign 0.82
+                            image "gui/battlests/[fxns].png" at zoomtrans(0.9)
+                    for fillerz in range(0,16-len(PlayerSts)):
+                        # null width 50 height 50
+                        image "gui/battlests/Empty.png" at zoomtrans(0.9)
                 text "{size=14}{b}BITS{/size}{/b}" xalign 0.0
                 frame:
                     style_prefix "bit"
@@ -210,38 +221,50 @@ screen battlestats():
                 if enemyName in boss_list: 
                     image "Icon_[enemyName]" xalign 1.0  at zoomtrans(0.8)
                 else:
-                    null width 130 height 175
+                    null width 115 height 154
+                spacing 10
                 vbox:
                     xalign 1.0
-                    text "{b}{size=16}[enemyName]{/b}{/size}" xalign 1.0
+                    text "{b}{size=24}[enemyName]{/b}{/size}" xalign 1.0
                     vbox:
                         fixed:
                             ysize 24
                             frame:
-                                    style_prefix "healthbar_bg"
-                                    xsize 235
-                                    ysize 24
+                                
+                                style_prefix "healthbar_bg"
+                                xsize 235
+                                xalign 1.0 
+                                ysize 24
                             frame:
                                 yalign 0.5
+                                xalign 1.0
                                 style_prefix "healthbar"
+                                
                                 xsize bar_size(enemyHP,enemyHPMax,235)
                                 ysize 22
                             
-                            text "{b}HP: [enemyHP]/[enemyHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
-                        null height 4
+                            hbox:
+                                yalign 0.5 xalign 0.95
+                                text "{b}[enemyHP]/[enemyHPMax]{/b}" style "HPbaroutlines" yalign 0.5 
+                                add "gui/HP_Heart.png" yalign 0.5 
+                        null height 10
                         fixed:
                             ysize 24
                             frame:
+                                xalign 1.0
                                 style_prefix "healthbar2_bg"
                                 xsize 235
                                 ysize 24
                             frame:
                                 yalign 0.5
+                                xalign 1.0
                                 style_prefix "healthbar2"
                                 xsize bar_size(enemySP,enemySPMax,235)
                                 ysize 22
-                            
-                            text "{b}SP: [enemySP]/[enemySPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
+                            hbox:
+                                yalign 0.5 xalign 0.95
+                                text "{b}[enemySP]/[enemySPMax]{/b}" style "SPbaroutlines" yalign 0.5 xalign 0.95
+                                add "gui/SP_Shield.png" yalign 0.5 
                         null height 10
                         hbox:
                             xalign 1.0
@@ -261,23 +284,24 @@ screen battlestats():
                         null height 5
                         
                         null height 5
-                        vbox:  
-                            # null height 57
-                            text "{size=14}{b}STATUS{/size}{/b}" xalign 1.0
-                            grid 8 2:
-                                xalign 1.0
-                                for fxns in EnmySts:
-                                    # image "gui/battlests/[fxns].png"
-                                    if type(fxns)== list:
-                                        image "gui/battlests/[fxns[0]].png" at zoomtrans(0.6)
-                                    elif type(fxns) == str:
-                                        image "gui/battlests/[fxns].png" at zoomtrans(0.6)
-
-                                for fillerz in range(0,16-len(EnmySts)):
-                                    # null width 50 height 50
-                                    image "gui/battlests/Empty.png" at zoomtrans(0.6)
+                        
                         
             vbox:    
+                null height 8
+                        # null height 57
+                text "{size=14}{b}Target_Status{/size}{/b}" xalign 1.0
+                grid 8 2:
+                    xalign 1.0
+                    for fxns in EnmySts:
+                        # image "gui/battlests/[fxns].png"
+                        if type(fxns)== list:
+                            image "gui/battlests/[fxns[0]].png" at zoomtrans(0.9)
+                        elif type(fxns) == str:
+                            image "gui/battlests/[fxns].png" at zoomtrans(0.9)
+
+                    for fillerz in range(0,16-len(EnmySts)):
+                        # null width 50 height 50
+                        image "gui/battlests/Empty.png" at zoomtrans(0.9)
                 text "{size=14}{b}BITS{/size}{/b}" xalign 1.0
                 frame:
                     style_prefix "bit"
@@ -465,7 +489,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ battle_active=True
     $ battle_done=False
     $ playerName = PFAI.name
-    $ playerSP = PFAI.SP
+    # $ playerSP = PFAI.SP
+    $ playerSP = 0
     $ playerATK = PFAI.ATK
     $ playerDEF = PFAI.DEF
     $ playerDeck = deckcurrent
@@ -509,7 +534,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         enemyName = EnemyFAIstats["name"]
         enemyHP = EnemyFAIstats["HP"]
         enemyHPMax = EnemyFAIstats["HP"]
-        enemySP = EnemyFAIstats["SP"]
+        # enemySP = EnemyFAIstats["SP"]
+        enemySP = 0
         enemySPMax = EnemyFAIstats["SPMAX"]
         enemyDeck = EnemyFAIstats["Deck"]["content"]
         enemyATK = EnemyFAIstats["ATK"]
@@ -548,6 +574,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         yalign 1.0 xalign 0.5
     show Enemy:
         xalign 0.5 yanchor 0.32 ypos 0.3
+        
 
     if playerName=="ILY":
         voice "voice/ILY11C - I'll show you.mp3"

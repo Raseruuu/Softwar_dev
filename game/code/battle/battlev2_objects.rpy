@@ -273,8 +273,8 @@ init python:
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
     MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in enemy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 
-    RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
+    RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
+    SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
 
     HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
     ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.0,   [Recover(1000),NullFxn()],          2)
@@ -297,8 +297,8 @@ init python:
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 #SaberSkills
-    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in plyr_status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer
     ImpactHammer = Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Retreat(3)],            3)
     

@@ -78,6 +78,8 @@ default shop_active=False
 label maptalk_Stella:
     
     if Stella_talk==0:
+        $ Stoned_w=True
+        $ ILY_w=True
         s"Hey! You're like us."
         $ILYSprite("o")
         i"You're a virus...!"

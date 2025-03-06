@@ -272,9 +272,9 @@ label script1:
     
     label question1_demo:
       
-      $ q_TheGrid = "The Grid" if q1_read_pc and not q1_read_grid else "???" 
+      $ q_TheGrid = "The GRID" if q1_read_pc and not q1_read_grid else "???" 
       if q1_read_grid:
-        $ q_TheGrid = "The Grid"
+        $ q_TheGrid = "The GRID"
       $ q_Softwar = "Softwar" if q1_read_ily and q1_read_grid else "???" 
       if q1_read_ily and q1_read_grid:
           play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadeout 1 loop
@@ -419,19 +419,19 @@ label script1:
             j "That's perfect. Let's move on."
 
             $ ILYSprite("smile")
-            i "Oh yeah, the third thing! You should know about the Grid!"
-            i "Every FAI program is a package to set up the computer for the Grid!"
-            "The Grid...? I'll have to ask about that."
+            i "Oh yeah, the third thing! You should know about the GRID!"
+            i "Every FAI program is a package to set up the computer for the GRID!"
+            "The GRID...? I'll have to ask about that."
             $q1_read_pc = True
             jump question1_demo
 
         "[q_TheGrid]" if q1_read_pc and not q1_read_grid:
             $ ILYSprite("smile3")
-            j "What's this Grid all about?"
-            i "The Grid is the name for the place we cyberpeople step into!"
-            i "As I've said earlier, this PC can now access the Grid. FAI programs installed can automatically access the Grid."
-            i "I'm a FAI virus, so naturally, here I am. This desktop now is the Grid version of what you've been using."
-            i "Not every program can enter the Grid."
+            j "What's this GRID all about?"
+            i "The GRID is the name for the place we cyberpeople step into!"
+            i "As I've said earlier, this PC can now access the GRID. FAI programs installed can automatically access the GRID."
+            i "I'm a FAI virus, so naturally, here I am. This desktop now is the GRID version of what you've been using."
+            i "Not every program can enter the GRID."
             i "Think of it as another dimension aside from the usual interface you see on the computer."
 
             "How come I've never heard of any of this before? It almost sounds like a conspiracy."
@@ -448,8 +448,8 @@ label script1:
                 "It all falls back to this Softwar battle."
             i "Since I have control of your computer, I won't allow you to install an antivirus."
             "Damn. She saw through me."
-            j "If I understand correctly... The Grid is a place only FAI programs can get into, so it's isolated space from the one regular programs reside in."
-            j "So the Softwar is a Grid-exclusive battle of programs... Right?"
+            j "If I understand correctly... The GRID is a place only FAI programs can get into, so it's isolated space from the one regular programs reside in."
+            j "So the Softwar is a GRID-exclusive battle of programs... Right?"
             i "Correct! You're easy to pick up on things."
             if q1_read_ily:
                 i "I should definitely start telling you about this Softwar."
@@ -505,7 +505,7 @@ label script1:
             i "With current technology, a game of Softwar can't be rigged. A foolproof system. A hacker's masterpiece."
 
             j "Really..."
-            i "The Grid, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
+            i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
             j "An elaborate system of AIs and Cyber battles like this will definitely be popular soon."
             i "A Softwar might happen soon in this PC, if we reconnect our Internet, so we better be careful."
             j "How exactly do I prepare for a Softwar though? Just in case?"
@@ -759,7 +759,7 @@ label date2:
         play music "bgm/Sunset_bgm_maoudamashii_acoustic42.mp3" fadeout 1 loop
         "How serious can it get? The whole AI virus fiasco is unbelievable."
         "I explained the whole story to Lisa."
-        "I told her about ILY, how she's a FAI Virus, living in the Grid and made to fight Softwars."
+        "I told her about ILY, how she's a FAI Virus, living in the GRID and made to fight Softwars."
         "She gets more curious after every bit about ILY."
         $ Lisa_m="frown"
         $ Lisa_e="mad"
@@ -839,12 +839,17 @@ label date2:
         l"I'm not sure if it's related to how we received viruses recently, but..."
         j"I don't think I want to get involved in that kind of trouble."
         scene cafeinside with dissolve
-        j"It's a different story."
-        j"We're just employees. Interns even."
+        j"If it's at all connected to the virus attack last night, I'd like to know why."
+        j"If it comes to something dire between SDS and some other organizatiion.. I don't want to be involved."
+        j"Though I can't deny my curiosity on this matter..."
         $Lisa_w = True
-
-        l"As much as I want to agree, we do have to keep safe."
-        j"..."
+        l"Right? Could this trouble be what Nick is talking about?"
+        j"Could be. But it's not like we're really \"in charge\" here. Since we're still just interns."
+        j"I'll talk to Hilbert about it later, perhaps. So they could deal with it."
+        l"I do hope we could get to the bottom of this!"
+        $JohnSprite('happy')
+        j"... You're so responsible."
+        
         j"Alright. Let's get going, I guess."
         scene cafeoutside2 with dissolve
         $ Lisa_m="smile"
@@ -854,7 +859,7 @@ label date2:
         j"Yeah?"
         $ Lisa_m="frown"
         $ Lisa_e="mad"
-        l"I'm really excited to see that A.I. Virus you got!"
+        l"I'm really excited to see that AI Virus you got!"
         j"Trust me, she's a total mess."
         l"Don't say that about {i}people you've just met!{/i}"
         "I can say what I want about {i}programs I just downloaded{/i}."
@@ -881,8 +886,7 @@ label date2:
         l"Ah, Hello there! I'm Lisa!"
         $ ILY_m='smile'
 
-        voice "voice/ILY07B - Thanks.mp3"
-        i"Thanks!"
+        i"Hi!"
         
         extend" Nice to meet you Lisa! I'm ILY!"
         i"I am now taking the role of \"Virtual Assistant\" for John!"
@@ -1661,7 +1665,7 @@ label date2:
         i"Welcome back John! How's it going?"
         j"Don't \"How's it going\" me! "
         extend"What have you been doing on, and online?"
-        i"I was um... Exploring the Grid!"
+        i"I was um... Exploring the GRID!"
         "No... I'm sure she's started sending my coordinates so a secret organization can recruit me for evil things."
         "Dammit. How could I let this slip by?!"
         i"I'll show you! Switch the monitor on!"
@@ -1695,11 +1699,11 @@ label date2:
         scene battlebg
         show scrollingBG at scroll
         show screen mapB
-        i"This is the Grid!"
+        i"This is the GRID!"
         i"Listen John, and listen carefully!"
         j"Gotcha."
         i"Basically here is where we are in the grid. Our home location, (192,168)!"
-        "The Grid cyberspace huh.. So it follows a cartesian plane system."
+        "The GRID cyberspace huh.. So it follows a cartesian plane system."
         j"It's so empty.. what do we even do in here?"
         i"Lots of things. But I'm not going to spoil!"
         j"What?"

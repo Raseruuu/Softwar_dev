@@ -305,6 +305,9 @@ init -1 python:
         if (emotion == "normal"):
             globals()["John_m"] = "smile"
             globals()["John_e"] = "normal"
+        elif (emotion == "happy"):
+            globals()["John_m"] = "smile"
+            globals()["John_e"] = "normal"
 
         elif (emotion == "frown"):
             globals()["John_m"] = "frown"
@@ -384,7 +387,7 @@ image ILYside3:
 image Icon_ILY:
     mesh True
     LiveCrop((230,80, 520,700), "ILYFullBody")
-    zoom 0.25
+    zoom 0.22
 
 
 image ILY:
@@ -459,6 +462,8 @@ layeredimage ILYFullBody:
     always:
         ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())
         # At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5))
+    # always:
+    #     ConditionSwitch("ILY_outfit!=''",At("ILY_outfit_back",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit back layer
     always:
         
         At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)) #pose
@@ -1163,17 +1168,21 @@ image ViraFull:
             "images/Characters/Vira/Vira_m[Vira_m].png"
         ),zoomtrans(0.36697247706))
     )
-
+image Virasmall:
+    "ViraFull"
+    zoom 2.0
 image Vira sidew:
     LiveCrop((140,40, 300,385), "ViraFull")
     zoom 0.56
+    
 image side Vira_side:
     ConditionSwitch(
         "Vira_w==True","Vira sidew",
         "Vira_w==False","Null_side")
 
 image Icon_Vira:
-    LiveCrop((280,100, 520,700), "ViraFull")
+    LiveCrop((280,100, 520,700), "Virasmall")
+    
     zoom 0.22
 image ViraMouthsmile:
     "images/Characters/Vira/Vira_msmile2.png"
@@ -1500,7 +1509,7 @@ image AveFull:
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
     
-    zoom 0.25
+    zoom 0.24
 image AveEyes:
     "images/Characters/Ave/Ave_eyes.png"
 

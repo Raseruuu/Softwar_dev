@@ -4,28 +4,51 @@ init python:
     #   NAME,TYPE,DESC,FXN  
     Unequip = Item_dress("Unequip","Outfit","Remove ILY's current outfit")    
     Uniform = Item_dress("Uniform","Outfit","ILY's regular outfit! It's like a College student's uniform.")
+    UniformBig = Item_dress("UniformBig","Outfit","ILY's regular outfit! It's like a College student's uniform.")
     Garden = Item_dress("Garden","Outfit","A Green Gardener's dress.")
     BladeArmor = Item_dress("BladeArmor","Outfit","ILY's Most powerful armor!")
     Bloomers = Item_dress("Bloomers","Outfit","Bloomers are good for Physical exercise!")
     PinkDress = Item_dress("PinkDress","Outfit","A cute casual outfit!")
+    CowGirl = Item_dress("CowGirl","Outfit","Something strange happened to ILY's breasts...")
+    BikiniArmor = Item_dress("BikiniArmor","Outfit","The charming and beautiful knightess charges on!")
+    SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spiritual warriors that maintain order!")
     
+
+    Red_underwear=Item_dress("Red","Underwear","ILY's Default underwear.")
+    White_underwear = Item_dress("White","Underwear","Classic underwear.")
     Red_underwear=Item_dress("Red","Underwear","Default.")
-    White_underwear = Item_dress("White","Underwear","Classic.")
+    
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! This one is a gift from Melissa.")
     
 
 
-    inventory_dress=[Unequip,Uniform,Red_underwear ,PinkDress,White_underwear]
+    inventory_dress=[
+        Unequip,
+        Uniform,
+        PinkDress,
+        Red_underwear,
+        White_underwear,
+        UniformBig,
+        CowGirl
+        ]
     
     def EquipDress(dresstype,dressname):
+        currentoutfit= globals()["ILY_outfit"]
+        currentunderwear= globals()["ILY_underwear"]
         if dressname=="Unequip":
             globals()["ILY_outfit"]=""
-        
+            if currentunderwear=="":
+                globals()["ILY_underwear"]="Red"
         elif dresstype.lower()=="outfit" and dressname!="Unequip":
+            if dressname.lower()=="cowgirl":
+                globals()["ILY_underwear"]=""
             globals()["ILY_outfit"]=dressname.lower()
         elif dresstype.lower()=="underwear":
+            if currentoutfit=="cowgirl":
+                globals()["ILY_outfit"]=""
             globals()["ILY_underwear"]=dressname.lower()
-        renpy.notify(dressname+" is now equipped.")
+        # elif dressname=="Unequip":
+        # renpy.notify(dressname+" is now equipped.")
         return    
 screen Items_dress(itemsmode="CUSTOMIZE"):
     python:
@@ -65,10 +88,6 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
                                     frame:
                                         xsize 60
                                         ysize 60
-                                        # if item.TYPE=="Material":
-                                        #     background "images/Cards/items/Material.png" at zoom05
-                                        # else:
-                                        #     background "images/Cards/items/"+item.NAME+".png" at zoom05
                                         background "images/rpg/"+item.TYPE+".png"
                                         if (inventory_counts[item.NAME])!=1:
                                             foreground At(Text("{size=38}{b}x"+str(inventory_counts[item.NAME])+"{/size}{/b}"),bottomright)
@@ -82,7 +101,7 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
                                             text "{size=16}{b}"+item.NAME+"{/size}{/b}{size=12}\n"+item.DESC+"{/size}" yalign 0.5
                                     transclude
                             if itemsmode=="CUSTOMIZE":
-                                action Function(EquipDress,item.TYPE,item.NAME,)
+                                action Function(EquipDress,item.TYPE,item.NAME)
                             else:
                                 action NullAction()
 
@@ -91,25 +110,7 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
                     # for itemfiller in range(0,40-len(inventory)):
                     for itemfiller in range(0,20-len(inventory_objects)):
                         null width 600
-                        # button:
-                        #     xsize 600
-                        #     xmaximum 200
-                        #     ymaximum 86
-                        #     frame:
-                        #         xpadding 12
-                        #         ypadding 12
-                        #         idle_background Frame("gui/framefxn.png",10,10)
-                        #         hover_background Frame("gui/framefxn2.png",10,10)
-                        #         hbox:
-                        #             xalign 0.0 yalign 0.5
-                        #             xsize 480+70
-                        #             ysize 50
-                        #             image  "images/Cards/items/empty.png" at zoom05
-
-                        #             null width 230
-
-                        #             # text item.NAME yalign 0.5
-                        #     action NullAction()
+                        
 
                 null width 10
     frame:
