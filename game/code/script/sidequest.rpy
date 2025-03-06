@@ -37,7 +37,7 @@ label milk_adventure:
     sv"Many people like to enjoy food and drink without knowing where they come from, tsk, tsk."
     sv"The shops around Connecht source their raw materials from our farm!"
     i"You mean, like.. Stella's items come from this place? How curious!"
-    sv"Hurry up, your missing out on an adventure!"
+    sv"Hurry up, you're missing out on an adventure!"
     i"For a stray virus, you're pretty pushy!"
     sv"You heard me talk all that and yet you call me a stray?"
     i"Sorry!"
