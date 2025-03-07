@@ -1,4 +1,7 @@
+define sv = Character("Stray Virus")
+
 label milk_adventure:
+    scene Road with pixellate
     show ILY
     i"According to Melissa, this item can boost my stats."
     i"How considerate of her!!"
@@ -12,19 +15,45 @@ label milk_adventure:
     
     i"I'm feeling a bit strange."
     i"Huh? Where am I?"
-    i"What's going on..."
+    i"What's going on... My chest feels.. heavy."
     $ EquipDress("outfit","UniformBig")
     show ILY with dissolve
-    "My.. breasts... aaahhh! what am I gonna do about this?"
+    "My.. breasts... aaahhh!!! Was it the drink?"
+    "My  breasts are so big now.."
     "Oh no..."
-    "A Virus?"
-    "I've been tricked?"
-    "But... Melissa.. "
-    "Virus""Would you like to have a part-time job here?"
-    i"Wha??"
+    "A stray Virus? No different than me, huh."
+    "Now.. Have I been tricked?"
+    "But... Melissa said..."
+    sv"Would you like to have a part-time job here?".
+    i"Wha?? Wait, you can talk?"
+    sv"Of course I can!"
+    i"A part time job?"
+    i"I'm not supposed to be here! I have a mission!"
+    sv"No! Wait, this job pays well! You can even keep some of your own produce."
+    i"What do you mean? My own produce?"
+    sv"Yeah, it'll be great, a win-win situation, just spend some time at the farm."
+    i"The farm?? There is a farm here at the Connecht GRID?"
+    sv"How else do we make products to sell?"
+    sv"Many people like to enjoy food and drink without knowing where they come from, tsk, tsk."
+    sv"The shops around Connecht source their raw materials from our farm!"
+    i"You mean, like.. Stella's items come from this place? How curious!"
+    sv"Hurry up, you're missing out on an adventure!"
+    i"For a stray virus, you're pretty pushy!"
+    sv"You heard me talk all that and yet you call me a stray?"
+    i"Sorry!"
+    i"Ah! This must be it?"
+    sv"Yup, here we are."
+    i"Suddenly I'm a bit exhausted, I'm not used to my chest being this heavy.. What happened?"
+    sv"You asking me? No clue, but that circumstance is just perfect for your job here today!"
+    i"What do you mean?"
+    sv"Let's get to work! will you put this on, it'll be perfect for you!"
+    i"gah! Why that's a bit.."
+    sv"It's a uniform in here, someone just like you is rocking it in there, too."
+    sv"You two could probably get along well!"
+    i".. Fine! So I can have a coworker friend huh!" 
     $ EquipDress("outfit","Cowgirl")
     show ILY with dissolve
-    ""
+    sv"Great! Looks like you can get started already."
     ""
     ""
     ""
