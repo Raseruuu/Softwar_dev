@@ -1079,7 +1079,10 @@ label Concatenation:
                         nextcard=suffix_card
                         concatenated=(card.TYPE)+(nextcard.TYPE)+suffix_card2TYPE
                         # renpy.say("","[concatenated]")
-                        concat_true =(Concat_str in battlecodetypes and card.TYPE!=nextcard.TYPE)
+                        typelength=len(card.TYPE)
+                        concatword1=Concat_str[:typelength]
+                        print("concatword is ="+concatword1)
+                        concat_true =(card.TYPE==concatword1 and Concat_str in battlecodetypes and card.TYPE!=nextcard.TYPE)
                         
                         # battlecodereduced=replace_whole_word_from_string("",battlecodetypes)
                         if suffix_card2TYPE!="" and concat_true and suffix_card2TYPE!=suffix_card.TYPE and nextcard.TYPE!=suffix_card2TYPE and card.TYPE!=suffix_card2TYPE and suffix_card2TYPE in Concat_str:
@@ -1099,7 +1102,7 @@ style concatoutlines:
     outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
 label Concat_anim(prefix,suffix,suffix2,concat_result):
     call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
-    $ flashuser = "ILY"
+    $ flashuser = "ILY" 
     if card3concatenation:
          $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n"+suffix2.TYPE+"-type Battleware "+suffix2.NAME+"\n Concatenate! " +concat_card_name+"!"
     else:

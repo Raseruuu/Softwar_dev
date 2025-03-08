@@ -40,6 +40,7 @@ label script1_2_map1:
     hide screen mapA
     return
 label script1_2_map2:
+    play music ""
     $ gridpos = [192,164]
     call addsprites(gridpos)
     call mapcall([6,5],stage_ShadyAlley)
@@ -116,7 +117,7 @@ label script1_2_dialog1:
     $ Melissa_e="down"
     $ Melissa_m="open"
     
-    mu "Watch out! they're on patrol on these hours."
+    mu "Watch out! They're on patrol on these hours."
     "Huh? who was that? It's another avatar!"
     "Suddenly, a flash of blue lightning strikes where ILY was standing!"
     "I was about to raise my voice in surprise, until I realized she was safe from it."
@@ -279,9 +280,11 @@ label script1_2_dialog1:
     return
 
 label Melissascript2:
+
     j "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
     i "(Oh! She did mention... That \"they were on patrol around these hours\")"
     j "(Yeah. It could be a schedule or something.)"
+    ""
     i "Is there a way to get past Bitwulf without fighting?"
     m "There is. Actually, They have a special maintenance period."
     m "Though, It's usually on weekends."

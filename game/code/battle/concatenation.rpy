@@ -1,5 +1,7 @@
 image speedbg:
     "Characters/GUNVAR/speedbg.png"
+image radialbg:
+    "Characters/GUNVAR/radialbg.png"
 image speedspikes:
     "Characters/GUNVAR/speedspikes.png"
 image GUNVARcloseup:
@@ -18,15 +20,16 @@ image GUNVAR:
     "Characters/GUNVAR/GUNVAR.png"
 image GattaiLightning:
     "Characters/GUNVAR/GattaiLightning1.png"
-    pause 0.2
+    pause 0.15
     "Characters/GUNVAR/GattaiLightning2.png"
-    pause 0.2
+    pause 0.15
     "Characters/GUNVAR/GattaiLightning3.png"
-    pause 0.2
+    pause 0.15
     repeat
 
     
 label cutscene_gunvar:
+    hide screen battlestats
     scene black
     $ ILY_m="smile"
     $ ILY_e="normal"
@@ -39,7 +42,7 @@ label cutscene_gunvar:
     # $ EquipDress("outfit","bladearmor")
     $ ILY_outfit="bladearmor"
     pause 0.02
-    show ILY
+    show ILY 
     show white:
         alpha 1.0
         pause 0.1
@@ -48,7 +51,7 @@ label cutscene_gunvar:
     i"Initiate... Combination Algorithm!{w=0.7}{nw}"
     # show ILY:
     #     easein 0.7 zoom 0.4
-    show white:
+    show white onlayer overlay:
         alpha 0.0
         linear 0.3 alpha 1.0
     
@@ -124,14 +127,17 @@ label cutscene_gunvar:
             linear 0.3 ypos 0.0 yanchor 1.0
             repeat
     show GUNVAR:
-        xalign 0.5 ypos 0.0 zoom 0.34 yanchor 1.0
+        xpos 0.5 xanchor 0.48 ypos 0.0 zoom 0.34 yanchor 1.0
         linear 2.0 ypos 0.5 yanchor 0.2
     
 
     pause 2.1
-    scene speedbg with Dissolve(0.1)
+    scene white
+    pause 0.1
+    scene radialbg with Dissolve(0.05): 
+        yalign 0.0
 
-    show GattaiLightning:
+    show GattaiLightning with Dissolve(0.05):
         xalign 0.5 yanchor 0.3 ypos 0.3
     show GUNVAR:
         zoom 0.25 xpos 0.5 xanchor 0.48
@@ -141,7 +147,28 @@ label cutscene_gunvar:
     i"Operation Complete! Enter, Virtual Mobile Armor - GUNVAR!"
     $ ILY_m="smile3"
     i"It's showtime!"
+    scene battlebg
+    show battlebg2
+    with pixellate
     hide GUNVAR
     hide GattaiLightning
-    hide speedbg
+    hide radialbg
+    
+    show screen battlestats
+    show battlering:
+        xalign 0.5 ypos 0.20 yanchor 0.5
+        block:
+            rotate 0
+            linear 15.0 rotate 360
+            repeat
+    show curve:
+        xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+    show curve as curve2:
+        xpos 0.5 xanchor 1.0 ypos 0.17 yanchor 0.5
+        zoom -1.0
+
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    show Enemy:
+        xalign 0.5 yanchor 0.32 ypos 0.3 
     return

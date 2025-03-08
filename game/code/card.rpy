@@ -33,7 +33,7 @@ init python:
         for cardfunction in FXN:
             if len(cardfunction.code)>20:
                 long_fxn_name=True
-            fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
+            fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.9 if ("for" in cardfunction.code) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
        
         return VBox(*fxns)
     def FunctionListDescript(FXN):
