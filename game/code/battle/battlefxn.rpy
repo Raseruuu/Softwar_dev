@@ -1106,6 +1106,8 @@ label Concat_anim(prefix,suffix,suffix2,concat_result):
         $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n Concatenate! " +concat_card_name+"!"
     $ renpy.call("FinishingFlash",flashdialogue)
     $ anim_done=False
+    if concat_result.NAME=="Virtual Mobile Armor GUNVAR":
+        call cutscene_gunvar
     python:
 
         playerbattlecode.pop(battle_index)

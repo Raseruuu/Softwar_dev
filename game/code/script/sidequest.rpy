@@ -24,7 +24,7 @@ label milk_adventure:
     "A stray Virus? No different than me, huh."
     "Now.. Have I been tricked?"
     "But... Melissa said..."
-    sv"Would you like to have a part-time job here?".
+    sv"Would you like to have a part-time job here?"
     i"Wha?? Wait, you can talk?"
     sv"Of course I can!"
     i"A part time job?"

@@ -390,21 +390,21 @@ init python:
     deckdefault = {
         "name":"The Love Machine",
         "content":[
-            VirusFlame,VirusFlame,
-            VirusFlame,Vslash,
-            SpamAtk,SpamAtk,
-            SpamAtk,SpamAtk,
-            SpamAtk,DataSaber,
+            # VirusFlame,VirusFlame,
+            # VirusFlame,Vslash,
+            # SpamAtk,SpamAtk,
+            # SpamAtk,SpamAtk,
+            # SpamAtk,DataSaber,
+            # ChocolateBar,ChocolateBar,
             DataSaber,DataSaber,
-            ChocolateBar,ChocolateBar,
             DataSaber,MailSaber,
             VirusFlame,RecursiveSlash,
             BlockSaber,SaberDeflect,
             DataSaber,BlockSaber,
-            HeartBurn,HeartBurn
-            # GearframeUnitron,GearframeUnitron,GearframeUnitron,GearframeUnitron,
-            # NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
-            # AccelRiser,AccelRiser,AccelRiser,AccelRiser
+            HeartBurn,HeartBurn,
+            GearframeUnitron,GearframeUnitron,GearframeUnitron,GearframeUnitron,
+            NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
+            AccelRiser,AccelRiser,AccelRiser,AccelRiser
 
             ],
         "plugins":[]
@@ -626,7 +626,7 @@ init python:
     Enmycard1name = "DataSaber"
     Enmycard2name = "FiberSword"
 
-    # BASE STATSO
+    # BASE STATS
     #DEFINE CHARACTERS BY
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
