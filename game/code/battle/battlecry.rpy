@@ -216,27 +216,29 @@ label battlecry:
     
     if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True) or forcefinish:
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
-      voice "voice/ILY24B - Break down & disappear!.mp3"
+      # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
+      voice "voice/ILY/ILY09 - Finishing move.mp3"
+      
       $ anim_done=False
       $ flashuser = "ILY"
-      call screen finishingflash("Break down and disappear!")
+      call screen finishingflash("Finishing Move!")
 
     elif (playerHP <=1500):
       $ vcount=vcount+1
       if vcount == 1:
-        voice "voice/ILY26 - I won't let you.mp3"
+        voice "voice/ILY/ILY26 - I won't let you.mp3"
         i"I won't let you!"
       elif vcount == 2:
-        voice "voice/ILY08 - This attack, receive it!.mp3"
+        voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
         i"This attack, receive it!"
       elif vcount == 3:
-        voice "voice/ILY05D - Swing heavy sword sounds.mp3"
+        voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
         i"Hnnngg--Yah!"
       elif vcount == 4:
-        voice "voice/ILY05C - Swing medium sword sounds.mp3"
+        voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
         i"Hnnngg--Hah!"
       elif vcount >= 5:
-        voice "voice/ILY05 - Swing light sword sounds.mp3"
+        voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
         i"Nnnhhhh!"
         $vcount=0
     if forcefinish:
@@ -275,14 +277,14 @@ label hurtnoise:
     
     $ hcount=hcount+1
     if hcount ==1:
-      play sound "voice/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      play sound "voice/ILY/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"
     elif hcount == 2:
-      play sound "voice/hurt/ILY13B - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      play sound "voice/ILY/hurt/ILY13B - Light Bullet Grazed, punched or hit.wav" channel "voice"
     elif hcount == 3:
-      play sound "voice/hurt/ILY13C - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      play sound "voice/ILY/hurt/ILY13C - Light Bullet Grazed, punched or hit.wav" channel "voice"
     elif hcount == 4:
-      play sound "voice/hurt/ILY05B - Swing light sword sounds.wav" channel "voice"
+      play sound "voice/ILY/hurt/ILY05B - Swing light sword sounds.wav" channel "voice"
     elif hcount == 5:
-      play sound "voice/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
+      play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
       $ hcount=0
     return

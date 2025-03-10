@@ -30,19 +30,27 @@ init python:
     def FunctionList(FXN):
         fxns=[]
         long_fxn_name=False
-        for cardfunction in FXN:
-            if len(cardfunction.code)>20:
-                long_fxn_name=True
-            fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.9 if ("for" in cardfunction.code) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
-       
+        # execution_active= globals()["execution_active"]
+        # fxnindex=globals()["fxnindex"]
+        for function_index_local,cardfunction in enumerate(FXN):
+            # if len(cardfunction.code)>20:
+            #     long_fxn_name=True
+            if fxnindex==function_index_local and execution_active:
+                fxns.append(At(Text("{size=12}{u}{b}"+cardfunction.code+"{/size}{/u}{/b}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.9 if ("for" in cardfunction.code) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
+            else:
+                fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.9 if ("for" in cardfunction.code) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
+
         return VBox(*fxns)
     def FunctionListDescript(FXN):
         fxns=[]
-        long_fxn_name=False
-        for cardfunction in FXN:
+        # long_fxn_name=False
+        for function_index_local, cardfunction in FXN:
             # if len(cardfunction.code)>18:
             #     long_fxn_name=True
+            
             fxns.append(Text("{size=12}{b}"+cardfunction.name+"{/b}{/size}\n  {size=12}"+cardfunction.text+"{/size}"))
+                
+
         # if long_fxn_name:
         #     return At(VBox(*fxns))
         # else:

@@ -466,15 +466,24 @@ label drawcards:
     # return
 image cardflash:
     "cardflasher"
-    xalign 0.5 ypos 0.7 yanchor 0.5 zoom 0.9
+    xalign 0.5 ypos 0.74 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.3
     linear 0.05 zoom 1.2
-
+image cardflash2:
+    "cardflasher"
+    xalign 0.5 ypos 0.74 yanchor 0.5
+    zoom 1.2
+    # linear 0.05 zoom 1.3
+    # linear 0.05 zoom 1.2
 image cardflashenemy:
     "cardflasher"
-    xalign 0.5 ypos 0.36 yanchor 0.5 zoom 0.9
+    xalign 0.5 ypos 0.38 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.3
     linear 0.05 zoom 1.2
+image cardflashenemy2:
+    "cardflasher"
+    xalign 0.5 ypos 0.38 yanchor 0.5 
+    zoom 1.2
 
 
 
@@ -482,6 +491,8 @@ image cardflashenemy:
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
+    $ fxnindex=0
+    $ execution_active=False
     $ ILY_w=True
     $ ILY_m="frown"
     $ ILY_e="down"

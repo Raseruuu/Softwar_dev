@@ -9,7 +9,7 @@ image Credits = "gui/Credits.png"
 image Maoudamashii = "Maoudamashii.png"
 label start:
     # call cutscene_gunvar
-    jump test
+    call test
     call game_loop from _call_game_loop
     return
 label credits:

@@ -1036,6 +1036,13 @@ screen cardflashscreen:
     key 'K_SELECT' action Return()
     key 'z' action Return()
     key 'Z' action Return()
+screen cardflashscreen2:
+    # key "mousedown_5" action Return()
+    # key "K_PAGEDOWN" action Return()
+    # add "ring" at ringtransform
+    add "cardflash2"
+        # xalign 0.2 yalign 0.98
+
 screen cardflashscreenenemy:
     # key "mousedown_5" action Return()
     # key "K_PAGEDOWN" action Return()
@@ -1049,6 +1056,12 @@ screen cardflashscreenenemy:
     key 'z' action Return()
     key 'Z' action Return()
 
+screen cardflashscreenenemy2:
+    # key "mousedown_5" action Return()
+    # key "K_PAGEDOWN" action Return()
+    # add "ring2" at ringtransform2
+    add "cardflashenemy2"
+        
 
 label Concatenation:
     
@@ -1118,7 +1131,7 @@ label Concat_anim(prefix,suffix,suffix2,concat_result):
         if card3concatenation:
             playerbattlecode.pop(battle_index)
         playerbattlecode.insert(battle_index,concat_result)
-    
+    call updatestats_player
     hide screen battlestats
     show screen battlestats
     $ noscreentransformsfornow=True
@@ -1224,19 +1237,26 @@ label Execution:
         # show cardflash onlayer overlay
         play sound "sound/swing.wav"
         call screen cardflashscreen
+        show screen cardflashscreen2
+        
         ##
         $fxnindex=0
         $loopingcard=False
+        $execution_active=True
         label runfunctions:
             $ runfxnstring = currentcardFXN[fxnindex].name
+            hide screen cardflashscreen2
+            show screen cardflashscreen2
             label hitloop:
                 call functioneffects(runfxnstring)
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
                 jump runfunctions
 
-        hide cardflash
+        hide screen cardflashscreen2
         hide ring
+        $execution_active=False
+        $fxnindex=0
         $runnumber+=1
         if (runnumber<iterations) and (battle_done==False):
             jump exec_loop
@@ -1341,11 +1361,13 @@ label enemyexecutecard:
         call battlecry_Vira
         play sound "sound/swing.wav"
         call screen cardflashscreenenemy
-
+        show screen cardflashscreenenemy2
         $ fxnindex=0
+        $ execution_active=True
         label runfunctions2:
             $ runfxnstring = currentcardFXN[fxnindex].name
-
+            hide screen cardflashscreenenemy2
+            show screen cardflashscreenenemy2
             # $ hitindex=0
             label hitloop2:
                 call enemyfunctioneffects(runfxnstring) 
@@ -1353,8 +1375,9 @@ label enemyexecutecard:
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
                 jump runfunctions2
+        $ execution_active=False
 
-        hide cardflashenemy
+        hide screen cardflashscreenenemy2
         hide ring2
     return
 label enemyattack:

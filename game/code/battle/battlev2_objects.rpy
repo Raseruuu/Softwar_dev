@@ -210,6 +210,13 @@ init python:
             "Defend",
             "defend(DEF*POW)",
             "Gain Shield Points.")
+    def DeckChange(deckName):
+        return Fxn(
+            "DeckChange",
+            "DeckChange("+deckName+")",
+            "Changes the current battleware deck.",
+            deckName
+            )
     def Recover(MAG):
         return Fxn(
             "Recover",
@@ -259,7 +266,8 @@ init python:
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
-    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",7,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
+    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [Defend(),DeckChange("GUNVAR")],   0)
+    # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",7,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
     Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR]
@@ -271,12 +279,12 @@ init python:
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
         
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
-    MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in enemy_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
+    MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 
     RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
     SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
 
-    HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),NullFxn()],       2)
+    HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),GainToken("Burn",1)],       2)
     ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.0,   [Recover(1000),NullFxn()],          2)
     
     BurstTransfer= Card("BurstTransfer",    "Maneuver",      0.0,   [Evade(1)],          2)
@@ -349,10 +357,16 @@ init python:
     FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
     Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4)
+    
+    
     GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3)],   2)
     NucleusVernier=  Card("NV-Nucleus Vernier", "NV",    1.0,     [Advance(1),Boost("ATK",0.25)],   2)
     AccelRiser=      Card("AR-Accel Riser","AR",         1.0,     [Retreat(2),Evade()],   4)
-    
+    GunvarFist=      Card("Gunvar Fist","GUNVAR",  1.0,         [Attack()],   4)
+    GunvarKick=      Card("Gunvar Kick","GUNVAR",  1.0,         [Attack()],   4)
+    GunvarHeadbutt=  Card("Gunvar Headbutt","GUNVAR",  1.0,     [Attack()],   4)
+    GunvarShield=      Card("Gunvar Kick","GUNVAR",  1.0,         [Attack()],   4)
+
     
     Shotgun=       Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfTruth=  Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -378,6 +392,8 @@ init python:
     #24 Cards Per deck
 
 #    Plugins:
+
+    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.25, Defend(),4)
     RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, GiveToken("Email",1),4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, Boost("ATK",0.1),4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, Boost("ATK",0.1),4)
@@ -390,21 +406,46 @@ init python:
     deckdefault = {
         "name":"The Love Machine",
         "content":[
-            # VirusFlame,VirusFlame,
-            # VirusFlame,Vslash,
-            # SpamAtk,SpamAtk,
-            # SpamAtk,SpamAtk,
-            # SpamAtk,DataSaber,
-            # ChocolateBar,ChocolateBar,
+            VirusFlame,VirusFlame,
+            VirusFlame,Vslash,
+            SpamAtk,SpamAtk,
+            SpamAtk,SpamAtk,
+            SpamAtk,DataSaber,
+            ChocolateBar,ChocolateBar,
             DataSaber,DataSaber,
             DataSaber,MailSaber,
             VirusFlame,RecursiveSlash,
             BlockSaber,SaberDeflect,
             DataSaber,BlockSaber,
             HeartBurn,HeartBurn,
-            GearframeUnitron,GearframeUnitron,GearframeUnitron,GearframeUnitron,
-            NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
-            AccelRiser,AccelRiser,AccelRiser,AccelRiser
+            # GearframeUnitron,GearframeUnitron,
+            # GearframeUnitron,GearframeUnitron,
+            # NucleusVernier,NucleusVernier,
+            # NucleusVernier,NucleusVernier,
+            # AccelRiser,AccelRiser,AccelRiser,AccelRiser
+
+            ],
+        "plugins":[]
+        }
+    deckdefault = {
+        "name":"The Love Machine",
+        "content":[
+            VirusFlame,VirusFlame,
+            VirusFlame,Vslash,
+            SpamAtk,SpamAtk,
+            SpamAtk,SpamAtk,
+            SpamAtk,DataSaber,
+            ChocolateBar,ChocolateBar,
+            DataSaber,DataSaber,
+            DataSaber,MailSaber,
+            VirusFlame,RecursiveSlash,
+            BlockSaber,SaberDeflect,
+            DataSaber,BlockSaber,
+            HeartBurn,HeartBurn,
+            # GearframeUnitron,GearframeUnitron
+            # ,GearframeUnitron,GearframeUnitron,
+            # NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
+            # AccelRiser,AccelRiser,AccelRiser,AccelRiser
 
             ],
         "plugins":[]
@@ -629,19 +670,19 @@ init python:
     # BASE STATS
     #DEFINE CHARACTERS BY
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
-    ILY=FAI("ILY","Virus",2500,1250,500,500,deckdefault,[])
-    ILYAlpha=FAI("ILY","Virus",2500,1250,500,500,deckalpha,[])
-    Trojan=FAI("TrojanHorse","Virus",2000,600,400,250,decktrojan,[])
-    Keylogger=FAI("Keylogger","Virus",500,250,300,250,deckkeylogger,[])
-    Ransomware=FAI("Ransomware","Virus",600,300,300,250,deckransomware,[])
-    Rootkit=FAI("Rootkit","Virus",700,350,300,250,deckrootkit,[])
-    Worm=FAI("Worm","Virus",800,400,300,250,deckworm,[])
-    Spyware=FAI("Spyware","Virus",800,400,300,250,deckspyware,[])
-    Vira=FAI("Vira","Antivirus",3500,1750,450,550,deckvira,[])
-    CodeRed=FAI("Code Red","Virus",4000,2000,500,500,deckred,[])
-    Sephiroth=FAI("Sephiroth","Virus",4000,2000,500,500,decksephiroth,[])
-    Melissa=FAI("Melissa","Virus",2000,1000,500,500,deckmelissa,[])
-    Ave=FAI("Ave","Antivirus",3000,1500,550,440,deckave,[])
+    ILY=FAI("ILY","Virus",2500,2500,500,500,deckdefault,[])
+    ILYAlpha=FAI("ILY","Virus",2500,2500,500,500,deckalpha,[])
+    Trojan=FAI("TrojanHorse","Virus",2000,2000,400,250,decktrojan,[])
+    Keylogger=FAI("Keylogger","Virus",500,500,300,250,deckkeylogger,[])
+    Ransomware=FAI("Ransomware","Virus",600,600,300,250,deckransomware,[])
+    Rootkit=FAI("Rootkit","Virus",700,700,300,250,deckrootkit,[])
+    Worm=FAI("Worm","Virus",800,800,300,250,deckworm,[])
+    Spyware=FAI("Spyware","Virus",800,800,300,250,deckspyware,[])
+    Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
+    CodeRed=FAI("Code Red","Virus",4000,4000,500,500,deckred,[])
+    Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])
+    Melissa=FAI("Melissa","Virus",2000,2000,500,500,deckmelissa,[])
+    Ave=FAI("Ave","Antivirus",3000,3000,550,440,deckave,[])
 
 
     # Vira=FAI("Vira","Antivirus",4000,deckvira)

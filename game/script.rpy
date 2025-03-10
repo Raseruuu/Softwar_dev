@@ -285,8 +285,8 @@ label test:
 
     "test"
     call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
-    if playerHP==0:
-        return
+    # if playerHP==0:
+    #     return
     ""
     stop music
     scene cafeoutside:

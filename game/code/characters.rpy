@@ -96,7 +96,9 @@ init -1 python:
 
     globals()["Vira_m"] = "smile"
     globals()["Vira_e"] = "mad"
+    globals()["Vira_eyes"] = "open"
     globals()["Vira_w"] = False
+    
 
     globals()["Ave_e"] = "down"
     globals()["Ave_m"] = "frown"
@@ -344,14 +346,17 @@ init -1 python:
         if (emotion == "smile"):
             globals()["Vira_m"] = "smile"
             globals()["Vira_e"] = "normal"
+            globals()["Vira_eyes"] = "open"
 
         elif (emotion == "frown"):
             globals()["Vira_m"] = "frown"
             globals()["Vira_e"] = "normal"
+            globals()["Vira_eyes"] = "open"
 
         elif (emotion == "mad"):
             globals()["Vira_m"] = "frown"
             globals()["Vira_e"] = "mad"
+            globals()["Vira_eyes"] = "open"
 
         else:
             raise ValueError("Unknown emotion entered: " + emotion)
@@ -1158,7 +1163,7 @@ image ViraFull:
         (680,961),
         (0, 0), At("images/Characters/Vira/Vira_p.png",zoomtrans(0.36697247706)),
         (0, 0), At("images/Characters/Vira/Vira_e[Vira_e].png",zoomtrans(0.36697247706)), #eyebrows
-        (0, 0), At("images/Characters/Vira/Vira_eyes_open.png",zoomtrans(0.36697247706)),#eyes
+        (0, 0), At("ViraEyes",zoomtrans(0.36697247706)),#eyes
         (0, 0), At(WhileSpeaking(
             "Vira",
             ConditionSwitch(
@@ -1187,22 +1192,49 @@ image Icon_Vira:
 image ViraMouthsmile:
     "images/Characters/Vira/Vira_msmile2.png"
     pause .08
-    "images/Characters/Vira/Vira_msmile.png"
-    pause .05
-    "images/Characters/Vira/Vira_msmile2.png"
-    pause .1
-    "images/Characters/Vira/Vira_msmile.png"
-    pause .05
-
-    repeat
-image ViraEyes:
+    "images/Characters/Vira/Vira_msmile3.png"
+    pause .08
     "images/Characters/Vira/Vira_msmile2.png"
     pause .08
     "images/Characters/Vira/Vira_msmile.png"
-    pause .05
-    "images/Characters/Vira/Vira_msmile2.png"
+    pause .08
+    "images/Characters/Vira/Vira_mO2.png"
+    pause .08
+    "images/Characters/Vira/Vira_mO.png"
     pause .1
-    "images/Characters/Vira/Vira_msmile.png"
+    "images/Characters/Vira/Vira_mO2.png"
+    pause .08
+    repeat
+image ViraEyes:
+    choice:
+        "images/Characters/Vira/Vira_eyes_[Vira_eyes].png"
+        pause 1.0
+        "images/Characters/Vira/Vira_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Vira/Vira_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Vira/Vira_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Vira/Vira_eyes_[Vira_eyes].png"
+        pause 5.0
+    choice:
+        "images/Characters/Vira/Vira_eyes_[Vira_eyes].png"
+        pause 4.0
+    choice:
+        "images/Characters/Vira/Vira_eyes_[Vira_eyes].png"
+        pause 1.5
+        "images/Characters/Vira/Vira_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Vira/Vira_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Vira/Vira_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Vira/Vira_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Vira/Vira_eyes_[Vira_eyes].png"
+        pause 1.5
+    repeat
     pause .05
 
     repeat
