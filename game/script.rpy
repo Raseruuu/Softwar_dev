@@ -289,8 +289,8 @@ label test:
     #     return
     ""
     stop music
-    scene cafeoutside:
-        zoom 1.1
+    scene gridbglandscape1:
+        zoom 0.75
     # call var_init
     # call iptest\
     # $hands=[VirusFlame,XAxess,DataDrill,MailSaber,BreakSaber]

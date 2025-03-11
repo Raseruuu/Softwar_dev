@@ -106,6 +106,7 @@ init -1 python:
     globals()["Lucida_w"] = False
 
     globals()["Ave_e"] = "down"
+    globals()["Ave_eyes"] = "open"
     globals()["Ave_m"] = "frown"
     globals()["Ave_w"] = True
 
@@ -1531,18 +1532,49 @@ image AveFull:
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(
             "Ave",
-            "Ave mouth",
+            ConditionSwitch(
+                "('smile' in Ave_m)","AveMouthsmile",
+                "('smile' not in Ave_m)","AveMouthfrown",
+                ),
             "images/Characters/Ave/Ave_m[Ave_m].png"
             ),
         (0, 0), "images/Characters/Ave/Ave_e[Ave_e].png",
+
         (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
     
     zoom 0.24
 image AveEyes:
-    "images/Characters/Ave/Ave_eyes.png"
-
+    choice:
+        "images/Characters/Ave/Ave_eyes.png"
+        pause 1.0
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Ave/Ave_eyes.png"
+        pause 5.0
+    choice:
+        "images/Characters/Ave/Ave_eyes.png"
+        pause 4.0
+    choice:
+        "images/Characters/Ave/Ave_eyes.png"
+        pause 1.5
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes.png"
+        pause 1.5
+    repeat
 image Ave mouth:
     "images/Characters/Ave/Ave_mspeak1.png"
     pause .08
@@ -1552,6 +1584,46 @@ image Ave mouth:
     pause .08
     "images/Characters/Ave/Ave_mfrown.png"
     pause .08
+    repeat
+
+image AveMouthsmile:
+    "images/Characters/Ave/Ave_msmile2.png"
+    pause .1
+    "images/Characters/Ave/Ave_msmile3.png"
+    pause .1
+    "images/Characters/Ave/Ave_msmile2.png"
+    pause .1
+    "images/Characters/Ave/Ave_msmile.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen2.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_msmile.png"
+    pause .1
+    repeat
+
+image AveMouthfrown:
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen2.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_mfrown.png"
+    pause .1
+    
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_mO.png"
+    pause .1
+    "images/Characters/Ave/Ave_mopen1.png"
+    pause .1
+    "images/Characters/Ave/Ave_mfrown.png"
+    pause .1
+    
     repeat
 image Ave sidew:
     LiveCrop((150,40, 300,385), "AveFull")
