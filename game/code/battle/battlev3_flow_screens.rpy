@@ -22,6 +22,8 @@ init python:
     playerDEF = ILYStatsnow["DEF"]
 
     playerDeck = ILYStatsnow["Deck"]
+    fxnindex=0
+    execution_active=False
     battle_done = False
     enemyfirst =False
     map_active=False
@@ -491,7 +493,7 @@ image cardflashenemy2:
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
-    $ fxnindex=0
+    
     $ execution_active=False
     $ ILY_w=True
     $ ILY_m="frown"

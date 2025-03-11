@@ -23,11 +23,12 @@ label script1_2:
             return
         # call script1_2_dialog1
         # Imperceptium Hunt Mission Dialogue
-        call script1_2_map2
-        if playerHP<=0:
-            return
+        # call script1_2_map2
+        # if playerHP<=0:
+        #     return
     
     # $ renpy.Rollback()
+    
     # call script1_2_map2
     return
 
@@ -241,7 +242,7 @@ label script1_2_dialog1:
     $ Melissa_e="up"
     
     m "You've piqued my curiosity."
-    i "(John, she's examining me, I can feel it)"
+    i "(John, she's examining me, I can feel it!)"
     m "ILY, huh..."
     show Stoned:
         linear 0.2 yoffset -20
@@ -277,6 +278,9 @@ label script1_2_dialog1:
     "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
     m"I suggest that you speak with Stoned, she'll be staying right here, so check her wares! "
     i"Alrighty!"
+    call script1_2_map2
+    if playerHP<=0:
+        return 
     return
 
 label Melissascript2:
@@ -284,7 +288,7 @@ label Melissascript2:
     j "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
     i "(Oh! She did mention... That \"they were on patrol around these hours\")"
     j "(Yeah. It could be a schedule or something.)"
-    ""
+    "Here goes."
     i "Is there a way to get past Bitwulf without fighting?"
     m "There is. Actually, They have a special maintenance period."
     m "Though, It's usually on weekends."
@@ -292,7 +296,7 @@ label Melissascript2:
     i "The next weekend is far from now..."
     m "Actually, Would you like to know a little secret?"
     i "A secret! What is it?"
-    m "I'd tell you, But I'm kind of an info-broker of sorts, I've already spilt a bunch of beans on you..."
+    m "I'd tell you, But I'm actually an info-broker of sorts, I've already spilt a bunch of beans on you..."
     i "(What does that mean, John?)"
     j "(It means she is selling that info for buck. Information really is valuable after all. Especially in this world...)"
     i "Then... how much is it?"
@@ -398,7 +402,7 @@ label paidMelissa:
     m "Imperceptium is hard to find as its surface projects a false image of its true appearance."
     m "Some like to say that it's in constant camouflage."
     m "Viruses can consume imperceptium to absorb that special trait, albeit for a limited time."
-    i "How do we find something like that's practically invisible?"
+    i "How do we find something that's practically invisible?"
     m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
     i "Ah! VirusFlame?"
     m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
@@ -433,15 +437,13 @@ label paidMelissa:
 
     # TODO: ADD Imperceptium Hunting section here!!
     # Need to fight one Virus and finish it with FIRE / BURN status
-    
+    j"It's actually strange.. I'm working with a virus today.."
+    j"Viruses are usually all trouble."
     i"Ehh! I'm not a naughty Virus, I promise!"
     j"Funny you say that."
     j"You've been oddly cooperative today."
     i"What did I tell you, I'm your personal assistant now!"
     "For a program, she really seems supportive and easy to talk to."
-    "As for the real reason why I don't want to hunt tonight..."
-    "I'm afraid It'll take another long session for that."
-    "And... Lisa told me she might come to meet me again tomorrow."
     "So... I have to catch on some Z's and not be late!!"
     
     scene JD_PCN with dissolve
@@ -464,6 +466,8 @@ label teammeeting:
     "Great, that's so much better. A good rest!!"
     "Today... I'll meet with Lisa again. Right?"
     "I'll go get dressed and clean up a bit..."
+    scene black with dissolve
+    scene JD_Space2 with dissolve
     "There we go!"
     scene JD_PC2 with dissolve
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
@@ -479,6 +483,8 @@ label teammeeting:
     scene blue with Dissolve(0.2)
     show Folders with dissolve
     nvl show
+    show ILY:
+        xalign 0.2
     emailnvl"Subject: Update on Antivirus!"
 
     emailnvl"\n\nJohn!! I got my dad's Antivirus!!"
@@ -552,6 +558,7 @@ label teammeeting:
     $ Hilbert_w=False
     h"Nice place you got here."
     j"HEY! Aren't you trespassing?"
+    $ Hilbert_m="smile"
     h"Come on, we're friends!"
     j"... How?"
     h"You left the door unlocked so I came in."
@@ -606,7 +613,8 @@ label teammeeting:
     h "That's kind of a waste."
     h "It's like we're living in a Sci-fi story with tech like that!"
     j "Tell me about it.."
-
+    play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
+    $ Hilbert_m="frown"
     h "Don't you think it's crazy, what's been going on at my Dad's company?"
     h "I bet some bot is involved with last night's events."
     j "!!!"
@@ -618,7 +626,7 @@ label teammeeting:
     j "You... haven't heard of Artificial Intelligence Viruses before, have you?"
     h "Wait, like viruses that are like, smart? Hmmmm... not really."
     h "But I've heard of A.I. Anti-Viruses."
-    j "So you know something!"
+    j "So you do know something!"
     h "Well I kinda pieced together that there might be an advancement of Virus technology somewhere that makes AI Antiviruses necessary.."
     j "..."
     "How do I tell him properly that ILY is also a virus, on top of being AI..."
@@ -626,6 +634,7 @@ label teammeeting:
     j "In a way."
     i "Hilbert, you are correct. SDS was being attacked by an AI Virus!"
     j "ILY just breaks the ice when I couldn't say what's going on..."
+    $ Hilbert_m="smile"
     h "Ah! How'd you find that out? I had a hunch that John really was a super hacker."
     j "Am not. It's uhhh.. hard to explain."
     i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
@@ -633,6 +642,7 @@ label teammeeting:
     i "I am the ILOVEYOU Virus, but you can call me ILY!"
     h "No way."
     "She... just confessed? That... makes this kind of difficult."
+    $ Hilbert_m="frown"
     h "So you hacked us, John? You commanded the attack on SDS?"
     j "No!! It's more complex than that, ILY entered the PC on that same time!"
     i "I signed up to be John's assistant after the attack."
@@ -652,6 +662,7 @@ label teammeeting:
     j "I suppose, if I were to add context... Since you're interested... A new system that allows the battle of FAI has arisen."
     h "A battle system?"
     j "It's called a \"Softwar\". The victor of a Softwar gets to decide what happens to the systems."
+    $ Hilbert_m="smile"
     h "A \"Softwar\" huh... Heh.. So ILY isn't only an advanced AI, but a battle virus? Sick!"
     j "Apparently ILY hacked SDS so that the other virus that was there... Wouldn't be able to infect."
     i "I thought I had him... I was supposed to take him down with me.."
@@ -668,6 +679,8 @@ label teammeeting:
     i "We crossed blades a few times as I drew out my own sword."
     i "I thought I had him, when I struck his side with a quick slash.. But the blade didn't faze him."
     i "I leapt far, but he caught up to me so quickly... That's why I had to activate my Virus Algorithm!"
+    $ Hilbert_m="frown"
+    $ Hilbert_e="down"
     h "Not very chivalrous to attack a woman. He was but a coldblooded mercenary."
     j "You're way invested in the scenario now huh, Hilbert."
     "It's getting much clearer now, what happened at SDS... How does this help us fight back?"
@@ -686,7 +699,8 @@ label teammeeting:
     j "About that... "
     #Lisa Arrives
     $Lisa_w=True
-    l"Knock! Knock!"
+    scene JD_Door with dissolve
+    l"Knock-Knock!"
     l "Hello?"
     j "Ah! It's Lisa."
     # h :O
@@ -698,7 +712,7 @@ label teammeeting:
     l "Am I interrupting something?"
     "Gah!! I gotta get the door!"
     "Lisa walks in.. She has a curious expression on her. I wonder what she thinks now!?"
-    "Lisa makes gavel slam gesture out of her 2 hands as if she's come up with some sort of realization."
+    "Lisa makes gavel slam gesture out of her hands as if she's come up with some sort of realization."
     $Lisa_w=False
     scene JD_Space2 with dissolve
     $ ILY_w=True
@@ -745,9 +759,10 @@ label teammeeting:
     "I know this isn't some final version of the software, so she can't hand me a \"For Sale\" copy. Perhaps it requires faster transfer speeds then?"
     "Like.. Lisa wants to be sure it works, it looks like.."
     "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
+    # h"(John, doe )"
     scene black
 
-    "Chapter1 End"
+    "Chapter 1 End"
 
 
     

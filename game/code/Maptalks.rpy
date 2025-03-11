@@ -92,9 +92,9 @@ label maptalk_Stella:
         s"You don't see it, but there's a special invisible barrier there blocking regular avatars."
         s"To them, this place is blocked by a wall!"
         $ILYSprite("o")
-        i"I see!... wait, no I don't! it's invisible!"
+        i"I see!... wait, no I don't! It's invisible!"
         s"Heh!"
-        s"You should come here often. i have lots of items for sale."
+        s"You should come here often. I have lots of items for sale."
         i"Woah! That's pretty cool!"
 
         $ILYSprite("smile")
@@ -193,6 +193,8 @@ label maptalk_Melissa_story_1:
       call Melissascript2
       return
    elif gameprogress==1:
+      call hideMapview
+      jump payMelissa
       return
     
    

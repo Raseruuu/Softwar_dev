@@ -284,7 +284,7 @@ label test:
 
 
     "test"
-    call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
+    # call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
     # if playerHP==0:
     #     return
     ""
@@ -299,6 +299,13 @@ label test:
     # $ index=0
 
     # call screen Card(DataForce,(0,0),Return())
+    show Lucida
+    lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    
+    $Lucida_m="smile"
+    lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    
     $ Vira_w= True
     show Vira with dissolve:
         xanchor 0.5 xpos 0.85

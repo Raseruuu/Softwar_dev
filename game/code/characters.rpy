@@ -19,6 +19,7 @@ define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", callba
 define l = Character("Lisa",color = '#992e2c', image = "Lisa_side", callback=speaker("Lisa"), ctc="ctc", ctc_position="fixed")
 define al = Character("Alicia",color = '#992e2c', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
 define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc", ctc_position="fixed")
+define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callback=speaker("Lucida"), ctc="ctc", ctc_position="fixed")
 
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
 define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
@@ -99,6 +100,10 @@ init -1 python:
     globals()["Vira_eyes"] = "open"
     globals()["Vira_w"] = False
     
+    globals()["Lucida_m"] = "frown"
+    globals()["Lucida_e"] = "down"
+    globals()["Lucida_eyes"] = "open"
+    globals()["Lucida_w"] = False
 
     globals()["Ave_e"] = "down"
     globals()["Ave_m"] = "frown"
@@ -185,6 +190,8 @@ init -1 python:
             globals()["showsideimage"]=ILY_w
         elif (name == "Lisa"):
             globals()["showsideimage"]=Lisa_w
+        elif (name == "Lucida"):
+            globals()["showsideimage"]=Lucida_w
         elif (name == "Ave"):
             globals()["showsideimage"]=Ave_w
         elif (name == "Vira"):
@@ -1015,10 +1022,6 @@ layeredimage Lucidafull:
     always:
         "images/Characters/Lucida/Lucida_base.png"
     always:
-        "images/Characters/Lucida/Lucida_underwear_[Lucida_underwear].png"
-    always:
-        "images/Characters/Lucida/Lucida_dress_[Lucida_outfit].png"
-    always:
         WhileSpeaking(
             "Lucida",
             # ConditionSwitch(
@@ -1029,25 +1032,20 @@ layeredimage Lucidafull:
             "images/Characters/Lucida/Lucida_m[Lucida_m].png"
             )
     always:
-        "images/Characters/Lucida/Lucida_e[Lucida_e].png"
-    always:
-        ConditionSwitch(
-            "Lucida_blush==True","images/Characters/Lucida/Lucida_blush.png",
-            "Lucida_blush==False",Null(),
-            )
+        "images/Characters/Lucida/Lucida_eyebrows_[Lucida_e].png"
+    # always:
+    #     ConditionSwitch(
+    #         "Lucida_blush==True","images/Characters/Lucida/Lucida_blush.png",
+    #         "Lucida_blush==False",Null(),
+    #         )
     always:
         
         ConditionSwitch(
-            "('close' in Lucida_eyes)","images/Characters/Lucida/Lucida_e[Lucida_eyes].png",
+            "('close' in Lucida_eyes)","images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png",
             "('close' not in Lucida_eyes)","LucidaEyes",
             )
-    always:
-        # "images/Characters/Lucida/LucidaGlasses.png"
-        ConditionSwitch(
-            "Lucida_glasses==True","images/Characters/Lucida/LucidaGlasses.png",
-            "Lucida_glasses==False",Null(),
-            )
-    zoom 0.31
+    
+    zoom 0.22
 image Lucida:
     "Lucidafull"
     yanchor 0.0 ypos 0.01
@@ -1074,11 +1072,11 @@ image LucidaEyes:
     choice:
         "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
         pause 1.0
-        "images/Characters/Lucida/Lucida_eclose1.png"
+        "images/Characters/Lucida/Lucida_eyes_midopen.png"
         pause 0.07
-        "images/Characters/Lucida/Lucida_eclosedown.png"
+        "images/Characters/Lucida/Lucida_eyes_closed.png"
         pause 0.1
-        "images/Characters/Lucida/Lucida_eclose1.png"
+        "images/Characters/Lucida/Lucida_eyes_midopen.png"
         pause 0.07
     choice:
         "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
@@ -1089,55 +1087,55 @@ image LucidaEyes:
     choice:
         "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
         pause 1.5
-        "images/Characters/Lucida/Lucida_eclose1.png"
+        "images/Characters/Lucida/Lucida_eyes_midopen.png"
         pause 0.07
-        "images/Characters/Lucida/Lucida_eclosedown.png"
+        "images/Characters/Lucida/Lucida_eyes_closed.png"
         pause 0.1
-        "images/Characters/Lucida/Lucida_eclose1.png"
+        "images/Characters/Lucida/Lucida_eyes_midopen.png"
         pause 0.07
-        "images/Characters/Lucida/Lucida_eclosedown.png"
+        "images/Characters/Lucida/Lucida_eyes_closed.png"
         pause 0.1
         "images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png"
         pause 1.5
     repeat
 
 image LucidaMouthsmile:
-    "images/Characters/Lucida/Lucida_mopen1.png"
+    "images/Characters/Lucida/Lucida_mmidopenfrown.png"
     pause .1
-    "images/Characters/Lucida/Lucida_mopen2.png"
+    "images/Characters/Lucida/Lucida_mopenfrown.png"
     pause .1
-    "images/Characters/Lucida/Lucida_mopen1.png"
+    "images/Characters/Lucida/Lucida_mmidopenfrown.png"
     pause .1
     "images/Characters/Lucida/Lucida_msmile.png"
     pause .1
-    "images/Characters/Lucida/Lucida_msmile2.png"
+    "images/Characters/Lucida/Lucida_mmidopensmile.png"
     pause .1
-    "images/Characters/Lucida/Lucida_msmile3.png"
+    "images/Characters/Lucida/Lucida_mopensmile.png"
     pause .1
-    "images/Characters/Lucida/Lucida_msmile2.png"
+    "images/Characters/Lucida/Lucida_mmidopensmile.png"
     pause .1
     "images/Characters/Lucida/Lucida_msmile.png"
     pause .1
     repeat
 
 image LucidaMouthfrown:
-    "images/Characters/Lucida/Lucida_mopen1.png"
+    "images/Characters/Lucida/Lucida_mmidopenfrown.png"
     pause .1
-    "images/Characters/Lucida/Lucida_mopen2.png"
+    "images/Characters/Lucida/Lucida_mopenfrown.png"
     pause .1
-    "images/Characters/Lucida/Lucida_mopen1.png"
+    "images/Characters/Lucida/Lucida_mmidopenfrown.png"
     pause .1
     "images/Characters/Lucida/Lucida_mfrown.png"
     pause .1
     
-    "images/Characters/Lucida/Lucida_mopen1.png"
-    pause .1
-    "images/Characters/Lucida/Lucida_mfrown3.png"
-    pause .1
-    "images/Characters/Lucida/Lucida_mopen1.png"
-    pause .1
-    "images/Characters/Lucida/Lucida_mfrown.png"
-    pause .1
+    # "images/Characters/Lucida/Lucida_mmidopenfrown.png"
+    # pause .1
+    # "images/Characters/Lucida/Lucida_mopenfrown.png"
+    # pause .1
+    # "images/Characters/Lucida/Lucida_mmidopenfrown.png"
+    # pause .1
+    # "images/Characters/Lucida/Lucida_mfrown.png"
+    # pause .1
     
     repeat
 

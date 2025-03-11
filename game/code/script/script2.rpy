@@ -30,7 +30,7 @@
 
 # """    
 label script2:
-
+    call hideMapview
     "Chapter 2: A New Friend" #(Can change chapter name anytime)
     scene blue with Dissolve(0.2)
     show Folders with dissolve
@@ -45,7 +45,7 @@ label script2:
     
     "TODO: SHOW FULL LOADING SCREEN INSTALLING VIRA"
     "INSTALLATION COMPLETE"
-
+    $ILY_w=True
     i "John, it's done now."
     j "Here it is.."
     show Vira
