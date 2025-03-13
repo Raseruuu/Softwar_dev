@@ -59,6 +59,7 @@ screen battlestats():
             xalign 0.5
             xsize 520
             ysize 80
+            # at alpha08
             vbox:
                 
                 xalign 0.5
@@ -83,14 +84,15 @@ screen battlestats():
                             add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
                             null width 2
                             add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
-                        text "{font=font/lucon.ttf}{size=14}{b}DISTANCE{/font}{/size}{/b}" xalign 0.5
+                        text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
+                        # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
 
                 
     frame:
         style_prefix "statsb"
         xsize 380 ysize 120
         xpos 0.01 xanchor 0.0 ypos 0.58 yanchor 0.5
-        
+        # at alpha08
         vbox:
             vbox:
                 text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
@@ -112,6 +114,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
+        # at alpha08
         vbox:
             hbox:
                 style_prefix "battlestats"
@@ -215,6 +218,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xpos 0.99 xanchor 1.0 yalign 0.01 xsize 380
+        # at alpha08
         vbox:
             hbox:
                 xalign 1.0
@@ -767,7 +771,7 @@ screen Execute:
     key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     key 'K_RETURN' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     key 'K_KP_ENTER' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
-    imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95
+    imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
     # key 'z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     # key 'Z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
 screen phasemsg(Message):
@@ -807,24 +811,24 @@ screen choosecardv2:
                     at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.92
             elif clickedcard[cardindex]:
                 
-                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.92
+                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
             else:
                 add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
-                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.92
+                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
 
 
         if playerbattlecode!=[]:
-            imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yanchor 1.0 ypos 0.95
+            imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
             key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
             key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
         else:
-            add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.92
+            add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
 screen Activate_Battleware:
-        add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.92
-        add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.92
-        add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.92
-        add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.92
-        add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.92
+        add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
+        add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
+        add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
+        add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
+        add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
         text "{size=50}{b}ACTIVATE BATTLEWARE{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.87 at alphablinking
         key 'mouseup_1' action Return()
         key 'K_RETURN' action Return()
@@ -851,7 +855,7 @@ screen cardhover(cardobject,cardhoverxpos):
     image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.92 at cardtrans
 screen card6hover:
     # image "selectring" xanchor 0.5 xpos 0.86 yanchor 0.5 ypos 0.75
-    image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.92 at cardtrans2
+    image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.945 at cardtrans2
 
 
 

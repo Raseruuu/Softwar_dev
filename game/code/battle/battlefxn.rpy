@@ -70,13 +70,13 @@ label Damageenemy:
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     
-    # if currentcard_fxn_params[0]!="POW" and currentcard_fxn_params[0]: 
+    # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
     
     $ Power = (currentcardMAG)
-    if damagemultiplier=="POW":
+    if damagemultiplier=="POWR":
         $ damagetoenemy=int(playerATK_m*Power)
-    elif damagemultiplier=="POW": 
+    elif damagemultiplier=="POWR": 
         $ damagetoenemy=int(playerATK_m*damagemultiplier)
     $ attackrange = currentcard_fxn_params[1]
     $ attackhit=True
@@ -939,14 +939,19 @@ label Damageplayer:
           pass
     else:    
           $ currentcard_fxn_params=currentcardFXN[fxnindex].params
-    # if currentcard_fxn_params[0]!="POW" and currentcard_fxn_params[0]: 
+    # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
-    # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    $ absolutedamage = currentcard_fxn_params[2]
     $ Power = (currentcardMAG)
-    if damagemultiplier=="POW":
-        $ damagetoplayer=int(enemyATK_m*Power)
-    elif damagemultiplier!="POW": 
-        $ damagetoplayer=int(enemyATK_m*damagemultiplier)
+    
+    if absolutedamage:
+        $ damagetoplayer=int(damagemultiplier)
+    # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    else:
+        if damagemultiplier=="POWR":
+            $ damagetoplayer=int(enemyATK_m*Power)
+        elif damagemultiplier!="POWR": 
+            $ damagetoplayer=int(enemyATK_m*damagemultiplier)
     $ attackrange = currentcard_fxn_params[1]
     $ attackhit=True
     $ battle_distance_old=battle_distance
@@ -1019,6 +1024,22 @@ label Damageplayer:
         $ ILY_e="down"
         $ ILY_eyes="open"
     
+    return
+label DeckChangePlayer:
+    "[playerName]'s Deck is changed to \"GUNVAR\"."
+    $ playerDeck=deckGUNVAR["content"]
+    $ playerbits=16
+    $ playerbitsmax=16
+    hide screen battlestats
+    show screen battlestats
+    return
+label DeckChangeEnemy:
+    "[enemyName]'s Deck is changed to \"GUNVAR\"."
+    $ enemyDeck=deckGUNVAR["content"]
+    $ enemybits=16
+    $ enemybitsmax=16
+    hide screen battlestats
+    show screen battlestats
     return
 transform ringtransform:
     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
@@ -1126,13 +1147,7 @@ label Concat_anim(prefix,suffix,suffix2,concat_result):
     $ anim_done=False
     if concat_result.NAME=="Virtual Mobile Armor GUNVAR":
         call cutscene_gunvar
-    python:
-
-        playerbattlecode.pop(battle_index)
-        playerbattlecode.pop(battle_index)
-        if card3concatenation:
-            playerbattlecode.pop(battle_index)
-        playerbattlecode.insert(battle_index,concat_result)
+    
     call updatestats_player
     hide screen battlestats
     show screen battlestats
@@ -1140,10 +1155,16 @@ label Concat_anim(prefix,suffix,suffix2,concat_result):
     play sound "sfx/swing.wav"
     show screen concat_anim(prefix,suffix,suffix2)
     pause 1.0
-    # show screen whiteflash
-    
-    pause 0.3
-    # hide screen whiteflash
+    show screen whiteflash
+    python:
+
+        playerbattlecode.pop(battle_index)
+        playerbattlecode.pop(battle_index)
+        if card3concatenation:
+            playerbattlecode.pop(battle_index)
+        playerbattlecode.insert(battle_index,concat_result)
+    pause 0.5
+    hide screen whiteflash
     hide screen concat_anim
     show white:
         alpha 1.0 xzoom 0.0 xalign 0.5 yzoom 1.0
@@ -1188,7 +1209,7 @@ screen concat_anim(prefix,suffix,suffix2):
 screen whiteflash:
     image "white" at flashbang2
 transform concat_spacing:
-    xzoom 4.0
+    xzoom 5.0
     pause 0.8
     linear 0.2 xzoom 0.0
     
@@ -1496,11 +1517,9 @@ init python:
         "ReduceBit":"ReduceBit",
         "Evade":"EvadePlayer",
         "Block":"Blockplayer",
-        
         "Retreat":"Retreatplayer",
-        
         "Advance":"Advanceplayer",
-
+        "DeckChange":"DeckChangePlayer",
         "":"DoNothing"
     }
 label functioneffects(runfxnstring,params=[]):
@@ -1528,6 +1547,8 @@ init python:
         "Block":"BlockEnemy",
         "Retreat":"Retreatenemy",
         "Advance":"Advanceenemy",
+        "DeckChange":"DeckChangeEnemy",
+        
         # "":"",
         "":"DoNothing"
     }

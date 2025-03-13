@@ -288,65 +288,10 @@ image battlering = "images/battle/battlering.png"
 image battleroad = "images/battle/battleroad.png"
 # image TrojanH = "TrojanHsmall.png"
 
-init python:
-    
-    def FunctionList(FXN):
-        fxns=[]
-        long_fxn_name=False
-        for cardfunction in FXN:
-            if len(cardfunction.code)>20:
-                long_fxn_name=True
-            fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(226/12)) else 0.68 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,226,16)))))
-       
-        return VBox(*fxns)
-    def FunctionListDescript(FXN):
-        fxns=[]
-        long_fxn_name=False
-        for cardfunction in FXN:
-            # if len(cardfunction.code)>18:
-            #     long_fxn_name=True
-            fxns.append(Text("{size=12}{b}"+cardfunction.name+"{/b}{/size}\n  {size=12}"+cardfunction.text+"{/size}"))
-        # if long_fxn_name:
-        #     return At(VBox(*fxns))
-        # else:
-        return VBox(*fxns)
-    def CardDisplay(cardobj):
-        return LiveComposite(
-            (225,300),
-            (0,0),"images/Cards/Cardblank.png",
-            (11,12),"images/Cards/"+cardobj.NAME+".png",
-            (14,231),
-                FunctionList(cardobj.FXN),
-            (170,169),
-                At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
-            (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
-            (168,196),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
-            (164,231),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}"),
-            (164,242),Text("{color=#ffcc00}{font=font/consolas.ttf}{size=10}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}"),
-            (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
-            (165,267),Text("{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}"),
-            )
 
 image cardflasher:
     CardDisplay(currentcard)
-    # LiveComposite(
-    #     (225,300),
-    #     (0,0),"images/Cards/Cardblank.png",
-    #     (11,12),"images/Cards/[currentcard.NAME].png",
-    #     # (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[cardobj.NAME]{/color}{/font}{/size}"),
-        
-    #     (14,231),
-    #         FunctionList(currentcard.FXN),
-    #     (170,169),
-    #         At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
-    #     # (165,175),"images/Cards/cardbit/[currentcard.COST].png",
-    #     (11,204),Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+currentcard.NAME+"{/color}{/font}{/size}",style="cardshadows"),
-    #     (168,196),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(currentcard.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
-    #     (164,231),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}"),
-    #     (164,242),Text("{color=#ffcc00}{font=font/consolas.ttf}{size=10}{k=-1}\""+currentcard.TYPE+"\"{/k}{/color}{/font}{/size}"),
-    #     (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
-    #     (165,267),Text("{color=#ae81f2}{size=24}[currentcard.MAG]{/color}{/size}"),
-    #     )
+
 
 image card1:
     LiveComposite(
@@ -606,8 +551,8 @@ image fxndescription:
         "'TripleHit' in fxnpreview",Text("Decrease Target HP 3 times."),
         "'DoubleHit' in fxnpreview",Text("Decrease Target HP 2 times."),
         "'Recover' in fxnpreview",Text("Increase Self HP."),
-        "'POW_Up' in fxnpreview",Text("Increase Self POW for 3 turns."),
-        "'SPD_Up' in fxnpreview",Text("Increase Self SPD for 3 turns."),
+        "'POWR_Up' in fxnpreview",Text("Increase Self POWR for 3 turns."),
+        # "'SPD_Up' in fxnpreview",Text("Increase Self SPD for 3 turns."),
         "'Saber_Up' in fxnpreview",Text("Increase Self \"Saber\" named Battleware POW for 3 turns. Effect fades each turn."),
         "'Damage' in fxnpreview",Text("Decrease Target HP.")
         )

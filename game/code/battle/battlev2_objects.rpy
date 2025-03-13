@@ -212,7 +212,7 @@ init python:
             "Gain Shield Points.")
     def DeckChange(deckName):
         return Fxn(
-            "deckChange",
+            "DeckChange",
             "deckChange(\""+deckName+"\")",
             "Changes the current battleware deck.",
             deckName
@@ -363,10 +363,11 @@ init python:
     GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3)],   2)
     NucleusVernier=  Card("NV-Nucleus Vernier", "NV",    1.0,     [Advance(1),Boost("ATK",0.25)],   2)
     AccelRiser=      Card("AR-Accel Riser","AR",         1.0,     [Retreat(2),Evade()],   4)
-    GunvarFist=      Card("Gunvar Fist","GUNVAR",  1.0,         [Attack()],   4)
-    GunvarKick=      Card("Gunvar Kick","GUNVAR",  1.0,         [Attack()],   4)
-    GunvarHeadbutt=  Card("Gunvar Headbutt","GUNVAR",  1.0,     [Attack()],   4)
-    GunvarShield=      Card("Gunvar Kick","GUNVAR",  1.0,         [Attack()],   4)
+    GUNVARSaber=      Card("GUNVARSaber","GUNVAR",  2.3,         [Attack(rangevalue=2)],   8)
+    GUNVARFist=      Card("GUNVARFist","GUNVAR",  2.1,         [Attack(rangevalue=2)],   8)
+    GUNVARKick=      Card("GUNVARKick","GUNVAR",  2.2,         [Attack(rangevalue=2)],   8)
+    GUNVARBeam=      Card("GUNVARBeam","GUNVAR",  2.5,     [Attack(rangevalue=6)],   8)
+    GUNVARShield=      Card("GUNVARShield","GUNVAR",  2.0,         [Defend()],   4)
 
     
     Shotgun=       Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -652,7 +653,21 @@ init python:
             DataForce,DataForce],
         "plugins":[]
         }
-
+    deckGUNVAR = {
+        "name":"",
+        "content":[
+            GUNVARBeam,GUNVARBeam,
+            GUNVARFist,GUNVARFist,
+            GUNVARFist,GUNVARFist,
+            GUNVARKick,GUNVARKick,
+            GUNVARKick,GUNVARKick,
+            GUNVARSaber,GUNVARSaber,
+            GUNVARSaber,GUNVARSaber,
+            GUNVARShield,GUNVARShield,
+            GUNVARShield,GUNVARShield],
+        "plugins":[]
+        }
+    
     selectedcard = ""
     currentcard = DataSaber
 

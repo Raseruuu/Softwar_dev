@@ -19,12 +19,21 @@ image GattaiBeam:
 image GUNVAR:
     "Characters/GUNVAR/GUNVAR.png"
 image GattaiLightning:
-    "Characters/GUNVAR/GattaiLightning1.png"
-    pause 0.15
-    "Characters/GUNVAR/GattaiLightning2.png"
-    pause 0.15
-    "Characters/GUNVAR/GattaiLightning3.png"
-    pause 0.15
+    choice:
+        "Characters/GUNVAR/GattaiLightning1.png"
+        pause 0.1
+        "Characters/GUNVAR/GattaiLightning2.png"
+        pause 0.1
+    choice:
+        "Characters/GUNVAR/GattaiLightning2.png"
+        pause 0.1
+        "Characters/GUNVAR/GattaiLightning3.png"
+        pause 0.1
+    choice:
+        "Characters/GUNVAR/GattaiLightning3.png"
+        pause 0.1
+        "Characters/GUNVAR/GattaiLightning1.png"
+        pause 0.1
     repeat
 
     
@@ -137,7 +146,7 @@ label cutscene_gunvar:
     scene radialbg with Dissolve(0.05): 
         yalign 0.0
 
-    show GattaiLightning with Dissolve(0.05):
+    show GattaiLightning:
         xalign 0.5 yanchor 0.3 ypos 0.3
     show GUNVAR:
         zoom 0.25 xpos 0.5 xanchor 0.48
