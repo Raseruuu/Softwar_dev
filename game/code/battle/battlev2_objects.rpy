@@ -38,10 +38,10 @@ init python:
             self.TYPE = TYPE
             self.DESC = DESC
     # class Card:
-    #     def __init__(self,name,POW,SPD,fxn,rank):
+    #     def __init__(self,name,POWR,SPD,fxn,rank):
     #         self.name=name
     #         # self.type =
-    #         self.POW = POW
+    #         self.POWR = POWR
     #         self.SPD = SPD
     #         self.fxn = fxn
     #         self.rank = rank
@@ -188,27 +188,27 @@ init python:
     # def Attack():
     #     return Fxn(
     #         "Attack",
-    #         "attack(ATK*POW)",
+    #         "attack(ATK*POWR)",
     #         "Deal Damage to target.")
-    def Attack(multiplier="POW",rangevalue=1):
+    def Attack(multiplier="POWR",rangevalue=1,absolute=False):
         return Fxn(
             "Attack",
-            "attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")",
+            ("attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attack("+str(multiplier)+",range="+str(rangevalue)+")"),
             "Deal damage to the target. With a range of "+str(rangevalue)+".",
-            [multiplier,rangevalue]
+            [multiplier,rangevalue,absolute]
             )
     
-    def AttackSP(multiplier="POW",rangevalue=1):
+    def AttackSP(multiplier="POWR",rangevalue=1,absolute=False):
         return Fxn(
             "AttackSP",
-            "attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")",
+            ("attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attackSP("+str(multiplier)+",range="+str(rangevalue)+")"),
             "Deal Damage to target's Shield Points only.",
-            [multiplier,rangevalue]
+            [multiplier,rangevalue,absolute]
             )
     def Defend():
         return Fxn(
             "Defend",
-            "defend(DEF*POW)",
+            "defend(DEF*POWR)",
             "Gain Shield Points.")
     def DeckChange(deckName):
         return Fxn(
@@ -220,8 +220,8 @@ init python:
     def Recover(MAG):
         return Fxn(
             "Recover",
-            "recover(MAXHP*POW)",
-            "Recover (MAXHP*POW) HP.",
+            "recover(MAXHP*POWR)",
+            "Recover (MAXHP*POWR) HP.",
             MAG
             )
     #
@@ -267,7 +267,7 @@ init python:
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
     GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [Defend(),DeckChange("GUNVAR")],   0)
-    # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",7,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
+    # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
     Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR]
@@ -277,7 +277,8 @@ init python:
 
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
-        
+    Eraser=Card("Eraser", "Eraser",          1.0,  [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
+
     SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
     MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
 
@@ -426,7 +427,7 @@ init python:
             AccelRiser,AccelRiser
 
             ],
-        "plugins":[]
+        "plugins":[RubyRevolver]
         }
     # deckdefault = {
     #     "name":"The Love Machine",
@@ -452,7 +453,7 @@ init python:
     #     "plugins":[]
     #     }
     deckalpha = {
-        "name":"The Love Machine",
+        "name":"Deceitful Love",
         "content":[
             VirusFlame,VirusFlame,
             VirusFlame,DataSaber,
