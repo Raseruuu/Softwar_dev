@@ -468,24 +468,24 @@ label drawcards:
     # return
 image cardflash:
     "cardflasher"
-    xalign 0.5 ypos 0.74 yanchor 0.5 zoom 0.9
-    linear 0.05 zoom 1.3
+    xalign 0.5 ypos 0.70 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.2
+    linear 0.05 zoom 1.1
 image cardflash2:
     "cardflasher"
-    xalign 0.5 ypos 0.74 yanchor 0.5
-    zoom 1.2
+    xalign 0.5 ypos 0.70 yanchor 0.5
+    zoom 1.1
     # linear 0.05 zoom 1.3
     # linear 0.05 zoom 1.2
 image cardflashenemy:
     "cardflasher"
     xalign 0.5 ypos 0.38 yanchor 0.5 zoom 0.9
-    linear 0.05 zoom 1.3
     linear 0.05 zoom 1.2
+    linear 0.05 zoom 1.1
 image cardflashenemy2:
     "cardflasher"
     xalign 0.5 ypos 0.38 yanchor 0.5 
-    zoom 1.2
+    zoom 1.1
 
 
 
@@ -804,27 +804,27 @@ screen choosecardv2:
                     action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
                     hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
                     unhovered Hide("cardhover")
-                    at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.95
+                    at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.92
             elif clickedcard[cardindex]:
-                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.95
+                
+                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.92
             else:
-                add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.95 at zoomBattlecards
-                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.95
+                add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
+                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.92
 
 
         if playerbattlecode!=[]:
-            imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95
+            imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yanchor 1.0 ypos 0.95
             key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
             key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
         else:
-
-            add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.95
+            add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.92
 screen Activate_Battleware:
-        add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.95
-        add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.95
-        add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5 yalign 0.95
-        add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.95
-        add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.95
+        add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.92
+        add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.92
+        add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.92
+        add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.92
+        add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.92
         text "{size=50}{b}ACTIVATE BATTLEWARE{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.87 at alphablinking
         key 'mouseup_1' action Return()
         key 'K_RETURN' action Return()
@@ -848,10 +848,10 @@ image selectring:
     repeat
 
 screen cardhover(cardobject,cardhoverxpos):
-    image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.95 at cardtrans
+    image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.92 at cardtrans
 screen card6hover:
     # image "selectring" xanchor 0.5 xpos 0.86 yanchor 0.5 ypos 0.75
-    image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.95 at cardtrans2
+    image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.92 at cardtrans2
 
 
 

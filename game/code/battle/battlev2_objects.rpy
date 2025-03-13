@@ -212,8 +212,8 @@ init python:
             "Gain Shield Points.")
     def DeckChange(deckName):
         return Fxn(
-            "DeckChange",
-            "DeckChange("+deckName+")",
+            "deckChange",
+            "deckChange(\""+deckName+"\")",
             "Changes the current battleware deck.",
             deckName
             )
@@ -285,7 +285,7 @@ init python:
     SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
 
     HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),GainToken("Burn",1)],       2)
-    ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.0,   [Recover(1000),NullFxn()],          2)
+    ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
     
     BurstTransfer= Card("BurstTransfer",    "Maneuver",      0.0,   [Evade(1)],          2)
 #Ave's cards
@@ -328,8 +328,8 @@ init python:
    
     DataDrill=    Card("DataDrill",       "Drill",   0.5,     [Attack(),Attack(),Attack()],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
-    Shieldbit=    Card("Shieldbit",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
-    RadioShield=  Card("RadioShield",       "Wall",    0.25,     [Defend(),NullFxn()],          1)
+    Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
+    RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Boost("ATK",0.25)],  2)
     # Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
@@ -412,44 +412,45 @@ init python:
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
             ChocolateBar,ChocolateBar,
-            DataSaber,DataSaber,
-            DataSaber,MailSaber,
-            VirusFlame,RecursiveSlash,
-            BlockSaber,SaberDeflect,
-            DataSaber,BlockSaber,
-            HeartBurn,HeartBurn,
-            # GearframeUnitron,GearframeUnitron,
-            # GearframeUnitron,GearframeUnitron,
-            # NucleusVernier,NucleusVernier,
-            # NucleusVernier,NucleusVernier,
-            # AccelRiser,AccelRiser,AccelRiser,AccelRiser
+            # DataSaber,DataSaber,
+            # DataSaber,MailSaber,
+            # VirusFlame,RecursiveSlash,
+            # BlockSaber,SaberDeflect,
+            # DataSaber,BlockSaber,
+            # HeartBurn,HeartBurn,
+            GearframeUnitron,GearframeUnitron,
+            GearframeUnitron,GearframeUnitron,
+            NucleusVernier,NucleusVernier,
+            NucleusVernier,NucleusVernier,
+            AccelRiser,AccelRiser,
+            AccelRiser,AccelRiser
 
             ],
         "plugins":[]
         }
-    deckdefault = {
-        "name":"The Love Machine",
-        "content":[
-            VirusFlame,VirusFlame,
-            VirusFlame,Vslash,
-            SpamAtk,SpamAtk,
-            SpamAtk,SpamAtk,
-            SpamAtk,DataSaber,
-            ChocolateBar,ChocolateBar,
-            DataSaber,DataSaber,
-            DataSaber,MailSaber,
-            VirusFlame,RecursiveSlash,
-            BlockSaber,SaberDeflect,
-            DataSaber,BlockSaber,
-            HeartBurn,HeartBurn,
-            # GearframeUnitron,GearframeUnitron
-            # ,GearframeUnitron,GearframeUnitron,
-            # NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
-            # AccelRiser,AccelRiser,AccelRiser,AccelRiser
+    # deckdefault = {
+    #     "name":"The Love Machine",
+    #     "content":[
+    #         VirusFlame,VirusFlame,
+    #         VirusFlame,Vslash,
+    #         SpamAtk,SpamAtk,
+    #         SpamAtk,SpamAtk,
+    #         SpamAtk,DataSaber,
+    #         ChocolateBar,ChocolateBar,
+    #         DataSaber,DataSaber,
+    #         DataSaber,MailSaber,
+    #         VirusFlame,RecursiveSlash,
+    #         BlockSaber,SaberDeflect,
+    #         DataSaber,BlockSaber,
+    #         HeartBurn,HeartBurn,
+    #         # GearframeUnitron,GearframeUnitron
+    #         # ,GearframeUnitron,GearframeUnitron,
+    #         # NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
+    #         # AccelRiser,AccelRiser,AccelRiser,AccelRiser
 
-            ],
-        "plugins":[]
-        }
+    #         ],
+    #     "plugins":[]
+    #     }
     deckalpha = {
         "name":"The Love Machine",
         "content":[

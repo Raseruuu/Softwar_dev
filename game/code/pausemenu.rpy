@@ -355,7 +355,9 @@ screen Battleware:
 
     use pauselayout("BATTLEWARE",True,True)
     # add "cardflasher" xalign 0.34 yalign 0.58 at pausecardsize, pausetrans1
-    use Card(currentcard,(420,217),1.0)
+    # use Card(currentcard,(420,217),1.0)
+    add CardDisplay(currentcard):
+        xpos 420 ypos 192 xanchor 0.0 yanchor 0.0
 
     frame:
         xpadding 20
@@ -405,8 +407,9 @@ screen Battleware:
 screen Battleware_Edit():
     use pauselayout("DECK EDIT",False,True)
 
-    use Card(currentcard,(50,217),1.0)
-
+    # use Card(currentcard,(50,217),1.0)
+    add CardDisplay(currentcard):
+        xpos 50 ypos 192 xanchor 0.0 yanchor 0.0
     frame:
         xpadding 20
         ypadding 20
