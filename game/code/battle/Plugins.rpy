@@ -73,9 +73,6 @@ label PluginExecution(plugin_set,plugin_user):
         if (runnumber<iterations) and (battle_done==False):
             jump exec_loop
         else:
-
-            call PlayerEndPhase
-            # info"[playerName]'s turn has ended."
-            if not battle_done:
-                call enemyattack
+            return
+            
     return

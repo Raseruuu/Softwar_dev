@@ -618,6 +618,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     call showphasemsg("SOFTWAR BEGIN!") 
     #Start Dialogue
     $ phasenum=0
+    call Plugins_Run
     label battleloop:
         hide screen battlestats
         show screen battlestats
