@@ -22,8 +22,11 @@ init python:
     playerDEF = ILYStatsnow["DEF"]
 
     playerDeck = ILYStatsnow["Deck"]
+    playerPlugins =ILYStatsnow["Deck"]["plugins"]
     fxnindex=0
     execution_active=False
+    enemy_evasion_active=False
+    evasion_active=False
     battle_done = False
     enemyfirst =False
     map_active=False
@@ -118,7 +121,7 @@ screen battlestats():
         vbox:
             hbox:
                 style_prefix "battlestats"
-                image "Icon_[playerName]" at zoomtrans(0.8)
+                image (Null(height=154,width=114) if evasion_active else "Icon_[playerName]") at zoomtrans(0.8)
                 spacing 10
                 vbox:
                     
@@ -225,7 +228,7 @@ screen battlestats():
                 style_prefix "battlestats"
                 box_reverse True
                 if enemyName in boss_list: 
-                    image "Icon_[enemyName]" xalign 1.0  at zoomtrans(0.8)
+                    image (Null(height=154,width=114) if enemy_evasion_active else "Icon_[enemyName]") xalign 1.0  at zoomtrans(0.8)
                 else:
                     null width 115 height 154
                 spacing 10
@@ -497,7 +500,7 @@ image cardflashenemy2:
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
-    
+    $ evasion_active=False
     $ execution_active=False
     $ ILY_w=True
     $ ILY_m="frown"
@@ -555,6 +558,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         enemySP = 0
         enemySPMax = EnemyFAIstats["SPMAX"]
         enemyDeck = EnemyFAIstats["Deck"]["content"]
+        enemyPlugins =EnemyFAIstats["Deck"]["plugins"]
         enemyATK = EnemyFAIstats["ATK"]
         enemyDEF = EnemyFAIstats["DEF"]
         enemyATK_m = enemyATK

@@ -21,19 +21,37 @@ image GUNVAR:
 image GattaiLightning:
     choice:
         "Characters/GUNVAR/GattaiLightning1.png"
-        pause 0.1
-        "Characters/GUNVAR/GattaiLightning2.png"
-        pause 0.1
-    choice:
-        "Characters/GUNVAR/GattaiLightning2.png"
-        pause 0.1
-        "Characters/GUNVAR/GattaiLightning3.png"
-        pause 0.1
-    choice:
-        "Characters/GUNVAR/GattaiLightning3.png"
-        pause 0.1
+        pause 0.05
+        Null()
+        pause 0.05
         "Characters/GUNVAR/GattaiLightning1.png"
-        pause 0.1
+        pause 0.05
+        Null()
+        pause 0.05
+        "Characters/GUNVAR/GattaiLightning2.png"
+        pause 0.05
+    choice:
+        "Characters/GUNVAR/GattaiLightning2.png"
+        pause 0.05
+        Null()
+        pause 0.05
+        "Characters/GUNVAR/GattaiLightning2.png"
+        pause 0.05
+        Null()
+        pause 0.05
+        "Characters/GUNVAR/GattaiLightning3.png"
+        pause 0.05
+    choice:
+        "Characters/GUNVAR/GattaiLightning3.png"
+        pause 0.05
+        Null()
+        pause 0.05
+        "Characters/GUNVAR/GattaiLightning3.png"
+        pause 0.05
+        Null()
+        pause 0.05
+        "Characters/GUNVAR/GattaiLightning1.png"
+        pause 0.05
     repeat
 
     

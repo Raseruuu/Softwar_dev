@@ -20,12 +20,13 @@ init python:
 
 
     class Plugin:
-        def __init__(self,NAME,DESC,MAG,FXN,COST):
+        def __init__(self,NAME,DESC,MAG,FXN,COST,TYPE="Plugin"):
             self.NAME = NAME
             self.DESC = DESC
             self.MAG = MAG
             self.FXN = FXN
             self.COST = COST
+            self.TYPE = TYPE
     class Item:
         def __init__(self,NAME,TYPE,DESC,FXN):
             self.NAME = NAME
@@ -395,12 +396,12 @@ init python:
 
 #    Plugins:
 
-    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.25, Defend(),4)
-    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, GiveToken("Email",1),4)
-    SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, Boost("ATK",0.1),4)
-    MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, Boost("ATK",0.1),4)
-    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,Attack(rangevalue=10), 8)
-    SnipeSensor=Plugin("SnipeSensor","!",1.0,Attack(), 8)
+    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.25, [Defend()],4)
+    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GiveToken("Email",1)],4)
+    SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, [Boost("ATK",0.1)],4)
+    MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
+    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,[Attack(rangevalue=10)], 8)
+    SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
 
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS

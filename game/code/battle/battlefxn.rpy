@@ -84,7 +84,10 @@ label Damageenemy:
     ## EVADE
     if "Evade" in EnmySts:
         $ attackhit=False
-        $ EnmySts.remove('Evade')
+        $ EnmySts.remove('Evade') 
+        $ enemy_evasion_active=True
+        pause 0.1
+        $ enemy_evasion_active=False
         show Enemy at sidesteps_effect("Enemy", 0.5, 0.1, 0.25)
         pause 0.2
         show Enemy
@@ -96,12 +99,14 @@ label Damageenemy:
             $ attackhit=False
             # show Enemy:
             #     xalign 0.5 yanchor 0.32 ypos 0.3
+            $ enemy_evasion_active=True
             
             show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
                 # yanchor 1.0 ypos 0.5
                 # yanchor 0.32 ypos 0.3
                 # yoffset 1.0
             pause 0.24
+            $ enemy_evasion_active=False
             show Enemy:
                 xalign 0.5 yanchor 0.32 ypos 0.3 
             play sound "sfx/miss.wav"
@@ -958,6 +963,10 @@ label Damageplayer:
     ## EVADE
     if "Evade" in PlayerSts:
         $ attackhit=False
+        # $ renpy.show("Icon_[playerName]", at_list=([sidesteps_effect_dodge("Icon_[playerName]", 0.5, renpy.random.choice([0.6,0.4]), 0.12)]))
+        $ evasion_active=True
+        pause 0.1
+        $ evasion_active=False
         $ PlayerSts.remove('Evade')
         call showphasemsg("EVADED")
     ## NO EVADE
@@ -965,10 +974,13 @@ label Damageplayer:
         if battle_distance>=attackrange:
             call Advanceplayer(1)
             $ attackhit=False
-            show Enemy:
-                xalign 0.5 yanchor 0.32 ypos 0.3
+            # show Enemy:
+            #     xalign 0.5 yanchor 0.32 ypos 0.3
+            $ evasion_active=True
+            pause 0.1
+            $ evasion_active=False
             play sound "sfx/miss.wav"
-            call showphasemsg("MISSED")
+            call showphasemsg("MISSED!")
             $ renpy.pause(0.3,hard=True)
             if battle_distance==0 and battle_distance_old>0:
                 call showphasemsg("DISTANCE:ZERO")
@@ -1014,6 +1026,7 @@ label Damageplayer:
         hide damagenoise
         hide screen battlestats
         show screen battlestats
+        
         with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
         
     #   if "Drill" in currentcardTYPE:
@@ -1023,7 +1036,9 @@ label Damageplayer:
         $ ILY_m="frown"
         $ ILY_e="down"
         $ ILY_eyes="open"
-    
+    $ attackhit=True
+    hide screen battlestats
+    show screen battlestats
     return
 label DeckChangePlayer:
     "[playerName]'s Deck is changed to \"GUNVAR\"."

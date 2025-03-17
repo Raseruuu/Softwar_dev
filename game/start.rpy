@@ -75,11 +75,11 @@ label credits:
     pause 3.0
     hide text
     hide IlyRpg
-    $ Ily_p='1'
-    $ Ily_m='smile'
+    # $ Ily_p='1'
+    # $ Ily_m='smile'
 
-    show ILY:
-        xalign 0.5
-    i"Have a Lovely Day, User!"
+    # show ILY:
+    #     xalign 0.5
+    # i"Have a Lovely Day, User!"
 
     return

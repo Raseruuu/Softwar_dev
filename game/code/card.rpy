@@ -60,7 +60,7 @@ init python:
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
             
-            (9,10),"images/Cards/"+cardobj.NAME+".png",
+            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (14,260),
                 FunctionList(cardobj.FXN),
             # (170,169),

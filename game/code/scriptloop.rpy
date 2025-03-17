@@ -6,11 +6,16 @@ label game_loop:
 
     #Chapter Novel_Mode
     if not game_over:
-        $ renpy.call("script"+str(chapternum))
+        if chapternum==3:
+            "Demo Over."
+            "Thank  You for playing SOFTWAR!"
+        else:
+            $ renpy.call("script"+str(chapternum))
     # if chapternum==2:
     #     return
     if not playerHP<=0:
         if not game_over:
             jump game_loop
-    call credits
+    if not game_over:
+        call credits
     return

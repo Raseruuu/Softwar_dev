@@ -177,6 +177,7 @@ label ObtainItem(item):
 
 default deckname=mydeck["name"]
 default deckcurrent =sorted( mydeck["content"],key=lambda x: x.NAME, reverse=False)
+default deckplugin =mydeck["plugins"]
 default deck_unedited=[]
 
 
