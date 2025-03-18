@@ -204,26 +204,39 @@ label battlecry:
     python:
       burndmg = 0
       for fxns in EnmySts:
-        if fxns=="burn":
-          burndmg = burndmg +40
-    $ damagetoenemy += burndmg
+        if fxns=="Burn":
+          burndmg = burndmg +80
+    $ battledamage = damagetoenemy
+    $ battledamage += burndmg
+    $ can_burn_to_death= (burndmg>=enemyHP) and len(playerbattlecode)==0
+    # "[can_burn_to_death]"
 
     # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
     $ currentcardfunctions=[a.name for a in currentcardFXN]
     $ damagecard = ("attack" in currentcardfunctions) 
-    if currentcard.NAME=="MailSaber" or currentcard.NAME=="FlameSaber":
+    if currentcard.NAME=="MailSaber" or currentcard.NAME=="RecursiveSlash" or currentcard.NAME=="FlameSaber":
       $ forcefinish = True
     
-    if ((enemyHP+enemySP)<=damagetoenemy) and (damagecard==True) or forcefinish:
+    if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
       # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
-      voice "voice/ILY/ILY09 - Finishing move.mp3"
       
-      $ anim_done=False
-      $ flashuser = "ILY"
-      call screen finishingflash("Finishing Move!")
+      if enemyName=="Vira":
+        
+        voice "voice/ILY/ILY23B - This is the end, Vira.mp3"
+        $ anim_done=False
+        $ flashuser = "ILY"
+        call screen finishingflash("This is the end, Vira!\nPlease, Listen to me!")
+        if forcefinish:
+          voice "voice/ILY/ILY09 - Finishing move.mp3"
+          call screen finishingflash("Finishing Move!")
+      else:
+        voice "voice/ILY/ILY09 - Finishing move.mp3"
+        $ anim_done=False
+        $ flashuser = "ILY"
+        call screen finishingflash("Finishing Move!")
 
-    elif (playerHP <=1500):
+    else :
       $ vcount=vcount+1
       if vcount == 1:
         voice "voice/ILY/ILY26 - I won't let you.mp3"

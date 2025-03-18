@@ -101,7 +101,7 @@ label script1_2_dialog1:
     j "So, You think this path is supposed to take us to SDS area?"
     
     i "Oh? How would you know that?" 
-    j "The virtual world here seems to mimic the real world locations. Albeit the components of each area is different."
+    j "The virtual world here seems to mimic the real world locations. Albeit the components of each area are different."
     j "Like, this place is pretty empty in comparison!! And where are the cars?"
     i "... Nice observation, I wouldn't know that!"
     i "Hmmm... "
@@ -265,7 +265,12 @@ label script1_2_dialog1:
     i "Thank you for trusting me, Melissa."
     $ ILY_m="smile3"
     m "A thank you again? Like I said, you can call me your big sister now."
+    
+    hide Melissa
+    show Melissajump
     m "Sisters always watch each other's backs!"
+    show Melissa
+    hide Melissajump
     m "If you find trouble with Antiviruses, you can try coming here for help."
     i "I suppose today is not the right time to face Bitwulf..."
     m "Correct. I myself am not prepared with a way to counterattack after evading its lightning strike."

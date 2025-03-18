@@ -7,6 +7,25 @@ style uguu:
 style uguu2:
     xpos 0.6 top_padding 4 right_padding 4 left_padding 4
     background Frame("gui/frame.png", 64, 64)
+transform left:
+    xalign 0.02
+transform right:
+    xalign 0.98
+transform center:
+    xalign 0.5
+init python:
+
+    def togglechar(character_name, where=center):
+        if globals()[character_name+"_w"]==False:
+            renpy.hide(character_name)
+        else:
+            character_xpos=(0.1 if where=="left" else 0.9 if "right" else 0.5)
+            renpy.show(character_name,at_list=[where])
+        globals()[character_name+"_w"] = not globals()[character_name+"_w"]
+        return
+    # usage:
+    #     showchar("ILY","left")
+
 
 define narrator = Character(ctc="ctc", ctc_position="fixed", callback=speaker("N"))
 define name_only = Character( color = '#fff',ctc="ctc", ctc_position="fixed", callback=speaker("N"))
@@ -22,6 +41,7 @@ define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc"
 define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callback=speaker("Lucida"), ctc="ctc", ctc_position="fixed")
 
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
+define be = Character("Bella",callback=speaker("Bella"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
 define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 define br= Character("Brain",callback=speaker("Brain"), color ='#f842d6',image ="Brain_side", ctc="ctc", ctc_position="fixed")
 # define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
@@ -123,6 +143,11 @@ init -1 python:
     globals()["Stoned_m"] = "happy"
     globals()["Stoned_w"] = True
 
+    globals()["Bella_e"] = "normal"
+    globals()["Bella_eyes"] = "open"
+    globals()["Bella_m"] = "smile"
+    globals()["Bella_w"] = True
+
     globals()["CodeRed_e"] = "normal"
     globals()["CodeRed_m"] = "frown"
     globals()["CodeRed_w"] = True
@@ -199,6 +224,8 @@ init -1 python:
             globals()["showsideimage"]=Vira_w
         elif (name == "CodeRed"):
             globals()["showsideimage"]=CodeRed_w
+        elif (name == "Bella"):
+            globals()["showsideimage"]=Bella_w
         elif (name == "HackerX"):
             globals()["showsideimage"]=HackerX_w
 
@@ -446,52 +473,23 @@ transform ilyfix(deg):
     xoffset 60
     xpos 0
     ypos 0
-image ILYFullBodyOld:
-    
-    Composite(
-    (0.75, 0.75), #(544,600),
-    (0, 0), At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)), #pose
-    (0, 0), ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null()), #underwear
-    (0, 0), ConditionSwitch("ILY_outfit!=''",At("images/Characters/ILY/Full/ILY_v2_[ILY_outfit].png",ilyfix(0.5)),"ILY_outfit==''",Null()), #outfit
-    #(0, 0), "ILY_p[ILY_p].png",
-    
-    (0, 0), "ILYEyes[ILY_p]",#eyes
-    (0, 0), At("images/Characters/ILY/Full/ILY_Full_hair.png",ilyfix(0.5)),
-    (0, 0), "images/Characters/ILY/ILY_e1[ILY_e].png", #eyebrows
-    (0, 0), "images/Characters/ILY/ILY_heart0.png",
-    (0, 0), WhileSpeaking(
-            "ILY",
-            ConditionSwitch(
-                "('smile' in ILY_m)","ILYMouthsmile",
-                "('smile' not in ILY_m)","ILYMouthfrown"
-                ),
-            "images/Characters/ILY/ILY_m[ILY_m].png"
-            ),
-    )
+
 image ILY_outfit:
     ""+ILY_outfit_function()
     # "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/4 else "")+".png"
 layeredimage ILYFullBody:
     always:
         ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())
-        # At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5))
-    # always:
-    #     ConditionSwitch("ILY_outfit!=''",At("ILY_outfit_back",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit back layer
     always:
-        
         At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)) #pose
-    # group clothes:
     always:
-        # ConditionSwitch("ILY_underwear!=''",At("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png",ilyfix(0.5)),"ILY_underwear==''",Null())
         ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",ilyfix(0.5)),"ILY_stockings==''",Null()) #stockings
-    # group clothes:
     always:
             ConditionSwitch("ILY_underwear!=''",At(("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png"),ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
     always:
             ConditionSwitch("ILY_outfit!=''",At("ILY_outfit",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
     always:
         At("images/Characters/ILY/Full/ILY_Full_face.png",ilyfix(0.5))
-    
     always:
         At("images/Characters/ILY/Full/ILY_Full_hair_[ILY_hair].png",ilyfix(0.5))
     always:
@@ -514,13 +512,10 @@ layeredimage ILYFullBody:
                 ),
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),ilyfix(0.5))
-
 image ILYVtuber:
     LiveComposite(
     (0.75, 0.75), #(544,600),
     (0, 0), "images/Characters/ILY/ILY_Full_base[ILY_p].png", #nude base
-    
-    #(0, 0), "ILY_p[ILY_p].png",
     (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows
     (0, 0), "ILYEyes[ILY_p]",#eyes
     (0, 0), "images/Characters/ILY/ILY_heart[ILY_p].png",
@@ -681,93 +676,6 @@ image ILYMouthfrown:
 #########
 ## John
 #########
-# image side John_Side:
-#     "JohnFull"
-#     zoom 0.38
-
-#image John:
-#    "JohnFull"
-
-# image John eyeszoom:
-#     LiveCrop((0,200,440,100),"JohnFull")
-#     zoom 2.0 yalign 0.5 xalign 0.5
-#
-# image JohnFull:
-#     LiveComposite(
-#         (440,565),
-#         (0, 0), "images/Characters/John/Johnb.png",
-#         (0, 0), WhileSpeaking(
-#             "John",ConditionSwitch(
-#                 "('smile' in John_m)","JohnMouthsmile",
-#                 "('smile' not in John_m)","JohnMouthfrown"
-#                 ),
-#             "images/Characters/John/John_m[John_m].png"
-#             ),
-#         (0, 0), "images/Characters/John/John_e[John_e].png",
-#         (0, 0), "JohnEyes",#eyes
-#         (0, 0), "images/Characters/John/John_glasses.png")
-#
-# # image JohnMouthsmile:
-# #     "images/Characters/John/John_mspeak1.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak2.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak4.png"
-# #     pause .08
-# #     "images/Characters/John/John_mspeak2.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak1.png"
-# #     pause .05
-# #     "images/Characters/John/John_msmile.png"
-# #     pause .05
-# #     repeat
-# #
-# # image JohnMouthfrown:
-# #     "images/Characters/John/John_mspeak1.png"
-# #     pause .08
-# #     "images/Characters/John/John_mspeak2.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak3.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak2.png"
-# #     pause .05
-# #     "images/Characters/John/John_mspeak1.png"
-# #     pause .08
-# #     "images/Characters/John/John_mfrown.png"
-# #     pause .05
-# #     repeat
-# #
-# # image JohnEyes:
-# #     choice:
-# #         "images/Characters/John/John_eyes.png"
-# #         pause 1.0
-# #         "images/Characters/John/John_eyesmclosed.png"
-# #         pause 0.07
-# #         "images/Characters/John/John_eyesclosed.png"
-# #         pause 0.1
-# #         "images/Characters/John/John_eyesmclosed.png"
-# #         pause 0.07
-# #     choice:
-# #         "images/Characters/John/John_eyes.png"
-# #         pause 8.0
-# #     choice:
-# #         "images/Characters/John/John_eyes.png"
-# #         pause 4.0
-# #     choice:
-# #         "images/Characters/John/John_eyes.png"
-# #         pause 1.5
-# #         "images/Characters/John/John_eyesmclosed.png"
-# #         pause 0.07
-# #         "images/Characters/John/John_eyesclosed.png"
-# #         pause 0.1
-# #         "images/Characters/John/John_eyesmclosed.png"
-# #         pause 0.07
-# #         "images/Characters/John/John_eyesclosed.png"
-# #         pause 0.1
-# #         "images/Characters/John/John_eyes.png"
-# #         pause 1.5
-# #     repeat
-
 
 
 image JohnEyes:
@@ -868,8 +776,8 @@ image John sidew:
 
 image John:
     "JohnFull"
-    zoom 0.8
-    yanchor 0.5 ypos 1.0 xalign 1.0
+    zoom 0.85
+    yanchor 0.53 ypos 1.0 xalign 1.0
 
 
 image side John_side:
@@ -1655,7 +1563,7 @@ image Icon_Ave:
 
 image Hilbert:
     "HilbertFull"
-    ypos 1.0 yanchor 0.52 #zoom 0.9
+    ypos 1.0 yanchor 0.56 zoom 0.92
     # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
@@ -2303,3 +2211,171 @@ layeredimage BrainFullBody:
                 ),
             "images/Characters/Brain/Brain_mouth[Brain_m].png"
             )
+image BellaEyes:
+    choice:
+        "images/Characters/Bella/Bella_eyes_open.png"
+        pause 1.0
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Bella/Bella_eyes_open.png"
+        pause 5.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_open.png"
+        pause 4.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_open.png"
+        pause 1.5
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_open.png"
+        pause 1.5
+    repeat
+
+image Bella_eyes_open:
+    "images/Characters/Bella/Bella_eyes_[Bella_eyes].png"
+    pause 1.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_[Bella_eyes].png"
+        pause 2.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_[Bella_eyes].png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Bella/Bella_eyes_[Bella_eyes].png"
+        pause 0.1
+
+        repeat 2
+    repeat
+image Bella_eyes_midclose:
+    "images/Characters/Bella/Bella_eyes_midclose.png"
+    pause 1.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 2.0
+    choice:
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Bella/Bella_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Bella/Bella_eyes_midclose.png"
+        pause 0.15
+
+        repeat 2
+    repeat
+
+image BellaMouthsmile:
+    "images/Characters/Bella/Bella_mmidopen.png"
+    pause .08
+    "images/Characters/Bella/Bella_msmileopen.png"
+    pause .05
+    "images/Characters/Bella/Bella_mmidopen.png"
+    pause .08
+    "images/Characters/Bella/Bella_msmile.png"
+    pause .08
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .05
+    "images/Characters/Bella/Bella_mO.png"
+    pause .1
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .08
+    "images/Characters/Bella/Bella_msmile.png"
+    pause .08
+    repeat
+
+
+image BellaMouthfrown:
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .08
+    "images/Characters/Bella/Bella_mO.png"
+    pause .1
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .08
+    "images/Characters/Bella/Bella_mfrown.png"
+    pause .08
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .08
+    "images/Characters/Bella/Bella_mO3.png"
+    pause .1
+    "images/Characters/Bella/Bella_mO2.png"
+    pause .08
+    "images/Characters/Bella/Bella_mfrown.png"
+    pause .08
+    repeat
+layeredimage BellaFullBody:
+    always:
+        At("images/Characters/Bella/Bella_base.png",ilyfix(0.5)) #pose
+    always:
+        ConditionSwitch(
+            "Bella_eyes=='open'",
+            At("BellaEyes",ilyfix(0.5)),
+            "Bella_eyes!='open'",
+            At("images/Characters/Bella/Bella_eyes_[Bella_eyes].png",ilyfix(0.5)),
+            )
+    always:
+        At("images/Characters/Bella/Bella_e[Bella_e].png",ilyfix(0.5))
+
+    always:
+        At(WhileSpeaking(
+            "Bella",
+            ConditionSwitch(
+                "('smile' in Bella_m)","BellaMouthsmile",
+                "('smile' not in Bella_m)","BellaMouthfrown"
+                ),
+            "images/Characters/Bella/Bella_m[Bella_m].png"
+            ),ilyfix(0.5))
+# image Bella:
+image Bella:
+    mesh True
+
+    "BellaFullBody"
+    zoom 0.5
+    yanchor 0.50
+    ypos 1.0
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
+image side Bella_side:
+
+    ConditionSwitch(
+        "Bella_w==True",LiveCrop((230,60, 440,565), (At("BellaFullBody", zoomtrans(0.9)))),
+        "Bella_w==False","Null_side"
+    )
+    zoom 0.38

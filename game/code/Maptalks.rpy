@@ -146,10 +146,10 @@ label maptalk_Virus_1:
 label maptalk_Bella_1:
       # elif actornum == 'Bella':
     # "Bella""Hello ILY from SOFTWAR."
-    "Bella""Hi! Have you seen a small red robot around anywhere? Her name is Tetra!"
+    be"Hi! Have you seen a small red robot around anywhere? Her name is Tetra!"
     $ILYSprite("smile")
     i"A Red Robot named Tetra? huh... Sorry, I didn't see her."
-    "Bella""Please tell me if you find her!"
+    be"Please tell me if you find her!"
     i"Got it!"
     return
 label maptalk_Tetra_1:

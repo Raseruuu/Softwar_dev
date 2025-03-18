@@ -6,9 +6,11 @@ label game_loop:
 
     #Chapter Novel_Mode
     if not game_over:
-        if chapternum==3:
+        if chapternum>=3:
+            scene black
             "Demo Over."
             "Thank  You for playing SOFTWAR!"
+            $game_over=True
         else:
             $ renpy.call("script"+str(chapternum))
     # if chapternum==2:

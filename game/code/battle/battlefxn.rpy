@@ -937,7 +937,6 @@ label Shieldenemy:
 label DoNothing:
     pass
     return
-# image damagenoise:
 
 label Damageplayer:
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
@@ -1041,8 +1040,10 @@ label Damageplayer:
     show screen battlestats
     return
 label DeckChangePlayer:
-    "[playerName]'s Deck is changed to \"GUNVAR\"."
+    info"[playerName]'s Deck is changed to \"GUNVAR\"."
     $ playerDeck=deckGUNVAR["content"]
+    $ import random
+    $ random.shuffle(playerDeck)
     $ playerbits=16
     $ playerbitsmax=16
     hide screen battlestats
@@ -1051,6 +1052,8 @@ label DeckChangePlayer:
 label DeckChangeEnemy:
     "[enemyName]'s Deck is changed to \"GUNVAR\"."
     $ enemyDeck=deckGUNVAR["content"]
+    $ import random
+    $ random.shuffle(enemyDeck)
     $ enemybits=16
     $ enemybitsmax=16
     hide screen battlestats
@@ -1132,7 +1135,6 @@ label Concatenation:
                         # renpy.say("","[concatenated]")
                         typelength=len(card.TYPE)
                         concatword1=Concat_str[:typelength]
-                        print("concatword is ="+concatword1)
                         concat_true =(card.TYPE==concatword1 and Concat_str in battlecodetypes and card.TYPE!=nextcard.TYPE)
                         
                         # battlecodereduced=replace_whole_word_from_string("",battlecodetypes)

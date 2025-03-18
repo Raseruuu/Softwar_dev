@@ -78,9 +78,9 @@ label cutscene_gunvar:
     i"Initiate... Combination Algorithm!{w=0.7}{nw}"
     # show ILY:
     #     easein 0.7 zoom 0.4
-    show white onlayer overlay:
-        alpha 0.0
-        linear 0.3 alpha 1.0
+    # show white onlayer overlay:
+    #     alpha 0.0
+    #     linear 0.3 alpha 1.0
     
     i"Concatenate!{w=0.5}{nw}"
     $ILY_w=True    
@@ -103,7 +103,7 @@ label cutscene_gunvar:
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
-    i"Gearframe Unitron!{w=0.5}{nw}"
+    i"Gearframe Unitron!{w=0.4}{nw}"
     show GearframeUnitron:
         linear 0.4 xalign 0.3 
     show NucleusVernier:
@@ -111,13 +111,13 @@ label cutscene_gunvar:
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
-    i"Nucleus Vernier!{w=0.5}{nw}"
+    i"Nucleus Vernier!{w=0.4}{nw}"
     show AccelRiser:
         xalign 0.78 yalign 0.5 zoom 0.3 
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
-    i"Accel Riser!{w=0.5}{nw}"
+    i"Accel Riser!{w=0.4}{nw}"
     show AccelRiser:
         easein 0.5 xalign 0.5 yalign 0.04 zoom 0.08
     show NucleusVernier:

@@ -159,7 +159,7 @@ screen say(who, what):
 style sideimage_frame:
     background Frame("gui/frame.png", 72, 32)
 image ctc:
-    xalign 0.83
+    xalign 0.82
     yalign 0.98
     alpha 1.0
     subpixel True

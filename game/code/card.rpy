@@ -18,9 +18,6 @@ init python:
             remmax=namewidth-excess
             rem=remmax/namewidth
             excesspercentage=excess/maxwidth
-            if maxwidth!=164:
-                print(text)
-                print(rem)
             zoompercentage=rem
             return zoompercentage
         else:

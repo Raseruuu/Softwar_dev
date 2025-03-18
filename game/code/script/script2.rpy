@@ -58,6 +58,8 @@ label script2:
     h "Woah, isn't she kind of cute?"
     l "Yeah... "
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    $ Vira_e="mad"
+    $ Vira_m="frown"
     "Suddenly-  Vira's eyes brightly shone, alerting for danger."
     "Out of the air, projected at the palm of her hand, she draws out her weapon, a gun, and points it at ILY."
     v "Virus Detected! Identifying Target...  identity: ILOVEYOU Virus!"
@@ -71,13 +73,18 @@ label script2:
       return
     scene blue with Dissolve(0.2)
     show Folders with dissolve
-    
+    $ Lisa_e="mad"
+    $ Lisa_m="frown"
     "ILY's holding her ground...!"
     l "No, You shouldn't fight!"
     v "My Powersol Shield has been... bypassed?"
+    play music "bgm/ost/Serious_Noyemi_K.ogg"
+    $ togglechar("Vira",right)
+    $ togglechar("ILY",left)
+    with dissolve
     v "How.. I can't win.. the Virus Signature, is different from the ILOVEYOU Virus in my Database...?"
     i "I'm.. different! I've been altered!"
-    v "No! altered or not, a Virus is Virus... I should be able to.. override your control!"
+    v "No! Altered or not, a Virus is Virus... I should be able to.. override your control!"
     i "I'm on your side, listen to me!"
     i "Our operator wants us to work together!"
     v "I don't believe you!"

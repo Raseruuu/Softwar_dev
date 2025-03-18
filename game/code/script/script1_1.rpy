@@ -1005,7 +1005,7 @@ label date2:
             xalign 0.88 yalign 0.5
 
         show Trojan:
-            xalign 0.8 yalign 0.5 zoom 1.2
+            xalign 0.8 yalign 0.5  zoom 0.82
         show USBkun:
             xalign 0.12 yalign 0.5 xzoom -1.0
         # $ ILY_p = '0'
@@ -1025,7 +1025,7 @@ label date2:
         play sound "sfx/Damage.wav"
         j"If you miss, you might hit the program!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         show Trojan with ease:
-            xalign 0.6 yalign 0.5 zoom 1.2
+            xalign 0.6 yalign 0.5 zoom 0.82
         "The Trojan approaches ILY anyway, and here I was getting worried over the threat that the Trojan would harm the poor program."
         "Maybe this Future AI... isn't very intelligent?"
         $ ILY_w = True
@@ -1050,8 +1050,9 @@ label date2:
 
         with pixellate
         i"John! I need your help! Let's destroy the Virus Together!"
-
-        show screen Card(DataSaber,((2*138 )+300,200),1.0)
+        $ currentcard=(DataSaber)
+        show cardflasher:
+            xalign 0.5 yalign 0.46
         i"In a Softwar, we use Battleware!!"
         j"A sword?"
         $ ILY_m = 'smile'
@@ -1118,7 +1119,7 @@ label date2:
         play sound "sfx/Damage.wav"
         j"You could've been deleted, ILY!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         i"Nah, that was easy!"
-        j"You HAD a hard time! You barely survived with just [playerHP] HP left!"
+        j"You did have a hard time! You barely survived with just [playerHP] HP left!"
         play sound "sfx/Damage.wav"
         extend" You were on the brink of erasure!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         l"It looks like John cares for you, ILY!"
