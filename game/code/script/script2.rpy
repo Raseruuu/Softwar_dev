@@ -105,9 +105,6 @@ label script2:
     v "Show me where this SDS area is..!"
 
 
-    return
-
-
 label SDS_Encounter:
     
     # Part 2
