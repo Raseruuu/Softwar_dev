@@ -106,8 +106,6 @@ label hideMapview:
 
 label eventdoor:
     $renpy.jump(str(Here))
-    # python:
-    #   print("aaaa")
     return
     # else:
     #   $renpy.jump(str(Here))
@@ -579,7 +577,7 @@ label randomencounter:
      # $safezone=True #for debugging
      $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
      if enemy_encounter == True:
-          $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware,Sephiroth])
+          $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
           # $ enemyvirus = renpy.random.choice([Vira])
           hide screen mapB
           hide screen mapA
@@ -681,56 +679,8 @@ label Returns:
    return
   return
 
-# label Damage:
-#         # DAMAGING ENEMY USING OWN CARD
-#
-#         hide ring
-#         hide card1
-#         hide card2
-#         hide card3
-#         hide card4
-#         #Calculate dmg here
-#         call fxnCaller(PlayerFxn) from _call_fxnCaller
-#         if EnmyHP <=0:
-#           $EnemyHP=0
-#           show Enemy:
-#             linear 0.15 zoom 0.94
-#             xoffset 0.12 yoffset 0.2 alpha 0.5
-#             pause .05
-#             xoffset 0.-17 yoffset 0.-17 alpha 0.8
-#             pause .05
-#             xoffset 0.13 yoffset 0.2 alpha 1.0
-#             pause 0.1
-#             xoffset 0.-19 yoffset 0.11
-#             pause 0.4
-#             linear 0.1 zoom 0.8 alpha 0.0
-#           $ renpy.pause(0.4,hard=True)
-#           $Battle_End = True
-#           hide Enemy
-#           hide screen stats
-#           hide screen choosecard
-#           stop music
-#
-#           # jump cardcycle
-#         return
 
 
-label EnmyDamage:
-    #ILY LOSING HP
-    #Calculate dmg here
-    call fxnCallerp(EnmyFxn) from _call_fxnCallerp
-    if playerHP <=0:
-      $playerHP=0
-      #Losing Animation
-      "ILY Deleted!"
-      $Battle_End = True
-      hide Enemy
-      hide screen stats
-      hide screen choosecard
-      stop music
-
-      # jump cardcycle
-    return
 
 
 screen notif(notiftext):

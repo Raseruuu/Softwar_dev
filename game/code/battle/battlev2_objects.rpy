@@ -264,6 +264,7 @@ init python:
 #Concatenations
     ##name              name                     TYPE               MAG        FXN List                      COST
     FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
+    MailSaberPlus=    Card("MailSaberPlus",           "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
@@ -271,7 +272,7 @@ init python:
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
-    Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR]
+    Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR,MailSaberPlus]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 

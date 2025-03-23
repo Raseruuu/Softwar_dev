@@ -50,6 +50,7 @@ label script2:
     j "Here it is.."
     show Vira
     $ Lisa_w=True
+    $ Vira_w=False
     
     v "Greetings, My name is Vira. I am an Antivirus. The Next Generation: FAI."
     v "At your service!"

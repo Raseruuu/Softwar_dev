@@ -221,16 +221,14 @@ label battlecry:
     # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
       # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
       
-      if enemyName=="Vira":
+      if enemyName=="Vira" and not forcefinish:
         
         voice "voice/ILY/ILY23B - This is the end, Vira.mp3"
         $ anim_done=False
         $ flashuser = "ILY"
         call screen finishingflash("This is the end, Vira!\nPlease, Listen to me!")
-        if forcefinish:
-          voice "voice/ILY/ILY09 - Finishing move.mp3"
-          call screen finishingflash("Finishing Move!")
-      else:
+        
+      if forcefinish:
         voice "voice/ILY/ILY09 - Finishing move.mp3"
         $ anim_done=False
         $ flashuser = "ILY"
