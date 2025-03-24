@@ -22,6 +22,7 @@ init python:
     playerDEF = ILYStatsnow["DEF"]
 
     playerDeck = ILYStatsnow["Deck"]
+    actual_playerDeck = playerDeck
     playerPlugins =ILYStatsnow["Deck"]["plugins"]
     fxnindex=0
     execution_active=False
@@ -702,7 +703,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
             if not battle_done:
                 jump battleloop
             elif battle_done:
-
+                $ actual_playerDeck = playerDeck
                 show screen phasemsg("BATTLE_END")
                 $renpy.pause(0.9,hard=True)
                 hide screen phasemsg

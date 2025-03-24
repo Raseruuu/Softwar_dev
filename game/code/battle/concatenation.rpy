@@ -18,6 +18,50 @@ image GattaiBeam:
     "Characters/GUNVAR/GattaiBeam.png"
 image GUNVAR:
     "Characters/GUNVAR/GUNVAR.png"
+image GUNVARLockInBottom:
+    "Characters/GUNVAR/GUNVARLockInBottom.png"
+
+image GUNVARLockInBottom_Activate:
+    "Characters/GUNVAR/GUNVARLockInBottom_Activate.png"
+
+image GUNVARLockInDim:
+    "Characters/GUNVAR/GUNVARLockInDim.png"
+    alpha 1.0
+    linear 1.0 alpha 0.0
+
+image GUNVARLockInTop:
+    "Characters/GUNVAR/GUNVARLockInTop.png"
+
+image GUNVARLockInTop2:
+    "Characters/GUNVAR/GUNVARLockInTop2.png"
+
+image GUNVARLockInEyes:
+    "Characters/GUNVAR/GUNVARLockInEyes1.png"
+    pause 0.05
+    "Characters/GUNVAR/GUNVARLockInEyes2.png"
+    pause 0.03
+    Null()
+    pause 0.01
+    "Characters/GUNVAR/GUNVARLockInEyes1.png"
+    pause 0.02
+    "Characters/GUNVAR/GUNVARLockInEyes2.png"
+    pause 0.05
+    "Characters/GUNVAR/GUNVARLockInEyes3.png"
+    pause 0.02
+    Null()
+    pause 0.01
+    "Characters/GUNVAR/GUNVARLockInEyes2.png"
+    pause 0.05
+    Null()
+    pause 0.01
+    "Characters/GUNVAR/GUNVARLockInEyes4.png"
+    pause 0.05
+    "Characters/GUNVAR/GUNVARLockInEyes3.png"
+    pause 0.02
+    "Characters/GUNVAR/GUNVARLockInEyes4.png"
+    pause 0.05
+    easein 0.7 alpha 0.0
+
 image GattaiLightning:
     choice:
         "Characters/GUNVAR/GattaiLightning1.png"
@@ -75,7 +119,7 @@ label cutscene_gunvar:
         pause 0.1
         linear 0.2 alpha 0.0
     pause 0.7
-    i"Initiate... Combination Algorithm!{w=0.7}{nw}"
+    i"Initiate Combination Algorithm!{w=0.7}{nw}"
     # show ILY:
     #     easein 0.7 zoom 0.4
     # show white onlayer overlay:
@@ -125,7 +169,7 @@ label cutscene_gunvar:
     show GearframeUnitron:
         easein 0.5 xalign 0.5 yalign 0.7 zoom 0.08
     i"Join Together!! {w=0.5}{nw}"
-    
+    # label cutscene_gunvar:
     # show screen whiteflash
     scene black
     show GattaiBeam:
@@ -141,6 +185,28 @@ label cutscene_gunvar:
         ease 0.4 alpha 1.0 xzoom 4.0 xalign 0.5 yzoom 1.0
     
     pause 0.4
+
+    scene white
+    show GUNVARLockInBottom:
+        xalign 0.5 yalign 0.5
+    show GUNVARLockInTop:
+        yoffset 0 xalign 0.5 yalign 0.5
+        easein 0.8 yoffset-30
+    pause 0.8
+    
+    show GUNVARLockInBottom_Activate:
+        xalign 0.5 yalign 0.5
+    show GUNVARLockInTop2:
+        xalign 0.5 yalign 0.5
+    hide GUNVARLockInTop
+    show GUNVARLockInDim:
+        xalign 0.5 yalign 0.5
+    show GUNVARLockInEyes:
+        xalign 0.5 yalign 0.5
+
+
+    pause 1.1
+    scene white
     scene speedbg with Dissolve(0.1)
     show speedspikes:
         ypos 1.0 yanchor 0.0 xzoom -1.0
@@ -161,9 +227,8 @@ label cutscene_gunvar:
     pause 2.1
     scene white
     pause 0.1
-    scene radialbg with Dissolve(0.05): 
+    scene radialbg: 
         yalign 0.0
-
     show GattaiLightning:
         xalign 0.5 yanchor 0.3 ypos 0.3
     show GUNVAR:

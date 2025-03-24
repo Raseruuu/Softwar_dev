@@ -52,7 +52,16 @@ label script1_2_map2:
     hide screen mapA
     return
 label script1_2_dialog1:
+    if gameprogress==1:
+        j"ILY, We can't pass here while Bitwulf is around... If we could sneak in somehow, maybe.."
+        $ gridpos = [191,167]
+        call addsprites(gridpos)
+        call maptransfer([11,7],stage_WestGateway)
+        
+        if playerHP<=0:
+            return
 
+        return
     ##Arrived at a checkpoint: meet Melissa
     # scene battlebg
     # show battlebg2

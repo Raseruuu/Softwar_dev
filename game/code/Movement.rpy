@@ -96,6 +96,7 @@ label checkwalls:
    if HereisEventDoor:
       play sound"sfx/door-fr_0009.wav"
       $ map_active=False
+
       call eventdoor 
    return
 label hideMapview:
@@ -105,8 +106,13 @@ label hideMapview:
     return
 
 label eventdoor:
+  if gameprogress<chapternum:
+
     $renpy.jump(str(Here))
-    return
+  else:
+    $renpy.call(str(Here))
+
+  return
     # else:
     #   $renpy.jump(str(Here))
     
