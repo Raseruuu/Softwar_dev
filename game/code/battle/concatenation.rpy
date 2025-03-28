@@ -60,6 +60,12 @@ image GUNVARLockInEyes:
     pause 0.02
     "Characters/GUNVAR/GUNVARLockInEyes4.png"
     pause 0.05
+    "Characters/GUNVAR/GUNVARLockInEyes5.png"
+    pause 0.05
+    "Characters/GUNVAR/GUNVARLockInEyes4.png"
+    pause 0.02
+    "Characters/GUNVAR/GUNVARLockInEyes5.png"
+    pause 0.05
     easein 0.7 alpha 0.0
 
 image GattaiLightning:
@@ -167,24 +173,30 @@ label cutscene_gunvar:
     show NucleusVernier:
         easein 0.5 xalign 0.5 yalign 0.35 zoom 0.08
     show GearframeUnitron:
-        easein 0.5 xalign 0.5 yalign 0.7 zoom 0.08
+        easein 0.5 xalign 0.5 yalign 0.64 zoom 0.08
     i"Join Together!! {w=0.5}{nw}"
     # label cutscene_gunvar:
     # show screen whiteflash
     scene black
     show GattaiBeam:
         xzoom 0.1 xalign 0.5 yzoom 1.0
+    show GattaiBeam as GattaiBeam2:
+        alpha 0.5 xalign 0.5 
     hide AccelRiser
     hide NucleusVernier
     hide GearframeUnitron
     
     pause 0.2
-    
-    show GattaiBeam :
+    show GattaiBeam as GattaiBeam2:
+        alpha 0.5 xalign 0.5 
+        pause 0.3
+        ease 0.3 alpha 0.0 xzoom 16.0 xalign 0.5 yzoom 1.0
+    show GattaiBeam:
         xalign 0.5
-        ease 0.4 alpha 1.0 xzoom 4.0 xalign 0.5 yzoom 1.0
+        ease 0.45 alpha 1.0 xzoom 8.0 xalign 0.5 yzoom 1.0
     
-    pause 0.4
+
+    pause 0.5
 
     scene white
     show GUNVARLockInBottom:
