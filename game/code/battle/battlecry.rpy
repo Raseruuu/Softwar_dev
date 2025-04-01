@@ -77,7 +77,7 @@ label battlecry_Ave:
       python:
         burndmg = 0
         for fxns in PlayerSts:
-          if fxns=="burn":
+          if fxns=="Burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
       # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
@@ -117,7 +117,7 @@ label battlecry_Melissa:
       python:
         burndmg = 0
         for fxns in PlayerSts:
-          if fxns=="burn":
+          if fxns=="Burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
       # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
@@ -139,7 +139,7 @@ label battlecry_CodeRed:
       python:
         burndmg = 0
         for fxns in PlayerSts:
-          if fxns=="burn":
+          if fxns=="Burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
       # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
@@ -161,7 +161,7 @@ label battlecry_Vira:
       python:
         burndmg = 0
         for fxns in PlayerSts:
-          if fxns=="burn":
+          if fxns=="Burn":
             burndmg = burndmg +40
       $ playerburndamage = burndmg
       # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
