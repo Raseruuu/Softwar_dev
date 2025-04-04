@@ -743,10 +743,36 @@ init -3 python:
         'n100000nnnn000nnnn000001n',
         'n100000nnnn000nnnn000001n',
         'n100000nnnn000nnnn000001n',
-        'nn111100000000011100000nn',
+        'nn000000000000000000000nn',
         'n10000000000000000000001n',
         'n10000000000000000000001n',
         'n10000000000000000000001n',
         'n11111111111111111111111n'
+    ]
+    Connecht_square=map_token(Connecht_square)
+
+    #MAP OF CONNECHT
+
+    Connecht_square=[
+        'nnnnnn1111111111nnnnnnnn',
+        'nn000000000000000000000nn',
+        'nn000000000000000000000nn',
+        'nn000000000000000000000nn',
+        'n100000000000000000000001',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'n10000000000000000000001n',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn',
+        'nnwwwwwwwwwwwwwwwwwwwwwnn'
     ]
     Connecht_square=map_token(Connecht_square)

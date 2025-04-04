@@ -104,6 +104,10 @@ image GattaiLightning:
         pause 0.05
     repeat
 
+
+
+
+
     
 label cutscene_gunvar:
     hide screen battlestats
@@ -147,13 +151,15 @@ label cutscene_gunvar:
             linear 0.3 ypos 0.0 yanchor 1.0
             repeat
     pause 0.5
-    
+    play sound "sfx/Mechasounds/B044.wav"
     show GearframeUnitron:
         xalign 0.40 yalign 0.5 zoom 0.3 
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
+    
     i"Gearframe Unitron!{w=0.4}{nw}"
+    play sound "sfx/Mechasounds/A009.wav"
     show GearframeUnitron:
         linear 0.4 xalign 0.3 
     show NucleusVernier:
@@ -161,13 +167,23 @@ label cutscene_gunvar:
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
+    
+    
+    
+    
     i"Nucleus Vernier!{w=0.4}{nw}"
+    play sound "sfx/Mechasounds/B012.wav"
+    
     show AccelRiser:
         xalign 0.78 yalign 0.5 zoom 0.3 
         linear 0.4 zoom 0.1
     pause 0.4
     with Shake((0, 0, 0, 0), 0.5, dist=40)
+    
     i"Accel Riser!{w=0.4}{nw}"
+    play sound "sfx/Mechasounds/Jetthrust.wav"
+    
+    
     show AccelRiser:
         easein 0.5 xalign 0.5 yalign 0.04 zoom 0.08
     show NucleusVernier:
@@ -175,6 +191,8 @@ label cutscene_gunvar:
     show GearframeUnitron:
         easein 0.5 xalign 0.5 yalign 0.64 zoom 0.08
     i"Join Together!! {w=0.5}{nw}"
+    play sound "sfx/Mechasounds/B015.wav"
+    
     # label cutscene_gunvar:
     # show screen whiteflash
     scene black
@@ -197,7 +215,8 @@ label cutscene_gunvar:
     
 
     pause 0.5
-
+    play sound "sfx/Mechasounds/MechMovement.wav"
+    
     scene white
     show GUNVARLockInBottom:
         xalign 0.5 yalign 0.5
@@ -206,6 +225,7 @@ label cutscene_gunvar:
         easein 0.8 yoffset-30
     pause 0.8
     
+    play sound "sfx/Mechasounds/Glare2.wav"
     show GUNVARLockInBottom_Activate:
         xalign 0.5 yalign 0.5
     show GUNVARLockInTop2:
@@ -220,6 +240,7 @@ label cutscene_gunvar:
     pause 1.1
     scene white
     scene speedbg with Dissolve(0.1)
+    play sound "sfx/Mechasounds/MechMovement3.wav"
     show speedspikes:
         ypos 1.0 yanchor 0.0 xzoom -1.0
         linear 0.3 ypos 0.0 yanchor 1.0  
@@ -231,6 +252,7 @@ label cutscene_gunvar:
             ypos 1.0 yanchor 0.0 xzoom -1.0
             linear 0.3 ypos 0.0 yanchor 1.0
             repeat
+    
     show GUNVAR:
         xpos 0.5 xanchor 0.48 ypos 0.0 zoom 0.34 yanchor 1.0
         linear 2.0 ypos 0.5 yanchor 0.2
@@ -239,6 +261,7 @@ label cutscene_gunvar:
     pause 2.1
     scene white
     pause 0.1
+    play sound "sfx/Mechasounds/Glare.wav"
     scene radialbg: 
         yalign 0.0
     show GattaiLightning:
@@ -251,6 +274,7 @@ label cutscene_gunvar:
     i"Operation Complete! Enter, Virtual Mobile Armor - GUNVAR!"
     $ ILY_m="smile3"
     i"It's showtime!"
+    play sound "sfx/Mechasounds/MechMovement2.wav"
     scene battlebg
     show battlebg2
     with pixellate
