@@ -495,9 +495,30 @@ image cardflashenemy2:
     xalign 0.5 ypos 0.38 yanchor 0.5 
     zoom 1.1
 
-
-
-
+# define battlemusic_dict=
+#     {
+#         "Ave":"bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
+#         "Vira":"bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
+        
+#         }
+label playbattlemusic(e_name):
+    
+    if e_name=="Ave":
+        play music "bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
+    elif e_name=="Vira":
+        play music "<from 0 to 16.9>bgm/ost/BOSSBATTLE-V_by-StarryMarshmell_0.ogg"
+        queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
+        # queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
+    elif e_name=="Code Red":
+        play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
+    elif e_name=="Melissa":
+        play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
+    # elif e_name=="Melissa":
+    #     play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
+    
+    else:
+        play music "bgm/Fight_bgm_maoudamashii_cyber14.ogg"
+    return
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
@@ -569,17 +590,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     scene battlebg
     show battlebg2
     with pixellate
-
-    if enemyName=="Ave":
-        play music "bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
-    elif enemyName=="Vira":
-        play music "<from 0 to 16.9>bgm/ost/BOSSBATTLE-V_by-StarryMarshmell_0.ogg"
-        queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
-        # queue music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
-    elif enemyName=="Code Red":
-        play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
-    else:
-        play music "bgm/Fight_bgm_maoudamashii_cyber14.ogg"
+    call playbattlemusic(enemyName)
+    
     show battlering:
         xalign 0.5 ypos 0.20 yanchor 0.5
         block:
