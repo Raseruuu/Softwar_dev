@@ -501,9 +501,8 @@ label script1:
             j "But we're talking about people who break rules all the time. Who's to say that hackers won't find a flaw in the Softwar system?"
 
             $ ILYSprite("smile3")
-            i "That's true, but the battle protocol is extremely resilient to manipulation."
-            i "With current technology, a game of Softwar can't be rigged. A foolproof system. A hacker's masterpiece."
-
+            i "They might try, but we don't know if they'll succeed."
+            
             j "Really..."
             i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
             j "An elaborate system of AIs and Cyber battles like this will definitely be popular soon."

@@ -1263,13 +1263,14 @@ image Melissajump:
     # pause .5
     
 image Melissajumping:
-    mesh True
+    
     "MelissaFull base_jump"
     yanchor 0.50 ypos 1.0 zoom 0.9
-    ease 0.35 yoffset -30
+    mesh True
+    ease 0.3 yoffset -30
     pause 0.1
-    ease 0.1 yoffset 5
-    ease 0.2 yoffset 0
+    ease 0.3 yoffset 5
+    ease 0.15 yoffset 0
     # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
@@ -1341,37 +1342,39 @@ image MelissaMouthfrown:
     repeat
 image Melissa_base_jump:
     "images/Characters/Melissa/Melissa_base_down1.png"
-    
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_down2.png"
-    
-    pause 0.1
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down3.png"
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down2.png"
+    pause 0.05
     "images/Characters/Melissa/Melissa_base.png"
-    
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up1.png"
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up2.png"
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up3.png"
-    pause 0.1
+    pause 0.2
     "images/Characters/Melissa/Melissa_base_up2.png"
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up1.png"
-    
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base.png"
-    
-    pause 0.1
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_down1.png"
-    
     pause 0.05
     "images/Characters/Melissa/Melissa_base_down2.png"
-    
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down3.png"
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down2.png"
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_down1.png"
     pause 0.05
     "images/Characters/Melissa/Melissa_base.png"
-    
-    pause 0.1
+    pause 0.05
     
 layeredimage MelissaFull:
     # always:

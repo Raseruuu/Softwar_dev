@@ -262,7 +262,7 @@ init python:
     Freeze()       2
     """
 #Concatenations
-    ##name              name                     TYPE               MAG        FXN List                      COST
+    ##name              name                     TYPE               POWR        FXN List                      COST
     FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
     MailSaberPlus=    Card("MailSaberPlus",           "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
@@ -279,48 +279,48 @@ init python:
 
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
-    Eraser=Card("Eraser", "Eraser",          1.0,  [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
-
-    SpamAtk=      Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
-    MailSaber=    Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
-
+    Eraser=        Card("Eraser", "Eraser",          1.0,  [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
+    SpamAtk=       Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
+    MailSaber=     Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
     RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    SaberAura=Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
+    SaberAura=     Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
+    HeartBurn=     Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),GainToken("Burn",1)],       2)
+    ChocolateBar=  Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
 
-    HeartBurn=    Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),GainToken("Burn",1)],       2)
-    ChocolateBar= Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
-    
-    BurstTransfer= Card("BurstTransfer",    "Maneuver",      0.0,   [Evade(1)],          2)
 #Ave's cards
-    FiberBuster=  Card("FiberBuster",     "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              4)
-    DataBuster=   Card("DataBuster",      "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              3)
-    SparkBuster=  Card("SparkBuster",       "Gun",            0.25,     [Attack(rangevalue=7),NullFxn()],           2)
-    Snipe=        Card("Snipe",           "Gun",    0.0,     [Boost("ATK",0.25),Retreat(2)],       6)
+    FiberBuster=   Card("FiberBuster",     "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              4)
+    DataBuster=    Card("DataBuster",      "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              3)
+    SparkBuster=   Card("SparkBuster",       "Gun",          0.25,     [Attack(rangevalue=7),NullFxn()],           2)
+    Snipe=         Card("Snipe",           "Gun",    0.0,     [Boost("ATK",0.25),Retreat(2)],       6)
 #Swords and Blades
     # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
-    DataSaber=    Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Katana=       Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
-    BreakSaber=   Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],  3)
-    BlockSaber=   Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],    4)
+    DataSaber=     Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Katana=        Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
+    BreakSaber=    Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],  3)
+    BlockSaber=    Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],    4)
     LambdaSaber=   Card("LambdaSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
-    XAxess=       Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
-    YAxess=       Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
+    XAxess=        Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
+    YAxess=        Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
-#SaberSkills
-    SaberDeflect= Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+# Evasion cards
+    BurstTransfer= Card("BurstTransfer",   "Maneuver",      0.0,   [Evade(1)],          2)
+#SaberSkills 
+    SaberDeflect=  Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-#Hammer
+    SkullCrush=  Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+#Hammer 
     ImpactHammer = Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Retreat(3)],            3)
     
 # Virus Exclusive
-    Vshot=        Card("V-Shot",         "Gun",      0.6,               [Attack(rangevalue=7),NullFxn()],           3)
-    VirusFlame=   Card("V-Flame",        "Fire",      0.5,            [Attack(rangevalue=4),Burn(20)],               3)
-    Vslash=       Card("V-Slash",        "Slash",    0.5,            [Attack(),NullFxn()],              2)
+    Vshot=         Card("V-Shot",        "Gun",      0.6,               [Attack(rangevalue=7),NullFxn()],           3)
+    VirusFlame=    Card("V-Flame",       "Fire",      0.5,            [Attack(rangevalue=4),Burn(20)],               3)
+    Vslash=        Card("V-Slash",       "Slash",    0.5,            [Attack(),NullFxn()],              2)
+    VBlaze=        Card("VBlaze",        "Fire",           1.0,     [Attack(),Burn(40)],   4)
 
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
-
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
@@ -338,12 +338,11 @@ init python:
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
     #newcards
-
     DrainShield=   Card("DrainShield",    "Shield",      1.0,     [Defend(),GainToken("Negate",1)],   4)
     FieryArc=      Card("FieryArc",       "Bow",         1.0,     [Attack(),GiveToken("Burn",1)],   4)
     CosmicArc=     Card("CosmicArc",      "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
     # SnipeSensor=   Card("SnipeSensor",    "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    LunexGunSaber= Card("LunexGunSaber",  "Sword",       1.0,     [Attack(),GiveToken("Saber",1)],   4)
+    LunexGunSaber= Card("LunexGunSaber",  "Gun",       1.0,     [Attack(rangevalue=7),GiveToken("Saber",1)],   4)
     BusterSword=   Card("BusterSword",  "Sword",         1.0,     [Attack(),GiveToken("Saber",1)],   4)
     CupidArc=      Card("CupidArc",       "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
     DataArc=       Card("DataArc",       "Bow",          1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -372,12 +371,18 @@ init python:
     GUNVARShield=      Card("GUNVARShield","GUNVAR",  2.0,         [Defend()],   4)
 
     
-    Shotgun=       Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    SwordOfTruth=  Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    SwordOfLies=   Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    VBlaze=        Card("VBlaze",      "Fire",           1.0,     [Attack(),Burn(40)],   4)
+    Shotgun=        Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    SwordOfTruth =   Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    SwordOfLies=        Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    
 
+    # Library
+    CardLibrary = [
+        DataArc,
+        DataSaber,
+        Shotgun
 
+    ]
 
     ##NO ART
     # Chainsaw=     Card("Chainsaw",     550,     32,     1, "Break",            'B')
@@ -593,6 +598,21 @@ init python:
             Vshot,Vshot],
         "plugins":[]
         }
+    decknibbler = {
+        "name":"",
+        "content":[
+            Vshot,Vshot,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vslash,Vslash,
+            Vslash,Vslash,
+            Vshot,Vshot,
+            Vshot,Vshot],
+        "plugins":[]
+        }
     deckvira = {
         "name":"",
         "content":[
@@ -641,20 +661,20 @@ init python:
             DataForce,DataForce],
         "plugins":[]
         }
-    decksephiroth = {
-        "name":"",
-        "content":[
-            DataSaber,DataSaber,
-            DataSaber,DataSaber,
-            DataSaber,VirusFlame,
-            BlockSaber,BlockSaber,
-            Katana,Katana,
-            Katana,Katana,
-            BlockSaber,BlockSaber,
-            BlockSaber,DataForce,
-            DataForce,DataForce],
-        "plugins":[]
-        }
+    # decksephiroth = {
+    #     "name":"",
+    #     "content":[
+    #         DataSaber,DataSaber,
+    #         DataSaber,DataSaber,
+    #         DataSaber,VirusFlame,
+    #         BlockSaber,BlockSaber,
+    #         Katana,Katana,
+    #         Katana,Katana,
+    #         BlockSaber,BlockSaber,
+    #         BlockSaber,DataForce,
+    #         DataForce,DataForce],
+    #     "plugins":[]
+    #     }
     deckGUNVAR = {
         "name":"",
         "content":[
@@ -697,9 +717,10 @@ init python:
     Rootkit=FAI("Rootkit","Virus",700,700,300,250,deckrootkit,[])
     Worm=FAI("Worm","Virus",800,800,300,250,deckworm,[])
     Spyware=FAI("Spyware","Virus",800,800,300,250,deckspyware,[])
+    Nibbler=FAI("Nibbler","Virus",800,800,300,250,decknibbler,[])
     Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,4000,500,500,deckred,[])
-    Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])
+    # Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])
     Melissa=FAI("Melissa","Virus",2000,2000,500,500,deckmelissa,[])
     Ave=FAI("Ave","Antivirus",3000,3000,550,440,deckave,[])
 
