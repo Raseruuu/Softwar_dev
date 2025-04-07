@@ -195,7 +195,7 @@ label script1:
     hide dlheart
 
     show ILY with pixellate
-    play music "bgm/ost/ILY's_Theme_game.mp3"  fadeout 1 loop
+    play music "bgm/ost/ILY's_Theme_game_by_Jan_Hehr.mp3"  fadeout 1 loop
     $ persistent.has_met_ILY=True
     i "HELLO, USER! I am the ILOVEYOU virus!"
     i "Call me ILY! "
@@ -1196,7 +1196,7 @@ label date2:
         # $ILY_p='2'
         $ILY_m='smile3'
         $ILY_e='down'
-        play music "bgm/ost/ILY's_Theme_game.mp3"
+        play music "bgm/ost/ILY's_Theme_game_by_Jan_Hehr.mp3"
         i"\"Just who the hell do you think I am?\""
         l"That's an unusual line.."
         j"Did you look into my anime collection?"
@@ -1671,7 +1671,7 @@ label date2:
         i"I'll show you! Switch the monitor on!"
         j"What is it?"
         $ILY_m = 'frown'
-        play music "bgm/ost/ILY's_Theme_game.mp3"
+        play music "bgm/ost/ILY's_Theme_game_by_Jan_Hehr.mp3"
         i"If you're thinking that I contacted my evil hacker creators, I'll destroy this PC!"
         "..."
         j"Fine."
