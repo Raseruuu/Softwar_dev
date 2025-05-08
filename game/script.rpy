@@ -284,9 +284,9 @@ label test:
 
 
     "test"
-    call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
-    if playerHP==0:
-        return
+    # call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
+    # if playerHP==0:
+    #     return
     ""
     stop music
     scene gridbglandscape1:
@@ -305,6 +305,12 @@ label test:
     
     $Lucida_m="smile"
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    show Brain
+    br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    
+    $Brain_m="smile"
+    br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     
     $ Vira_w= True
     show Vira with dissolve:

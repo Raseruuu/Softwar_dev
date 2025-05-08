@@ -275,8 +275,6 @@ init python:
     Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR,MailSaberPlus]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
-
-
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
     Eraser=        Card("Eraser", "Eraser",          1.0,  [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
@@ -312,7 +310,6 @@ init python:
     MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
     ImpactHammer = Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Retreat(3)],            3)
-    
 # Virus Exclusive
     Vshot=         Card("V-Shot",        "Gun",      0.6,               [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",       "Fire",      0.5,            [Attack(rangevalue=4),Burn(20)],               3)
@@ -324,7 +321,6 @@ init python:
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
-
 #Force
     BruteForce=   Card("BruteForce",     "Force",    1.0,     [Attack(),Boost("ATK",0.25)],      8)
     DataForce=    Card("DataForce",      "Force",    1.0,      [Boost("ATK",0.25),Boost("DEF",0.25)],       4)
@@ -358,9 +354,7 @@ init python:
     FreezeWave=    Card("FreezeWave",      "Wave",       1.0,     [Attack(),Freeze()],   4)
     FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
     Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
-    FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4)
-    
-    
+    FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4) 
     GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3)],   2)
     NucleusVernier=  Card("NV-Nucleus Vernier", "NV",    1.0,     [Advance(1),Boost("ATK",0.25)],   2)
     AccelRiser=      Card("AR-Accel Riser","AR",         1.0,     [Retreat(2),Evade()],   4)
@@ -369,8 +363,6 @@ init python:
     GUNVARKick=      Card("GUNVARKick","GUNVAR",  2.2,         [Attack(rangevalue=2)],   8)
     GUNVARBeam=      Card("GUNVARBeam","GUNVAR",  2.5,     [Attack(rangevalue=6)],   8)
     GUNVARShield=      Card("GUNVARShield","GUNVAR",  2.0,         [Defend()],   4)
-
-    
     Shotgun=        Card("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfTruth =   Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfLies=        Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -659,7 +651,7 @@ init python:
             BlockSaber,BlockSaber,
             BlockSaber,DataForce,
             DataForce,DataForce],
-        "plugins":[]
+        "plugins":[DigitalPressure]
         }
     # decksephiroth = {
     #     "name":"",
