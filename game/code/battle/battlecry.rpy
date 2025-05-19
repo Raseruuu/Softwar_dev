@@ -199,6 +199,12 @@ label battlecry_Vira:
     return
 init python:
   forcefinish=False
+  def stat_count_in(status_list,token_name):
+      token_quantity=0
+      for stat_token in status_list:
+        if stat_token==token_name:
+          token_quantity=token_quantity+1
+      return token_quantity
 label battlecry:
     
     python:
@@ -214,44 +220,45 @@ label battlecry:
     # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
     $ currentcardfunctions=[a.name for a in currentcardFXN]
     $ damagecard = ("attack" in currentcardfunctions) 
-    if currentcard.NAME=="MailSaber" or currentcard.NAME=="RecursiveSlash" or currentcard.NAME=="FlameSaber":
-      $ forcefinish = True
     
-    if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
-    # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
-      # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
-      
-      if enemyName=="Vira" and not forcefinish:
+    if playerName=="ILY":
+      if (currentcard.NAME=="MailSaber" and stat_count_in(EnmySts,"Email")>=5) or (currentcard.NAME=="RecursiveSlash" and stat_count_in(PlayerSts,"Saber")>=5) or currentcard.NAME=="FlameSaber":
+        $ forcefinish = True
+      if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
+      # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
+        # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
         
-        voice "voice/ILY/ILY23B - This is the end, Vira.mp3"
-        $ anim_done=False
-        $ flashuser = "ILY"
-        call screen finishingflash("This is the end, Vira!\nPlease, Listen to me!")
-        
-      if forcefinish:
-        voice "voice/ILY/ILY09 - Finishing move.mp3"
-        $ anim_done=False
-        $ flashuser = "ILY"
-        call screen finishingflash("Finishing Move!")
+        if enemyName=="Vira" and not forcefinish:
+          
+          voice "voice/ILY/ILY23B - This is the end, Vira.mp3"
+          $ anim_done=False
+          $ flashuser = "ILY"
+          call screen finishingflash("This is the end, Vira!\nPlease, Listen to me!")
+          
+        if forcefinish:
+          voice "voice/ILY/ILY09 - Finishing move.mp3"
+          $ anim_done=False
+          $ flashuser = "ILY"
+          call screen finishingflash("Finishing Move!")
 
-    else :
-      $ vcount=vcount+1
-      if vcount == 1:
-        voice "voice/ILY/ILY26 - I won't let you.mp3"
-        i"I won't let you!"
-      elif vcount == 2:
-        voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
-        i"This attack, receive it!"
-      elif vcount == 3:
-        voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
-        i"Hnnngg--Yah!"
-      elif vcount == 4:
-        voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
-        i"Hnnngg--Hah!"
-      elif vcount >= 5:
-        voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
-        i"Nnnhhhh!"
-        $vcount=0
+      else :
+        $ vcount=vcount+1
+        if vcount == 1:
+          voice "voice/ILY/ILY26 - I won't let you.mp3"
+          i"I won't let you!"
+        elif vcount == 2:
+          voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
+          i"This attack, receive it!"
+        elif vcount == 3:
+          voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
+          i"Hnnngg--Yah!"
+        elif vcount == 4:
+          voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
+          i"Hnnngg--Hah!"
+        elif vcount >= 5:
+          voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
+          i"Nnnhhhh!"
+          $vcount=0
     if forcefinish:
       $ forcefinish=False
     return

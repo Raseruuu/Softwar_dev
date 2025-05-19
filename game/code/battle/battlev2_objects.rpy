@@ -355,7 +355,7 @@ init python:
     FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
     Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4) 
-    GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3)],   2)
+    GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3),NullFxn()],   2)
     NucleusVernier=  Card("NV-Nucleus Vernier", "NV",    1.0,     [Advance(1),Boost("ATK",0.25)],   2)
     AccelRiser=      Card("AR-Accel Riser","AR",         1.0,     [Retreat(2),Evade()],   4)
     GUNVARSaber=      Card("GUNVARSaber","GUNVAR",  2.3,         [Attack(rangevalue=2)],   8)
@@ -712,6 +712,7 @@ init python:
     Nibbler=FAI("Nibbler","Virus",800,800,300,250,decknibbler,[])
     Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,4000,500,500,deckred,[])
+    Bitwulf=FAI("Bitwulf","Antivirus",4000,4000,500,500,deckred,[])
     # Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])
     Melissa=FAI("Melissa","Virus",2000,2000,500,500,deckmelissa,[])
     Ave=FAI("Ave","Antivirus",3000,3000,550,440,deckave,[])
@@ -721,3 +722,85 @@ init python:
 default EnmySts = []
 default PlayerSts = []
 default Enmyname = "TrojanHorse"
+
+#  Concatenations
+#     Concat_strings 
+#     Eraser
+#     SpamAtk
+#     MailSaberPlus 
+#      Number: 00001
+#      Rarity: N, R, SR, and UR 
+#      Color:
+#             Red=Offensive
+#             Blue=Defensive
+#             Green= Support
+
+define card_library={
+    "DataSaber"       : {"card":DataSaber       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DataBuster"      : {"card":DataBuster      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BreakSaber"      : {"card":BreakSaber      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Vshot"           : {"card":Vshot           ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Vslash"          : {"card":Vslash          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DataDrill"       : {"card":DataDrill       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DataBomb"        : {"card":DataBomb        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DataForce"       : {"card":DataForce       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DataArc"         : {"card":DataArc         ,"rarity": "R","color":"red","compatibility":"basic"},
+    "LambdaSaber"     : {"card":LambdaSaber     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BruteForce"      : {"card":BruteForce      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "RecursiveSlash"  : {"card":RecursiveSlash  ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SaberAura"       : {"card":SaberAura       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "HeartBurn"       : {"card":HeartBurn       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "ChocolateBar"    : {"card":ChocolateBar    ,"rarity": "R","color":"red","compatibility":"basic"},
+    "FiberBuster"     : {"card":FiberBuster     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SparkBuster"     : {"card":SparkBuster     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Snipe"           : {"card":Snipe           ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Katana"          : {"card":Katana          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BlockSaber"      : {"card":BlockSaber      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "XAxess"          : {"card":XAxess          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "YAxess"          : {"card":YAxess          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BurstTransfer"   : {"card":BurstTransfer   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SaberDeflect"    : {"card":SaberDeflect    ,"rarity": "R","color":"red","compatibility":"basic"},
+    "MomentumSlash"   : {"card":MomentumSlash   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SkullCrush"      : {"card":SkullCrush      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "MomentumSlash"   : {"card":MomentumSlash   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "ImpactHammer"    : {"card":ImpactHammer    ,"rarity": "R","color":"red","compatibility":"basic"},
+    "VirusFlame"      : {"card":VirusFlame      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "VBlaze"          : {"card":VBlaze          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Firewall"        : {"card":Firewall        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Flashbang"       : {"card":Flashbang       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Powersol"        : {"card":Powersol        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Shieldbit"       : {"card":Shieldbit       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "RadioShield"     : {"card":RadioShield     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Assault"         : {"card":Assault         ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Laserbeam"       : {"card":Laserbeam       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Cursorclaw"      : {"card":Cursorclaw      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "DrainShield"     : {"card":DrainShield     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "FieryArc"        : {"card":FieryArc        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "CosmicArc"       : {"card":CosmicArc       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "LunexGunSaber"   : {"card":LunexGunSaber   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BusterSword"     : {"card":BusterSword     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "CupidArc"        : {"card":CupidArc        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Flashbang"       : {"card":Flashbang       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Gigamorph"       : {"card":Gigamorph       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Bitbuster"       : {"card":Bitbuster       ,"rarity": "R","color":"red","compatibility":"basic"},
+    "MachineBuster"   : {"card":MachineBuster   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Excalibrium"     : {"card":Excalibrium     ,"rarity": "R","color":"red","compatibility":"basic"},
+    "ILYFlash"        : {"card":ILYFlash        ,"rarity": "R","color":"red","compatibility":"basic"},
+    "BruiseBash"      : {"card":BruiseBash      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "ZSlash"          : {"card":ZSlash          ,"rarity": "R","color":"red","compatibility":"basic"},
+    "FreezeWave"      : {"card":FreezeWave      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "FreezingBlade"   : {"card":FreezingBlade   ,"rarity": "R","color":"red","compatibility":"basic"},
+    "Salamandra"      : {"card":Salamandra      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "FlameFists"      : {"card":FlameFists      ,"rarity": "R","color":"red","compatibility":"basic"},
+    "GearframeUnitron": {"card":GearframeUnitron,"rarity":"UR","color":"red","compatibility":"basic"},
+    "NucleusVernier"  : {"card":NucleusVernier  ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "AccelRiser"      : {"card":AccelRiser      ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARSaber"     : {"card":GUNVARSaber     ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARFist"      : {"card":GUNVARFist      ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARKick"      : {"card":GUNVARKick      ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARBeam"      : {"card":GUNVARBeam      ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARShield"    : {"card":GUNVARShield    ,"rarity":"UR","color":"red","compatibility":"basic"},
+    "Shotgun"         : {"card":Shotgun         ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SwordOfTruth"    : {"card":SwordOfTruth    ,"rarity": "R","color":"red","compatibility":"basic"},
+    "SwordOfLies"     : {"card":SwordOfLies     ,"rarity": "R","color":"red","compatibility":"basic"}
+}

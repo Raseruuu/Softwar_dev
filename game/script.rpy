@@ -280,7 +280,14 @@ image Folders:
         #     repeat
 
 label test:
-
+    "Test mode"
+    menu:
+        "Select mode"
+        "Story":
+            return
+        "Rogue":
+            call roguemode
+    
 
 
     "test"

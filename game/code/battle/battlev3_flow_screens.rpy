@@ -521,9 +521,11 @@ label playbattlemusic(e_name):
     return
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
+   
     $ quick_menu=False
     $ evasion_active=False
     $ execution_active=False
+    
     $ ILY_w=True
     $ ILY_m="frown"
     $ ILY_e="down"
@@ -550,7 +552,6 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         playerbitsmax=pbitsMax
         enemybitsmax=pbitsMax
         random.shuffle(playerDeck)
-        # playerstats = ILYStatsnow
         battle_distance = 2
         battle_done = False
         enemyfirst =renpy.random.choice([True,False])
@@ -898,7 +899,7 @@ label win:
     $ battle_done = True
     $ quick_menu=True
     show screen phasemsg("VICTORY!")
-    info"ILY Wins!"
+    info"[playerName] Wins!" 
     hide screen phasemsg
     call Battledrops
     # "VICTORY!"

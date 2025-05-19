@@ -39,6 +39,10 @@ define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", callba
 define l = Character("Lisa",color = '#992e2c', image = "Lisa_side", callback=speaker("Lisa"), ctc="ctc", ctc_position="fixed")
 define al = Character("Alicia",color = '#992e2c', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
 define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callback=speaker("Lucida"), ctc="ctc", ctc_position="fixed")
+define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
+
+define be = Character("Bella",callback=speaker("Bella"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
+define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
 
 #Viruses
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
@@ -58,12 +62,10 @@ define t = Character("Tabby",callback=speaker("Tabby"), color ='#fff',image ="Ta
 
 
 define mu = Character("???",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
-define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
 
 define hx = Character("Hacker X",color = '#088', image = "HackerX_side", ctc="ctc", ctc_position="fixed",callback=speaker("HackerX"))
 define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#f00', ctc="ctc", ctc_position="fixed")
 define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00', ctc="ctc", ctc_position="fixed")
-define be = Character("Bella",callback=speaker("Bella"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
 
 
 
@@ -1205,8 +1207,11 @@ image side CodeRed_side:
     ConditionSwitch(
         "CodeRed_w==True","CodeRed sidew",
         "CodeRed_w==False","Null_side")
-image Icon_CodeRed:
-    LiveCrop((280,100, 440,565), "CodeRedFull")
+image CodeRedFullzoomed:
+    "CodeRedFull"
+    zoom 1.6
+image Icon_Code Red:
+    LiveCrop((280,100, 440,565), "CodeRedFullzoomed")
     zoom 0.22
 image CodeRed mouth:
     "images/Characters/Code Red/CODE RED_mopen1.png"
@@ -2183,7 +2188,7 @@ image BrainMouthfrown:
 image side Brain_side:
 
     ConditionSwitch(
-        "Brain_w==True",LiveCrop((830,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
+        "Brain_w==True",LiveCrop((964,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
         "Brain_w==False","Null_side"
     )
     zoom 0.38

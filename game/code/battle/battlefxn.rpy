@@ -908,7 +908,32 @@ label Recoverplayer:
         ease 0.05 alpha 0.0 zoom 1.1
     $ renpy.pause(0.6,hard=True)
     return
+label Recoverenemy:
+    play sound "sfx/heal.ogg"
+    $ Magnitude = (currentcardMAG)
+    $ healtoenemy=int(enemyHPMax*Magnitude)
+    python:
+        enemyHP+=healtoenemy
+        if enemyHP>=enemyHPMax:
+            enemyHP=enemyHPMax
+    #Animation
+    show heallight:
+        alpha 0.0
+        ease 0.3 alpha 1.0
+        ease 0.3 alpha 0.0
 
+    show healbit onlayer overlay:
+        alpha 0.0 xalign 0.5 yanchor 0.5 ypos 0.35
+        ease 0.2 alpha 1.0
+        pause 0.1
+        ease 0.4 alpha 0.0
+    show text "{size=40}SP+=[healtoenemy]{/size}" onlayer overlay:
+        alpha 0.0 zoom 0.0 xalign 0.5 yanchor 0.5 ypos 0.45
+        ease 0.1 alpha 1.0 zoom 1.2
+        pause 0.2
+        ease 0.05 alpha 0.0 zoom 1.1
+    $ renpy.pause(0.6,hard=True)
+    return
 label Shieldenemy:
     play sound "sfx/defense.wav"
     $ Magnitude = (currentcardMAG)
@@ -1041,6 +1066,7 @@ label Damageplayer:
     return
 label DeckChangePlayer:
     info"[playerName]'s Deck is changed to \"GUNVAR\"."
+    $ actual_playerDeck = playerDeck
     $ playerDeck=deckGUNVAR["content"]
     $ import random
     $ random.shuffle(playerDeck)
