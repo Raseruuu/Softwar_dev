@@ -1,3 +1,4 @@
+
 init python:
     class FAI:
         def __init__(self,name,kind,HP,SP,ATK,DEF,deck,status):
@@ -206,11 +207,21 @@ init python:
             "Deal Damage to target's Shield Points only.",
             [multiplier,rangevalue,absolute]
             )
-    def Defend():
+    def Defend(multiplier="POWR",absolute=False):
         return Fxn(
             "Defend",
-            "defend(DEF*POWR)",
-            "Gain Shield Points.")
+            "defend(DEF*"+str(multiplier)+")",
+            "Gain Shield Points.",
+            [multiplier,absolute]
+            )
+    
+    def ReduceSPself(multiplier="POWR",absolute=False):
+        return Fxn(
+            "ReduceSPself",
+            ("reduceSPself(DEF*"+str(multiplier)+")"),
+            "Reduce Shield Points.",
+            [multiplier,absolute]
+            )
     def DeckChange(deckName):
         return Fxn(
             "DeckChange",
@@ -277,47 +288,55 @@ init python:
 
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
-    Eraser=        Card("Eraser", "Eraser",          1.0,  [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
-    SpamAtk=       Card("SpamAtk",         "Mail",           0.1,   [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
-    MailSaber=     Card("MailSaber",       "Sword",          0.25,  [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
-    RecursiveSlash=Card("RecursiveSlash", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    SaberAura=     Card("SaberAura", "Sword",          0.5,  [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
-    HeartBurn=     Card("HeartBurn",       "PowerUp",        0.2,   [Boost("ATK",0.25),GainToken("Burn",1)],       2)
-    ChocolateBar=  Card("ChocolateBar",    "Chocolate",      0.25,   [Recover(0.25),NullFxn()],          2)
+    Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
+    SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
+    MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
+    RecursiveSlash=Card("RecursiveSlash",   "Sword",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
+    SaberAura=     Card("SaberAura",        "Sword",          0.5,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Boost("ATK",0.25)]),NullFxn()],   8)
+    HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [Boost("ATK",0.25),GainToken("Burn",1)],       2)
+    ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)
 
-#Ave's cards
-    FiberBuster=   Card("FiberBuster",     "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              4)
-    DataBuster=    Card("DataBuster",      "Gun",            0.75,    [Attack(rangevalue=7),NullFxn()],              3)
-    SparkBuster=   Card("SparkBuster",       "Gun",          0.25,     [Attack(rangevalue=7),NullFxn()],           2)
-    Snipe=         Card("Snipe",           "Gun",    0.0,     [Boost("ATK",0.25),Retreat(2)],       6)
-#Swords and Blades
-    # FiberSword=   Card("FiberSword",     "Sword",    0.25,    [AntiAntiDamage,Damage,Empty], 4)
-    DataSaber=     Card("DataSaber",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Katana=        Card("Katana",      "Sword",           0.7,     [Attack(),GainToken("Saber",3)],   4)
-    BreakSaber=    Card("BreakSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)],  3)
-    BlockSaber=    Card("BlockSaber",     "Sword",           0.5,     [Attack(),Defend(),GainToken("Saber",1)],    4)
-    LambdaSaber=   Card("LambdaSaber",     "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
-    XAxess=        Card("X-Axess",        "X",               0.75,     [AttackSP(),Attack()],            4)
-    YAxess=        Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Attack()],            3)
+#Ave's cards    
+    FiberBuster=   Card("FiberBuster",      "Gun",            0.75,     [Attack(rangevalue=7),NullFxn()],              4)
+    DataBuster=    Card("DataBuster",       "Gun",            0.75,     [Attack(rangevalue=7),NullFxn()],              3)
+    SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7),NullFxn()],           2)
+    Snipe=         Card("Snipe",            "Gun",            0.0,      [Boost("ATK",0.25),Retreat(2)],       6)
+#Swords and Blades  
+    FiberSword=    Card("LambdaSaber",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
+    DataSaber=     Card("DataSaber",        "Sword",           1.0,      [GainToken("Saber",1),Defend(0.25),Attack(),],   4)
+    Katana=        Card("Katana",           "Sword",           0.7,      [Attack(),GainToken("Saber",3)],   4)
+    BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [Attack(),AttackSP(),GainToken("Saber",1)],  3)
+    BlockSaber=    Card("BlockSaber",       "Sword",           0.25,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
+    LambdaSaber=   Card("LambdaSaber",      "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
+    StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(),Attack()], 3)
+    XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack()],            4)
+    YAxess=        Card("Y-Axess",          "Y",               0.50,     [AttackSP(),Attack()],            3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 # Evasion cards
-    BurstTransfer= Card("BurstTransfer",   "Maneuver",      0.0,   [Evade(1)],          2)
+    BurstTransfer=      Card("BurstTransfer",         "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
+    BurstTransferTurbo= Card("BurstTransferTurbo",    "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
+    
 #SaberSkills 
-    SaberDeflect=  Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SaberDeflect",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",      "Sword",           0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SaberDeflect=  Card("SaberDeflect",     "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SkullCrush=  Card("SaberDeflect",       "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
-    ImpactHammer = Card("Y-Axess",        "Y",               0.50,     [AttackSP(),Retreat(3)],            3)
+    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [AttackSP(),Retreat(3)],            3)
 # Virus Exclusive
-    Vshot=         Card("V-Shot",        "Gun",      0.6,               [Attack(rangevalue=7),NullFxn()],           3)
-    VirusFlame=    Card("V-Flame",       "Fire",      0.5,            [Attack(rangevalue=4),Burn(20)],               3)
-    Vslash=        Card("V-Slash",       "Slash",    0.5,            [Attack(),NullFxn()],              2)
-    VBlaze=        Card("VBlaze",        "Fire",           1.0,     [Attack(),Burn(40)],   4)
+    Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
+    VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4),Burn(20)],               3)
+    Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
+    VBlaze=        Card("VBlaze",           "Fire",           1.0,     [Attack(),Burn(40)],   4)
+    WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
+    WormBite=      Card("WormBite",         "Hole",           0.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
+    WormRetreat=    Card("WormRetreat",      "Hole",         1.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(4)])],   2)
+    WormAdvance=    Card("WormAdvance",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(3)]),Advance()],   1)
 
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
+
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
@@ -400,7 +419,7 @@ init python:
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
     DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,[Attack(rangevalue=10)], 8)
     SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
-
+    SuperArmor=Plugin("First Barrier", "Initial Defense!",0.25, [Defend()],4)
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS
     # [default deckdefault]
@@ -413,45 +432,23 @@ init python:
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
             ChocolateBar,ChocolateBar,
-            # DataSaber,DataSaber,
-            # DataSaber,MailSaber,
-            # VirusFlame,RecursiveSlash,
-            # BlockSaber,SaberDeflect,
-            # DataSaber,BlockSaber,
-            # HeartBurn,HeartBurn,
-            GearframeUnitron,GearframeUnitron,
-            GearframeUnitron,GearframeUnitron,
-            NucleusVernier,NucleusVernier,
-            NucleusVernier,NucleusVernier,
-            AccelRiser,AccelRiser,
-            AccelRiser,AccelRiser
+            DataSaber,DataSaber,
+            DataSaber,MailSaber,
+            VirusFlame,RecursiveSlash,
+            BlockSaber,SaberDeflect,
+            DataSaber,BlockSaber,
+            HeartBurn,HeartBurn,
+            # GearframeUnitron,GearframeUnitron,
+            # GearframeUnitron,GearframeUnitron,
+            # NucleusVernier,NucleusVernier,
+            # NucleusVernier,NucleusVernier,
+            # AccelRiser,AccelRiser,
+            # AccelRiser,AccelRiser
 
             ],
-        "plugins":[RubyRevolver]
+        "plugins":[RubyRevolver,]
         }
-    # deckdefault = {
-    #     "name":"The Love Machine",
-    #     "content":[
-    #         VirusFlame,VirusFlame,
-    #         VirusFlame,Vslash,
-    #         SpamAtk,SpamAtk,
-    #         SpamAtk,SpamAtk,
-    #         SpamAtk,DataSaber,
-    #         ChocolateBar,ChocolateBar,
-    #         DataSaber,DataSaber,
-    #         DataSaber,MailSaber,
-    #         VirusFlame,RecursiveSlash,
-    #         BlockSaber,SaberDeflect,
-    #         DataSaber,BlockSaber,
-    #         HeartBurn,HeartBurn,
-    #         # GearframeUnitron,GearframeUnitron
-    #         # ,GearframeUnitron,GearframeUnitron,
-    #         # NucleusVernier,NucleusVernier,NucleusVernier,NucleusVernier,
-    #         # AccelRiser,AccelRiser,AccelRiser,AccelRiser
-
-    #         ],
-    #     "plugins":[]
-    #     }
+   
     deckalpha = {
         "name":"Deceitful Love",
         "content":[
@@ -563,16 +560,16 @@ init python:
     deckworm = {
         "name":"",
         "content":[
-            Vshot,Vshot,
-            Vshot,Vshot,
-            Vslash,Vslash,
-            Vslash,Vslash,
-            Vslash,Vslash,
-            Vshot,Vshot,
-            Vslash,Vslash,
-            Vslash,Vslash,
-            Vshot,Vshot,
-            Vshot,Vshot],
+            WormBite,Vshot,
+            VirusFlame,VirusFlame,
+            VirusFlame,VirusFlame,
+            WormRetreat,WormAdvance,
+            WormBite,WormBite,
+            WormHole,WormAdvance,
+            WormHole,WormHole,
+            WormHole,WormHole,
+            WormRetreat,WormRetreat,
+            WormRetreat,Vshot],
         "plugins":[]
         }
     deckspyware = {
@@ -637,20 +634,20 @@ init python:
             Bitbuster,
             Assault,Assault,
             Assault,Assault],
-        "plugins":[]
+        "plugins":[FirstBarrier]
         }
     deckred = {
         "name":"",
         "content":[
             DataSaber,DataSaber,
             DataSaber,DataSaber,
-            DataSaber,VirusFlame,
+            LambdaSaber,LambdaSaber,
             BlockSaber,BlockSaber,
-            Katana,Katana,
-            Katana,Katana,
-            BlockSaber,BlockSaber,
-            BlockSaber,DataForce,
-            DataForce,DataForce],
+            BreakSaber,BreakSaber,
+            SaberAura,SaberAura,
+            WormRetreat,WormHole,
+            BlockSaber,VirusFlame,
+            BurstTransfer,DataForce],
         "plugins":[DigitalPressure]
         }
     # decksephiroth = {
@@ -703,13 +700,17 @@ init python:
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,2500,500,500,deckdefault,[])
     ILYAlpha=FAI("ILY","Virus",2500,2500,500,500,deckalpha,[])
-    Trojan=FAI("TrojanHorse","Virus",2000,2000,400,250,decktrojan,[])
-    Keylogger=FAI("Keylogger","Virus",500,500,300,250,deckkeylogger,[])
-    Ransomware=FAI("Ransomware","Virus",600,600,300,250,deckransomware,[])
-    Rootkit=FAI("Rootkit","Virus",700,700,300,250,deckrootkit,[])
-    Worm=FAI("Worm","Virus",800,800,300,250,deckworm,[])
-    Spyware=FAI("Spyware","Virus",800,800,300,250,deckspyware,[])
-    Nibbler=FAI("Nibbler","Virus",800,800,300,250,decknibbler,[])
+    
+    Trojan=     FAI("TrojanHorse",  "Virus",2000,   2000,   400,    250,    decktrojan,[])
+    Keylogger=  FAI("Keylogger",    "Virus",500,    500,    300,    250,    deckkeylogger,[])
+    Ransomware= FAI("Ransomware",   "Virus",1600,    600,    300,    250,    deckransomware,[])
+    Rootkit=    FAI("Rootkit",      "Virus",1500,    700,    300,    250,    deckrootkit,[])
+    Worm=       FAI("Worm",         "Virus",1000,    800,    300,    250,    deckworm,[])
+    Spyware=    FAI("Spyware",      "Virus",800,    800,    300,    250,    deckspyware,[])
+    Nibbler=    FAI("Nibbler",      "Virus",800,    800,    300,    250,    decknibbler,[])
+    
+    
+    
     Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,4000,500,500,deckred,[])
     Bitwulf=FAI("Bitwulf","Antivirus",4000,4000,500,500,deckred,[])
@@ -734,73 +735,72 @@ default Enmyname = "TrojanHorse"
 #             Red=Offensive
 #             Blue=Defensive
 #             Green= Support
-
 define card_library={
-    "DataSaber"       : {"card":DataSaber       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DataBuster"      : {"card":DataBuster      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BreakSaber"      : {"card":BreakSaber      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Vshot"           : {"card":Vshot           ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Vslash"          : {"card":Vslash          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DataDrill"       : {"card":DataDrill       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DataBomb"        : {"card":DataBomb        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DataForce"       : {"card":DataForce       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DataArc"         : {"card":DataArc         ,"rarity": "R","color":"red","compatibility":"basic"},
-    "LambdaSaber"     : {"card":LambdaSaber     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BruteForce"      : {"card":BruteForce      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "RecursiveSlash"  : {"card":RecursiveSlash  ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SaberAura"       : {"card":SaberAura       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "HeartBurn"       : {"card":HeartBurn       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "ChocolateBar"    : {"card":ChocolateBar    ,"rarity": "R","color":"red","compatibility":"basic"},
-    "FiberBuster"     : {"card":FiberBuster     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SparkBuster"     : {"card":SparkBuster     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Snipe"           : {"card":Snipe           ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Katana"          : {"card":Katana          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BlockSaber"      : {"card":BlockSaber      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "XAxess"          : {"card":XAxess          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "YAxess"          : {"card":YAxess          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BurstTransfer"   : {"card":BurstTransfer   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SaberDeflect"    : {"card":SaberDeflect    ,"rarity": "R","color":"red","compatibility":"basic"},
-    "MomentumSlash"   : {"card":MomentumSlash   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SkullCrush"      : {"card":SkullCrush      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "MomentumSlash"   : {"card":MomentumSlash   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "ImpactHammer"    : {"card":ImpactHammer    ,"rarity": "R","color":"red","compatibility":"basic"},
-    "VirusFlame"      : {"card":VirusFlame      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "VBlaze"          : {"card":VBlaze          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Firewall"        : {"card":Firewall        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Flashbang"       : {"card":Flashbang       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Powersol"        : {"card":Powersol        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Shieldbit"       : {"card":Shieldbit       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "RadioShield"     : {"card":RadioShield     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Assault"         : {"card":Assault         ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Laserbeam"       : {"card":Laserbeam       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Cursorclaw"      : {"card":Cursorclaw      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "DrainShield"     : {"card":DrainShield     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "FieryArc"        : {"card":FieryArc        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "CosmicArc"       : {"card":CosmicArc       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "LunexGunSaber"   : {"card":LunexGunSaber   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BusterSword"     : {"card":BusterSword     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "CupidArc"        : {"card":CupidArc        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Flashbang"       : {"card":Flashbang       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Gigamorph"       : {"card":Gigamorph       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Bitbuster"       : {"card":Bitbuster       ,"rarity": "R","color":"red","compatibility":"basic"},
-    "MachineBuster"   : {"card":MachineBuster   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Excalibrium"     : {"card":Excalibrium     ,"rarity": "R","color":"red","compatibility":"basic"},
-    "ILYFlash"        : {"card":ILYFlash        ,"rarity": "R","color":"red","compatibility":"basic"},
-    "BruiseBash"      : {"card":BruiseBash      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "ZSlash"          : {"card":ZSlash          ,"rarity": "R","color":"red","compatibility":"basic"},
-    "FreezeWave"      : {"card":FreezeWave      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "FreezingBlade"   : {"card":FreezingBlade   ,"rarity": "R","color":"red","compatibility":"basic"},
-    "Salamandra"      : {"card":Salamandra      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "FlameFists"      : {"card":FlameFists      ,"rarity": "R","color":"red","compatibility":"basic"},
-    "GearframeUnitron": {"card":GearframeUnitron,"rarity":"UR","color":"red","compatibility":"basic"},
-    "NucleusVernier"  : {"card":NucleusVernier  ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "AccelRiser"      : {"card":AccelRiser      ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "GUNVARSaber"     : {"card":GUNVARSaber     ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "GUNVARFist"      : {"card":GUNVARFist      ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "GUNVARKick"      : {"card":GUNVARKick      ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "GUNVARBeam"      : {"card":GUNVARBeam      ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "GUNVARShield"    : {"card":GUNVARShield    ,"rarity":"UR","color":"red","compatibility":"basic"},
-    "Shotgun"         : {"card":Shotgun         ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SwordOfTruth"    : {"card":SwordOfTruth    ,"rarity": "R","color":"red","compatibility":"basic"},
-    "SwordOfLies"     : {"card":SwordOfLies     ,"rarity": "R","color":"red","compatibility":"basic"}
+    "Vshot"           : {"card":Vshot           ,"ID":'001',"rarity": "N","color":"red","compatibility":"virus"},
+    "Vslash"          : {"card":Vslash          ,"ID":'001',"rarity": "N","color":"red","compatibility":"virus"},
+    "VirusFlame"      : {"card":VirusFlame      ,"ID":'001',"rarity": "N","color":"red","compatibility":"virus"},
+    "VBlaze"          : {"card":VBlaze          ,"ID":'001',"rarity": "N","color":"red","compatibility":"virus"},
+    "DataSaber"       : {"card":DataSaber       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DataBuster"      : {"card":DataBuster      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BreakSaber"      : {"card":BreakSaber      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DataDrill"       : {"card":DataDrill       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DataBomb"        : {"card":DataBomb        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DataForce"       : {"card":DataForce       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DataArc"         : {"card":DataArc         ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BlockSaber"      : {"card":BlockSaber      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "LambdaSaber"     : {"card":LambdaSaber     ,"ID":'001',"rarity":"SR","color":"red","compatibility":"basic"},
+    "RecursiveSlash"  : {"card":RecursiveSlash  ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SaberAura"       : {"card":SaberAura       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BruteForce"      : {"card":BruteForce      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "FiberBuster"     : {"card":FiberBuster     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SparkBuster"     : {"card":SparkBuster     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "HeartBurn"       : {"card":HeartBurn       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "ChocolateBar"    : {"card":ChocolateBar    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Snipe"           : {"card":Snipe           ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Katana"          : {"card":Katana          ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "XAxess"          : {"card":XAxess          ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "YAxess"          : {"card":YAxess          ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BurstTransfer"   : {"card":BurstTransfer   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SaberDeflect"    : {"card":SaberDeflect    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "MomentumSlash"   : {"card":MomentumSlash   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SkullCrush"      : {"card":SkullCrush      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "MomentumSlash"   : {"card":MomentumSlash   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "ImpactHammer"    : {"card":ImpactHammer    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Firewall"        : {"card":Firewall        ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
+    "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Shieldbit"       : {"card":Shieldbit       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "RadioShield"     : {"card":RadioShield     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Assault"         : {"card":Assault         ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Laserbeam"       : {"card":Laserbeam       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Cursorclaw"      : {"card":Cursorclaw      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "DrainShield"     : {"card":DrainShield     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "FieryArc"        : {"card":FieryArc        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "CosmicArc"       : {"card":CosmicArc       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "LunexGunSaber"   : {"card":LunexGunSaber   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BusterSword"     : {"card":BusterSword     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "CupidArc"        : {"card":CupidArc        ,"ID":'001',"rarity":"SR","color":"red","compatibility":"basic"},
+    "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Gigamorph"       : {"card":Gigamorph       ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "Bitbuster"       : {"card":Bitbuster       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "MachineBuster"   : {"card":MachineBuster   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Excalibrium"     : {"card":Excalibrium     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "ILYFlash"        : {"card":ILYFlash        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BruiseBash"      : {"card":BruiseBash      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "ZSlash"          : {"card":ZSlash          ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "FreezeWave"      : {"card":FreezeWave      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "FreezingBlade"   : {"card":FreezingBlade   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Salamandra"      : {"card":Salamandra      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "FlameFists"      : {"card":FlameFists      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "GearframeUnitron": {"card":GearframeUnitron,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "NucleusVernier"  : {"card":NucleusVernier  ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "AccelRiser"      : {"card":AccelRiser      ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARSaber"     : {"card":GUNVARSaber     ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARFist"      : {"card":GUNVARFist      ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARKick"      : {"card":GUNVARKick      ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARBeam"      : {"card":GUNVARBeam      ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "GUNVARShield"    : {"card":GUNVARShield    ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
+    "Shotgun"         : {"card":Shotgun         ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SwordOfTruth"    : {"card":SwordOfTruth    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "SwordOfLies"     : {"card":SwordOfLies     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"}
 }

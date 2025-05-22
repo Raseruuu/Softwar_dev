@@ -95,7 +95,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xsize 380 ysize 120
-        xpos 0.01 xanchor 0.0 ypos 0.58 yanchor 0.5
+        xpos 0.01 xanchor 0.0 ypos 0.60 yanchor 0.5
         # at alpha08
         vbox:
             vbox:
@@ -517,11 +517,14 @@ label playbattlemusic(e_name):
     #     play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
     
     else:
-        play music "bgm/Fight_bgm_maoudamashii_cyber14.ogg"
+        
+        play music ""+renpy.random.choice(["bgm/Fight_bgm_maoudamashii_cyber14.ogg","bgm/ost/BATTLE_Common_by_Walter_Chamod.wav"])
+        # play music "bgm/ost/BATTLE_Common.wav"
     return
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
-   
+    if playerHP==0:
+        return
     $ quick_menu=False
     $ evasion_active=False
     $ execution_active=False

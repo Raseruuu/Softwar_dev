@@ -4,6 +4,10 @@
 # default battle_active=False
 define FAI_playables=[ILY, Ave, CodeRed, Vira, Bitwulf]
 
+
+
+default r_Bosses=[]
+
 # playerDeck = PlayerStatsnow["Deck"]
 #     actual_playerDeck = playerDeck
 label roguemode:
@@ -23,7 +27,8 @@ label roguemode:
             $ playerobject=CodeRed
     python:
         PFAI=playerobject
-       
+        r_Bosses=FAI_playables
+
         mydeck=PFAI.deck
         deckplugin =mydeck["plugins"]
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
@@ -61,12 +66,17 @@ label roguemode:
         map_active=False
         playerbattlecode=[]
     
+    # $ r_Bosses=FAI_playables
    
     ""
+    
+    
+    label newbattle:
     $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
-    label newbattle:
     call battlev3(playerobject,enemyobject)
+    if playerHP==0:
+        $ game_over=True
     if not game_over:
         jump newbattle
     
