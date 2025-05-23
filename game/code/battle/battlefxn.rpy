@@ -76,7 +76,7 @@ label Damageenemy:
     $ Power = (currentcardMAG)
     if damagemultiplier=="POWR":
         $ damagetoenemy=int(playerATK_m*Power)
-    elif damagemultiplier=="POWR": 
+    elif damagemultiplier!="POWR": 
         $ damagetoenemy=int(playerATK_m*damagemultiplier)
     $ attackrange = currentcard_fxn_params[1]
     $ attackhit=True
@@ -84,13 +84,17 @@ label Damageenemy:
     ## EVADE
     if "Evade" in EnmySts:
         $ attackhit=False
+    if not attackhit:
         $ EnmySts.remove('Evade') 
         $ enemy_evasion_active=True
         pause 0.1
+        
+        show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
+        pause 0.24
         $ enemy_evasion_active=False
-        show Enemy at sidesteps_effect("Enemy", 0.5, 0.1, 0.25)
-        pause 0.2
-        show Enemy
+        show Enemy:
+            xalign 0.5 yanchor 0.32 ypos 0.3 
+        play sound "sfx/miss.wav"
         call showphasemsg("EVADED")
     ## NO EVADE
     elif attackhit:
@@ -175,7 +179,7 @@ label Damageenemy:
             else:
                 $ renpy.pause(0.6,hard=True)
             hide damageeffect
-        return
+    return
 label DamageSPplayer:
     # EVADE
     if "Evade" in PlayerSts:
@@ -219,6 +223,9 @@ label DamageSPenemy:
     if "Evade" in EnmySts:
         $ attackhit=False
         $ EnmySts.remove('Evade')
+        show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
+        pause 0.2
+        show Enemy
         call showphasemsg("EVADED")
     ## NO EVADE
     else:
@@ -334,7 +341,14 @@ label Retreatenemy(distanceamount=0):
     call updatestats_enemy
     return
 label Advanceenemy(distanceamount=0):
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if currentcardFXN[fxnindex].name=="If":
+        $ whichfxnhasadvance=0
+        python:
+            for stuff in currentcardFXN[fxnindex].params[1]:
+                if stuff.name=="Advance":
+                    currentcard_fxn_params=stuff.params
+    else:
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
@@ -860,8 +874,12 @@ image shieldbit = "images/battle/Shield_bit.png"
 image shieldlight = "images/battle/Shield_light.png"
 label Shieldplayer:
     play sound "sfx/defense.wav"
+    $ multiplier = currentcardFXN[fxnindex].params[0]
     $ Magnitude = (currentcardMAG)
-    $ shieldtoplayer=int(playerDEF_m*Magnitude)
+    if multiplier=="POWR":
+        $ shieldtoplayer=int(playerDEF_m*Magnitude)
+    elif multiplier!="POWR": 
+        $ shieldtoplayer=int(playerDEF_m*multiplier)
     python:
         playerSP+=shieldtoplayer
         # if playerSP>=playerSPMax:
@@ -880,6 +898,34 @@ label Shieldplayer:
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.55
         ease 0.05 alpha 0.0 zoom 1.1
+    $ renpy.pause(0.6,hard=True)
+    return
+label ReduceSPself:
+    # play sound "sfx/defense_loss.wav"
+    $ multiplier = currentcardFXN[fxnindex].params[0]
+    $ Magnitude = (currentcardMAG)
+    if multiplier=="POWR":
+        $ shieldtoplayer=int(playerDEF_m*Magnitude)
+    elif multiplier!="POWR": 
+        $ shieldtoplayer=int(playerDEF_m*multiplier)
+    python:
+        playerSP-=shieldtoplayer
+        # if playerSP>=playerSPMax:
+        #     playerSP=playerSPMax
+    #Animation
+    show shieldlight:
+        alpha 0.0
+        ease 0.3 alpha 1.0
+        ease 0.3 alpha 0.0
+    show shieldbit onlayer overlay:
+        alpha 0.0 xpos 0.5 ypos 0.7 yanchor 0.5 xanchor 0.5
+        ease 0.2 alpha 1.0
+        ease 0.4 alpha 0.0
+    show text "{size=70}SP-=[shieldtoplayer]{/size}"  onlayer overlay:
+        alpha 0.0 zoom 0.0 xpos 0.5 ypos 0.9 yanchor 0.5 xanchor 0.5
+        ease 0.1 alpha 1.0 zoom 1.2 
+        pause 0.55
+        ease 0.05 alpha 0.0 zoom 1.1 yoffset -25
     $ renpy.pause(0.6,hard=True)
     return
 image healbit = "images/battle/Heal_bit.png"
@@ -993,6 +1039,7 @@ label Damageplayer:
         $ evasion_active=False
         $ PlayerSts.remove('Evade')
         call showphasemsg("EVADED")
+        
     ## NO EVADE
     if attackhit:
         if battle_distance>=attackrange:
@@ -1181,7 +1228,7 @@ style concatoutlines:
     outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
 label Concat_anim(prefix,suffix,suffix2,concat_result):
     call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
-    $ flashuser = "ILY" 
+    $ flashuser = playerName
     if card3concatenation:
          $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n"+suffix2.TYPE+"-type Battleware "+suffix2.NAME+"\n Concatenate! " +concat_card_name+"!"
     else:
@@ -1311,6 +1358,7 @@ label Execution:
         $execution_active=True
         label runfunctions:
             $ runfxnstring = currentcardFXN[fxnindex].name
+            $ runfxnparam = currentcardFXN[fxnindex].params
             hide screen cardflashscreen2
             show screen cardflashscreen2
             label hitloop:
@@ -1458,7 +1506,7 @@ label enemyattack:
       for enemyhandcards in range(0,5):
         enemyDeck.pop(0)
     #Buffs Priority
-    $ enemyhand.sort(key=lambda x: x.FXN[1].name)
+    $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts) or ("Saber" in EnmySts):
       #Damage priority
       $ enemyhand.sort(key=lambda x: x.FXN[0].name)
@@ -1467,7 +1515,7 @@ label enemyattack:
 
       $ enemyhand.sort(key=lambda x: x.COST,  reverse = True)
       if "Shield" in enemyhand[0].FXN and "BoostATK" in [handcard.FXN for handcard in enemyhand]:
-        $ enemyhand.sort(key=lambda x: x.FXN[1].name)
+        $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     python:
       for cardindex in range(0,5):
 
@@ -1541,8 +1589,6 @@ label Saber:
 init python:
     FxnDirectoryPlayer={
         "Attack":"Damageenemy",
-        # "AttackMelee":"Damageenemy",
-        # "AttackRanged":"Damageenemy",
         "AttackSP":"DamageSPenemy",
         "ReduceSPself":"DamageSPplayer",
         "Defend":"Shieldplayer",

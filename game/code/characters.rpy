@@ -1211,7 +1211,7 @@ image CodeRedFullzoomed:
     "CodeRedFull"
     zoom 1.6
 image Icon_Code Red:
-    LiveCrop((280,100, 440,565), "CodeRedFullzoomed")
+    LiveCrop((280,100, 520,700), "CodeRedFullzoomed")
     zoom 0.22
 image CodeRed mouth:
     "images/Characters/Code Red/CODE RED_mopen1.png"
@@ -1563,7 +1563,7 @@ image AveFullzoom:
 image Icon_Ave:
     mesh True
     LiveCrop((220,80, 520,700), "AveFullzoom")
-    zoom 0.25
+    zoom 0.22
 
 
 #########
