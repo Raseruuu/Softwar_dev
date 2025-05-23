@@ -166,6 +166,7 @@ init python:
 
     def IfFunction(condition,token_name,target,fxns):
         function1=fxns[0].code
+        codepart2=""
         if len(fxns)==2:
             function2=fxns[1]
             codepart2="\n  "+str(function2.code)
@@ -336,6 +337,7 @@ init python:
 
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
+    FixerBeam=    Card("FixerBeam",       "Wall",    0.75,    [Defend(),Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],      4)
 
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
@@ -768,19 +770,18 @@ define card_library={
     "ImpactHammer"    : {"card":ImpactHammer    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Firewall"        : {"card":Firewall        ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
     "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "Shieldbit"       : {"card":Shieldbit       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "RadioShield"     : {"card":RadioShield     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "Assault"         : {"card":Assault         ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity": "UR","color":"red","compatibility":"antivirus"},
+    "Shieldbit"       : {"card":Shieldbit       ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
+    "RadioShield"     : {"card":RadioShield     ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
+    "Assault"         : {"card":Assault         ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
     "Laserbeam"       : {"card":Laserbeam       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "Cursorclaw"      : {"card":Cursorclaw      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "Cursorclaw"      : {"card":Cursorclaw      ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
     "DrainShield"     : {"card":DrainShield     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "FieryArc"        : {"card":FieryArc        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "CosmicArc"       : {"card":CosmicArc       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "LunexGunSaber"   : {"card":LunexGunSaber   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "BusterSword"     : {"card":BusterSword     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "CupidArc"        : {"card":CupidArc        ,"ID":'001',"rarity":"SR","color":"red","compatibility":"basic"},
-    "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Gigamorph"       : {"card":Gigamorph       ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
     "Bitbuster"       : {"card":Bitbuster       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "MachineBuster"   : {"card":MachineBuster   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},

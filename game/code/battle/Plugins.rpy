@@ -4,9 +4,12 @@ label Plugins_Run:
     $ enemyplugin=enemyPlugins
     
     if enemyfirst: 
+        "HELLLOO???"
+        
         call PluginExecution(enemyplugin,"enemy")
         call PluginExecution(playerplugin,"player")
     else:
+        "HELLLOO?"
         call PluginExecution(playerplugin,"player")
         call PluginExecution(enemyplugin,"enemy")
     return
@@ -16,11 +19,12 @@ label PluginExecution(plugin_set,plugin_user):
     
     #Index of looper
     $iterations =len(plugin_set)
+    
     if iterations>0:
+        
         show screen phasemsg("INITIALIZE!")
         $renpy.pause(0.5,hard=True)
         hide screen phasemsg
-        
         label exec_loop_plugins:
 
             $ currentcard = playerplugin[0]
