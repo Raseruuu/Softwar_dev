@@ -292,17 +292,18 @@ label hurtnoise_Vira:
     return
 label hurtnoise:
     
+    if playerName=="ILY":
+      $ hcount=hcount+1
+      if hcount ==1:
+        play sound "voice/ILY/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      elif hcount == 2:
+        play sound "voice/ILY/hurt/ILY13B - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      elif hcount == 3:
+        play sound "voice/ILY/hurt/ILY13C - Light Bullet Grazed, punched or hit.wav" channel "voice"
+      elif hcount == 4:
+        play sound "voice/ILY/hurt/ILY05B - Swing light sword sounds.wav" channel "voice"
+      elif hcount == 5:
+        play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
+        $ hcount=0
     
-    $ hcount=hcount+1
-    if hcount ==1:
-      play sound "voice/ILY/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"
-    elif hcount == 2:
-      play sound "voice/ILY/hurt/ILY13B - Light Bullet Grazed, punched or hit.wav" channel "voice"
-    elif hcount == 3:
-      play sound "voice/ILY/hurt/ILY13C - Light Bullet Grazed, punched or hit.wav" channel "voice"
-    elif hcount == 4:
-      play sound "voice/ILY/hurt/ILY05B - Swing light sword sounds.wav" channel "voice"
-    elif hcount == 5:
-      play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
-      $ hcount=0
     return

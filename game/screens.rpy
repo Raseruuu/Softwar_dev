@@ -550,12 +550,13 @@ transform navigationtransformL:
     alpha 0.0 xoffset -20
     pause 1.5
     ease 0.1 alpha 1.0 xoffset 0
+
 screen main_menu():
 
     tag menu
     timer 1.5:
         action Play("music","bgm/Credits_bgm_maoudamashii_8bit08.mp3")
-    add "gui/main_menu/main menu bglayer1.png"
+    add "gui/main_menu/main menu bglayer1.png" at zoomtrans(1.5)
     if persistent.has_met_ILY:
         add "gui/main_menu/main menu ILYphantom.png" at phantomtrans
         add "gui/main_menu/main menu ILY text.png" at  phantomtrans

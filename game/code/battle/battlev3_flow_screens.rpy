@@ -23,7 +23,6 @@ init python:
 
     playerDeck = ILYStatsnow["Deck"]
     actual_playerDeck = playerDeck
-    playerPlugins =ILYStatsnow["Deck"]["plugins"]
     fxnindex=0
     execution_active=False
     enemy_evasion_active=False
@@ -32,6 +31,7 @@ init python:
     enemyfirst =False
     map_active=False
     playerbattlecode=[]
+define playerPlugins =[]
 default battle_distance = 3
 transform flip_image:
     xzoom -1.0
@@ -52,6 +52,21 @@ style SPbaroutlines:
     outlines [(2, "#022168", 0, 0)]
 
 define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa"]
+
+
+
+
+screen VERSUS(playerName,enemyName):
+    text playerName xalign 0.25 yalign 0.25
+    text "VS" xalign 0.5 yalign 0.5
+    text enemyName xalign 0.75 yalign 0.75
+
+    add ("images/Special Images/BattleCutscene_"+playerName+".png") xalign 0.25 yalign 0.25 at zoomtrans(0.15)
+    add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xalign 0.75 yalign 0.25 at zoomtrans(0.15)
+    key "dismiss" action Return()
+
+
+
 screen battlestats():
     
     $ playerbitsfirsthalf=(int(playerbitsmax/2) if (playerbits-int(playerbitsmax/2))>0 else playerbits)
@@ -541,6 +556,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ playerATK = PFAI.ATK
     $ playerDEF = PFAI.DEF
     $ playerDeck = deckcurrent
+    
+    $ playerPlugins = playerPlugins =PFAI.deck["plugins"]
     $ first_turn_done =False
 
     python:
@@ -562,10 +579,9 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         playerbattlecode=[]
         playerATK_m = playerATK
         playerDEF_m = playerDEF
-
         EnmySts = []
         PlayerSts = []
-        PlayerFAIstats = ILYStatsnow
+        # PlayerFAIstats = ILYStatsnow
         EnemyFAIstats = {
             "name":EFAI.name,
             "HP":EFAI.HP,
@@ -584,13 +600,16 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         enemySP = 0
         enemySPMax = EnemyFAIstats["SPMAX"]
         enemyDeck = EnemyFAIstats["Deck"]["content"]
-        enemyPlugins =EnemyFAIstats["Deck"]["plugins"]
+        enemyPlugins =EFAI.deck["plugins"]
         enemyATK = EnemyFAIstats["ATK"]
         enemyDEF = EnemyFAIstats["DEF"]
         enemyATK_m = enemyATK
         enemyDEF_m = enemyDEF
         random.shuffle(enemyDeck)
     # call battlebg_animation
+    if enemyName in boss_list:
+        call screen VERSUS(playerName,enemyName)
+
     scene battlebg
     show battlebg2
     with pixellate

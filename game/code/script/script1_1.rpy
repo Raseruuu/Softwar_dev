@@ -497,12 +497,12 @@ label script1:
             j "Not convinced."
 
             $ ILYSprite("smile")
-            i "Personally, I think Softwar was made for a new generation of fun! Perhaps it was made for the Future AIs to gain a spotlight or two."
+            i "Personally, I think the Softwar system was made for a new generation of fun! Perhaps it was made for the Future AIs to gain a spotlight or two."
             j "But we're talking about people who break rules all the time. Who's to say that hackers won't find a flaw in the Softwar system?"
 
             $ ILYSprite("smile3")
-            i "They might try, but we don't know if they'll succeed."
-            
+            i "They might try, but we don't know if they'll succeed. The GRID is running on a deeper level than the regular interfaces."
+
             j "Really..."
             i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
             j "An elaborate system of AIs and Cyber battles like this will definitely be popular soon."
@@ -534,7 +534,7 @@ label date1:
     j"There are some things you have to do for me to trust you."
     "Damn, I never thought I'd see the day when I say such words... to a program. "
     "I'm actually being a huge idiot for buying into what this virus says."
-    "18 years ago,{w=.3}{nw}"
+    "back in the year 2000,{w=.3}{nw}"
     extend" the ILOVEYOU Virus destroyed a heck load of PCs."
     extend" To think this program would call herself by that name...{w=.3}{nw}"
     extend" It's driving me crazy."
@@ -1464,7 +1464,7 @@ label date2:
         show CodeRed with move:
             xalign 0.5
         cv"I doubt we could even call it a battle."
-        cv"We're the next-gen cyber weapons called FAI, after all."
+        cv"No ordinary program can manage to beat a FAI."
         "Unaware of the battle they will be facing, the hacker and his FAIs await the activation of Salcedo Dev Studio's servers."
         "Their operation continues. And SDS will be in danger."
         scene black with dissolve
@@ -1478,8 +1478,7 @@ label date2:
         "Tomorrow will be when we assess if we can keep the website active without risking server shutdown."
         "I'm still curious whether Lisa's father really holds a FAI."
         "If we manage to acquire a FAI antivirus, let's hope it's strong enough to protect SDS."
-        "Now, I think the server side is good to go."
-        "Looks like my website server is ready."
+        "Now, I think the server side is good to go. {w}The website server is ready."
         "Time to show Lisa."
         scene JD_Bed3 with dissolve
         $ILY_w = True
@@ -1489,7 +1488,7 @@ label date2:
         i"I helped out well, didn't I, John?"
         j"Thank you for not bothering me."
         l"Let's see... Hmmm~ Hm~!"
-        "Behold, 1 complete hour of coding."
+        "I spent about an hour on that one."
         scene JD_Kitchen with dissolve
         "While Lisa checks the functionality of my database code, I stand up from the computer chair and get a drink."
         "Lisa's gonna need a gulp too."

@@ -174,6 +174,8 @@ label Damageenemy:
             #   $ renpy.pause(0.6,hard=True)
             if "Drill" in currentcardTYPE:
                 $ renpy.pause(0.2,hard=True)
+            elif "MailSword" in currentcardTYPE:
+                $ renpy.pause(0.25,hard=True)
             elif "Eraser" in currentcardTYPE:
                 $ renpy.pause(0.01,hard=True)
             else:

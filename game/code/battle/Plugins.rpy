@@ -1,33 +1,37 @@
 label Plugins_Run:
-
+    $ deckplugin=playerPlugins
     $ playerplugin=deckplugin
     $ enemyplugin=enemyPlugins
     
     if enemyfirst: 
-        "HELLLOO???"
         
         call PluginExecution(enemyplugin,"enemy")
         call PluginExecution(playerplugin,"player")
     else:
-        "HELLLOO?"
         call PluginExecution(playerplugin,"player")
         call PluginExecution(enemyplugin,"enemy")
     return
 label PluginExecution(plugin_set,plugin_user):
     $ runnumber = 0
     $ attacknumber = 0
-    
+    $ plugincurrent=""
+    if plugin_set:
+        $ plugincurrent=plugin_set[0].NAME
+    "Plugin [plugin_user], [plugincurrent]"
     #Index of looper
     $iterations =len(plugin_set)
-    
+    if iterations>0:
+        show screen phasemsg("INITIALIZE!")
     if iterations>0:
         
-        show screen phasemsg("INITIALIZE!")
+        
         $renpy.pause(0.5,hard=True)
         hide screen phasemsg
         label exec_loop_plugins:
-
-            $ currentcard = playerplugin[0]
+            if plugin_user=="player":
+                $ currentcard = playerplugin[runnumber]
+            elif plugin_user=="enemy":
+                $ currentcard = enemyplugin[runnumber]
             $ plugin_set.pop(0)
             # $ currentcard = (plugin_set[runnumber])
             $ currentcardFXN = currentcard.FXN

@@ -2,11 +2,11 @@
 ##################
 # default game_over=False
 # default battle_active=False
-define FAI_playables=[ILY, Ave, CodeRed, Vira, Bitwulf]
+define FAI_playables=[ILY, Ave, CodeRed]
 
 
 
-default r_Bosses=[]
+default r_Bosses=[ILY, Ave, CodeRed]
 
 # playerDeck = PlayerStatsnow["Deck"]
 #     actual_playerDeck = playerDeck
@@ -56,7 +56,7 @@ label roguemode:
         playerDEF = PlayerStatsnow["DEF"]
 
         actual_playerDeck = playerDeck
-        playerPlugins =PlayerStatsnow["Deck"]["plugins"]
+        playerPlugins =PFAI.deck["plugins"]
         fxnindex=0
         execution_active=False
         enemy_evasion_active=False
@@ -68,9 +68,10 @@ label roguemode:
     
     # $ r_Bosses=FAI_playables
    
-    ""
-    
-    
+    "NODE"
+    call r_battlestart
+    scene gray
+    call screen roguenodeselect
     label newbattle:
     $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
@@ -80,9 +81,36 @@ label roguemode:
     if not game_over:
         jump newbattle
     
+default nodes_path=[]
+
+init python:
+    def mobvirus_random():
+        enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+        return enemyvirus
+    class Node:
+        def __init__(self,NAME,TYPE,LABEL):
+            self.NAME = NAME
+            self.TYPE = TYPE
+            # enemy, 
+            self.LABEL = LABEL
+    Enemy=Node("Mob Virus", "Enemy","R_Enemy")
+    StrongEnemy=Node("Rogue Virus", "StrongEnemy","R_StrongEnemy")
+    Treasure=Node("Treasure", "Treasure","R_TreasureNode")
+    Recovery=Node("Recovery", "Recovery","R_RecoveryNode")
+    StellaShop=Node("Stella's Shop", "Shop","R_StellaShop")
+    def random_node():
+        newnode = renpy.random.choice([Enemy,Treasure,Recovery,StellaShop])
+        return newnode
 label r_battlestart:
-    
+    python:
+        for nodes in range(0,5):
+            nodes_path.append([random_node(),random_node()])
     return
-
-
-
+screen roguenodeselect():
+    vbox:
+        xalign 0.5 yalign 0.5
+        for nodes in nodes_path:
+            hbox:
+                text ""+nodes[0].NAME
+                text ""+nodes[1].NAME
+    key "dismiss" action Return()

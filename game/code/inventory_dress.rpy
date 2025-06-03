@@ -12,8 +12,10 @@ init python:
     CowGirl = Item_dress("CowGirl","Outfit","Something strange happened to ILY's breasts...")
     BikiniArmor = Item_dress("BikiniArmor","Outfit","The charming and beautiful knightess charges on!")
     SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spiritual warriors that maintain order!")
+    BlackBelts = Item_dress("BlackBelts","Outfit","Uniform worn by spiritual warriors that maintain order!")
     
-
+    
+    ArmorBikini = Item_dress("ArmorBikini","Underwear","The charming and beautiful knightess charges on!")
     Red_underwear=Item_dress("Red","Underwear","ILY's Default underwear.")
     White_underwear = Item_dress("White","Underwear","Classic underwear.")
     Red_underwear=Item_dress("Red","Underwear","Default.")
@@ -29,7 +31,10 @@ init python:
         Red_underwear,
         White_underwear,
         UniformBig,
-        CowGirl
+        CowGirl,
+        BikiniArmor,
+        ArmorBikini,
+        BlackBelts
         ]
     
     def EquipDress(dresstype,dressname):
@@ -40,12 +45,16 @@ init python:
             if currentunderwear=="":
                 globals()["ILY_underwear"]="Red"
         elif dresstype.lower()=="outfit" and dressname!="Unequip":
-            if dressname.lower()=="cowgirl":
+            if dressname.lower()=="cowgirl" or dressname.lower()=="maid" :
                 globals()["ILY_underwear"]=""
+            if dressname.lower()=="bikiniarmor":
+                globals()["ILY_underwear"]="ArmorBikini"
             globals()["ILY_outfit"]=dressname.lower()
+
         elif dresstype.lower()=="underwear":
             if currentoutfit=="cowgirl":
                 globals()["ILY_outfit"]=""
+            
             globals()["ILY_underwear"]=dressname.lower()
         # elif dressname=="Unequip":
         # renpy.notify(dressname+" is now equipped.")
