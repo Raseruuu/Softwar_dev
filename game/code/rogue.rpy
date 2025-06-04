@@ -69,9 +69,13 @@ label roguemode:
     # $ r_Bosses=FAI_playables
    
     "NODE"
-    call r_battlestart
-    scene gray
-    call screen roguenodeselect
+    label newnodes:
+        call r_battlestart
+        scene gray
+        call screen roguenodeselect
+        ""
+        $ nodes_path=[]
+        jump newnodes
     label newbattle:
     $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
@@ -91,26 +95,45 @@ init python:
         def __init__(self,NAME,TYPE,LABEL):
             self.NAME = NAME
             self.TYPE = TYPE
-            # enemy, 
             self.LABEL = LABEL
     Enemy=Node("Mob Virus", "Enemy","R_Enemy")
     StrongEnemy=Node("Rogue Virus", "StrongEnemy","R_StrongEnemy")
     Treasure=Node("Treasure", "Treasure","R_TreasureNode")
     Recovery=Node("Recovery", "Recovery","R_RecoveryNode")
     StellaShop=Node("Stella's Shop", "Shop","R_StellaShop")
-    def random_node():
-        newnode = renpy.random.choice([Enemy,Treasure,Recovery,StellaShop])
+    def random_node(used_nodes):
+        global nodes_tpf
+        choicenodes=nodes_tpf
+        newnode = renpy.random.choice(choicenodes)
+        nodes_tpf.remove(newnode)
         return newnode
 label r_battlestart:
     python:
+        used_nodes=[]
+        nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
         for nodes in range(0,5):
-            nodes_path.append([random_node(),random_node()])
+            # nodes_path.append([random_node(),random_node()])
+            newnoderow=[]
+            for i in range(nodes+1):
+                newrandomnode=random_node(used_nodes)
+                if newrandomnode not in used_nodes:
+                    used_nodes.append(newrandomnode)
+                newnoderow.append(newrandomnode)
+            print(newnoderow)
+            nodes_path.append(newnoderow)
     return
 screen roguenodeselect():
     vbox:
         xalign 0.5 yalign 0.5
         for nodes in nodes_path:
             hbox:
-                text ""+nodes[0].NAME
-                text ""+nodes[1].NAME
+                xalign 0.5 yalign 0.5
+                for nodex in nodes:
+                    vbox:
+                        xalign 0.5 yalign 0.5
+                        text (nodex.TYPE+"")  at zoomtrans(0.4)
+                        add ("gui/"+nodex.TYPE+".png") at zoomtrans(0.2)
+
+                     
+            
     key "dismiss" action Return()
