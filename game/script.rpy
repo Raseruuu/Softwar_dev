@@ -287,7 +287,7 @@ label test:
             return
         "Rogue":
             call roguemode
-    
+    return
 
 
     "test"

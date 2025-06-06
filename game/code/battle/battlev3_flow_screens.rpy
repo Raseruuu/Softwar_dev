@@ -31,7 +31,7 @@ init python:
     enemyfirst =False
     map_active=False
     playerbattlecode=[]
-define playerPlugins =[]
+default playerPlugins =[]
 default battle_distance = 3
 transform flip_image:
     xzoom -1.0
@@ -57,14 +57,15 @@ define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa"]
 
 
 screen VERSUS(playerName,enemyName):
-    text playerName xalign 0.25 yalign 0.25
-    text "VS" xalign 0.5 yalign 0.5
-    text enemyName xalign 0.75 yalign 0.75
+    
 
     add ("images/Special Images/BattleCutscene_"+playerName+".png") xalign 0.25 yalign 0.25 at zoomtrans(0.15)
     add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xalign 0.75 yalign 0.25 at zoomtrans(0.15)
     key "dismiss" action Return()
 
+    text "{size=30}[playerName]{/size}" xalign 0.2 yalign 0.25  
+    text "{size=30}VS{/size}" xalign 0.5 yalign 0.5             
+    text "{size=30}[enemyName]{/size}" xalign 0.8 yalign 0.75   
 
 
 screen battlestats():
@@ -658,6 +659,9 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     call showphasemsg("SOFTWAR BEGIN!") 
     #Start Dialogue
     $ phasenum=0
+    python:
+        import copy 
+        playerPlugins = copy.deepcopy(PFAI.deck["plugins"])
     call Plugins_Run
     label battleloop:
         hide screen battlestats

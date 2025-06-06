@@ -331,7 +331,7 @@ init python:
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
     VBlaze=        Card("VBlaze",           "Fire",           1.0,     [Attack(),Burn(40)],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
-    WormBite=      Card("WormBite",         "Hole",           0.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
+    WormBite=      Card("WormBite",         "Hole",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
     WormRetreat=    Card("WormRetreat",      "Hole",         1.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(4)])],   2)
     WormAdvance=    Card("WormAdvance",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(3)]),Advance()],   1)
 
@@ -421,7 +421,7 @@ init python:
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
     DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,[Attack(rangevalue=10)], 8)
     SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
-    SuperArmor=Plugin("First Barrier", "Initial Defense!",0.25, [Defend()],4)
+    SuperArmor=Plugin("SuperArmor", "Initial Defense!",0.25, [Defend()],4)
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS
     # [default deckdefault]
@@ -448,7 +448,7 @@ init python:
             # AccelRiser,AccelRiser
 
             ],
-        "plugins":[RubyRevolver,]
+        "plugins":[RubyRevolver,FirstBarrier]
         }
    
     deckalpha = {

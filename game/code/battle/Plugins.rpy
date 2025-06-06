@@ -1,6 +1,5 @@
 label Plugins_Run:
-    $ deckplugin=playerPlugins
-    $ playerplugin=deckplugin
+    $ playerplugin=playerPlugins
     $ enemyplugin=enemyPlugins
     
     if enemyfirst: 
@@ -17,7 +16,7 @@ label PluginExecution(plugin_set,plugin_user):
     $ plugincurrent=""
     if plugin_set:
         $ plugincurrent=plugin_set[0].NAME
-    "Plugin [plugin_user], [plugincurrent]"
+    "Plugin [plugin_user]: [plugincurrent]"
     #Index of looper
     $iterations =len(plugin_set)
     if iterations>0:
@@ -32,7 +31,7 @@ label PluginExecution(plugin_set,plugin_user):
                 $ currentcard = playerplugin[runnumber]
             elif plugin_user=="enemy":
                 $ currentcard = enemyplugin[runnumber]
-            $ plugin_set.pop(0)
+            # $ plugin_set.pop(0)
             # $ currentcard = (plugin_set[runnumber])
             $ currentcardFXN = currentcard.FXN
             $ currentcardMAG = currentcard.MAG
