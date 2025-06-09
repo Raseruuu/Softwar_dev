@@ -492,17 +492,17 @@ screen Battleware_Edit():
     #     use card_tooltip
 
 transform marquee:
-   #on show:
-     xpos 1.0 xanchor 0.0
-     linear 6.0 xpos 0.0 xanchor 1.0
+    #on show:
+        xpos 1.0 xanchor 0.0
+        linear 6.0 xpos 0.0 xanchor 1.0
 
-     repeat
+        repeat
 transform vmarquee:
-   #on show:
-     rotate -90
-     ypos 1.0 yanchor 0.0
-     linear 6.0 ypos 0.0 yanchor 1.0
-     repeat
+    #on show:
+        rotate -90
+        ypos 1.0 yanchor 0.0
+        linear 6.0 ypos 0.0 yanchor 1.0
+        repeat
 transform zoomtrans(zoomvalue):
     zoom zoomvalue
 screen pauselayout(scrname,spritevisible=True,notransform=False):

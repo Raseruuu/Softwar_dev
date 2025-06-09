@@ -1,9 +1,9 @@
 
 label maptalk_Ave_1:
     if objectbelow=="Ave":
-      $ILY_m='smile'
-      $ILY_e='2'
-      i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
+        $ILY_m='smile'
+        $ILY_e='2'
+        i"SPECIAL MOVE: VIRUS ATTACK FROM BEHIND!!"
     a"YOU'RE A VIRUS!! I MUST DESTROY YOU!"
     hide screen mapB
     hide screen mapA
@@ -40,7 +40,7 @@ label maptalk_CodeRed_1:
     hide screen mapA
     call battlev3(ILY,CodeRed)
     if playerHP<=0:
-      return
+        return
     $ enemy_encounter=False
     $ map_active=True
     call mapresume
@@ -60,7 +60,7 @@ label maptalk_Vira_1:
     hide screen mapA
     call battlev3(ILY,Vira)
     if playerHP<=0:
-      return
+        return
     $ enemy_encounter=False
     $ map_active=True
     call mapresume
@@ -136,15 +136,15 @@ label maptalk_Stella:
 
     return
 label maptalk_Virus_1:
-  i"It's a stray virus!"
-  $ John_m = "sad"
-  $ John_e = "mad"
-  j"Get Ready, ILY!"
-  hide screen mapA
-  hide screen mapB
-  return
+    i"It's a stray virus!"
+    $ John_m = "sad"
+    $ John_e = "mad"
+    j"Get Ready, ILY!"
+    hide screen mapA
+    hide screen mapB
+    return
 label maptalk_Bella_1:
-      # elif actornum == 'Bella':
+    # elif actornum == 'Bella':
     # "Bella""Hello ILY from SOFTWAR."
     be"Hi! Have you seen a small red robot around anywhere? Her name is Tetra!"
     $ILYSprite("smile")
@@ -153,21 +153,21 @@ label maptalk_Bella_1:
     i"Got it!"
     return
 label maptalk_Tetra_1:
-  
-  "Tetra" "I'm lost."
-  i "Ah! By any chance are you the Red Robot named Tetra?"
-  "Tetra" "Yes! how did you know?"
-  i "A pink-haired girl with a sleek red battle suit was just looking for you!"
-  "Tetra" "That must have been Bella!! "
-  i "What happened? How did you get separated?"
-  "Tetra" "We must have been split when we reached this narrow street while exploring."
-  i"But this is the Undernet!!"
-  j "(Could it be that Tetra was tricked by some virus?)"
-  "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
-  i "Let's go back!
-  "
+    
+    "Tetra" "I'm lost."
+    i "Ah! By any chance are you the Red Robot named Tetra?"
+    "Tetra" "Yes! how did you know?"
+    i "A pink-haired girl with a sleek red battle suit was just looking for you!"
+    "Tetra" "That must have been Bella!! "
+    i "What happened? How did you get separated?"
+    "Tetra" "We must have been split when we reached this narrow street while exploring."
+    i"But this is the Undernet!!"
+    j "(Could it be that Tetra was tricked by some virus?)"
+    "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
+    i "Let's go back!
+    "
 
-  return
+    return
 label maptalk_Heart:
     # i"Would you like to restore HP?"
     $ ILY_m="smile3"
@@ -176,55 +176,50 @@ label maptalk_Heart:
     menu:
         i"Would you like to restore HP?"
         "Yes":
-          $ HPalreadyfull=playerHP==playerHPMax
-          $playerHP=playerHPMax
-          play sound "sfx/heal.ogg"
-          if HPalreadyfull:
-            "[playerName]'s Health Points are already full."
-          else:
-            "[playerName]'s Health Points have been restored."
+            $ HPalreadyfull=playerHP==playerHPMax
+            $playerHP=playerHPMax
+            play sound "sfx/heal.ogg"
+            if HPalreadyfull:
+                "[playerName]'s Health Points are already full."
+            else:
+                "[playerName]'s Health Points have been restored."
 
         "No":
-          i"OK."
+            i"OK."
     return
 label maptalk_Melissa_story_1:
-   $ Melissa_w=True
-   if gameprogress==0:
-      call Melissascript2
-      return
-   elif gameprogress==1:
-      call hideMapview
-      jump payMelissa
-      return
-    
+    $ Melissa_w=True
+    if gameprogress==0:
+        call Melissascript2
+        return
+    elif gameprogress==1:
+        call hideMapview
+        jump payMelissa
+        return
+      
    
 define samedialog = ["Heart","Stella"]
 label whatactor:
     $ pausemenu=True
     if len(actornum)>2:
-      $ spritelabel=actornum
-      $ labels_in_spritelist=[sprite.dialogue for sprite in spritelist]
-      python:
-          for labels in labels_in_spritelist:
-            if actornum in labels:
-              spritelabel=labels
-      if actornum in samedialog:
-
-        
-        $ renpy.call("maptalk_"+str(spritelabel))
-      else:
-        
-          
-        $ renpy.call("maptalk_"+str(spritelabel)+"_"+str(chapternum))
-
-      $ map_active=True
-      if "story" in spritelabel:
-        $ map_active=False
-        return
-      else:
-        call mapresume
-      # else:
-      #     $ renpy.call("maptalk_"+str(actornum))
+        $ spritelabel=actornum
+        $ labels_in_spritelist=[sprite.dialogue for sprite in spritelist]
+        python:
+            for labels in labels_in_spritelist:
+                if actornum in labels:
+                    spritelabel=labels
+        if actornum in samedialog:
+            $ renpy.call("maptalk_"+str(spritelabel))
+        else:
+            $ renpy.call("maptalk_"+str(spritelabel)+"_"+str(chapternum))
+        $ map_active=True
+        if "story" in spritelabel:
+            $ map_active=False
+            return
+        else:
+            call mapresume
+        # else:
+        #     $ renpy.call("maptalk_"+str(actornum))
 
     if game_over:
         return 
@@ -243,50 +238,50 @@ default gameprogress=0
 label MapTalk:
     # if boxsheet == stagehome:
     if boxsheet:
-      $ maptalks+=1
-      if gameprogress==0:
-        if maptalks==1:
-          $ ILY_m="frown"
-          $ ILY_e="down"
-          i"John! Let's try to locate SDS."
-          $ John_m="frown"
-          $ John_e="normal"
-          j"Which direction was it again?"
-          $ ILY_m="smile3"
-          $ ILY_e="normal"
-          i"There should be a gateway to the west from here!"
-        elif maptalks==2:
-          $ ILY_m="smile3"
-          $ ILY_e="normal"
-          i"Are you enjoying the GRID?"
-          j"I'll say. it's quite interesting."
-          i"How?"
-          j"It resembles the real world, here at Connecht City."
-          $ maptalks=0
+        $ maptalks+=1
+        if gameprogress==0:
+            if maptalks==1:
+                $ ILY_m="frown"
+                $ ILY_e="down"
+                i"John! Let's try to locate SDS."
+                $ John_m="frown"
+                $ John_e="normal"
+                j"Which direction was it again?"
+                $ ILY_m="smile3"
+                $ ILY_e="normal"
+                i"There should be a gateway to the west from here!"
+            elif maptalks==2:
+                $ ILY_m="smile3"
+                $ ILY_e="normal"
+                i"Are you enjoying the GRID?"
+                j"I'll say. it's quite interesting."
+                i"How?"
+                j"It resembles the real world, here at Connecht City."
+                $ maptalks=0
 ############## MELISSA PAY QUEST
-      elif gameprogress==1:
-        if maptalks==1:
-          i"We gotta pay Melissa 3000 Zenny, John!"
-          j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
-          j"How do we earn 3000 Zenny?"
-          i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
+        elif gameprogress==1:
+            if maptalks==1:
+                i"We gotta pay Melissa 3000 Zenny, John!"
+                j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
+                j"How do we earn 3000 Zenny?"
+                i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
 
-        elif maptalks==2:
-          i"What do you think of Melissa?"
-          j"She's pretty hot stuff."
-          i"Whaaa!?"
-          j"What's that reaction for?"
-          $ maptalks=0
+            elif maptalks==2:
+                i"What do you think of Melissa?"
+                j"She's pretty hot stuff."
+                i"Whaaa!?"
+                j"What's that reaction for?"
+                $ maptalks=0
+      
 
 
 
-
-      show screen mapB
-      call screen mapA
-      call Returns
-      return
+        show screen mapB
+        call screen mapA
+        call Returns
+        return
     else:
-      show screen mapB
-      call screen mapA
-      call Returns
+        show screen mapB
+        call screen mapA
+        call Returns
     return

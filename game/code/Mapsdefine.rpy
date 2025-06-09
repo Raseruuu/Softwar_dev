@@ -57,11 +57,11 @@ init -3 python:
 
         return (newX,newY)
     def map_token(mapsheet):
-      newmap = []
-      for rows in mapsheet:
-        newmap.append([ch for ch in rows])
+        newmap = []
+        for rows in mapsheet:
+            newmap.append([ch for ch in rows])
 
-      return (newmap)
+        return (newmap)
     stage0 = [
         '1111111',
         '1000001',

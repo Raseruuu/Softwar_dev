@@ -264,39 +264,39 @@ init -1 python:
                 renpy.sound.play("sound/character/"+blipvoices[name]+".ogg", channel="blipsound", loop=True)
             else:
                 renpy.sound.play("sound/character/"+blipvoices[""]+".ogg", channel="blipsound", loop=True)
-           #  if (name == "John"):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #
-           #  elif (name == "ILY"):
-           #     renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
-           #  elif (name == "Lisa"):
-           #     renpy.sound.play("sound/character/mid.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'N'):
-           #     renpy.sound.play("sound/character/sfx-blipmale.wav", channel="blipsound", loop=True)
-           #  elif (name == 'Hilbert'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'CodeRed'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'Vira'):
-           #     renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'Melissa'):
-           #     renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'Ave'):
-           #     renpy.sound.play("sound/character/mid.wav", channel="blipsound", loop=True)
-           #  elif (name == 'USB-kun'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'USB-chan'):
-           #     renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'Hilbert'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'HackerX'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           # elif (name == 'HackerX'):
-           #    renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif (name == 'Stoned'):
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
-           #  elif name=="":
-           #     renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     if (name == "John"):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+           
+        #     elif (name == "ILY"):
+        #        renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
+        #     elif (name == "Lisa"):
+        #        renpy.sound.play("sound/character/mid.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'N'):
+        #        renpy.sound.play("sound/character/sfx-blipmale.wav", channel="blipsound", loop=True)
+        #     elif (name == 'Hilbert'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'CodeRed'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'Vira'):
+        #        renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'Melissa'):
+        #        renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'Ave'):
+        #        renpy.sound.play("sound/character/mid.wav", channel="blipsound", loop=True)
+        #     elif (name == 'USB-kun'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'USB-chan'):
+        #        renpy.sound.play("sound/character/high.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'Hilbert'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'HackerX'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #    elif (name == 'HackerX'):
+        #       renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif (name == 'Stoned'):
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
+        #     elif name=="":
+        #        renpy.sound.play("sound/character/low.ogg", channel="blipsound", loop=True)
         elif (event == "slow_done" or event == "end"):
             speaking = None
             renpy.sound.stop(channel="blipsound")
@@ -2219,7 +2219,7 @@ layeredimage BrainFullBody:
     always:
         "images/Characters/Brain/Brain_helmet.png"
     always:
-       WhileSpeaking(
+        WhileSpeaking(
             "Brain",
             ConditionSwitch(
                 "('smile' in Brain_m)","BrainMouthsmile",

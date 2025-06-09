@@ -274,18 +274,18 @@ label DamageSPselfenemy:
         $ damagetoenemy=int(enemyATK_m*Magnitude)
 
         if currentcardTYPE == "Sword":
-          play sound "sfx/slash.wav"
+            play sound "sfx/slash.wav"
         elif currentcardTYPE == "Axe":
-          play sound "sfx/slash.wav"
+            play sound "sfx/slash.wav"
         elif currentcardTYPE == "Fire":
-          play sound "sfx/Bust.wav"
+            play sound "sfx/Bust.wav"
         elif currentcardTYPE == "Gun":
-          play sound "sfx/Bust.wav"
+            play sound "sfx/Bust.wav"
         else:
-          if runnumber>1:
-            play sound "sfx/sfx_exp_short_hard8.wav"
-          else:
-            play sound "sfx/sfx_exp_short_hard9.wav"
+            if runnumber>1:
+                play sound "sfx/sfx_exp_short_hard8.wav"
+            else:
+                play sound "sfx/sfx_exp_short_hard9.wav"
         call hurtnoise_enemy
         $ enemySP-=damagetoenemy
         if enemySP<0:
@@ -312,9 +312,9 @@ label Burnenemy:
     # $ EnmySts.append("Burn")
     $ EnmySts=statusAppend(EnmySts,"Burn")
     show Brnsts:
-      zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     call updatestats_enemy
     if "Drill" in currentcardTYPE:
         $ renpy.pause(0.2,hard=True)
@@ -325,14 +325,14 @@ label Burnenemy:
     return
 label Retreatenemy(distanceamount=0):
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
-          pass
+        pass
     else:    
-          $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
 
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
-         $distance_quantity=distanceamount
+        $ distance_quantity=distanceamount
     python:
         for dist in range(0,distance_quantity):
             # if battle_distance!=0:
@@ -354,7 +354,7 @@ label Advanceenemy(distanceamount=0):
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
-         $distance_quantity=distanceamount
+        $ distance_quantity=distanceamount
     python:
         for dist in range(0,distance_quantity):
             if battle_distance!=0:
@@ -369,7 +369,7 @@ label Advanceplayer(distanceamount=0):
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
-         $distance_quantity=distanceamount
+        $ distance_quantity=distanceamount
     python:
         for dist in range(0,distance_quantity):
             if battle_distance!=0:
@@ -385,7 +385,7 @@ label Retreatplayer(distanceamount=0):
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
-         $distance_quantity=distanceamount
+        $ distance_quantity=distanceamount
     python:
         for dist in range(0,distance_quantity):
             battle_distance=battle_distance+1
@@ -400,17 +400,17 @@ label ReduceBitself:
     $ playerbits-=1
     $ dmgdist = 10
     show bit onlayer overlay:
-      xalign 0.5 ypos 0.78 yanchor 0.5
-      linear 0.05 zoom 0.96
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-      pause .05
-      xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
-      pause .05
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
-      pause 0.05
-      xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-      pause 0.05
-      ease 0.2 xoffset 0 yoffset 0 alpha 0.0
+        xalign 0.5 ypos 0.78 yanchor 0.5
+        linear 0.05 zoom 0.96
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+        pause .05
+        xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
+        pause .05
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
+        pause 0.05
+        xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+        pause 0.05
+        ease 0.2 xoffset 0 yoffset 0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide bit
     return
@@ -419,17 +419,17 @@ label ReduceBit:
     $ enemybits-=1
     $ dmgdist = 10
     show bit onlayer overlay:
-      xalign 0.5 ypos 0.25 yanchor 0.5
-      linear 0.05 zoom 0.96
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-      pause .05
-      xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
-      pause .05
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
-      pause 0.05
-      xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-      pause 0.05
-      ease 0.2 xoffset 0 yoffset 0 alpha 0.0
+        xalign 0.5 ypos 0.25 yanchor 0.5
+        linear 0.05 zoom 0.96
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+        pause .05
+        xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
+        pause .05
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
+        pause 0.05
+        xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+        pause 0.05
+        ease 0.2 xoffset 0 yoffset 0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide bit
     return
@@ -437,17 +437,17 @@ label AddBitself:
     play sound "sfx/sfx_exp_odd3.wav"
     $ playerbits+=1
     show bit onlayer overlay:
-      xalign 0.5 ypos 0.78 yanchor 0.5
-      linear 0.05 zoom 0.96
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-      pause .05
-      xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
-      pause .05
-      xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
-      pause 0.05
-      xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-      pause 0.05
-      ease 0.2 xoffset 0 yoffset 0 alpha 0.0
+        xalign 0.5 ypos 0.78 yanchor 0.5
+        linear 0.05 zoom 0.96
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+        pause .05
+        xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.6
+        pause .05
+        xoffset (dmgdist) yoffset (dmgdist) alpha 0.5
+        pause 0.05
+        xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+        pause 0.05
+        ease 0.2 xoffset 0 yoffset 0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide bit
     return
@@ -456,9 +456,9 @@ label Burnself:
     # $ PlayerSts.append("Burn")
     $ PlayerSts=statusAppend(PlayerSts,"Burn")
     show Brnsts onlayer overlay:
-      zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     # $ renpy.pause(0.6,hard=True)
     if "Drill" in currentcardTYPE:
         $ renpy.pause(0.2,hard=True)
@@ -471,9 +471,9 @@ label Emailenemy:
     # $ EnmySts.append("Burn")
     $ EnmySts=statusAppend(EnmySts,"email")
     show Emailsts:
-      zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide Emailsts
     return
@@ -524,9 +524,9 @@ label GainTokenPlayer:
 
         $ PlayerSts=statusAppend(PlayerSts,token_name)
         show text "[token_name]":
-          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+            linear 0.1 zoom 0.98
+            linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
         hide text
         $ counter+=1
@@ -546,9 +546,9 @@ label GainTokenEnemy:
 
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
-          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+            linear 0.1 zoom 0.98
+            linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
         hide text
         $ counter+=1
@@ -568,9 +568,9 @@ label EvadeEnemy:
 
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
-          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+            linear 0.1 zoom 0.98
+            linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
         hide text
         $ counter+=1
@@ -590,9 +590,9 @@ label EvadePlayer:
 
         $ PlayerSts=statusAppend(PlayerSts,token_name)
         show text "{size=20}[token_name]{/size}":
-          zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-          linear 0.1 zoom 0.98
-          linear 0.2 zoom 1.0 alpha 0.0
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+            linear 0.1 zoom 0.98
+            linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
         hide text
         
@@ -611,9 +611,9 @@ label BoostATK:
     $ PlayerSts=statusAppend(PlayerSts,"BoostATK")
     call updatestats_player
     show BoostATKsts onlayer overlay:
-      zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
       
     $ renpy.pause(0.6,hard=True)
     hide text
@@ -626,9 +626,9 @@ label BoostDEF:
     $ PlayerSts=statusAppend(PlayerSts,"BoostDEF")
     call updatestats_player from _call_updatestats_player_1
     show BoostDEFsts onlayer overlay:
-      zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide BoostDEFsts
     return
@@ -639,9 +639,9 @@ label BoostMAGenemy:
     $ PlayerSts=statusAppend(PlayerSts,"BoostMAG")
     call updatestats_enemy from _call_updatestats_enemy
     show BoostMAGsts onlayer overlay:
-      zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide BoostMAGsts
     return
@@ -810,9 +810,9 @@ label BoostATKenemy:
     $ EnmySts=statusAppend(EnmySts,"BoostATK")
     call updatestats_enemy from _call_updatestats_enemy_1
     show BoostATKsts onlayer overlay:
-      zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide BoostDEFsts
     return
@@ -824,9 +824,9 @@ label BoostDEFenemy:
     $ EnmySts=statusAppend(EnmySts,"BoostDEF")
     call updatestats_enemy from _call_updatestats_enemy_2
     show BoostDEFsts onlayer overlay:
-      zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide BoostDEFsts
     return
@@ -1013,9 +1013,9 @@ label DoNothing:
 
 label Damageplayer:
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
-          pass
+        pass
     else:    
-          $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
@@ -1087,6 +1087,7 @@ label Damageplayer:
         $ dmgdist = int(dmgdist*2)
         show playerdmgpoint onlayer overlay
         # show damagenoise
+        
         call hurtnoise
         $ hurtface=(renpy.random.randint(0,1))
         if hurtface==0:
@@ -1232,7 +1233,7 @@ label Concat_anim(prefix,suffix,suffix2,concat_result):
     call showphasemsg("CONCATENATE!") from _call_showphasemsg_2
     $ flashuser = playerName
     if card3concatenation:
-         $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n"+suffix2.TYPE+"-type Battleware "+suffix2.NAME+"\n Concatenate! " +concat_card_name+"!"
+        $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n"+suffix2.TYPE+"-type Battleware "+suffix2.NAME+"\n Concatenate! " +concat_card_name+"!"
     else:
         $ flashdialogue = prefix.TYPE+"-type Battleware "+prefix.NAME+",\n "+suffix.TYPE+"-type Battleware "+suffix.NAME+",\n Concatenate! " +concat_card_name+"!"
     $ renpy.call("FinishingFlash",flashdialogue)
@@ -1391,15 +1392,15 @@ label PlayerEndPhase:
     if "Burn" in EnmySts:
             play sound "sfx/fire.wav"
             python:
-              burndmg = 0
-              for fxns in EnmySts:
-                if fxns=="Burn":
-                  burndmg = burndmg +80
+                burndmg = 0
+                for fxns in EnmySts:
+                    if fxns=="Burn":
+                        burndmg = burndmg +80
             
             show Brnsts:
-              zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-              linear 0.1 zoom 0.98
-              linear 0.2 zoom 1.0 alpha 0.0
+                zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+                linear 0.1 zoom 0.98
+                linear 0.2 zoom 1.0 alpha 0.0
             $ enemyHP = enemyHP-burndmg
             if enemyHP <=0:
                 $enemyHP = 0
@@ -1411,17 +1412,17 @@ label PlayerEndPhase:
             show dmgpointb onlayer overlay
             call hurtnoise_enemy
             show Enemy:
-              linear 0.1 zoom 0.96
-              xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-              pause .05
-              xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
-              pause .05
-              xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
-              pause 0.1
-              xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-              pause 0.05
-              xoffset 0 yoffset 0
-              linear 0.1 zoom 1.0
+                linear 0.1 zoom 0.96
+                xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+                pause .05
+                xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+                pause .05
+                xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+                pause 0.1
+                xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+                pause 0.05
+                xoffset 0 yoffset 0
+                linear 0.1 zoom 1.0
             $ renpy.pause(0.6,hard=True)
             hide Brnsts
     $ playerbits = playerbitsmax
@@ -1430,10 +1431,10 @@ label EnemyEndPhase:
     
     if "Burn" in PlayerSts:
             python:
-              burndmg = 0
-              for fxns in PlayerSts:
-                if fxns=="Burn":
-                  burndmg = burndmg +80
+                burndmg = 0
+                for fxns in PlayerSts:
+                    if fxns=="Burn":
+                        burndmg = burndmg +80
 
             # i"[playerName] receives [burndmg] burn damage!"
             play sound "sfx/fire.wav"
@@ -1447,9 +1448,9 @@ label EnemyEndPhase:
             $ dmgdist = int(dmgdist*2)
             $ damagetoplayer = burndmg
             show Brnsts:
-              zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 0.5 ypos 0.75 alpha 1.0
-              linear 0.1 zoom 0.98
-              linear 0.2 zoom 1.0 alpha 0.0
+                zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 0.5 ypos 0.75 alpha 1.0
+                linear 0.1 zoom 0.98
+                linear 0.2 zoom 1.0 alpha 0.0
 
             show playerdmgpoint onlayer overlay
             call hurtnoise
@@ -1505,23 +1506,23 @@ label enemyattack:
     $renpy.pause(0.9,hard=True)
     hide screen phasemsg
     python:
-      for enemyhandcards in range(0,5):
-        enemyDeck.pop(0)
+        for enemyhandcards in range(0,5):
+            enemyDeck.pop(0)
     #Buffs Priority
     $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts) or ("Saber" in EnmySts):
-      #Damage priority
-      $ enemyhand.sort(key=lambda x: x.FXN[0].name)
+        #Damage priority
+        $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     elif (enemySP==0) and (enemyHP<=enemyHPMax):
-      #Strongest card priority
+        #Strongest card priority
 
-      $ enemyhand.sort(key=lambda x: x.COST,  reverse = True)
-      if "Shield" in enemyhand[0].FXN and "BoostATK" in [handcard.FXN for handcard in enemyhand]:
+        $ enemyhand.sort(key=lambda x: x.COST,  reverse = True)
+    if "Shield" in enemyhand[0].FXN and "BoostATK" in [handcard.FXN for handcard in enemyhand]:
         $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     python:
-      for cardindex in range(0,5):
+        for cardindex in range(0,5):
 
-        enemyDeck.append(enemyhand[cardindex])
+            enemyDeck.append(enemyhand[cardindex])
 
     $ choicecount=0
     label enemyattackloop:
@@ -1581,9 +1582,9 @@ label Saber:
     $ PlayerSts=statusAppend(PlayerSts,"Saber")
     call updatestats_player 
     show BoostDEFsts onlayer overlay:
-      zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-      linear 0.1 zoom 0.98
-      linear 0.2 zoom 1.0 alpha 0.0
+        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        linear 0.1 zoom 0.98
+        linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
     hide BoostDEFsts
     return

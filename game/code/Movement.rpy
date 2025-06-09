@@ -1,8 +1,8 @@
 
 init python:
   def placeobject(boxsheet,xpos,ypos,objectnum):
-       boxsheet[ypos][xpos]= objectnum
-       return boxsheet
+      boxsheet[ypos][xpos]= objectnum
+      return boxsheet
   bg = 1
   bgyanchor = 720
   bgxanchor = 1280
@@ -50,55 +50,55 @@ init python:
 default gridpos = [192,168]
 label initializemapvariables:
     python:
-       gridpos = [192,168]
+        gridpos = [192,168]
 
     return
 label checkwalls:
-   python:
-      playerxpos = playerpos[0]
-      playerypos = playerpos[1]
-      Hereisempty = (boxsheet[playerypos][playerxpos]=='0')
-      Here = boxsheet[playerypos][playerxpos]
-      HereisDoor = ((Here=='a') or (Here=='b')) or ((Here=='c') or (Here=='d'))
-      HereisEventDoor = ('script' in Here)
+    python:
+        playerxpos = playerpos[0]
+        playerypos = playerpos[1]
+        Hereisempty = (boxsheet[playerypos][playerxpos]=='0')
+        Here = boxsheet[playerypos][playerxpos]
+        HereisDoor = ((Here=='a') or (Here=='b')) or ((Here=='c') or (Here=='d'))
+        HereisEventDoor = ('script' in Here)
 
-   python:
-      objectabove = boxsheet[playerypos-1][playerxpos]
-      objectbelow = boxsheet[playerypos+1][playerxpos]
-      objectleft = boxsheet[playerypos][playerxpos-1]
-      objectright = boxsheet[playerypos][playerxpos+1]
+    python:
+        objectabove = boxsheet[playerypos-1][playerxpos]
+        objectbelow = boxsheet[playerypos+1][playerxpos]
+        objectleft = boxsheet[playerypos][playerxpos-1]
+        objectright = boxsheet[playerypos][playerxpos+1]
 
-      Upisempty = (objectabove=='r') or (objectabove=='0') or (objectabove=='d') or (objectabove=='c') or (objectabove=='b') or (objectabove=='a') or ('script'in objectabove)
-      Downisempty = (objectbelow=='r') or (objectbelow=='0') or (objectbelow=='d') or (objectbelow=='c') or (objectbelow=='b') or (objectbelow=='a') or ('script'in objectbelow)
-      Leftisempty = (objectleft=='r') or (objectleft=='0') or (objectleft=='d') or (objectleft=='c') or (objectleft=='b') or (objectleft=='a') or ('script'in objectleft)
-      Rightisempty = (objectright=='r') or (objectright=='0') or (objectright=='d') or (objectright=='c') or (objectright=='b') or (objectright=='a') or ('script'in objectright)
+        Upisempty = (objectabove=='r') or (objectabove=='0') or (objectabove=='d') or (objectabove=='c') or (objectabove=='b') or (objectabove=='a') or ('script'in objectabove)
+        Downisempty = (objectbelow=='r') or (objectbelow=='0') or (objectbelow=='d') or (objectbelow=='c') or (objectbelow=='b') or (objectbelow=='a') or ('script'in objectbelow)
+        Leftisempty = (objectleft=='r') or (objectleft=='0') or (objectleft=='d') or (objectleft=='c') or (objectleft=='b') or (objectleft=='a') or ('script'in objectleft)
+        Rightisempty = (objectright=='r') or (objectright=='0') or (objectright=='d') or (objectright=='c') or (objectright=='b') or (objectright=='a') or ('script'in objectright)
 
 
-      UpisActor = (objectabove!='0') and (direction == 'up')
-      DownisActor = (objectbelow!='0') and (direction == 'down')
-      LeftisActor = (objectleft!='0') and (direction == 'left')
-      RightisActor = (objectright!='0') and (direction == 'right')
-      FacingActor = (UpisActor or DownisActor) or (LeftisActor or RightisActor)
+        UpisActor = (objectabove!='0') and (direction == 'up')
+        DownisActor = (objectbelow!='0') and (direction == 'down')
+        LeftisActor = (objectleft!='0') and (direction == 'left')
+        RightisActor = (objectright!='0') and (direction == 'right')
+        FacingActor = (UpisActor or DownisActor) or (LeftisActor or RightisActor)
 
-      if direction=='up':
-        actornum = objectabove
-      elif direction == 'down':
-        actornum = objectbelow
-      elif direction == 'left':
-        actornum = objectleft
-      elif direction == 'right':
-        actornum = objectright
+        if direction=='up':
+          actornum = objectabove
+        elif direction == 'down':
+          actornum = objectbelow
+        elif direction == 'left':
+          actornum = objectleft
+        elif direction == 'right':
+          actornum = objectright
 
-      # return
-   if HereisDoor:
-      play sound"sfx/door-fr_0009.wav"
-      call doorjump
-   if HereisEventDoor:
-      play sound"sfx/door-fr_0009.wav"
-      $ map_active=False
+        # return
+    if HereisDoor:
+        play sound"sfx/door-fr_0009.wav"
+        call doorjump
+    if HereisEventDoor:
+        play sound"sfx/door-fr_0009.wav"
+        $ map_active=False
 
-      call eventdoor 
-   return
+        call eventdoor 
+    return
 label hideMapview:
     $ map_active=False
     $ quick_menu=True
@@ -107,7 +107,7 @@ label hideMapview:
 
 label eventdoor:
   if gameprogress<chapternum:
-
+    "[gameprogress]"
     $renpy.jump(str(Here))
   else:
     $renpy.call(str(Here))
@@ -284,15 +284,15 @@ screen mapB:
       else:
           at mover_nolinear(objxanchor,objyanchor)
       for i in boxsheet:
-         hbox:
-           xalign 0.5 yalign 1.0
-           for j in i:
-             if j !='n':
-               image "images/rpg/tile/Tilebg.png"
-             elif j =='m':
-               image "images/rpg/tile/Tilebg.png"
-             elif j == 'n':
-               null height blockSize width blockSize
+        hbox:
+          xalign 0.5 yalign 1.0
+          for j in i:
+            if j !='n':
+              image "images/rpg/tile/Tilebg.png"
+            elif j =='m':
+              image "images/rpg/tile/Tilebg.png"
+            elif j == 'n':
+              null height blockSize width blockSize
     vbox:
       if objxanchor == 0 and objyanchor== 0:
           at alphatrans(0.0)
@@ -301,37 +301,37 @@ screen mapB:
       else:
           at mover_nolinear(objxanchor,objyanchor)
       for i in boxsheet:
-         hbox:
-           xalign 0.5 yalign 1.0
-           for j in i:
-             if j =='1':
-               image "images/rpg/overworld/object.png"
-             elif j =='2':
-               image "shock"
-             elif j =='3':
-               image "images/rpg/overworld/object3.png"
-             elif j =='4':
-               image "images/rpg/overworld/object4.png"
-             elif j =='5':
-               image "images/rpg/overworld/object5.png"
-             elif j =='a':
-               image "images/rpg/overworld/objectd.png"
-             elif j =='b':
-               image "images/rpg/overworld/objectd.png"
-             elif j =='c':
-               image "images/rpg/overworld/objectd.png"
-             elif j =='d':
-               image "images/rpg/overworld/objectd.png"
-             elif j =='r':
-               image "images/rpg/overworld/objectr.png"
-             elif 'script' in j:
-               image "images/rpg/overworld/storyevent.png"
-             elif j=='0':
-               null height blockSize width blockSize
-             elif j == 'n':
-               null height blockSize width blockSize
-             elif len(j)>1:
-               null height blockSize width blockSize
+        hbox:
+          xalign 0.5 yalign 1.0
+          for j in i:
+              if j =='1':
+                image "images/rpg/overworld/object.png"
+              elif j =='2':
+                image "shock"
+              elif j =='3':
+                image "images/rpg/overworld/object3.png"
+              elif j =='4':
+                image "images/rpg/overworld/object4.png"
+              elif j =='5':
+                image "images/rpg/overworld/object5.png"
+              elif j =='a':
+                image "images/rpg/overworld/objectd.png"
+              elif j =='b':
+                image "images/rpg/overworld/objectd.png"
+              elif j =='c':
+                image "images/rpg/overworld/objectd.png"
+              elif j =='d':
+                image "images/rpg/overworld/objectd.png"
+              elif j =='r':
+                image "images/rpg/overworld/objectr.png"
+              elif 'script' in j:
+                image "images/rpg/overworld/storyevent.png"
+              elif j=='0':
+                null height blockSize width blockSize
+              elif j == 'n':
+                null height blockSize width blockSize
+              elif len(j)>1:
+                null height blockSize width blockSize
     if not pausemenu:
       image "ILYFullBody":
         xpos 0.85 xanchor 0.5 ypos 0.9 yanchor 0.5 zoom 0.4
@@ -578,111 +578,111 @@ transform ilymov2:
     repeat
 define safezones = ["Home_Page","Shady_Alley"]
 label randomencounter:
-     $ randomenemy = renpy.random.randint(0,100)
-     $ safezone=(Where in safezones)
-     # $safezone=True #for debugging
-     $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
-     if enemy_encounter == True:
-          $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
-          # $ enemyvirus = renpy.random.choice([Vira])
-          hide screen mapB
-          hide screen mapA
-          call battlev3(ILY,enemyvirus)
-          if playerHP<=0:
-              $ game_over=True
-              $ map_active=False
-              return
-          $ enemy_encounter=False
-          $ map_active=True
-          call mapresume
-          return
+    $ randomenemy = renpy.random.randint(0,100)
+    $ safezone=(Where in safezones)
+    # $safezone=True #for debugging
+    $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
+    if enemy_encounter == True:
+        $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+        # $ enemyvirus = renpy.random.choice([Vira])
+        hide screen mapB
+        hide screen mapA
+        call battlev3(ILY,enemyvirus)
+        if playerHP<=0:
+            $ game_over=True
+            $ map_active=False
+            return
+        $ enemy_encounter=False
+        $ map_active=True
+        call mapresume
+        return
 
-     return
+    return
 label Returns:
 #   if not running:
 
-  if map_active:
-   if (_return=="running"):
-    if not Running:
-     $ Running = True
-    elif Running:
-     $ Running = False
-   if (pdirection ==_return) or Running:
-    #if Hereisempty:
+    if map_active:
+    if (_return=="running"):
+      if not Running:
+      $ Running = True
+      elif Running:
+      $ Running = False
+    if (pdirection ==_return) or Running:
+      #if Hereisempty:
 
-      $ playerxpos = playerpos[0]
-      $ playerypos = playerpos[1]
-      $ anim_done = False
-      $ linearmaptransform=True
-      if Upisempty:
-       if (_return=="up"):
+        $ playerxpos = playerpos[0]
+        $ playerypos = playerpos[1]
+        $ anim_done = False
+        $ linearmaptransform=True
+        if Upisempty:
+        if (_return=="up"):
+          
+          $ objyanchor = objyanchor-blockSize
+          $ playerpos = [playerxpos,playerypos-1]
+        else:
+          if _return=="up":
+              play sound "sfx/bumpintowall_X5CNQPB.mp3"
+        if Downisempty:
+        if (_return=="down"):
+          $ objyanchor = objyanchor+blockSize
+          $ playerpos = [playerxpos,playerypos+1]
+        else:
+          if _return=="down":
+              play sound "sfx/bumpintowall_X5CNQPB.mp3"
+        if Leftisempty:
+        if (_return=="left"):
+          $ objxanchor = objxanchor-blockSize
+          $ playerpos = [playerxpos-1,playerypos]
+        else:
+          if _return=="left":
+              play sound "sfx/bumpintowall_X5CNQPB.mp3"
+        if Rightisempty:
+        if (_return=="right"):
+          $ objxanchor = objxanchor+blockSize
+          $ playerpos = [playerxpos+1,playerypos]
+        else:
+          if _return=="right":
+            play sound "sfx/bumpintowall_X5CNQPB.mp3"
         
-        $ objyanchor = objyanchor-blockSize
-        $ playerpos = [playerxpos,playerypos-1]
-      else:
-        if _return=="up":
-            play sound "sfx/bumpintowall_X5CNQPB.mp3"
-      if Downisempty:
-       if (_return=="down"):
-        $ objyanchor = objyanchor+blockSize
-        $ playerpos = [playerxpos,playerypos+1]
-      else:
-        if _return=="down":
-            play sound "sfx/bumpintowall_X5CNQPB.mp3"
-      if Leftisempty:
-       if (_return=="left"):
-        $ objxanchor = objxanchor-blockSize
-        $ playerpos = [playerxpos-1,playerypos]
-      else:
-        if _return=="left":
-            play sound "sfx/bumpintowall_X5CNQPB.mp3"
-      if Rightisempty:
-       if (_return=="right"):
-        $ objxanchor = objxanchor+blockSize
-        $ playerpos = [playerxpos+1,playerypos]
-      else:
-        if _return=="right":
-          play sound "sfx/bumpintowall_X5CNQPB.mp3"
-      
-      pause 0.02
-      $ anim_done = True
-      #call wildenemy
+        pause 0.02
+        $ anim_done = True
+        #call wildenemy
 
-   if (_return=="zoomin"):
-     $ blockSize = blockSize + 10
-     hide screen mapA
-   if (_return=="zoomout"):
-     $ blockSize = blockSize - 10
-     hide screen mapA
-   if (_return=="jump"):
-        $ jumphght=blockSize*1.0
-        pause 0.1
-        $ jumphght=0
+    if (_return=="zoomin"):
+      $ blockSize = blockSize + 10
+      hide screen mapA
+    if (_return=="zoomout"):
+      $ blockSize = blockSize - 10
+      hide screen mapA
+    if (_return=="jump"):
+          $ jumphght=blockSize*1.0
+          pause 0.1
+          $ jumphght=0
 
-   if FacingActor:
-     if (_return=="OK"):
-       call whatactor from _call_whatactor
-       return
-   if (_return=="MapTalk"):
-       call MapTalk from _call_MapTalk
-       return
-   if (_return=="Pause"):
-       # "Pause"
-       call pauseshow from _call_pauseshow
-       return
-   elif (_return=="End"):
-        $map_active=False
+    if FacingActor:
+      if (_return=="OK"):
+        call whatactor from _call_whatactor
         return
-   else:
-       $ pdirection = direction
-   call checkwalls
-   # $safezone=True
-   call randomencounter
-   if (playerHP<=0) or (map_active==False):
-      return
-   call screen mapA
-   call Returns
-   return
+    if (_return=="MapTalk"):
+        call MapTalk from _call_MapTalk
+        return
+    if (_return=="Pause"):
+        # "Pause"
+        call pauseshow from _call_pauseshow
+        return
+    elif (_return=="End"):
+          $map_active=False
+          return
+    else:
+        $ pdirection = direction
+    call checkwalls
+    # $safezone=True
+    call randomencounter
+    if (playerHP<=0) or (map_active==False):
+        return
+    call screen mapA
+    call Returns
+    return
   return
 
 

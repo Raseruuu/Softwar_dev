@@ -31,7 +31,7 @@ style gui_text:
     properties gui.text_properties("interface")
 
 style gui_label_text:
-   outlines [(0, "#000", 0, 0)]
+    outlines [(0, "#000", 0, 0)]
 
 style button:
     properties gui.button_properties("button") hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
@@ -263,7 +263,7 @@ init -1 python:
     # while also pretending that they've all succeeded and calling the built-in menu
     def menu_override(items, set_expr,*args,**kwargs):
         items = [ (renpy.exports.substitute(label) + (" (disabled)" if not renpy.python.py_eval(condition) else ""), "True", value)
-                  for label, condition, value in items ]
+            for label, condition, value in items ]
 
         return renpy.display.get_info().oldmenu(items, set_expr)
 
@@ -350,8 +350,7 @@ style choice_button is button:
 ## menus.
 
 screen quick_menu():
-  # if okdesktop:
-    ## Ensure this appears on top of other screens.
+    # # Ensure this appears on top of other screens.
     zorder 200
 
     # # scroll up for history
@@ -550,13 +549,13 @@ transform navigationtransformL:
     alpha 0.0 xoffset -20
     pause 1.5
     ease 0.1 alpha 1.0 xoffset 0
-
+    
 screen main_menu():
 
     tag menu
     timer 1.5:
         action Play("music","bgm/Credits_bgm_maoudamashii_8bit08.mp3")
-    add "gui/main_menu/main menu bglayer1.png" at zoomtrans(1.5)
+    add "gui/main_menu/main menu bglayer1.png"
     if persistent.has_met_ILY:
         add "gui/main_menu/main menu ILYphantom.png" at phantomtrans
         add "gui/main_menu/main menu ILY text.png" at  phantomtrans
@@ -1129,13 +1128,13 @@ style mute_all_button_text is check_button_text
 init -5 python:
     class RollbackConfirm(Action, DictEquality):
         """
-         :doc: menu_action
-         Causes Ren'Py to return to the main menu.
-         `confirm`
-              If true, causes Ren'Py to ask the user if he wishes to
-              return to the main menu, rather than returning
-              directly.
-         """
+        :doc: menu_action
+        Causes Ren'Py to return to the main menu.
+        `confirm`
+            If true, causes Ren'Py to ask the user if he wishes to
+            return to the main menu, rather than returning
+            directly.
+        """
 
         def __init__(self, history_entry, confirm=True):
             self.history_entry = history_entry

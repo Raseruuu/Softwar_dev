@@ -644,10 +644,10 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         voice "voice/ILY11C - What love can do.mp3"
         extend "{cps=50} What love can do!{/cps}"
     if enemyName=="Ave":
-       voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
-       $ Ave_m = 'frown'
-       $ Ave_e = 'down'
-       a"I'm the Ultimate Antivirus!"
+        voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
+        $ Ave_m = 'frown'
+        $ Ave_e = 'down'
+        a"I'm the Ultimate Antivirus!"
     # show screen decknum
     # with pixellate
     # show screen stats
@@ -772,40 +772,40 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
 
 label BattleReturns:
 
-     if _return=="card1":
-         play sound "sound/Phase.wav" channel 2
-         $ clickedcard[0] = True
-         $ playerbits-=playercard1COST
-         $ playerbattlecode.append(playercard1obj)
-     elif _return=="card2":
-         play sound "sound/Phase.wav" channel 2
-         $ clickedcard[1] = True
-         $ playerbits-=playercard2COST
-         $ playerbattlecode.append(playercard2obj)
-     elif _return=="card3":
-         play sound "sound/Phase.wav" channel 2
-         $ clickedcard[2] = True
-         $ playerbits-=playercard3COST
-         $ playerbattlecode.append(playercard3obj)
-     elif _return=="card4":
-         play sound "sound/Phase.wav" channel 2
-         $ clickedcard[3] = True
-         $ playerbits-=playercard4COST
-         $ playerbattlecode.append(playercard4obj)
-     elif _return=="card5":
-         play sound "sound/Phase.wav" channel 2
-         $ clickedcard[4] = True
-         $ playerbits-=playercard5COST
-         $ playerbattlecode.append(playercard5obj)
-     elif _return=="Return_card":
-         if playerbattlecode != []:
-           $ playerbattlecode.pop(-1)
-     elif _return=="Execute":
-         call Execution
-     if (playerHP<=0):
+    if _return=="card1":
+        play sound "sound/Phase.wav" channel 2
+        $ clickedcard[0] = True
+        $ playerbits-=playercard1COST
+        $ playerbattlecode.append(playercard1obj)
+    elif _return=="card2":
+        play sound "sound/Phase.wav" channel 2
+        $ clickedcard[1] = True
+        $ playerbits-=playercard2COST
+        $ playerbattlecode.append(playercard2obj)
+    elif _return=="card3":
+        play sound "sound/Phase.wav" channel 2
+        $ clickedcard[2] = True
+        $ playerbits-=playercard3COST
+        $ playerbattlecode.append(playercard3obj)
+    elif _return=="card4":
+        play sound "sound/Phase.wav" channel 2
+        $ clickedcard[3] = True
+        $ playerbits-=playercard4COST
+        $ playerbattlecode.append(playercard4obj)
+    elif _return=="card5":
+        play sound "sound/Phase.wav" channel 2
+        $ clickedcard[4] = True
+        $ playerbits-=playercard5COST
+        $ playerbattlecode.append(playercard5obj)
+    elif _return=="Return_card":
+        if playerbattlecode != []:
+            $ playerbattlecode.pop(-1)
+    elif _return=="Execute":
+        call Execution
+    if (playerHP<=0):
         return
-     $ battle_active=False
-     return
+    $ battle_active=False
+    return
 
 screen Execute:
     on "show":

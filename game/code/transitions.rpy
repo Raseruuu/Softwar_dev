@@ -158,51 +158,51 @@ transform sidesteps_effect(image_path, start_pos, end_pos, duration):
         xalign start_pos alpha 0.1 
         easein duration + 0.4 xalign end_pos
         block:
-         image_path
-         xalign end_pos alpha 0.1
-         easein duration xalign start_pos
-         image_path
-         xalign start_pos alpha 0.1
-         easein duration  xalign end_pos
-         repeat
+            image_path
+            xalign end_pos alpha 0.1
+            easein duration xalign start_pos
+            image_path
+            xalign start_pos alpha 0.1
+            easein duration  xalign end_pos
+            repeat
     contains:
         image_path
         xalign start_pos alpha 0.2 
         easein duration + 0.3 xalign end_pos
         block:
-         image_path
-         xalign end_pos alpha 0.2 
-         easein duration xalign start_pos
-         image_path
-         xalign start_pos alpha 0.2 
-         easein duration  xalign end_pos
-         repeat
+            image_path
+            xalign end_pos alpha 0.2 
+            easein duration xalign start_pos
+            image_path
+            xalign start_pos alpha 0.2 
+            easein duration  xalign end_pos
+            repeat
     contains:
         image_path
         xalign start_pos alpha 0.3  
         easein duration + 0.2 xalign end_pos
         block:
-         image_path
-         xalign end_pos alpha 0.3 
-         easein duration xalign start_pos
-         image_path
-         xalign start_pos alpha 0.3 
-         easein duration  xalign end_pos
-         repeat
+            image_path
+            xalign end_pos alpha 0.3 
+            easein duration xalign start_pos
+            image_path
+            xalign start_pos alpha 0.3 
+            easein duration  xalign end_pos
+            repeat
 
     contains:
         image_path
         xalign start_pos alpha 0.5 
         easein duration + 0.1 xalign end_pos
         block:
-         image_path
-         xalign end_pos alpha 0.5 
-         easein duration  xalign start_pos
-         image_path
-         xalign start_pos alpha 0.5 
-         easein duration  xalign end_pos
+            image_path
+            xalign end_pos alpha 0.5 
+            easein duration  xalign start_pos
+            image_path
+            xalign start_pos alpha 0.5 
+            easein duration  xalign end_pos
 
-         repeat
+            repeat
 
     contains:
         image_path
@@ -222,45 +222,45 @@ transform sidesteps_effect_dodge(image_path, start_pos, end_pos,duration,y_anch=
         xalign start_pos alpha 0.1 
         easein duration + 0.4 xalign end_pos 
         block:
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign end_pos alpha 0.1
-         easein duration xalign start_pos  
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign start_pos alpha 0.1
-         easein duration  xalign end_pos  
-         repeat 3
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign end_pos alpha 0.1
+            easein duration xalign start_pos  
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign start_pos alpha 0.1
+            easein duration  xalign end_pos  
+            repeat 3
     contains:
         image_path
         yanchor y_anch ypos y_pos
         xalign start_pos alpha 0.2 
         easein duration + 0.3 xalign end_pos  
         block:
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign end_pos alpha 0.2 
-         easein duration xalign start_pos  
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign start_pos alpha 0.2 
-         easein duration  xalign end_pos  
-         repeat 3
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign end_pos alpha 0.2 
+            easein duration xalign start_pos  
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign start_pos alpha 0.2 
+            easein duration  xalign end_pos  
+            repeat 3
     contains:
         image_path
         yanchor y_anch ypos y_pos
         xalign start_pos alpha 0.3  
         easein duration + 0.2 xalign end_pos  
         block:
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign end_pos alpha 0.3 
-         easein duration xalign start_pos 
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign start_pos alpha 0.3 
-         easein duration  xalign end_pos 
-         repeat 3
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign end_pos alpha 0.3 
+            easein duration xalign start_pos 
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign start_pos alpha 0.3 
+            easein duration  xalign end_pos 
+            repeat 3
 
     contains:
         image_path
@@ -268,16 +268,16 @@ transform sidesteps_effect_dodge(image_path, start_pos, end_pos,duration,y_anch=
         xalign start_pos alpha 0.5 
         easein duration + 0.1 xalign end_pos 
         block:
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign end_pos alpha 0.5 
-         easein duration  xalign start_pos
-         image_path
-         yanchor y_anch ypos y_pos
-         xalign start_pos alpha 0.5 
-         easein duration  xalign end_pos
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign end_pos alpha 0.5 
+            easein duration  xalign start_pos
+            image_path
+            yanchor y_anch ypos y_pos
+            xalign start_pos alpha 0.5 
+            easein duration  xalign end_pos
 
-         repeat 3
+            repeat 3
 
     contains:
         image_path
@@ -329,9 +329,9 @@ init python:
     def _Shake(start, time, child=None, dist=100.0, **properties):
         move = Shaker(start, child, dist=dist)
         return renpy.display.layout.Motion(move,
-                      time,
-                      child,
-                      add_sizes=True,
-                      **properties)
+            time,
+            child,
+            add_sizes=True,
+            **properties)
     Shake = renpy.curry(_Shake)
     shake = Shaker((0, 0, 0, 0), 0.5, dist=8)

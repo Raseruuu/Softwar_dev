@@ -272,261 +272,261 @@ label script1:
     
     label question1_demo:
       
-      $ q_TheGrid = "The GRID" if q1_read_pc and not q1_read_grid else "???" 
-      if q1_read_grid:
-        $ q_TheGrid = "The GRID"
-      $ q_Softwar = "Softwar" if q1_read_ily and q1_read_grid else "???" 
-      if q1_read_ily and q1_read_grid:
-          play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadeout 1 loop
-      else:
-          play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
-      menu:
-        "What [q1_else]do I want to ask about?"
-        "ILY" if q1_read_ily == False:
-            $ q1_else="else "
-            $ ILYSprite("smile3")
-            $ JohnSprite("normal")
-
-            j "You're a pretty well done program."
-            i "Isn't it a little too early for you to be evaluating my performance?"
-            j "In the eyes of a programmer, you're already amazing."
-            voice "voice/ILY22C - Giggle.mp3"
-            i "Do you love me?"
-
-            $ ILYSprite("frown")
-            $ JohnSprite("mad")
-            j "No."
-            i "..."
-            j "Say.."
-            voice "voice/ILY01 - It's ILY~.mp3"
-            i"It's ILY~!"
-            j"What happens if I disconnect my computer from the internet now?"
-
-            $ ILYSprite("smile3")
-            i "That's fine by me. Go on, try it."
-            "If all the processing is done online, this could possibly shut down her bot brain..."
-            show screen notifwindow("{color=#000}Disconnected from the Internet.{/color}")
-            "*Disconnects internet connection*"
-            hide screen notifwindow
-            i "Awww, now I can't go surfing."
-            "Huh, she works fine even without an internet connection."
-            i "Hey, this is fine, too. Being disconnected from the world means that only the two of us are in this room."
-            "Two of us? I'm alone in this room. There's no \"two of us\"."
-            "Moving on..."
-            j "How exactly are you going to be my assistant?"
-
-            $ ILYSprite("smile")
-            i "I have full control over your PC! Any time you wanna command me to do stuff, just speak over the mic, I'll get it done!"
-
-            i "I'm a product of the Future Artificial Intelligence, or FAI Project!"
-            i "FAI programs are powerful like this, but only a few are like me."
-
-            $ ILYSprite("smile3", 0)
-            j "This \"FAI project\" stuff. Who made it? Who is your creator?"
-
-            $ ILYSprite("frown")
-            i "I can't disclose any more information about the FAI project or my creator."
-            j "How come?"
-            i "Classified information."
-            "I pause for a moment to think. I say it out loud;"
-            j "Hackers."
-
-            $ ILYSprite("smile")
-            i "That's a good word to sum up your situation right now."
-            j "Tell me about it."
-            i "I'm a hacking tool. Used by hackers. And that's what I'm here for!"
-            j "Say what?"
-            i "I'm going to make you a hacker!"
-
-            $ ILYSprite("smile3")
-            j "You're kidding."
-            voice "voice/ILY22C - Giggle.mp3"
-            i "I can joke around, but that isn't my thought sequence right now."
-
-            $ ILYSprite("frown")
-            j "So you're suggesting that I become a hacker?"
-            play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg"  fadeout 1 loop
-            i "I'm not suggesting. It is your destiny."
-            $ ILYSprite("smile3")
-            "Serious words coming from someone with a deeply unserious character design."
-            i "[plrname], I will assist you with any digital matters as your assistant... And as a hacking tool."
-            i "With me, you can hack another system, for whatever reason."
-            i "It isn't that simple, though."
-            i "Some PCs may be able to protect from hacking. That's when we go to war."
-
-            j "This is getting really shady."
-            j "I'm... not really all that interested in hacking anybody now..."
-            $ILY_e='down'
-            i "[plrname], I was made also to participate in this war."
-            extend" A Softwar."
-
-            if not q1_read_grid:
-                "Softwar, huh. I'll have to ask her about that later."
-            else:
-                "I think It's finally time to ask about this Softwar."
-
-            play music "bgm/Conversation_bgm_maoudamashii_cyber13.ogg"  fadeout 1 loop
-            $q1_read_ily = True
-            jump question1_demo
-
-        "My PC" if not q1_read_pc:
-            $ ILYSprite("smile3")
-
-            j "What did you do to my PC?"
-            i "I made some changes before downloading myself here!"
-            i "First of all, despite infecting your computer and all, your computer is safe and usable."
-            "I still need to make the site modifications, and my deadline is next Tuesday. That's a huge relief, but why though?"
-            j "Why would you spare my computer?"
-            i "Because ILOVEYOU."
-            j "So what about Hilbert's computer? Is that fine as well?"
-            i "Nope, it's still down."
-            j "So why is it just my computer that's okay?"
-            i "I already said it's because ILOVEYOU."
-
-            "This thing has a habit of dodging questions..."
-            j "What other changes did you make?"
-            i "Since I take up 14.3 gigabytes, I deleted some stuff."
-            "I let that sink in a little bit."
-            "Hold on a sec..."
-            play sound "sfx/Damage.wav"
-            "My disk is almost full. Did she just say she deleted 14.3 gigabytes!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
-            i "You look terrible. Well I deleted 10.56709 GB from your drive to be exact."
-            "Keep... Calm..."
-            j "What did you delete?"
-
-            $ ILYSprite("smile")
-            i "A folder called \"G\" and another one called \"H\"."
-
-            $ ILYSprite("o")
-            play sound "sfx/Damage.wav"
-            "G AND H!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
-
-            $ ILYSprite("frown")
-            j "Why those?"
-
-            $ ILYSprite("smile3")
-            voice "voice/ILY22C - Giggle.mp3"
-            i "They were on the top of the list of folders with most useless files with the biggest size!"
-            "So she checked out my files. How does she even classify what's useless and not?"
-            i "You look upset."
-            i "I believe \"G\" stands for \"Games\", and \"H\" stands for \"He--"
-            j "Wait. Don't say it."
-            play sound "sfx/Damage2.wav"
-            "My precious collection!! " with Shake((0, 0, 0, 0), 0.5, dist=5)
-            extend"But now it's gone. I had a few time-killing games and... well, that \"H\" folder..."
-            j "I'm fine with it. It's okay to delete those files, as long as that's all."
-            i "I didn't delete anything work-related."
-            j "That's perfect. Let's move on."
-
-            $ ILYSprite("smile")
-            i "Oh yeah, the third thing! You should know about the GRID!"
-            i "Every FAI program is a package to set up the computer for the GRID!"
-            "The GRID...? I'll have to ask about that."
-            $q1_read_pc = True
-            jump question1_demo
-
-        "[q_TheGrid]" if q1_read_pc and not q1_read_grid:
-            $ ILYSprite("smile3")
-            j "What's this GRID all about?"
-            i "The GRID is the name for the place we cyberpeople step into!"
-            i "As I've said earlier, this PC can now access the GRID. FAI programs installed can automatically access the GRID."
-            i "I'm a FAI virus, so naturally, here I am. This desktop now is the GRID version of what you've been using."
-            i "Not every program can enter the GRID."
-            i "Think of it as another dimension aside from the usual interface you see on the computer."
-
-            "How come I've never heard of any of this before? It almost sounds like a conspiracy."
-            i "If you ever get attacked by a regular virus, it's easy to get infected if you don't have an antivirus."
-            i "However, if you get attacked by FAI virus such as myself, you're definitely getting infected."
-            "That's exactly what happened."
-
-            j "So an antivirus is useless against FAI viruses?"
-            i "It really depends. You can survive an attack if you meet these two conditions:"
-            i "First, the antivirus must exist in the grid, or be a FAI antivirus."
-            i "Second, the antivirus must be stronger than I am, or be able to beat me in a cyber battle, called a Softwar."
-            j "I see."
-            if q1_read_ily:
-                "It all falls back to this Softwar battle."
-            i "Since I have control of your computer, I won't allow you to install an antivirus."
-            "Damn. She saw through me."
-            j "If I understand correctly... The GRID is a place only FAI programs can get into, so it's isolated space from the one regular programs reside in."
-            j "So the Softwar is a GRID-exclusive battle of programs... Right?"
-            i "Correct! You're easy to pick up on things."
-            if q1_read_ily:
-                i "I should definitely start telling you about this Softwar."
-            $q1_read_grid = True
-            jump question1_demo
-
-        "[q_Softwar]" if q1_read_ily and q1_read_grid:
-            j "Alright. Tell me about Softwar. You sounded serious when you mentioned it earlier."
-
-            i "Only FAIs can take part in Softwars. They are battles between programs."
-            i "Technically, it's really a game,"
-            $ ILYSprite("frown")
-
-            extend " but the stakes are quite serious!"
-            "A battle game, huh."
-            $ ILYSprite("mad")
-            i "A Softwar goes like this. A virus, with or without a user, may be transported to a target computer system."
-            i "The antivirus, living inside the target computer system, will intercept the arrival of that virus, and hope to delete it!"
-            i "If the virus gets deleted, then the target computer is safe! Otherwise, the target will be subject to the terror of that virus."
-            j "So it's like storming a castle."
-            i "Yes, the Attackers are viruses, and the castle is the target computer system, the Defenders."
-            i "So there are 2 sides to this battle. Attackers and Defenders."
-            "I don't like the idea of being an Attacker, even though I have an intelligent virus with me..."
-
-            j "Why would such a game exist?"
-            $ ILYSprite("smile3")
-            i "Softwar gives everybody a chance to protect themselves from hackers!"
-            j "But if hackers created the whole Softwar system in the first place..."
-            $ ILYSprite("frown")
-            j "It makes no sense to give your supposed victims a chance to fight back."
+        $ q_TheGrid = "The GRID" if q1_read_pc and not q1_read_grid else "???" 
+        if q1_read_grid:
+            $ q_TheGrid = "The GRID"
+        $ q_Softwar = "Softwar" if q1_read_ily and q1_read_grid else "???" 
+        if q1_read_ily and q1_read_grid:
+            play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadeout 1 loop
+        else:
             play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
+        menu:
+            "What [q1_else]do I want to ask about?"
+            "ILY" if q1_read_ily == False:
+                $ q1_else="else "
+                $ ILYSprite("smile3")
+                $ JohnSprite("normal")
 
-            $ ILYSprite("o")
-            i "That's true."
+                j "You're a pretty well done program."
+                i "Isn't it a little too early for you to be evaluating my performance?"
+                j "In the eyes of a programmer, you're already amazing."
+                voice "voice/ILY22C - Giggle.mp3"
+                i "Do you love me?"
 
-            $ ILYSprite("smile")
-            extend" I'm not sure, myself! "
-            i"Maybe the system is meant to keep the bad viruses from causing too much trouble!"
+                $ ILYSprite("frown")
+                $ JohnSprite("mad")
+                j "No."
+                i "..."
+                j "Say.."
+                voice "voice/ILY01 - It's ILY~.mp3"
+                i"It's ILY~!"
+                j"What happens if I disconnect my computer from the internet now?"
 
-            j"You speak as if viruses can be any good."
-            i"I'm a good virus!"
-            "Hmph. Viruses are pure evil."
+                $ ILYSprite("smile3")
+                i "That's fine by me. Go on, try it."
+                "If all the processing is done online, this could possibly shut down her bot brain..."
+                show screen notifwindow("{color=#000}Disconnected from the Internet.{/color}")
+                "*Disconnects internet connection*"
+                hide screen notifwindow
+                i "Awww, now I can't go surfing."
+                "Huh, she works fine even without an internet connection."
+                i "Hey, this is fine, too. Being disconnected from the world means that only the two of us are in this room."
+                "Two of us? I'm alone in this room. There's no \"two of us\"."
+                "Moving on..."
+                j "How exactly are you going to be my assistant?"
 
-            $ ILYSprite("frown")
-            j "Not convinced."
+                $ ILYSprite("smile")
+                i "I have full control over your PC! Any time you wanna command me to do stuff, just speak over the mic, I'll get it done!"
 
-            $ ILYSprite("smile")
-            i "Personally, I think the Softwar system was made for a new generation of fun! Perhaps it was made for the Future AIs to gain a spotlight or two."
-            j "But we're talking about people who break rules all the time. Who's to say that hackers won't find a flaw in the Softwar system?"
+                i "I'm a product of the Future Artificial Intelligence, or FAI Project!"
+                i "FAI programs are powerful like this, but only a few are like me."
 
-            $ ILYSprite("smile3")
-            i "They might try, but we don't know if they'll succeed. The GRID is running on a deeper level than the regular interfaces."
+                $ ILYSprite("smile3", 0)
+                j "This \"FAI project\" stuff. Who made it? Who is your creator?"
 
-            j "Really..."
-            i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
-            j "An elaborate system of AIs and Cyber battles like this will definitely be popular soon."
-            i "A Softwar might happen soon in this PC, if we reconnect our Internet, so we better be careful."
-            j "How exactly do I prepare for a Softwar though? Just in case?"
+                $ ILYSprite("frown")
+                i "I can't disclose any more information about the FAI project or my creator."
+                j "How come?"
+                i "Classified information."
+                "I pause for a moment to think. I say it out loud;"
+                j "Hackers."
 
-            $ ILYSprite("frown")
-            i "Usually you'd install antiviruses to protect from viruses..."
+                $ ILYSprite("smile")
+                i "That's a good word to sum up your situation right now."
+                j "Tell me about it."
+                i "I'm a hacking tool. Used by hackers. And that's what I'm here for!"
+                j "Say what?"
+                i "I'm going to make you a hacker!"
 
-            $ ILYSprite("o")
-            i "But you've already been bit by the lovebug! I'm the only FAI you need!"
+                $ ILYSprite("smile3")
+                j "You're kidding."
+                voice "voice/ILY22C - Giggle.mp3"
+                i "I can joke around, but that isn't my thought sequence right now."
 
-            $ ILYSprite("smile")
-            play sound "sfx/Damage.wav"
-            extend" I can delete viruses too, you know!" with Shake((0, 0, 0, 0), 0.5, dist=5)
-            "So viruses can battle viruses too, huh. That's like having an antivirus and virus in 1 program. Interesting."
+                $ ILYSprite("frown")
+                j "So you're suggesting that I become a hacker?"
+                play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg"  fadeout 1 loop
+                i "I'm not suggesting. It is your destiny."
+                $ ILYSprite("smile3")
+                "Serious words coming from someone with a deeply unserious character design."
+                i "[plrname], I will assist you with any digital matters as your assistant... And as a hacking tool."
+                i "With me, you can hack another system, for whatever reason."
+                i "It isn't that simple, though."
+                i "Some PCs may be able to protect from hacking. That's when we go to war."
 
-            $ ILYSprite("o")
-            j "That's good to know, ILY."
-            i "Have you accepted your fate?"
-            j "I still can't trust you yet."
+                j "This is getting really shady."
+                j "I'm... not really all that interested in hacking anybody now..."
+                $ILY_e='down'
+                i "[plrname], I was made also to participate in this war."
+                extend" A Softwar."
 
-            $ ILYSprite("smile3")
-            i "Of course you can trust me! Trust is an essential part of love!"
+                if not q1_read_grid:
+                    "Softwar, huh. I'll have to ask her about that later."
+                else:
+                    "I think It's finally time to ask about this Softwar."
+
+                play music "bgm/Conversation_bgm_maoudamashii_cyber13.ogg"  fadeout 1 loop
+                $q1_read_ily = True
+                jump question1_demo
+
+            "My PC" if not q1_read_pc:
+                $ ILYSprite("smile3")
+
+                j "What did you do to my PC?"
+                i "I made some changes before downloading myself here!"
+                i "First of all, despite infecting your computer and all, your computer is safe and usable."
+                "I still need to make the site modifications, and my deadline is next Tuesday. That's a huge relief, but why though?"
+                j "Why would you spare my computer?"
+                i "Because ILOVEYOU."
+                j "So what about Hilbert's computer? Is that fine as well?"
+                i "Nope, it's still down."
+                j "So why is it just my computer that's okay?"
+                i "I already said it's because ILOVEYOU."
+
+                "This thing has a habit of dodging questions..."
+                j "What other changes did you make?"
+                i "Since I take up 14.3 gigabytes, I deleted some stuff."
+                "I let that sink in a little bit."
+                "Hold on a sec..."
+                play sound "sfx/Damage.wav"
+                "My disk is almost full. Did she just say she deleted 14.3 gigabytes!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
+                i "You look terrible. Well I deleted 10.56709 GB from your drive to be exact."
+                "Keep... Calm..."
+                j "What did you delete?"
+
+                $ ILYSprite("smile")
+                i "A folder called \"G\" and another one called \"H\"."
+
+                $ ILYSprite("o")
+                play sound "sfx/Damage.wav"
+                "G AND H!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
+
+                $ ILYSprite("frown")
+                j "Why those?"
+
+                $ ILYSprite("smile3")
+                voice "voice/ILY22C - Giggle.mp3"
+                i "They were on the top of the list of folders with most useless files with the biggest size!"
+                "So she checked out my files. How does she even classify what's useless and not?"
+                i "You look upset."
+                i "I believe \"G\" stands for \"Games\", and \"H\" stands for \"He--"
+                j "Wait. Don't say it."
+                play sound "sfx/Damage2.wav"
+                "My precious collection!! " with Shake((0, 0, 0, 0), 0.5, dist=5)
+                extend"But now it's gone. I had a few time-killing games and... well, that \"H\" folder..."
+                j "I'm fine with it. It's okay to delete those files, as long as that's all."
+                i "I didn't delete anything work-related."
+                j "That's perfect. Let's move on."
+
+                $ ILYSprite("smile")
+                i "Oh yeah, the third thing! You should know about the GRID!"
+                i "Every FAI program is a package to set up the computer for the GRID!"
+                "The GRID...? I'll have to ask about that."
+                $q1_read_pc = True
+                jump question1_demo
+
+            "[q_TheGrid]" if q1_read_pc and not q1_read_grid:
+                $ ILYSprite("smile3")
+                j "What's this GRID all about?"
+                i "The GRID is the name for the place we cyberpeople step into!"
+                i "As I've said earlier, this PC can now access the GRID. FAI programs installed can automatically access the GRID."
+                i "I'm a FAI virus, so naturally, here I am. This desktop now is the GRID version of what you've been using."
+                i "Not every program can enter the GRID."
+                i "Think of it as another dimension aside from the usual interface you see on the computer."
+
+                "How come I've never heard of any of this before? It almost sounds like a conspiracy."
+                i "If you ever get attacked by a regular virus, it's easy to get infected if you don't have an antivirus."
+                i "However, if you get attacked by FAI virus such as myself, you're definitely getting infected."
+                "That's exactly what happened."
+
+                j "So an antivirus is useless against FAI viruses?"
+                i "It really depends. You can survive an attack if you meet these two conditions:"
+                i "First, the antivirus must exist in the grid, or be a FAI antivirus."
+                i "Second, the antivirus must be stronger than I am, or be able to beat me in a cyber battle, called a Softwar."
+                j "I see."
+                if q1_read_ily:
+                    "It all falls back to this Softwar battle."
+                i "Since I have control of your computer, I won't allow you to install an antivirus."
+                "Damn. She saw through me."
+                j "If I understand correctly... The GRID is a place only FAI programs can get into, so it's isolated space from the one regular programs reside in."
+                j "So the Softwar is a GRID-exclusive battle of programs... Right?"
+                i "Correct! You're easy to pick up on things."
+                if q1_read_ily:
+                    i "I should definitely start telling you about this Softwar."
+                $q1_read_grid = True
+                jump question1_demo
+
+            "[q_Softwar]" if q1_read_ily and q1_read_grid:
+                j "Alright. Tell me about Softwar. You sounded serious when you mentioned it earlier."
+
+                i "Only FAIs can take part in Softwars. They are battles between programs."
+                i "Technically, it's really a game,"
+                $ ILYSprite("frown")
+
+                extend " but the stakes are quite serious!"
+                "A battle game, huh."
+                $ ILYSprite("mad")
+                i "A Softwar goes like this. A virus, with or without a user, may be transported to a target computer system."
+                i "The antivirus, living inside the target computer system, will intercept the arrival of that virus, and hope to delete it!"
+                i "If the virus gets deleted, then the target computer is safe! Otherwise, the target will be subject to the terror of that virus."
+                j "So it's like storming a castle."
+                i "Yes, the Attackers are viruses, and the castle is the target computer system, the Defenders."
+                i "So there are 2 sides to this battle. Attackers and Defenders."
+                "I don't like the idea of being an Attacker, even though I have an intelligent virus with me..."
+
+                j "Why would such a game exist?"
+                $ ILYSprite("smile3")
+                i "Softwar gives everybody a chance to protect themselves from hackers!"
+                j "But if hackers created the whole Softwar system in the first place..."
+                $ ILYSprite("frown")
+                j "It makes no sense to give your supposed victims a chance to fight back."
+                play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
+
+                $ ILYSprite("o")
+                i "That's true."
+
+                $ ILYSprite("smile")
+                extend" I'm not sure, myself! "
+                i"Maybe the system is meant to keep the bad viruses from causing too much trouble!"
+
+                j"You speak as if viruses can be any good."
+                i"I'm a good virus!"
+                "Hmph. Viruses are pure evil."
+
+                $ ILYSprite("frown")
+                j "Not convinced."
+
+                $ ILYSprite("smile")
+                i "Personally, I think the Softwar system was made for a new generation of fun! Perhaps it was made for the Future AIs to gain a spotlight or two."
+                j "But we're talking about people who break rules all the time. Who's to say that hackers won't find a flaw in the Softwar system?"
+
+                $ ILYSprite("smile3")
+                i "They might try, but we don't know if they'll succeed. The GRID is running on a deeper level than the regular interfaces."
+
+                j "Really..."
+                i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
+                j "An elaborate system of AIs and Cyber battles like this will definitely be popular soon."
+                i "A Softwar might happen soon in this PC, if we reconnect our Internet, so we better be careful."
+                j "How exactly do I prepare for a Softwar though? Just in case?"
+
+                $ ILYSprite("frown")
+                i "Usually you'd install antiviruses to protect from viruses..."
+
+                $ ILYSprite("o")
+                i "But you've already been bit by the lovebug! I'm the only FAI you need!"
+
+                $ ILYSprite("smile")
+                play sound "sfx/Damage.wav"
+                extend" I can delete viruses too, you know!" with Shake((0, 0, 0, 0), 0.5, dist=5)
+                "So viruses can battle viruses too, huh. That's like having an antivirus and virus in 1 program. Interesting."
+
+                $ ILYSprite("o")
+                j "That's good to know, ILY."
+                i "Have you accepted your fate?"
+                j "I still can't trust you yet."
+
+                $ ILYSprite("smile3")
+                i "Of course you can trust me! Trust is an essential part of love!"
 
         
 

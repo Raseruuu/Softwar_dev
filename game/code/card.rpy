@@ -5,11 +5,10 @@ transform cardzoom(zoomvalue):
 transform widthresize(zoomvalue):
     xzoom zoomvalue
 style cardoutlines:
-
-   outlines [(2, "#000", -1, 2),(2, "#fff", 0, 0)]
+    outlines [(2, "#000", -1, 2),(2, "#fff", 0, 0)]
 style cardshadows:
 
-   outlines [(1, "#000", -1, 2),(2, "#111", 0, 0)]
+    outlines [(1, "#000", -1, 2),(2, "#111", 0, 0)]
 init python:
     def cardnamewidth(fontsize,text,maxwidth,maxchar):
         if len(text)!=0:
@@ -22,16 +21,15 @@ init python:
             return zoompercentage
         else:
             return 1.0
+
+
+
 init python:
     
     def FunctionList(FXN):
         fxns=[]
         long_fxn_name=False
-        # execution_active= globals()["execution_active"]
-        # fxnindex=globals()["fxnindex"]
         for function_index_local,cardfunction in enumerate(FXN):
-            # if len(cardfunction.code)>20:
-            #     long_fxn_name=True
             if fxnindex==function_index_local and execution_active:
                 fxns.append(At(Text("{size=12}{u}{b}"+cardfunction.code+"{/size}{/u}{/b}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,284,16)))))
             else:
@@ -40,17 +38,9 @@ init python:
         return VBox(*fxns)
     def FunctionListDescript(FXN):
         fxns=[]
-        # long_fxn_name=False
         for function_index_local, cardfunction in FXN:
-            # if len(cardfunction.code)>18:
-            #     long_fxn_name=True
-            
             fxns.append(Text("{size=12}{b}"+cardfunction.name+"{/b}{/size}\n  {size=12}"+cardfunction.text+"{/size}"))
                 
-
-        # if long_fxn_name:
-        #     return At(VBox(*fxns))
-        # else:
         return VBox(*fxns)
     def CardDisplay(cardobj):
         return LiveComposite(

@@ -71,7 +71,7 @@ label script2:
     v "I cannot disobey my... protocols. Delete!!!"
     call battlev3(ILY,Vira)
     if playerHP<=0:
-      return
+        return
     scene blue with Dissolve(0.2)
     show Folders with dissolve
     $ Lisa_e="mad"
@@ -103,6 +103,9 @@ label script2:
     v "Yes. Ok then.."
     j "Vira, show me what you can do! We have to try to detect for traces of FAI Viruses in SDS."
     v "Show me where this SDS area is..!"
+    j "Right, ILY was able to explore the area yesterday."
+    i ""
+
 
 
 label SDS_Encounter:
@@ -129,14 +132,14 @@ label SDS_Encounter:
     "Maybe I should brief him about Bitwulf later, but now's probably not a good time."
     i "?"
     # ["Port Access:granted"]
-    h "Let's gooooooo!!!"
-    v "Is this blonde human always this noisy?"
-    j "Hilbert can get a bit excessive sometimes."
-    l "I'd say most of the time in fact."
-    h "I'll just pretend I didn't hear those hurtful words."
-    i "Gooooooooo!!"
-    h "Yeah that's what I'm talking about!"
-    v "Can't believe I'm with idiots."
+    # h "Let's gooooooo!!!"
+    # v "Is this blonde human always this noisy?"
+    # j "Hilbert can get a bit excessive sometimes."
+    # l "I'd say most of the time in fact."
+    # h "I'll just pretend I didn't hear those hurtful words."
+    # i "Gooooooooo!!"
+    # h "Yeah that's what I'm talking about!"
+    # v "Can't believe I'm with idiots."
 
     # =============================
 
