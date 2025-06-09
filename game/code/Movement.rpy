@@ -602,88 +602,88 @@ label Returns:
 #   if not running:
 
     if map_active:
-    if (_return=="running"):
-      if not Running:
-      $ Running = True
-      elif Running:
-      $ Running = False
-    if (pdirection ==_return) or Running:
-      #if Hereisempty:
+      if (_return=="running"):
+        if not Running:
+            $ Running = True
+        elif Running:
+            $ Running = False
+      if (pdirection ==_return) or Running:
+        #if Hereisempty:
 
-        $ playerxpos = playerpos[0]
-        $ playerypos = playerpos[1]
-        $ anim_done = False
-        $ linearmaptransform=True
-        if Upisempty:
-        if (_return=="up"):
+          $ playerxpos = playerpos[0]
+          $ playerypos = playerpos[1]
+          $ anim_done = False
+          $ linearmaptransform=True
+          if Upisempty:
+              if (_return=="up"):
+                
+                $ objyanchor = objyanchor-blockSize
+                $ playerpos = [playerxpos,playerypos-1]
+          else:
+            if _return=="up":
+                play sound "sfx/bumpintowall_X5CNQPB.mp3"
+          if Downisempty:
+              if (_return=="down"):
+                $ objyanchor = objyanchor+blockSize
+                $ playerpos = [playerxpos,playerypos+1]
+          else:
+            if _return=="down":
+                play sound "sfx/bumpintowall_X5CNQPB.mp3"
+          if Leftisempty:
+              if (_return=="left"):
+                $ objxanchor = objxanchor-blockSize
+                $ playerpos = [playerxpos-1,playerypos]
+          else:
+            if _return=="left":
+                play sound "sfx/bumpintowall_X5CNQPB.mp3"
+          if Rightisempty:
+              if (_return=="right"):
+                $ objxanchor = objxanchor+blockSize
+                $ playerpos = [playerxpos+1,playerypos]
+          else:
+            if _return=="right":
+              play sound "sfx/bumpintowall_X5CNQPB.mp3"
           
-          $ objyanchor = objyanchor-blockSize
-          $ playerpos = [playerxpos,playerypos-1]
-        else:
-          if _return=="up":
-              play sound "sfx/bumpintowall_X5CNQPB.mp3"
-        if Downisempty:
-        if (_return=="down"):
-          $ objyanchor = objyanchor+blockSize
-          $ playerpos = [playerxpos,playerypos+1]
-        else:
-          if _return=="down":
-              play sound "sfx/bumpintowall_X5CNQPB.mp3"
-        if Leftisempty:
-        if (_return=="left"):
-          $ objxanchor = objxanchor-blockSize
-          $ playerpos = [playerxpos-1,playerypos]
-        else:
-          if _return=="left":
-              play sound "sfx/bumpintowall_X5CNQPB.mp3"
-        if Rightisempty:
-        if (_return=="right"):
-          $ objxanchor = objxanchor+blockSize
-          $ playerpos = [playerxpos+1,playerypos]
-        else:
-          if _return=="right":
-            play sound "sfx/bumpintowall_X5CNQPB.mp3"
-        
-        pause 0.02
-        $ anim_done = True
-        #call wildenemy
+          pause 0.02
+          $ anim_done = True
+          #call wildenemy
 
-    if (_return=="zoomin"):
-      $ blockSize = blockSize + 10
-      hide screen mapA
-    if (_return=="zoomout"):
-      $ blockSize = blockSize - 10
-      hide screen mapA
-    if (_return=="jump"):
-          $ jumphght=blockSize*1.0
-          pause 0.1
-          $ jumphght=0
+      if (_return=="zoomin"):
+        $ blockSize = blockSize + 10
+        hide screen mapA
+      if (_return=="zoomout"):
+        $ blockSize = blockSize - 10
+        hide screen mapA
+      if (_return=="jump"):
+            $ jumphght=blockSize*1.0
+            pause 0.1
+            $ jumphght=0
 
-    if FacingActor:
-      if (_return=="OK"):
-        call whatactor from _call_whatactor
-        return
-    if (_return=="MapTalk"):
-        call MapTalk from _call_MapTalk
-        return
-    if (_return=="Pause"):
-        # "Pause"
-        call pauseshow from _call_pauseshow
-        return
-    elif (_return=="End"):
-          $map_active=False
+      if FacingActor:
+        if (_return=="OK"):
+          call whatactor from _call_whatactor
           return
-    else:
-        $ pdirection = direction
-    call checkwalls
-    # $safezone=True
-    call randomencounter
-    if (playerHP<=0) or (map_active==False):
-        return
-    call screen mapA
-    call Returns
+      if (_return=="MapTalk"):
+          call MapTalk from _call_MapTalk
+          return
+      if (_return=="Pause"):
+          # "Pause"
+          call pauseshow from _call_pauseshow
+          return
+      elif (_return=="End"):
+            $ map_active=False
+            return
+      else:
+          $ pdirection = direction
+      call checkwalls
+      # $safezone=True
+      call randomencounter
+      if (playerHP<=0) or (map_active==False):
+          return
+      call screen mapA
+      call Returns
+      return
     return
-  return
 
 
 

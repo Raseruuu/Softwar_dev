@@ -161,7 +161,7 @@ label battlecry_Vira:
             burndmg = 0
             for fxns in PlayerSts:
                 if fxns=="Burn":
-                burndmg = burndmg +40
+                    burndmg = burndmg +40
         $ playerburndamage = burndmg
         # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
         $ currentcardfunctions=[a.name for a in currentcardFXN]

@@ -287,9 +287,11 @@ label test:
             return
         "Rogue":
             call roguemode
+        "Dialog":
+            call testdialog
     return
 
-
+label testdialog:
     "test"
     # call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
     # if playerHP==0:
@@ -306,6 +308,10 @@ label test:
     # $ index=0
 
     # call screen Card(DataForce,(0,0),Return())
+    show ILY_Alpha
+    ia"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    ia"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    
     show Lucida
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."

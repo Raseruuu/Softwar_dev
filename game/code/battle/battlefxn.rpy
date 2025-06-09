@@ -271,7 +271,7 @@ label DamageSPenemy:
 label DamageSPselfenemy:
     if enemySP>0:
         $ Magnitude = (currentcardMAG)
-        $ damagetoenemy=int(enemyATK_m*Magnitude)
+        $ damagetoenemy=int(enemyATK_m*Power)
 
         if currentcardTYPE == "Sword":
             play sound "sfx/slash.wav"
@@ -603,7 +603,7 @@ label EvadePlayer:
 label BoostATK:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
-    $ Magnitude=currentcardMAG
+    $ Power=currentcardMAG
     # $ PlayerSts.append("BoostATK")
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
 
@@ -621,7 +621,7 @@ label BoostATK:
 label BoostDEF:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
-    $ Magnitude=currentcardMAG
+    $ Power=currentcardMAG
     # $ PlayerSts.append("BoostDEF")
     $ PlayerSts=statusAppend(PlayerSts,"BoostDEF")
     call updatestats_player from _call_updatestats_player_1
@@ -634,7 +634,7 @@ label BoostDEF:
     return
 label BoostMAGenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
-    $ Magnitude=currentcardMAG
+    $ Power=currentcardMAG
     # $ PlayerSts.append("BoostATK")
     $ PlayerSts=statusAppend(PlayerSts,"BoostMAG")
     call updatestats_enemy from _call_updatestats_enemy
@@ -738,7 +738,7 @@ label IfTokenInStatusEnemy:
 label IfTokenInStatusPlayer:
 #Player Uses If
     $ runfxnstring = currentcardFXN[fxnindex].name
-    $ FXN=currentcardFXN[fxnindex]
+    $ FXN = currentcardFXN[fxnindex]
     $ token_name=FXN.params[0]
     $ block_functions=FXN.params[1]
     $ targetsts=FXN.params[2]
@@ -804,7 +804,7 @@ label WhileTokenInStatusPlayer:
     return
 label BoostATKenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
-    $ Magnitude=currentcardMAG
+    $ Power=currentcardMAG
 
     # $ EnmySts.append("BoostDEF")
     $ EnmySts=statusAppend(EnmySts,"BoostATK")
@@ -818,7 +818,7 @@ label BoostATKenemy:
     return
 label BoostDEFenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
-    $ Magnitude=currentcardMAG
+    $ Power=currentcardMAG
 
     # $ EnmySts.append("BoostDEF")
     $ EnmySts=statusAppend(EnmySts,"BoostDEF")
@@ -876,10 +876,16 @@ image shieldbit = "images/battle/Shield_bit.png"
 image shieldlight = "images/battle/Shield_light.png"
 label Shieldplayer:
     play sound "sfx/defense.wav"
-    $ multiplier = currentcardFXN[fxnindex].params[0]
-    $ Magnitude = (currentcardMAG)
+    # $ multiplier = currentcardFXN[fxnindex].params[0]
+    $ Power = (currentcardMAG)
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:    
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    
+    $ multiplier = currentcard_fxn_params[0]
     if multiplier=="POWR":
-        $ shieldtoplayer=int(playerDEF_m*Magnitude)
+        $ shieldtoplayer=int(playerDEF_m*Power)
     elif multiplier!="POWR": 
         $ shieldtoplayer=int(playerDEF_m*multiplier)
     python:
@@ -905,9 +911,9 @@ label Shieldplayer:
 label ReduceSPself:
     # play sound "sfx/defense_loss.wav"
     $ multiplier = currentcardFXN[fxnindex].params[0]
-    $ Magnitude = (currentcardMAG)
+    $ Power = (currentcardMAG)
     if multiplier=="POWR":
-        $ shieldtoplayer=int(playerDEF_m*Magnitude)
+        $ shieldtoplayer=int(playerDEF_m*Power)
     elif multiplier!="POWR": 
         $ shieldtoplayer=int(playerDEF_m*multiplier)
     python:
@@ -934,8 +940,8 @@ image healbit = "images/battle/Heal_bit.png"
 image heallight = "images/battle/Heal_light.png"
 label Recoverplayer:
     play sound "sfx/heal.ogg"
-    $ Magnitude = (currentcardMAG)
-    $ healtoplayer=int(playerHPMax*Magnitude)
+    $ Power = (currentcardMAG)
+    $ healtoplayer=int(playerHPMax*Power)
     python:
         playerHP+=healtoplayer
         if playerHP>=playerHPMax:
@@ -958,8 +964,8 @@ label Recoverplayer:
     return
 label Recoverenemy:
     play sound "sfx/heal.ogg"
-    $ Magnitude = (currentcardMAG)
-    $ healtoenemy=int(enemyHPMax*Magnitude)
+    $ Power = (currentcardMAG)
+    $ healtoenemy=int(enemyHPMax*Power)
     python:
         enemyHP+=healtoenemy
         if enemyHP>=enemyHPMax:
@@ -984,8 +990,8 @@ label Recoverenemy:
     return
 label Shieldenemy:
     play sound "sfx/defense.wav"
-    $ Magnitude = (currentcardMAG)
-    $ shieldtoenemy=int(enemyDEF_m*Magnitude)
+    $ Power = (currentcardMAG)
+    $ shieldtoenemy=int(enemyDEF_m*Power)
     python:
         enemySP+=shieldtoenemy
         # if enemySP>=enemySPMax:
@@ -1338,8 +1344,8 @@ label Execution:
         $ currentcardFXN = currentcard.FXN
         $ currentcardMAG = currentcard.MAG
         $ currentcardTYPE = currentcard.TYPE
-        $ Magnitude = (currentcardMAG)
-        $ damagetoenemy=int(playerATK_m*Magnitude)
+        $ Power = (currentcardMAG)
+        $ damagetoenemy=int(playerATK_m*Power)
         $ currentcardfunctions=[a.name for a in currentcardFXN]
         $ damagecard = ("attack" in currentcardfunctions) 
         

@@ -51,7 +51,7 @@ style SPbaroutlines:
     size 14
     outlines [(2, "#022168", 0, 0)]
 
-define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa"]
+define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa","ILY_Alpha"]
 
 
 

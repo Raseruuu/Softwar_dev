@@ -701,7 +701,7 @@ init python:
     #DEFINE CHARACTERS BY
             # NAME,TYPE,HP,SP,ATK,DEF,DECK,STATUS
     ILY=FAI("ILY","Virus",2500,2500,500,500,deckdefault,[])
-    ILYAlpha=FAI("ILY","Virus",2500,2500,500,500,deckalpha,[])
+    ILYAlpha=FAI("ILY_Alpha","Virus",2500,2500,500,500,deckalpha,[])
     
     Trojan=     FAI("TrojanHorse",  "Virus",2000,   2000,   400,    250,    decktrojan,[])
     Keylogger=  FAI("Keylogger",    "Virus",500,    500,    300,    250,    deckkeylogger,[])

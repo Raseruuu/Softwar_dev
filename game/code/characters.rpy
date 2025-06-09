@@ -46,6 +46,7 @@ define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image 
 
 #Viruses
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
+define ia = Character("ILY Alpha",callback=speaker("ILY_Alpha"), color='#f00', image = "ILY_Alpha_side", ctc="ctc", ctc_position="fixed")
 define br= Character("Brain",callback=speaker("Brain"), color ='#f842d6',image ="Brain_side", ctc="ctc", ctc_position="fixed")
 define m = Character("Melissa",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
 define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40, image = "Stoned_side", ctc="ctc", ctc_position="fixed")
@@ -100,6 +101,12 @@ init -1 python:
     globals()["ILY_stockings"] = "stockings" # "" if none
     globals()["ILY_w"] = False
 
+    globals()["ILY_Alpha_m"] = "smile"
+    globals()["ILY_Alpha_p"] = "1"
+    globals()["ILY_Alpha_e"] = "normal"
+    globals()["ILY_Alpha_eyes"] = "open"
+    globals()["ILY_Alpha_w"] = False
+    
     globals()["John_e"] = "normal"
     globals()["John_m"] = "smile"
     globals()["John_w"] = True
