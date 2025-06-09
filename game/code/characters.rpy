@@ -413,42 +413,6 @@ init -1 python:
             raise ValueError("Unknown emotion entered: " + emotion)
 
 
-layeredimage ILY_Alpha_FullBody:
-    # always:
-    #     ConditionSwitch("ILY_Alpha_hair!='default'",At("images/Characters/ILY/Full/ILY_Alpha_Full_hairback.png",ilyfix(0.5)),"ILY_Alpha_hair=='default'",Null())
-    always:
-        At("images/Characters/ILY/Full/ILY_Alpha_Full_base.png",ilyfix(0.5)) #pose
-    # always:
-    #     ConditionSwitch("ILY_Alpha_stockings!=''",At("images/Characters/ILY/Full/ILY_Alpha_[ILY_Alpha_stockings].png",ilyfix(0.5)),"ILY_Alpha_stockings==''",Null()) #stockings
-    # always:
-    #         ConditionSwitch("ILY_Alpha_underwear!=''",At(("images/Characters/ILY/Full/ILY_Alpha_v2_underwear_[ILY_Alpha_underwear].png"),ilyfix(0.5)),"ILY_Alpha_underwear==''",Null()) #underwear
-    # always:
-    #     ConditionSwitch("ILY_Alpha_outfit!=''",At("ILY_Alpha_outfit",ilyfix(0.5)),"ILY_Alpha_outfit==''",Null()) #outfit
-    # always:
-    #     At("images/Characters/ILY/Full/ILY_Alpha_Full_face.png",ilyfix(0.5))
-    # always:
-    #     At("images/Characters/ILY/Full/ILY_Alpha_Full_hair_[ILY_Alpha_hair].png",ilyfix(0.5))
-    always:
-        ConditionSwitch(
-            "ILY_Alpha_eyes=='open'",
-            At("ILYEyes[ILY_Alpha_p]",ilyfix(0.5)),
-            "ILY_Alpha_eyes!='open'",
-            At("images/Characters/ILY/ILY_Alpha_eyes[ILY_Alpha_eyes].png",ilyfix(0.5)),
-            )
-    always:
-        At("images/Characters/ILY/ILY_Alpha_e[ILY_Alpha_e].png",ilyfix(0.5))
-    always:
-        At("images/Characters/ILY/ILY_Alpha_heart0.png",ilyfix(0.5))
-    always:
-        At(WhileSpeaking(
-            "ILY",
-            ConditionSwitch(
-                "('smile' in ILY_Alpha_m)","ILYMouthsmile",
-                "('smile' not in ILY_Alpha_m)","ILYMouthfrown"
-                ),
-            "images/Characters/ILY/ILY_Alpha_m[ILY_Alpha_m].png"
-            ),ilyfix(0.5))
-
 #########
 ## ILY
 #########
@@ -579,13 +543,13 @@ image ILYVtuber:
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),
         "(ILY_p=='2')", WhileSpeakingHeld(
-                            "ILY",
-                            ConditionSwitch(
-                                "('smile' in ILY_m)","ILYMouthsmile2",
-                                "('smile' not in ILY_m)","ILYMouthfrown2"
-                                ),
-                            "images/Characters/ILY/ILY_m2[ILY_m].png"
-                            )
+            "ILY",
+            ConditionSwitch(
+                "('smile' in ILY_m)","ILYMouthsmile2",
+                "('smile' not in ILY_m)","ILYMouthfrown2"
+                ),
+            "images/Characters/ILY/ILY_m2[ILY_m].png"
+            )
         )
     )
 
@@ -721,7 +685,67 @@ image ILYMouthfrown:
     "images/Characters/ILY/ILY_mfrown.png"
     pause .08
     repeat
+#########
+## ILY Alpha
+#########
 
+image ILY_Alpha_Eyes:
+    choice:
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
+        pause 1.0
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesmclosed.png"
+        pause 0.07
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesclosed.png"
+        pause 0.1
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesmclosed.png"
+        pause 0.07
+    choice:
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
+        pause 8.0
+    choice:
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
+        pause 4.0
+    choice:
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
+        pause 1.5
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesmclosed.png"
+        pause 0.07
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesclosed.png"
+        pause 0.1
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesmclosed.png"
+        pause 0.07
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyesclosed.png"
+        pause 0.1
+        "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
+        pause 1.5
+    repeat
+
+
+image Icon_Alpha_ILY:
+    mesh True
+    LiveCrop((230,80, 520,700), "ILY_Alpha_FullBody")
+    zoom 0.22
+layeredimage ILY_Alpha_FullBody:
+    always:
+        At("images/Characters/ILY/Alpha/ILY_Alpha_Full_base.png",ilyfix(0.5)) #pose
+    always:
+        ConditionSwitch(
+            "ILY_Alpha_eyes=='open'",
+            At("ILYAlphaEyes",ilyfix(0.5)),
+            "ILY_Alpha_eyes!='open'",
+            At("images/Characters/ILY/Alpha/ILY_Alpha_eyes[ILY_Alpha_eyes].png",ilyfix(0.5)),
+            )
+    always:
+        At("images/Characters/ILY/Alpha/ILY_Alpha_e[ILY_Alpha_e].png",ilyfix(0.5))
+    always:
+        At(WhileSpeaking(
+            "ILY",
+            ConditionSwitch(
+                "('smile' in ILY_Alpha_m)","ILYMouthsmile",
+                "('smile' not in ILY_Alpha_m)","ILYMouthfrown"
+                ),
+            "images/Characters/ILY/Alpha/ILY_Alpha_m[ILY_Alpha_m].png"
+            ),ilyfix(0.5))
 
 #########
 ## John
@@ -1217,7 +1241,14 @@ image Icon_TrojanHorse:
 #########
 ## Code Red
 #########
-
+image Code Red:
+    "CodeRedFull"
+    yanchor 0.76 ypos 1.0
+    linear 1.0 yoffset 0
+    pause .5
+    linear 1.0 yoffset 5
+    pause .5
+    repeat
 image CodeRed:
     "CodeRedFull"
     yanchor 0.76 ypos 1.0

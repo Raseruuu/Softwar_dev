@@ -26,8 +26,8 @@ label roguemode:
         "Code Red":
             $ playerobject=CodeRed
     python:
-        PFAI=playerobject
-        r_Bosses=FAI_playables
+        PFAI = playerobject
+        r_Bosses = FAI_playables
 
         mydeck=PFAI.deck
         deckplugin =mydeck["plugins"]
@@ -75,6 +75,9 @@ label roguemode:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene black
         call screen roguenodeselect
+        if _return=="R_player_talks":
+            call R_player_talks
+            jump newnodes
         if not game_over: 
             jump newnodes
         
@@ -152,6 +155,7 @@ label R_Boss:
     return
 label r_battlestart:
     python:
+        ILY_m="smile3"
         used_nodes=[]
         nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
         for nodes in range(0,5):
@@ -196,13 +200,30 @@ init python:
             return True
         else:
             return False
+label R_player_talks:
+    "Let's get going."
+    return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75
+    vbox:
+        xalign 0.0 ypos 0.25 yanchor 0.0
+        button:
+            image ("[playerName]") at zoomtrans(0.8) ypos 0.0 yanchor 0.0
+            action Return("R_player_talks")
     text str(stageboss.name) xalign 0.5 yalign 0.1
     hbox:
-        spacing 80
-        xalign 0.5 yalign 0.5
+        # spacing 80
+        xalign 0.9 yalign 0.5
         for n_index_1,nodes in enumerate(nodes_path):
+            vbox:
+                spacing 10
+                xalign 0.5 yalign 0.5
+                if n_index_1==5:
+                    # null width (422*0.2)
+                    add "gui/connector2.png" xalign 0.5 yalign 0.5
+                else:
+                    for node_item in range(0,len(nodes)-1):
+                        add "gui/connector.png" xalign 0.5 yalign 0.5
             vbox:
                 spacing 10
                 xalign 0.5 yalign 0.5
@@ -213,30 +234,39 @@ screen roguenodeselect():
                         if (check_choice(n_index_1,n_index_2)):
                             imagebutton:
                                 idle Composite(
-                                    (422,422),
+                                    (84,84),
                                     (0,0),("gui/"+node_item.TYPE+".png"),
                                     (0,0),(("gui/selector2.png")))  
                                 hover Composite(
-                                    (422,422),
+                                    (84,84),
                                     (0,0),("gui/"+node_item.TYPE+".png"),
+                                    (0,0),(("gui/selector2.png")),
                                     (0,0),("blinky"))
-                                at zoomtrans(0.2)
+                                # at zoomtrans(0.2)
                                 action Function(change_node,(n_index_1,n_index_2),node_item),Return()
                         elif node_current==(n_index_1,n_index_2):
                             imagebutton:
                                 idle Composite(
-                                    (422,422),
+                                    (84,84),
                                     (0,0),("gui/"+node_item.TYPE+".png"),
                                     (0,0),(("gui/selector.png")))
-                                at zoomtrans(0.2)
+                                # at zoomtrans(0.2)
                                 action NullAction()
                           
                         else:
-                            add ("gui/"+node_item.TYPE+".png") at zoomtrans(0.2)
-                        vbox:
-                            text (node_item.TYPE+" ")  
-                            # text ("("+str(n_index_1)+","+str(n_index_2)+")")  
-                            at zoomtrans(0.5)
+                            # add ("gui/"+node_item.TYPE+".png") at zoomtrans(0.2)
+                            imagebutton:
+                                idle Composite(
+                                    (84,84),
+                                    (0,0),("gui/"+node_item.TYPE+".png"),
+                                    (0,0),At(Frame(Solid("#000000"),10,10),alphatrans(0.8)))
+                                # at zoomtrans(0.2)
+                                action NullAction()
+                        # vbox:
+                        #     text (node_item.TYPE+" ")
+                        #     # text ("("+str(n_index_1)+","+str(n_index_2)+")")  
+                        #     at zoomtrans(0.5)
+            
                         
 
     # key "dismiss" action Return()
