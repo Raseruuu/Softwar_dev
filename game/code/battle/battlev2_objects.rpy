@@ -127,6 +127,12 @@ init python:
             "retreat("+str(quantity)+")",
             "Increase distance by "+str(quantity)+" points.",
             [quantity])
+    def PushBack(quantity=1):
+        return Fxn(
+            "PushBack",
+            "pushback("+str(quantity)+")",
+            "Increase distance by "+str(quantity)+" points.",
+            [quantity])
     def GiveToken(tokenname,quantity=1):
         return Fxn(
             "GiveToken",
@@ -324,7 +330,7 @@ init python:
     SkullCrush=  Card("SaberDeflect",       "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
-    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [AttackSP(),Retreat(3)],            3)
+    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),PushBack(3)],            3)
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4),Burn(20)],               3)

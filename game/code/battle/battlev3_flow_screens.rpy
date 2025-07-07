@@ -423,23 +423,54 @@ style healthbar2_bg_frame is gui_frame:
 transform codesize:
     zoom 0.35
 
-
-
-label drawcards:
+label remaininghand:
+    
     python:
-        playerhand = []
+        playerhandminususedcards = []
+        if usedcards!=[]:
+            for (handindex, hand_cards) in enumerate(playerhand):
+                if handindex in usedcards:
+                    pass
+                else:
+                    playerhandminususedcards.append(hand_cards)   
+            
+        else:
+            playerhandminususedcards=playerhand
+    return
+default playerhand = []
+default usedcards = []
+default playerhandminususedcards = []
+label drawcards:
+    call remaininghand
+    python:
+        # playerhandcombined=[x for x in playerhand: playerhandcombined+=x]
+        # renpy.say("",""+str(playerhand[0].NAME)) 
+        
+        # playerhand = []
+        
         playerbattlecode = []
-
-
-        playerhand.append(playerDeck[0])
-        playerhand.append(playerDeck[1])
-        playerhand.append(playerDeck[2])
-        playerhand.append(playerDeck[3])
-        playerhand.append(playerDeck[4])
-        for deckcard in range (0,5):
+        usedcards = []
+        handdrawindex=0
+        playerhand=playerhandminususedcards
+        for hand_draw in range(0,5-len(playerhand)):
+            renpy.hide_screen('handcardsscreen')
+            renpy.show_screen('handcardsscreen')
+            playerhand.append(playerDeck[0])
             playerDeck.pop(0)
-        for handcard in range (0,5):
-            playerDeck.append(playerhand[handcard])
+            renpy.play("sfx/draw.wav")
+            renpy.pause(0.08)
+            handdrawindex+=1
+        renpy.hide_screen('handcardsscreen')
+        renpy.show_screen('handcardsscreen')
+        # playerhand.append(playerDeck[0])
+        # playerhand.append(playerDeck[1])
+        # playerhand.append(playerDeck[2])
+        # playerhand.append(playerDeck[3])
+        # playerhand.append(playerDeck[4])
+        # for deckcard in range (0,5):
+        #     playerDeck.pop(0)
+        # for handcard in range (0,5):
+        #     playerDeck.append(playerhand[handcard])
 
         playercard1obj =playerhand[0]
         playercard1name = playerhand[0].NAME
@@ -544,7 +575,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ quick_menu=False
     $ evasion_active=False
     $ execution_active=False
-    
+    $ playerhand=[]
     $ ILY_w=True
     $ ILY_m="frown"
     $ ILY_e="down"
@@ -713,15 +744,22 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
             call showphasemsg(playerName+"'S TURN")
             $renpy.pause(0.9,hard=True)
             hide screen phasemsg
-            call drawcards from _call_drawcards
+            
             call screen Activate_Battleware
+            call remaininghand
+            show screen handcardsscreen
+
+            call drawcards from _call_drawcards
+            
             play sound "sound/Phase.wav" channel 1
+            pause 0.5
             python:
 
                 clickedcard=[False,False,False,False,False]
             label Codephase:
 
                 # call screen choosecardv3(playerhand)
+                hide screen handcardsscreen
                 call screen choosecardv2
 
                 call BattleReturns
@@ -734,6 +772,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                 if (playerbits > 0) and cardusable:
                     jump Codephase
                 else:
+                    show screen handcardsscreen
                     call screen Execute
                     call BattleReturns
                     # if not enemyfirst:
@@ -777,37 +816,52 @@ label BattleReturns:
         $ clickedcard[0] = True
         $ playerbits-=playercard1COST
         $ playerbattlecode.append(playercard1obj)
+        $ usedcards.append(0)
     elif _return=="card2":
         play sound "sound/Phase.wav" channel 2
         $ clickedcard[1] = True
         $ playerbits-=playercard2COST
         $ playerbattlecode.append(playercard2obj)
+        $ usedcards.append(1)
     elif _return=="card3":
         play sound "sound/Phase.wav" channel 2
         $ clickedcard[2] = True
         $ playerbits-=playercard3COST
         $ playerbattlecode.append(playercard3obj)
+        $ usedcards.append(2)
     elif _return=="card4":
         play sound "sound/Phase.wav" channel 2
         $ clickedcard[3] = True
         $ playerbits-=playercard4COST
         $ playerbattlecode.append(playercard4obj)
+        $ usedcards.append(3)
     elif _return=="card5":
         play sound "sound/Phase.wav" channel 2
         $ clickedcard[4] = True
         $ playerbits-=playercard5COST
         $ playerbattlecode.append(playercard5obj)
+        $ usedcards.append(4)
     elif _return=="Return_card":
         if playerbattlecode != []:
             $ playerbattlecode.pop(-1)
     elif _return=="Execute":
         call Execution
+        python:
+            playerhandminus_usedcards = []
+            for usedcardindex,cards_used in enumerate(usedcards):
+                if not usedcardindex==cards_used:
+                    playerhandminus_usedcards.append(playerhand[cards_used])
+                playerDeck.append(playerhand[cards_used])
+            # for cards_used in usedcards[::-1]:
+            #     playerhand.pop(cards_used)
+            #     playerDeck.append(playerhand[cards_used])
     if (playerHP<=0):
         return
     $ battle_active=False
     return
 
 screen Execute:
+    
     on "show":
         action Function(renpy.set_focus,"Execute", "Executebutton")
     imagebutton idle "gui/Execute.png" hover "gui/Execute_hover.png" action  Play("sound","sound/Execute.wav"), Return("Execute") xalign 0.5 yalign 0.95:
@@ -869,12 +923,14 @@ screen choosecardv2:
         else:
             add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
 screen Activate_Battleware:
-        add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
-        add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
-        add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
-        add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
-        add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
-        text "{size=50}{b}ACTIVATE BATTLEWARE{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.87 at alphablinking
+        use handcardsscreen
+        # add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
+        # add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
+        # add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
+        # add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
+        # add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
+        text "{size=70}{b}DRAW!{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.87 at alphablinking:
+            style "statusoutlines"
         key 'mouseup_1' action Return()
         key 'K_RETURN' action Return()
         key 'K_SPACE' action Return()
@@ -886,6 +942,7 @@ screen Activate_Battleware:
         key 'K_DOWN' action Return()
         key 'Z' action Return()
         key 'z' action Return()
+        key 'dismiss' action Return()
 transform alphablinking:
     ease 0.25 alpha 0.0
     ease 0.25 alpha 1.0

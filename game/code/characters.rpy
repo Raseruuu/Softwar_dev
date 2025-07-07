@@ -105,7 +105,7 @@ init -1 python:
     globals()["ILY_Alpha_p"] = "1"
     globals()["ILY_Alpha_e"] = "normal"
     globals()["ILY_Alpha_eyes"] = "open"
-    globals()["ILY_Alpha_w"] = False
+    globals()["ILY_Alpha_w"] = True
     
     globals()["John_e"] = "normal"
     globals()["John_m"] = "smile"
@@ -230,6 +230,8 @@ init -1 python:
             globals()["showsideimage"]=Brain_w
         elif (name == "ILY"):
             globals()["showsideimage"]=ILY_w
+        elif (name == "ILY_Alpha"):
+            globals()["showsideimage"]=ILY_Alpha_w
         elif (name == "Lisa"):
             globals()["showsideimage"]=Lisa_w
         elif (name == "Lucida"):
@@ -689,7 +691,53 @@ image ILYMouthfrown:
 ## ILY Alpha
 #########
 
-image ILY_Alpha_Eyes:
+image ILY_Alpha:
+    mesh True
+
+    "ILY_Alpha_FullBody"
+    zoom 0.5
+    yanchor 0.50
+    ypos 1.0
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
+
+image ILYAlphaMouthsmile:
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile2.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile3.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile2.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile2.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_mO.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile2.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_msmile.png"
+    pause .1
+    repeat
+
+
+image ILYAlphaMouthfrown:
+    "images/Characters/ILY/Alpha/ILY_Alpha_mfrown2.png"
+    pause .08
+    "images/Characters/ILY/Alpha/ILY_Alpha_mO2.png"
+    pause .08
+    "images/Characters/ILY/Alpha/ILY_Alpha_mO.png"
+    pause .1
+    "images/Characters/ILY/Alpha/ILY_Alpha_mO2.png"
+    pause .08
+    "images/Characters/ILY/Alpha/ILY_Alpha_mfrown2.png"
+    pause .08
+    "images/Characters/ILY/Alpha/ILY_Alpha_mfrown.png"
+    pause .08
+    repeat
+
+image ILYAlphaEyes:
     choice:
         "images/Characters/ILY/Alpha/ILY_Alpha_eyes.png"
         pause 1.0
@@ -720,10 +768,16 @@ image ILY_Alpha_Eyes:
         pause 1.5
     repeat
 
+image side ILY_Alpha_side:
 
-image Icon_Alpha_ILY:
+    ConditionSwitch(
+        "ILY_Alpha_w==True",LiveCrop((680,60, 440,565), (At("ILY_Alpha_FullBody", zoomtrans(0.9)))),
+        "ILY_Alpha_w==False","Null_side"
+    )
+    zoom 0.38
+image Icon_ILY_Alpha:
     mesh True
-    LiveCrop((230,80, 520,700), "ILY_Alpha_FullBody")
+    LiveCrop((680,80, 520,700), "ILY_Alpha_FullBody")
     zoom 0.22
 layeredimage ILY_Alpha_FullBody:
     always:
@@ -738,14 +792,14 @@ layeredimage ILY_Alpha_FullBody:
     always:
         At("images/Characters/ILY/Alpha/ILY_Alpha_e[ILY_Alpha_e].png",ilyfix(0.5))
     always:
-        At(WhileSpeaking(
-            "ILY",
+        WhileSpeaking(
+            "ILY_Alpha",
             ConditionSwitch(
-                "('smile' in ILY_Alpha_m)","ILYMouthsmile",
-                "('smile' not in ILY_Alpha_m)","ILYMouthfrown"
+                "('smile' in ILY_Alpha_m)",At("ILYAlphaMouthsmile",ilyfix(0.5)),
+                "('smile' not in ILY_Alpha_m)",At("ILYAlphaMouthfrown",ilyfix(0.5))
                 ),
-            "images/Characters/ILY/Alpha/ILY_Alpha_m[ILY_Alpha_m].png"
-            ),ilyfix(0.5))
+            At("images/Characters/ILY/Alpha/ILY_Alpha_m[ILY_Alpha_m].png",ilyfix(0.5))
+            )
 
 #########
 ## John

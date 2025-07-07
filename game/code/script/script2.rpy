@@ -98,13 +98,17 @@ label script2:
     h "Yeah, like once."
     j "I was... observing..."
     v "I will stop fighting the ILOVEYOU Virus for now."
+    v "Er.."
+    v "That was a "
     h "Looks like she will only listen to you. Tell them to cooperate or something."
     j "Vira, ILY will serve as my assistant here, So you two have to cooperate. Don't try to delete her!!"
     v "Yes. Ok then.."
     j "Vira, show me what you can do! We have to try to detect for traces of FAI Viruses in SDS."
     v "Show me where this SDS area is..!"
     j "Right, ILY was able to explore the area yesterday."
-    i ""
+    i "Alright then, follow my lead!"
+    v "Before that. We have to make preparations!"
+    ""
 
 
 

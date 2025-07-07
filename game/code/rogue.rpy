@@ -115,6 +115,13 @@ init python:
         newnode = renpy.random.choice(choicenodes)
         nodes_tpf.remove(newnode)
         return newnode
+
+    def generate_treasures(used_nodes):
+        global treasure_tpf
+        newtreasurelist = renpy.random.choices(treasure_tpf)
+        treasure_tpf.remove(newnode)
+        return newtreasurelist
+
 label R_Enemy:
     $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
@@ -133,7 +140,8 @@ label R_StrongEnemy:
     
     return
 label R_TreasureNode:
-    "Get A new Treasure!!"
+    $ new_treasure=generate_treasure()
+    screen SelectNewTreasure(new_treasure)
     
     return
 label R_RecoveryNode:
@@ -158,6 +166,9 @@ label r_battlestart:
         ILY_m="smile3"
         used_nodes=[]
         nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
+
+        treasure_tpf=battleware_list
+
         for nodes in range(0,5):
             # nodes_path.append([random_node(),random_node()])
             newnoderow=[]

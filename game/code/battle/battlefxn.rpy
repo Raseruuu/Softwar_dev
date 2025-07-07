@@ -940,6 +940,17 @@ image healbit = "images/battle/Heal_bit.png"
 image heallight = "images/battle/Heal_light.png"
 label Recoverplayer:
     play sound "sfx/heal.ogg"
+    # $ Power = (currentcardMAG)
+    # if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="If":
+    #     pass
+    # else:    
+    #     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    
+    # $ multiplier = currentcard_fxn_params[0]
+    # if multiplier=="POWR":
+    #     $ shieldtoplayer=int(playerDEF_m*Power)
+    # elif multiplier!="POWR": 
+    #     $ shieldtoplayer=int(playerDEF_m*multiplier)
     $ Power = (currentcardMAG)
     $ healtoplayer=int(playerHPMax*Power)
     python:
@@ -1325,15 +1336,49 @@ transform suffixanim:
 label FinishingFlash(dialogue):
     call screen finishingflash(dialogue)
     return
+transform handcard_rotator(rotateint):
+    rotate rotateint transform_anchor True
+screen handcardsscreen():
+    
+           
+            
+    python:
+        phand = []
+        if usedcards!=[]:
+            for (handindex, hand_cards) in enumerate(playerhand):
+                if handindex in usedcards:
+                    pass
+                else:
+                    phand.append(hand_cards)   
+        else:
+            phand=playerhand
+    for cardindex,playercardobj in enumerate(phand):
+        $ card_distance = (0.06*0.5)
+        $ cardxpos=((0.1*0.5)+(cardindex*card_distance))
+
+        add CardDisplayNormal(playercardobj):
+            # action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
+            # hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
+            # unhovered Hide("cardhover")
+            at zoomtrans(0.5),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.92+(cardindex*0.012) yanchor 1.1
+        # elif clickedcard[cardindex]:
+            
+        #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
+        # else:
+        #     add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
+        #     add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
+
+
 label Execution:
     $ runnumber = 0
     $ attacknumber = 0
-    
+    call remaininghand
+    show screen handcardsscreen
     #Index of looper
     call Concatenation
-    $iterations =len(playerbattlecode)
+    $ iterations =len(playerbattlecode)
     show screen phasemsg("EXECUTE")
-    $renpy.pause(0.5,hard=True)
+    $ renpy.pause(0.5,hard=True)
     hide screen phasemsg
 
     label exec_loop:
@@ -1362,9 +1407,9 @@ label Execution:
         show screen cardflashscreen2
         
         ##
-        $fxnindex=0
-        $loopingcard=False
-        $execution_active=True
+        $ fxnindex=0
+        $ loopingcard=False
+        $ execution_active=True
         label runfunctions:
             $ runfxnstring = currentcardFXN[fxnindex].name
             $ runfxnparam = currentcardFXN[fxnindex].params
@@ -1378,9 +1423,9 @@ label Execution:
 
         hide screen cardflashscreen2
         hide ring
-        $execution_active=False
-        $fxnindex=0
-        $runnumber+=1
+        $ execution_active=False
+        $ fxnindex=0
+        $ runnumber+=1
         if (runnumber<iterations) and (battle_done==False):
             jump exec_loop
         else:
@@ -1389,6 +1434,7 @@ label Execution:
             # info"[playerName]'s turn has ended."
             if not battle_done:
                 call enemyattack from _call_enemyattack_1
+        hide screen handcardsscreen
     return
 label hurtnoise_enemy:
     call hurtnoise_Ave
@@ -1616,6 +1662,7 @@ init python:
         "Evade":"EvadePlayer",
         "Block":"Blockplayer",
         "Retreat":"Retreatplayer",
+        "PushBack":"Retreatplayer",
         "Advance":"Advanceplayer",
         "DeckChange":"DeckChangePlayer",
         "":"DoNothing"
@@ -1644,6 +1691,7 @@ init python:
         "Evade":"EvadeEnemy",
         "Block":"BlockEnemy",
         "Retreat":"Retreatenemy",
+        "PushBack":"Retreatenemy",
         "Advance":"Advanceenemy",
         "DeckChange":"DeckChangeEnemy",
         
