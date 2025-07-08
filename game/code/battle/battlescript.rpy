@@ -284,8 +284,8 @@ image dmgpointb:
         xoffset 0 yoffset 0
         linear 0.1 zoom 1.0 alpha 0.0
 image battlebg = Solid("#1a1a1a")
-image battlering = "images/battle/battlering.png"
-image battleroad = "images/battle/battleroad.png"
+image battlering = "images/battle/battlering.webp"
+image battleroad = "images/battle/battleroad.webp"
 # image TrojanH = "TrojanHsmall.png"
 
 
@@ -528,13 +528,13 @@ style healthbar_frame is gui_frame:
     top_padding 0
 
 image curve:
-    "images/battle/curve1.png"
+    "images/battle/curve1.webp"
     pause .15
-    "images/battle/curve2.png"
+    "images/battle/curve2.webp"
     pause .15
-    "images/battle/curve3.png"
+    "images/battle/curve3.webp"
     pause .15
-    "images/battle/curve4.png"
+    "images/battle/curve4.webp"
     pause .15
     repeat
 screen decknum:

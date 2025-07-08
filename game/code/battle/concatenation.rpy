@@ -2,8 +2,10 @@ image speedbg:
     "Characters/GUNVAR/speedbg.png"
 image radialbg:
     "Characters/GUNVAR/radialbg.png"
+    
 image speedspikes:
     "Characters/GUNVAR/speedspikes.png"
+    
 image GUNVARcloseup:
     "Characters/GUNVAR/GUNVARcloseup.png"
     zoom 5.0 xalign 0.5 yalign 0.5
@@ -104,11 +106,20 @@ image GattaiLightning:
         pause 0.05
     repeat
 
-
-
-
-
-    
+label speedspikebg:
+    scene speedbg
+    show speedspikes:
+        ypos 1.0 yanchor 0.0 xzoom -1.0
+        linear 0.3 ypos 0.0 yanchor 1.0  
+        repeat
+    show speedspikes as speedspikes2:
+        pause 0.15
+        xoffset 40
+        block:
+            ypos 1.0 yanchor 0.0 xzoom -1.0
+            linear 0.3 ypos 0.0 yanchor 1.0
+            repeat
+    return
 label cutscene_gunvar:
     hide screen battlestats
     scene black
@@ -138,18 +149,7 @@ label cutscene_gunvar:
     
     i"Concatenate!{w=0.5}{nw}"
     $ILY_w=True    
-    scene speedbg
-    show speedspikes:
-        ypos 1.0 yanchor 0.0 xzoom -1.0
-        linear 0.3 ypos 0.0 yanchor 1.0  
-        repeat
-    show speedspikes as speedspikes2:
-        pause 0.15
-        xoffset 40
-        block:
-            ypos 1.0 yanchor 0.0 xzoom -1.0
-            linear 0.3 ypos 0.0 yanchor 1.0
-            repeat
+    call speedspikebg
     pause 0.5
     play sound "sfx/Mechasounds/B044.wav"
     show GearframeUnitron:

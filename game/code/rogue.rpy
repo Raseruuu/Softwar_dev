@@ -134,6 +134,7 @@ label R_Enemy:
 label R_StrongEnemy:
     $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
+    
     call battlev3(playerobject,enemyobject)
     if playerHP==0:
         $ game_over=True
@@ -150,7 +151,40 @@ label R_RecoveryNode:
     return
 label R_StellaShop:
     "Welcome to Stella's Shop!!"
+    $ Stoned_m="open2"
+    $ Stoned_e="up"
+    $ Stoned_eyes="open"
     
+    $ shop_page=0
+    s"What do you want?"
+    $ Stoned_m="happy"
+    $ Stoned_e="normal"
+        
+    $ shop_active=True
+    $ Stoned_w = False
+
+    show screen item_shop()
+    $ renpy.set_focus("item_shop", "shop_button0")
+
+    while shop_active:
+        window hide
+        # show screen shop_image()
+
+
+        pause
+        hide screen shop_prompt
+        # hide screen item_shop
+        # if _return =="ItemModal":
+        #     # show screen shop_image
+        #     $ notransform=True
+        #     $ noscreentransformsfornow=True
+        #     call screen ItemModal
+
+    hide screen shop_image
+    hide screen item_shop
+    $ say_shop_mode=False
+    $ Stoned_w = True
+
     return
 label R_Boss:
     $ enemyobject= enemyvirus
@@ -168,8 +202,9 @@ label r_battlestart:
         nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
 
         treasure_tpf=battleware_list
-
-        for nodes in range(0,5):
+        nodes_path.append([Enemy])
+        used_nodes.append(Enemy)
+        for nodes in range(1,5):
             # nodes_path.append([random_node(),random_node()])
             newnoderow=[]
             for nodeitems in range(nodes+1):
@@ -182,6 +217,7 @@ label r_battlestart:
         # r_Bosses.remove(playerobject)
         stageboss=renpy.random.choice(r_Bosses)
         r_Bosses.remove(stageboss)
+
 
     return
 init python:

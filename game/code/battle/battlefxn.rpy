@@ -20,20 +20,20 @@ image bit:
 image damageeffect:
     xalign 0.5 yanchor 0.32 ypos 0.25
     choice:
-        "images/battle/dmgeffect1.png"
+        "images/battle/dmgeffect1.webp"
         pause 0.1
-        "images/battle/dmgeffect2.png"
+        "images/battle/dmgeffect2.webp"
         pause 0.1
-        "images/battle/dmgeffect3.png"
+        "images/battle/dmgeffect3.webp"
         pause 0.1
     choice:
-        "images/battle/dmgeffect1.png"
+        "images/battle/dmgeffect1.webp"
         xzoom -1.0
         pause 0.1
-        "images/battle/dmgeffect2.png"
+        "images/battle/dmgeffect2.webp"
         xzoom -1.0
         pause 0.1
-        "images/battle/dmgeffect3.png"
+        "images/battle/dmgeffect3.webp"
         xzoom -1.0
         pause 0.1
 
@@ -1662,7 +1662,7 @@ init python:
         "Evade":"EvadePlayer",
         "Block":"Blockplayer",
         "Retreat":"Retreatplayer",
-        "PushBack":"Retreatplayer",
+        "Push":"Retreatplayer",
         "Advance":"Advanceplayer",
         "DeckChange":"DeckChangePlayer",
         "":"DoNothing"

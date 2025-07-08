@@ -53,19 +53,59 @@ style SPbaroutlines:
 
 define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa","ILY_Alpha"]
 
-
-
+camera:
+    perspective True
+    gl_depth True
+transform xrotate:
+    yrotate 0.1 
+transform vstrans:
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        linear 0.1 xoffset 10 yoffset 10 zoom 1.1
+        pause 0.1
+    choice:
+        xoffset 0 yoffset 0
+        linear 0.1 xoffset -10 yoffset 10 zoom 1.1
+        pause 0.1
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        linear 0.1 xoffset 10 yoffset -10 zoom 1.1
+        pause 0.1
+        xoffset 0 yoffset 0 zoom 1.0
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        linear 0.1 xoffset -10 yoffset -10 zoom 1.1
+        pause 0.1
+    repeat
+transform vstrans2:
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        xoffset 10 yoffset 10 zoom 1.4
+        pause 0.1
+    choice:
+        xoffset -10 yoffset 10 zoom 1.4
+        pause 0.1
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        xoffset 10 yoffset -10 zoom 1.4
+        pause 0.1
+    choice:
+        xoffset 0 yoffset 0 zoom 1.0
+        xoffset -10 yoffset -10 zoom 1.4
+        pause 0.1
+    repeat
+    repeat
 
 screen VERSUS(playerName,enemyName):
-    
 
-    add ("images/Special Images/BattleCutscene_"+playerName+".png") xalign 0.25 yalign 0.25 at zoomtrans(0.15)
-    add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xalign 0.75 yalign 0.25 at zoomtrans(0.15)
+    add ("images/Special Images/BattleCutscene_"+playerName+".png") xalign 0.23 yalign 0.25 at zoomtrans(0.15)
+    add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xalign 0.78 yalign 0.25 at zoomtrans(0.15)
     key "dismiss" action Return()
 
-    text "{size=30}[playerName]{/size}" xalign 0.2 yalign 0.25  
-    text "{size=30}VS{/size}" xalign 0.5 yalign 0.5             
-    text "{size=30}[enemyName]{/size}" xalign 0.8 yalign 0.75   
+    text "{size=100}{b}[playerName]{/size}{/b}" xalign 0.1 yalign 0.75  style 'statusoutlines_red'
+    text "{size=85}{b}{color=f00}VS{/size}{/b}{/color}" xalign 0.5 yalign 0.75 at vstrans2
+    text "{size=80}{b}VS{/size}{/b}" xalign 0.5 yalign 0.75 style 'statusoutlines_red'
+    text "{size=100}{b}[enemyName]{/size}{/b}" xalign 0.9 yalign 0.75  style 'statusoutlines_red'  
 
 
 screen battlestats():
@@ -75,37 +115,37 @@ screen battlestats():
     $ enemybitsfirsthalf=(int(enemybitsmax/2) if (enemybits-int(enemybitsmax/2))>0 else enemybits)
     $ enemybitssecondhalf=(0 if enemybits<=int(enemybitsmax/2) else enemybits-enemybitsfirsthalf)
     frame:
-            yalign 0.01
+        yalign 0.01
+        xalign 0.5
+        xsize 520
+        ysize 80
+        
+        vbox:
+            
             xalign 0.5
-            xsize 520
-            ysize 80
-            # at alpha08
-            vbox:
+            text "{font=font/lucon.ttf}{size=18}{b}VS{/font}{/size}{/b}" xalign 0.5
+            frame:
+                style_prefix "bit"
+                xfill True
                 
-                xalign 0.5
-                text "{font=font/lucon.ttf}{size=18}{b}VS{/font}{/size}{/b}" xalign 0.5
-                frame:
-                    style_prefix "bit"
-                    xfill True
-                    
-                    vbox:
+                vbox:
+                    xalign 0.5 
+                    hbox:
                         xalign 0.5 
-                        hbox:
-                            xalign 0.5 
-                            add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                        null width 2
+                        add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4),flip_image
+                        null width 1
+                        for dist in range(0,battle_distance):
                             null width 2
-                            add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4),flip_image
-                            null width 1
-                            for dist in range(0,battle_distance):
-                                null width 2
-                                add "gui/dist.png" yalign 0.5 at xZoom(2.0)
-                                null width 2    
-                            null width 1
-                            add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
-                            null width 2
-                            add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
-                        text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
-                        # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
+                            add "gui/dist.png" yalign 0.5 at xZoom(2.0)
+                            null width 2    
+                        null width 1
+                        add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
+                        null width 2
+                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                    text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
+                    # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
 
                 
     frame:
@@ -113,6 +153,7 @@ screen battlestats():
         xsize 380 ysize 120
         xpos 0.01 xanchor 0.0 ypos 0.60 yanchor 0.5
         # at alpha08
+        
         vbox:
             vbox:
                 text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
@@ -135,6 +176,7 @@ screen battlestats():
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
         # at alpha08
+        at xrotate
         vbox:
             hbox:
                 style_prefix "battlestats"
@@ -640,6 +682,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         random.shuffle(enemyDeck)
     # call battlebg_animation
     if enemyName in boss_list:
+        call speedspikebg
         call screen VERSUS(playerName,enemyName)
 
     scene battlebg
