@@ -293,13 +293,19 @@ label test:
 
 label testdialog:
     "test"
-    # call battlev3(ILY,Vira,pbitsMax=8,ebitsMax=8)
+    # call battlev3(ILY,CodeRed,pbitsMax=8,ebitsMax=8)
     # if playerHP==0:
     #     return
     ""
     stop music
     scene gridbglandscape1:
         zoom 0.75
+    show CodeRed with dissolve
+    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
+    # hide CodeRed
     # call var_init
     # call iptest\
     # $hands=[VirusFlame,XAxess,DataDrill,MailSaber,BreakSaber]
@@ -322,7 +328,7 @@ label testdialog:
     br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     
-    $Brain_m="smile"
+    $ Brain_m="smile"
     br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     
     $ Vira_w= True
@@ -332,12 +338,7 @@ label testdialog:
     v"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     v"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     # hide Vira
-    show CodeRed with dissolve
-    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
-    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
-    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
-    c"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
-    # hide CodeRed
+    
     show Ave with dissolve:
         xalign 0.03
     a"Lorem Ipsum dolor sit amet consectetur adipiscing elit."

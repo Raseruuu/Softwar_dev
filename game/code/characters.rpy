@@ -928,6 +928,9 @@ layeredimage Lisafull:
     always:
         "images/Characters/Lisa/Lisa_dress_[Lisa_outfit].png"
     always:
+        "images/Characters/Lisa/Lisa_fronthair.png"
+        
+    always:
         WhileSpeaking(
             "Lisa",
             # ConditionSwitch(
@@ -1297,7 +1300,7 @@ image Icon_TrojanHorse:
 #########
 image Code Red:
     "CodeRedFull"
-    yanchor 0.76 ypos 1.0
+    yanchor 0.8 ypos 1.0
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1305,7 +1308,7 @@ image Code Red:
     repeat
 image CodeRed:
     "CodeRedFull"
-    yanchor 0.76 ypos 1.0
+    yanchor 0.8  ypos 1.0 
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1313,7 +1316,7 @@ image CodeRed:
     repeat
 
 image CodeRedFull:
-    LiveComposite(
+    Composite(
         (714,1025),
         (0, 0), At("images/Characters/Code Red/CODE RED_base.png",zoomtrans(0.36)),
         (0, 0),At("images/Characters/Code Red/CODE RED_eyes.png",zoomtrans(0.36)),
@@ -1566,17 +1569,18 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5
+    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5 xoffset 80
 
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
     pause .5
+    
     repeat
 
 
 image AveFull:
-    LiveComposite(
+    Composite(
         (4189,7278),
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(

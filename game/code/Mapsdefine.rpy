@@ -629,13 +629,13 @@ init -3 python:
     stageACD=[
         'nnnnnnnnnnn',
         'n1111a1111n',
-        'n100000001n',
-        'n100000001n',
-        'n100000001n',
-        'nc00000001n',
-        'n100000001n',
-        'n100000001n',
-        'n100000001n',
+        'n100rrr001n',
+        'n100rrr001n',
+        'n1rrrrr001n',
+        'ncrrrrr001n',
+        'n1rrrrr001n',
+        'n100rrr001n',
+        'n100rrr001n',
         'n1111d1111n',
         'nnnnnnnnnnn'
     ]

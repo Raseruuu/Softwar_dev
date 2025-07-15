@@ -717,6 +717,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         $ ILY_e = 'normal'
         voice "voice/ILY11C - What love can do.mp3"
         extend "{cps=50} What love can do!{/cps}"
+        $ ILY_m = 'frown'
+        $ ILY_e = 'down'
     if enemyName=="Ave":
         voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
         $ Ave_m = 'frown'

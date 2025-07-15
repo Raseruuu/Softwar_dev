@@ -153,7 +153,23 @@ label battlecry_CodeRed:
             # voice "voice/CodeRed_voice/batlecry1.ogg"
             $ anim_done=False
             pause 0.1
+            voice "voice/Code Red/illdestroyyou.mp3"
             call screen finishingflash("I'll destroy you!!")
+        else:
+            $ avcount=avcount+1
+            if avcount == 1:
+                voice "voice/Code Red/attack1.mp3"
+                c"Hah!"
+            elif avcount == 2:
+                voice "voice/Code Red/attack2.mp3"
+                c"Huh!!"
+            elif avcount == 3:
+                voice "voice/Code Red/attack3.mp3"
+                c"Hrah!"
+            elif avcount == 4:
+                voice "voice/Code Red/attack4.mp3"
+                c"Heh!"
+                $avcount=1
     return
 label battlecry_Vira:
     if enemyName=="Vira":
@@ -258,6 +274,37 @@ label battlecry:
                 voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
                 i"Nnnhhhh!"
                 $ vcount=0
+    if playerName=="Code Red":
+        if (currentcard.NAME=="LambdaSaber") or currentcard.NAME=="FlameSaber":
+            $ forcefinish = True
+        if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
+        # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
+            # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
+          
+            if forcefinish:
+                voice "voice/ILY/ILY09 - Finishing move.mp3"
+                $ anim_done=False
+                $ flashuser = "ILY"
+                call screen finishingflash("Finishing Move!")
+
+        else :
+            $ vcount=vcount+1
+            if vcount == 1:
+                voice "voice/ILY/ILY26 - I won't let you.mp3"
+                i"I won't let you!"
+            elif vcount == 2:
+                voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
+                i"This attack, receive it!"
+            elif vcount == 3:
+                voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
+                i"Hnnngg--Yah!"
+            elif vcount == 4:
+                voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
+                i"Hnnngg--Hah!"
+            elif vcount >= 5:
+                voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
+                i"Nnnhhhh!"
+                $ vcount=0
     if forcefinish:
         $ forcefinish=False
     return
@@ -287,6 +334,21 @@ label hurtnoise_Vira:
             voice "voice/Vira/hurt/owhw.mp3" 
         elif ahcount == 6:
             voice "voice/Vira/hurt/puppysound.mp3" 
+            $ ahcount=0
+    return
+label hurtnoise_CodeRed:
+    # "this happened"
+    if enemyName=="Code Red":
+      
+        $ ahcount=ahcount+1
+        if ahcount ==1:
+            voice "voice/Code Red/hurt1.mp3"
+        elif ahcount == 2:
+            voice "voice/Code Red/hurt2.mp3" 
+        elif ahcount == 3:
+            voice "voice/Code Red/hurt3.mp3" 
+        elif ahcount == 4:
+            voice "voice/Code Red/hurt4.mp3" 
             $ ahcount=0
     return
 label hurtnoise:

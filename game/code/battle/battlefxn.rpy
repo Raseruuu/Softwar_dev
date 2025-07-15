@@ -1439,6 +1439,7 @@ label Execution:
 label hurtnoise_enemy:
     call hurtnoise_Ave
     call hurtnoise_Vira
+    call hurtnoise_CodeRed
     return
 label PlayerEndPhase:
     if "Burn" in EnmySts:

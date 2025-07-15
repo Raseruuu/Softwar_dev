@@ -33,7 +33,7 @@ label roguemode:
         deckplugin =mydeck["plugins"]
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
         deckcurrent =sorted( mydeck["content"],key=lambda x: x.NAME, reverse=False)
-        
+        mydeckname =  mydeck["name"]
         PlayerStatsnow = {
             "name":PFAI.name,
             "HP":PFAI.HP,
@@ -68,7 +68,14 @@ label roguemode:
     
     # $ r_Bosses=FAI_playables
         node_current=(0,0)
-    "NODE"
+    scene gridbglandscape1:
+        zoom 0.75
+    show Brain
+    br "Welcome to the Undernet!"
+    br "I am the mother of all FAI Viruses."
+    br "Connecht's entire network is now under my control."
+    br "Challengers... Face me!"
+    
     scene gray
     call r_battlestart
     label newnodes:
@@ -78,6 +85,22 @@ label roguemode:
         if _return=="R_player_talks":
             call R_player_talks
             jump newnodes
+        if _return=="pausemenu":
+            call pauseshow
+        if _return=="deck_edit":
+            python:
+                deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
+                card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
+            label Battleware_edit_screen2:
+                call screen Battleware_Edit
+                if _return=="SaveDeck":
+                    call SaveDeck
+                elif _return=="UnsaveDeck":
+                    call UnsaveDeck
+
+                else:
+                    jump Battleware_edit_screen2
+            
         if not game_over: 
             jump newnodes
         
@@ -146,7 +169,7 @@ label R_TreasureNode:
     
     return
 label R_RecoveryNode:
-    "Heal Up!!!"
+    $ playerHP=playerHP+500
     
     return
 label R_StellaShop:
@@ -252,11 +275,33 @@ label R_player_talks:
     return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75
-    vbox:
-        xalign 0.0 ypos 0.25 yanchor 0.0
+    hbox:
+        xpos 0.52 ypos 0.87
         button:
-            image ("[playerName]") at zoomtrans(0.8) ypos 0.0 yanchor 0.0
-            action Return("R_player_talks")
+            action Return("pausemenu")
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            background Frame("gui/framew.png", 10, 10)
+            # top_padding 52
+            bottom_padding 20
+            right_padding 26
+            left_padding 26
+            text "Menu"
+        button:
+            action Return("deck_edit")
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            background Frame("gui/framew.png", 10, 10)
+            # top_padding 52
+            bottom_padding 20
+            right_padding 26
+            left_padding 26
+            text "Deck Construction"
+
+    
+    button:
+        background ("[playerName]")
+        yanchor 0.7 ypos 1.0
+        at pausetrans1,zoomtrans(0.8)
+        action Return("R_player_talks") 
     text str(stageboss.name) xalign 0.5 yalign 0.1
     hbox:
         # spacing 80

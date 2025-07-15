@@ -353,7 +353,7 @@ label getCardLibrary:
             if (x.NAME not in [y.NAME for y in inventory_objects]):
                 inventory_objects.append(x)
 screen Battleware:
-
+    $ mydeckname = mydeck["name"]
     use pauselayout("BATTLEWARE",True,True)
     # add "cardflasher" xalign 0.34 yalign 0.58 at pausecardsize, pausetrans1
     # use Card(currentcard,(420,217),1.0)
@@ -368,7 +368,7 @@ screen Battleware:
         vbox:
             hbox:
                 vbox:
-                    text "{b}DECK NAME: [deckname]{/b}"
+                    text "{b}DECK NAME: [mydeckname]{/b}"
                     # text "{size=16}TYPE : Virus{/size}"
                 # null width 80
 
@@ -406,6 +406,7 @@ screen Battleware:
                     action Jump("ware_menu"), SetVariable("noscreentransformsfornow",False)
 
 screen Battleware_Edit():
+    $ mydeckname = mydeck["name"]
     use pauselayout("DECK EDIT",False,True)
 
     # use Card(currentcard,(50,217),1.0)
@@ -420,7 +421,7 @@ screen Battleware_Edit():
         vbox:
             hbox:
                 vbox:
-                    text "{b}DECK NAME: [deckname]{/b}"
+                    text "{b}DECK NAME: [mydeckname]{/b}"
                     # text "{size=16}TYPE : Virus{/size}"
                 # null width 80
 
@@ -506,7 +507,7 @@ transform vmarquee:
 transform zoomtrans(zoomvalue):
     zoom zoomvalue
 screen pauselayout(scrname,spritevisible=True,notransform=False):
-    
+    $ mydeckname = mydeck["name"]
     # key 's'       action Return()
     # key 'S'       action Return()
     if notransform:
@@ -523,7 +524,7 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
 
     if spritevisible:
-        image At("ILY",zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )) :
+        image At("[playerName]",zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )) :
             xpos 0.25 xanchor 0.5
             ypos (0.2 if scrname=="CUSTOMIZE" else 0.4 ) yanchor 0.2
             if not notransform:
@@ -554,7 +555,7 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
                                 frame:
                                     style "deckframe"
-                                    text "{size=14}Deck: [deckname]{/size}"
+                                    text "{size=14}Deck: [mydeckname]{/size}"
                                 
                                 frame:
                                     style "deckframe"

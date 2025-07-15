@@ -9,6 +9,9 @@ style cardoutlines:
 style cardshadows:
 
     outlines [(1, "#000", -1, 2),(2, "#111", 0, 0)]
+style cardshadows2:
+
+    outlines [(1, "#181818", -1, 1),(1, "#141414", 0, 0)]
 init python:
     def cardnamewidth(fontsize,text,maxwidth,maxchar):
         if len(text)!=0:
@@ -31,26 +34,26 @@ init python:
         long_fxn_name=False
         for function_index_local,cardfunction in enumerate(FXN):
             if fxnindex==function_index_local and execution_active:
-                fxns.append(At(Text("{size=12}{u}{b}"+cardfunction.code+"{/size}{/u}{/b}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,284,16)))))
+                fxns.append(At(Text("{size=11}{u}{b}"+cardfunction.code+"{/size}{/u}{/b}", layout="nobreak",style="cardshadows2"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,284,16)))))
             else:
-                fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,284,16)))))
+                fxns.append(At(Text("{size=11}"+cardfunction.code+"{/size}", layout="nobreak",style="cardshadows2"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,284,16)))))
 
-        return VBox(*fxns)
+        return VBox(*fxns,spacing=-2)
     def FunctionListNormal(FXN):
         fxns=[]
         long_fxn_name=False
         for function_index_local,cardfunction in enumerate(FXN):
-            fxns.append(At(Text("{size=12}"+cardfunction.code+"{/size}", layout="nobreak"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(12,cardfunction.code,284,16)))))
+            fxns.append(At(Text("{size=11}"+cardfunction.code+"{/size}", layout="nobreak",style="cardshadows2"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,284,16)))))
 
         return VBox(*fxns)
     def FunctionListDescript(FXN):
         fxns=[]
         for function_index_local, cardfunction in FXN:
-            fxns.append(Text("{size=12}{b}"+cardfunction.name+"{/b}{/size}\n  {size=12}"+cardfunction.text+"{/size}"))
+            fxns.append(Text("{size=11}{b}"+cardfunction.name+"{/b}{/size}\n  {size=11}"+cardfunction.text+"{/size}"))
                 
         return VBox(*fxns)
-    def CardDisplay(cardobj):
-        return LiveComposite(
+    def CardDisplayNew(cardobj):
+        return Composite(
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
             
@@ -73,7 +76,7 @@ init python:
             # (165,267),Text("{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}"),
             )
     def CardDisplayNormal(cardobj):
-        return LiveComposite(
+        return Composite(
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
             

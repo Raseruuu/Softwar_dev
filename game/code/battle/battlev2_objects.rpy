@@ -127,10 +127,10 @@ init python:
             "retreat("+str(quantity)+")",
             "Increase distance by "+str(quantity)+" points.",
             [quantity])
-    def PushBack(quantity=1):
+    def Push(quantity=1):
         return Fxn(
-            "PushBack",
-            "pushback("+str(quantity)+")",
+            "Push",
+            "push("+str(quantity)+")",
             "Increase distance by "+str(quantity)+" points.",
             [quantity])
     def GiveToken(tokenname,quantity=1):
@@ -330,7 +330,7 @@ init python:
     SkullCrush=  Card("SaberDeflect",       "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
-    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),PushBack(3)],            3)
+    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),Push(3)],            3)
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4),Burn(20)],               3)
@@ -344,7 +344,8 @@ init python:
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
     FixerBeam=    Card("FixerBeam",       "Wall",    0.75,    [Defend(),Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],      4)
-
+    Scan=           Card("Scan",       "Scan",    0.5,         [Defend(),Boost("DEF",0.25)],      4)
+    
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
@@ -630,16 +631,16 @@ init python:
     deckave = {
         "name":"",
         "content":[
-            DataBuster,
+            DataBuster,BurstTransfer,
             DataBuster,DataBuster,
             DataBuster,Firewall,
-            Firewall,
+            Firewall,DataForce,
             Firewall,Shieldbit,
             DataBomb,DataBomb,
-            Laserbeam,
+            Laserbeam,DataForce,
             Shieldbit,Shieldbit,
             Shieldbit,Bitbuster,
-            Bitbuster,
+            Bitbuster,DataForce,
             Assault,Assault,
             Assault,Assault],
         "plugins":[FirstBarrier]
@@ -772,9 +773,9 @@ define card_library={
     "SaberDeflect"    : {"card":SaberDeflect    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "MomentumSlash"   : {"card":MomentumSlash   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "SkullCrush"      : {"card":SkullCrush      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "MomentumSlash"   : {"card":MomentumSlash   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "ImpactHammer"    : {"card":ImpactHammer    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Firewall"        : {"card":Firewall        ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
+    "FixerBeam"        : {"card":FixerBeam      ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
     "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity": "UR","color":"red","compatibility":"antivirus"},
     "Shieldbit"       : {"card":Shieldbit       ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
