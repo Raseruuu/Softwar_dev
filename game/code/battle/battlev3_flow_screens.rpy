@@ -629,8 +629,11 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ playerSP = 0
     $ playerATK = PFAI.ATK
     $ playerDEF = PFAI.DEF
-    $ playerDeck = deckcurrent
-    
+    if playerName == "ILY":
+        $ playerDeck = deckcurrent
+    else:
+        $ playerDeck = PFAI.deck["content"]
+        
     $ playerPlugins = playerPlugins =PFAI.deck["plugins"]
     $ first_turn_done =False
 

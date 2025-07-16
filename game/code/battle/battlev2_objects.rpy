@@ -282,11 +282,11 @@ init python:
 #Concatenations
     ##name              name                     TYPE               POWR        FXN List                      COST
     FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
-    MailSaberPlus=    Card("MailSaberPlus",           "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
+    MailSaberPlus=    Card("MailSaberPlus",     "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
-    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [Defend(),DeckChange("GUNVAR")],   0)
+    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [Defend(),Attack()],   0)
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
@@ -721,11 +721,11 @@ init python:
     
     
     Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
-    CodeRed=FAI("Code Red","Virus",4000,4000,500,500,deckred,[])
+    CodeRed=FAI("Code Red","Virus",4000,4000,450,550,deckred,[])
     Bitwulf=FAI("Bitwulf","Antivirus",4000,4000,500,500,deckred,[])
     # Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])
-    Melissa=FAI("Melissa","Virus",2000,2000,500,500,deckmelissa,[])
-    Ave=FAI("Ave","Antivirus",3000,3000,550,440,deckave,[])
+    Melissa=FAI("Melissa","Virus",3200,3200,400,400,deckmelissa,[])
+    Ave=FAI("Ave","Antivirus",3000,3000,550,450,deckave,[])
 
 
     # Vira=FAI("Vira","Antivirus",4000,deckvira)
@@ -775,9 +775,9 @@ define card_library={
     "SkullCrush"      : {"card":SkullCrush      ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "ImpactHammer"    : {"card":ImpactHammer    ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Firewall"        : {"card":Firewall        ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
-    "FixerBeam"        : {"card":FixerBeam      ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
+    "FixerBeam"       : {"card":FixerBeam       ,"ID":'001',"rarity": "R","color":"red","compatibility":"antivirus"},
     "Flashbang"       : {"card":Flashbang       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
-    "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity": "UR","color":"red","compatibility":"antivirus"},
+    "Powersol"        : {"card":Powersol        ,"ID":'001',"rarity":"UR","color":"red","compatibility":"antivirus"},
     "Shieldbit"       : {"card":Shieldbit       ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
     "RadioShield"     : {"card":RadioShield     ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},
     "Assault"         : {"card":Assault         ,"ID":'001',"rarity": "N","color":"red","compatibility":"basic"},

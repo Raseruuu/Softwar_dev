@@ -98,53 +98,123 @@ label script2:
     h "Yeah, like once."
     j "I was... observing..."
     v "I will stop fighting the ILOVEYOU Virus for now."
-    v "Er.."
-    v "That was a "
+    
     h "Looks like she will only listen to you. Tell them to cooperate or something."
     j "Vira, ILY will serve as my assistant here, So you two have to cooperate. Don't try to delete her!!"
     v "Yes. Ok then.."
-    j "Vira, show me what you can do! We have to try to detect for traces of FAI Viruses in SDS."
+    v "Er.. I... I did not lose that battle! I can still be of use, I can go all out in case you need me to."
+    j "That's right Vira. Show us what you can do! We have to try to detect for traces of FAI Viruses in SDS."
     v "Show me where this SDS area is..!"
     j "Right, ILY was able to explore the area yesterday."
-    i "Alright then, follow my lead!"
-    v "Before that. We have to make preparations!"
-    ""
-
-
-
-label SDS_Encounter:
+    i "We could go there together!"
+    v "Hold it! That's not going to work well. You're a virus! Nobody can see us together."
+    v "Here's the plan: I'm going alone!"
+    i "Eh?"
+    v "I mean.. You just have to show me directions to get there. Then I'll deal with the problem!"
+    v "That SDS server has been compromised, so It might be like a {b}dungeon{/b} in there. Teeming with tiny viruses. Or a big one."
+    i "A big one? You mean we might meet the armored virus guy again?"
+    v "You met an armored virus?"
+    i "That's right! But I don't know what he's called."
+    v "Because you don't have the detective eyes like I do! My database might show us a clue or two who we're dealing with!"
+    v "I recall you said the server hosted a site, and its contents were replaced."
+    v "Many viruses I know can do that. That kind of modus operandi narrows down my list of probable matches by a bunch!"
+    j "That's a step closer to identifying our enemy then."
+    v "Like I said, I'm the antivirus here, so I'll handle it."
+    v "I may not look it, but my defenses are still top-notch!"
+    l "I knew we can rely on you!"
+    "Vira seems like she really knows her stuff."
+    "If she didn't, that'd be disappointing. But I don't know if that's to be expected from a working prototype."
     
+    i "You have to be careful, Vira! I didn't quite win my first encounter."
+    v "How strong was that guy?"
+    i "I might need to stay close as back-up, kind of strong."
+    j "How does this system work? Antiviruses should be effective against Viruses by default."
+    h "But since ILY beat Vira-"
+    v "You both might be overthinking things! I was holding back against ILY, enough said."
+    v "I do have an ace up my sleeve, just wait for it!"
+    v "We can keep communications up while I traverse the server remotely. I'll report my findings!"
+    j "We'll keep watch on this side, ILY will know what's going on."
+    h "Let's get em!"
+    
+label SDS_Encounter:
+    scene black with dissolve
+    pause 0.5
+    show scrollingBG at scroll
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    with pixellate
     # Part 2
-    j "So let's get to it now then."
-    l "Right."
-    "Final few keystrokes to the command line and we are in."
-    # [Connecting…]
-    # [Systems booting up]
+    "Vira traversed the cyberworld version of Connecht city on her way to the location where our office is at."
+    "Vira eventually meets the wolf antivirus from last night."
+    show Vira:
+        xpos 0.6
+    show Bitwulf:
+        xpos 0.2
+        xzoom -1.0
+    with dissolve
+    v "Do you mind?"
+    b "Not at all!"
+    b "Good day to you ma'am."
+    v "Focus on your patrol, watchdog!"
+    b "Affirmative!"
+    hide Bitwulf with dissolve
+    
+    hide Vira with easeoutleft
+    "Vira crossed without issue. Though I wish she would mind her tongue. Not that I know if \"watchdog\" offends the little pupper."
+    "Hmm. That went a lot smoother than last night. Feels like we're on the right track."
+    
+    show Vira:
+        xalign 0.5
+    with dissolve
+    j "Vira made it to the entrance of the SDS server."
+    l "Great!"
+    v "I'll go open the console!"
+    h "SDS admin here! Allow me to input the credentials."
+    l "Right!"
+    j "Seems like this works just the same as exploring online via a hypertext request with parameters."
+    j "But now, FAIs are involved. It's so strange."
+    "Some final few keystrokes to the command line, and we are in."
+    
+    scene gridbglandscape1 with dissolve:
+        zoom 0.75
     h "Alright looks like everything is going nicely. This is perfect."
     "Lisa shoots him a concerned look."
     h "What? It's going pretty good so far right?"
-    # j "Too early to say it right now."
-    # l "Anything could still happen in a remote access, we don't know what happened back then either."
+    j "Too early to say it right now."
+    l "Anything could still happen in a remote access, we don't know what happened back then either."
     l "All the diagnostic runs turned back alright, but something could still go wrong."
     i "It's okay, I'm here if anything happens."
-    j "Thank you ILY"
-    i "Hehe--"
-    v "Hey I'm the one scouting here, cut me some credits will you?"
-    i "I'm cheering for you Vira. Show us how it's done by an Anti-virus."
+    j "I'm hoping we don't have to use ILY here."
+    i "Ehh!"
+    
+    show Vira with dissolve
+    v "Hey I'm the one scouting here, pay me some attention, will you?"
+    i "I'm cheering for you Vira. Show us how it's done by an anti-virus."
     v "O-okay! Definitely! This is what I'm good at."
-    h "Yeah we got nothing to worry about. Those should be the top of the class AI right? Nothing I know can affect them."
-    "Maybe I should brief him about Bitwulf later, but now's probably not a good time."
-    i "?"
-    # ["Port Access:granted"]
-    # h "Let's gooooooo!!!"
-    # v "Is this blonde human always this noisy?"
-    # j "Hilbert can get a bit excessive sometimes."
-    # l "I'd say most of the time in fact."
-    # h "I'll just pretend I didn't hear those hurtful words."
-    # i "Gooooooooo!!"
-    # h "Yeah that's what I'm talking about!"
-    # v "Can't believe I'm with idiots."
+    h "I trust that Vira's got this!"
+    v "We're in, so I'll start a thorough scan."
+    "Just like that, Vira's eyes glow and signify she's begun her operation."
+    v "Parasol, activate."
+    h "Did you sense a disturbance in the force?"
+    v "Shush, I'm on to something."
+    "Vira raised her parasol and it began to glow a certain way."
+    "A transparent sphere emerges, expanding from her parasol, the same kind of shield she used against ILY."
+    v "(We're not alone now.)"
+    v "(I've activated my barrier. It also blocks perception from Viruses.)"
+    v "(I will continue to explore the depths.)"
+    j "(You're on whisper mode now? And... on camouflage?)"
+    v "(It's not quite camouflage, rather a field that facilitates bending of light.)"
+    v "(Just roll with it.)"
+    h "(There's no way that kind of physics breaking tech functions in the cyberworld!)"
+    j "(I had no idea, too.)"
+    i "(It's a tough kind of barrier!)"
+    v "(Because I can manipulate the light emissions like this, I'm able to detect which entities the same emissions collide with.)"
+    v "(Jackpot.)"
+    "Now Vira lets out her Databuster to shoot at a far corner."
+    v "(They're... Spyware. They've been watching, as I thought!)"
+    call battlev3(Vira,Spyware)
 
+    
     # =============================
 
     # j "So Vira, can you see anything suspicious?"
