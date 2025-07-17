@@ -15,15 +15,16 @@ init python:
         return Composite((1394, 2031),
             (0,0), "images/Special Images/Card_"+FAI_object.name+".png",
             # (0,0), At("card_highlights", card_highlights_t),
-            (0,0), AlphaMask(At("card_gradient", card_gradient_t), "card_base"))
-image FAI_card_ILY:
-    "images/Special Images/Card_ILY.png"
-image FAI_card_Ave:
-    "images/Special Images/Card_Ave.png"
-image FAI_card_Code Red:
-    "images/Special Images/Card_CodeRed.png"
-image FAI_card_Vira:
-    "images/Special Images/Card_Vira.png"
+            (0,0), AlphaMask(At(("card_gradient"), card_gradient_t,zoomtrans(2.0)), "images/Special Images/Card_"+FAI_object.name+".png"))
+# image FAI_card_ILY:
+#     "images/Special Images/Card_ILY.png"
+#     FAI_card(ILY)
+# image FAI_card_Ave:
+#     "images/Special Images/Card_Ave.png"
+# image FAI_card_Code Red:
+#     "images/Special Images/Card_CodeRed.png"
+# image FAI_card_Vira:
+#     "images/Special Images/Card_Vira.png"
 transform enlargehover:
     zoom 1.0 xalign 0.5 yalign 0.5
     on hover:
@@ -51,18 +52,15 @@ screen CharacterCardSelect(character_choices=[ILY,Ave]):
                 xsize 279
                 ysize 406
                 xalign 0.5 yalign 0.5
-                background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),)
+                background At((FAI_card(characters)),rotate_object_t, zoomtrans(0.2),)
                 # hover_background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),enlargehover)
                 action SetVariable("playerobject",characters),Return()
 
 
 
 label roguemode:
-   
-    "Rogue mode Start"
-    "SoftWar"
-    "Choose Your F.A.I. Fighter!"
-    #create a character select screen like Bleach 4th flamebringer
+    play music "bgm/Roam_game_maoudamashii_5_town18.mp3"
+    scene 
     call screen CharacterCardSelect([ILY,Ave,CodeRed])
 
     # menu:
@@ -75,8 +73,6 @@ label roguemode:
     #         $ playerobject=CodeRed
     python:
         PFAI = playerobject
-        r_Bosses = FAI_playables
-
         mydeck=PFAI.deck
         deckplugin =mydeck["plugins"]
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
