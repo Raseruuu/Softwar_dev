@@ -92,7 +92,7 @@ label battlecry_Ave:
             
             call screen finishingflash("No, I won't lose, It's over ILY!")
         
-        elif (enemyHP <=2800):
+        else:
             $ avcount=avcount+1
             if avcount == 1:
                 voice "voice/Ave/Heeaah.ogg"
@@ -150,11 +150,10 @@ label battlecry_CodeRed:
         if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
             $ flashuser="CodeRed"
-            # voice "voice/CodeRed_voice/batlecry1.ogg"
             $ anim_done=False
             pause 0.1
             voice "voice/Code Red/illdestroyyou.mp3"
-            call screen finishingflash("I'll destroy you!!")
+            call screen finishingflash("I'll destroy you! Haaaah!!!")
         else:
             $ avcount=avcount+1
             if avcount == 1:
@@ -255,7 +254,6 @@ label battlecry:
                 $ anim_done=False
                 $ flashuser = "ILY"
                 call screen finishingflash("Finishing Move!")
-
         else :
             $ vcount=vcount+1
             if vcount == 1:
@@ -274,37 +272,65 @@ label battlecry:
                 voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
                 i"Nnnhhhh!"
                 $ vcount=0
+        
     if playerName=="Code Red":
         if (currentcard.NAME=="LambdaSaber") or currentcard.NAME=="FlameSaber":
             $ forcefinish = True
         if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
-        # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
-            # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
-          
-            if forcefinish:
-                voice "voice/ILY/ILY09 - Finishing move.mp3"
-                $ anim_done=False
-                $ flashuser = "ILY"
-                call screen finishingflash("Finishing Move!")
-
+        
+            voice "voice/Code Red/illdestroyyou.mp3"
+            $ anim_done=False
+            $ flashuser = "Code Red"
+            call screen finishingflash("I'll destroy you! Haaaah!!!")
         else :
             $ vcount=vcount+1
             if vcount == 1:
-                voice "voice/ILY/ILY26 - I won't let you.mp3"
-                i"I won't let you!"
+                voice "voice/Code Red/attack1.mp3"
+                c"Hah!"
             elif vcount == 2:
-                voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
-                i"This attack, receive it!"
+                voice "voice/Code Red/attack2.mp3"
+                c"Huh!!"
             elif vcount == 3:
-                voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
-                i"Hnnngg--Yah!"
+                voice "voice/Code Red/attack3.mp3"
+                c"Hrah!"
             elif vcount == 4:
-                voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
-                i"Hnnngg--Hah!"
-            elif vcount >= 5:
-                voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
-                i"Nnnhhhh!"
-                $ vcount=0
+                voice "voice/Code Red/attack4.mp3"
+                c"Heh!"
+                $avcount=1
+
+    if playerName=="Ave":
+        if (currentcard.NAME=="DataSaber") or currentcard.NAME=="Laserbeam":
+            $ forcefinish = True
+        if ((enemyHP+enemySP)<=battledamage) and (damagecard==True) or forcefinish or can_burn_to_death:
+            if enemyName=="ILY":
+                voice "voice/Ave/No, I won't lose!.ogg"
+                $ anim_done=False
+                $ flashuser="Ave"
+                call screen finishingflash("No, I won't lose, It's over ILY!")
+            else:
+                voice "voice/Ave/Pathetic-You-think-you-can-erase-me.ogg"
+                $ anim_done=False
+                $ flashuser="Ave"
+                call screen finishingflash("Pathetic! You think you can erase me!?")
+        else :
+            
+            $ avcount=avcount+1
+            if avcount == 1:
+                voice "voice/Ave/Heeaah.ogg"
+                a"Heeaah!"
+            elif avcount == 2:
+                voice "voice/Ave/Hhaagh.ogg"
+                a"Hhagh!!"
+            elif avcount == 3:
+                voice "voice/Ave/Hrrah!.ogg"
+                a"Hrrah!"
+            elif avcount == 4:
+                voice "voice/Ave/Hah!.ogg"
+                a"Hah!"
+            elif avcount >= 5 and enemyName=="ILY":
+                voice "voice/Ave/It's Over, ILY!.ogg"
+                a"It's over, ILY!"
+            $ avcount=1
     if forcefinish:
         $ forcefinish=False
     return
@@ -366,5 +392,22 @@ label hurtnoise:
         elif hcount == 5:
             play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
             $ hcount=0
-    
+    if playerName=="Ave":
+        $ ahcount=ahcount+1
+        if hcount ==1:
+            play sound "voice/Ave_voice/hurt/Eugh!.ogg" channel "voice"
+        elif hcount == 2:
+            play sound "voice/Ave_voice/hurt/Euh!.ogg" channel "voice"
+        $ hcount=0
+    if playerName=="Code Red":
+        $ hcount=ahcount+1
+        if hcount ==1:
+            voice "voice/Code Red/hurt1.mp3"
+        elif hcount == 2:
+            voice "voice/Code Red/hurt2.mp3" 
+        elif hcount == 3:
+            voice "voice/Code Red/hurt3.mp3" 
+        elif hcount == 4:
+            voice "voice/Code Red/hurt4.mp3" 
+            $ hcount=0
     return

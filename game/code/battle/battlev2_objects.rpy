@@ -426,7 +426,7 @@ init python:
     RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GiveToken("Email",1)],4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, [Boost("ATK",0.1)],4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
-    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",1.0,[Attack(rangevalue=10)], 8)
+    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",0.5,[Attack(rangevalue=10)], 8)
     SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
     SuperArmor=Plugin("SuperArmor", "Initial Defense!",0.25, [Defend()],4)
     #BEFORE BUILD:

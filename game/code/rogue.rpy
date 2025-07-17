@@ -6,25 +6,73 @@ define FAI_playables=[ILY, Ave, CodeRed]
 
 
 
-default r_Bosses=[ILY, Ave, CodeRed, Melissa, Vira]
+default r_Bosses=[ILYAlpha, Ave, CodeRed, Melissa, Vira]
 
 # playerDeck = PlayerStatsnow["Deck"]
 #     actual_playerDeck = playerDeck
+init python:
+    def FAI_card(FAI_object):
+        return Composite((1394, 2031),
+            (0,0), "images/Special Images/Card_"+FAI_object.name+".png",
+            # (0,0), At("card_highlights", card_highlights_t),
+            (0,0), AlphaMask(At("card_gradient", card_gradient_t), "card_base"))
+image FAI_card_ILY:
+    "images/Special Images/Card_ILY.png"
+image FAI_card_Ave:
+    "images/Special Images/Card_Ave.png"
+image FAI_card_Code Red:
+    "images/Special Images/Card_CodeRed.png"
+image FAI_card_Vira:
+    "images/Special Images/Card_Vira.png"
+transform enlargehover:
+    zoom 1.0 xalign 0.5 yalign 0.5
+    on hover:
+        ease 0.2 zoom 1.4
+    on selected_hover:
+        ease 0.2 zoom 1.4
+    on idle:
+        ease 0.2 zoom 1.0
+    on selected_idle:
+        ease 0.2 zoom 1.4
+
+
+screen CharacterCardSelect(character_choices=[ILY,Ave]):
+    frame:
+        xalign 0.5 yalign 0.02
+        text "CHOOSE YOUR FIGHTER!" style "statusoutlines"
+    hbox:
+    
+        xalign 0.5 yalign 0.5
+        spacing 80
+        for characters in character_choices:
+            $ charactername = characters.name
+            button:
+                at enlargehover
+                xsize 279
+                ysize 406
+                xalign 0.5 yalign 0.5
+                background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),)
+                # hover_background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),enlargehover)
+                action SetVariable("playerobject",characters),Return()
+
+
+
 label roguemode:
    
     "Rogue mode Start"
     "SoftWar"
     "Choose Your F.A.I. Fighter!"
     #create a character select screen like Bleach 4th flamebringer
-    menu:
-        "Choose Your F.A.I. Fighter!"
-        "ILY":
-            $ playerobject=ILY
-            
-        "Ave":
-            $ playerobject=Ave
-        "Code Red":
-            $ playerobject=CodeRed
+    call screen CharacterCardSelect([ILY,Ave,CodeRed])
+
+    # menu:
+    #     "Choose Your F.A.I. Fighter!"
+    #     "ILY":
+    #         $ playerobject=ILY
+    #     "Ave":
+    #         $ playerobject=Ave
+    #     "Code Red":
+    #         $ playerobject=CodeRed
     python:
         PFAI = playerobject
         r_Bosses = FAI_playables
@@ -71,17 +119,21 @@ label roguemode:
     scene gridbglandscape1:
         zoom 0.75
     show Brain
-    br "Welcome to the Undernet!"
+    br "Welcome to the Undernet! My Labyrinth.."
+
     br "I am the mother of all FAI Viruses."
     br "Connecht's entire network is now under my control."
     br "Challengers... Face me!"
+    br "This Undernet Labyrinth "
     
     scene gray
     call r_battlestart
+    call R_Enemy
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene black
         call screen roguenodeselect
+        
         if _return=="R_player_talks":
             call R_player_talks
             jump newnodes
@@ -173,7 +225,6 @@ label R_RecoveryNode:
     
     return
 label R_StellaShop:
-    "Welcome to Stella's Shop!!"
     $ Stoned_m="open2"
     $ Stoned_e="up"
     $ Stoned_eyes="open"
@@ -223,8 +274,16 @@ label r_battlestart:
         ILY_m="smile3"
         used_nodes=[]
         nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
+        treasurebattleware =[
+            GearframeUnitron,
+            NucleusVernier,
+            AccelRiser,
+            DataBuster,
+            SaberAura,
+            Katana,
+            Laserbeam]
 
-        treasure_tpf=battleware_list
+        treasure_tpf=treasurebattleware
         nodes_path.append([Enemy])
         used_nodes.append(Enemy)
         for nodes in range(1,5):
@@ -298,10 +357,11 @@ screen roguenodeselect():
 
     
     button:
+        xsize 400
         background ("[playerName]")
-        yanchor 0.7 ypos 1.0
-        at pausetrans1,zoomtrans(0.8)
-        action Return("R_player_talks") 
+        yanchor 0.7 ypos 1.0 
+        at pausetrans1, zoomtrans(0.8)
+        action Return("R_player_talks")
     text str(stageboss.name) xalign 0.5 yalign 0.1
     hbox:
         # spacing 80

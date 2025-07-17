@@ -1,18 +1,17 @@
 init python:
+    runnumber=0
+    maxstatuslength=16
     class Card:
         def __init__(self,name,magnitude):
             self.name = name
             self.magnitude = magnitude
     def statusAppend(stslist,statusstring):
-        if len(stslist)==16:
+        if len(stslist)==maxstatuslength:
             stslist.pop(0)
             #FIFO First in, First out.
-            # print(stslist)
-            # print(statusstring)
         stslist.append(statusstring)
-
         return stslist
-    runnumber=0
+    
 image bit:
     "gui/Bit.png"
     zoom 4.0
@@ -207,7 +206,8 @@ label DamageSPplayer:
                     play sound "sfx/sfx_exp_short_hard8.wav"
                 else:
                     play sound "sfx/sfx_exp_short_hard9.wav"
-            call hurtnoise_enemy
+            play sound "sfx/noise.wav" channel 1
+            call hurtnoise
             $ playerSP-=damagetoplayer
             if playerSP<0:
                 $ playerSP=0
@@ -1550,17 +1550,22 @@ label enemyexecutecard:
         hide screen cardflashscreenenemy2
         hide ring2
     return
+default enemyhand=[]
+default enemyreturncards=[]
 label enemyattack:
     $ enemyrunnumber = 0
     $ enemynumberofattacks = 5 #renpy.random.randint(1,3)+renpy.random.randint(0,2)
     
-    $ enemyhand = [enemyDeck[0],enemyDeck[1],enemyDeck[2],enemyDeck[3],enemyDeck[4]]
+    # $ enemyhand = [enemyDeck[0],enemyDeck[1],enemyDeck[2],enemyDeck[3],enemyDeck[4]]
+    python:
+        #Enemy hand draw
+        for cardindex in range(0,5-len(enemyhand)):
+            enemyhand.append(enemyDeck[0])
+            enemyDeck.pop(0)
     show screen phasemsg(enemyName+"'S TURN")
     $renpy.pause(0.9,hard=True)
     hide screen phasemsg
-    python:
-        for enemyhandcards in range(0,5):
-            enemyDeck.pop(0)
+    
     #Buffs Priority
     $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts) or ("Saber" in EnmySts):
@@ -1572,12 +1577,12 @@ label enemyattack:
         $ enemyhand.sort(key=lambda x: x.COST,  reverse = True)
     if "Shield" in enemyhand[0].FXN and "BoostATK" in [handcard.FXN for handcard in enemyhand]:
         $ enemyhand.sort(key=lambda x: x.FXN[0].name)
-    python:
-        for cardindex in range(0,5):
+    # python:
+    #     for cardindex in range(0,5):
 
-            enemyDeck.append(enemyhand[cardindex])
-
+            
     $ choicecount=0
+    $ enemyreturncards=[]
     label enemyattackloop:
         # $ enemycardtoexecute = enemyDeck[0]
 
@@ -1614,15 +1619,19 @@ label enemyattack:
         #   call enemyexecutecard
         # else:
         call enemyexecutecard from _call_enemyexecutecard
+        $ enemyreturncards.append(enemyhand[0])
         $ enemyhand.pop(0)
         $ enemyrunnumber+=1
-
+       
 
 
         if enemyrunnumber<enemynumberofattacks and (battle_done==False):
             jump enemyattackloop
 
         else:
+            python:
+                for returncard in enemyreturncards:
+                    enemyDeck.append(returncard)
             call EnemyEndPhase from _call_EnemyEndPhase
             # info"[enemyName]'s turn has ended."
     return

@@ -38,18 +38,7 @@ transform flip_image:
 transform xZoom(value):
     xzoom (value)
 
-style statusoutlines:
-    size 40
-    outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
-style statusoutlines_red:
-    size 40
-    outlines [(2, "#bf0505", -1, 1),(4, "#bf0505", 0, 0)]
-style HPbaroutlines:
-    size 14
-    outlines [(2, "#79000b", 0, 0)]
-style SPbaroutlines:
-    size 14
-    outlines [(2, "#022168", 0, 0)]
+
 
 define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa","ILY_Alpha"]
 
@@ -893,13 +882,15 @@ label BattleReturns:
         if playerbattlecode != []:
             $ playerbattlecode.pop(-1)
     elif _return=="Execute":
-        call Execution
         python:
             playerhandminus_usedcards = []
             for usedcardindex,cards_used in enumerate(usedcards):
                 if not usedcardindex==cards_used:
                     playerhandminus_usedcards.append(playerhand[cards_used])
+                    
                 playerDeck.append(playerhand[cards_used])
+        call Execution
+        
             # for cards_used in usedcards[::-1]:
             #     playerhand.pop(cards_used)
             #     playerDeck.append(playerhand[cards_used])

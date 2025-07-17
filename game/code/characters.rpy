@@ -1569,7 +1569,7 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5 xoffset 80
+    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5 
 
     linear 1.0 yoffset 0
     pause .5
@@ -1581,7 +1581,7 @@ image Ave:
 
 image AveFull:
     Composite(
-        (4189,7278),
+        (2581,7278),
         (0, 0), "images/Characters/Ave/Avebase.png",
         (0, 0), WhileSpeaking(
             "Ave",
