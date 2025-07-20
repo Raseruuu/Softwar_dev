@@ -139,7 +139,7 @@ label pauseshow:
 init python:
     hoverFXN=[]
 
-    def tooltip_position():
+    def tool_position():
         import pygame
         position = pygame.mouse.get_pos()
         print(position)
@@ -148,20 +148,29 @@ init python:
             tooltip_anchors[0]=1.0
         if (position[1]>=0.5*config.screen_height):
             tooltip_anchors[1]=1.0
-        return (position[0],position[1],tooltip_anchors[0],tooltip_anchors[1])
+        return (position[0],position[1]-140,tooltip_anchors[0],tooltip_anchors[1])
 
 transform fxn_frame_pos(tooltip_position):
     xpos tooltip_position[0]
     ypos tooltip_position[1]
     xanchor tooltip_position[2]
     yanchor tooltip_position[3]
+screen card_tooltip_battle:
+
+    frame:
+        at fxn_frame_pos(tool_position())
+        # xpos 0.44 xanchor 0.0 ypos 0.94 yanchor 1.0
+        xsize 300
+        ysize 140
+        add FunctionListDescript(hoverFXN) 
 screen card_tooltip:
 
     frame:
-        # at fxn_frame_pos(tooltip_position())
-        xsize 300
-        ysize 200
-        add FunctionListDescript(hoverFXN)
+        # at fxn_frame_pos(tool_position())
+        xpos 0.44 xanchor 0.0 ypos 0.94 yanchor 1.0
+        xsize 420
+        ysize 140
+        add FunctionListDescript(hoverFXN) 
 label ObtainItem(item):
 
     if len(inventory)== 100:
@@ -489,8 +498,8 @@ screen Battleware_Edit():
             frame:
                 imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
                     action SetVariable("noscreentransformsfornow",True), Return("UnsaveDeck")
-    # if hoverFXN!=[]:
-    #     use card_tooltip
+    if hoverFXN!=[]:
+        use card_tooltip
 
 transform marquee:
     #on show:

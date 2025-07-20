@@ -23,7 +23,7 @@ init python:
         "SmallEnergy":120,
         "MediumEnergy":240,
         "LargeEnergy":480,
-        "Unlocker":1000,
+        # "Unlocker":1000,
         "Antibody":350,
 
         "V-Flame":600,
@@ -34,7 +34,7 @@ init python:
 
     }
 
-    item_list = [SoftDrink,Unlocker,SmallEnergy,MediumEnergy]
+    item_list = [SoftDrink,SmallEnergy,MediumEnergy] #Unlocker
     battleware_list =[VirusFlame,LambdaSaber,BlockSaber,DataBuster,Laserbeam]
 
 

@@ -94,7 +94,7 @@ screen VERSUS(playerName,enemyName):
     text "{size=100}{b}[playerName]{/size}{/b}" xalign 0.1 yalign 0.75  style 'statusoutlines_red'
     text "{size=85}{b}{color=f00}VS{/size}{/b}{/color}" xalign 0.5 yalign 0.75 at vstrans2
     text "{size=80}{b}VS{/size}{/b}" xalign 0.5 yalign 0.75 style 'statusoutlines_red'
-    text "{size=100}{b}[enemyName]{/size}{/b}" xalign 0.9 yalign 0.75  style 'statusoutlines_red'  
+    text "{size=100}{b}"+ ("ILY" if (enemyName =="ILY_Alpha") else enemyName )+"{/size}{/b}" xalign 0.9 yalign 0.75  style 'statusoutlines_red'  
 
 
 screen battlestats():
@@ -282,7 +282,8 @@ screen battlestats():
                 spacing 10
                 vbox:
                     xalign 1.0
-                    text "{b}{size=24}[enemyName]{/b}{/size}" xalign 1.0
+                    
+                    text ("{b}{size=24}" + ("ILY" if (enemyName =="ILY_Alpha") else enemyName )+"{/b}{/size}") xalign 1.0
                     vbox:
                         fixed:
                             ysize 24
@@ -590,7 +591,7 @@ label playbattlemusic(e_name):
     elif e_name=="Code Red":
         play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
     elif e_name=="Melissa":
-        play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
+        play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.wav"
     # elif e_name=="Melissa":
     #     play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
     
@@ -699,23 +700,9 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     show Enemy:
         xalign 0.5 yanchor 0.32 ypos 0.3
         
-
-    if playerName=="ILY":
-        voice "voice/ILY11C - I'll show you.mp3"
-        $ ILY_m = 'frown'
-        $ ILY_e = 'down'
-        i"{cps=100}I'll show you... {nw}{/cps}"
-        $ ILY_m = 'smile3'
-        $ ILY_e = 'normal'
-        voice "voice/ILY11C - What love can do.mp3"
-        extend "{cps=50} What love can do!{/cps}"
-        $ ILY_m = 'frown'
-        $ ILY_e = 'down'
-    if enemyName=="Ave":
-        voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
-        $ Ave_m = 'frown'
-        $ Ave_e = 'down'
-        a"I'm the Ultimate Antivirus!"
+    call start_battlecry(playerName)
+    call start_battlecry(enemyName)
+    
     # show screen decknum
     # with pixellate
     # show screen stats
@@ -935,32 +922,34 @@ label showphasemsg(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
-        for cardindex in range(0,5):
-            $ playercardobj = playerhand[cardindex]
-            $ card_distance = 0.12
-            $ cardxpos=0.26+(cardindex*card_distance)
+    for cardindex in range(0,5):
+        $ playercardobj = playerhand[cardindex]
+        $ card_distance = 0.12
+        $ cardxpos=0.26+(cardindex*card_distance)
 
-            if (playerhand[cardindex].COST<=playerbits) and (clickedcard[cardindex]==False):
-                ###TODO:: ADD HOVER DESCRIPTION Layered Images
-                imagebutton idle CardDisplay(playercardobj):
-                    action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
-                    hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
-                    unhovered Hide("cardhover")
-                    at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.92
-            elif clickedcard[cardindex]:
-                
-                add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
-            else:
-                add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
-                add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
-
-
-        if playerbattlecode!=[]:
-            imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
-            key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
-            key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+        if (playerhand[cardindex].COST<=playerbits) and (clickedcard[cardindex]==False):
+            ###TODO:: ADD HOVER DESCRIPTION Layered Images
+            imagebutton idle CardDisplay(playercardobj):
+                action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
+                hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav") ,SetVariable("hoverFXN",playercardobj.FXN)
+                unhovered Hide("cardhover")
+                at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.92
+        elif clickedcard[cardindex]:
+            
+            add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
         else:
-            add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
+            add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
+            add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
+        
+
+    if playerbattlecode!=[]:
+        imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
+        key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+        key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+    else:
+        add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
+    if hoverFXN!=[]:
+        use card_tooltip_battle
 screen Activate_Battleware:
         use handcardsscreen
         # add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945

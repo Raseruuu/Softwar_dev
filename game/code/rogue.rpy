@@ -17,6 +17,7 @@ init python:
             # (0,0), At("card_highlights", card_highlights_t),
             (0,0), AlphaMask(At(("card_gradient"), card_gradient_t,zoomtrans(2.0)), "images/Special Images/Card_"+FAI_object.name+".png"))
 # image FAI_card_ILY:
+
 #     "images/Special Images/Card_ILY.png"
 #     FAI_card(ILY)
 # image FAI_card_Ave:
@@ -52,7 +53,7 @@ screen CharacterCardSelect(character_choices=[ILY,Ave]):
                 xsize 279
                 ysize 406
                 xalign 0.5 yalign 0.5
-                background At((FAI_card(characters)),rotate_object_t, zoomtrans(0.2),)
+                background At((FAI_card(characters)), zoomtrans(0.4))
                 # hover_background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),enlargehover)
                 action SetVariable("playerobject",characters),Return()
 
@@ -60,7 +61,7 @@ screen CharacterCardSelect(character_choices=[ILY,Ave]):
 
 label roguemode:
     play music "bgm/Roam_game_maoudamashii_5_town18.mp3"
-    scene 
+    scene black
     call screen CharacterCardSelect([ILY,Ave,CodeRed])
 
     # menu:
@@ -73,6 +74,8 @@ label roguemode:
     #         $ playerobject=CodeRed
     python:
         PFAI = playerobject
+        if playerobject in r_Bosses:
+            r_Bosses.remove(playerobject)
         mydeck=PFAI.deck
         deckplugin =mydeck["plugins"]
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
@@ -121,10 +124,14 @@ label roguemode:
     br "Connecht's entire network is now under my control."
     br "Challengers... Face me!"
     br "This Undernet Labyrinth "
-    
+    python:
+        for bosses in r_Bosses:
+            renpy.call("roguestage")
+    return
+label roguestage:
     scene gray
     call r_battlestart
-    call R_Enemy
+    call R_Enemy #First Enemy
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene black
@@ -151,17 +158,7 @@ label roguemode:
             
         if not game_over: 
             jump newnodes
-        
     return
-    # label newbattle:
-    # $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
-    # $ enemyobject= enemyvirus
-    # call battlev3(playerobject,enemyobject)
-    # if playerHP==0:
-    #     $ game_over=True
-    # if not game_over:
-    #     jump newbattle
-    
 default nodes_path=[]
 
 init python:
@@ -414,7 +411,48 @@ screen roguenodeselect():
                         #     text (node_item.TYPE+" ")
                         #     # text ("("+str(n_index_1)+","+str(n_index_2)+")")  
                         #     at zoomtrans(0.5)
-            
+    frame:
+        if not notransform:
+            at pausetrans1
+        style "pausestats"
+        hbox:
+            null width 4
+            vbox:
+                text "{b}[playerName]{/b}"
+                null height 7
+                fixed:
+                    frame:
+                        style_prefix "healthbar"
+                        xsize bar_size(playerHP,playerHPMax, 420)
+                    hbox:
+                        null width 40
+                        text "HP: [playerHP]/[playerHPMax]"
+                    vbox:
+                        null height 32
+                        hbox:
+
+                            frame:
+                                style "deckframe"
+                                text "{size=14}Deck: [mydeckname]{/size}"
+                            
+                            frame:
+                                style "deckframe"
+                                text "{size=14}ATK: [playerATK] DEF: [playerDEF] {/size}"
+                            frame:
+                                style "deckframe"
+                                text "{size=14}Chapter [chapternum]{/size}"
+                        frame:
+                            xminimum 460
+                            style "deckframe"
+                            text "{size=16}Money: [Money] {image=gui/zenny.png} Zennys{/size}"
+
+                null height 10
                         
 
     # key "dismiss" action Return()
+
+
+
+label rogue_intro_ILY:
+    ""
+    return

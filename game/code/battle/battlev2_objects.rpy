@@ -109,7 +109,7 @@ init python:
             "evade("+str(quantity)+")",
             "Gain "+str(quantity)+" \"Evade\" token(s). This will allow you to evade Attack() functions.",
             [tokenname,quantity])
-    def GainToken(tokenname,quantity):
+    def GainToken(tokenname,quantity=1):
         return Fxn(
             "GainToken",
             "gainToken(\""+str(tokenname)+"\","+str(quantity)+")",
@@ -318,6 +318,7 @@ init python:
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(),Attack()], 3)
     XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=        Card("Y-Axess",          "Y",               0.50,     [AttackSP(),Attack()],            3)
+    DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 # Evasion cards
@@ -338,7 +339,7 @@ init python:
     VBlaze=        Card("VBlaze",           "Fire",           1.0,     [Attack(),Burn(40)],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
     WormBite=      Card("WormBite",         "Hole",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
-    WormRetreat=    Card("WormRetreat",      "Hole",         1.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(4)])],   2)
+    WormRetreat=    Card("WormRetreat",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(3)])],   3)
     WormAdvance=    Card("WormAdvance",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(3)]),Advance()],   1)
 
 #Antivirus Exclusive

@@ -1382,6 +1382,12 @@ image Melissa:
     linear 1.0 yoffset 5
     pause .5
     repeat
+image Icon_Melissa:
+    mesh True
+    LiveCrop((210,80, 520,700), At("MelissaFullBody",zoomtrans(1.5)))
+    zoom 0.22
+
+
 image Melissajump:
     mesh True
     "MelissaFull base_jump"

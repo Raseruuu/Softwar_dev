@@ -19,10 +19,17 @@ init python:
         val = val / 2
         trans.matrixtransform = OffsetMatrix(val - 100, val - 100, 0)
         return 0
+    def shift_diagonally2(trans, st, at):
+        x, y = (0,0)
+        val = (x - config.screen_width / 2) * .5 + (y - config.screen_height / 2) * .5
+        val = val / 2
+        trans.matrixtransform = OffsetMatrix(val - 100, val - 100, 0)
+        return 0
+    
 #endregion
 
 #region TRANSFORMS
-transform card_gradient_t:
+transform card_gradient_rep:
     alignaround (.5, .5)
     mesh True
     rotate -45
@@ -31,7 +38,22 @@ transform card_gradient_t:
     alpha 0.5
     subpixel True
     function shift_diagonally
-
+transform card_gradient_t:
+    # alignaround (.5, .5)
+    # mesh True
+    align(0.5, 0.5)
+    rotate -45
+    alpha 0.4
+    # subpixel True
+    
+    
+    ypos 0.0 xpos 0.0 xanchor 1.0 
+    matrixtransform OffsetMatrix(-800, -800,0)
+    pause 2.0
+    linear 0.3 matrixtransform OffsetMatrix(0, 0,0)
+    alpha 0.6
+    
+    repeat
 transform card_highlights_t:
     function shift_hue
 
@@ -70,7 +92,7 @@ init python:
             (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (0,0), AlphaMask(At("card_gradient",card_gradient_t),"images/Cards/Cardblank.png"),
             
-            (14,260),
+            (14,258),
                 FunctionList(cardobj.FXN),
             (10,196),
                 At("images/Cards/cardbit/bit.png",zoomtrans(0.5),card_highlights_t),

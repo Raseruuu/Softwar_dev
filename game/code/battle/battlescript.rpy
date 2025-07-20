@@ -44,7 +44,7 @@ image Blueframe:
         repeat
 
 image playerdmgpoint:
-    Text("{size=80}[damagetoplayer]{/size}", style= "statusoutlines_red")
+    Text("{b}[damagetoplayer]{/b}", style= "statusoutlines_red")
     choice:
         xalign 0.57 yanchor 0.5 ypos 0.1+0.55
         zoom 1.0
@@ -294,7 +294,7 @@ image cardflasher:
 
 
 image card1:
-    LiveComposite(
+    Composite(
         (225,300),
         (0,0),"images/Cards/Cardblank.png",
         (11,12),"images/Cards/[playercard1name].png",
@@ -318,7 +318,7 @@ image card2:
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].HIT]{/color}{/font}{/size}"),
         )
 image card3:
-    LiveComposite(
+    Composite(
         (225,300),
         (0,0),"images/Cards/Cardblank.png",
         (11,12),"images/Cards/[playercard3name].png",

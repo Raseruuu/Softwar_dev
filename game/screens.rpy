@@ -15,15 +15,11 @@ style default:
     line_spacing 1
     properties gui.text_properties()
     language gui.language
-
 style statusoutlines:
-    size 40
-    outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
-style statusoutlines:
-    size 40
+    size 60
     outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
 style statusoutlines_red:
-    size 40
+    size 60
     outlines [(2, "#bf0505", -1, 1),(4, "#bf0505", 0, 0)]
 style HPbaroutlines:
     size 14
@@ -31,6 +27,7 @@ style HPbaroutlines:
 style SPbaroutlines:
     size 14
     outlines [(2, "#022168", 0, 0)]
+
 style text_nooutline:
     outlines [(0, "#000", 0, 0)]
 

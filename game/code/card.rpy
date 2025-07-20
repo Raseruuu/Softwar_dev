@@ -48,8 +48,8 @@ init python:
         return VBox(*fxns)
     def FunctionListDescript(FXN):
         fxns=[]
-        for function_index_local, cardfunction in FXN:
-            fxns.append(Text("{size=11}{b}"+cardfunction.name+"{/b}{/size}\n  {size=11}"+cardfunction.text+"{/size}"))
+        for function_index_local, cardfunction in enumerate(FXN):
+            fxns.append(Text("{size=12}{b}{u}"+cardfunction.name+"{/b}{/u}{/size}\n  {size=11}"+cardfunction.text+"{/size}"))
                 
         return VBox(*fxns)
     def CardDisplayNew(cardobj):
@@ -81,7 +81,7 @@ init python:
             (0,0),"images/Cards/Cardblank.png",
             
             (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
-            (14,260),
+            (14,258),
                 FunctionListNormal(cardobj.FXN),
             # (170,169),
             (10,196),

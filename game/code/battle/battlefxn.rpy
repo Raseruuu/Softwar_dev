@@ -874,6 +874,9 @@ label updatestats_enemy:
 
 image shieldbit = "images/battle/Shield_bit.png"
 image shieldlight = "images/battle/Shield_light.png"
+image SPText:
+    Text("{b}SP + "+str(shieldtoplayer)+"{/b}",style='statusoutlines')
+    
 label Shieldplayer:
     play sound "sfx/defense.wav"
     # $ multiplier = currentcardFXN[fxnindex].params[0]
@@ -898,11 +901,11 @@ label Shieldplayer:
         ease 0.3 alpha 1.0
         ease 0.3 alpha 0.0
     show shieldbit onlayer overlay:
-        alpha 0.0 xpos 0.5 ypos 0.7 yanchor 0.5 xanchor 0.5
+        alpha 0.0 xpos 0.5 ypos 0.68 yanchor 0.5 xanchor 0.5
         ease 0.2 alpha 1.0
         ease 0.4 alpha 0.0
-    show text "{size=70}SP+=[shieldtoplayer]{/size}"  onlayer overlay:
-        alpha 0.0 zoom 0.0 xpos 0.5 ypos 0.9 yanchor 0.5 xanchor 0.5
+    show SPText onlayer overlay:
+        alpha 0.0 zoom 0.0 xpos 0.5 ypos 0.85 yanchor 0.5 xanchor 0.5
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.55
         ease 0.05 alpha 0.0 zoom 1.1
@@ -1339,9 +1342,6 @@ label FinishingFlash(dialogue):
 transform handcard_rotator(rotateint):
     rotate rotateint transform_anchor True
 screen handcardsscreen():
-    
-           
-            
     python:
         phand = []
         if usedcards!=[]:
@@ -1360,7 +1360,7 @@ screen handcardsscreen():
             # action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
             # hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
             # unhovered Hide("cardhover")
-            at zoomtrans(0.5),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.92+(cardindex*0.012) yanchor 1.1
+            at zoomtrans(0.6),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.92+(cardindex*0.012) yanchor 1.1
         # elif clickedcard[cardindex]:
             
         #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945

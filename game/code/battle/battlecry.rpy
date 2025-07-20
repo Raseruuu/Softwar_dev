@@ -109,7 +109,7 @@ label battlecry_Ave:
             elif avcount >= 5:
                 voice "voice/Ave/It's Over, ILY!.ogg"
                 a"It's over, ILY!"
-            $ avcount=1
+                $ avcount=1
     return
 label battlecry_Melissa:
     if enemyName=="Melissa":
@@ -330,7 +330,7 @@ label battlecry:
             elif avcount >= 5 and enemyName=="ILY":
                 voice "voice/Ave/It's Over, ILY!.ogg"
                 a"It's over, ILY!"
-            $ avcount=1
+                $ avcount=1
     if forcefinish:
         $ forcefinish=False
     return
@@ -410,4 +410,30 @@ label hurtnoise:
         elif hcount == 4:
             voice "voice/Code Red/hurt4.mp3" 
             $ hcount=0
+    return
+
+label start_battlecry(FAIname):
+    $ battlecry_list = ["ILY","Ave","CodeRed","Vira"]
+    if FAIname in battlecry_list:
+        $ renpy.call("start_battlecry_"+FAIname)
+    return
+
+label start_battlecry_ILY:
+    voice "voice/ILY11C - I'll show you.mp3"
+    $ ILY_m = 'frown'
+    $ ILY_e = 'down'
+    i"{cps=100}I'll show you... {nw}{/cps}"
+    $ ILY_m = 'smile3'
+    $ ILY_e = 'normal'
+    voice "voice/ILY11C - What love can do.mp3"
+    extend "{cps=50} What love can do!{/cps}"
+    $ ILY_m = 'frown'
+    $ ILY_e = 'down'
+    return
+label start_battlecry_Ave:
+
+    voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
+    $ Ave_m = 'frown'
+    $ Ave_e = 'down'
+    a"I'm the Ultimate Antivirus!"
     return
