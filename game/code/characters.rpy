@@ -484,7 +484,7 @@ image ILY small:
     linear 1.0 yoffset 0
     linear 1.0 yoffset 5
     repeat
-transform ilyfix(deg):
+transform spritefix(deg):
     zoom deg
     xoffset 60
     xpos 0
@@ -495,30 +495,32 @@ image ILY_outfit:
     # "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/4 else "")+".png"
 layeredimage ILYFullBody:
     always:
-        ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",ilyfix(0.5)),"ILY_hair=='default'",Null())
+        ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",spritefix(0.5)),"ILY_hair=='default'",Null())
     always:
-        At("images/Characters/ILY/Full/ILY_Full_base.png",ilyfix(0.5)) #pose
+        At("images/Characters/ILY/Full/ILY_Full_base.png",spritefix(0.5)) #pose
     always:
-        ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",ilyfix(0.5)),"ILY_stockings==''",Null()) #stockings
+        At("images/Characters/ILY/Full/ILY_bracelet.png",spritefix(0.5))
     always:
-            ConditionSwitch("ILY_underwear!=''",At(("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png"),ilyfix(0.5)),"ILY_underwear==''",Null()) #underwear
+        ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",spritefix(0.5)),"ILY_stockings==''",Null()) #stockings
     always:
-            ConditionSwitch("ILY_outfit!=''",At("ILY_outfit",ilyfix(0.5)),"ILY_outfit==''",Null()) #outfit
+            ConditionSwitch("ILY_underwear!=''",At(("images/Characters/ILY/Full/ILY_v2_underwear_[ILY_underwear].png"),spritefix(0.5)),"ILY_underwear==''",Null()) #underwear
     always:
-        At("images/Characters/ILY/Full/ILY_Full_face.png",ilyfix(0.5))
+            ConditionSwitch("ILY_outfit!=''",At("ILY_outfit",spritefix(0.5)),"ILY_outfit==''",Null()) #outfit
     always:
-        At("images/Characters/ILY/Full/ILY_Full_hair_[ILY_hair].png",ilyfix(0.5))
+        At("images/Characters/ILY/Full/ILY_Full_face.png",spritefix(0.5))
+    always:
+        At("images/Characters/ILY/Full/ILY_Full_hair_[ILY_hair].png",spritefix(0.5))
     always:
         ConditionSwitch(
             "ILY_eyes=='open'",
-            At("ILYEyes[ILY_p]",ilyfix(0.5)),
+            At("ILYEyes[ILY_p]",spritefix(0.5)),
             "ILY_eyes!='open'",
-            At("images/Characters/ILY/ILY_eyes[ILY_eyes].png",ilyfix(0.5)),
+            At("images/Characters/ILY/ILY_eyes[ILY_eyes].png",spritefix(0.5)),
             )
     always:
-        At("images/Characters/ILY/ILY_e[ILY_e].png",ilyfix(0.5))
+        At("images/Characters/ILY/ILY_e[ILY_e].png",spritefix(0.5))
     always:
-        At("images/Characters/ILY/ILY_heart0.png",ilyfix(0.5))
+        At("images/Characters/ILY/ILY_heart0.png",spritefix(0.5))
     always:
         At(WhileSpeaking(
             "ILY",
@@ -527,7 +529,7 @@ layeredimage ILYFullBody:
                 "('smile' not in ILY_m)","ILYMouthfrown"
                 ),
             "images/Characters/ILY/ILY_m[ILY_m].png"
-            ),ilyfix(0.5))
+            ),spritefix(0.5))
 image ILYVtuber:
     LiveComposite(
     (0.75, 0.75), #(544,600),
@@ -695,8 +697,8 @@ image ILY_Alpha:
     mesh True
 
     "ILY_Alpha_FullBody"
-    zoom 0.5
-    yanchor 0.50
+    zoom 0.49
+    yanchor 0.55
     ypos 1.0
     linear 1.0 yoffset 0
     linear 1.0 yoffset 5
@@ -781,24 +783,24 @@ image Icon_ILY_Alpha:
     zoom 0.22
 layeredimage ILY_Alpha_FullBody:
     always:
-        At("images/Characters/ILY/Alpha/ILY_Alpha_Full_base.png",ilyfix(0.5)) #pose
+        At("images/Characters/ILY/Alpha/ILY_Alpha_Full_base.png",spritefix(0.5)) #pose
     always:
         ConditionSwitch(
             "ILY_Alpha_eyes=='open'",
-            At("ILYAlphaEyes",ilyfix(0.5)),
+            At("ILYAlphaEyes",spritefix(0.5)),
             "ILY_Alpha_eyes!='open'",
-            At("images/Characters/ILY/Alpha/ILY_Alpha_eyes[ILY_Alpha_eyes].png",ilyfix(0.5)),
+            At("images/Characters/ILY/Alpha/ILY_Alpha_eyes[ILY_Alpha_eyes].png",spritefix(0.5)),
             )
     always:
-        At("images/Characters/ILY/Alpha/ILY_Alpha_e[ILY_Alpha_e].png",ilyfix(0.5))
+        At("images/Characters/ILY/Alpha/ILY_Alpha_e[ILY_Alpha_e].png",spritefix(0.5))
     always:
         WhileSpeaking(
             "ILY_Alpha",
             ConditionSwitch(
-                "('smile' in ILY_Alpha_m)",At("ILYAlphaMouthsmile",ilyfix(0.5)),
-                "('smile' not in ILY_Alpha_m)",At("ILYAlphaMouthfrown",ilyfix(0.5))
+                "('smile' in ILY_Alpha_m)",At("ILYAlphaMouthsmile",spritefix(0.5)),
+                "('smile' not in ILY_Alpha_m)",At("ILYAlphaMouthfrown",spritefix(0.5))
                 ),
-            At("images/Characters/ILY/Alpha/ILY_Alpha_m[ILY_Alpha_m].png",ilyfix(0.5))
+            At("images/Characters/ILY/Alpha/ILY_Alpha_m[ILY_Alpha_m].png",spritefix(0.5))
             )
 
 #########
@@ -1384,7 +1386,7 @@ image Melissa:
     repeat
 image Icon_Melissa:
     mesh True
-    LiveCrop((210,80, 520,700), At("MelissaFullBody",zoomtrans(1.5)))
+    Crop((210,80, 520,700), At("MelissaFullBody",zoomtrans(1.5)))
     zoom 0.22
 
 
@@ -1819,21 +1821,21 @@ image HilbertMouthfrown:
     repeat
 image HilbertFull:
     # "images/Characters/Hilbert/Hilbert_full.png"
-    LiveComposite(
+    Composite(
         (704,2016),
-        (0, 0), At("images/Characters/Hilbert/Hilbert_base.png",ilyfix(0.5)),
+        (0, 0), At("images/Characters/Hilbert/Hilbert_base.png",spritefix(0.5)),
         (0, 0), WhileSpeaking(
             "Hilbert",
             ConditionSwitch(
-                "('smile' in Hilbert_m)",At("HilbertMouthsmile",ilyfix(0.5)),
-                "('smile' not in Hilbert_m)",At("HilbertMouthfrown",ilyfix(0.5))
+                "('smile' in Hilbert_m)",At("HilbertMouthsmile",spritefix(0.5)),
+                "('smile' not in Hilbert_m)",At("HilbertMouthfrown",spritefix(0.5))
             ),
-            At("images/Characters/Hilbert/Hilbert_mouth_[Hilbert_m].png",ilyfix(0.5))
+            At("images/Characters/Hilbert/Hilbert_mouth_[Hilbert_m].png",spritefix(0.5))
 
 
             ),
-        (0, 0), At("images/Characters/Hilbert/Hilbert_eyebrows_[Hilbert_e].png",ilyfix(0.5)),
-        (0, 0), At("HilbertEyes",ilyfix(0.5))#eyes
+        (0, 0), At("images/Characters/Hilbert/Hilbert_eyebrows_[Hilbert_e].png",spritefix(0.5)),
+        (0, 0), At("HilbertEyes",spritefix(0.5))#eyes
         # (0, 0), "images/Characters/Hilbert/Hilbertshades.png",
         )
     zoom 0.7
@@ -2492,16 +2494,16 @@ image BellaMouthfrown:
     repeat
 layeredimage BellaFullBody:
     always:
-        At("images/Characters/Bella/Bella_base.png",ilyfix(0.5)) #pose
+        At("images/Characters/Bella/Bella_base.png",spritefix(0.5)) #pose
     always:
         ConditionSwitch(
             "Bella_eyes=='open'",
-            At("BellaEyes",ilyfix(0.5)),
+            At("BellaEyes",spritefix(0.5)),
             "Bella_eyes!='open'",
-            At("images/Characters/Bella/Bella_eyes_[Bella_eyes].png",ilyfix(0.5)),
+            At("images/Characters/Bella/Bella_eyes_[Bella_eyes].png",spritefix(0.5)),
             )
     always:
-        At("images/Characters/Bella/Bella_e[Bella_e].png",ilyfix(0.5))
+        At("images/Characters/Bella/Bella_e[Bella_e].png",spritefix(0.5))
 
     always:
         At(WhileSpeaking(
@@ -2511,7 +2513,7 @@ layeredimage BellaFullBody:
                 "('smile' not in Bella_m)","BellaMouthfrown"
                 ),
             "images/Characters/Bella/Bella_m[Bella_m].png"
-            ),ilyfix(0.5))
+            ),spritefix(0.5))
 # image Bella:
 image Bella:
     mesh True

@@ -11,6 +11,12 @@ label Plugins_Run:
         call PluginExecution(playerplugin,"player")
         call PluginExecution(enemyplugin,"enemy")
     return
+
+screen plugins_view:
+    # frame:
+
+    use pauselayout()
+
 label PluginExecution(plugin_set,plugin_user):
     $ runnumber = 0
     $ attacknumber = 0
@@ -69,10 +75,11 @@ label PluginExecution(plugin_set,plugin_user):
                     if plugin_user=="player":
                         call functioneffects(runfxnstring)
                     elif plugin_user=="enemy":
+                        "This??"
                         call enemyfunctioneffects(runfxnstring)
                 $fxnindex+=1
                 if fxnindex<len(currentcardFXN):
-                    jump runfunctions
+                    jump runfunctions_plugins
 
             hide screen cardflashscreen2
             hide screen cardflashscreenenemy2

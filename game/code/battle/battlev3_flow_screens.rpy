@@ -87,8 +87,8 @@ transform vstrans2:
 
 screen VERSUS(playerName,enemyName):
 
-    add ("images/Special Images/BattleCutscene_"+playerName+".png") xalign 0.23 yalign 0.25 at zoomtrans(0.15)
-    add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xalign 0.78 yalign 0.25 at zoomtrans(0.15)
+    add ("images/Special Images/BattleCutscene_"+enemyName+".png")  xpos 0.5 xanchor 0.0 yalign 0.25 at zoomtrans(0.15)
+    add ("images/Special Images/BattleCutscene_"+playerName+".png") xpos 0.5 xanchor 1.0 yalign 0.25 at zoomtrans(0.15)
     key "dismiss" action Return()
 
     text "{size=100}{b}[playerName]{/size}{/b}" xalign 0.1 yalign 0.75  style 'statusoutlines_red'
@@ -392,6 +392,7 @@ screen battlestats():
                     #     text "{b}ATK: [enemyATK]{/b}"
                     #     null width 10
                     #     text "{b}DEF: [enemyDEF]{/b}"
+    
             
 style battlestats_text is text:
     color "#fff"
@@ -592,8 +593,6 @@ label playbattlemusic(e_name):
         play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
     elif e_name=="Melissa":
         play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.wav"
-    # elif e_name=="Melissa":
-    #     play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.ogg"
     
     else:
         
@@ -619,11 +618,13 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     $ playerSP = 0
     $ playerATK = PFAI.ATK
     $ playerDEF = PFAI.DEF
-    if playerName == "ILY":
-        $ playerDeck = deckcurrent
+    # if playerName == "ILY":
+    if playerobject.name==PFAI.name:
+        $ playerDeck = copy.deepcopy(deckcurrent)
     else:
         $ playerDeck = PFAI.deck["content"]
-        
+    $ actual_playerDeck = deckcurrent
+    
     $ playerPlugins = playerPlugins =PFAI.deck["plugins"]
     $ first_turn_done =False
 
@@ -735,7 +736,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
             elif battle_done:
 
                 show screen phasemsg("BATTLE_END")
-                $renpy.pause(0.9,hard=True)
+                $ renpy.pause(0.9,hard=True)
                 hide screen phasemsg
                 hide screen battlestats
                 if playerHP<=0:
@@ -805,9 +806,10 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
             if not battle_done:
                 jump battleloop
             elif battle_done:
-                $ actual_playerDeck = playerDeck
+                
+                $ playerDeck = sorted( actual_playerDeck,key=lambda x: x.NAME, reverse=False)
                 show screen phasemsg("BATTLE_END")
-                $renpy.pause(0.9,hard=True)
+                $ renpy.pause(0.9,hard=True)
                 hide screen phasemsg
                 hide screen battlestats
                 if playerHP<=0:
@@ -876,8 +878,12 @@ label BattleReturns:
                     playerhandminus_usedcards.append(playerhand[cards_used])
                     
                 playerDeck.append(playerhand[cards_used])
+        # $ usedcardsnum=len(usedcards)
+        # $ decklength=len(playerDeck)
+        # "returned [usedcardsnum] cards to the deck."
+        # "deck length = [decklength]"
         call Execution
-        
+        # $ playerDeck=playerDeck+playerhandminus_usedcards
             # for cards_used in usedcards[::-1]:
             #     playerhand.pop(cards_used)
             #     playerDeck.append(playerhand[cards_used])
@@ -914,7 +920,7 @@ transform phasetrans:
 
 label showphasemsg(msg):
     show screen phasemsg(msg)
-    $renpy.pause(0.9,hard=True)
+    $ renpy.pause(0.9,hard=True)
     hide screen phasemsg
     return
 
@@ -922,24 +928,46 @@ label showphasemsg(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
-    for cardindex in range(0,5):
-        $ playercardobj = playerhand[cardindex]
-        $ card_distance = 0.12
-        $ cardxpos=0.26+(cardindex*card_distance)
+    hbox:
+        # xalign 0.5 yalign 0.92
+        xpos 0.5 xanchor 0.5 ypos 0.98 yanchor 1.0
+        spacing 4
+        for cardindex in range(0,5):
+            $ playercardobj = playerhand[cardindex]
+            $ card_distance = 0.12
+            $ cardxpos=0.26+(cardindex*card_distance)
 
-        if (playerhand[cardindex].COST<=playerbits) and (clickedcard[cardindex]==False):
-            ###TODO:: ADD HOVER DESCRIPTION Layered Images
-            imagebutton idle CardDisplay(playercardobj):
-                action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
-                hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav") ,SetVariable("hoverFXN",playercardobj.FXN)
-                unhovered Hide("cardhover")
-                at zoomBattlecards xpos cardxpos xanchor 0.5 yalign 0.92
-        elif clickedcard[cardindex]:
-            
-            add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
-        else:
-            add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
-            add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
+            if (playerhand[cardindex].COST<=playerbits) and (clickedcard[cardindex]==False):
+                ###TODO:: ADD HOVER DESCRIPTION Layered Images
+                imagebutton idle CardDisplay(playercardobj):
+                    action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
+                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+                    # Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos),
+                    
+                    unhovered SetVariable("hoverFXN",[])
+                    # Hide("cardhover"),
+                    at enlargehover_choosecard
+                    # xpos cardxpos 
+                    # xanchor 0.5 ypos 0.90 yanchor 0.5
+                    ypos 0.98 yanchor 1.0
+            elif (playerhand[cardindex].COST>playerbits) and (clickedcard[cardindex]==False):
+                imagebutton idle CardDisplayDimmed(playercardobj):
+                    action NullAction()
+                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+                    # Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos),
+                    
+                    unhovered SetVariable("hoverFXN",[])
+                    # Hide("cardhover"),
+                    at enlargehover_choosecard
+                    # xpos cardxpos 
+                    # xanchor 0.5 ypos 0.90 yanchor 0.5
+                    ypos 0.98 yanchor 1.0
+                    
+            # elif clickedcard[cardindex]:
+            #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
+            # else:
+            #     add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 ypos 0.90 yanchor 0.5 at enlargehover_choosecard
+                # add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
         
 
     if playerbattlecode!=[]:
@@ -948,8 +976,8 @@ screen choosecardv2:
         key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     else:
         add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
-    if hoverFXN!=[]:
-        use card_tooltip_battle
+    # if hoverFXN!=[]:
+    #     use card_tooltip_battle
 screen Activate_Battleware:
         use handcardsscreen
         # add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
@@ -1023,7 +1051,8 @@ label lose:
     hide screen mapA
     hide screen mapB
     scene ILYgameover with pixellate
-    "I'm.. Sorry, John. "
-    extend"I'm sorry Lisa."
+    pause
+    scene black with pixellate
+    "Thank you for playing SoftWar!"
 
 return

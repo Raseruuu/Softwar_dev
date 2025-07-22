@@ -106,9 +106,13 @@ label battlecry_Ave:
             elif avcount == 4:
                 voice "voice/Ave/Hah!.ogg"
                 a"Hah!"
-            elif avcount >= 5:
+            elif avcount >= 5 and playerName=="ILY":
                 voice "voice/Ave/It's Over, ILY!.ogg"
                 a"It's over, ILY!"
+                $ avcount=1
+            else:
+                voice "voice/Ave/Hrrah!.ogg"
+                a"Hrrah!"
                 $ avcount=1
     return
 label battlecry_Melissa:
@@ -393,29 +397,29 @@ label hurtnoise:
             play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
             $ hcount=0
     if playerName=="Ave":
-        $ ahcount=ahcount+1
+        $ hcount=hcount+1
         if hcount ==1:
             play sound "voice/Ave_voice/hurt/Eugh!.ogg" channel "voice"
         elif hcount == 2:
             play sound "voice/Ave_voice/hurt/Euh!.ogg" channel "voice"
         $ hcount=0
     if playerName=="Code Red":
-        $ hcount=ahcount+1
+        $ hcount=hcount+1
         if hcount ==1:
-            voice "voice/Code Red/hurt1.mp3"
+            play sound "voice/Code Red/hurt1.mp3" channel "voice"
         elif hcount == 2:
-            voice "voice/Code Red/hurt2.mp3" 
+            play sound "voice/Code Red/hurt2.mp3" channel "voice"
         elif hcount == 3:
-            voice "voice/Code Red/hurt3.mp3" 
+            play sound "voice/Code Red/hurt3.mp3" channel "voice"
         elif hcount == 4:
-            voice "voice/Code Red/hurt4.mp3" 
+            play sound "voice/Code Red/hurt4.mp3" channel "voice"
             $ hcount=0
     return
 
 label start_battlecry(FAIname):
-    $ battlecry_list = ["ILY","Ave","CodeRed","Vira"]
+    $ battlecry_list = ["ILY","Ave","Code Red","Vira"]
     if FAIname in battlecry_list:
-        $ renpy.call("start_battlecry_"+FAIname)
+        $ renpy.call("start_battlecry_"+(FAIname if FAIname !="Code Red" else "CodeRed"))
     return
 
 label start_battlecry_ILY:
@@ -436,4 +440,20 @@ label start_battlecry_Ave:
     $ Ave_m = 'frown'
     $ Ave_e = 'down'
     a"I'm the Ultimate Antivirus!"
+    return
+label start_battlecry_CodeRed:
+    $ CodeRed_w=True
+    voice "voice/Code Red/Imjustdoingmyjob1.mp3"
+    $ CodeRed_m = 'frown'
+    $ CodeRed_e = 'down'
+    c"I'm just doing my job."
+    return
+label start_battlecry_Vira:
+    $ Vira_w=True
+    voice "voice/Vira/Hi-there.mp3"
+    $ Vira_m = 'smile'
+    $ Vira_e = 'up'
+    v"Hi there! I'm Vira!"
+    $ Vira_m = 'frown'
+    $ Vira_e = 'mad'
     return

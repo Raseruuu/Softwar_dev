@@ -51,6 +51,10 @@ label RemoveTokenEnemy:
     
     return
 label RemoveTokenPlayer:
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:    
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ remove_target = currentcard_fxn_params[1]
     if remove_target=="Self":
@@ -64,7 +68,7 @@ label RemoveTokenPlayer:
     return
 label Damageenemy:
     
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -117,7 +121,7 @@ label Damageenemy:
             call Advanceenemy(1)
             if battle_distance==0 and battle_distance_old>0:
                 call showphasemsg("DISTANCE:ZERO")
-            $ renpy.pause(0.6,hard=True)
+            $ renpy.pause(0.3,hard=True)
             return
         if attackhit:
             
@@ -192,7 +196,7 @@ label DamageSPplayer:
         if playerSP>0:
             $ Magnitude = (currentcardMAG)
             $ damagetoplayer=int(enemyATK_m*Magnitude)
-
+            call hurtnoise
             if currentcardTYPE == "Sword":
                 play sound "sfx/slash.wav"
             elif currentcardTYPE == "Axe":
@@ -207,7 +211,7 @@ label DamageSPplayer:
                 else:
                     play sound "sfx/sfx_exp_short_hard9.wav"
             play sound "sfx/noise.wav" channel 1
-            call hurtnoise
+            
             $ playerSP-=damagetoplayer
             if playerSP<0:
                 $ playerSP=0
@@ -323,6 +327,24 @@ label Burnenemy:
     hide Brnsts
     
     return
+label Retreatplayer(distanceamount=0):
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+        pass
+    else:    
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+
+    # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if distanceamount==0:
+        $ distance_quantity = currentcard_fxn_params[0]
+    else:
+        $ distance_quantity=distanceamount
+    python:
+        for dist in range(0,distance_quantity):
+            battle_distance=battle_distance+1
+            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+            renpy.pause(0.6,hard=True)
+    call updatestats_player
+    return
 label Retreatenemy(distanceamount=0):
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
         pass
@@ -380,21 +402,7 @@ label Advanceplayer(distanceamount=0):
     
     
     return
-label Retreatplayer(distanceamount=0):
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
-    if distanceamount==0:
-        $ distance_quantity = currentcard_fxn_params[0]
-    else:
-        $ distance_quantity=distanceamount
-    python:
-        for dist in range(0,distance_quantity):
-            battle_distance=battle_distance+1
-            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
-            renpy.pause(0.6,hard=True)
-    call updatestats_player
-    
-    
-    return
+
 label ReduceBitself:
     play sound "sfx/sfx_exp_odd3.wav"
     $ playerbits-=1
@@ -580,7 +588,11 @@ label EvadeEnemy:
 
 label EvadePlayer:
     play sound "sfx/sfx_sounds_powerup4.wav"
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:    
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+        # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     # $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     $ token_name = "Evade"
@@ -682,7 +694,7 @@ label WhileTokenInStatusEnemy:
 label ForInRangePlayer:
 #Enemy Activates For Loop
     $ runfxnstring = currentcardFXN[fxnindex].name
-    $ FXN=currentcardFXN[fxnindex]
+    $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
     $ block_functions=FXN.params[1]
     # $ targetsts=FXN.params[2]
@@ -698,6 +710,29 @@ label ForInRangePlayer:
             $ block_count+=1
             if block_count<len(block_functions):
                 jump block_loop8
+                # jump WhileLoop
+        $ for_index+=1  
+    
+    return
+label ForInRangeEnemy:
+#Enemy Activates For Loop
+    $ runfxnstring = currentcardFXN[fxnindex].name
+    $ FXN = currentcardFXN[fxnindex]
+    $ for_iterations=FXN.params[0]
+    $ block_functions=FXN.params[1]
+    # $ targetsts=FXN.params[2]
+    # label WhileLoop:
+    $ for_index = 0
+    while for_index < for_iterations:
+        # if token_name in PlayerSts:
+        $ block_count = 0
+        label block_loop9:
+            $ runfxnstring = block_functions[block_count].name
+            $ currentcard_fxn_params=block_functions[block_count].params
+            call enemyfunctioneffects(runfxnstring)
+            $ block_count+=1
+            if block_count<len(block_functions):
+                jump block_loop9
                 # jump WhileLoop
         $ for_index+=1  
     
@@ -1010,11 +1045,6 @@ label Shieldenemy:
         enemySP+=shieldtoenemy
         # if enemySP>=enemySPMax:
         #     enemySP=enemySPMax
-    #Animation
-    # show shieldlight:
-    #     alpha 0.0
-    #     ease 0.3 alpha 1.0
-    #     ease 0.3 alpha 0.0
     show shieldbit onlayer overlay:
         alpha 0.0 xalign 0.5 yanchor 0.5 ypos 0.35
         ease 0.2 alpha 1.0
@@ -1036,7 +1066,6 @@ label Damageplayer:
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
-    # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
     $ Power = (currentcardMAG)
@@ -1353,14 +1382,14 @@ screen handcardsscreen():
         else:
             phand=playerhand
     for cardindex,playercardobj in enumerate(phand):
-        $ card_distance = (0.06*0.5)
-        $ cardxpos=((0.1*0.5)+(cardindex*card_distance))
+        $ card_distance = (0.07*0.5)
+        $ cardxpos=((0.2*0.5)+(cardindex*card_distance))
 
         add CardDisplayNormal(playercardobj):
             # action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
             # hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
             # unhovered Hide("cardhover")
-            at zoomtrans(0.6),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.92+(cardindex*0.012) yanchor 1.1
+            at zoomtrans(0.6),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.98+(cardindex*0.012) yanchor 1.1
         # elif clickedcard[cardindex]:
             
         #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
@@ -1490,7 +1519,9 @@ label EnemyEndPhase:
                         burndmg = burndmg +80
 
             # i"[playerName] receives [burndmg] burn damage!"
+            call hurtnoise
             play sound "sfx/fire.wav"
+
             $ damagetoplayer = burndmg
             $ playerHP = playerHP-burndmg
             if playerHP <=0:
@@ -1506,7 +1537,7 @@ label EnemyEndPhase:
                 linear 0.2 zoom 1.0 alpha 0.0
 
             show playerdmgpoint onlayer overlay
-            call hurtnoise
+            
             with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
             $ renpy.pause(0.6,hard=True)
 
@@ -1664,7 +1695,7 @@ init python:
         "BurnSelf":"Burnself",
         "If":"IfTokenInStatusPlayer",
         "While":"WhileTokenInStatusPlayer",
-        "ForInRange":"ForInRangePlayer",
+        "For":"ForInRangePlayer",
         "RemoveToken":"RemoveTokenPlayer",
         "BoostATK":"BoostATK",
         "BoostDEF":"BoostDEF",
@@ -1693,6 +1724,7 @@ init python:
         "BurnSelf":"Burnenemy",
         "If":"IfTokenInStatusEnemy",
         "While":"WhileTokenInStatusEnemy",
+        "For":"ForInRangeEnemy",
         "RemoveToken":"RemoveTokenEnemy",
         "BoostATK":"BoostATKenemy",
         "BoostDEF":"BoostDEFenemy",

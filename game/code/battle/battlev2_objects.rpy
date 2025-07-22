@@ -115,30 +115,31 @@ init python:
             "gainToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Gain "+str(quantity)+" \""+str(tokenname)+"\" token(s).",
             [tokenname,quantity])
-    def Advance(quantity=1):
-        return Fxn(
-            "Advance",
-            "advance("+str(quantity)+")",
-            "Decrease distance by "+str(quantity)+" points.",
-            [quantity])
-    def Retreat(quantity=1):
-        return Fxn(
-            "Retreat",
-            "retreat("+str(quantity)+")",
-            "Increase distance by "+str(quantity)+" points.",
-            [quantity])
-    def Push(quantity=1):
-        return Fxn(
-            "Push",
-            "push("+str(quantity)+")",
-            "Increase distance by "+str(quantity)+" points.",
-            [quantity])
     def GiveToken(tokenname,quantity=1):
         return Fxn(
             "GiveToken",
             "giveToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Give a \""+str(tokenname)+"\" token(s).",
             [tokenname,quantity])
+    def Advance(quantity=1):
+        return Fxn(
+            "Advance",
+            "advance("+str(quantity)+")",
+            "Decrease distance by "+str(quantity)+".",
+            [quantity])
+    def Retreat(quantity=1):
+        return Fxn(
+            "Retreat",
+            "retreat("+str(quantity)+")",
+            "Increase distance by "+str(quantity)+".",
+            [quantity])
+    def Push(quantity=1):
+        return Fxn(
+            "Push",
+            "push("+str(quantity)+")",
+            "Push the enemy away!\nIncrease distance by "+str(quantity)+".",
+            [quantity])
+
     def ReduceBit(quantity=1):
         return Fxn(
             "ReduceBit",
@@ -164,7 +165,7 @@ init python:
             function2=fxns[1]
             codepart2="\n  "+str(function2.code)
         return Fxn(
-            "ForInRange",
+            "For",
             "for("+str(condition)+"):\n  "+str(function1)+codepart2,
             "Execute enclosed functions for each item in list",
             (iterations,fxns)
@@ -193,7 +194,7 @@ init python:
         return Fxn(
             "Freeze",
             "Freeze()",
-            "Apply Freeze status to target, Freeze token negates the execution of a card function.")
+            "Apply Freeze status to target, \nFreeze token negates the execution of a card function.")
     # def Attack():
     #     return Fxn(
     #         "Attack",
@@ -203,7 +204,7 @@ init python:
         return Fxn(
             "Attack",
             ("attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attack("+str(multiplier)+",range="+str(rangevalue)+")"),
-            "Deal damage to the target. With a range of "+str(rangevalue)+".",
+            "Deal damage to the target. Hits within the range of "+str(rangevalue)+".",
             [multiplier,rangevalue,absolute]
             )
     
@@ -211,7 +212,7 @@ init python:
         return Fxn(
             "AttackSP",
             ("attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attackSP("+str(multiplier)+",range="+str(rangevalue)+")"),
-            "Deal Damage to target's Shield Points only.",
+            "Deal Damage to target's Shield Points only.Hits within the range of "+str(rangevalue)+"",
             [multiplier,rangevalue,absolute]
             )
     def Defend(multiplier="POWR",absolute=False):
@@ -290,7 +291,7 @@ init python:
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Boost("ATK",0.25),Boost("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
-    Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR,MailSaberPlus]
+    Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,GUNVAR]
     Concat_strings=[concat.TYPE for concat in Concatenations]
 
 #ILY's cards
@@ -304,17 +305,17 @@ init python:
     ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)
 
 #Ave's cards    
-    FiberBuster=   Card("FiberBuster",      "Gun",            0.75,     [Attack(rangevalue=7),NullFxn()],              4)
-    DataBuster=    Card("DataBuster",       "Gun",            0.75,     [Attack(rangevalue=7),NullFxn()],              3)
-    SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7),NullFxn()],           2)
+    FiberBuster=   Card("FiberBuster",      "Gun",            0.75,     [Attack(rangevalue=7,)],              4)
+    DataBuster=    Card("DataBuster",       "Gun",            0.75,     [Attack(rangevalue=7)],              3)
+    SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7)],           2)
     Snipe=         Card("Snipe",            "Gun",            0.0,      [Boost("ATK",0.25),Retreat(2)],       6)
 #Swords and Blades  
-    FiberSword=    Card("LambdaSaber",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
+    FiberSword=    Card("FiberSword",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
     DataSaber=     Card("DataSaber",        "Sword",           1.0,      [GainToken("Saber",1),Defend(0.25),Attack(),],   4)
     Katana=        Card("Katana",           "Sword",           0.7,      [Attack(),GainToken("Saber",3)],   4)
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [Attack(),AttackSP(),GainToken("Saber",1)],  3)
     BlockSaber=    Card("BlockSaber",       "Sword",           0.25,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
-    LambdaSaber=   Card("LambdaSaber",      "Sword",           0.5,     [Attack(),AttackSP(),GainToken("Saber",1)], 3)
+    LambdaSaber=   Card("LambdaSaber",      "Sword",           0.2,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(rangevalue=7)]),GainToken("Saber",1)], 4)
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(),Attack()], 3)
     XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=        Card("Y-Axess",          "Y",               0.50,     [AttackSP(),Attack()],            3)
@@ -326,10 +327,10 @@ init python:
     BurstTransferTurbo= Card("BurstTransferTurbo",    "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
     
 #SaberSkills 
-    SaberDeflect=  Card("SaberDeflect",     "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SaberDeflect",       "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",    "Sword",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SkullCrush=  Card("SaberDeflect",       "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
     ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),Push(3)],            3)
 # Virus Exclusive
@@ -352,14 +353,16 @@ init python:
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
 #Force
     BruteForce=   Card("BruteForce",     "Force",    1.0,     [Attack(),Boost("ATK",0.25)],      8)
-    DataForce=    Card("DataForce",      "Force",    1.0,      [Boost("ATK",0.25),Boost("DEF",0.25)],       4)
+    DataForce=    Card("DataForce",      "Force",    0.25,      [Boost("ATK",0.25),Boost("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
-    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [Attack(),Attack(),Attack()],       5)
+    Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
+    
+    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [Attack(),Attack(),Attack(),GainToken("Data",1)],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Boost("ATK",0.25)],  2)
-    # Snipe=        Card("Snipe",           "Gun",    0.0,     [BoostGun,Evade],       6)
+    Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Boost("ATK",0.25)],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
     #newcards
@@ -423,13 +426,13 @@ init python:
 
 #    Plugins:
 
-    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.25, [Defend()],4)
-    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GiveToken("Email",1)],4)
+    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.5, [Defend()],4)
+    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GainToken("Data",1),GiveToken("Email",1)],4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, [Boost("ATK",0.1)],4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
-    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",0.5,[Attack(rangevalue=10)], 8)
+    DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",0.2,[Attack(rangevalue=10)], 4)
     SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
-    SuperArmor=Plugin("SuperArmor", "Initial Defense!",0.25, [Defend()],4)
+    SuperArmor=Plugin("SuperArmor", "Initial Defense!",0.25, [Boost("DEF",0.25),Defend()],4)
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS
     # [default deckdefault]
@@ -519,7 +522,9 @@ init python:
             Vslash,Vslash,
             Vslash,Vslash,
             Vshot,Vshot,
-            Vshot,Vshot
+            Vshot,Vshot,
+            Tackle,Tackle,
+            Tackle,Tackle
             ],
         "plugins":[]
         }
@@ -530,13 +535,17 @@ init python:
             VirusFlame,VirusFlame,
             VirusFlame,DataBuster,
             DataBuster,DataBuster,
-            DataBuster,Vslash,
+            DataForce,Vslash,
             DataBomb,Cursorclaw,
             Cursorclaw,Cursorclaw,
             Vslash,Vslash,
             Vslash,Vslash,
             Vshot,Vshot,
-            Vshot,Vshot],
+            Vshot,Vshot,
+            DataMining,DataMining,
+            DataMining,DataDrill
+        
+            ],
         "plugins":[]
         }
     deckransomware = {
@@ -545,11 +554,17 @@ init python:
             VirusFlame,VirusFlame,
             VirusFlame,DataBuster,
             DataBuster,DataBuster,
-            DataBuster,DataBuster,
             Vslash,Vslash,
             Vslash,Vslash,
+            
             Vshot,Vshot,
-            Vshot,Vshot],
+            Vshot,Vshot,
+            Cursorclaw,Cursorclaw,
+            DataMining,DataMining,
+            Tackle,Tackle,
+            DataMining,DataDrill,
+            Tackle,Tackle
+            ],
         "plugins":[]
         }
     deckrootkit = {
@@ -559,12 +574,15 @@ init python:
             Vshot,Vshot,
             Vslash,Vslash,
             Vslash,Vslash,
-            Vslash,Vslash,
-            Vshot,Vshot,
-            Vslash,Vslash,
-            Vslash,Vslash,
-            Vshot,Vshot,
-            Vshot,Vshot],
+            Tackle,Tackle,
+            
+            Tackle,Tackle,
+            Assault,Assault,
+            Assault,Assault,
+            BruteForce,BruteForce,
+            BruteForce,BruteForce
+            
+            ],
         "plugins":[]
         }
     deckworm = {
@@ -575,19 +593,19 @@ init python:
             VirusFlame,VirusFlame,
             WormRetreat,WormAdvance,
             WormBite,WormBite,
-            WormHole,WormAdvance,
+            WormAdvance,WormAdvance,
             WormHole,WormHole,
             WormHole,WormHole,
             WormRetreat,WormRetreat,
-            WormRetreat,Vshot],
+            WormRetreat,WormBite],
         "plugins":[]
         }
     deckspyware = {
         "name":"",
         "content":[
-            Vshot,Vshot,
-            Vshot,Vshot,
-            Vslash,Vslash,
+            Laserbeam,BurstTransfer,
+            BurstTransfer,BurstTransfer,
+            BurstTransfer,Vslash,
             Vslash,Vslash,
             Vslash,Vslash,
             Vshot,Vshot,
@@ -657,8 +675,12 @@ init python:
             SaberAura,SaberAura,
             WormRetreat,WormHole,
             BlockSaber,VirusFlame,
-            BurstTransfer,DataForce],
-        "plugins":[DigitalPressure]
+            BurstTransfer,DataBomb,
+            Shieldbit,Shieldbit,
+            DataForce,DataForce,
+            DataForce,DataForce
+            ],
+        "plugins":[SuperArmor]
         }
     # decksephiroth = {
     #     "name":"",

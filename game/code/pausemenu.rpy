@@ -148,7 +148,7 @@ init python:
             tooltip_anchors[0]=1.0
         if (position[1]>=0.5*config.screen_height):
             tooltip_anchors[1]=1.0
-        return (position[0],position[1]-140,tooltip_anchors[0],tooltip_anchors[1])
+        return (position[0],position[1]-40,tooltip_anchors[0],tooltip_anchors[1])
 
 transform fxn_frame_pos(tooltip_position):
     xpos tooltip_position[0]
@@ -160,16 +160,19 @@ screen card_tooltip_battle:
     frame:
         at fxn_frame_pos(tool_position())
         # xpos 0.44 xanchor 0.0 ypos 0.94 yanchor 1.0
-        xsize 300
-        ysize 140
+        xsize 420
+        ysize 180
         add FunctionListDescript(hoverFXN) 
+
+
+
 screen card_tooltip:
 
     frame:
         # at fxn_frame_pos(tool_position())
-        xpos 0.44 xanchor 0.0 ypos 0.94 yanchor 1.0
+        xpos 0.44 xanchor 0.0 ypos 0.95 yanchor 1.0
         xsize 420
-        ysize 140
+        ysize 160
         add FunctionListDescript(hoverFXN) 
 label ObtainItem(item):
 

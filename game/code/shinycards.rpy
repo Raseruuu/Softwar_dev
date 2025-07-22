@@ -81,7 +81,7 @@ image card_composite = Composite((325, 531),
 init python:
     def CardDisplay(cardobj):
         return At(Composite(
-            (225,300),
+            (225,325),
             (0,0),At("images/Cards/Cardblank.png"),
             
             
@@ -101,6 +101,34 @@ init python:
             (60,238),At(Text( "{size=14}{b}POWR: {/size}{color=#ae81f2}{font=font/consolas.ttf}{size=14}{k=-1}"+str(cardobj.MAG)+"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),card_highlights_t),
             (14,228),At(Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),card_highlights_t),
             ),rotate_object_t)
+    def CardDisplayDimmed(cardobj):
+        return At(Composite(
+            (225,325),
+            (0,0),At("images/Cards/Cardblank.png"),
+            
+            
+            # (170,169),
+            # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+            # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+            
+            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+            (0,0), AlphaMask(At("card_gradient",card_gradient_t),"images/Cards/Cardblank.png"),
+            
+            (14,258),
+                FunctionList(cardobj.FXN),
+            (10,196),
+                At("images/Cards/cardbit/bit.png",zoomtrans(0.5),card_highlights_t),
+            (56,204),At(Text( "{color=#FFFF00}{b}{k=0}{font=font/consolas.ttf}{size=18}"+cardobj.NAME+"{/color}{/b}{/k}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME),card_highlights_t),
+            (60,224),At(Text( "{size=14}{b}TYPE: {/size}{color=#ffcc00}{font=font/consolas.ttf}{size=14}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),card_highlights_t),
+            (60,238),At(Text( "{size=14}{b}POWR: {/size}{color=#ae81f2}{font=font/consolas.ttf}{size=14}{k=-1}"+str(cardobj.MAG)+"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),card_highlights_t),
+            (14,228),At(Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),card_highlights_t),
+            (0,0),At(Solid("#090c18"),alpha08)
+            ),rotate_object_t)
+            
+            
+
+
+
 label show_card_test:
     show expression Solid("#4d4a4a")
     show card_composite at rotate_object_t:

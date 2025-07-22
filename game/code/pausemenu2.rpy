@@ -1,7 +1,7 @@
 
 default plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
 default plugin_library=deckdefault["content"]
-default plugin_inventory=[DataDrill,DataDrill,Cursorclaw,DataBuster,Vshot,Vshot,Vslash,Vslash]
+default plugin_inventory=[]
 
 init python:
     notransform=False

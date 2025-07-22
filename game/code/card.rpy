@@ -48,13 +48,14 @@ init python:
         return VBox(*fxns)
     def FunctionListDescript(FXN):
         fxns=[]
+        
         for function_index_local, cardfunction in enumerate(FXN):
-            fxns.append(Text("{size=12}{b}{u}"+cardfunction.name+"{/b}{/u}{/size}\n  {size=11}"+cardfunction.text+"{/size}"))
+            fxns.append(Text("{size=12}{b}{u}"+cardfunction.name+"{/b}{/u}{/size}\n {size=11}"+cardfunction.text+"{/size}"))
                 
-        return VBox(*fxns)
+        return VBox(*fxns,spacing=4)
     def CardDisplayNew(cardobj):
         return Composite(
-            (225,300),
+            (225,325),
             (0,0),"images/Cards/Cardblank.png",
             
             (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
@@ -75,9 +76,34 @@ init python:
             # (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
             # (165,267),Text("{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}"),
             )
+    # def CardDisplayDimmed(cardobj):
+    #     return Composite(
+    #         (225,325),
+    #         (0,0),"images/Cards/Cardblank.png",
+            
+    #         (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+    #         (14,260),
+    #             FunctionList(cardobj.FXN),
+    #         # (170,169),
+    #         (10,196),
+    #             At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
+    #         # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+    #         (56,204),At(Text( "{color=#FFFF00}{b}{k=0}{font=font/consolas.ttf}{size=18}"+cardobj.NAME+"{/color}{/b}{/k}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+    #         # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+    #         (60,224),Text( "{size=14}{b}TYPE: {/size}{color=#ffcc00}{font=font/consolas.ttf}{size=14}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),
+    #         (60,238),Text( "{size=14}{b}POWR: {/size}{color=#ae81f2}{font=font/consolas.ttf}{size=14}{k=-1}"+str(cardobj.MAG)+"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),
+    #         # (168,196),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
+    #         (14,228),Text("{color=#0751b6}{font=font/consolas.ttf}{b}{size=26}"+str(cardobj.COST)+"{/font}{/b}{/size}{size=13}{b}BIT{/b}{/size}{/color}",style="cardoutlines"),
+    #         (0,0),At(Solid("#090c18"),alpha08)
+    #         # (164,231),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}TYPE{/color}{/font}{/size}{/b}"),
+    #         # (164,242),Text("{color=#ffcc00}{font=font/consolas.ttf}{size=10}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}"),
+    #         # (164,255),Text("{color=#ffffff}{font=font/consolas.ttf}{size=10}{b}POW{/color}{/font}{/size}{/b}"),
+    #         # (165,267),Text("{color=#ae81f2}{size=24}"+str(cardobj.MAG)+"{/color}{/size}"),
+    #         )
+            
     def CardDisplayNormal(cardobj):
         return Composite(
-            (225,300),
+            (225,325),
             (0,0),"images/Cards/Cardblank.png",
             
             (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
@@ -112,7 +138,7 @@ screen Card(cardobj,position=(0.5,0.5),zoomvalue=1.0):
             at pausetrans2
 
         style "cardframe"
-        image LiveComposite(
+        image Composite(
             (225,300),
             (0,0),"images/Cards/Cardblank.png",
             (10,10),"images/Cards/"+cardobj.NAME+".png",

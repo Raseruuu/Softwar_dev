@@ -27,16 +27,27 @@ init python:
 # image FAI_card_Vira:
 #     "images/Special Images/Card_Vira.png"
 transform enlargehover:
-    zoom 1.0 xalign 0.5 yalign 0.5
+    zoom 1.0 
     on hover:
-        ease 0.2 zoom 1.4
+        ease 0.2 zoom 1.5
     on selected_hover:
-        ease 0.2 zoom 1.4
+        ease 0.2 zoom 1.5
     on idle:
         ease 0.2 zoom 1.0
     on selected_idle:
-        ease 0.2 zoom 1.4
-
+        ease 0.2 zoom 1.5
+transform enlargehover_choosecard:
+    zoom 0.6 ypos 0.94 yanchor 1.0
+    on show:
+        zoom 0.6 
+    on hover:
+        ease 0.2 zoom 1.0
+    on selected_hover:
+        ease 0.2 zoom 1.0
+    on idle:
+        zoom 0.6
+    on selected_idle:
+        ease 0.2 zoom 1.0
 
 screen CharacterCardSelect(character_choices=[ILY,Ave]):
     frame:
@@ -55,15 +66,15 @@ screen CharacterCardSelect(character_choices=[ILY,Ave]):
                 xalign 0.5 yalign 0.5
                 background At((FAI_card(characters)), zoomtrans(0.4))
                 # hover_background At(("FAI_card_"+charactername),rotate_object_t, zoomtrans(0.2),enlargehover)
-                action SetVariable("playerobject",characters),Return()
-
-
-
+                action SetVariable("playerobjectset",characters),Return()
+default playerobject=ILY
+default playerobjectset=""
+default rogue_stage=1
 label roguemode:
     play music "bgm/Roam_game_maoudamashii_5_town18.mp3"
     scene black
     call screen CharacterCardSelect([ILY,Ave,CodeRed])
-
+    $ playerobject=playerobjectset
     # menu:
     #     "Choose Your F.A.I. Fighter!"
     #     "ILY":
@@ -115,28 +126,83 @@ label roguemode:
     
     # $ r_Bosses=FAI_playables
         node_current=(0,0)
+    if playerName=="ILY":
+        show ILY
+        $ John_m="frown"
+        $ John_e="mad"
+        i "John! The Undernet Labyrinth at the depths of Connecht City... A gate to it has emerged from the ground!"
+        j "This is the Mother Virus at work! It's time to fight, ILY!"
+        i "Right on!"
+        j "Be careful in there! We could be in serious trouble.."
+        i "I'll be fine, I know you're there to watch out for me!"
+        j "That's right."
+
+
+    elif playerName=="Ave":
+        show Ave
+        $ Lucida_m="frown"
+        $ Lucida_w=True
+        
+        a "I'm detecting severe virus activity right at this point. "
+        a "A gate to The Undernet? This must be it." 
+        a "A maze, a castle, a dungeon.. Nothing will be able to stop me!"
+        a "I will have my revenge!"
+        lc "Calm down, let's focus on the task at hand, Ave."
+        lc "I don't doubt your abilities, but I urge you to take care."
+        a "Affirmative, Ms. Lucida."
+    elif playerName=="Code Red":
+        show CodeRed
+        c "An Undernet Labyrinth at the depths of Connecht City..."
+        c "I know I usually fight for bounty and all, but this actually seems like a challenge I'd enjoy."
+        c "Let's get this over with."
+
+    scene black with dissolve
+    pause
     scene gridbglandscape1:
         zoom 0.75
+    
     show Brain
-    br "Welcome to the Undernet! My Labyrinth.."
-
+    br "Welcome.."
     br "I am the mother of all FAI Viruses."
     br "Connecht's entire network is now under my control."
     br "Challengers... Face me!"
-    br "This Undernet Labyrinth "
-    python:
-        for bosses in r_Bosses:
-            renpy.call("roguestage")
+    br "This Undernet Labyrinth is my magnum opus!"
+    $ boss_index=0
+    while (boss_index<=len(r_Bosses)):
+
+        call roguestage
+        # $ boss_index += 1
+
+
+    if not game_over:
+
+        call showphasemsg("YOU WIN!!")
+        pause
+        call showphasemsg("CONGRATS")
+        pause
+        call showphasemsg("ON BEATING")
+        pause
+        call showphasemsg("SOFTWAR")
+        pause
+        
+
     return
 label roguestage:
     scene gray
-    call r_battlestart
-    call R_Enemy #First Enemy
+    if boss_index==1:
+        call r_battlestart
+        call R_Enemy #First Enemy
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene black
-        call screen roguenodeselect
-        
+        call showphasemsg("Stage "+str(boss_index)+"")
+        if Boss_defeated:
+            $ boss_index+=1
+            $ Boss_defeated=False
+            ""
+            return
+        else:
+            call screen roguenodeselect
         if _return=="R_player_talks":
             call R_player_talks
             jump newnodes
@@ -184,10 +250,13 @@ init python:
         nodes_tpf.remove(newnode)
         return newnode
 
-    def generate_treasures(used_nodes):
+    def generate_treasures():
         global treasure_tpf
-        newtreasurelist = renpy.random.choices(treasure_tpf)
-        treasure_tpf.remove(newnode)
+        newtreasurelist=[]
+        for tx in range(0,3):
+            newtreasure = renpy.random.choice(treasure_tpf)
+            newtreasurelist.append(newtreasure)
+        # treasure_tpf.remove(newnode)
         return newtreasurelist
 
 label R_Enemy:
@@ -208,9 +277,45 @@ label R_StrongEnemy:
         $ game_over=True
     
     return
+
+screen SelectNewTreasure(treasurelist):
+    hbox:
+        # xalign 0.5 yalign 0.92
+        xpos 0.5 xanchor 0.5 ypos 0.98 yanchor 1.0
+        spacing 4
+        for cardtreasure in treasurelist:
+            $ playercardobj = cardtreasure
+            $ card_distance = 0.12
+            $ cardxpos=0.26+(cardindex*card_distance)
+
+            if (cardtreasure.COST<=playerbits) and (clickedcard[cardindex]==False):
+                ###TODO:: ADD HOVER DESCRIPTION Layered Images
+                imagebutton idle CardDisplay(playercardobj):
+                    action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
+                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+                    # Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos),
+                    
+                    unhovered SetVariable("hoverFXN",[])
+                    # Hide("cardhover"),
+                    at enlargehover_choosecard
+                    # xpos cardxpos 
+                    # xanchor 0.5 ypos 0.90 yanchor 0.5
+                    ypos 0.98 yanchor 1.0
+            elif (cardtreasure.COST>playerbits) and (clickedcard[cardindex]==False):
+                imagebutton idle CardDisplayDimmed(playercardobj):
+                    action NullAction()
+                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+
+                    unhovered SetVariable("hoverFXN",[])
+                    at enlargehover_choosecard
+
+                    ypos 0.98 yanchor 1.0
+
+
+
 label R_TreasureNode:
-    $ new_treasure=generate_treasure()
-    screen SelectNewTreasure(new_treasure)
+    $ new_treasure=generate_treasures()
+    call screen SelectNewTreasure(new_treasure)
     
     return
 label R_RecoveryNode:
@@ -253,17 +358,21 @@ label R_StellaShop:
     $ Stoned_w = True
 
     return
+default Boss_defeated=False
 label R_Boss:
     $ enemyobject= enemyvirus
 
     call battlev3(playerobject, stageboss)
     if playerHP==0:
         $ game_over=True
+    else:
+        $ Boss_defeated=True
     
     
     return
 label r_battlestart:
     python:
+        nodes_path=[]
         ILY_m="smile3"
         used_nodes=[]
         nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
@@ -274,7 +383,17 @@ label r_battlestart:
             DataBuster,
             SaberAura,
             Katana,
-            Laserbeam]
+            Laserbeam,
+            DataForce,
+            Shieldbit,
+            RecursiveSlash,
+            DataSaber,
+            SaberDeflect,
+            BlockSaber,
+            DataBuster,
+            DataBomb,
+            
+            ]
 
         treasure_tpf=treasurebattleware
         nodes_path.append([Enemy])
@@ -349,13 +468,7 @@ screen roguenodeselect():
             text "Deck Construction"
 
     
-    button:
-        xsize 400
-        background ("[playerName]")
-        yanchor 0.7 ypos 1.0 
-        at pausetrans1, zoomtrans(0.8)
-        action Return("R_player_talks")
-    text str(stageboss.name) xalign 0.5 yalign 0.1
+    
     hbox:
         # spacing 80
         xalign 0.9 yalign 0.5
@@ -447,7 +560,13 @@ screen roguenodeselect():
                             text "{size=16}Money: [Money] {image=gui/zenny.png} Zennys{/size}"
 
                 null height 10
-                        
+    button:
+        xsize 400
+        background ("[playerName]")
+        yanchor 0.7 ypos 1.0 
+        at pausetrans1, zoomtrans(0.8)
+        action Return("R_player_talks")
+    text str(stageboss.name) xalign 0.5 yalign 0.1
 
     # key "dismiss" action Return()
 
