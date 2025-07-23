@@ -311,15 +311,20 @@ init python:
     Snipe=         Card("Snipe",            "Gun",            0.0,      [Boost("ATK",0.25),Retreat(2)],       6)
 #Swords and Blades  
     FiberSword=    Card("FiberSword",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
-    DataSaber=     Card("DataSaber",        "Sword",           1.0,      [GainToken("Saber",1),Defend(0.25),Attack(),],   4)
+    DataSaber=     Card("DataSaber",        "Sword",           1.0,      [Attack(),Defend(0.25),GainToken("Saber",1),],   4)
+    
     Katana=        Card("Katana",           "Sword",           0.7,      [Attack(),GainToken("Saber",3)],   4)
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [Attack(),AttackSP(),GainToken("Saber",1)],  3)
     BlockSaber=    Card("BlockSaber",       "Sword",           0.25,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
     LambdaSaber=   Card("LambdaSaber",      "Sword",           0.2,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(rangevalue=7)]),GainToken("Saber",1)], 4)
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(),Attack()], 3)
+    
     XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack()],            4)
     YAxess=        Card("Y-Axess",          "Y",               0.50,     [AttackSP(),Attack()],            3)
     DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
+
+    DataPiercer=     Card("DataPiercer",    "Spear",           1.0,      [Attack(),Defend(0.25)],   5)
+    WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=2),Push(2)],   3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 # Evasion cards
@@ -329,7 +334,7 @@ init python:
 #SaberSkills 
     SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SaberDeflect",       "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    SkullCrush=  Card("SkullCrush",       "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
 #Hammer 
     ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),Push(3)],            3)
@@ -345,7 +350,7 @@ init python:
 
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Boost("DEF",0.25)],      4)
-    FixerBeam=    Card("FixerBeam",       "Wall",    0.75,    [Defend(),Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],      4)
+    FixerBeam=    Card("FixerBeam",       "Beam",    0.75,    [Defend(),Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],      4)
     Scan=           Card("Scan",       "Scan",    0.5,         [Defend(),Boost("DEF",0.25)],      4)
     
 #Bombs
@@ -357,7 +362,7 @@ init python:
    
     Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
     
-    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [Attack(),Attack(),Attack(),GainToken("Data",1)],       5)
+    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [ForInRange("x in range(0,3)",3,[Attack()]) ,GainToken("Data",1)],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Boost("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
@@ -423,11 +428,12 @@ init python:
     # GigaBomb=    ("GigaBomb",    1500,   60)
     #ILY's Deck at the beginning of the game.
     #24 Cards Per deck
-
-#    Plugins:
-
+######################
+#####Plugins:#########
+######################
     FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.5, [Defend()],4)
-    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GainToken("Data",1),GiveToken("Email",1)],4)
+    RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GainToken("Saber",1),GiveToken("Email",1)],4)
+    Analysis=Plugin("Analysis", "Examine the target.",0.25, [GainToken("Data",1),Boost("ATK",0.1)],4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, [Boost("ATK",0.1)],4)
     MoonlitAmulet=Plugin("Moonlit Amulet", "Yami's fancy moon-shaped necklace!",0.25, [Boost("ATK",0.1)],4)
     DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",0.2,[Attack(rangevalue=10)], 4)
@@ -480,7 +486,7 @@ init python:
         "plugins":[]
         }
     deckmelissa = {
-        "name":"",
+        "name":"Avaricious Anomaly",
         "content":[
             VirusFlame,VirusFlame,
             VirusFlame,DataSaber,
@@ -511,7 +517,7 @@ init python:
 
     #The first deck you will fight.
     decktrojan = {
-        "name":"",
+        "name":"Gift of Invasion",
         "content":[
             VirusFlame,VirusFlame,
             VirusFlame,DataBomb,
@@ -530,7 +536,7 @@ init python:
         }
 
     deckkeylogger ={
-        "name":"",
+        "name":"Password Uncovered",
         "content":[
             VirusFlame,VirusFlame,
             VirusFlame,DataBuster,
@@ -549,7 +555,7 @@ init python:
         "plugins":[]
         }
     deckransomware = {
-        "name":"",
+        "name":"Give Zenny",
         "content":[
             VirusFlame,VirusFlame,
             VirusFlame,DataBuster,
@@ -568,28 +574,28 @@ init python:
         "plugins":[]
         }
     deckrootkit = {
-        "name":"",
+        "name":"Digging Deep",
         "content":[
             Vshot,Vshot,
             Vshot,Vshot,
             Vslash,Vslash,
-            Vslash,Vslash,
+            DataDrill,DataDrill,
             Tackle,Tackle,
-            
             Tackle,Tackle,
             Assault,Assault,
             Assault,Assault,
             BruteForce,BruteForce,
-            BruteForce,BruteForce
-            
+            BruteForce,BruteForce,
+            DataDrill,DataDrill,
+            DataMining,DataMining
             ],
         "plugins":[]
         }
     deckworm = {
-        "name":"",
+        "name":"A Hole lot of Trouble",
         "content":[
             WormBite,Vshot,
-            VirusFlame,VirusFlame,
+            Vslash,VirusFlame,
             VirusFlame,VirusFlame,
             WormRetreat,WormAdvance,
             WormBite,WormBite,
@@ -601,7 +607,7 @@ init python:
         "plugins":[]
         }
     deckspyware = {
-        "name":"",
+        "name":"With My Little Eye",
         "content":[
             Laserbeam,BurstTransfer,
             BurstTransfer,BurstTransfer,
@@ -616,7 +622,7 @@ init python:
         "plugins":[]
         }
     decknibbler = {
-        "name":"",
+        "name":"What's Up",
         "content":[
             Vshot,Vshot,
             Vshot,Vshot,
@@ -631,7 +637,7 @@ init python:
         "plugins":[]
         }
     deckvira = {
-        "name":"",
+        "name":"I'll Save You!",
         "content":[
             Firewall,
             Firewall,Firewall,
@@ -648,39 +654,39 @@ init python:
         "plugins":[]
         }
     deckave = {
-        "name":"",
+        "name":"The Ultimate Antivirus",
         "content":[
             DataBuster,BurstTransfer,
             DataBuster,DataBuster,
             DataBuster,Firewall,
             Firewall,DataForce,
-            Firewall,Shieldbit,
+            Firewall,Firewall,
             DataBomb,DataBomb,
             Laserbeam,DataForce,
             Shieldbit,Shieldbit,
-            Shieldbit,Bitbuster,
-            Bitbuster,DataForce,
-            Assault,Assault,
+            FixerBeam,Bitbuster,
+            Bitbuster,DataMining,
+            DataMining,FixerBeam,
             Assault,Assault],
-        "plugins":[FirstBarrier]
+        "plugins":[FirstBarrier,Analysis]
         }
     deckred = {
-        "name":"",
+        "name":"Wave Sword Arts",
         "content":[
             DataSaber,DataSaber,
             DataSaber,DataSaber,
             LambdaSaber,LambdaSaber,
             BlockSaber,BlockSaber,
+            BlockSaber,VirusFlame,
             BreakSaber,BreakSaber,
             SaberAura,SaberAura,
             WormRetreat,WormHole,
-            BlockSaber,VirusFlame,
             BurstTransfer,DataBomb,
             Shieldbit,Shieldbit,
-            DataForce,DataForce,
+            DataDrill,WindBlast,
             DataForce,DataForce
             ],
-        "plugins":[SuperArmor]
+        "plugins":[DigitalPressure,SuperArmor]
         }
     # decksephiroth = {
     #     "name":"",
@@ -697,7 +703,7 @@ init python:
     #     "plugins":[]
     #     }
     deckGUNVAR = {
-        "name":"",
+        "name":"Mechanical Hero",
         "content":[
             GUNVARBeam,GUNVARBeam,
             GUNVARFist,GUNVARFist,

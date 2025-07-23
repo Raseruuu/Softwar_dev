@@ -436,7 +436,7 @@ label start_battlecry_ILY:
     return
 label start_battlecry_Ave:
 
-    voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
+    play sound "voice/Ave/I'm-The-Ultimate-Antivirus.ogg" channel "voice"
     $ Ave_m = 'frown'
     $ Ave_e = 'down'
     a"I'm the Ultimate Antivirus!"
@@ -450,7 +450,7 @@ label start_battlecry_CodeRed:
     return
 label start_battlecry_Vira:
     $ Vira_w=True
-    voice "voice/Vira/Hi-there.mp3"
+    play sound "voice/Vira/Hi-there.mp3" channel "voice"
     $ Vira_m = 'smile'
     $ Vira_e = 'up'
     v"Hi there! I'm Vira!"

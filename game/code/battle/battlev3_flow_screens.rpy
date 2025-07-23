@@ -32,7 +32,7 @@ init python:
     map_active=False
     playerbattlecode=[]
 default playerPlugins =[]
-default battle_distance = 3
+default battle_distance = 0
 transform flip_image:
     xzoom -1.0
 transform xZoom(value):
@@ -640,7 +640,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         playerbitsmax=pbitsMax
         enemybitsmax=pbitsMax
         random.shuffle(playerDeck)
-        battle_distance = 2
+        battle_distance = 0
         battle_done = False
         enemyfirst =renpy.random.choice([True,False])
         map_active=False

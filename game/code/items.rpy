@@ -1,7 +1,5 @@
 default norandomencounters= 0
 
-
-
 init python:
     def UseItem(item):
         if len(item.FXN)!=0:
@@ -57,6 +55,17 @@ init python:
     # Laminum = Item("Laminium", "Material","Laminar data.",[])
 
     battledrops={
+        # "TrojanHorse":[Datanium,W00D],
+        # "Keylogger":[Datanium,Iteratium],
+        # "Ransomware":[Conflagrium,Iteratium],
+        # "Rootkit":[Datanium,Strinnium],
+        # "Worm":[Duplirium,Lambdium],
+        # "Spyware":[Photoceptor,Streamine],
+        # "Vira":[Hematocyte,Informium],
+        # "Code Red":[Lambdium,Lambdium],
+        # "ILY":[Datanium,Hematocyte],
+        # "Ave":[Datanium,Datanium],
+        # "Sephiroth":[Datanium,Lambdium]
         "TrojanHorse":[Datanium,W00D],
         "Keylogger":[Datanium,Iteratium],
         "Ransomware":[Conflagrium,Iteratium],
@@ -66,6 +75,8 @@ init python:
         "Vira":[Hematocyte,Informium],
         "Code Red":[Lambdium,Lambdium],
         "ILY":[Datanium,Hematocyte],
+        
+        "ILY_Alpha":[Datanium,Hematocyte],
         "Ave":[Datanium,Datanium],
         "Sephiroth":[Datanium,Lambdium]
 

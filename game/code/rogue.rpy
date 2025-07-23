@@ -92,26 +92,16 @@ label roguemode:
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
         deckcurrent =sorted( mydeck["content"],key=lambda x: x.NAME, reverse=False)
         mydeckname =  mydeck["name"]
-        PlayerStatsnow = {
-            "name":PFAI.name,
-            "HP":PFAI.HP,
-            "HPMax":PFAI.HP,
-            "SP":0,
-            "SPMax":PFAI.SP,
-            "ATK":PFAI.ATK,
-            "DEF":PFAI.DEF,
-            "Deck":PFAI.deck
-        }
+       
         statuslist=["BoostATK","BoostDEF","Email"]
         playerbits = 8
-        playerstats = PlayerStatsnow
-        playerName = PlayerStatsnow["name"]
-        playerHP = PlayerStatsnow["HP"]
-        playerHPMax = PlayerStatsnow["HPMax"]
+        playerName = PFAI.name
+        playerHP = PFAI.HP
+        playerHPMax = PFAI.HP
         playerSP = 0
-        playerSPMax = PlayerStatsnow["SPMax"]
-        playerATK = PlayerStatsnow["ATK"]
-        playerDEF = PlayerStatsnow["DEF"]
+        playerSPMax = PFAI.SP
+        playerATK = PFAI.ATK
+        playerDEF = PFAI.DEF
 
         actual_playerDeck = playerDeck
         playerPlugins =PFAI.deck["plugins"]
@@ -167,14 +157,13 @@ label roguemode:
     br "Connecht's entire network is now under my control."
     br "Challengers... Face me!"
     br "This Undernet Labyrinth is my magnum opus!"
-    $ boss_index=0
-    while (boss_index<=len(r_Bosses)):
-
+    $ boss_index=1
+    label rogue_game_loop:
+        
         call roguestage
-        # $ boss_index += 1
-
-
     if not game_over:
+        jump rogue_game_loop
+    if game_win and not game_over:
 
         call showphasemsg("YOU WIN!!")
         pause
@@ -187,15 +176,20 @@ label roguemode:
         
 
     return
+image mainbg = "gui/main_menu/main menu bglayer1.png"
 label roguestage:
-    scene gray
+    scene mainbg with pixellate
+    $ node_current=(0,0)
+    call showphasemsg("Stage "+str(boss_index)+"")
+    $ stageboss=renpy.random.choice(r_Bosses)
+    $ r_Bosses.remove(stageboss)
     if boss_index==1:
         call r_battlestart
         call R_Enemy #First Enemy
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene black
-        call showphasemsg("Stage "+str(boss_index)+"")
+        
         if Boss_defeated:
             $ boss_index+=1
             $ Boss_defeated=False
@@ -208,6 +202,7 @@ label roguestage:
             jump newnodes
         if _return=="pausemenu":
             call pauseshow
+        
         if _return=="deck_edit":
             python:
                 deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
@@ -220,7 +215,7 @@ label roguestage:
                     call UnsaveDeck
 
                 else:
-                    jump Battleware_edit_screen2
+                    return
             
         if not game_over: 
             jump newnodes
@@ -228,9 +223,7 @@ label roguestage:
 default nodes_path=[]
 
 init python:
-    def mobvirus_random():
-        enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
-        return enemyvirus
+    
     class Node:
         def __init__(self,NAME,TYPE,LABEL):
             self.NAME = NAME
@@ -260,7 +253,7 @@ init python:
         return newtreasurelist
 
 label R_Enemy:
-    $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+    $ enemyvirus = renpy.random.choice([Keylogger,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
     call battlev3(playerobject,enemyobject)
     
@@ -269,7 +262,7 @@ label R_Enemy:
     
     return
 label R_StrongEnemy:
-    $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
+    $ enemyvirus = renpy.random.choice([Ransomware,Rootkit,Worm,Spyware])
     $ enemyobject= enemyvirus
     
     call battlev3(playerobject,enemyobject)
@@ -318,9 +311,72 @@ label R_TreasureNode:
     call screen SelectNewTreasure(new_treasure)
     
     return
+
+screen playerwidget:
+    button:
+        xsize 400
+        background ("[playerName]")
+        yanchor 0.7 ypos 1.0 xalign 0.5
+        at pausetrans1, zoomtrans(0.8)
+        action Return("R_player_talks")
+    frame:
+        xalign 0.5 yalign 0.5
+        if not notransform:
+            at pausetrans1
+        style "pausestats_r"
+        
+        hbox:
+            null width 4
+            vbox:
+                text "{b}[playerName]{/b}"
+                null height 7
+                fixed:
+                    frame:
+                        style_prefix "healthbar"
+                        xsize bar_size(playerHP,playerHPMax, 420)
+                    hbox:
+                        null width 40
+                        text "HP: [playerHP]/[playerHPMax]"
+                    vbox:
+                        null height 32
+                        hbox:
+
+                            frame:
+                                style "deckframe"
+                                text "{size=14}Deck: [mydeckname]{/size}"
+                            
+                            frame:
+                                style "deckframe"
+                                text "{size=14}ATK: [playerATK] DEF: [playerDEF] {/size}"
+                            frame:
+                                style "deckframe"
+                                text "{size=14}Chapter [chapternum]{/size}"
+                        frame:
+                            xminimum 460
+                            style "deckframe"
+                            text "{size=16}Money: [Money] {image=gui/zenny.png} Zennys{/size}"
+
+                null height 10
 label R_RecoveryNode:
-    $ playerHP=playerHP+500
-    
+    show screen playerwidget
+    menu:
+        "Would you like to recover 1000 HP?"
+        "Yes":
+            python:
+                renpy.play("sfx/healx.ogg","sound")
+                healexcess=(playerHP+1000-playerHPMax)
+                healvalue=(1000)
+                if healexcess>0:
+                    healvalue-=healexcess
+                playerHP+=healvalue
+                if playerHP>playerHPMax:
+                    playerHP=playerHPMax
+
+                renpy.notify("Healed "+str(healvalue)+" HP.")
+            "You are healed. Goodbye!"
+        "No":
+            "Alright."
+    hide screen playerwidget
     return
 label R_StellaShop:
     $ Stoned_m="open2"
@@ -409,8 +465,7 @@ label r_battlestart:
             nodes_path.append(newnoderow)
         nodes_path.append([Boss])
         # r_Bosses.remove(playerobject)
-        stageboss=renpy.random.choice(r_Bosses)
-        r_Bosses.remove(stageboss)
+        
 
 
     return
@@ -431,6 +486,12 @@ init python:
     def change_node(nodechoice,node_item):
         global node_current
         node_current=nodechoice
+        nodelabel=node_item.LABEL
+        renpy.call(""+nodelabel)
+        return node_current
+    def open_node(nodechoice,node_item):
+        global node_current
+        # node_current=nodechoice
         nodelabel=node_item.LABEL
         renpy.call(""+nodelabel)
         return node_current
@@ -457,6 +518,7 @@ screen roguenodeselect():
             right_padding 26
             left_padding 26
             text "Menu"
+        
         button:
             action Return("deck_edit")
             hover_background Frame("gui/framew_hover.png", 10, 10)
@@ -467,8 +529,14 @@ screen roguenodeselect():
             left_padding 26
             text "Deck Construction"
 
-    
-    
+    button:
+        xsize 400
+        background ("[playerName]")
+        yanchor 0.7 ypos 1.0 
+        at pausetrans1, zoomtrans(0.8)
+        action Return("R_player_talks")
+    text "Stage "+str(boss_index)+" Boss: "+str(stageboss.name) xalign 0.5 yalign 0.1
+
     hbox:
         # spacing 80
         xalign 0.9 yalign 0.5
@@ -502,7 +570,7 @@ screen roguenodeselect():
                                     (0,0),("blinky"))
                                 # at zoomtrans(0.2)
                                 action Function(change_node,(n_index_1,n_index_2),node_item),Return()
-                        elif node_current==(n_index_1,n_index_2):
+                        elif node_current==(n_index_1,n_index_2) and node_item.TYPE!="Shop":
                             imagebutton:
                                 idle Composite(
                                     (84,84),
@@ -510,6 +578,20 @@ screen roguenodeselect():
                                     (0,0),(("gui/selector.png")))
                                 # at zoomtrans(0.2)
                                 action NullAction()
+                        elif node_current==(n_index_1,n_index_2) and node_item.TYPE=="Shop":
+                            imagebutton:
+                                idle Composite(
+                                    (84,84),
+                                    (0,0),("gui/"+node_item.TYPE+".png"),
+                                    (0,0),(("gui/selector.png")))
+                                hover Composite(
+                                    (84,84),
+                                    (0,0),("gui/"+node_item.TYPE+".png"),
+                                    (0,0),(("gui/selector2.png")),
+                                    (0,0),("blinky"))
+                                # at zoomtrans(0.2)
+                                # action NullAction()
+                                action Function(open_node,(n_index_1,n_index_2),node_item)
                           
                         else:
                             # add ("gui/"+node_item.TYPE+".png") at zoomtrans(0.2)
@@ -560,18 +642,6 @@ screen roguenodeselect():
                             text "{size=16}Money: [Money] {image=gui/zenny.png} Zennys{/size}"
 
                 null height 10
-    button:
-        xsize 400
-        background ("[playerName]")
-        yanchor 0.7 ypos 1.0 
-        at pausetrans1, zoomtrans(0.8)
-        action Return("R_player_talks")
-    text str(stageboss.name) xalign 0.5 yalign 0.1
-
+    
     # key "dismiss" action Return()
 
-
-
-label rogue_intro_ILY:
-    ""
-    return

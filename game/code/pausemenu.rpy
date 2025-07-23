@@ -73,37 +73,37 @@ label pauseshow:
     
     elif _return=="Battleware":
         $ deckcurrent= sorted( deckcurrent,key=lambda x: x.NAME, reverse=False)
-        label ware_menu:
-        call screen ware_menu
-        if _return=="Equipped":
-            label Battlewarescreen:
-                $ noscreentransformsfornow=False
-                call screen Battleware
-                if _return=="Battleware_Edit":
-                    python:
-                        deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
-                        card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
-                    label Battleware_edit_screen:
-                        call screen Battleware_Edit
-                        if _return=="SaveDeck":
-                            call SaveDeck
-                        elif _return=="UnsaveDeck":
-                            call UnsaveDeck
+        # label ware_menu:
+        # call screen ware_menu
+        # if _return=="Equipped":
+        label Battlewarescreen:
+            $ noscreentransformsfornow=False
+            call screen Battleware
+            if _return=="Battleware_Edit":
+                python:
+                    deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
+                    card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
+                label Battleware_edit_screen:
+                    call screen Battleware_Edit
+                    if _return=="SaveDeck":
+                        call SaveDeck
+                    elif _return=="UnsaveDeck":
+                        call UnsaveDeck
 
-                        else:
-                            jump Battleware_edit_screen
-                        # return
-        elif _return=="Decks":
-            label Deckmenu:
-                $ noscreentransformsfornow=False
-                "Sorry, Click \"Equipped\" for now, to check and edit your deck."
-        elif _return=="Create":
-            "Battleware Creation is Not Yet Implemented"
-            # label MaterialCombination:
-            #     call screen CombineMenu
-        elif _return=="Collection":
-            label CardCollection:
-                "Collection cannot be accessed atm"
+                    else:
+                        jump Battleware_edit_screen
+                    return
+        # elif _return=="Decks":
+        #     label Deckmenu:
+        #         $ noscreentransformsfornow=False
+        #         "Sorry, Click \"Equipped\" for now, to check and edit your deck."
+        # elif _return=="Create":
+        #     "Battleware Creation is Not Yet Implemented"
+        #     # label MaterialCombination:
+        #     #     call screen CombineMenu
+        # elif _return=="Collection":
+        #     label CardCollection:
+        #         "Collection cannot be accessed atm"
 
         # return
     elif _return=="Plugins":
@@ -164,14 +164,12 @@ screen card_tooltip_battle:
         ysize 180
         add FunctionListDescript(hoverFXN) 
 
-
-
 screen card_tooltip:
 
     frame:
         # at fxn_frame_pos(tool_position())
-        xpos 0.44 xanchor 0.0 ypos 0.95 yanchor 1.0
-        xsize 420
+        xpos 0.42 xanchor 0.0 ypos 0.95 yanchor 1.0
+        xsize 450
         ysize 160
         add FunctionListDescript(hoverFXN) 
 label ObtainItem(item):
@@ -199,7 +197,7 @@ default inventory =[SoftDrink]
 default inventory_key = [] #(KEY ITEMS)
 
 default card_library=deckdefault["content"]
-default card_inventory=[DataDrill,DataDrill,BlockSaber,DataBuster,Vshot,Vshot,Vslash,Vslash]
+default card_inventory=[DataDrill,WindBlast,Shieldbit,Shieldbit,DataBuster,Tackle,Tackle]
 
 
 
@@ -415,7 +413,7 @@ screen Battleware:
             null height 10
             frame:
                 imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
-                    action Jump("ware_menu"), SetVariable("noscreentransformsfornow",False)
+                    action Return(), SetVariable("noscreentransformsfornow",False)
 
 screen Battleware_Edit():
     $ mydeckname = mydeck["name"]
@@ -480,7 +478,7 @@ screen Battleware_Edit():
                                 (0,0),"images/Cards/"+item.NAME+".png",
                                 (0,0),"blinky")
                             action Function(AddToDeck,index), SetVariable("noscreentransformsfornow",True)
-                            hovered SetVariable("currentcard",item)
+                            hovered SetVariable("currentcard",item),SetVariable("hoverFXN",item.FXN)
                             at inventorysize
 
                     for itemfiller in range(0,4*25-len(card_inventory)):
@@ -597,6 +595,18 @@ style pausestats:
     right_margin 752
     top_margin 524
     bottom_margin 48
+style pausestats_r:
+    xfill True
+    yfill True
+    background Frame("gui/frame3.png",72, 32, tile=gui.frame_tile)
+
+    xpadding 20
+    ypadding 20
+    top_padding 2
+    left_margin 16
+    right_margin 752
+    top_margin 324
+    bottom_margin 248
 init python:
     pause_button_offset0 = 0
     pause_button_offset1 = 0
