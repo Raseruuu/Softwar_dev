@@ -17,25 +17,52 @@ image bit:
     zoom 4.0
 
 image damageeffect:
-    xalign 0.5 yanchor 0.32 ypos 0.25
+    xalign 0.5 yanchor 0.32 ypos 0.23
     choice:
         "images/battle/dmgeffect1.webp"
-        pause 0.1
+        pause 0.025
         "images/battle/dmgeffect2.webp"
-        pause 0.1
+        pause 0.025
         "images/battle/dmgeffect3.webp"
-        pause 0.1
+        pause 0.025
     choice:
         "images/battle/dmgeffect1.webp"
+        rotate 10+renpy.random.randint(0,100)
+        pause 0.025
+        "images/battle/dmgeffect2.webp"
+        pause 0.025
+        "images/battle/dmgeffect3.webp"
+        pause 0.025
+    choice:
+        "images/battle/dmgeffect1.webp"
+        rotate -60
+        pause 0.025
+        "images/battle/dmgeffect2.webp"
+        pause 0.025
+        "images/battle/dmgeffect3.webp"
+        pause 0.025
+    choice:
+        "images/battle/dmgeffect1.webp"
+        rotate 30+renpy.random.randint(0,100)
         xzoom -1.0
-        pause 0.1
+        pause 0.025
         "images/battle/dmgeffect2.webp"
         xzoom -1.0
-        pause 0.1
+        pause 0.025
         "images/battle/dmgeffect3.webp"
         xzoom -1.0
-        pause 0.1
-
+        pause 0.025
+    choice:
+        "images/battle/dmgeffect1.webp"
+        rotate 80+renpy.random.randint(0,100)
+        xzoom -1.0
+        pause 0.025
+        "images/battle/dmgeffect2.webp"
+        xzoom -1.0
+        pause 0.025
+        "images/battle/dmgeffect3.webp"
+        xzoom -1.0
+        pause 0.025
     linear 0.3 alpha 0.0
 
 label RemoveTokenEnemy:
@@ -121,29 +148,11 @@ label Damageenemy:
             call Advanceenemy(1)
             if battle_distance==0 and battle_distance_old>0:
                 call showphasemsg("DISTANCE:ZERO")
-            $ renpy.pause(0.3,hard=True)
+            $ renpy.pause(0.2,hard=True)
             return
         if attackhit:
             
-            if currentcardTYPE == "Sword":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "FireSword":
-                play sound "sfx/slash.wav"
-                play sound "sfx/sfx_exp_short_hard8.wav"
-            elif currentcardTYPE == "Axe":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "Fire":
-                play sound "sfx/Bust.wav"
-            elif currentcardTYPE == "Gun":
-                play sound "sfx/Bust.wav"
-            else:
-                $ attacknumber+=1
-            if attacknumber<=3:
-                play sound "sfx/sfx_exp_short_hard9.wav"
-            elif attacknumber>3:
-                play sound "sfx/sfx_exp_short_hard8.wav"
-            else:
-                play sound "sfx/sfx_exp_short_hard8.wav"
+            call card_type_sfx
             call hurtnoise_enemy
             python:
                 if enemySP>0:
@@ -175,9 +184,9 @@ label Damageenemy:
                 linear 0.05 zoom 1.0
 
             #   $ renpy.pause(0.6,hard=True)
-            if "Drill" in currentcardTYPE:
+            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME:
                 $ renpy.pause(0.2,hard=True)
-            elif "MailSword" in currentcardTYPE:
+            elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
                 $ renpy.pause(0.25,hard=True)
             elif "Eraser" in currentcardTYPE:
                 $ renpy.pause(0.01,hard=True)
@@ -341,7 +350,7 @@ label Retreatplayer(distanceamount=0):
     python:
         for dist in range(0,distance_quantity):
             battle_distance=battle_distance+1
-            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+            renpy.play("sfx/sound/stepfar.wav","sound")
             renpy.pause(0.6,hard=True)
     call updatestats_player
     return
@@ -359,7 +368,7 @@ label Retreatenemy(distanceamount=0):
         for dist in range(0,distance_quantity):
             # if battle_distance!=0:
             battle_distance=battle_distance+1
-            renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+            renpy.play("sound/stepfar.wav","sound")
             
             renpy.pause(0.6,hard=True)
     call updatestats_enemy
@@ -381,8 +390,8 @@ label Advanceenemy(distanceamount=0):
         for dist in range(0,distance_quantity):
             if battle_distance!=0:
                 battle_distance=battle_distance-1
-                renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
-                dist+=1
+                renpy.play("sound/stepnear.wav","sound")
+                # dist+=1
                 renpy.pause(0.6,hard=True)
     call updatestats_enemy
     return
@@ -396,7 +405,7 @@ label Advanceplayer(distanceamount=0):
         for dist in range(0,distance_quantity):
             if battle_distance!=0:
                 battle_distance=battle_distance-1
-                renpy.play("sfx/sfx_movement_footstepsloop4_fast.wav","sound")
+                renpy.play("sound/stepnear.wav","sound")
                 renpy.pause(0.6,hard=True)
     call updatestats_player
     
@@ -502,14 +511,14 @@ transform tokenremove_trans:
     pause 0.2
     ease 0.1 zoom 1.2 yoffset -24 alpha 0.0
 label GiveToken:
-    play sound "sfx/sfx_sounds_powerup4.wav"
+    
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop:
-
+        play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show screen tokenappend_anim(token_name)
         $ renpy.pause(0.4,hard=True)
@@ -522,14 +531,14 @@ label GiveToken:
     call updatestats_enemy
     return
 label GainTokenPlayer:
-    play sound "sfx/sfx_sounds_powerup4.wav"
+    
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop2:
-
+        play sound "sfx/tokengain.mp3"
         $ PlayerSts=statusAppend(PlayerSts,token_name)
         show text "[token_name]":
             zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
@@ -544,14 +553,14 @@ label GainTokenPlayer:
     return
 
 label GainTokenEnemy:
-    play sound "sfx/sfx_sounds_powerup4.wav"
+    
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop3:
-
+        play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
             zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
@@ -566,14 +575,17 @@ label GainTokenEnemy:
     return
 
 label EvadeEnemy:
-    play sound "sfx/sfx_sounds_powerup4.wav"
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:  
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop4:
-
+        play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
             zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
@@ -587,7 +599,7 @@ label EvadeEnemy:
     return
 
 label EvadePlayer:
-    play sound "sfx/sfx_sounds_powerup4.wav"
+    play sound "sfx/tokengain.mp3"
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
         pass
     else:    
@@ -931,7 +943,7 @@ label Shieldplayer:
         # if playerSP>=playerSPMax:
         #     playerSP=playerSPMax
     #Animation
-    show shieldlight:
+    show shieldlight onlayer overlay:
         alpha 0.0
         ease 0.3 alpha 1.0
         ease 0.3 alpha 0.0
@@ -1045,12 +1057,16 @@ label Shieldenemy:
         enemySP+=shieldtoenemy
         # if enemySP>=enemySPMax:
         #     enemySP=enemySPMax
+    show shieldlight onlayer overlay:
+        alpha 0.0 yzoom -1.0
+        ease 0.3 alpha 1.0
+        ease 0.3 alpha 0.0
     show shieldbit onlayer overlay:
         alpha 0.0 xalign 0.5 yanchor 0.5 ypos 0.35
         ease 0.2 alpha 1.0
         pause 0.1
         ease 0.4 alpha 0.0
-    show text "{size=40}SP+=[shieldtoenemy]{/size}" onlayer overlay:
+    show SPText onlayer overlay:
         alpha 0.0 zoom 0.0 xalign 0.5 yanchor 0.5 ypos 0.45
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.2
@@ -1060,7 +1076,27 @@ label Shieldenemy:
 label DoNothing:
     pass
     return
-
+label card_type_sfx:
+    if currentcardTYPE == "Sword":
+        play sound "sfx/slash.wav" channel 1
+    elif currentcardTYPE == "FireSword":
+        play sound "sfx/slash.wav"  channel 1
+        play sound "sfx/sfx_exp_short_hard8.wav" channel 2
+    elif currentcardTYPE == "Axe":
+        play sound "sfx/slash.wav" channel 1
+    elif currentcardTYPE == "Fire":
+        play sound "sfx/Bust.wav" channel 1
+    elif currentcardTYPE == "Gun":
+        play sound "sfx/Bust.wav" channel 1
+    else:
+        $ attacknumber+=1
+    if attacknumber<=3:
+        play sound "sfx/sfx_exp_short_hard9.wav" 
+    elif attacknumber>3:    
+        play sound "sfx/sfx_exp_short_hard8.wav" 
+    else:
+        play sound "sfx/sfx_exp_short_hard8.wav" 
+    return
 label Damageplayer:
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
         pass
@@ -1110,14 +1146,7 @@ label Damageplayer:
             return
         else:
         
-            if currentcardTYPE == "Sword":
-                play sound "sfx/slash.wav" channel 1
-            elif currentcardTYPE == "Axe":
-                play sound "sfx/slash.wav" channel 1
-            elif currentcardTYPE == "Fire":
-                play sound "sfx/Bust.wav" channel 1
-            elif currentcardTYPE == "Gun":
-                play sound "sfx/Bust.wav" channel 1
+            call card_type_sfx
             if playerSP>0:
                 play sound "sfx/noise.wav" channel 1
                 $ playerSP-=damagetoplayer
@@ -1155,7 +1184,14 @@ label Damageplayer:
     #   if "Drill" in currentcardTYPE:
     #     $ renpy.pause(0.2,hard=True)
     #   else:
-        $ renpy.pause(0.6,hard=True)
+        if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME:
+            $ renpy.pause(0.2,hard=True)
+        elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
+            $ renpy.pause(0.25,hard=True)
+        elif "Eraser" in currentcardTYPE:
+            $ renpy.pause(0.01,hard=True)
+        else:
+            $ renpy.pause(0.6,hard=True)
         $ ILY_m="frown"
         $ ILY_e="down"
         $ ILY_eyes="open"
@@ -1370,6 +1406,9 @@ label FinishingFlash(dialogue):
     return
 transform handcard_rotator(rotateint):
     rotate rotateint transform_anchor True
+    on show:
+        xoffset 20 
+        ease 0.1 xoffset 0 
 screen handcardsscreen():
     python:
         phand = []
@@ -1705,6 +1744,7 @@ init python:
         "Retreat":"Retreatplayer",
         "Push":"Retreatplayer",
         "Advance":"Advanceplayer",
+        "Pull":"Advanceenemy",
         "DeckChange":"DeckChangePlayer",
         "":"DoNothing"
     }
@@ -1733,8 +1773,9 @@ init python:
         "Evade":"EvadeEnemy",
         "Block":"BlockEnemy",
         "Retreat":"Retreatenemy",
-        "PushBack":"Retreatenemy",
+        "Push":"Retreatenemy",
         "Advance":"Advanceenemy",
+        "Pull":"Advanceenemy",
         "DeckChange":"DeckChangeEnemy",
         
         # "":"",

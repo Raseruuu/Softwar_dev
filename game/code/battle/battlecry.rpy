@@ -436,21 +436,22 @@ label start_battlecry_ILY:
     return
 label start_battlecry_Ave:
 
-    play sound "voice/Ave/I'm-The-Ultimate-Antivirus.ogg" channel "voice"
+    voice "voice/Ave/I'm-The-Ultimate-Antivirus.ogg"
     $ Ave_m = 'frown'
     $ Ave_e = 'down'
     a"I'm the Ultimate Antivirus!"
     return
 label start_battlecry_CodeRed:
     $ CodeRed_w=True
-    voice "voice/Code Red/Imjustdoingmyjob1.mp3"
+    $ randvoiceline = renpy.random.randint(1,2)
+    voice ("voice/Code Red/Imjustdoingmyjob"+str(randvoiceline)+".mp3")
     $ CodeRed_m = 'frown'
     $ CodeRed_e = 'down'
     c"I'm just doing my job."
     return
 label start_battlecry_Vira:
     $ Vira_w=True
-    play sound "voice/Vira/Hi-there.mp3" channel "voice"
+    voice "voice/Vira/Hi-there.mp3"
     $ Vira_m = 'smile'
     $ Vira_e = 'up'
     v"Hi there! I'm Vira!"

@@ -88,7 +88,7 @@ init python:
     """
 
     dissolve_heart = ImageDissolve("images/computer/transition_heart_wide.png", 0.5)
-
+    dissolve_pixels = ImageDissolve("images/computer/transition_pixels.png", 0.5)
 image Mouse = "images/computer/mouse.png"
 #image white_noise  = "images/computer/white_noise.png"
 #image white_noise2 = im.Flip("images/computer/white_noise.png", horizontal=True)
@@ -322,7 +322,7 @@ label testdialog:
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     
-    $Lucida_m="smile"
+    $ Lucida_m="smile"
     lc"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     show Brain
     br "Lorem Ipsum dolor sit amet consectetur adipiscing elit."

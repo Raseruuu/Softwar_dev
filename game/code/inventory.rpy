@@ -96,7 +96,7 @@ screen Items(itemsmode="ITEMS"):
                     # textbutton "Edit" action Return()
                 # null height 10
                 frame:
-                    textbutton "Back" action Jump("pauseshow")
+                    textbutton "Back" action Return()
                     # grid 8 8:
                     #     spacing 5
                     #     for index, item in enumerate(inventory):

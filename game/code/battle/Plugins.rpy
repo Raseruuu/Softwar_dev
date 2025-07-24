@@ -75,7 +75,7 @@ label PluginExecution(plugin_set,plugin_user):
                     if plugin_user=="player":
                         call functioneffects(runfxnstring)
                     elif plugin_user=="enemy":
-                        "This??"
+                        # "This??"
                         call enemyfunctioneffects(runfxnstring)
                 $fxnindex+=1
                 if fxnindex<len(currentcardFXN):

@@ -25,13 +25,24 @@ init python:
         "LargeEnergy":480,
         # "Unlocker":1000,
         "Antibody":350,
-
+        "GU-Gearframe Unitron":2000,
+        "NV-Nucleus Vernier":2000,
+        "AR-Accel Riser":2000,
         "V-Flame":600,
+        "SaberAura":2000,
+        "Katana":2000,
         "Laserbeam":3000,
         "LambdaSaber":1000,
+        "DataForce":2000,
+        "Shieldbit":2000,
+        "RecursiveSlash":2000,
+        "DataSaber":2000,
         "BlockSaber":1000,
-        "DataBuster":2000
-
+        "SaberDeflect":2000,
+        "DataBuster":2000,
+        "DataBomb":2000,
+        "WindBlast":2000,
+        "Tackle":2000,
     }
 
     item_list = [SoftDrink,SmallEnergy,MediumEnergy] #Unlocker
@@ -593,7 +604,7 @@ screen gain_item(gainitem,itemcount=1):
                 elif gainitem.type=="Material":
                     image "images/Cards/items/Material.png" xalign 0.5
                 else:
-                    image "images/Cards/items/"+gainitem.name+".png" xalign 0.5
+                    image "images/Cards/items/"+(gainitem.name if gainitem.name else "")+".png" xalign 0.5
                 if itemcount >1:
                     text "{size=24}{b}x"+str(itemcount)+"{/size}{/b}" at bottomright
                 null height 10

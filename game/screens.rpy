@@ -51,7 +51,12 @@ style button_text is gui_text:
     properties gui.text_properties("button") hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
     yalign 0.5
 
-
+style textbutton is gui_text:
+    properties gui.text_properties("textbutton") hover_sound "sound/hover.wav" activate_sound "sound/click.wav"
+    # yalign 0.5
+init python:
+    style.image_button.hover_sound = "sound/hover.wav"
+    style.image_button.activate_sound = "sound/click3.wav"
 style label_text is gui_text:
     properties gui.text_properties("label", accent=True)
 

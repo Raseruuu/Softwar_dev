@@ -76,6 +76,7 @@ init python:
         "Code Red":[Lambdium,Lambdium],
         "ILY":[Datanium,Hematocyte],
         
+        "Melissa":[Datanium,Hematocyte],
         "ILY_Alpha":[Datanium,Hematocyte],
         "Ave":[Datanium,Datanium],
         "Sephiroth":[Datanium,Lambdium]

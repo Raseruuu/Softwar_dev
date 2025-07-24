@@ -498,8 +498,7 @@ layeredimage ILYFullBody:
         ConditionSwitch("ILY_hair!='default'",At("images/Characters/ILY/Full/ILY_Full_hairback.png",spritefix(0.5)),"ILY_hair=='default'",Null())
     always:
         At("images/Characters/ILY/Full/ILY_Full_base.png",spritefix(0.5)) #pose
-    always:
-        At("images/Characters/ILY/Full/ILY_bracelet.png",spritefix(0.5))
+    
     always:
         ConditionSwitch("ILY_stockings!=''",At("images/Characters/ILY/Full/ILY_[ILY_stockings].png",spritefix(0.5)),"ILY_stockings==''",Null()) #stockings
     always:
@@ -520,6 +519,8 @@ layeredimage ILYFullBody:
     always:
         At("images/Characters/ILY/ILY_e[ILY_e].png",spritefix(0.5))
     always:
+        At("images/Characters/ILY/Full/ILY_bracelet.png",spritefix(0.5))
+    always:
         At("images/Characters/ILY/ILY_heart0.png",spritefix(0.5))
     always:
         At(WhileSpeaking(
@@ -531,7 +532,7 @@ layeredimage ILYFullBody:
             "images/Characters/ILY/ILY_m[ILY_m].png"
             ),spritefix(0.5))
 image ILYVtuber:
-    LiveComposite(
+    Composite(
     (0.75, 0.75), #(544,600),
     (0, 0), "images/Characters/ILY/ILY_Full_base[ILY_p].png", #nude base
     (0, 0), "images/Characters/ILY/ILY_e[ILY_p][ILY_e].png", #eyebrows

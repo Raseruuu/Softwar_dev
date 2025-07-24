@@ -42,11 +42,11 @@ transform xZoom(value):
 
 define boss_list=["Code Red", "Ave","ILY", "Vira", "Bitwulf", "Brain","Melissa","ILY_Alpha"]
 
-camera:
-    perspective True
-    gl_depth True
-transform xrotate:
-    yrotate 0.1 
+# camera:
+#     perspective True
+#     gl_depth True
+# transform xrotate:
+#     yrotate 0.1 
 transform vstrans:
     choice:
         xoffset 0 yoffset 0 zoom 1.0
@@ -84,6 +84,10 @@ transform vstrans2:
         pause 0.1
     repeat
     repeat
+screen VICTORY():
+
+    add ("images/Special Images/BattleCutscene_"+playerName+".png")  xpos 0.5 xanchor 0.5 yalign 0.25 at zoomtrans(0.12), pausetrans0
+    
 
 screen VERSUS(playerName,enemyName):
 
@@ -165,7 +169,7 @@ screen battlestats():
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
         # at alpha08
-        at xrotate
+        # at xrotate
         vbox:
             hbox:
                 style_prefix "battlestats"
@@ -490,8 +494,9 @@ label drawcards:
             renpy.show_screen('handcardsscreen')
             playerhand.append(playerDeck[0])
             playerDeck.pop(0)
-            renpy.play("sfx/draw.wav")
-            renpy.pause(0.08)
+            # renpy.play("sfx/draw.wav")
+            renpy.play("sfx/draw.mp3","sound")
+            renpy.pause(0.1)
             handdrawindex+=1
         renpy.hide_screen('handcardsscreen')
         renpy.show_screen('handcardsscreen')
@@ -806,7 +811,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
             if not battle_done:
                 jump battleloop
             elif battle_done:
-                
+                hide screen handcardsscreen
                 $ playerDeck = sorted( actual_playerDeck,key=lambda x: x.NAME, reverse=False)
                 show screen phasemsg("BATTLE_END")
                 $ renpy.pause(0.9,hard=True)
@@ -1016,18 +1021,24 @@ screen card6hover:
     image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.945 at cardtrans2
 
 
-
+image zenny:
+    "gui/zenny_big.png"
+    xalign 0.5 yalign 0.5
 label Battledrops:
     python:
         gainitems=[]
+        # scene mainbg 
         for item in battledrops[enemyName]:
             shopitem = shop_item(item.NAME,item,"Material",0)
             for gain_num in range(0,renpy.random.choice([0,0,0,0,1,1,1,2,2,3])):
                 gainitems.append(shopitem)
         Moneygain = renpy.random.choice([40,50,100,100,400,500,250,250])
         Money+=Moneygain
-        renpy.say(info,"Gained "+str(Moneygain)+" Zenny! \nTotal Zenny: [Money]")
-        renpy.call("GainItem",gainitems)
+    play sound "sound/loadcard.wav"
+    show zenny with dissolve_pixels
+    $ renpy.say(info,"Gained "+str(Moneygain)+" Zenny! \nTotal Zenny: [Money]")
+    hide zenny
+    call GainItem(gainitems)
 
     return
 
@@ -1038,8 +1049,11 @@ label win:
     $ battle_done = True
     $ quick_menu=True
     show screen phasemsg("VICTORY!")
-    info"[playerName] Wins!" 
+    pause 0.8
     hide screen phasemsg
+    show screen VICTORY
+    info"[playerName] Wins!" 
+    hide screen VICTORY
     call Battledrops
     # "VICTORY!"
     #BATTLE DROPS

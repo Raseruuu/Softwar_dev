@@ -62,11 +62,11 @@ label pauseshow:
             $ noscreentransformsfornow=False
             call screen Items
 
-            if _return=="Open":
-                call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
-                jump Itemscreen
-            elif _return!="Open":
-                jump Itemscreen
+            # if _return=="Open":
+            #     call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
+            #     jump Itemscreen
+            # elif _return!="Open":
+            #     jump Itemscreen
             # return
 
             # return
@@ -394,7 +394,7 @@ screen Battleware:
                                 (0,0),"images/Cards/"+item.NAME+".png",
                                 (0,0),"blinky")
                             action NullAction()
-                            hovered SetVariable("currentcard",item)
+                            hovered SetVariable("currentcard",item),SetVariable("hoverFXN",item.FXN)
                             at inventorysize
 
                     for itemfiller in range(0,24-len(deckcurrent)):
@@ -414,7 +414,8 @@ screen Battleware:
             frame:
                 imagebutton idle Text("{size=35}Back{/size}") hover Text("{size=35}{color=f00}Back{/size}"):
                     action Return(), SetVariable("noscreentransformsfornow",False)
-
+    if hoverFXN!=[]:
+        use card_tooltip
 screen Battleware_Edit():
     $ mydeckname = mydeck["name"]
     use pauselayout("DECK EDIT",False,True)

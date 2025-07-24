@@ -3,7 +3,7 @@
 # default game_over=False
 # default battle_active=False
 define FAI_playables=[ILY, Ave, CodeRed]
-
+default game_win=False
 
 
 default r_Bosses=[ILYAlpha, Ave, CodeRed, Melissa, Vira]
@@ -48,6 +48,18 @@ transform enlargehover_choosecard:
         zoom 0.6
     on selected_idle:
         ease 0.2 zoom 1.0
+transform enlargehover_choosecard_treasure:
+    zoom 0.8 ypos 0.5 yanchor 0.5
+    on show:
+        zoom 0.8 
+    on hover:
+        ease 0.2 zoom 1.2
+    on selected_hover:
+        ease 0.2 zoom 1.2
+    on idle:
+        zoom 0.8
+    on selected_idle:
+        ease 0.2 zoom 1.2
 
 screen CharacterCardSelect(character_choices=[ILY,Ave]):
     frame:
@@ -72,7 +84,7 @@ default playerobjectset=""
 default rogue_stage=1
 label roguemode:
     play music "bgm/Roam_game_maoudamashii_5_town18.mp3"
-    scene black
+    scene mainbg with pixellate
     call screen CharacterCardSelect([ILY,Ave,CodeRed])
     $ playerobject=playerobjectset
     # menu:
@@ -87,6 +99,7 @@ label roguemode:
         PFAI = playerobject
         if playerobject in r_Bosses:
             r_Bosses.remove(playerobject)
+            playerobject
         mydeck=PFAI.deck
         deckplugin =mydeck["plugins"]
         plugincurrent =sorted( mydeck["plugins"],key=lambda x: x.NAME, reverse=False)
@@ -113,7 +126,7 @@ label roguemode:
         enemyfirst =False
         map_active=False
         playerbattlecode=[]
-    
+        game_win==False
     # $ r_Bosses=FAI_playables
         node_current=(0,0)
     if playerName=="ILY":
@@ -146,11 +159,9 @@ label roguemode:
         c "I know I usually fight for bounty and all, but this actually seems like a challenge I'd enjoy."
         c "Let's get this over with."
 
-    scene black with dissolve
-    pause
-    scene gridbglandscape1:
+    scene gridbglandscape1 with pixellate:
         zoom 0.75
-    
+    $ Brain_w=False
     show Brain
     br "Welcome.."
     br "I am the mother of all FAI Viruses."
@@ -161,6 +172,8 @@ label roguemode:
     label rogue_game_loop:
         
         call roguestage
+        if boss_index==len(r_Bosses) and Boss_defeated:
+            $ game_win=True
     if not game_over:
         jump rogue_game_loop
     if game_win and not game_over:
@@ -179,31 +192,48 @@ label roguemode:
 image mainbg = "gui/main_menu/main menu bglayer1.png"
 label roguestage:
     scene mainbg with pixellate
-    $ node_current=(0,0)
+    $ node_current=(-1,0)
     call showphasemsg("Stage "+str(boss_index)+"")
     $ stageboss=renpy.random.choice(r_Bosses)
     $ r_Bosses.remove(stageboss)
     if boss_index==1:
         call r_battlestart
-        call R_Enemy #First Enemy
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
-        scene black
+        scene mainbg 
         
         if Boss_defeated:
-            $ boss_index+=1
+            
+            "Stage [boss_index] complete."
             $ Boss_defeated=False
-            ""
+            $ boss_index+=1
             return
         else:
             call screen roguenodeselect
         if _return=="R_player_talks":
             call R_player_talks
             jump newnodes
-        if _return=="pausemenu":
+        elif _return=="pausemenu":
             call pauseshow
-        
-        if _return=="deck_edit":
+        elif _return=="items":
+            $ inventory= sorted( inventory,key=lambda x: x.NAME, reverse=False)
+            label Itemscreen_r:
+                $ noscreentransformsfornow=False
+                call screen Items
+                # if _return=="Return":
+                #     $ pausemenu =False
+                    
+                #     return
+                # elif _return!="Return":
+                #     # jump pauseshow
+                #     jump Itemscreen_r
+                
+                # if _return=="Open":
+                #     call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
+                #     jump Itemscreen_r
+                # elif _return!="Open":
+                #     jump Itemscreen_r
+        elif _return=="deck_edit":
             python:
                 deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
                 card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
@@ -215,8 +245,9 @@ label roguestage:
                     call UnsaveDeck
 
                 else:
-                    return
-            
+                    jump Battleware_edit_screen2
+        elif _return=="Return":
+            $ pausemenu =False
         if not game_over: 
             jump newnodes
     return
@@ -249,67 +280,95 @@ init python:
         for tx in range(0,3):
             newtreasure = renpy.random.choice(treasure_tpf)
             newtreasurelist.append(newtreasure)
+        # treasure_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in battleware_list}
+
         # treasure_tpf.remove(newnode)
+
         return newtreasurelist
 
 label R_Enemy:
-    $ enemyvirus = renpy.random.choice([Keylogger,Rootkit,Worm,Spyware])
+    call showphasemsg("ENCOUNTER: Virus!")
+    $ enemyvirus = renpy.random.choice([Keylogger,Worm,Spyware])
     $ enemyobject= enemyvirus
     call battlev3(playerobject,enemyobject)
     
     if playerHP==0:
         $ game_over=True
-    
+    call R_TreasureNode
     return
 label R_StrongEnemy:
-    $ enemyvirus = renpy.random.choice([Ransomware,Rootkit,Worm,Spyware])
+    call showphasemsg("ENCOUNTER: Rare Virus")
+    $ enemyvirus = renpy.random.choice([Ransomware,Rootkit,Trojan])
     $ enemyobject= enemyvirus
     
     call battlev3(playerobject,enemyobject)
     if playerHP==0:
         $ game_over=True
-    
+    call R_TreasureNode
     return
-
+init python:
+    def choosetreasurecard(cardtreasure):
+        global selected_treasure
+        itemquantity=1
+        selected_treasure =cardtreasure
+        renpy.call("GainItem",[cardtreasure]*itemquantity)
+        
+        return 
 screen SelectNewTreasure(treasurelist):
+    # choosetreasurecard 
+    text "Select a card to Download!":
+        xalign 0.5 yalign 0.1
+        style "statusoutlines"
     hbox:
         # xalign 0.5 yalign 0.92
-        xpos 0.5 xanchor 0.5 ypos 0.98 yanchor 1.0
-        spacing 4
+        xpos 0.5 xanchor 0.5 ypos 0.5 yanchor 0.5
+        spacing 40
         for cardtreasure in treasurelist:
-            $ playercardobj = cardtreasure
+            $ playercardobj = treasurelist[cardtreasure].object
+            $ shopobj = treasurelist[cardtreasure]
+            
             $ card_distance = 0.12
-            $ cardxpos=0.26+(cardindex*card_distance)
+            # $ cardxpos=0.26+(cardindex*card_distance)
 
-            if (cardtreasure.COST<=playerbits) and (clickedcard[cardindex]==False):
-                ###TODO:: ADD HOVER DESCRIPTION Layered Images
-                imagebutton idle CardDisplay(playercardobj):
-                    action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
-                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
-                    # Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos),
-                    
-                    unhovered SetVariable("hoverFXN",[])
-                    # Hide("cardhover"),
-                    at enlargehover_choosecard
-                    # xpos cardxpos 
-                    # xanchor 0.5 ypos 0.90 yanchor 0.5
-                    ypos 0.98 yanchor 1.0
-            elif (cardtreasure.COST>playerbits) and (clickedcard[cardindex]==False):
-                imagebutton idle CardDisplayDimmed(playercardobj):
-                    action NullAction()
-                    hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+            # if (playercardobj.COST<=playerbits) and (clickedcard[cardindex]==False):
+            #     ###TODO:: ADD HOVER DESCRIPTION Layered Images
+            imagebutton idle CardDisplay(playercardobj):
+                action Play("sound","sound/Phase.wav"), Hide("cardhover"), Function(choosetreasurecard,shopobj),SetVariable("selected_treasure",playercardobj),Return()
+                hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
+                # Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos),
+                
+                unhovered SetVariable("hoverFXN",[])
+                # Hide("cardhover"),
+                at enlargehover_choosecard_treasure
+                # xpos cardxpos 
+                # xanchor 0.5 ypos 0.90 yanchor 0.5
+                ypos 0.5 yanchor 0.5
+            # elif (playercardobj.COST>playerbits) and (clickedcard[cardindex]==False):
+            #     imagebutton idle CardDisplayDimmed(playercardobj):
+            #         action NullAction()
+            #         hovered Play("sound","sfx/select.wav"), SetVariable("hoverFXN",playercardobj.FXN)
 
-                    unhovered SetVariable("hoverFXN",[])
-                    at enlargehover_choosecard
+            #         unhovered SetVariable("hoverFXN",[])
+            #         at enlargehover_choosecard_treasure
 
-                    ypos 0.98 yanchor 1.0
+            #         ypos 0.5 yanchor 0.5
 
-
+default selected_treasure=GUNVAR
 
 label R_TreasureNode:
+    scene mainbg with dissolve_pixels
+    call showphasemsg("DATA TREASURE")
     $ new_treasure=generate_treasures()
-    call screen SelectNewTreasure(new_treasure)
+    $ new_treasure_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in new_treasure}
     
+    call screen SelectNewTreasure(new_treasure_battleware_list)
+    
+    $ newcard=selected_treasure.name
+    $ currentcard=(selected_treasure.object)
+    play sound "sound/loadcard.wav"
+    show cardflasher with dissolve_pixels:
+        xalign 0.5 yalign 0.46
+    "You got: [newcard]!"
     return
 
 screen playerwidget:
@@ -348,9 +407,7 @@ screen playerwidget:
                             frame:
                                 style "deckframe"
                                 text "{size=14}ATK: [playerATK] DEF: [playerDEF] {/size}"
-                            frame:
-                                style "deckframe"
-                                text "{size=14}Chapter [chapternum]{/size}"
+                            
                         frame:
                             xminimum 460
                             style "deckframe"
@@ -436,10 +493,11 @@ label r_battlestart:
             GearframeUnitron,
             NucleusVernier,
             AccelRiser,
-            DataBuster,
+            VirusFlame,
             SaberAura,
             Katana,
             Laserbeam,
+            LambdaSaber,
             DataForce,
             Shieldbit,
             RecursiveSlash,
@@ -448,9 +506,9 @@ label r_battlestart:
             BlockSaber,
             DataBuster,
             DataBomb,
-            
+            WindBlast,
+            Tackle,
             ]
-
         treasure_tpf=treasurebattleware
         nodes_path.append([Enemy])
         used_nodes.append(Enemy)
@@ -502,8 +560,92 @@ init python:
             return True
         else:
             return False
+default r_talks=0
 label R_player_talks:
-    "Let's get going."
+    $ renpy.call("r_talks_"+(playerName if playerName!="Code Red" else "CodeRed")+"_"+str(r_talks))
+    # if playerName=="ILY":
+        
+        
+    # if playerName=="Ave":
+    #     a"Let's get going."
+    # if playerName=="Code Red":
+    #     c"Let's get going."
+    $ r_talks+=1
+    if r_talks==3:
+        $ r_talks=0
+    return
+label r_talks_ILY_0:
+    show ILY with dissolve
+    i "Have you optimized the battleware deck yet?"
+    i "Try some new cards out by using the Deck Construction menu!"
+    return
+label r_talks_ILY_1:
+    show ILY with dissolve
+    $ John_m="frown"
+    j "Why do you wear a heart-shaped monocle?"
+    i "Oh this? It's a tool to help me to understand more about others!"
+    $ John_e="up"
+    j "So... battle analysis?"
+    i "Not just for battle! It's rose-colored, you know. It's poetic."
+    $ John_m="O"
+    j "... Oh, I kind of get it now."
+
+    return
+label r_talks_ILY_2:
+    show ILY with dissolve
+    $ ILY_m = "frown"
+    $ ILY_e = "down"
+    i "The original version of me is roaming in this labyrinth."
+    $ John_m="frown"
+    $ John_e="mad"
+    
+    j "Yikes. You think we can take her on?"
+    i "She's a ruthless one. "
+    $ ILY_m = "smile3"
+    $ ILY_e = "down"
+    extend "But she lacks the resolve of the romantic hero!"
+    i "She is the old me. I'm not about to back out against my past!"
+    j "Something tells me you're eager to prove her wrong."
+    $ John_m="smile"
+    j "That's good. But you have to stay focused."
+
+    return
+
+label r_talks_Ave_0:
+    show Ave with dissolve
+    i "Have you optimized the battleware deck yet?"
+    i "Try some new cards out by using the Deck Construction menu!"
+    return
+label r_talks_Ave_1:
+    show Ave with dissolve
+    $ Lucida_m="frown"
+    j "Why do you wear a heart-shaped monocle?"
+    i "Oh this? It's a tool to help me to understand more about others!"
+    $ Lucida_e="up"
+    j "So... battle analysis?"
+    i "Not just for battle! It's rose-colored, you know. It's poetic."
+    $ Lucida_m="O"
+    j "... Oh, I kind of get it now."
+
+    return
+label r_talks_Ave_2:
+    show Ave with dissolve
+    $ ILY_m = "frown"
+    $ ILY_e = "down"
+    i "The original version of me is roaming in this labyrinth."
+    $ John_m="frown"
+    $ John_e="mad"
+    
+    j "Yikes. You think we can take her on?"
+    i "She's a ruthless one. "
+    $ ILY_m = "smile3"
+    $ ILY_e = "down"
+    extend "But she lacks the resolve of the romantic hero!"
+    i "She is the old me. I'm not about to back out against my past!"
+    j "Something tells me you're eager to prove her wrong."
+    $ John_m="smile"
+    j "That's good. But you have to stay focused."
+
     return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75
@@ -518,6 +660,15 @@ screen roguenodeselect():
             right_padding 26
             left_padding 26
             text "Menu"
+        button:
+            action Return("items")
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            background Frame("gui/framew.png", 10, 10)
+            # top_padding 52
+            bottom_padding 20
+            right_padding 26
+            left_padding 26
+            text "Items"
         
         button:
             action Return("deck_edit")
@@ -531,8 +682,9 @@ screen roguenodeselect():
 
     button:
         xsize 400
+        ysize 700
         background ("[playerName]")
-        yanchor 0.7 ypos 1.0 
+        yanchor 1.0 ypos 1.0 
         at pausetrans1, zoomtrans(0.8)
         action Return("R_player_talks")
     text "Stage "+str(boss_index)+" Boss: "+str(stageboss.name) xalign 0.5 yalign 0.1
@@ -633,9 +785,7 @@ screen roguenodeselect():
                             frame:
                                 style "deckframe"
                                 text "{size=14}ATK: [playerATK] DEF: [playerDEF] {/size}"
-                            frame:
-                                style "deckframe"
-                                text "{size=14}Chapter [chapternum]{/size}"
+                            
                         frame:
                             xminimum 460
                             style "deckframe"
