@@ -176,7 +176,7 @@ label roguemode:
             $ game_win=True
     if not game_over:
         jump rogue_game_loop
-    if game_win and not game_over:
+    if game_win and  game_over:
 
         call showphasemsg("YOU WIN!!")
         pause
@@ -187,17 +187,24 @@ label roguemode:
         call showphasemsg("SOFTWAR")
         pause
         
-
+    
     return
 image mainbg = "gui/main_menu/main menu bglayer1.png"
 label roguestage:
     scene mainbg with pixellate
     $ node_current=(-1,0)
-    call showphasemsg("Stage "+str(boss_index)+"")
-    $ stageboss=renpy.random.choice(r_Bosses)
-    $ r_Bosses.remove(stageboss)
-    if boss_index==1:
-        call r_battlestart
+    if r_Bosses==[]:
+        "CAMPAIGN CLEARED"
+        $ game_win=True
+        $ Boss_defeated=True
+        $ game_over=True
+        return
+    else:
+        call showphasemsg("Stage "+str(boss_index)+"")
+        $ stageboss=renpy.random.choice(r_Bosses)
+        $ r_Bosses.remove(stageboss)
+        if boss_index==1:
+            call r_battlestart
     label newnodes:
         play music "bgm/ost/Serious_Noyemi_K.ogg"
         scene mainbg 

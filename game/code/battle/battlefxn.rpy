@@ -925,6 +925,10 @@ image SPText:
     Text("{b}SP + "+str(shieldtoplayer)+"{/b}",style='statusoutlines')
 image HPText:
     Text("{b}HP + "+str(healtoplayer)+"{/b}",style='statusoutlines_red')
+image SPTextenemy:
+    Text("{b}SP + "+str(shieldtoenemy)+"{/b}",style='statusoutlines')
+image HPTextenemy:
+    Text("{b}HP + "+str(healtoenemy)+"{/b}",style='statusoutlines_red')
     
 label Shieldplayer:
     play sound "sfx/defense.wav"
@@ -1034,7 +1038,7 @@ label Recoverenemy:
         if enemyHP>=enemyHPMax:
             enemyHP=enemyHPMax
     #Animation
-    show heallight:
+    show heallight onlayer overlay:
         alpha 0.0
         ease 0.3 alpha 1.0
         ease 0.3 alpha 0.0
@@ -1044,7 +1048,7 @@ label Recoverenemy:
         ease 0.2 alpha 1.0
         pause 0.1
         ease 0.4 alpha 0.0
-    show text "{size=40}HP+=[healtoenemy]{/size}" onlayer overlay:
+    show HPTextenemy onlayer overlay:
         alpha 0.0 zoom 0.0 xalign 0.5 yanchor 0.5 ypos 0.45
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.2
@@ -1068,7 +1072,7 @@ label Shieldenemy:
         ease 0.2 alpha 1.0
         pause 0.1
         ease 0.4 alpha 0.0
-    show SPText onlayer overlay:
+    show SPTextenemy onlayer overlay:
         alpha 0.0 zoom 0.0 xalign 0.5 yanchor 0.5 ypos 0.45
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.2
