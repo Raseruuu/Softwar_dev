@@ -172,7 +172,7 @@ label battlecry_CodeRed:
             elif avcount == 4:
                 voice "voice/Code Red/attack4.mp3"
                 c"Heh!"
-                $avcount=1
+                $ avcount=0
     return
 label battlecry_Vira:
     if enemyName=="Vira":
@@ -299,8 +299,8 @@ label battlecry:
                 c"Hrah!"
             elif vcount == 4:
                 voice "voice/Code Red/attack4.mp3"
-                c"Heh!"
-                $avcount=1
+                c "Heh!"
+                $avcount=0
 
     if playerName=="Ave":
         if (currentcard.NAME=="DataSaber") or currentcard.NAME=="Laserbeam":

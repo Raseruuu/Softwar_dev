@@ -125,7 +125,7 @@ label Damageenemy:
         show Enemy:
             xalign 0.5 yanchor 0.32 ypos 0.3 
         play sound "sfx/miss.wav"
-        call showphasemsg("EVADED")
+        call battlemessage("EVADED")
     ## NO EVADE
     elif attackhit:
         if battle_distance>=attackrange:
@@ -144,10 +144,10 @@ label Damageenemy:
             show Enemy:
                 xalign 0.5 yanchor 0.32 ypos 0.3 
             play sound "sfx/miss.wav"
-            call showphasemsg("MISSED!")
+            call battlemessage("MISSED!")
             call Advanceenemy(1)
             if battle_distance==0 and battle_distance_old>0:
-                call showphasemsg("DISTANCE:ZERO")
+                call battlemessage("DISTANCE:ZERO")
             $ renpy.pause(0.2,hard=True)
             return
         if attackhit:
@@ -184,7 +184,7 @@ label Damageenemy:
                 linear 0.05 zoom 1.0
 
             #   $ renpy.pause(0.6,hard=True)
-            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME:
+            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME or "WindSword" in currentcardTYPE:
                 $ renpy.pause(0.2,hard=True)
             elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
                 $ renpy.pause(0.25,hard=True)
@@ -199,7 +199,7 @@ label DamageSPplayer:
     if "Evade" in PlayerSts:
         $ attackhit=False
         $ PlayerSts.remove('Evade')
-        call showphasemsg("EVADED")
+        call battlemessage("EVADED")
     ## NO EVADE
     else:
         if playerSP>0:
@@ -241,7 +241,7 @@ label DamageSPenemy:
         show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
         pause 0.2
         show Enemy
-        call showphasemsg("EVADED")
+        call battlemessage("EVADED")
     ## NO EVADE
     else:
         if enemySP>0:
@@ -923,6 +923,8 @@ image shieldbit = "images/battle/Shield_bit.png"
 image shieldlight = "images/battle/Shield_light.png"
 image SPText:
     Text("{b}SP + "+str(shieldtoplayer)+"{/b}",style='statusoutlines')
+image HPText:
+    Text("{b}HP + "+str(healtoplayer)+"{/b}",style='statusoutlines_red')
     
 label Shieldplayer:
     play sound "sfx/defense.wav"
@@ -1008,7 +1010,7 @@ label Recoverplayer:
         if playerHP>=playerHPMax:
             playerHP=playerHPMax
     #Animation
-    show heallight:
+    show heallight onlayer overlay:
         alpha 0.0
         ease 0.3 alpha 1.0
         ease 0.3 alpha 0.0
@@ -1016,7 +1018,7 @@ label Recoverplayer:
         alpha 0.0 xpos 0.5 ypos 0.7 yanchor 0.5 xanchor 0.5
         ease 0.2 alpha 1.0
         ease 0.4 alpha 0.0
-    show text "{size=70}HP+=[healtoplayer]{/size}" onlayer overlay:
+    show HPText onlayer overlay:
         alpha 0.0 zoom 0.0 xpos 0.5 ypos 0.9 yanchor 0.5 xanchor 0.5
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.55
@@ -1042,7 +1044,7 @@ label Recoverenemy:
         ease 0.2 alpha 1.0
         pause 0.1
         ease 0.4 alpha 0.0
-    show text "{size=40}SP+=[healtoenemy]{/size}" onlayer overlay:
+    show text "{size=40}HP+=[healtoenemy]{/size}" onlayer overlay:
         alpha 0.0 zoom 0.0 xalign 0.5 yanchor 0.5 ypos 0.45
         ease 0.1 alpha 1.0 zoom 1.2
         pause 0.2
@@ -1125,7 +1127,7 @@ label Damageplayer:
         pause 0.1
         $ evasion_active=False
         $ PlayerSts.remove('Evade')
-        call showphasemsg("EVADED")
+        call battlemessage("EVADED")
         
     ## NO EVADE
     if attackhit:
@@ -1138,11 +1140,11 @@ label Damageplayer:
             pause 0.1
             $ evasion_active=False
             play sound "sfx/miss.wav"
-            call showphasemsg("MISSED!")
-            $ renpy.pause(0.3,hard=True)
+            call battlemessage("MISSED!")
+            $ renpy.pause(0.2,hard=True)
             if battle_distance==0 and battle_distance_old>0:
-                call showphasemsg("DISTANCE:ZERO")
-            $ renpy.pause(0.3,hard=True)
+                call battlemessage("DISTANCE:ZERO")
+            $ renpy.pause(0.2,hard=True)
             return
         else:
         

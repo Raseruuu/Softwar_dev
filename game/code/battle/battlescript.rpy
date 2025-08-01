@@ -469,7 +469,6 @@ label Enemydisappear:
 
 # show cardbacks at deck as cardbacks2
 # show cardbacks at deck as cardbacks1
-
 init -2 python:
     def bar_size(value,maxvalue, barwidth):
         barsize = int(barwidth*float(value)/float(maxvalue))

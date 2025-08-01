@@ -278,8 +278,17 @@ init python:
         global treasure_tpf
         newtreasurelist=[]
         for tx in range(0,3):
-            newtreasure = renpy.random.choice(treasure_tpf)
-            newtreasurelist.append(newtreasure)
+            # newtreasure = renpy.random.choice(treasure_tpf)
+            add_treasure=False
+            newtreasure=0
+            while not add_treasure:
+                newtreasure = renpy.random.choice(treasure_tpf)
+                
+                if newtreasure in newtreasurelist:
+                    add_treasure=False
+                else:
+                    newtreasurelist.append(newtreasure)
+                    add_treasure=True
         # treasure_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in battleware_list}
 
         # treasure_tpf.remove(newnode)
@@ -613,14 +622,14 @@ label r_talks_ILY_2:
 
 label r_talks_Ave_0:
     show Ave with dissolve
-    i "Have you optimized the battleware deck yet?"
-    i "Try some new cards out by using the Deck Construction menu!"
+    a "Have you optimized the battleware deck yet?"
+    a "Try some new cards out by using the Deck Construction menu!"
     return
 label r_talks_Ave_1:
     show Ave with dissolve
     $ Lucida_m="frown"
     j "Why do you wear a heart-shaped monocle?"
-    i "Oh this? It's a tool to help me to understand more about others!"
+    a"Oh this? It's a tool to help me to understand more about others!"
     $ Lucida_e="up"
     j "So... battle analysis?"
     i "Not just for battle! It's rose-colored, you know. It's poetic."

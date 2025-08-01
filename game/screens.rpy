@@ -18,6 +18,9 @@ style default:
 style statusoutlines:
     size 60
     outlines [(2, "#022168", -1, 1),(2, "#022168", 0, 0)]
+style statusoutlines_thick:
+    size 50
+    outlines [(4, "#022168", -2, 2),(4, "#022168", 0, 0)]
 style statusoutlines_red:
     size 60
     outlines [(2, "#bf0505", -1, 1),(4, "#bf0505", 0, 0)]
@@ -387,7 +390,7 @@ screen quick_menu():
                     yalign 0.0
                     # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
                     textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
-                    # textbutton _("Back") action Rollback() keyboard_focus False
+                    textbutton _("Back") action Rollback() keyboard_focus False
                 
                     # textbutton _("History") action ShowMenu('history')
                     textbutton _("Save") action ShowMenu('save') keyboard_focus False

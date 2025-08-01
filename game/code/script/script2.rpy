@@ -85,7 +85,7 @@ label script2:
     with dissolve
     v "How.. I can't win.. the Virus Signature, is different from the ILOVEYOU Virus in my Database...?"
     i "I'm.. different! I've been altered!"
-    v "No! Altered or not, a Virus is Virus... I should be able to.. override your control!"
+    v "No! Altered or not, a Virus is a Virus... I should be able to.. override your control!"
     i "I'm on your side, listen to me!"
     i "Our operator wants us to work together!"
     v "I don't believe you!"
@@ -129,7 +129,7 @@ label script2:
     v "How strong was that guy?"
     i "I might need to stay close as back-up, kind of strong."
     j "How does this system work? Antiviruses should be effective against Viruses by default."
-    h "But since ILY beat Vira-"
+    h "But since ILY beat Vira, in powerscaling terms ILY should be stro-{nw}"
     v "You both might be overthinking things! I was holding back against ILY, enough said."
     v "I do have an ace up my sleeve, just wait for it!"
     v "We can keep communications up while I traverse the server remotely. I'll report my findings!"

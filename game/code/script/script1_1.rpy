@@ -193,8 +193,8 @@ label script1:
     pause 0.5
     hide whitewindow
     hide dlheart
-
-    show ILY with pixellate
+    play sound "sound/loadcard.wav"
+    show ILY with dissolve_pixels
     play music "bgm/ost/ILY's_Theme_game_by_Jan_Hehr.mp3"  fadeout 1 loop
     $ persistent.has_met_ILY=True
     i "HELLO, USER! I am the ILOVEYOU virus!"

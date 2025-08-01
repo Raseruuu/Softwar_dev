@@ -915,6 +915,23 @@ screen phasemsg(Message):
 
         xalign 0.5 yalign 0.5 xsize 1280 at phasetrans
         text "{b}{size=100}[Message]{/b}{/size}" xalign 0.5 yalign 0.5
+screen battlemessagescreen(Message):
+    # frame:
+
+        
+    text "{b}{size=100}[Message]{/b}{/size}" :
+        style "statusoutlines_thick"
+        xalign 0.5 yalign 0.5
+        at phasetrans
+
+    
+transform phasetrans:
+    on show:
+        yzoom 0.0
+        linear 0.08 yzoom 1.1
+        linear 0.02 yzoom 1.0
+    on hide:
+        linear 0.1 yzoom 0.0
 transform phasetrans:
     on show:
         yzoom 0.0
@@ -928,7 +945,11 @@ label showphasemsg(msg):
     $ renpy.pause(0.9,hard=True)
     hide screen phasemsg
     return
-
+label battlemessage(msg):
+    show screen battlemessagescreen(msg)
+    $ renpy.pause(0.8,hard=True)
+    hide screen battlemessagescreen
+    return
 
 transform zoomBattlecards:
     zoom 0.6
