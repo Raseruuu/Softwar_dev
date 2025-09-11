@@ -31,6 +31,8 @@ init python:
     enemyfirst =False
     map_active=False
     playerbattlecode=[]
+    
+
 default playerPlugins =[]
 default battle_distance = 0
 transform flip_image:
@@ -604,7 +606,12 @@ label playbattlemusic(e_name):
         play music ""+renpy.random.choice(["bgm/Fight_bgm_maoudamashii_cyber14.ogg","bgm/ost/BATTLE_Common_by_Walter_Chamod.wav"])
         # play music "bgm/ost/BATTLE_Common.wav"
     return
-
+label returncardfrombattlecode(cardobject,handindex):
+    $ clickedcard[handindex] = False
+    $ playerbits+=cardobject.COST
+    $ playerbattlecode.remove(cardobject)
+    $ usedcards.remove(handindex)
+    return
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     if playerHP==0:
         return
@@ -1034,6 +1041,7 @@ image selectring:
     rotate 0 zoom 1.4
     linear 4.0 rotate 360
     repeat
+
 
 screen cardhover(cardobject,cardhoverxpos):
     image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.92 at cardtrans

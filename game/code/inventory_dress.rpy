@@ -11,8 +11,8 @@ init python:
     PinkDress = Item_dress("PinkDress","Outfit","A cute casual outfit!")
     CowGirl = Item_dress("CowGirl","Outfit","Something strange happened to ILY's breasts...")
     BikiniArmor = Item_dress("BikiniArmor","Outfit","The charming and beautiful knightess charges on!")
-    SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spiritual warriors that maintain order!")
-    BlackBelts = Item_dress("BlackBelts","Outfit","Uniform worn by spiritual warriors that maintain order!")
+    SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spirit warriors that maintain order!")
+    BlackBelts = Item_dress("BlackBelts","Outfit","Cool fellows wear black!")
     
     
     ArmorBikini = Item_dress("ArmorBikini","Underwear","The charming and beautiful knightess charges on!")
@@ -26,15 +26,17 @@ init python:
 
     inventory_dress=[
         Unequip,
+        Garden,
         Uniform,
         PinkDress,
         Red_underwear,
         White_underwear,
-        UniformBig,
-        CowGirl,
-        BikiniArmor,
-        ArmorBikini,
-        BlackBelts
+
+        # UniformBig,
+        # CowGirl,
+        # BikiniArmor,
+        # ArmorBikini,
+        # BlackBelts
         ]
     
     def EquipDress(dresstype,dressname):

@@ -749,7 +749,7 @@ label date2:
         l"Did you notice anything odd?"
         "Something definitely was super odd."
         j"An AI person appeared on my screen and introduced itself as the virus."
-        j"The AI virus registered herself as my assistant, and told me to call her \"ILY\""
+        j"The AI virus signed herself up to be my assistant, and told me to call her \"ILY\""
         $ Lisa_m="open"
         $ Lisa_eyes="raised"
         l"No way! "
@@ -1435,38 +1435,38 @@ label date2:
         j"Give me a few minutes, I'll add in the GET and POST request scripts for this part."
         l"I'll help out on the front-end side while you're working."
         "Lisa and I have become indulged in coding for the website."
-        scene black with dissolve
-        play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadein 1 loop
-        "Meanwhile, in a place neither I nor ILY is aware of..."
-        "There exists 2 cyber-entities, one of security, order and justice, and another, of strength, aggressiveness and cold hostility."
-        "An antivirus and a virus."
-        show CodeRed with dissolve
-        cv"What're your orders, boss?"
-        hx"I'm glad you asked."
-        cv"Well, what is it? I'm itching to destroy another website."
-        hx"No need to rush. Don't you get tired?"
-        show CodeRed with move:
-            xalign 0.93
-        show Ave with dissolve:
-            xpos 0.25
-        aa"I find it insulting that you would push your human limitations on us."
-        cv"I want you to give us orders."
-        hx"Be patient, both of you."
-        hx"The SDS servers are all shut down."
-        hx"We'll have to scout for tomorrow."
-        aa"They better be quick. I'd rather not be staying around a virus, of all things."
-        cv"I can't wait to get outta here either."
-        hx"You two are a terrible match."
-        aa"I suggest that you refrain from spouting any more insults."
-        hx"You both have been amazing AIs. I trust that tomorrow's battle will be a breeze."
-        aa"Under your command, master."
-        hide Ave with dissolve
-        show CodeRed with move:
-            xalign 0.5
-        cv"I doubt we could even call it a battle."
-        cv"No ordinary program can manage to beat a FAI."
-        "Unaware of the battle they will be facing, the hacker and his FAIs await the activation of Salcedo Dev Studio's servers."
-        "Their operation continues. And SDS will be in danger."
+        # scene black with dissolve
+        # play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadein 1 loop
+        # "Meanwhile, in a place neither I nor ILY is aware of..."
+        # "There exists 2 cyber-entities, one of security, order and justice, and another, of strength, aggressiveness and cold hostility."
+        # "An antivirus and a virus."
+        # show CodeRed with dissolve
+        # cv"What're your orders, boss?"
+        # hx"I'm glad you asked."
+        # cv"Well, what is it? I'm itching to destroy another website."
+        # hx"No need to rush. Don't you get tired?"
+        # show CodeRed with move:
+        #     xalign 0.93
+        # show Ave with dissolve:
+        #     xpos 0.25
+        # aa"I find it insulting that you would push your human limitations on us."
+        # cv"I want you to give us orders."
+        # hx"Be patient, both of you."
+        # hx"The SDS servers are all shut down."
+        # hx"We'll have to scout for tomorrow."
+        # aa"They better be quick. I'd rather not be staying around a virus, of all things."
+        # cv"I can't wait to get outta here either."
+        # hx"You two are a terrible match."
+        # aa"I suggest that you refrain from spouting any more insults."
+        # hx"You both have been amazing AIs. I trust that tomorrow's battle will be a breeze."
+        # aa"Under your command, master."
+        # hide Ave with dissolve
+        # show CodeRed with move:
+        #     xalign 0.5
+        # cv"I doubt we could even call it a battle."
+        # cv"No ordinary program can manage to beat a FAI."
+        # "Unaware of the battle they will be facing, the hacker and his FAIs await the activation of Salcedo Dev Studio's servers."
+        # "Their operation continues. And SDS will be in danger."
         scene black with dissolve
         play music "bgm/Sunset_bgm_maoudamashii_acoustic42.mp3"
         show John with dissolve:

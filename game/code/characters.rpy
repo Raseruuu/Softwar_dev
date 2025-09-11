@@ -141,6 +141,7 @@ init -1 python:
     globals()["Lucida_e"] = "down"
     globals()["Lucida_eyes"] = "open"
     globals()["Lucida_w"] = False
+    globals()["Lucida_outfit"]="uniform"
 
     globals()["Ave_e"] = "down"
     globals()["Ave_eyes"] = "open"
@@ -1065,6 +1066,13 @@ layeredimage Lucidafull:
     always:
         "images/Characters/Lucida/Lucida_base.png"
     always:
+        "images/Characters/Lucida/Lucida_base_bikini.png"
+    always:
+        # "images/Characters/Lucida/Lucida_base_dress_[Lucida_outfit].png"
+        ConditionSwitch("Lucida_outfit!=''","images/Characters/Lucida/Lucida_base_dress_[Lucida_outfit].png","Lucida_outfit==''",Null()) 
+    always:
+        "images/Characters/Lucida/Lucida_lefthand.png"
+    always:
         WhileSpeaking(
             "Lucida",
             # ConditionSwitch(
@@ -1087,7 +1095,8 @@ layeredimage Lucidafull:
             "('close' in Lucida_eyes)","images/Characters/Lucida/Lucida_eyes_[Lucida_eyes].png",
             "('close' not in Lucida_eyes)","LucidaEyes",
             )
-    
+    always:
+        "images/Characters/Lucida/Lucida_hairfront.png"
     zoom 0.22
 image Lucida:
     "Lucidafull"
@@ -1200,7 +1209,7 @@ image Vira:
     # zoom 0.25
 
 image ViraFull:
-    LiveComposite(
+    Composite(
         (680,961),
         (0, 0), At("images/Characters/Vira/Vira_p.png",zoomtrans(0.36697247706)),
         (0, 0), At("images/Characters/Vira/Vira_e[Vira_e].png",zoomtrans(0.36697247706)), #eyebrows

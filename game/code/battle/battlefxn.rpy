@@ -624,17 +624,17 @@ label EvadePlayer:
         if counter<quantity:
             jump tokenquant_loop5
     return
-label BoostATK:
+label IncreaseATK:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Power=currentcardMAG
-    # $ PlayerSts.append("BoostATK")
+    # $ PlayerSts.append("IncreaseATK")
     $ currentcard_fxn_params=currentcardFXN[fxnindex].params
 
-    # $ PlayerSts=statusAppend(PlayerSts,["BoostATK",currentcard_fxn_params[1]])
-    $ PlayerSts=statusAppend(PlayerSts,"BoostATK")
+    # $ PlayerSts=statusAppend(PlayerSts,["IncreaseATK",currentcard_fxn_params[1]])
+    $ PlayerSts=statusAppend(PlayerSts,"IncreaseATK")
     call updatestats_player
-    show BoostATKsts onlayer overlay:
+    show IncreaseATKsts onlayer overlay:
         zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
@@ -642,32 +642,32 @@ label BoostATK:
     $ renpy.pause(0.6,hard=True)
     hide text
     return
-label BoostDEF:
+label IncreaseDEF:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Power=currentcardMAG
-    # $ PlayerSts.append("BoostDEF")
-    $ PlayerSts=statusAppend(PlayerSts,"BoostDEF")
+    # $ PlayerSts.append("IncreaseDEF")
+    $ PlayerSts=statusAppend(PlayerSts,"IncreaseDEF")
     call updatestats_player from _call_updatestats_player_1
-    show BoostDEFsts onlayer overlay:
+    show IncreaseDEFsts onlayer overlay:
         zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide BoostDEFsts
+    hide IncreaseDEFsts
     return
-label BoostMAGenemy:
+label IncreaseMAGenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Power=currentcardMAG
-    # $ PlayerSts.append("BoostATK")
-    $ PlayerSts=statusAppend(PlayerSts,"BoostMAG")
+    # $ PlayerSts.append("IncreaseATK")
+    $ PlayerSts=statusAppend(PlayerSts,"IncreaseMAG")
     call updatestats_enemy from _call_updatestats_enemy
-    show BoostMAGsts onlayer overlay:
+    show IncreaseMAGsts onlayer overlay:
         zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide BoostMAGsts
+    hide IncreaseMAGsts
     return
 
 label WhileTokenInStatusEnemy:
@@ -849,46 +849,46 @@ label WhileTokenInStatusPlayer:
                     jump block_loop7
 
     return
-label BoostATKenemy:
+label IncreaseATKenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Power=currentcardMAG
 
-    # $ EnmySts.append("BoostDEF")
-    $ EnmySts=statusAppend(EnmySts,"BoostATK")
+    # $ EnmySts.append("IncreaseDEF")
+    $ EnmySts=statusAppend(EnmySts,"IncreaseATK")
     call updatestats_enemy from _call_updatestats_enemy_1
-    show BoostATKsts onlayer overlay:
+    show IncreaseATKsts onlayer overlay:
         zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide BoostDEFsts
+    hide IncreaseDEFsts
     return
-label BoostDEFenemy:
+label IncreaseDEFenemy:
     play sound "sfx/sfx_sounds_powerup16.wav"
     $ Power=currentcardMAG
 
-    # $ EnmySts.append("BoostDEF")
-    $ EnmySts=statusAppend(EnmySts,"BoostDEF")
+    # $ EnmySts.append("IncreaseDEF")
+    $ EnmySts=statusAppend(EnmySts,"IncreaseDEF")
     call updatestats_enemy from _call_updatestats_enemy_2
-    show BoostDEFsts onlayer overlay:
+    show IncreaseDEFsts onlayer overlay:
         zoom 1.3 xpos 0.85 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide BoostDEFsts
+    hide IncreaseDEFsts
     return
 label updatestats_player:
     python:
         playerATK_m=playerATK
         playerDEF_m=playerDEF
         for fxns in PlayerSts:
-                if fxns == 'BoostATK':
+                if fxns == 'IncreaseATK':
                     # boostvalue = fxns[1]
                     boostvalue = 0.25
                     playerATK_m+=playerATK*boostvalue
                     playerATK_m = int(playerATK_m)
                     # "This shit happened"
-                elif fxns == 'BoostDEF':
+                elif fxns == 'IncreaseDEF':
                     boostvalue = 0.25
                     playerDEF_m+=playerDEF*boostvalue
                     playerDEF_m = int(playerDEF_m)
@@ -902,13 +902,13 @@ label updatestats_enemy:
         enemyATK_m=enemyATK
         enemyDEF_m=enemyDEF
         for fxns in EnmySts:
-                if fxns == 'BoostATK':
+                if fxns == 'IncreaseATK':
                     # boostvalue = fxns[1]
                     boostvalue = 0.25
                     enemyATK_m+=enemyATK*boostvalue
                     enemyATK_m = int(enemyATK_m)
                     # "This shit happened"
-                elif fxns == 'BoostDEF':
+                elif fxns == 'IncreaseDEF':
                     # boostvalue = fxns[1]
                     boostvalue = 0.25
                     enemyDEF_m+=enemyDEF*boostvalue
@@ -1644,14 +1644,14 @@ label enemyattack:
     
     #Buffs Priority
     $ enemyhand.sort(key=lambda x: x.FXN[0].name)
-    if playerHP<= int(playerHPMax/2) or ("BoostATK" in EnmySts) or ("Saber" in EnmySts):
+    if playerHP<= int(playerHPMax/2) or ("IncreaseATK" in EnmySts) or ("Saber" in EnmySts):
         #Damage priority
         $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     elif (enemySP==0) and (enemyHP<=enemyHPMax):
         #Strongest card priority
 
         $ enemyhand.sort(key=lambda x: x.COST,  reverse = True)
-    if "Shield" in enemyhand[0].FXN and "BoostATK" in [handcard.FXN for handcard in enemyhand]:
+    if "Shield" in enemyhand[0].FXN and "IncreaseATK" in [handcard.FXN for handcard in enemyhand]:
         $ enemyhand.sort(key=lambda x: x.FXN[0].name)
     # python:
     #     for cardindex in range(0,5):
@@ -1676,8 +1676,8 @@ label enemyattack:
 
         # $ goodcardtouse = True
 
-        # $ boostcard = ("Boost" in currentcardFXN[0].name or "Boost" in currentcardFXN[1].name)
-        # $ goodcardtouse = boostcard and (enemySP>100) or (not boostcard  and enemySP<=100)
+        # $ Increasecard = ("Increase" in currentcardFXN[0].name or "Increase" in currentcardFXN[1].name)
+        # $ goodcardtouse = Increasecard and (enemySP>100) or (not Increasecard  and enemySP<=100)
         # $ goodcardused = False
         # $ choicecount = 0
         # $ notprioritycard = not (goodcardtouse)
@@ -1716,15 +1716,15 @@ label Saber:
 
     play sound "sfx/sfx_sounds_powerup16.wav"
     # $ Magnitude=currentcardMAG
-    # # $ PlayerSts.append("BoostATK")
+    # # $ PlayerSts.append("IncreaseATK")
     $ PlayerSts=statusAppend(PlayerSts,"Saber")
     call updatestats_player 
-    show BoostDEFsts onlayer overlay:
+    show IncreaseDEFsts onlayer overlay:
         zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide BoostDEFsts
+    hide IncreaseDEFsts
     return
 
 init python:
@@ -1742,8 +1742,8 @@ init python:
         "While":"WhileTokenInStatusPlayer",
         "For":"ForInRangePlayer",
         "RemoveToken":"RemoveTokenPlayer",
-        "BoostATK":"BoostATK",
-        "BoostDEF":"BoostDEF",
+        "IncreaseATK":"IncreaseATK",
+        "IncreaseDEF":"IncreaseDEF",
         "ReduceBit":"ReduceBit",
         "Evade":"EvadePlayer",
         "Block":"Blockplayer",
@@ -1772,9 +1772,9 @@ init python:
         "While":"WhileTokenInStatusEnemy",
         "For":"ForInRangeEnemy",
         "RemoveToken":"RemoveTokenEnemy",
-        "BoostATK":"BoostATKenemy",
-        "BoostDEF":"BoostDEFenemy",
-        "Boost":"Boost",
+        "IncreaseATK":"IncreaseATKenemy",
+        "IncreaseDEF":"IncreaseDEFenemy",
+        "Increase":"Increase",
         "ReduceBit":"ReduceBitself",
         "Evade":"EvadeEnemy",
         "Block":"BlockEnemy",
