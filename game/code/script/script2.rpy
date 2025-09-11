@@ -488,15 +488,16 @@ label SDS_Encounter:
     extend "I'm just here to destroy."
     "He materializes another sword."
     v  "There's more to him... I've analysed just which virus you are!"
-    cv "After this much of a beating? Is that how Antiviruses work now?"
+    cv "After this much of a beating? Is that how Antiviruses work now? Pathetic!"
     v "Shut up! \"CODE RED!\"! I figured out your true name! You're the Code Red Virus!" 
     cv "You... got it all wrong!"
-    cv "What kind of dumb person would call a virus by a color? "
-    v "Color? You wear an all-blue armor because your name is RED!"
-
+    cv "Only an idiot would label a virus by some color code. "
+    v "You didn't have to throw shade on those people who named you, man."
+    cv "Dumb name."
+    v "You wear an all-blue armor because your name is RED!"
     cv "That's not..."
 
-    v "And your modus operandi with the website you tampered with is getting clearly obvious now! it aligns perfectly!!"
+    v "And your modus operandi with the website you tampered with, it matches perfectly with Code Red, from 2001!!"
     c "So you found out my name, so what?"
     i "Now that I know who you are, I challenge you to a duel!"
     c "A duel?"
@@ -508,26 +509,77 @@ label SDS_Encounter:
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
-    i "Go, Black Bars!"
-    "ILY stretched out her arms with open palms and grasped the air. Quickly enough, two long, pitch-black poles appeared in her hands, then she thrusted them to the ground."
-    "The poles collided, and clipped through the armored viruses' arms, but pierced the ground seamlessly, fixing them in place."
-    "As ILY let go, the \"Black Bars\" then grew in width, covering his arms. Positioned like two vertical pillars at a gate..  and... "
-    cv "Wha? I can't move!"
+    c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
+    j "The ranged attack plan is working, Hilbert!"
+    i "I knew you were tough..!"
+    c "Spam Attack, huh... This kind of attack is only getting on... my nerves!!"
+    i "Go, my E-mails! Affection Infection!"
+    c "Wha? I can't move!"
     "It's restrained him!!"
     i "What's wrong? Can't proceed?"
+    "Code Red was on his knees."
+    c "No!"
+    i "The multitude of e-mail tokens I sent your way is infecting your system now!"
+    i "They didn't pierce your armor, but they did pierce your status array."
+    i "My love letters will make their way to your heart... They've drained your ATK points to zero!"
+    c "I've no time for romantic babble! Stop fighting dirty!" 
+    i "Ohohoho! You should know, we're viruses, we always fight dirty!"
+    c "Kuh!"
+    i "Just so you know, I'm only doing this to stop you from destroying everything!"
     i "Do it, Vira!!"
     v"Powersol, Attack Mode!! Full blast!"
     "Vira unleashes the stored power from the strikes her Powersol endured."
-    cv "GRrraaaghh!!"
+    c "GRRRrraaaghh!!"
     "It struck him and pierced his armor.. "
     v "That does it!"
-    cv "No... I can't lose to the likes of... you."
+    "His body is almost fading, and bugging out.. Could this be it?"
+    c "No... I can't lose to the likes of... you."
     
-    cv "My mission is.. to destroy!!"
+    c "My mission is.. to destroy!!"
     i "I don't understand what you are fighting for here! Stop wrecking people's livelihood!"
-    cv ""
-    
+    c "I still... have one trick up my sleeve... "
+    "Suddenly, a surge of power is felt across the server."
+    "Vira and ILY" "What!?"
+    v "No way, just like the Lambda Saber, his armor's opening up??"
+    c "I too, can break off restraints... even the restraints, I put up on my self..!"
+    c "HHHRRRAAAAGGHH!!"
+    "With a huge force from the Code Red Virus, ILY's e-mail restraints came undone!"
+    "A huge bolt of red light suddenly struck the server."
+    v"No, his Data signature is changing drastically."
+    "The red glowing force expanded as a sphere, almost protecting... A transformation, about to happen!?"
+    "ILY and Vira witnessed a new thing"
+    v "ILY, he's transforming! We need to stop the state transition! We should break the force-field!"
+    i "Got it!"
+    "ILY quickly drew her blade and struck him. But the force-field repelled the attack."
+    "Vira raised her gun, and started shooting at the sphere.. It had no effect."
+    "Vira was about to strike with her parasol next, unitl out of the sphere, came a sudden laserbeam shooting Vira!"
+    "It was a direct hit, and it pushed Vira to the wall, knocking her out."
+    l "Vira, no!!"
+    "Before ILY could come to her aid, the force-field suddenly disappeared. Remnants of the crimson energy dispersed in the air."
+    "It wasn't just the barrier... Code Red's body is nowhere to be found!"
+    j "What's going on here...?!"
+    j "It couldn't be another Burst Transfer, could it?"
 
+    i "Are you okay?"
+    v "Tsk! I'm fine! Code Red is gone..!"
+    i "!!"
+    v "Look behind you ILY... A new... entity has arrived.. "
+
+    aa "That'll be enough, now, Virus."
+    i "!!"
+    "A new entity...? It isn't Code Red?"
+    "It wasn't Burst Transfer. Code Red must've logged out!"
+    aa "Antivirus... Vira? What's going on here?"
+    aa "And... My target. The ILOVEYOU Virus!!"
+    v "Watch out!!"
+    "Antivirus? Now?? "
+    i "Gah! Who are you?"
+    a "Ave Antivirus.. Executing termination protocol!!"
+    call battlev3(ILY, Ave)
+    if playerHP<=0:
+        return
+
+        
     # =============================
 
     # j "So Vira, can you see anything suspicious?"
@@ -694,16 +746,16 @@ label SDS_Encounter:
     # i "But Vira is still in there, we can't leave her in there!"
     # h "I don't care. She's an anti-virus, she knows this could happen."
 
-    "It's not right."
-    "This isn't right."
-    "My mind flashes back to when Melissa saved ILY earlier."
-    "No one deserves to disappear alone."
-    "It's just not right."
-    j "Hilbert, hold on for a second there."
-    j "ILY?"
-    i "Yes John?"
-    j "Smash. Go bring her home."
-    i "ROGER THAT!"
+    # "It's not right."
+    # "This isn't right."
+    # "My mind flashes back to when Melissa saved ILY earlier."
+    # "No one deserves to disappear alone."
+    # "It's just not right."
+    # j "Hilbert, hold on for a second there."
+    # j "ILY?"
+    # i "Yes John?"
+    # j "Smash. Go bring her home."
+    # i "ROGER THAT!"
 
     # ====[GRID]====
 
@@ -714,10 +766,10 @@ label SDS_Encounter:
     # [SW]
 
     # Part 4
-    u "Gah!"
-    "The blue enemy leans onto his massive weapon, one knee down to the ground."
-    i "Now get away and never come back!"
-    u "Heheh"
+    # u "Gah!"
+    # "The blue enemy leans onto his massive weapon, one knee down to the ground."
+    # i "Now get away and never come back!"
+    # u "Heheh"
 
 
     return
