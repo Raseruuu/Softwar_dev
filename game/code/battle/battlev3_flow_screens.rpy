@@ -102,7 +102,11 @@ screen VERSUS(playerName,enemyName):
     text "{size=80}{b}VS{/size}{/b}" xalign 0.5 yalign 0.75 style 'statusoutlines_red'
     text "{size=100}{b}"+ ("ILY" if (enemyName =="ILY_Alpha") else enemyName )+"{/size}{/b}" xalign 0.9 yalign 0.75  style 'statusoutlines_red'  
 
+transform battlecode_trans(focused=False):
+    xoffset 12
+    linear 0.2 xpos (0.49 if focused else 0.0) xanchor (0.5 if focused else 0.0) zoom (1.4 if focused else 1.0)
 
+    
 screen battlestats():
     
     $ playerbitsfirsthalf=(int(playerbitsmax/2) if (playerbits-int(playerbitsmax/2))>0 else playerbits)
@@ -143,27 +147,7 @@ screen battlestats():
                     # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
 
                 
-    frame:
-        style_prefix "statsb"
-        xsize 380 ysize 120
-        xpos 0.01 xanchor 0.0 ypos 0.60 yanchor 0.5
-        # at alpha08
-        
-        vbox:
-            vbox:
-                text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
-                hbox:
-
-                    xalign 0.0
-
-                    for cards in playerbattlecode:
-                        add "images/Cards/[cards.NAME].png" at codesize
-                    # for cards in playerbattlecode:
-                    #     add "images/Cards/[cards.NAME].png" at codesize
-                    for fillers in range(0,5-len(playerbattlecode)):
-
-                        add "images/Cards/Empty.png" at codesize
-            null height 5
+    
             
             
 
@@ -398,7 +382,30 @@ screen battlestats():
                     #     text "{b}ATK: [enemyATK]{/b}"
                     #     null width 10
                     #     text "{b}DEF: [enemyDEF]{/b}"
-    
+    frame:
+        style_prefix "statsb"
+        xsize 380 ysize 120
+        # xpos 0.01 xanchor 0.0 ypos 0.60 yanchor 0.5
+        # xpos 0.5 xanchor 0.5 ypos 0.60 yanchor 0.5
+        # at alpha08
+        ypos 0.60 yanchor 0.5
+        at battlecode_trans(focused=battlecodestatus)
+        
+        vbox:
+            vbox:
+                text "{size=14}{b}CODE{/size}{/b}" xalign 0.0
+                hbox:
+
+                    xalign 0.0
+
+                    for cards in playerbattlecode:
+                        add "images/Cards/[cards.NAME].png" at codesize
+                    # for cards in playerbattlecode:
+                    #     add "images/Cards/[cards.NAME].png" at codesize
+                    for fillers in range(0,5-len(playerbattlecode)):
+
+                        add "images/Cards/Empty.png" at codesize
+            null height 5
             
 style battlestats_text is text:
     color "#fff"
@@ -479,8 +486,23 @@ label remaininghand:
 default playerhand = []
 default usedcards = []
 default playerhandminususedcards = []
+default battlecodestatus = False
+screen playerviewdraw:
+    # image "black" at pausedim2
+    image At("[playerName]",zoomtrans(0.8 )) :
+        xpos 0.75 xanchor 0.5
+
 label drawcards:
+    # $ battlecodestatus=True
+    show screen playerviewdraw
     call remaininghand
+    show card_deck:
+        zoom 0.1
+        xalign 0.5 yalign 0.5
+    show screen handcardsscreen(phase="drawphase")
+    
+        
+    pause 0.4    
     python:
         # playerhandcombined=[x for x in playerhand: playerhandcombined+=x]
         # renpy.say("",""+str(playerhand[0].NAME)) 
@@ -493,15 +515,18 @@ label drawcards:
         playerhand=playerhandminususedcards
         for hand_draw in range(0,5-len(playerhand)):
             renpy.hide_screen('handcardsscreen')
-            renpy.show_screen('handcardsscreen')
+            renpy.show_screen('handcardsscreen',phase="drawphase")
+            renpy.show("card_deck_draw")
             playerhand.append(playerDeck[0])
             playerDeck.pop(0)
             # renpy.play("sfx/draw.wav")
             renpy.play("sfx/draw.mp3","sound")
-            renpy.pause(0.1)
+            renpy.pause(0.2)
+            
+            renpy.hide("card_deck_draw")
             handdrawindex+=1
         renpy.hide_screen('handcardsscreen')
-        renpy.show_screen('handcardsscreen')
+        renpy.show_screen('handcardsscreen',phase="drawphase")
         # playerhand.append(playerDeck[0])
         # playerhand.append(playerDeck[1])
         # playerhand.append(playerDeck[2])
@@ -549,6 +574,8 @@ label drawcards:
 
         playerhandcosts = []
         playerhand2 = playerhand
+    hide screen playerviewdraw
+    hide card_deck with dissolve
     # call check_cost
     return
 # label check_cost:
@@ -612,6 +639,7 @@ label returncardfrombattlecode(cardobject,handindex):
     $ playerbattlecode.remove(cardobject)
     $ usedcards.remove(handindex)
     return
+
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     if playerHP==0:
         return
@@ -798,7 +826,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                 # call screen choosecardv3(playerhand)
                 hide screen handcardsscreen
                 call screen choosecardv2
-
+                
                 call BattleReturns
                 $ card1usable = (playercard1COST<=playerbits) and (clickedcard[0]==False)
                 $ card2usable = (playercard2COST<=playerbits) and (clickedcard[1]==False)
@@ -810,7 +838,9 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                     jump Codephase
                 else:
                     show screen handcardsscreen
+                    $ battlecodestatus=True
                     call screen Execute
+                    $ battlecodestatus=False
                     call BattleReturns
                     # if not enemyfirst:
                     #     call enemyattack
@@ -908,6 +938,7 @@ screen Execute:
     
     on "show":
         action Function(renpy.set_focus,"Execute", "Executebutton")
+        
     imagebutton idle "gui/Execute.png" hover "gui/Execute_hover.png" action  Play("sound","sound/Execute.wav"), Return("Execute") xalign 0.5 yalign 0.95:
         id "Executebutton"
     key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
@@ -921,15 +952,20 @@ screen phasemsg(Message):
     frame:
 
         xalign 0.5 yalign 0.5 xsize 1280 at phasetrans
-        text "{b}{size=100}[Message]{/b}{/size}" xalign 0.5 yalign 0.5
+        text "{b}{size=100}[Message]{/b}{/size}":
+            style "statusoutlines_thick"
+            xalign 0.5 yalign 0.5
+            at phasetrans
 screen battlemessagescreen(Message):
     # frame:
 
-        
-    text "{b}{size=100}[Message]{/b}{/size}" :
-        style "statusoutlines_thick"
-        xalign 0.5 yalign 0.5
-        at phasetrans
+    frame:
+
+        xalign 0.5 yalign 0.5 xsize 1280 at phasetrans3
+        text "{b}{size=100}[Message]{/b}{/size}" :
+            style "statusoutlines_thick"
+            xalign 0.5 yalign 0.5
+            at phasetrans3
 
     
 transform phasetrans:
@@ -939,13 +975,22 @@ transform phasetrans:
         linear 0.02 yzoom 1.0
     on hide:
         linear 0.1 yzoom 0.0
-transform phasetrans:
+transform phasetrans2:
     on show:
         yzoom 0.0
-        linear 0.08 yzoom 1.1
+        pause 0.2
+        linear 0.06 yzoom 1.1
         linear 0.02 yzoom 1.0
     on hide:
-        linear 0.1 yzoom 0.0
+        linear 0.1 yzoom 2.0 alpha 0.0
+transform phasetrans3:
+    on show:
+        yzoom 0.0
+        pause 0.2
+        linear 0.06 yzoom 1.1
+        linear 0.02 yzoom 1.0
+    on hide:
+        linear 0.1 xzoom 2.0 alpha 0.0
 
 label showphasemsg(msg):
     show screen phasemsg(msg)
@@ -1011,14 +1056,29 @@ screen choosecardv2:
         add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
+image card_deck = "images/Cards/card_deck.png"
+image card_deck_draw :
+    "images/Cards/card_deck_draw.png"
+    zoom 0.1 xoffset 0 yoffset 0 xalign 0.5 yalign 0.5
+    linear 0.1 xoffset 30 yoffset 80 zoom 0.12
+transform linger:
+    pause 0.5
+transform draw_out:
+    on hide:
+        linear 0.4 xoffset 70 yoffset 100
 screen Activate_Battleware:
-        use handcardsscreen
+        use playerviewdraw
+        
+        
+        use handcardsscreen("drawphase")
         # add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
         # add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
         # add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
         # add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
         # add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
-        text "{size=70}{b}DRAW!{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.87 at alphablinking:
+        add "card_deck" at zoomtrans(0.1),linger xalign 0.5 yalign 0.5
+        
+        text "{size=70}{b}DRAW!{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.5 at alphablinking:
             style "statusoutlines"
         key 'mouseup_1' action Return()
         key 'K_RETURN' action Return()

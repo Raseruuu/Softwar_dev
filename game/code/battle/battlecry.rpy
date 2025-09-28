@@ -381,10 +381,35 @@ label hurtnoise_CodeRed:
             voice "voice/Code Red/hurt4.mp3" 
             $ ahcount=0
     return
+label damage_shake:
+    
+    with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
+    
+#   if "Drill" in currentcardTYPE:
+#     $ renpy.pause(0.2,hard=True)
+#   else:
+    if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME:
+        $ renpy.pause(0.2,hard=True)
+    elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
+        $ renpy.pause(0.25,hard=True)
+    elif "Eraser" in currentcardTYPE:
+        $ renpy.pause(0.01,hard=True)
+    else:
+        $ renpy.pause(0.6,hard=True)
+    
+    return
 label hurtnoise:
     
     if playerName=="ILY":
         $ hcount=hcount+1
+        $ hurtface=(renpy.random.randint(0,1))
+        if hurtface==0:
+            $ ILY_m="O"
+            $ ILY_e="up"
+        elif hurtface==1:
+            $ ILY_m="O"
+            $ ILY_e="up2"
+            $ ILY_eyes="closedup"
         if hcount ==1:
             play sound "voice/ILY/hurt/ILY13D - Light Bullet Grazed, punched or hit.wav" channel "voice"
         elif hcount == 2:
@@ -396,6 +421,10 @@ label hurtnoise:
         elif hcount == 5:
             play sound "voice/ILY/hurt/ILY12J - Bullet Grazed, punched or hit.wav" channel "voice"
             $ hcount=0
+        call damage_shake
+        $ ILY_m="frown"
+        $ ILY_e="down"
+        $ ILY_eyes="open"
     if playerName=="Ave":
         $ hcount=hcount+1
         if hcount ==1:
@@ -403,6 +432,8 @@ label hurtnoise:
         elif hcount == 2:
             play sound "voice/Ave_voice/hurt/Euh!.ogg" channel "voice"
         $ hcount=0
+        call damage_shake
+        
     if playerName=="Code Red":
         $ hcount=hcount+1
         if hcount ==1:
@@ -414,6 +445,8 @@ label hurtnoise:
         elif hcount == 4:
             play sound "voice/Code Red/hurt4.mp3" channel "voice"
             $ hcount=0
+        call damage_shake
+
     return
 
 label start_battlecry(FAIname):

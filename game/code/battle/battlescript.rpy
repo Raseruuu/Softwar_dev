@@ -17,8 +17,8 @@ image Frzsts = "images/battle/Frozen.png"
 image Brksts = "images/battle/Broken.png"
 image Brnsts = "images/battle/Burned.png"
 image Emailsts = "images/battle/Emailed.png"
-image BoostATKsts = "images/battle/BoostATK.png"
-image BoostDEFsts = "images/battle/BoostDEF.png"
+image IncreaseATKsts = "images/battle/IncreaseATK.png"
+image IncreaseDEFsts = "images/battle/IncreaseDEF.png"
 
 image Redframe:
     "white"
