@@ -1425,7 +1425,7 @@ image Melissajumping:
     # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
-    # pause .5
+    pause .5
     repeat
 image MelissaEyes:
     choice:
@@ -1507,7 +1507,11 @@ image Melissa_base_jump:
     "images/Characters/Melissa/Melissa_base_up2.png"
     pause 0.05
     "images/Characters/Melissa/Melissa_base_up3.png"
-    pause 0.2
+    pause 0.05
+    "images/Characters/Melissa/Melissa_base_up4.png"
+    pause 0.1
+    "images/Characters/Melissa/Melissa_base_up3.png"
+    pause 0.05
     "images/Characters/Melissa/Melissa_base_up2.png"
     pause 0.05
     "images/Characters/Melissa/Melissa_base_up1.png"

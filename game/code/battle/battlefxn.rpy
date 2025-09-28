@@ -184,7 +184,7 @@ label Damageenemy:
                 linear 0.05 zoom 1.0
 
             #   $ renpy.pause(0.6,hard=True)
-            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME or "WindSword" in currentcardTYPE:
+            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME :
                 $ renpy.pause(0.2,hard=True)
             elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
                 $ renpy.pause(0.25,hard=True)
@@ -205,7 +205,7 @@ label DamageSPplayer:
         if playerSP>0:
             $ Magnitude = (currentcardMAG)
             $ damagetoplayer=int(enemyATK_m*Magnitude)
-            call hurtnoise
+            
             if currentcardTYPE == "Sword":
                 play sound "sfx/slash.wav"
             elif currentcardTYPE == "Axe":
@@ -230,8 +230,9 @@ label DamageSPplayer:
 
             show playerdmgpoint onlayer overlay
             # call hurtnoise
-            with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-            $ renpy.pause(0.6,hard=True)
+            call hurtnoise
+            # with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
+            # $ renpy.pause(0.6,hard=True)
     return
 label DamageSPenemy:
     ## EVADE
@@ -350,8 +351,8 @@ label Retreatplayer(distanceamount=0):
     python:
         for dist in range(0,distance_quantity):
             battle_distance=battle_distance+1
-            renpy.play("sfx/sound/stepfar.wav","sound")
-            renpy.pause(0.6,hard=True)
+            renpy.play("sound/stepfar.wav","sound")
+            renpy.pause(0.3,hard=True)
     call updatestats_player
     return
 label Retreatenemy(distanceamount=0):
@@ -370,7 +371,7 @@ label Retreatenemy(distanceamount=0):
             battle_distance=battle_distance+1
             renpy.play("sound/stepfar.wav","sound")
             
-            renpy.pause(0.6,hard=True)
+            renpy.pause(0.3,hard=True)
     call updatestats_enemy
     return
 label Advanceenemy(distanceamount=0):
@@ -392,7 +393,7 @@ label Advanceenemy(distanceamount=0):
                 battle_distance=battle_distance-1
                 renpy.play("sound/stepnear.wav","sound")
                 # dist+=1
-                renpy.pause(0.6,hard=True)
+                renpy.pause(0.3,hard=True)
     call updatestats_enemy
     return
 label Advanceplayer(distanceamount=0):
@@ -406,7 +407,7 @@ label Advanceplayer(distanceamount=0):
             if battle_distance!=0:
                 battle_distance=battle_distance-1
                 renpy.play("sound/stepnear.wav","sound")
-                renpy.pause(0.6,hard=True)
+                renpy.pause(0.3,hard=True)
     call updatestats_player
     
     
@@ -1128,11 +1129,11 @@ label Damageplayer:
         $ attackhit=False
         # $ renpy.show("Icon_[playerName]", at_list=([sidesteps_effect_dodge("Icon_[playerName]", 0.5, renpy.random.choice([0.6,0.4]), 0.12)]))
         $ evasion_active=True
-        pause 0.1
+        pause 0.05
         $ evasion_active=False
         $ PlayerSts.remove('Evade')
         call battlemessage("EVADED")
-        
+        $ renpy.pause(0.1,hard=True)
     ## NO EVADE
     if attackhit:
         if battle_distance>=attackrange:
@@ -1141,14 +1142,14 @@ label Damageplayer:
             # show Enemy:
             #     xalign 0.5 yanchor 0.32 ypos 0.3
             $ evasion_active=True
-            pause 0.1
+            pause 0.05
             $ evasion_active=False
             play sound "sfx/miss.wav"
             call battlemessage("MISSED!")
-            $ renpy.pause(0.2,hard=True)
+            $ renpy.pause(0.1,hard=True)
             if battle_distance==0 and battle_distance_old>0:
                 call battlemessage("DISTANCE:ZERO")
-            $ renpy.pause(0.2,hard=True)
+            $ renpy.pause(0.1,hard=True)
             return
         else:
         
@@ -1173,34 +1174,10 @@ label Damageplayer:
         # show damagenoise
         
         call hurtnoise
-        $ hurtface=(renpy.random.randint(0,1))
-        if hurtface==0:
-            $ ILY_m="O"
-            $ ILY_e="up"
-        elif hurtface==1:
-            $ ILY_m="O"
-            $ ILY_e="up2"
-            $ ILY_eyes="closedup"
         hide damagenoise
         hide screen battlestats
         show screen battlestats
         
-        with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-        
-    #   if "Drill" in currentcardTYPE:
-    #     $ renpy.pause(0.2,hard=True)
-    #   else:
-        if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME:
-            $ renpy.pause(0.2,hard=True)
-        elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
-            $ renpy.pause(0.25,hard=True)
-        elif "Eraser" in currentcardTYPE:
-            $ renpy.pause(0.01,hard=True)
-        else:
-            $ renpy.pause(0.6,hard=True)
-        $ ILY_m="frown"
-        $ ILY_e="down"
-        $ ILY_eyes="open"
     $ attackhit=True
     hide screen battlestats
     show screen battlestats
@@ -1408,6 +1385,7 @@ transform suffixanim:
     linear 0.2 xpos 0.5 xanchor 0.0
     # pause 0.5
 label FinishingFlash(dialogue):
+    play sound "sfx/Mechasounds/Glare2.wav"
     call screen finishingflash(dialogue)
     return
 transform handcard_rotator(rotateint):
@@ -1415,7 +1393,12 @@ transform handcard_rotator(rotateint):
     on show:
         xoffset 20 
         ease 0.1 xoffset 0 
-screen handcardsscreen():
+transform handcard_positioning(phase,cardxpos,cardindex):
+    xpos (0.1+cardxpos if phase=="drawphase" else cardxpos) 
+    xanchor 0.5 
+    ypos 0.98+(cardindex*0.02)
+    yanchor 1.0
+screen handcardsscreen(phase="common"):
     python:
         phand = []
         if usedcards!=[]:
@@ -1426,15 +1409,17 @@ screen handcardsscreen():
                     phand.append(hand_cards)   
         else:
             phand=playerhand
+    # text "[phase]"
+    
     for cardindex,playercardobj in enumerate(phand):
-        $ card_distance = (0.07*0.5)
-        $ cardxpos=((0.2*0.5)+(cardindex*card_distance))
+        $ card_distance = (0.06 if phase=="drawphase" else (0.07*0.5))
+        $ cardxpos=((0.1)+(cardindex*card_distance))
 
         add CardDisplayNormal(playercardobj):
             # action Play("sound","sound/Phase.wav"), Hide("cardhover"), Return("card"+str(cardindex+1))
             # hovered Show("cardhover",cardobject=playercardobj,cardhoverxpos=cardxpos), Play("sound","sfx/select.wav")
             # unhovered Hide("cardhover")
-            at zoomtrans(0.6),handcard_rotator((cardindex-1)*10) xpos cardxpos xanchor 0.5 ypos 0.98+(cardindex*0.012) yanchor 1.1
+            at zoomtrans(0.8 if phase=="drawphase" else 0.6 ),handcard_rotator((cardindex-1)*10), handcard_positioning(phase,cardxpos,cardindex)
         # elif clickedcard[cardindex]:
             
         #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
@@ -1564,7 +1549,8 @@ label EnemyEndPhase:
                         burndmg = burndmg +80
 
             # i"[playerName] receives [burndmg] burn damage!"
-            call hurtnoise
+           
+            
             play sound "sfx/fire.wav"
 
             $ damagetoplayer = burndmg
@@ -1582,9 +1568,9 @@ label EnemyEndPhase:
                 linear 0.2 zoom 1.0 alpha 0.0
 
             show playerdmgpoint onlayer overlay
-            
-            with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
-            $ renpy.pause(0.6,hard=True)
+            call hurtnoise
+            # with Shake((0, 0, 0, 0), 0.5, dist=dmgdist)
+            # $ renpy.pause(0.6,hard=True)
 
 
             hide Brnsts
