@@ -578,8 +578,8 @@ label SDS_Encounter:
     call battlev3(ILY, Ave)
     if playerHP<=0:
         return
-
-        
+    ""
+    ""   
     # =============================
 
     # j "So Vira, can you see anything suspicious?"
