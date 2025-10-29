@@ -359,7 +359,7 @@ init python:
 
 #Antivirus Exclusive
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Increase("DEF",0.25)],      4)
-    FixerBeam=    Card("FixerBeam",       "Beam",    0.75,    [Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Recover(0.5)])],      4)
+    FixerBeam=    Card("FixerBeam",       "Beam",    0.25,    [Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Recover(0.5)])],      4)
     Scan=           Card("Scan",       "Scan",    0.5,         [Defend(),Increase("DEF",0.25)],      4)
     
 #Bombs
@@ -402,7 +402,7 @@ init python:
     Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4) 
     GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3),NullFxn()],   2)
-    NucleusVernier=  Card("NV-Nucleus Vernier", "NV",    1.0,     [Advance(1),Increase("ATK",0.25)],   2)
+    NucleusVernier=  Card("NV-Nautical Vanguard", "NV",    1.0,     [Advance(1),Increase("ATK",0.25)],   2)
     AccelRiser=      Card("AR-Accel Riser","AR",         1.0,     [Retreat(2),Evade()],   4)
     GUNVARSaber=     Card("GUNVARSaber","GUNVAR",  2.3,         [Attack(rangevalue=2)],   8)
     GUNVARFist=      Card("GUNVARFist","GUNVAR",  2.1,         [Attack(rangevalue=2)],   8)

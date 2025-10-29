@@ -10,7 +10,7 @@ label game_loop:
             scene black
             "Demo Over."
             "Thank  You for playing SOFTWAR!"
-            $game_over=True
+            $ game_over=True
         else:
             $ renpy.call("script"+str(chapternum))
     # if chapternum==2:
