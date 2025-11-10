@@ -825,6 +825,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
 
                 # call screen choosecardv3(playerhand)
                 hide screen handcardsscreen
+                $ battlecodestatus=True
                 call screen choosecardv2
                 
                 call BattleReturns
@@ -838,7 +839,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                     jump Codephase
                 else:
                     show screen handcardsscreen
-                    $ battlecodestatus=True
+                    
                     call screen Execute
                     $ battlecodestatus=False
                     call BattleReturns

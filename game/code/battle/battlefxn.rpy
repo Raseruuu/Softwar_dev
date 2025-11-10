@@ -142,6 +142,7 @@ label Damageenemy:
             pause 0.24
             $ enemy_evasion_active=False
             show Enemy:
+                alpha 1.0
                 xalign 0.5 yanchor 0.32 ypos 0.3 
             play sound "sfx/miss.wav"
             call battlemessage("MISSED!")
@@ -192,6 +193,9 @@ label Damageenemy:
                 $ renpy.pause(0.01,hard=True)
             else:
                 $ renpy.pause(0.6,hard=True)
+            show Enemy:
+                alpha 1.0
+                xalign 0.5 yanchor 0.32 ypos 0.3
             hide damageeffect
     return
 label DamageSPplayer:
@@ -281,6 +285,9 @@ label DamageSPenemy:
                 xoffset 0 yoffset 0
                 linear 0.05 zoom 1.0
             $ renpy.pause(0.6,hard=True)
+            show Enemy:
+                alpha 1.0
+                xalign 0.5 yanchor 0.32 ypos 0.3 
     return
 label DamageSPselfenemy:
     if enemySP>0:
@@ -320,6 +327,9 @@ label DamageSPselfenemy:
             xoffset 0 yoffset 0
             linear 0.05 zoom 1.0
         $ renpy.pause(0.6,hard=True)
+        show Enemy:
+                alpha 1.0
+                xalign 0.5 yanchor 0.32 ypos 0.3 
     return
 label Burnenemy:
     play sound "sfx/fire.wav"
@@ -1536,6 +1546,9 @@ label PlayerEndPhase:
                 xoffset 0 yoffset 0
                 linear 0.1 zoom 1.0
             $ renpy.pause(0.6,hard=True)
+            show Enemy:
+                alpha 1.0
+                xalign 0.5 yanchor 0.32 ypos 0.3 
             hide Brnsts
     $ playerbits = playerbitsmax
     return
