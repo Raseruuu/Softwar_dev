@@ -597,7 +597,7 @@ label SDS_Encounter:
         return
     a "You cannot win against me. "
     a "I am the Ultimate Antivirus!"
-
+    "ILY"
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"
@@ -606,13 +606,38 @@ label SDS_Encounter:
     a "Shut up! Don't talk to me! That's preposterous!"
     a "You're a Virus, you're nothing but filth!"
     i "That's wrong!"
-    a "You're the same Virus that deleted..."
+    a "You're the same Virus that deleted-... I can't forgive the likes of you!"
     a "Tsk. Begone! Bit Barrage!"
     i "AAAHH!!"
-    "No.. At this rate, ILY will.."
-
+    "ILY endured the shots, blocking most of it with her sword."
+    "But Bit Barrage affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
+    "No.. At this rate, ILY will... Somehow, we need to escape!"
+    j "(ILY! Listen! This might be too much for you now. What can you do to run away from Ave?)"
+    i "(But... I'd need to bring Vira along, she's way over there and not responding!)"
+    a "You're planning something... I won't let you! Hmph!"
+    i "(I've... got this, John!!)"
+    "Ave runs and a good aiming spot, and pulls the trigger at ILY.. "
+    h "She disappeared!"
+    a "Burst Transfer. No surprise."
+    a "Shame, I can track your Burst Trajectory!"
+    a "Hah! Why don't you disappear for good now!"
+    i "!!"
+    i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
     
-    # =============================
+    a "You! Die!!"
+    "POOF!"
+    a "A Sword was used as a decoy? No!! I can't be fooled by the likes of you!!"
+    v "Looking for someone?"
+    a "Vira?"
+    "Vira appeared at the exit of the server. It was that same gate Vira entered in. Vira defends ILY as she escapes promptly."
+    a "How did you get there? And why are you allies with that filth?"
+    v "You're the one that owes us explaining here!! I'm only protecting SDS!"
+    a "Tsk. I won't fight you."
+    a "My only target now is the ILOVEYOU Virus."
+    v "Well, too bad. She's gone now." 
+    v "Sayonara, Ill-tempered hunter!"    
+    "Phew! We made an escape!"
 
+    # =============================
 
     return

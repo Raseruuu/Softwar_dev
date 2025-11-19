@@ -719,9 +719,10 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
         call speedspikebg
         call screen VERSUS(playerName,enemyName)
 
-    scene battlebg
-    show battlebg2
-    with pixellate
+    scene battlebg 
+    show battlebg2 
+    # with pixellate
+    with dissolve_pixels
     call playbattlemusic(enemyName)
     
     show battlering:

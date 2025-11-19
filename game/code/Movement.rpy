@@ -107,7 +107,7 @@ label hideMapview:
 
 label eventdoor:
   if gameprogress<chapternum:
-    "[gameprogress]"
+    "[gameprogress] Gameprogress"
     $renpy.jump(str(Here))
   else:
     $renpy.call(str(Here))

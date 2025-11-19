@@ -57,7 +57,8 @@ label script1_2_dialog1:
         $ gridpos = [191,167]
         call addsprites(gridpos)
         call maptransfer([11,7],stage_WestGateway)
-        
+        python:
+            renpy.rollback(force=False,checkpoints=2)
         if playerHP<=0:
             return
 
@@ -292,6 +293,7 @@ label script1_2_dialog1:
     "Must be fun to be in their point of view. Rather... \"Exhilarating\"."
     m"I suggest that you speak with Stoned, she'll be staying right here, so check her wares! "
     i"Alrighty!"
+    $ gameprogress+=1
     call script1_2_map2
     if playerHP<=0:
         return 
@@ -316,7 +318,7 @@ label Melissascript2:
     i "Then... how much is it?"
     m "I'll sell it to you for 1000 Zenny."
     j "Do we... have that much?"
-    $ gameprogress+=1
+    
     
     if Money >=1000:
         jump payMelissa
