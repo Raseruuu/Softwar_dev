@@ -397,21 +397,6 @@ label battlev4(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     show battlebg2
     with pixellate
     call playbattlemusic(enemyName)
-    
-    show battlering:
-        xalign 0.5 ypos 0.20 yanchor 0.5
-        block:
-            rotate 0
-            linear 15.0 rotate 360
-            repeat
-    show curve:
-        xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
-    show curve as curve2:
-        xpos 0.5 xanchor 1.0 ypos 0.17 yanchor 0.5
-        zoom -1.0
-
-    show battleroad:
-        yalign 1.0 xalign 0.5
     # show Enemy:
     #     xalign 0.5 yanchor 0.32 ypos 0.3
         

@@ -42,7 +42,7 @@ define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callbac
 define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
 
 define be = Character("Bella",callback=speaker("Bella"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
-define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
+define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image = "Tetra_side", ctc="ctc", ctc_position="fixed")
 
 #Viruses
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
@@ -166,6 +166,11 @@ init -1 python:
     globals()["Bella_m"] = "smile"
     globals()["Bella_w"] = True
 
+    globals()["Tetra_e"] = "normal"
+    globals()["Tetra_eyes"] = "open"
+    globals()["Tetra_m"] = "smile"
+    globals()["Tetra_w"] = False
+
     globals()["CodeRed_e"] = "normal"
     globals()["CodeRed_m"] = "frown"
     globals()["CodeRed_w"] = True
@@ -245,9 +250,11 @@ init -1 python:
             globals()["showsideimage"]=CodeRed_w
         elif (name == "Bella"):
             globals()["showsideimage"]=Bella_w
+        elif (name == "Tetra"):
+            globals()["showsideimage"]=Tetra_w
         elif (name == "HackerX"):
             globals()["showsideimage"]=HackerX_w
-
+        
         blipvoices = {
             "John":"low",
             "ILY":"high",
@@ -2546,3 +2553,4 @@ image side Bella_side:
         "Bella_w==False","Null_side"
     )
     zoom 0.38
+

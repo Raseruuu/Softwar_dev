@@ -285,12 +285,22 @@ image dmgpointb:
         linear 0.1 zoom 1.0 alpha 0.0
 image battlebg = Solid("#1a1a1a")
 image battlering = "images/battle/battlering.webp"
-image battleroad = "images/battle/battleroad.webp"
+image battleroad = "images/battle/battleroad.png"
 # image TrojanH = "TrojanHsmall.png"
 
-
+transform BurstTransfer_trans:
+    alpha 1.0
+    linear 0.2 alpha 0.0 xoffset 500 
+    pause 2.0
+    alpha 0.0 xoffset -500
+    linear 0.2 alpha 1.0 xoffset 0
 image cardflasher:
     CardDisplay(currentcard)
+image cardflasher_temporary:
+    CardDisplay(currentcard) 
+    alpha 1.0
+    pause 5.0
+    linear 0.2 alpha 0.0
 
 
 image card1:

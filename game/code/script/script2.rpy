@@ -136,7 +136,7 @@ label script2:
     v "We can keep communications up while I traverse the server remotely. I'll report my findings!"
     j "We'll keep watch from this side, ILY will know what's going on."
     h "Let's get em!"
-    
+    $ playerHP=playerHPMax
 label SDS_Encounter:
     scene black with dissolve
     pause 0.5
@@ -223,7 +223,7 @@ label SDS_Encounter:
     v "You're a tricky little one aren't you! Take this!"
     v "All Clear, now! That wasn't much of a challenge." 
 
-    v "Spywares are built to gather as much info as it can to send to its master network..."
+    v "Spywares are built to gather as much info as they can to send to its master network..."
     v "I was going to try and track where it sends info to, but i found nothing from inside the spyware's body remains.."
     l "That was spyware? That means.."
     j "That means someone's been watching this server."
@@ -273,7 +273,7 @@ label SDS_Encounter:
     j "About that site that was broken, we can just reupload the files now, right?"
     h "Remotely? Yeah. I've got back-ups. If we get moving now, it should be operational within today."
     v "What kind of website was hosted here?"
-    l "It was the Cafella Coffe Shop's marketplace website. They handle orders for deliveries through that portal."
+    l "It was the Cafella Coffee Shop's marketplace website. They handle orders for deliveries through that portal."
     h "You know, for a coffee shop inside this 1 island city, I always questioned how useful this site would be."
     h "Turns out people do like Cafella's menu, and the increasing population of Connecht has demanded more customer service."
     h "Oh right, It's also popular with the tourists."
@@ -334,8 +334,9 @@ label SDS_Encounter:
     h "I know what my best friend likes, toldya so, Lisa!"
     "What's going on? I'm usually awkward. When did we become so... close?"
     h "I've made the order. Let's go! What do we do now?"
-    scene black with dissolve
-    
+    scene gridbglandscape1 with dissolve:
+        zoom 0.75
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     show Vira:
         xalign 0.7
     v "John! Some new entity has entered the server!"
@@ -344,7 +345,10 @@ label SDS_Encounter:
     v "It's here, so quick! Gah!!"
     
     show CodeRed:
-        xalign 0.3
+        xalign 0.02
+    show Vira:
+        xalign 0.99
+    $ Vira_w=False
     cv "An Antivirus?"
     v "And you are?"
     cv "Take a guess!"
@@ -356,27 +360,32 @@ label SDS_Encounter:
     v "What do you want with this company? You deployed spyware bugs here?"
     cv "I'm just doing my job!"
     v "So you won't spill the beans. Of course!"
+    play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     v "Initiating termination protocol!"
     cv "Haaaaah!!!"
     "As Vira charges up for an attack, the Virus unleashed something from his sword..."
     "It seemed like a normal double-edge at first.."
+    
     "Its blade split in half from the middle of its edges, then from the crack emerged a wave-like energy blade."
     
     v  "That's... Aghh!!"
     cv "Heh!"
     v "My barrier got slashed through!? It almost hit me. That weapon... Identifying Battleware.."
+    call cardflash_story(LambdaSaber)
     v "It's a Lambda Saber! It's messing with the lightwave membrane!"
-    "The energy blade fluctuates like a double-edged sound wave visualiser. It's terrible.."
+    "The energy blade fluctuates like a sound wave visualiser. It's terrible.."
     "You can get pricked just by being close to it. But when swung... It's like a chainsaw!"
     cv "Knowing your enemy's weapon means nothing... Unless you have a weapon of your own to match it! Hrrrraaaghh!"
     v "I..! Do have a weapon...! Take this!"
-    "Vira lets out her Databuster. It was a quick-draw shot!"
+    call cardflash_story(DataBuster)
+    "Vira lets out her DataBuster. It was a quick-draw shot!"
+    
     cv "Kuh!"
     cv "That didn't even leave a scratch."
     v "You just took the hit?!"
     cv "This is pathetic."
-    j "Vira, Fall back!"
-    v "Right!"
+    j "(Vira, Fall back!)"
+    v "(Right!)"
     h "(He's a melee fighter! Keep up the ranged attack... we'll break him eventually!)"
     
     v"Haaah!!"
@@ -384,6 +393,7 @@ label SDS_Encounter:
     cv "You're a coward.. But I respect the attempt."
     cv "It's my turn!!"
     "Rushing toward the retreating Vira, the armored Virus raised his sword.. "
+    call cardflash_story(LambdaSaber)
     extend "The Lambda Saber. Its blade fluctuates more wildly than before."
     extend "From that position he leapt and unleashed downward swing!"
     "The spikes of the wave pattern struck like lighting, hitting Vira from about seven meters away."
@@ -392,46 +402,67 @@ label SDS_Encounter:
     v "That's my line!! You intruder!!"
     j "Shoot him! He's in range!"
     cv "I'm done playing around. Fuh!!"
+    show CodeRed at BurstTransfer_trans
     v "He disappea- Ackhh!"
     h "No way, teleportation?"
     v "No..  You're able to do... that?"
     cv "You fool, why wouldn't I be able to? Hragh!"
-    "After quickly re-appearing the Virus struck with a different sword It's an ordinary Datasaber. It wasn't the Lambda Saber this time."
-    v "The Light Barrier was disengaged at this point, but Vira blocked the slash attack with her parasol!"
+    "After quickly re-appearing, the Virus struck with a different sword."
+    call cardflash_story(DataSaber)
+    extend " It's an ordinary Datasaber. It wasn't the Lambda Saber this time."
+    "The Light Barrier was disengaged at this point, but Vira blocked the slash attack with her parasol!"
     v "Tsk!"
     cv "Khh.. I closed the gap but... Heh. "
     v "Yeah, duh! I'm an Antivirus! My expertise is defense!"
     cv "You're lucky I changed blades. This fight would've been over."
     v "You're blaming the limits of your weapon system now for not finishing me off? How funny."
     cv "Aren't you just as ridiculous for bringing an umbrella to a fight?"
+    call cardflash_story(Powersol)
     v "This is my Powersol! My arsenal of shields will block everything you throw at me. So, bring it!!" 
     cv "That's just perfect. I'll enjoy destroying that petty shield of yours!"
     "Then he did it again. A swift teleport to close the gap! Just what is this move?"
 
     cv "Your parasol shield can only hold up enough times."
+    call cardflash_story(Firewall)
     v "I know, so here's my Firewall!"
     cv "Tsk! typical."
     "After striking that firewall enough times, his Datasaber expired."
+    call cardflash_story(BruteForce)
     cv "I still have... my fists! "
     v "Brute Force, now?"
     "The Virus didn't stop rushing in, attack after attack. Vira held her ground, and eventually got some distance."
+    call cardflash_story(DataBomb)
     v"Blow away!"
     cv "Tsk, a bomb?!"
+    show Vira:
+        ease 0.2 yalign 0.05
+        ease 0.1 yanchor 1.2 ypos 0.0
+        
     "Buying some time with that bomb, Vira took the high ground, far from where the Virus stood."
     "She takes aim while holding her Powersol open to the side."
     v "Gotcha!"
-    "A gunshot! It would have hit, except this Virus had parried the bullet away with a wall-shaped sword... The BlockSaber!"
+    "A gunshot! It would have hit, except this Virus had parried the bullet away with a wall-shaped sword..."
+    call cardflash_story(BlockSaber)
+    extend "The BlockSaber!"
     cv "Come on, you're not the only one who can defend, now."
     v "Tsk. Well too bad! I've got so much more where that came from!"
     j "(Vira, If he defended this time, that means... He's still protecting his armor!)"
     j "(There's a limit to how much he can take!)"
     v "(I know...)"
     v "Have at you!"
-    "Vira lunges at the virus from above in a falling attack with her arms making downward swing motion.."
+    "Vira lunges at the virus from above with her arms making downward swing motion.."
     j "A Saber?"
     h "No, that's her Powersol!"
+    call cardflash_story(Powersol)
     v "Powersol Attack Mode!"
-    
+    show Vira:
+        yanchor 1.0 ypos 1.0
+        ease 0.2 yalign 0.08
+        ease 0.2 yalign 0.05
+    show CodeRed:
+        linear 0.1 yoffset -40 xoffset -50
+        linear 0.1 xoffset -100 yoffset 0
+    with Shake((0, 0, 0, 0), 0.5, dist=40)
     cv "Sword against Sword, that's more like it!"
     v "This isn't a sword, but I can match you this way!"
     "Their weapons clashed repeatedly after Vira hit the ground.."
@@ -441,13 +472,23 @@ label SDS_Encounter:
     "Impressive. This might be our chance! Vira seems to store energy from the Powersol's defensive mode for attack output.."
     cv "Tsk, this Blocksaber isn't doing so well. I was hoping to put some more pressure."
     "At this moment, his Blocksaber expires into pixels in the air." 
+    show CodeRed with dissolve:
+        xoffset -2
+        pause 0.1
+        xoffset 2
+        pause 0.1
+        repeat
     cv "You're in for it now.."
     
     "The atmosphere around the Virus changes.. I don't know how he does it! "
     cv "I simply cannot.. lose!"
+    show CodeRed at BurstTransfer_trans
     v "That move again!"
     "He disappeared and re-emerged into close range with Vira! A new sword emerges in his palm. That means... another sword strike!"
-
+    show Vira:
+        linear 0.1 yoffset -40 xoffset 50
+        linear 0.1 xoffset 100 yoffset 0
+    with Shake((0, 0, 0, 0), 0.5, dist=30)
     "She blocked the strike, but that maneuver just opens up for a flurry of more slashes."
     "She came prepared with her barriers, as usual."
     v "Grrr!! Would you stop teleporting!"
@@ -466,13 +507,14 @@ label SDS_Encounter:
     j "(Right now he uses Burst Transfer to close the gap, and evade at the same time. Speed covers both attack and defense. It's tough.)"
     v "(Attacking and defending seamlessly... is a thing built into my parasol.)"
     v "(I can convert the energy from the strikes I block into power, and unleash it back. But it has to be an attack from my Powersol.)"
-    v "(If i could just... Hit him.)"
+    v "(If I could just... Hit him.)"
     "..."
     "If she can power up enough... A well timed strike might just break into his armor, then!"
     j "(I've got a plan, Vira, you have to ready your powersol, make it absorb as many attacks as you can. Reinforce it even more!)"
     cv "You had enough yet?"
     cv "Now..."
     "Oh no. The Battleware weapon cycle system.. It's back...!"
+    call cardflash_story(LambdaSaber)
     cv "Re-appear, Lambda Saber! Hrrraaaaaggh!!!"
     "Again, the sword's blade split in half and revealed the fluctuating wave blade within. "
     "He's expanding its reach with more output?!"
@@ -487,8 +529,22 @@ label SDS_Encounter:
 
     cv "It's over."
     cv "I'll destroy you!! Haaaaahhh!!!"
+
+    
     i "Not if I can help it!"
+    show Vira:
+        linear 0.1 xoffset 100
+    show CodeRed:
+        linear 0.1 xoffset -100
+    show ILY:
+        xalign 0.64 ypos 0.0 yanchor 1.0
+        ease 0.2 yalign 0.08
+        ease 0.2 yanchor 0.50 ypos 1.0
+    pause 1.0
+    call cardflash_story(SaberDeflect)
+    play music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
     i "Saber... Deflect!"
+    
     "Just in time! ILY deflected that last strike with the Lambda Saber." 
     i "I'll take you on..! Kuh!"
     i "This is nothing!" 
@@ -497,7 +553,7 @@ label SDS_Encounter:
     i "Alright, Battle protocol set!... SoftWar Engage!"
     v "I was... going to handle him myself.."
     i "Even though you say that...I'll assure you, you can leave this to me!"
-    cv "How are you able to.. You're...  ILY!"
+    cv "How are you able to.. You're... The ILOVEYOU Virus!"
     cv "That's interesting... Surely, {i}you{/i} can provide more of a challenge."
     i "You won't be disappointed!"
     i "I don't know who you are.. but you can now back off!"
@@ -506,6 +562,7 @@ label SDS_Encounter:
     "He materializes another sword."
     v  "There's more to him... I've analysed just which virus you are!"
     cv "After this much of a beating? Is that how Antiviruses work now? Pitiful!"
+    
     v "Shut up! \"CODE RED!\"! I figured out your true name! You're the Code Red Virus!" 
     cv "You... got it all wrong!"
     cv "Only an idiot would label a virus by some color code. "
@@ -521,11 +578,12 @@ label SDS_Encounter:
     c "Tsk. This isn't a game. My orders are to destroy, and destroy, I will!"
     i "Then it's a proper duel, now! I challenge you... My name is ILY! And your name... is Code Red!"
     c "Hrrraaaghh!"
-
+    
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
     c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     j "The ranged attack plan is working, Hilbert!"
     i "I knew you were tough..!"
     c "Spam Attack, huh... This kind of attack is only getting on... my nerves!!"
@@ -539,10 +597,14 @@ label SDS_Encounter:
     i "They didn't pierce your armor, but they did pierce your status array."
     i "My love letters will make their way to your heart... They've drained your ATK points to zero!"
     c "I've no time for romantic babble! Stop fighting dirty!" 
+    $ ILY_e="down"
+    $ ILY_m="smile"
     i "Ohohoho! You should know, we're viruses, we always fight dirty!"
     c "Kuh!"
+    $ ILY_m="frown"
     i "Just so you know, I'm only doing this to stop you from destroying everything!"
     i "Do it, Vira!!"
+    $ Vira_w=True
     v"Powersol, Attack Mode!! Full blast!"
     "Vira unleashes the stored power from the strikes her Powersol endured."
     c "GRRRrraaaghh!!"
@@ -563,7 +625,7 @@ label SDS_Encounter:
     "A huge bolt of red light suddenly struck the server."
     v"No, his Data signature is changing drastically."
     "The red glowing force expanded as a sphere, almost protecting... A transformation, about to happen!?"
-    "ILY and Vira witnessed a new thing"
+    "ILY and Vira witnessed a new thing at this moment.."
     v "ILY, he's transforming! We need to stop the state transition! We should break the force-field!"
     i "Got it!"
     "ILY quickly drew her blade and struck him. But the force-field repelled the attack."
@@ -577,7 +639,7 @@ label SDS_Encounter:
     j "It couldn't be another Burst Transfer, could it?"
 
     i "Are you okay?"
-    v "Tsk! I'm fine! Code Red is gone..!"
+    v "Tsk! I'm fine! But Code Red is gone..!"
     i "!!"
     v "Look behind you ILY... A new... entity has arrived.. "
 
@@ -585,6 +647,7 @@ label SDS_Encounter:
     i "!!"
     "A new entity...? It isn't Code Red?"
     "It wasn't Burst Transfer. Code Red must've logged out!"
+    show Ave
     aa "Antivirus... Vira? What's going on here?"
     aa "And... My target. The ILOVEYOU Virus!!"
     v "Watch out!!"
@@ -592,12 +655,16 @@ label SDS_Encounter:
     i "Gah! Who are you?"
     a "Ave Antivirus.. Executing termination protocol!!"
     i "I won't back down!"
-    call battlev3(ILY, Ave,turnlimit = 4)
+    $ playerHP=playerHPMax
+    call battlev3(ILY, Ave,turnlimit = 3)
     if playerHP<=0:
         return
+    scene gridbglandscape1 with dissolve:
+        zoom 0.75
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    show Ave with dissolve
     a "You cannot win against me. "
     a "I am the Ultimate Antivirus!"
-    "ILY"
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"
@@ -607,26 +674,49 @@ label SDS_Encounter:
     a "You're a Virus, you're nothing but filth!"
     i "That's wrong!"
     a "You're the same Virus that deleted-... I can't forgive the likes of you!"
-    a "Tsk. Begone! Bit Barrage!"
+    a "Begone! Bit Barrage!"
     i "AAAHH!!"
     "ILY endured the shots, blocking most of it with her sword."
     "But Bit Barrage affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
-    "No.. At this rate, ILY will... Somehow, we need to escape!"
-    j "(ILY! Listen! This might be too much for you now. What can you do to run away from Ave?)"
-    i "(But... I'd need to bring Vira along, she's way over there and not responding!)"
+    "No.. If that hits, ILY will... Somehow, we need to escape!"
+    j "(ILY! Evade that one! Escape while you still can!)"
+    i "(Escape?? But... I'd need to bring Vira along, she's way over there and not responding!)"
     a "You're planning something... I won't let you! Hmph!"
-    i "(I've... got this, John!!)"
+    i "(I won't run away, John! I've got this!)"
     "Ave runs and a good aiming spot, and pulls the trigger at ILY.. "
     h "She disappeared!"
     a "Burst Transfer. No surprise."
-    a "Shame, I can track your Burst Trajectory!"
+    a "Shame, since I can track your Burst Trajectory!"
     a "Hah! Why don't you disappear for good now!"
     i "!!"
-    i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
-    
-    a "You! Die!!"
+    a "DELETE!!"
     "POOF!"
-    a "A Sword was used as a decoy? No!! I can't be fooled by the likes of you!!"
+    a "A Sword was used as a decoy? Tch, No!! I can't be fooled by the likes of you!!"
+    "She evaded the succeeding Bit Barrage!"
+    i "I'm not the same as the Virus you once fought!"
+    i "Appear, MailSaber!!"
+    a "A mere Papercut sword! Tch! It'll take more than that to defeat me! Let alone my shield!"
+    "A new barrier! It's so thick, too! Its fortitude is much greater than Code Red's!"
+    i "That's right... Mailsaber's power output is weak..."
+    i "But thanks to the Email tokens I sent your way, For each one I retrieve, I gain an extra blade to attack with!"
+    a "Repeated strikes from one Battleware card? Grrrr..."
+    i "You can't evade this! Burst Transfer!!"
+    "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."
+    "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target from meters away." 
+    "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position, and thus the blades clashed with her shields repeatedly."
+    a "My shield is cracking?? No!!"
+    "Five, Seven... Twelve slashes!? ILY really set her up now!"
+
+    i "That's my kind of barrage! Now that your shield is broken, You're going to love this!"
+    i "Heartburn V-FlameBlast!!"
+    a "Wha? Point-blank!? GAAHHHH!!!" 
+    "Ave was slammed away into the wall by the impact of the explosion."
+    "The attack seemed to stop the Antivirus momentarily. Ave didn't have the strength to respond."
+    i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
+    "ILY hurried away in critical condition."
+    a "Don't...! Grrr... I will.."
+    "After minute or so... Ave recovers from the crater in the wall and proceeds to follow ILY's traces she left behind."
+    a "You're not getting away!"
     v "Looking for someone?"
     a "Vira?"
     "Vira appeared at the exit of the server. It was that same gate Vira entered in. Vira defends ILY as she escapes promptly."
@@ -636,7 +726,8 @@ label SDS_Encounter:
     a "My only target now is the ILOVEYOU Virus."
     v "Well, too bad. She's gone now." 
     v "Sayonara, Ill-tempered hunter!"    
-    "Phew! We made an escape!"
+    "Vira logged out soon."
+    "Phew! We made an escape! "
 
     # =============================
 

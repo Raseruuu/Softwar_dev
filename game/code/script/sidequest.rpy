@@ -1,8 +1,14 @@
 define sv = Character("Stray Virus")
-define t = Character("Tetra")
+define t = Character("Tetra",callback=speaker("Tetra"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 image Tetra:
-    "images/Characters/Tetra/Tetra.png"
+    "images/Characters/Tetra/Tetra_v.png"
+image side Tetra_side:
 
+    ConditionSwitch(
+        "Tetra_w==True","Tetra",
+        "Tetra_w==False","Null_side"
+    )
+    zoom 0.38
 label LunarLux_Sidequest:
     $ ILY_outfit ="Uniform"
     $ILY_e="normal"
@@ -11,7 +17,7 @@ label LunarLux_Sidequest:
     show battleroad:
         yalign 1.0 xalign 0.5
     show Tetra:
-        xalign 0.6
+        xalign 0.7 zoom 0.4
     show ILY
     t "Hey! You there! Have you seen a pink-haired girl around here?"
     i "Ah! I found you! You're Bella's partner, Tetra!"
@@ -65,6 +71,10 @@ label LunarLux_Sidequest:
     be "This world seems to be a special cyberspace. A Digital Realm."
     i "That's right, you gathered correctly."
     be "And... We seem to be in danger, now that a Virus is right here."
+    i "Don't worry!! I won't bite!"
+    be "How can we be sure we can trust you?"
+    t "Um!!"
+    t "ILY helped me find you! So I think that's cause enough to trust her!"
     return
 
 

@@ -640,7 +640,7 @@ label returncardfrombattlecode(cardobject,handindex):
     $ usedcards.remove(handindex)
     return
 
-label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
+label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
     if playerHP==0:
         return
     $ quick_menu=False
@@ -759,11 +759,23 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
     python:
         import copy 
         playerPlugins = copy.deepcopy(PFAI.deck["plugins"])
+    show screen phasemsg("PLUGIN PHASE")
+    $ renpy.pause(0.9,hard=True)
+    hide screen phasemsg
     call Plugins_Run
+    $ turncount = 0
+    $ turnlimit_over=False
     label battleloop:
+        
         hide screen battlestats
         show screen battlestats
-
+        $ turncount += 1
+        show screen phasemsg("CYCLE #" + str(turncount))
+        $ renpy.pause(0.9,hard=True)
+        hide screen phasemsg
+        if turncount>=turnlimit:
+            $ turnlimit_over=True
+            $ battle_done = True
         if not battle_done:
             pass
 
@@ -783,6 +795,12 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                 if playerHP<=0:
                     stop music
                     call lose 
+                    return
+                elif turnlimit_over:
+                    show screen phasemsg("BATTLE_INTERRUPTED")
+                    $ renpy.pause(0.9,hard=True)
+                    hide screen phasemsg
+                    hide screen battlestats
                     return
                 else:
                     play music "bgm/bgm_maoudamashii_cyber16.mp3"
@@ -849,6 +867,13 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8):
                 #Execute button runs "Execution" label
             if not battle_done:
                 jump battleloop
+            elif turnlimit_over:
+                show screen phasemsg("BATTLE_INTERRUPTED")
+                $ renpy.pause(0.9,hard=True)
+                hide screen phasemsg
+                hide screen battlestats
+                
+                return
             elif battle_done:
                 hide screen handcardsscreen
                 $ playerDeck = sorted( actual_playerDeck,key=lambda x: x.NAME, reverse=False)

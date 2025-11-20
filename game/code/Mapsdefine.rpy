@@ -661,7 +661,7 @@ init -3 python:
         'n100000001n',
         'n1rrrrrrr1n',
         'ncrrrrrrrbn',
-        'n100rrr001n',
+        'n1rrrrrrr1n',
         'n100rrr001n',
         'n100rrr001n',
         'n1111d1111n',

@@ -19,7 +19,7 @@ init -3 python:
     Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa_story2")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
-    Bellasprite = SpriteinMap("Bella",[8,4],'down',"Bella")
+    Bellasprite = SpriteinMap("Bella",[6,3],'down',"Bella")
     Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],"a")
 
     Chapter1events=EventInMap("storyevent",[

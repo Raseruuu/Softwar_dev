@@ -25,7 +25,18 @@ init python:
         else:
             return 1.0
 
-
+label cardflash_story(cardobj):
+    $ currentcard=(cardobj)
+    show white:
+        alpha 1.0
+        pause 0.1
+        linear 0.2 alpha 0.0
+    show cardflasher_temporary onlayer overlay:
+        xalign 0.5 yalign 0.46
+    
+    pause 2.0
+    hide cardflasher
+    return
 
 init python:
     
