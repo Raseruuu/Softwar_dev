@@ -3,6 +3,8 @@ init python:
   def placeobject(boxsheet,xpos,ypos,objectnum):
       boxsheet[ypos][xpos]= objectnum
       return boxsheet
+  rollbackchanged=False
+  map_visible=True
   bg = 1
   bgyanchor = 720
   bgxanchor = 1280
@@ -12,7 +14,7 @@ init python:
   jumphght = 0
   Running = True
   direction = 'down'
-  linearmaptransform=True
+  linearmaptransform=False
 
 
   boxsheet = stagehome
@@ -91,6 +93,7 @@ label checkwalls:
 
         # return
     if HereisDoor:
+        $ linearmaptransform=False
         play sound"sfx/door-fr_0009.wav"
         call doorjump
     if HereisEventDoor:
@@ -212,6 +215,7 @@ default repeat_y = "Repeat"
 label mapresume:
     if game_over==True:
       return
+    $ map_visible=True
     $ pausemenu=False 
     play music "bgm/ost/Grid_noyemi_K.ogg"
     scene battlebg
@@ -230,8 +234,9 @@ label maptransfer(position,stage):
     #call mapcall((5,5),stage1)
     call addsprites(gridpos)
     python:
+        map_visible=True
         pausemenu=False 
-        linearmaptransform=True
+        linearmaptransform=False
         boxsheet = stage
         playerpos = position
         playerxpos = playerpos[0]
@@ -246,8 +251,9 @@ label maptransfer(position,stage):
             eventlabel=str(event.label)
             for eventposition in event.positionlist:
                 boxsheet[eventposition[1]][eventposition[0]]=eventlabel
+    
     call checkwalls from _call_checkwalls
-    $ linearmaptransform=True
+    
 
 
     return
@@ -277,11 +283,12 @@ image shock:
 transform alphatrans(value):
   alpha (value)
 screen mapB:
-
+  timer 0.001 action If(playerHP==0 or game_over,true=Return(),false=None) repeat True
+  if map_visible==True:
     vbox:
       if linearmaptransform:
           at mover(objxanchor,objyanchor)
-      else:
+      elif linearmaptransform==False:
           at mover_nolinear(objxanchor,objyanchor)
       for i in boxsheet:
         hbox:
@@ -298,7 +305,7 @@ screen mapB:
           at alphatrans(0.0)
       if linearmaptransform:
           at mover(objxanchor,objyanchor)
-      else:
+      elif linearmaptransform==False:
           at mover_nolinear(objxanchor,objyanchor)
       for i in boxsheet:
         hbox:
@@ -493,6 +500,11 @@ init python:
 screen mapA:
     # $ moving=False
     #CONTROLS
+    timer 0.001 action If(map_active==False or playerHP==0 or game_over,true=Return(),false=None) repeat True
+    python:
+      # if rollbackchanged:
+        # if rollbackchanged:
+      config.rollback_enabled = False
     key 'K_UP'          action SetVariable("direction","up"),     Return("up")
     key 'K_DOWN'        action SetVariable("direction","down"),   Return("down")
     key 'K_LEFT'        action SetVariable("direction","left"),   Return("left")
@@ -645,6 +657,7 @@ label Returns:
               play sound "sfx/bumpintowall_X5CNQPB.mp3"
           
           pause 0.02
+          
           $ anim_done = True
           #call wildenemy
 
@@ -661,14 +674,15 @@ label Returns:
 
       if FacingActor:
         if (_return=="OK"):
-          call whatactor from _call_whatactor
-          return
+          # "this ain't happening"
+          jump whatactor
+          # return
       if (_return=="MapTalk"):
-          call MapTalk from _call_MapTalk
+          call MapTalk
           return
       if (_return=="Pause"):
           # "Pause"
-          call pauseshow from _call_pauseshow
+          call pauseshow
           return
       elif (_return=="End"):
             $ map_active=False

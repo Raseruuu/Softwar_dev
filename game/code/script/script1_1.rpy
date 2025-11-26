@@ -534,7 +534,7 @@ label date1:
     j"There are some things you have to do for me to trust you."
     "Damn, I never thought I'd see the day when I say such words... to a program. "
     "I'm actually being a huge idiot for buying into what this virus says."
-    "back in the year 2000,{w=.3}{nw}"
+    "Back in the year 2000,{w=.3}{nw}"
     extend" the ILOVEYOU Virus destroyed a heck load of PCs."
     extend" To think this program would call herself by that name...{w=.3}{nw}"
     extend" It's driving me crazy."
@@ -560,7 +560,7 @@ label date1:
     extend" I knew it, John's going to a date!" with Shake((0, 0, 0, 0), 0.5, dist=5)
     # $ ILY_p = '0'
     $ ILYSprite('frown')
-    j"We're meeting for business sake only,{w=.3}{nw}"
+    j"We're meeting for business' sake only,{w=.3}{nw}"
     extend" okay?"
     j"I'm shutting down this PC..."
     "..."
@@ -586,7 +586,7 @@ label date1:
     j"Shutting down."
     $ILY_m='smile3'
     i"Well, have a lovely day, John! Good luck with Lisa."
-    hide ILY with pixellate
+    hide ILY with dissolve_pixels
     $ okdesktop = False
     pause .5
     scene black with dissolve
@@ -655,7 +655,7 @@ label date2:
         l"Yeah, by a few minutes."
         scene cafetable with dissolve
         "Something tells me the \"few minutes\" she mentioned earlier lasted longer than she's telling me."
-        "Here's some concrete evidence... 2 ice cold coffee shakes are already on the table she's pointing at."
+        "Here's some concrete evidence... 2 ice-cold frappes are already on the table she's pointing at."
         "She's so thoughtful and responsible.. "
         $ Lisa_e = 'mad'
         $ Lisa_m = 'frown'
@@ -681,7 +681,7 @@ label date2:
         $JohnSprite('mad')
         j"Uh, Thank you very much!!"
         "Dammit. I'm such an awkward guy to be with. This is quite embarassing."
-        "It's actually my favorite kind of coffee too."
+        "Mocha... Does she know what I like or was it a lucky guess?"
         $JohnSprite('normal')
         j"This is... I like this very much, Lisa."
         "I'm genuinely glad, and it puts a smile on my face."
@@ -1097,22 +1097,22 @@ label date2:
         voice "voice/ILY22 - Giggle.mp3"
         extend " *giggles*"
         $ Lisa_m = 'smile'
-        l"They're a perfect match, don't you think?"
+        l"It's like they're meant for each other."
         show USBkun:
             linear 0.7 xalign 0.7
             pause .3
             xzoom 1.0
         show USBchan:
             linear 1.0 xalign 0.88 yalign 0.5
-        l"Look, they're together now! Isn't it great to be connected?"
+        l"The USB driver programs are connected now."
         uc"Thank you for saving us!"
-        uk"Thanks for reuniting me with my partner!"
-        uc"Let's go back to work, Honey!"
+        uk"I have a new partner!"
+        uc"Let's get to work."
         uk"We owe you our lives. We'll see you again!"
         hide USBchan
         hide USBkun
         with Dissolve(2.0)
-        l"They were so sweet! What do you think, John?"
+        l"How cute! What do you think, John?"
         $ JohnSprite('mad')
         j"We just fought a file-threatening virus! What are you two so cheery about?"
         play sound "sfx/Damage.wav"

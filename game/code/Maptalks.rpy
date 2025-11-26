@@ -189,10 +189,11 @@ label maptalk_Heart:
     return
 label maptalk_Melissa_story_1:
     $ Melissa_w=True
-    if gameprogress==0:
+    if gameprogress<=1:
         call Melissascript2
+        $ gameprogress+=1
         return
-    elif gameprogress==1:
+    elif gameprogress==2:
         call hideMapview
         jump payMelissa
         return
@@ -200,9 +201,11 @@ label maptalk_Melissa_story_1:
    
 define samedialog = ["Heart","Stella"]
 label whatactor:
-    $ pausemenu=True
+
+    
     if len(actornum)>2:
         $ spritelabel=actornum
+        $ pausemenu=True
         $ labels_in_spritelist=[sprite.dialogue for sprite in spritelist]
         python:
             for labels in labels_in_spritelist:
@@ -210,12 +213,16 @@ label whatactor:
                     spritelabel=labels
         if actornum in samedialog:
             $ renpy.call("maptalk_"+str(spritelabel))
-        else:
+        elif "dialog" not in spritelabel:
             $ renpy.call("maptalk_"+str(spritelabel)+"_"+str(chapternum))
         $ map_active=True
         if "story" in spritelabel:
             $ map_active=False
             return
+        elif game_over or playerHP==0:
+            $ map_active=False
+            # "over is game"
+            return 
         else:
             call mapresume
         # else:

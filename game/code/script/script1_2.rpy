@@ -52,13 +52,22 @@ label script1_2_map2:
     hide screen mapA
     return
 label script1_2_dialog1:
+    
     if gameprogress==1:
+        $ map_active=False
         j"ILY, We can't pass here while Bitwulf is around... If we could sneak in somehow, maybe.."
-        $ gridpos = [191,167]
-        call addsprites(gridpos)
-        call maptransfer([11,7],stage_WestGateway)
+        
+        # $ gridpos = [191,167]
+        # call addsprites(gridpos)
+        # call maptransfer([11,7],stage_WestGateway)
         python:
+            rollbackchanged=False
+            if config.rollback_enabled==False:
+                config.rollback_enabled=True
+                rollbackchanged=True
             renpy.rollback(force=False,checkpoints=2)
+        
+            
         if playerHP<=0:
             return
 
@@ -166,7 +175,7 @@ label script1_2_dialog1:
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
     "It seems like.. viruses are able to identify each other? I wonder how that works."
-    "The Melissa Virus... Another historical virus... It's also popular for infecting mail..."
+    "The Melissa Virus... Another historical virus... It's also popular for infecting via mail..."
     m "We viruses, we look out for each other out here. "
     hide Melissa
     show Melissajump
@@ -302,7 +311,7 @@ label script1_2_dialog1:
 label Melissascript2:
 
     j "(ILY, can you ask her if there is a way to pass without fighting Bitwulf?)"
-    i "(Oh! She did mention... That \"they were on patrol around these hours\")"
+    i "(Oh! She did mention... That \"they're on patrol on these hours\")"
     j "(Yeah. It could be a schedule or something.)"
     "Here goes."
     i "Is there a way to get past Bitwulf without fighting?"
@@ -773,7 +782,7 @@ label teammeeting:
     l "Yes!"
     "Lisa hands me the Drive with Vira in it... Could I not have been able to download it through some cloud storage?"
     "I know this isn't some final version of the software, so she can't hand me a \"For Sale\" copy. Perhaps it requires faster transfer speeds then?"
-    "Like.. Lisa wants to be sure it works, it looks like.."
+    "Like.. It might be that Lisa wants to be sure that it works."
     "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
     # h"(John, doe )"
     scene black
@@ -781,7 +790,7 @@ label teammeeting:
     "Chapter 1 End"
 
 
-    
+    $ map_visible=False
     return
 
 

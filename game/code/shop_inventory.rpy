@@ -26,7 +26,7 @@ init python:
         # "Unlocker":1000,
         "Antibody":350,
         "GU-Gearframe Unitron":2000,
-        "NV-Nucleus Vernier":2000,
+        "NV-Nautical Vanguard":2000,
         "AR-Accel Riser":2000,
         "V-Flame":600,
         "SaberAura":2000,
@@ -170,43 +170,29 @@ screen item_shop:
                 xalign 0.5
                 yanchor 0.0 ypos 0.0
                 button:
-                    top_padding 0
-                    top_margin 0
-                    
                     frame:
-                        style_prefix "stats"
+                        # style "button"
                         text "Prev. Page"
                         xsize 200
-                        idle_background Frame("gui/framebtn.png",10,10)
-                        hover_background Frame("gui/framefxn2.png",10,10)
-                        # hbox:
-                        #     style "itembuttontext"
-                        #     yalign 0.5 xalign 0.5
-                        #     text "Buy" yalign 0.5
-                        #     null width 10
-                        #     add ItemPriceDisplay(item)
+                        # idle_background Frame("gui/framebtn.png",10,10)
+                        idle_background Frame("gui/framew.png", 10, 10)
+                        hover_background Frame("gui/framew_hover.png", 10, 10)
+                        
                     action If((shop_page>0) ,SetVariable("shop_page",shop_page-1))
                 frame:
                     xsize 200
                     ysize 56
-                    yalign 0.5
+                    yalign 0.5 
                     top_margin 4
-                    text ("Page "+str(shop_page+1))
+                    background Null()
+                    text ("Page "+str(shop_page+1)) xalign 0.5
                 button:
-                    top_padding 0
-                    top_margin 0
                     frame:
-                        style_prefix "stats"
+                        # style_prefix "button"
                         text "Next Page"
                         xsize 200
-                        idle_background Frame("gui/framebtn.png",10,10)
-                        hover_background Frame("gui/framefxn2.png",10,10)
-                        # hbox:
-                        #     style "itembuttontext"
-                        #     yalign 0.5 xalign 0.5
-                        #     text "Buy" yalign 0.5
-                        #     null width 10
-                        #     add ItemPriceDisplay(item)
+                        idle_background Frame("gui/framew.png", 10, 10)
+                        hover_background Frame("gui/framew_hover.png", 10, 10)
                     action If((shop_page+1 < int(len(shop_inventory)/4+(1 if (len(shop_inventory)%4>0) else 0))) ,SetVariable("shop_page",shop_page+1))
             null height 7
             
@@ -239,10 +225,14 @@ screen item_shop:
                                             frame:
                                                 background Null()
                                                 top_padding 0
-                                                xsize 170
+                                                xsize 176
+                                                ysize 138
                                                 vbox:
                                                     yalign 0.0
                                                     text "{size=22}"+item.object.NAME+"{/size}{size=12}\n\n"+item.object.DESC+"{/size}" yalign 0.0
+                                                    
+                                                fixed:
+                                                    xalign 1.0
                                                     button:
                                                         id "shop_button"+str(shop_index)
 
@@ -250,8 +240,8 @@ screen item_shop:
                                                         yalign 1.0
                                                         frame:
                                                             xsize 150
-                                                            idle_background Frame("gui/framebtn.png",10,10)
-                                                            hover_background Frame("gui/framefxn2.png",10,10)
+                                                            idle_background Frame("gui/framew.png", 10, 10)
+                                                            hover_background Frame("gui/framew_hover.png", 10, 10)
                                                             hbox:
                                                                 style "itembuttontext"
                                                                 yalign 0.5 xalign 0.5
@@ -268,22 +258,23 @@ screen item_shop:
                                             frame:
                                                 background Null()
                                                 top_padding 0
-                                                xsize 170
+                                                xsize 176
+                                                ysize 138
                                                 vbox:
                                                     text "{size=22}"+item.object.NAME+"{/size}" yalign 0.0
-                                                    text "{size=12}MAG = "+str(item.object.MAG)+"\nBITS = "+str(item.object.COST)+"{/size}" yalign 0.0
+                                                    text "{size=12}POWR = "+str(item.object.MAG)+"   BITS = "+str(item.object.COST)+"{/size}" yalign 0.0
 
                                                     add FunctionList(item.object.FXN)
 
-
+                                                fixed:
+                                                    xalign 1.0
                                                     button:
                                                         id "shop_button"+str(shop_index)
-
-                                                        xalign 1.0
+                                                        xalign 1.0 yalign 1.0
                                                         frame:
                                                             xsize 150
-                                                            idle_background Frame("gui/framebtn.png",10,10)
-                                                            hover_background Frame("gui/framefxn2.png",10,10)
+                                                            idle_background Frame("gui/framew.png", 10, 10)
+                                                            hover_background Frame("gui/framew_hover.png", 10, 10)
                                                             # insensitive_background Frame("gui/framefxn2.png",10,10)
 
                                                             # style "buttoninsens"
@@ -329,6 +320,7 @@ screen item_shop:
             vbox:
 
                 frame:
+
                     textbutton "Back" action SetVariable("shop_active",False), Return()
     if shop_view:
         use ItemModal
@@ -352,7 +344,7 @@ screen ItemModal:
                     null width 10
                     frame:
                         background Null()
-                        xsize 170
+                        xsize 176
                         text item_selected.object.NAME+"{size=12}\n\n"+item_selected.object.DESC+"{/size}" yalign 0.0
             elif item_selected.type=="Battleware":
                 hbox:
@@ -364,35 +356,38 @@ screen ItemModal:
                     null width 10
                     frame:
                         background Null()
-                        xsize 170
+                        xsize 176
+                        ysize 170
+                        
                         vbox:
                             text item_selected.object.NAME yalign 0.0
-                            text "{size=12}MAG = "+str(item_selected.object.MAG)+"\nBITS = "+str(item_selected.object.COST)+"{/size}" yalign 0.0
+                            text "{size=12}POWR = "+str(item_selected.object.MAG)+"   BITS = "+str(item_selected.object.COST)+"{/size}" yalign 0.0
 
                             add FunctionList(item_selected.object.FXN)
 
-                            fixed:
-                                xalign 1.0
-                                button:
-                                    id "button1"
-                                    frame:
-                                        xsize 150
-                                        idle_background Frame("gui/framebtn.png",10,10)
-                                        hover_background Frame("gui/framefxn2.png",10,10)
-                                        hbox:
-                                            yalign 0.5 xalign 0.5
-                                            text "Buy" yalign 0.5
-                                            null width 10
-                                            add ItemPriceDisplay(item_selected)
-                                    action Call("buyitem",item_selected)
-                                null height 10
-                                button:
-                                    frame:
-                                        xsize 150
-                                        idle_background Frame("gui/framebtn.png",10,10)
-                                        hover_background Frame("gui/framefxn2.png",10,10)
-                                        text "Cancel" yalign 0.5 xalign 0.5
-                                    action SetVariable("shop_view",False), Return("Cancel")
+                        fixed:
+                            xalign 1.0
+                            button:
+                                
+                                # id "button1"
+                                # frame:
+                                xsize 150
+                                idle_background Frame("gui/framew.png", 10, 10)
+                                hover_background Frame("gui/framew_hover.png", 10, 10)
+                                hbox:
+                                    yalign 0.5 xalign 0.5
+                                    text "Buy" yalign 0.5
+                                    null width 10
+                                    add ItemPriceDisplay(item_selected)
+                                action Call("buyitem",item_selected)
+                            null height 10
+                            button:
+                                frame:
+                                    xsize 150
+                                    idle_background Frame("gui/framebtn.png",10,10)
+                                    hover_background Frame("gui/framefxn2.png",10,10)
+                                    text "Cancel" yalign 0.5 xalign 0.5
+                                action SetVariable("shop_view",False), Return("Cancel")
     # key "dismiss" action Return()
 init python:
     def buyitem(item_to_buy):
@@ -425,24 +420,40 @@ screen shop_quant():
     # key "repeat_K_UP" action If((itemquantity<100),SetVariable("itemquantity",itemquantity+1))
     # key "repeat_K_DOWN" action If((itemquantity>1),SetVariable("itemquantity",itemquantity-1))
     hbox:
-        pos(604,618) anchor (0,0)
+        pos(580,618) anchor (0,0)
         frame:
             xsize 180
             ysize 36
             style "deckframe"
             text str(itemquantity) xpos 0.98 xanchor 1.0
-        spacing 10
+        spacing 2
         textbutton "↑":
             id "shopincreasequant"
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 14
+            left_padding 14
             action (SetVariable("itemquantity",itemquantity+1) if (itemquantity<100) else NullAction())
         textbutton "↓":
             id "shopdecreasequant"
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 14
+            left_padding 14         
             action (SetVariable("itemquantity",itemquantity-1) if (itemquantity>1) else NullAction())
         textbutton "OK":
             id "shopconfirmquant"
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 14
+            left_padding 14       
             action Hide("shop_quant"),Jump("shop_quant_confirm")
         textbutton "Cancel":
             id "shopcancelquant"
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 14
+            left_padding 14
             action Hide("shop_quant"),Jump("shopNo")
         # textbutton "Yes" action Hide("shop_quant"), Jump("shopYes"):
         #     id "buttonyes"
@@ -463,9 +474,17 @@ screen shop_prompt():
         pos(603,617) anchor (0,0)
 
         textbutton "Yes" action Hide("shop_prompt"), Jump("shopYes"):
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 24
+            left_padding 24
             id "buttonyes"
-        null width 20
-        textbutton "No" action  Hide("shop_prompt"),Jump("shopNo")
+        null width 10
+        textbutton "No" action  Hide("shop_prompt"),Jump("shopNo"):
+            idle_background Frame("gui/framew.png", 10, 10)
+            hover_background Frame("gui/framew_hover.png", 10, 10)
+            right_padding 24
+            left_padding 24
 
 default say_shop_mode = False
 label shopquant:

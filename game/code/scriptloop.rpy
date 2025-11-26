@@ -13,6 +13,7 @@ label game_loop:
             $ game_over=True
         else:
             $ renpy.call("script"+str(chapternum))
+            
     # if chapternum==2:
     #     return
     if not playerHP<=0:

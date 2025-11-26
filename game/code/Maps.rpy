@@ -381,5 +381,5 @@ label doorjump:
         $transfercoordinates = nextlocation(griddestination,doordirection)
         call maptransfer(transfercoordinates,stageemptyroom) from _call_maptransfer_3
 
-    $ linearmaptransform=True
+    # $ linearmaptransform=True
     return

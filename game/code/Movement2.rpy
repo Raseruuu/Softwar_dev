@@ -11,7 +11,7 @@ init -3 python:
             self.positionlist = positionlist
             self.label = label
     Avesprite = SpriteinMap("Ave",[5,3],'down',"Ave")
-    Heartsprite = SpriteinMap("Heart",[7,5],'down',"Heart")
+    Heartsprite = SpriteinMap("Heart",[7,4],'down',"Heart")
     CodeRedsprite = SpriteinMap("CodeRed",[7,3],'down',"CodeRed")
     Virasprite = SpriteinMap("Vira",[3,3],'down',"Vira")
     Melissasprite = SpriteinMap("Melissa",[5,3],'down',"Melissa_story")

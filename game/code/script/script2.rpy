@@ -420,6 +420,7 @@ label SDS_Encounter:
     call cardflash_story(Powersol)
     v "This is my Powersol! My arsenal of shields will block everything you throw at me. So, bring it!!" 
     cv "That's just perfect. I'll enjoy destroying that petty shield of yours!"
+    show CodeRed at BurstTransfer_trans
     "Then he did it again. A swift teleport to close the gap! Just what is this move?"
 
     cv "Your parasol shield can only hold up enough times."
@@ -582,6 +583,9 @@ label SDS_Encounter:
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
+    scene gridbglandscape1 with dissolve:
+        zoom 0.75
+    
     c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     j "The ranged attack plan is working, Hilbert!"
@@ -619,7 +623,7 @@ label SDS_Encounter:
     "Suddenly, a surge of power is felt across the server."
     "Vira and ILY" "What!?"
     v "No way, just like the Lambda Saber, his armor's opening up??"
-    c "I too, can break off restraints... even the restraints, I put up on my self..!"
+    c "I too, can break off restraints... even the restraints, I put up on myself..!"
     c "HHHRRRAAAAGGHH!!"
     "With a huge force from the Code Red Virus, ILY's e-mail restraints came undone!"
     "A huge bolt of red light suddenly struck the server."
@@ -661,10 +665,10 @@ label SDS_Encounter:
         return
     scene gridbglandscape1 with dissolve:
         zoom 0.75
-    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     show Ave with dissolve
     a "You cannot win against me. "
-    a "I am the Ultimate Antivirus!"
+    a "I'm the Ultimate Antivirus!"
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"
@@ -678,38 +682,48 @@ label SDS_Encounter:
     i "AAAHH!!"
     "ILY endured the shots, blocking most of it with her sword."
     "But Bit Barrage affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
-    "No.. If that hits, ILY will... Somehow, we need to escape!"
+    "If that hits her again, ILY will... "
+    "Somehow, we need to escape!"
     j "(ILY! Evade that one! Escape while you still can!)"
-    i "(Escape?? But... I'd need to bring Vira along, she's way over there and not responding!)"
+    i "(Escape?? But... I have to bring Vira!)"
+    j "(Right... You got a point.)"
     a "You're planning something... I won't let you! Hmph!"
     i "(I won't run away, John! I've got this!)"
-    "Ave runs and a good aiming spot, and pulls the trigger at ILY.. "
+    "Ave runs to her target, still unrelenting in her assault. They ran across many corridors in the server, she finds ILY, and pulls the trigger...! "
     h "She disappeared!"
     a "Burst Transfer. No surprise."
-    a "Shame, since I can track your Burst Trajectory!"
+    a "Shame, since I can track your Burst Trajectory! Your heat signature will give your location away wherever you hide!"
+    "She spotted ILY shortly after."
     a "Hah! Why don't you disappear for good now!"
     i "!!"
     a "DELETE!!"
-    "POOF!"
+    "Ave's gun had released a powerful  blast."
+    "*POOF!* ILY's body was not on the scene. What was left there was a burning blade."
     a "A Sword was used as a decoy? Tch, No!! I can't be fooled by the likes of you!!"
     "She evaded the succeeding Bit Barrage!"
+    a "The filth called the ILOVEYOU Virus...  Must disappear!"
     i "I'm not the same as the Virus you once fought!"
     i "Appear, MailSaber!!"
     a "A mere Papercut sword! Tch! It'll take more than that to defeat me! Let alone my shield!"
-    "A new barrier! It's so thick, too! Its fortitude is much greater than Code Red's!"
+    "A new barrier! It's so thick, too! Its fortitude is much greater than Code Red's armor!"
     i "That's right... Mailsaber's power output is weak..."
     i "But thanks to the Email tokens I sent your way, For each one I retrieve, I gain an extra blade to attack with!"
     a "Repeated strikes from one Battleware card? Grrrr..."
-    i "You can't evade this! Burst Transfer!!"
+    "Ave let out a desperate counterattack shot."
+    a "Take this!!"
+    "It missed."
+    i "I'll show you... My Burst Transfer!! I won't run from this battle!!"
     "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."
-    "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target from meters away." 
-    "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position, and thus the blades clashed with her shields repeatedly."
+    "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target quickly from many meters away." 
+    "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position."
+    "She approached her from many directions in a spiraling flurry of attacks, and her blade clashed with her shields repeatedly."
     a "My shield is cracking?? No!!"
-    "Five, Seven... Twelve slashes!? ILY really set her up now!"
+    "Five, Seven... Thirteen slashes!? ILY really set her up now!"
 
     i "That's my kind of barrage! Now that your shield is broken, You're going to love this!"
-    i "Heartburn V-FlameBlast!!"
-    a "Wha? Point-blank!? GAAHHHH!!!" 
+    i "Virus Flame!!"
+    a "Wha? At Point-blank!? GAAHHHH!!!" 
+    "The flame attack was boosted by her Heartburn ability, which risked her overheating in exchange for more firepower."
     "Ave was slammed away into the wall by the impact of the explosion."
     "The attack seemed to stop the Antivirus momentarily. Ave didn't have the strength to respond."
     i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
@@ -726,7 +740,7 @@ label SDS_Encounter:
     a "My only target now is the ILOVEYOU Virus."
     v "Well, too bad. She's gone now." 
     v "Sayonara, Ill-tempered hunter!"    
-    "Vira logged out soon."
+    "Vira logged out briefly."
     "Phew! We made an escape! "
 
     # =============================

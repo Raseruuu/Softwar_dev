@@ -1033,6 +1033,12 @@ label battlemessage(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
+    if playerbattlecode!=[]:
+        # if rollbackchanged:
+        $ config.rollback_enabled = True
+    else:
+        $ config.rollback_enabled = False
+        
     hbox:
         # xalign 0.5 yalign 0.92
         xpos 0.5 xanchor 0.5 ypos 0.98 yanchor 1.0

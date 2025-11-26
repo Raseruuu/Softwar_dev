@@ -96,17 +96,19 @@ init -3 python:
         ]
     stagea=map_token(stagea)
     stagehome = [
-        '111111111111111',
-        '1000000a0000001',
-        '100000000000001',
-        '100011111110001',
-        '100010000010001',
-        '1c00000000000b1',
-        '100010000010001',
-        '100011101110001',
-        '100000000000001',
-        '1000000d0000001',
-        '111111111111111'
+        'nnnnnnnnnnnnnnnnn',
+        'n1aaa11111111111n',
+        'n1rr000000000001n',
+        'n1rr111111111101n',
+        'n1rr100000000101n',
+        'n1rr100000000101n',
+        'n1rr100000000101n',
+        'n1rr111000111101n',
+        'ncrrr1100011rrrbn',
+        'ncrrrrrrrrrrrrrbn',
+        'ncrrrrrrrrrrrrrbn',
+        'n1111111111ddd11n',
+        'nnnnnnnnnnnnnnnnn'
         ]
     stagehome=map_token(stagehome)
     stage1 = [
