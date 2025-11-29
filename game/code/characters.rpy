@@ -421,8 +421,11 @@ init -1 python:
 
         else:
             raise ValueError("Unknown emotion entered: " + emotion)
-
-
+image Worm :
+    "images/battle/Enemies/Worm.png"
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
 #########
 ## ILY
 #########

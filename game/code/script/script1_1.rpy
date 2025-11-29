@@ -1118,17 +1118,17 @@ label date2:
         play sound "sfx/Damage.wav"
         j"You could've been deleted, ILY!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         i"Nah, that was easy!"
-        j"You did have a hard time! You barely survived with just [playerHP] HP left!"
-        play sound "sfx/Damage.wav"
-        extend" You were on the brink of erasure!" with Shake((0, 0, 0, 0), 0.5, dist=10)
+        if playerHP<800:
+            j"You did have a hard time! You barely survived with just [playerHP] HP left!"
+            play sound "sfx/Damage.wav"
+            extend" You were on the brink of erasure!" with Shake((0, 0, 0, 0), 0.5, dist=10)
+        else:
+            j"Anything can happen in a battle..."
         l"It looks like John cares for you, ILY!"
-        i"Isn't he a loving user?"
+        i"Care is an important aspect of love!"
         j"I'm only concerned about our assignment, Lisa."
-        l"Hey, wasn't that fun for you in the least bit?"
-        i"I'm sure it was, John!"
-        # $ ILY_p = '2'
-        voice "voice/ILY03B - Clear as a gigabyte!.mp3"
-        i"It's Clear as a gigabyte!"
+        l"Though... was a bit of fun to watch her fight."
+        i"You should be more cheery now that I solved the problem."
         j"Hmph.. You Viruses are troublesome creatures."
         $ JohnSprite('normal')
         j"I'm just glad our files are okay, Lisa."

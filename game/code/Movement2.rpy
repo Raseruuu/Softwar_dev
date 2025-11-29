@@ -16,6 +16,7 @@ init -3 python:
     Virasprite = SpriteinMap("Vira",[3,3],'down',"Vira")
     Melissasprite = SpriteinMap("Melissa",[5,3],'down',"Melissa_story")
     Bitwulf_C1 = SpriteinMap("Bitwulf",[2,7],'right',"Bitwulf")
+    Bitwulf_C2 = SpriteinMap("Bitwulf",[2,7],'right',"Bitwulf2")
     Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa_story2")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
@@ -31,11 +32,8 @@ init -3 python:
         [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
         [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
         [8,9],[8,8],[8,7],[8,6],[8,5]
-        ],"script1_2_dialog2")
+        ],"0")
     Chapter2events=EventInMap("storyevent",[
-        [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
-        [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
-        [8,9],[8,8],[8,7],[8,6],[8,5]
         ],"script3")
     Chapter2events2=EventInMap("storyevent",[
         [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4],
@@ -58,6 +56,7 @@ label addsprites(gridplace):
         else:
             Where = "Road"
         # renpy.say("",str(gridplace))
+        # GRID = GRID_Original
         spritelist=[]
         eventlist = []
         if gridplace in mapspritesdictdefault:
@@ -65,17 +64,31 @@ label addsprites(gridplace):
                 if gridplace == key:
                     for sprite in mapspritesdictdefault[gridplace]:
                         spritelist.append(sprite)
+        else:
+            GRID[gridpos[0],gridpos[1]]:GRID_Original[gridpos[0],gridpos[1]]
         if gridplace in mapspritesdicts[chapternum]:
             map_dict=mapspritesdicts[chapternum]
             for key in map_dict:
                 if gridplace == key:
                     for sprite in map_dict[gridplace]:
                         spritelist.append(sprite)
+        else:
+            GRID[gridpos[0],gridpos[1]]:GRID_Original[gridpos[0],gridpos[1]]
+                    # else:
+                #     for sprite in map_dict[gridplace]:
+                #         spritelist.append(sprite)
         if gridplace in mapeventsdicts[chapternum]:
             for key in mapeventsdicts[chapternum]:
                 if gridplace == key:
                     for event in mapeventsdicts[chapternum][gridplace]:
                         eventlist.append(event)
+        # else:
+        #     GRID[gridpos[0],gridpos[1]]:GRID_Original[gridpos[0],gridpos[1]]
+                    # eventlist=[]
+                
+                # else:
+                #     for sprite in map_dict[gridplace]:
+                #         eventlist.append(event)
         # else:
             #     spritelist = []
                 #

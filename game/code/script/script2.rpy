@@ -31,7 +31,356 @@
 # """    
 label script2:
     call hideMapview
+    $ map_visible=True
     "Chapter 2: A New Friend" #(Can change chapter name anytime)
+    # call mapcall()
+    $ mapeventschapter1={
+        (191,167):[]   
+    }
+    $ mapeventsdicts[1]:mapeventschapter1
+    $ gridpos = [191,167]
+    $ GRID[(191,167)]=stage_WestGateway
+    # $ GRID(191,167):deepcopy(stage_WestGateway)
+    call mapcall([13,3],stage_WestGateway)
+    if playerHP<=0:
+        return
+    $ILY_w = False
+    hide screen mapB
+    hide screen mapA
+    # TODO: ADD Imperceptium Hunting section here!!
+    # Need to fight one Virus and finish it with FIRE / BURN status
+    j"It's actually strange.. I'm working with a virus today.."
+    j"Viruses are usually all trouble."
+    i"Ehh! I'm not a naughty Virus, I promise!"
+    j"Funny you say that."
+    j"You've been oddly cooperative today."
+    i"What did I tell you, I'm your personal assistant now!"
+    "For a program, she really seems supportive and easy to talk to."
+    "So... I have to catch on some Z's and not be late!!"
+    
+    scene JD_PCN with dissolve
+    j"Good night, ILY."
+    i"Good night, John!"
+
+
+    scene black with dissolve
+
+
+label teammeeting:
+    #After this, John decides to review the day in his head and go to sleep.
+    #TRANSITION TO MORNING
+    scene white with dissolve
+    scene JD_Space2 with dissolve
+    
+    
+    
+    #Morning
+    "Great, that's so much better. A good rest!!"
+    "Today... I'll meet with Lisa again. Right?"
+    "I'll go get dressed and clean up a bit..."
+    scene black with dissolve
+    scene JD_Space2 with dissolve
+    "There we go!"
+    scene JD_PC2 with dissolve
+    play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
+    #E-mail from Lisa appears
+    $ ILY_w=True
+    i"John!! You have 1 new unread e-mail! It's Lisa!"
+    # "Huh... Right. We were together yesterday..."
+    "I wonder if it's true that her dad has a FAI Antivirus?"
+    j"Please open it, ILY!"
+    i"OK!"
+    #(change to lnvl) for e-mail view
+    #Show NVL window
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
+    nvl show
+    show ILY:
+        xalign 0.2
+    emailnvl"Subject: Update on Antivirus!"
+
+    emailnvl"\n\nJohn!! I got my dad's Antivirus!!"
+    emailnvl"Her name is Vira! From Vira Internet Solutions!"
+
+    emailnvl"As I suspected, she was really a FAI Antivirus!"
+    emailnvl"I'm going to your place today."
+    emailnvl"We have to install her as soon as possible!"
+    nvl hide
+
+
+    "So it's true. What luck! So we do have a chance at saving the company from that Virus."
+    "Vira Internet Solutions... Of course! Their brand is quite popular for their age."
+    "A company of that caliber would know about something as secret as FAI Viruses. I didn't know they were working on AI as well!"
+    "Are they simply making FAI to counteract the new Softwar system?"
+    "Huh.. We have to install it, but why at my place?"
+    "SDS is the one that needs it. Maybe this is a test run?"
+    "I thought we were gonna meet at Cafella again."
+    scene JD_Space2 with dissolve
+    
+    "What am I gonna do?"
+    "I should fix up the place some more!"
+    i"John!! We really are getting a new friend?"
+    j"Well, yeah. But I don't think she'd be friends with you. You're a Virus, remember?"
+    i"We wouldn't know until we try!!"
+    
+    #Hilbert arrives
+    "Knock Knock!!"
+    "Oh no, She's here already?"
+    "I'm not ready yet! my room is still messy!!"
+    i"There's someone on the door, John!"
+    j"I can hear it, thank you!"
+    "I set aside my broom and rush to the door."
+    "???""Hello? anybody home?"
+    "Eh?"
+    "I take hold of the knob and open the door quite hastily."
+    scene JD_Door with dissolve
+    
+    j"It's just Hilbert."
+    h"Your pal, Hilbert!"
+    h"I knew it! This is where you live!"
+    "Hilbert suddenly appears as I open the door. "
+    j"How'd you know?"
+    h"Well of course! I'm a hacker!"
+    "Hhmmmmm.. I don't think so."
+    j"You snuck into my internship registration papers at SDS."
+    h"N-no!!"
+    "Right, it's his dad's company that I got Internship into, after all."
+    j"You can't fool me!"
+    h"Ehh!!"
+    j"Why are you even here now?"
+    "Lisa was supposed to come today, I don't have time to-"
+    h"Straight to the questions already?"
+    h"Aren't you gonna let me in first?"
+    #John: "not enjoying this" face
+    j"..."
+    i"Who is it, John?"
+    "Crap! Hilbert shouldn't see ILY! I should close the computer! He'd be so confused!"
+    "Hilbert insists to get in, as I hold him out by the the door with a small opening gap."
+    j"You stay right there."
+    h"Is someone in there? I thought you lived alone."
+    j"Nobody."
+    "I shut the door before he can get to react."
+    #Moving next to computer
+    j"ILY, can you umm... be quiet for a sec?"
+    i"I refuse."
+    j"What?"
+
+    h"Hey John?"
+    show Hilbert with dissolve
+    $ Hilbert_w=False
+    h"Nice place you got here."
+    j"HEY! Aren't you trespassing?"
+    $ Hilbert_m="smile"
+    h"Come on, we're friends!"
+    j"... How?"
+    h"You left the door unlocked so I came in."
+    "I really did?"
+    "..."
+    scene JD_PC1 with dissolve
+    scene JD_PC2 with dissolve
+    show Hilbert with dissolve:
+        xalign 0.8
+    "Hilbert stares at my PC."
+    h"A Virtual Streamer? I didn't know you were into that, John!"
+    h"That's quite the impressive and cute avatar model!"
+    i"I'm ILY! Nice to meet you!"
+    
+    h"Are you in a voice chat? Oh man I'm sorry to butt in, bro."
+    j"Yeah. voice chat."
+    i"This is not a voice chat."
+    i"I am John's personal assistant AI. ILY!"
+    j"No no no.. stop that. Don't introduce yourself!"
+    h"Assistant AI?"
+    h"That's super cool man! I thought you were friends with a V-streamer."
+    j"No, it's not super cool."
+    h"But like, she can talk, right?"
+    "Hilbert moves closer to my computer."
+    
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
+    show ILY
+    $ ILY_w=False
+    $ Hilbert_w=True
+    #Transition to ILY screen
+    h "Hello there, I'm Hilbert, John's best friend!"
+    i "Confirmed. You are indeed Hilbert, from John's contacts."
+    j "I don't know about \"Best friend\"."
+    h "Hey! She recognized my face!"
+    j "Yeah, she's pretty advanced."
+    h "Also, you ARE my best friend, because I'm your ONLY friend!"
+    j "Wha, you don't know that for certain."
+    h "It's true, at least at uni. I never see you with anyone else!"
+    j "Stop giving me the creeps?"
+    i "Oh, I see you are pretty close!"
+    h "See, we're close friends at least!"
+    # j"Umm, Hilbert, could you be a good visitor and-"
+    "..."
+    "Hilbert makes a nod, as if agreeing that this is normal now."
+    h "I knew you were a genius when it comes to advanced tech."
+    j "No, this isn't my AI."
+    h "You didn't develop this?"
+    j "No. I stopped working on my own AI some time ago."
+    h "But you did work on AI! I knew it."
+    j "It's an abandoned project now."
+    h "That's kind of a waste."
+    h "It's like we're living in a Sci-fi story with tech like that!"
+    j "Tell me about it.."
+    play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
+    $ Hilbert_m="frown"
+    h "Don't you think it's crazy, what's been going on at my Dad's company?"
+    h "I bet some bot is involved with last night's events."
+    j "!!!"
+    "What does Hilbert know?"
+    "I should ask him if he's heard of any clues about FAI. or the GRID."
+    j "What makes you say that?"
+    h "Nothing, just a hunch."
+    "There's gotta be something in his mind that he isn't telling me." #(Hilbert knows about Nick, former employee at Salcedo, Nick worked on AI)
+    j "You... haven't heard of Artificial Intelligence Viruses before, have you?"
+    h "Wait, like viruses that are like, smart? Hmmmm... not really."
+    h "But I've heard of A.I. Anti-Viruses."
+    j "So you do know something!"
+    h "Well I kinda pieced together that there might be an advancement of Virus technology somewhere that makes AI Antiviruses necessary.."
+    j "..."
+    "How do I tell him properly that ILY is also a virus, on top of being AI..."
+    h "Artificial Intelligence is going to be everywhere now, is it?"
+    j "In a way."
+    i "Hilbert, you are correct. SDS was being attacked by an AI Virus!"
+    j "ILY just breaks the ice when I couldn't say what's going on..."
+    $ Hilbert_m="smile"
+    h "Ah! How'd you find that out? I had a hunch that John really was a super hacker."
+    j "Am not. It's uhhh.. hard to explain."
+    i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
+    i "And I'm also the virus that infected SDS with love letters last night. I'm sorry!"
+    i "I am the ILOVEYOU Virus, but you can call me ILY!"
+    h "No way."
+    "She... just confessed? That... makes this kind of difficult."
+    $ Hilbert_m="frown"
+    h "So you hacked us, John? You commanded the attack on SDS?"
+    j "No!! It's more complex than that, ILY entered the PC on that same time!"
+    i "I signed up to be John's assistant after the attack."
+    h "Huh?"
+    h "So why the attack? We.. almost lost all our digital progress as a company there."
+    h "Though.. yeah. They did get recovered soon after. Which was odd."
+    i "I encountered a different virus, the one currently infecting one of SDS' web servers now."
+    h "Another virus? That does check out. There were to be 2 occasions of virus attacks. 2 of them are the same, infecting our web servers.."
+    h "And the ILOVEYOU attack on e-mail.. That was you."
+    
+    i "I was on a mission! SDS was in trouble and I came to help!"
+    h "A mission huh.. I should be more skeptic right now, but you know that does sound cool to me."
+    j "I couldn't put into words what happened. But you have to believe her, Hilbert."
+    i "I battled that other virus! That was my mission!"
+    j "This virus thinks she can help out by using destruction.."
+    i "But I can!!"
+    j "I suppose, if I were to add context... Since you're interested... A new system that allows the battle of FAI has arisen."
+    h "A battle system?"
+    j "It's called a \"Softwar\". The victor of a Softwar gets to decide what happens to the systems."
+    $ Hilbert_m="smile"
+    h "A \"Softwar\" huh... Heh.. So ILY isn't only an advanced AI, but a battle virus? Sick!"
+    j "Apparently ILY hacked SDS so that the other virus that was there... Wouldn't be able to infect."
+    i "I thought I had him... I was supposed to take him down with me.."
+    h "That's crazy... But.. seeing as it's still around, does that mean it survived?"
+    i "He escaped at the last second!"
+    j "It was a guy? You didn't tell me this!"
+    h "So the virus was like you, but it was a male one! How interesting!"
+    h "Well, could you tell us what he looked like?"
+    i "I can, actually! At first... I thought it was an Antivirus. He had a striking blue color on him and a dashing cape..." 
+    i "He looked like a knight in shining armor!"
+    h "No way."
+    j "A Knight? like how?"
+    i "He carried a sword, and was about to charge at me.."
+    i "We crossed blades a few times as I drew out my own sword."
+    i "I thought I had him, when I struck his side with a quick slash.. But the blade didn't faze him."
+    i "I leapt far, but he caught up to me so quickly... That's why I had to activate my Virus Algorithm!"
+    $ Hilbert_m="frown"
+    $ Hilbert_e="down"
+    h "Not very chivalrous to attack a woman. He was but a coldblooded mercenary."
+    j "You're way invested in the scenario now huh, Hilbert."
+    "It's getting much clearer now, what happened at SDS... How does this help us fight back?"
+
+    h "Then... If we have to deal with him..."
+    j "Huh?"
+    h "It's time to strategize!!"
+    j "You're actually planning to strike back? We can still think this through!"
+    h "We should! I won't forgive him for messing with my father's company!"
+    j "F-fine."
+    h "The basics of battle!"
+    h "If we're to face this armored knight virus, A melee fighter, you have to beat him with ranged attacks!"
+    j "Makes sense. But will it really be that simple?"
+    h "There's only one way to find out huh! We are going back to scout the servers... "
+    h "When ILY arrives at SDS... She has to NOT activate her Virus Algorithm thing!"
+    j "About that... "
+    #Lisa Arrives
+    $Lisa_w=True
+    scene JD_Door with dissolve
+    l"Knock-Knock!"
+    l "Hello?"
+    j "Ah! It's Lisa."
+    # h :O
+    h "Lisa? What's she doing here?"
+    j "She's... Here for our internship project thing. And... testing something out."
+    h "No way, you got her to come to your place!"
+    j "Sshhh!! Get outta here! I was going to tell you! This was supposed to be my meeting time with Lisa."
+    h "Huuhh!!?"
+    l "Am I interrupting something?"
+    "Gah!! I gotta get the door!"
+    "Lisa walks in.. She has a curious expression on her. I wonder what she thinks now!?"
+    "Lisa makes gavel slam gesture out of her hands as if she's come up with some sort of realization."
+    $Lisa_w=False
+    scene JD_Space2 with dissolve
+    $ ILY_w=True
+    show Lisa with dissolve
+    l "Hilbert! It's you!"
+    j "Uhh, Hilbert is..."
+    l "I suppose you're curious as to what happened with SDS too?"
+    l "And you're here at John's place because he's the more experienced computer guy with good grades at our class, who also works at SDS!!"
+    "So that's what she thinks."
+    h "Hey! That's not exactly right. I'm here because John is my best friend! This is my first time here though."
+    l "I didn't know!"
+    i "Hey Lisa! Welcome back!"
+    l "I-ILY!!"
+    h "And you're... closer to John than I am, now?! Sounds like you've been here before! I can't believe I've been set aside, John."
+    j "Woah slow down!"
+    l "Wha!? It's just right to meet as workmates, we have an internship project together!"
+    h "Actually... I'm more impressed that John invited you to his place. You're the actual top of our class! He must be quite the guy now. I should learn from him."
+    l "He didn't!! Ah! I mean John is a reliable coworker now! Face-to-face inquiries are much better!"
+    j "So uhhh!"
+    j "I'd like to say that Hilbert knows quite a bit about the new FAI Virus situation now, Lisa."
+    i "That's right! I was just explaining my part in hacking SDS. I had to confess to Hilbert what I did."
+    l "Ah! I'm sorry, we could have started this conversation more properly..."
+    h "Right! you interrupted our conversation on ILY's strike-back against our hacker!"
+    l "Strike-back?"
+    h "An armored virus caused all this! That's why ILY needs to win fair and square with the big guns!"
+    j "No, slow down! There's something else we can do.."
+    l "Right, Hilbert! It was an armored virus?"
+    j "Yeah, ILY just told us it looked like a knight in shining armor."
+    h "She was forced to use her virus power, so I'm thinking a rematch with a different strategy might work."
+    l "If ILY had almost lost the first time, the Virus could probably still overpower her yet again... It's too risky!"
+    h "What are you suggesting now?"
+    l "Me and John already... talked about this, my father's company is called V.I.S.."
+    l "Vira Internet Solutions. I looked into my dad's research and found it..."
+    h "Vira Internet Solutions? You mean an Antivirus!"
+    l "That's right! A FAI Antivirus! It's here with me now. It should be.. Just what we need to combat that virus!"
+    h "No way, you two planned to solve this SDS problem by yourselves!"
+    j "I'm sor-"
+    l "We intended to. There's no certainty, but we're about to see just what we can do."
+    l "We just have to test installing Vira!"
+    j "Right. Let's see what we got here, Lisa!"
+    h "A drive, huh! So you planned on testing it here first, before SDS."
+    l "Yes!"
+    "Lisa hands me the Drive with Vira in it... Could I not have been able to download it through some cloud storage?"
+    "I know this isn't some final version of the software, so she can't hand me a \"For Sale\" copy. Perhaps it requires faster transfer speeds then?"
+    "Like.. It might be that Lisa wants to be sure that it works."
+    "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
+    # h"(John, doe )"
+    scene black
+
+
+
+
+    
+    
+    
+    
     scene blue with Dissolve(0.2)
     show Folders with dissolve
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"

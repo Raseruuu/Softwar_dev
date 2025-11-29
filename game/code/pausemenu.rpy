@@ -503,17 +503,40 @@ screen Battleware_Edit():
     if hoverFXN!=[]:
         use card_tooltip
 
-transform marquee:
+transform marquee(image_path):
     #on show:
+    contains:
+        image_path
+        # rotate 90 xalign 0.8
+        xpos 1.0 xanchor 0.0
+        linear 3.0 xpos 0.5 xanchor 0.5
+        repeat
+    contains:
+        image_path
+        # rotate 90 xalign 0.8
+        xpos 0.5 xanchor 0.5
+        linear 3.0 xpos 0.0 xanchor 1.0
+        repeat
+transform marquee2:
+    #on show:
+        pause 0.7
         xpos 1.0 xanchor 0.0
         linear 6.0 xpos 0.0 xanchor 1.0
 
         repeat
-transform vmarquee:
+transform vmarquee(image_path):
     #on show:
-        rotate -90
+    contains:
+        image_path
+        rotate 90 xalign 0.8
         ypos 1.0 yanchor 0.0
-        linear 6.0 ypos 0.0 yanchor 1.0
+        linear 3.0 ypos 0.5 yanchor 0.5
+        repeat
+    contains:
+        image_path
+        rotate 90 xalign 0.8
+        ypos 0.5 yanchor 0.5
+        linear 3.0 ypos 0.0 yanchor 1.0
         repeat
 transform zoomtrans(zoomvalue):
     zoom zoomvalue

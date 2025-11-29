@@ -43,6 +43,7 @@ init python:
         "DataBomb":2000,
         "WindBlast":2000,
         "Tackle":2000,
+        "Imperceptium":1000
     }
 
     item_list = [SoftDrink,SmallEnergy,MediumEnergy] #Unlocker

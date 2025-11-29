@@ -317,7 +317,7 @@ init python:
     FiberBuster=   Card("FiberBuster",      "Gun",            0.75,     [Attack(rangevalue=7,)],              4)
     DataBuster=    Card("DataBuster",       "Gun",            0.75,     [Attack(rangevalue=7)],              3)
     SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7)],           2)
-    Snipe=         Card("Snipe",            "Gun",            0.0,      [Increase("ATK",0.25),Retreat(2)],       6)
+    # Snipe=         Card("Snipe",            "Gun",            0.0,      [Increase("ATK",0.25),Retreat(2)],       6)
 #Swords and Blades  
     FiberSword=    Card("FiberSword",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
     DataSaber=     Card("DataSaber",        "Sword",           1.0,      [Attack(),Defend(0.25),GainToken("Saber",1),],   4)
@@ -363,10 +363,10 @@ init python:
     Scan=           Card("Scan",       "Scan",    0.5,         [Defend(),Increase("DEF",0.25)],      4)
     
 #Bombs
-    DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5)],          4)
+    DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5),IfFunction("\"Data\" in Self_Status","Data","Self",[GiveToken("Burn",1)])],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
 #Force
-    BruteForce=   Card("BruteForce",     "Force",    0.20,     [While("\"IncreaseATK\" in Self_Status","IncreaseATK","Self",[Attack()]),Increase("ATK",0.25)],      6)
+    BruteForce=   Card("BruteForce",     "Force",    0.20,     [Increase("ATK",0.25),While("\"IncreaseATK\" in Self_Status","IncreaseATK","Self",[Attack()])],      6)
     DataForce=    Card("DataForce",      "Force",    0.25,      [Increase("ATK",0.25),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
     Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
@@ -376,7 +376,7 @@ init python:
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Increase("ATK",0.25)],  2)
-    Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25)],       6)
+    Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Increase("ATK",0.25)])],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
     #newcards
@@ -647,18 +647,16 @@ init python:
     deckvira = {
         "name":"I'll Save You!",
         "content":[
-            Firewall,
+            Firewall,Firewall,
             Firewall,Firewall,
             Firewall,DataBuster,
-            DataBuster,
+            DataBuster,DataBuster,
             Shieldbit,Shieldbit,
-            DataBuster,Shieldbit,
-            Shieldbit,
+            Shieldbit,Shieldbit,
+            Shieldbit,DataBomb,
+            DataBomb,DataBomb,
             Powersol,Powersol,
-            Firewall,Firewall,
-            Shieldbit,
-            Powersol,Powersol,
-            DataForce,Firewall],
+            Powersol,Powersol],
         "plugins":[]
         }
     deckave = {
@@ -671,11 +669,12 @@ init python:
             Firewall,Firewall,
             DataBomb,DataBomb,
             Laserbeam,DataForce,
-            Shieldbit,Shieldbit,
+            BurstTransfer,Snipe,
             FixerBeam,Bitbuster,
-            Bitbuster,DataMining,
-            DataMining,FixerBeam,
-            Assault,Assault],
+            Bitbuster,Snipe,
+            DataDrill,FixerBeam,
+            Assault,Assault
+            ],
         "plugins":[FirstBarrier,Analysis]
         }
     deckred = {
@@ -689,7 +688,7 @@ init python:
             BreakSaber,BreakSaber,
             SaberAura,SaberAura,
             WormRetreat,WormHole,
-            BurstTransfer,DataBomb,
+            BurstTransfer,BurstTransfer,
             DataDrill,WindBlast,
             DataDrill,WindBlast,
             DataForce,DataForce

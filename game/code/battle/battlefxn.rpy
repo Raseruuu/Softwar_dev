@@ -523,7 +523,11 @@ transform tokenremove_trans:
     ease 0.1 zoom 1.2 yoffset -24 alpha 0.0
 label GiveToken:
     
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:  
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
@@ -543,7 +547,10 @@ label GiveToken:
     return
 label GainTokenPlayer:
     
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:  
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")
@@ -565,7 +572,10 @@ label GainTokenPlayer:
 
 label GainTokenEnemy:
     
-    $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+        pass
+    else:  
+        $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ token_name = currentcard_fxn_params[0]
     $ quantity = currentcard_fxn_params[1]
     # $ EnmySts.append("Burn")

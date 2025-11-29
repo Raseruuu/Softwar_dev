@@ -140,6 +140,7 @@ init python:
         showsideimage=False
         return Null()
 screen say(who, what):
+    $ config.rollback_enabled=False
     style_prefix "say"
     if say_shop_mode:
         key "dismiss" action Return()

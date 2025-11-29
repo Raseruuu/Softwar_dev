@@ -96,17 +96,17 @@ transform boing: #here I am
 
 transform kickedaway: #whaaaaaa
     rotate 0
-    zoom 0.6
-    ypos 1.0
-    yanchor 0.7
+    zoom 1.0
+    # ypos 1.0
+    # yanchor 0.7
     parallel:
         rotate 0
         linear 0.2 rotate 360
         repeat
     parallel:
-        linear 0.5 zoom 0.0
+        linear 0.8 zoom 0.0
     parallel:
-        linear 0.5 yalign 0.2 xpos 1.0
+        linear 0.8 yalign 0.2 xpos 1.0
 transform excitement: #oh my gawd, it's coming!!
     parallel:
         xzoom -1.0

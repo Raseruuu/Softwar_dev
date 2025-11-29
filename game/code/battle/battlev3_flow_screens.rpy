@@ -86,10 +86,12 @@ transform vstrans2:
         pause 0.1
     repeat
     repeat
-screen VICTORY():
-
-    add ("images/Special Images/BattleCutscene_"+playerName+".png")  xpos 0.5 xanchor 0.5 yalign 0.25 at zoomtrans(0.12), pausetrans0
+# screen VICTORY():
     
+    
+    
+    # key "dismiss" action Return()
+
 
 screen VERSUS(playerName,enemyName):
 
@@ -860,6 +862,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
                     show screen handcardsscreen
                     
                     call screen Execute
+                    $ config.rollback_enabled=False
                     $ battlecodestatus=False
                     call BattleReturns
                     # if not enemyfirst:
@@ -1157,13 +1160,23 @@ label Battledrops:
         Moneygain = renpy.random.choice([40,50,100,100,400,500,250,250])
         Money+=Moneygain
     play sound "sound/loadcard.wav"
-    show zenny with dissolve_pixels
+    show zenny with dissolve_pixels 
+    
     $ renpy.say(info,"Gained "+str(Moneygain)+" Zenny! \nTotal Zenny: [Money]")
     hide zenny
     call GainItem(gainitems)
 
     return
-
+image winbg="gui/main_menu/main menu bglayer1.png"
+init python: 
+    def wintext():
+        global playerName
+        return Text("{size=100}{b}"+playerName+" WINS {/b}{/size}",style="marqueeshadows")
+image winplayer :
+    ("images/Special Images/BattleCutscene_"+playerName+".png")
+image winplayer_shadow :
+    ("images/Special Images/BattleCutscene_"+playerName+".png")
+    
 label win:
     #MAKE VICTORY ANIMATION
     # show ILY_byTorakun14:
@@ -1172,13 +1185,29 @@ label win:
     $ quick_menu=True
     show screen phasemsg("VICTORY!")
     pause 0.8
+    scene winbg with dissolve_pixels
     hide screen phasemsg
-    show screen VICTORY
+    show wintext() at marquee(wintext()):
+        ypos 0.04 xalign 0.6
+    show wintext() as wintext2 at vmarquee(wintext())
+    show winplayer at zoomtrans(0.20), pausetrans1:
+        xpos 0.27 xanchor 0.6 ypos 0.1 yanchor 0.0 
+        matrixcolor TintMatrix("#051231") *ContrastMatrix(0.0)
+        pause 0.5
+        linear 0.3 xoffset -30 yoffset 20
+    show winplayer as winplayerfront at zoomtrans(0.20), pausetrans1:
+        xpos 0.27 xanchor 0.6 ypos 0.1 yanchor 0.0 
+     
+    # show screen VICTORY
     info"[playerName] Wins!" 
-    hide screen VICTORY
+
+    # pause
     call Battledrops
     # "VICTORY!"
     #BATTLE DROPS
+    hide winplayer
+    hide winplayerfront
+    hide screen VICTORY
     return
 label lose:
     $ okdesktop = False

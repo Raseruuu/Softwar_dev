@@ -7,11 +7,13 @@ transform widthresize(zoomvalue):
 style cardoutlines:
     outlines [(2, "#000", -1, 2),(2, "#fff", 0, 0)]
 style cardshadows:
-
     outlines [(1, "#000", -1, 2),(2, "#111", 0, 0)]
 style cardshadows2:
 
     outlines [(1, "#181818", -1, 1),(1, "#141414", 0, 0)]
+style marqueeshadows:
+    outlines [(5, "#051231", -0, 8),(2, "#07638e", 2, 2)]
+
 init python:
     def cardnamewidth(fontsize,text,maxwidth,maxchar):
         if len(text)!=0:
@@ -75,7 +77,7 @@ init python:
             # (170,169),
             (10,196),
                 At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
-            # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+            # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             (56,204),At(Text( "{color=#FFFF00}{b}{k=0}{font=font/consolas.ttf}{size=18}"+cardobj.NAME+"{/color}{/b}{/k}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             (60,224),Text( "{size=14}{b}TYPE: {/size}{color=#ffcc00}{font=font/consolas.ttf}{size=14}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),
@@ -123,7 +125,7 @@ init python:
             # (170,169),
             (10,196),
                 At("images/Cards/cardbit/bit.png",zoomtrans(0.5)),
-            # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
+            # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             (56,204),At(Text( "{color=#FFFF00}{b}{k=0}{font=font/consolas.ttf}{size=18}"+cardobj.NAME+"{/color}{/b}{/k}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             (60,224),Text( "{size=14}{b}TYPE: {/size}{color=#ffcc00}{font=font/consolas.ttf}{size=14}{k=-1}\""+cardobj.TYPE+"\"{/k}{/color}{/font}{/size}{/b}",style="cardshadows", layout="nobreak"),
