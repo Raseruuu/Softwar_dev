@@ -10,6 +10,7 @@ init -3 python:
             self.type=type
             self.positionlist = positionlist
             self.label = label
+### SPRITES
     Avesprite = SpriteinMap("Ave",[5,3],'down',"Ave")
     Heartsprite = SpriteinMap("Heart",[7,4],'down',"Heart")
     CodeRedsprite = SpriteinMap("CodeRed",[7,3],'down',"CodeRed")
@@ -21,6 +22,8 @@ init -3 python:
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
     Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[6,3],'down',"Bella")
+    
+### EVENTS
     Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],"a")
 
     Chapter1events=EventInMap("storyevent",[
@@ -41,8 +44,9 @@ init -3 python:
         [8,9],[8,8],[8,7],[8,6],[8,5]
         ],"script3-1")
 default spritelist = []
+## Adds sprites on to the map 
 default eventlist = []
-
+## Adds Event [!] icons to the map for calling screens
 
 label chapter_map_events:
     if chapternum==2:
