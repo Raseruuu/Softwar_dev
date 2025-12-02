@@ -506,9 +506,10 @@ label paidMelissa:
     # $ 
     call GainItem([shop_item("Imperceptium",item,"Material",pricelist["Imperceptium"])]*4)
     "ILY picked up the burning imperceptium material."
-    i "Melissa says I just have to injest this, and I'll be able to get past Bitwulf!"
+    i "Melissa says I just have to ingest this, and I'd be invisible!"
     j "I wonder if it will really work!"
     i "I trust that Melissa is telling the truth!"
+    
     $ map_visible=False
     "Chapter 1 End"
 

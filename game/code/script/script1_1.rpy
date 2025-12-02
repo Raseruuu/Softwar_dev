@@ -1127,7 +1127,7 @@ label date2:
         l"It looks like John cares for you, ILY!"
         i"Care is an important aspect of love!"
         j"I'm only concerned about our assignment, Lisa."
-        l"Though... was a bit of fun to watch her fight."
+        l"Though... It was quite fun to watch her fight."
         i"You should be more cheery now that I solved the problem."
         j"Hmph.. You Viruses are troublesome creatures."
         $ JohnSprite('normal')
@@ -1135,7 +1135,7 @@ label date2:
         l"Let's work on it now!"
         "Alright, "
         extend"finally something more important is happening here,"
-        extend" and I assure you, it isn't about Lisa and me."
+        extend"not about Lisa and me..."
         play sound "sfx/Damage.wav"
         extend "\nI can finally get back to work!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         extend"\nOr so I thought."
@@ -1143,17 +1143,17 @@ label date2:
         play sound "sfx/sfx_coin_cluster6.wav"
         # $ ILY_p = '0'
         $ ILYSprite('smile3')
-        h"John, bro. My second PC just got hacked through my website."
+        h"John, bro. Looks like SDS is compromised again! Check the website we put out."
         $ JohnSprite('frown')
         j"Again? This is getting too often."
-        h"I also have like, the best antivirus in that PC, too."
+        h"Don't blame me!"
         j"You sure all the security programs were active?"
         h"Yeah, they were, and we still got hacked."
         i"Sounds like a FAI attack."
         $ JohnSprite('mad')
         j"We can't rule out the possibility."
         j"Why are you contacting me, then?"
-        h"Can you uh... help me out so I won't get hacked again? You're the better computer guy here."
+        h"Can you uh... help me out so we won't get hacked again? You're the better computer guy here."
         l"John, I think this calls for another..."
         i"Softwar!"
         i"We'll find those hackers and fight them ourselves!"
@@ -1178,11 +1178,11 @@ label date2:
         l"John..."
         "This must be it. This is what Nick warned Lisa about."
         j"I can't afford to lose this computer."
-        j"I've already lost a lot in my life. The last thing I want to get in is a fight."
+        j"I've already lost a lot in my life. I don't have parents. The last thing I want to get in is a fight."
         l"John, we were gonna tell ILY about our proposal, right?"
         j"..."
         $ Lisa_m='smile'
-        l"ILY, is there anything you can do about the computers you've destroyed?"
+        l"ILY, is there anything you can do about the computers you've shut down?"
         $ Lisa_m='frown'
         l"Would you, by any chance have a backup storage for all the files you took from us?"
         j"Lisa..."

@@ -39,7 +39,7 @@ label script2:
     }
     $ mapeventsdicts[1]:mapeventschapter1
     $ gridpos = [191,167]
-    $ GRID[(191,167)]=stage_WestGateway
+    $ GRID[(191,167)]=stage_WestGateway  
     # $ GRID(191,167):deepcopy(stage_WestGateway)
     call mapcall([13,3],stage_WestGateway)
     if playerHP<=0:
@@ -373,14 +373,6 @@ label teammeeting:
     "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
     # h"(John, doe )"
     scene black
-
-
-
-
-    
-    
-    
-    
     scene blue with Dissolve(0.2)
     show Folders with dissolve
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
