@@ -1128,6 +1128,9 @@ label date2:
         i"Care is an important aspect of love!"
         j"I'm only concerned about our assignment, Lisa."
         l"Though... It was quite fun to watch her fight."
+        j"Okay.."
+        l"I just find that this battle system is interesting!"
+        j"But... the stakes.."
         i"You should be more cheery now that I solved the problem."
         j"Hmph.. You Viruses are troublesome creatures."
         $ JohnSprite('normal')

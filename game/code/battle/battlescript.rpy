@@ -298,9 +298,11 @@ image cardflasher:
     CardDisplay(currentcard)
 image cardflasher_temporary:
     CardDisplay(currentcard) 
+    # zoom 1.5
     alpha 1.0
     pause 5.0
-    linear 0.2 alpha 0.0
+    linear 0.5 alpha 0.0
+    
 
 
 image card1:
@@ -450,6 +452,7 @@ label Enemydisappear:
         xoffset 0.-19 yoffset 0.11
         pause 0.4
         linear 0.1 zoom 0.7 alpha 0.0
+    hide Enemy
     return
 
 # label TurnEnd:

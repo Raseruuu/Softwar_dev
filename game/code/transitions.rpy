@@ -72,7 +72,7 @@ transform ldown: #brief lowering of body while at left
 
 
 transform dance: #Dancing, flipping left and right
-    xanchor 0.5 alpha 1.0
+    xalign 0.5 alpha 1.0
     xzoom 0.95 yzoom 1.02 transform_anchor True
     linear 0.2 xzoom 1.0 yzoom 1.0 transform_anchor True
     linear 0.2 xzoom 0.95 yzoom 1.02 transform_anchor True
@@ -80,7 +80,6 @@ transform dance: #Dancing, flipping left and right
     linear 0.2 xzoom -1.0 yzoom 1.0 transform_anchor True
     linear 0.2 xzoom -0.95 yzoom 1.02 transform_anchor True
     repeat
-
 
 
 
@@ -123,6 +122,19 @@ transform excitement: #oh my gawd, it's coming!!
         linear 0.3 ypos 1.1
         linear 0.3 ypos 1.0
         repeat
+
+transform cardflash_bright(image_path):
+    contains:
+        (image_path)
+        zoom 1.0 xalign 0.5 yalign 0.46
+    contains:
+        (image_path)
+        xalign 0.5 yalign 0.46 alpha 0.4 matrixcolor BrightnessMatrix(0.7) * OpacityMatrix(0.6)
+        linear 0.1 zoom 2.0
+        pause 2.0 
+        linear 2.0 alpha 0.0 
+
+#     
 # transform sidesteps_effect(image_path, start_pos, end_pos, duration):
 #     subpixel True
 #     yalign 1.0

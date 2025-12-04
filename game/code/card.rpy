@@ -29,15 +29,25 @@ init python:
 
 label cardflash_story(cardobj):
     $ currentcard=(cardobj)
-    show white:
-        alpha 1.0
-        pause 0.1
-        linear 0.2 alpha 0.0
-    show cardflasher_temporary onlayer overlay:
-        xalign 0.5 yalign 0.46
+    # show white:
+    #     alpha 1.0
+    #     pause 0.1
+    #     linear 0.2 alpha 0.0
+    play sound "sfx/sfx-fwasshing.wav"
     
-    pause 2.0
-    hide cardflasher
+    show cardflasher_temporary onlayer overlay at cardflash_bright("cardflasher_temporary"):
+        xalign 0.5 yalign 0.46 
+    # show cardflasher onlayer overlay:
+    #     zoom 2.0 xalign 0.5 yalign 0.46 alpha 0.6
+    #     # matrixcolor BrightnessMatrix(0.7) * OpacityMatrix(0.6)
+    #     pause 1.1
+    #     zoom 2.7
+
+    #     pause 6.1
+    #     ease 1.0 alpha 0.0
+    pause 6.0
+    hide cardflasher_temporary
+    hide whitecard
     return
 
 init python:

@@ -34,19 +34,7 @@ label script2:
     $ map_visible=True
     "Chapter 2: A New Friend" #(Can change chapter name anytime)
     # call mapcall()
-    $ mapeventschapter1={
-        (191,167):[]   
-    }
-    $ mapeventsdicts[1]:mapeventschapter1
-    $ gridpos = [191,167]
-    $ GRID[(191,167)]=stage_WestGateway  
-    # $ GRID(191,167):deepcopy(stage_WestGateway)
-    call mapcall([13,3],stage_WestGateway)
-    if playerHP<=0:
-        return
-    $ILY_w = False
-    hide screen mapB
-    hide screen mapA
+    # $ mapeventschapter1={zzz
     # TODO: ADD Imperceptium Hunting section here!!
     # Need to fight one Virus and finish it with FIRE / BURN status
     j"It's actually strange.. I'm working with a virus today.."
@@ -132,7 +120,7 @@ label teammeeting:
     "I set aside my broom and rush to the door."
     "???""Hello? anybody home?"
     "Eh?"
-    "I take hold of the knob and open the door quite hastily."
+    "I take hold of the knob and open the door hastily."
     scene JD_Door with dissolve
     
     j"It's just Hilbert."
@@ -469,7 +457,7 @@ label teammeeting:
     
     i "You have to be careful, Vira! I didn't quite win my first encounter."
     v "How strong was that guy?"
-    i "I might need to stay close as back-up, kind of strong."
+    i "He's the \"I might need to stay close as back-up\" kind of strong."
     j "How does this system work? Antiviruses should be effective against Viruses by default."
     h "But since ILY beat Vira, in powerscaling terms ILY should be stro-"
     v "You both might be overthinking things! I was holding back against ILY, enough said."
@@ -565,7 +553,7 @@ label SDS_Encounter:
     v "All Clear, now! That wasn't much of a challenge." 
 
     v "Spywares are built to gather as much info as they can to send to its master network..."
-    v "I was going to try and track where it sends info to, but i found nothing from inside the spyware's body remains.."
+    v "I was going to try and track where it sends info to, but I found nothing from inside the spyware's body remains.."
     l "That was spyware? That means.."
     j "That means someone's been watching this server."
     j "Hilbert, do you have any clues?"
@@ -653,7 +641,7 @@ label SDS_Encounter:
 
     "I didn't expect to do all this today, but here we are."
     l "Pizza!!"
-    j "I didn't know you liked pizza, Lisa"
+    j "I didn't know you liked pizza, Lisa."
     l "That rhymes!"
     j "?"
     l "Oh!"
@@ -801,6 +789,8 @@ label SDS_Encounter:
         yanchor 1.0 ypos 1.0
         ease 0.2 yalign 0.08
         ease 0.2 yalign 0.05
+    pause 0.2
+    
     show CodeRed:
         linear 0.1 yoffset -40 xoffset -50
         linear 0.1 xoffset -100 yoffset 0
@@ -852,7 +842,7 @@ label SDS_Encounter:
     v "(If I could just... Hit him.)"
     "..."
     "If she can power up enough... A well timed strike might just break into his armor, then!"
-    j "(I've got a plan, Vira, you have to ready your powersol, make it absorb as many attacks as you can. Reinforce it even more!)"
+    j "(I've got a plan, Vira, you have to ready your Powersol, make it absorb as many attacks as you can. Reinforce it even more!)"
     cv "You had enough yet?"
     cv "Now..."
     "Oh no. The Battleware weapon cycle system.. It's back...!"

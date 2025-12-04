@@ -474,7 +474,7 @@ label paidMelissa:
     i "What?"
     j "It's very geometric. It's an interesting design. Is it strong?"
     i "Nah."
-    i "They can open and close wormholes, no biggie. That'd be their biggest feat."
+    i "They can open and close wormholes, no biggie. That'd be their most notable ability."
     j "No way!"
     i "I'm something of a Worm myself, but I'm more advanced than them."
     i "This should be easy!"
