@@ -5,7 +5,15 @@ transform playerattack:
     linear 0.2 zoom 1.0 xpos origx ypos origy
 
 # transform cardpos1:
-
+transform bumpleft:
+    xoffset 0
+    linear 0.1 xoffset -40
+    linear 0.1 xoffset 0
+transform bumpright:
+    xoffset 0
+    linear 0.1 xoffset 40
+    linear 0.1 xoffset 0
+    
 transform sway:
     transform_anchor True
     linear 0.25 rotate 5
@@ -126,13 +134,19 @@ transform excitement: #oh my gawd, it's coming!!
 transform cardflash_bright(image_path):
     contains:
         (image_path)
+        xalign 0.5 yalign 0.46 alpha 0.4 matrixcolor BrightnessMatrix(1.0) * OpacityMatrix(0.5)
+        linear 0.3 xzoom 1.5 yzoom 1.5
+        # pause 0.2 
+        linear 0.3 xzoom 2.0 yzoom 2.0 alpha 0.0 
+    contains:
+        (image_path)
         zoom 1.0 xalign 0.5 yalign 0.46
     contains:
         (image_path)
-        xalign 0.5 yalign 0.46 alpha 0.4 matrixcolor BrightnessMatrix(0.7) * OpacityMatrix(0.6)
-        linear 0.1 zoom 2.0
-        pause 2.0 
-        linear 2.0 alpha 0.0 
+        xalign 0.5 yalign 0.46 alpha 0.4 matrixcolor BrightnessMatrix(0.8) * SaturationMatrix(0.6) * OpacityMatrix(0.5)
+        xzoom 1.1 yzoom 1.1
+        pause 0.2 
+        linear 0.2 alpha 0.0 xzoom 1.0 yzoom 1.0
 
 #     
 # transform sidesteps_effect(image_path, start_pos, end_pos, duration):

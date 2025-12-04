@@ -29,6 +29,7 @@ init python:
 
 label cardflash_story(cardobj):
     $ currentcard=(cardobj)
+    
     # show white:
     #     alpha 1.0
     #     pause 0.1

@@ -55,7 +55,7 @@ define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image 
 # AntiViruses
 define a = Character("Ave",callback=speaker("Ave"), color='#ff8a00', image ="Ave_side", ctc="ctc", ctc_position="fixed")
 define b = Character("Bitwulf",callback=speaker("Bitwulf"),what_slow_cps=40, image = "Bitwulf_side", ctc="ctc", ctc_position="fixed")
-define v = Character("Vira",callback=speaker("Vira"), color ='#f00',image ="Vira_side", ctc="ctc", ctc_position="fixed")
+define v = Character("Vira",callback=speaker("Vira"), color ='#f53f76',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 define t = Character("Tabby",callback=speaker("Tabby"), color ='#fff',image ="Tabby_side", ctc="ctc", ctc_position="fixed")
 
 
@@ -65,7 +65,7 @@ define t = Character("Tabby",callback=speaker("Tabby"), color ='#fff',image ="Ta
 define mu = Character("???",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
 
 define hx = Character("Hacker X",color = '#088', image = "HackerX_side", ctc="ctc", ctc_position="fixed",callback=speaker("HackerX"))
-define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#f00', ctc="ctc", ctc_position="fixed")
+define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#074c8c', ctc="ctc", ctc_position="fixed")
 define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00', ctc="ctc", ctc_position="fixed")
 
 
