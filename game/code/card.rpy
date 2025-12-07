@@ -67,7 +67,9 @@ init python:
         fxns=[]
         long_fxn_name=False
         for function_index_local,cardfunction in enumerate(FXN):
-            fxns.append(At(Text("{size=11}"+cardfunction.code+"{/size}", layout="nobreak",style="cardshadows2"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,284,16)))))
+            fxns.append(
+                At(Text("{size=11}"+cardfunction.code+"{/size}", layout="nobreak",style="cardshadows2"),widthresize(1.0 if (len(cardfunction.code)<(284/12)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,284,16))))
+                )
 
         return VBox(*fxns)
     def FunctionListDescript(FXN):

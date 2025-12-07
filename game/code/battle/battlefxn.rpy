@@ -112,9 +112,36 @@ label Damageenemy:
     $ attackhit=True
     $ battle_distance_old=battle_distance
     ## EVADE
-    if "Evade" in EnmySts:
+    
+    ## NO EVADE
+    # elif attackhit:
+    if battle_distance>=attackrange:
+            
         $ attackhit=False
-    if not attackhit:
+        # show Enemy:
+        #     xalign 0.5 yanchor 0.32 ypos 0.3
+        $ enemy_evasion_active=True
+        
+        show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
+            # yanchor 1.0 ypos 0.5
+            # yanchor 0.32 ypos 0.3
+            # yoffset 1.0
+        pause 0.24
+        $ enemy_evasion_active=False
+        show Enemy:
+            alpha 1.0
+            xalign 0.5 yanchor 0.32 ypos 0.3 
+        play sound "sfx/miss.wav"
+        call battlemessage("MISSED!")
+        call Advanceenemy(1)
+        if battle_distance==0 and battle_distance_old>0:
+            call battlemessage("DISTANCE:ZERO")
+        $ renpy.pause(0.2,hard=True)
+        return
+        
+    if "Evade" in EnmySts:
+    #     $ attackhit=False
+    # if not attackhit:
         $ EnmySts.remove('Evade') 
         $ enemy_evasion_active=True
         pause 0.1
@@ -126,77 +153,51 @@ label Damageenemy:
             xalign 0.5 yanchor 0.32 ypos 0.3 
         play sound "sfx/miss.wav"
         call battlemessage("EVADED")
-    ## NO EVADE
-    elif attackhit:
-        if battle_distance>=attackrange:
-            
-            $ attackhit=False
-            # show Enemy:
-            #     xalign 0.5 yanchor 0.32 ypos 0.3
-            $ enemy_evasion_active=True
-            
-            show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
-                # yanchor 1.0 ypos 0.5
-                # yanchor 0.32 ypos 0.3
-                # yoffset 1.0
-            pause 0.24
-            $ enemy_evasion_active=False
-            show Enemy:
-                alpha 1.0
-                xalign 0.5 yanchor 0.32 ypos 0.3 
-            play sound "sfx/miss.wav"
-            call battlemessage("MISSED!")
-            call Advanceenemy(1)
-            if battle_distance==0 and battle_distance_old>0:
-                call battlemessage("DISTANCE:ZERO")
-            $ renpy.pause(0.2,hard=True)
-            return
-        if attackhit:
-            
-            call card_type_sfx
-            call hurtnoise_enemy
-            python:
-                if enemySP>0:
-                    enemySP-=damagetoenemy
-                    if enemySP<0:
-                        enemyHP+=enemySP
-                        enemySP = 0
-                else:
-                    enemyHP-=damagetoenemy
-
-                if enemyHP <=0:
-                    enemyHP = 0
-                    battle_done=True
-                dmgdist = ((currentcard.MAG*100)/20)
-                dmgdist = int(dmgdist*2)
-            show damageeffect
-            show dmgpoint onlayer overlay
-            show Enemy:
-                linear 0.05 zoom 0.94
-                xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-                pause .05
-                xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
-                pause .05
-                xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
-                pause 0.05
-                xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-                pause 0.05
-                xoffset 0 yoffset 0
-                linear 0.05 zoom 1.0
-
-            #   $ renpy.pause(0.6,hard=True)
-            if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME :
-                $ renpy.pause(0.2,hard=True)
-            elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
-                $ renpy.pause(0.25,hard=True)
-            elif "Eraser" in currentcardTYPE:
-                $ renpy.pause(0.01,hard=True)
+    else:
+        call card_type_sfx
+        call hurtnoise_enemy
+        python:
+            if enemySP>0:
+                enemySP-=damagetoenemy
+                if enemySP<0:
+                    enemyHP+=enemySP
+                    enemySP = 0
             else:
-                $ renpy.pause(0.6,hard=True)
-            show Enemy:
-                alpha 1.0
-                xalign 0.5 yanchor 0.32 ypos 0.3
-            hide damageeffect
+                enemyHP-=damagetoenemy
+
+            if enemyHP <=0:
+                enemyHP = 0
+                battle_done=True
+            dmgdist = ((currentcard.MAG*100)/20)
+            dmgdist = int(dmgdist*2)
+        show damageeffect
+        show dmgpoint onlayer overlay
+        show Enemy:
+            linear 0.05 zoom 0.94
+            xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+            pause .05
+            xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+            pause .05
+            xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+            pause 0.05
+            xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+            pause 0.05
+            xoffset 0 yoffset 0
+            linear 0.05 zoom 1.0
+
+        #   $ renpy.pause(0.6,hard=True)
+        if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME :
+            $ renpy.pause(0.2,hard=True)
+        elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
+            $ renpy.pause(0.25,hard=True)
+        elif "Eraser" in currentcardTYPE:
+            $ renpy.pause(0.01,hard=True)
+        else:
+            $ renpy.pause(0.6,hard=True)
+        show Enemy:
+            alpha 1.0
+            xalign 0.5 yanchor 0.32 ypos 0.3
+        hide damageeffect
     return
 label DamageSPplayer:
     # EVADE
@@ -1145,6 +1146,24 @@ label Damageplayer:
     $ attackhit=True
     $ battle_distance_old=battle_distance
     ## EVADE
+    
+    ## NO EVADE
+    
+    if battle_distance>=attackrange:
+        call Advanceplayer(1)
+        $ attackhit=False
+        # show Enemy:
+        #     xalign 0.5 yanchor 0.32 ypos 0.3
+        $ evasion_active=True
+        pause 0.05
+        $ evasion_active=False
+        play sound "sfx/miss.wav"
+        call battlemessage("MISSED!")
+        $ renpy.pause(0.1,hard=True)
+        if battle_distance==0 and battle_distance_old>0:
+            call battlemessage("DISTANCE:ZERO")
+        $ renpy.pause(0.1,hard=True)
+        return
     if "Evade" in PlayerSts:
         $ attackhit=False
         # $ renpy.show("Icon_[playerName]", at_list=([sidesteps_effect_dodge("Icon_[playerName]", 0.5, renpy.random.choice([0.6,0.4]), 0.12)]))
@@ -1154,49 +1173,37 @@ label Damageplayer:
         $ PlayerSts.remove('Evade')
         call battlemessage("EVADED")
         $ renpy.pause(0.1,hard=True)
-    ## NO EVADE
-    if attackhit:
-        if battle_distance>=attackrange:
-            call Advanceplayer(1)
-            $ attackhit=False
-            # show Enemy:
-            #     xalign 0.5 yanchor 0.32 ypos 0.3
-            $ evasion_active=True
-            pause 0.05
-            $ evasion_active=False
-            play sound "sfx/miss.wav"
-            call battlemessage("MISSED!")
-            $ renpy.pause(0.1,hard=True)
-            if battle_distance==0 and battle_distance_old>0:
-                call battlemessage("DISTANCE:ZERO")
-            $ renpy.pause(0.1,hard=True)
-            return
+    else:
+    
+        call card_type_sfx
+        hide damagetheplayer
+        show damageeffect as damagetheplayer:
+            yzoom 1.0 yoffset 400 zoom 2.0
+        if playerSP>0:
+            play sound "sfx/noise.wav" channel 1
+            
+            $ playerSP-=damagetoplayer
+            if playerSP<0:
+                #playerSP becomes a negative value if damage exceeds its value
+                $ playerHP+=playerSP
+                $ playerSP = 0
         else:
-        
-            call card_type_sfx
-            if playerSP>0:
-                play sound "sfx/noise.wav" channel 1
-                $ playerSP-=damagetoplayer
-                if playerSP<0:
-                    #playerSP becomes a negative value if damage exceeds its value
-                    $ playerHP+=playerSP
-                    $ playerSP = 0
-            else:
-                play sound "sfx/damage2.wav"
+            play sound "sfx/damage2.wav"
 
-                $ playerHP-=damagetoplayer
-        if playerHP <=0:
-            $ playerHP = 0
-            $ battle_done=True
-        $ dmgdist = ((currentcard.MAG*100)/20)
-        $ dmgdist = int(dmgdist*2)
-        show playerdmgpoint onlayer overlay
-        # show damagenoise
-        
-        call hurtnoise
-        hide damagenoise
-        hide screen battlestats
-        show screen battlestats
+            $ playerHP-=damagetoplayer
+    
+    if playerHP <=0:
+        $ playerHP = 0
+        $ battle_done=True
+    $ dmgdist = ((currentcard.MAG*100)/20)
+    $ dmgdist = int(dmgdist*2)
+    show playerdmgpoint onlayer overlay
+    # show damagenoise
+    
+    call hurtnoise
+    hide damagenoise
+    hide screen battlestats
+    show screen battlestats
         
     $ attackhit=True
     hide screen battlestats
