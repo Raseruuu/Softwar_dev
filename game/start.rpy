@@ -2,6 +2,66 @@
 
 #########
 
+# -SOFTWAR TO DO:
+# URVANG
+#   Add:
+#       Battleware Functions:
+
+#           Slash()         Increase Slash cards for 3 turns
+#           Bomb()          Increase Bomb cards for 3 turns
+#           Blast()         Increase Blast cards for 3 turns
+#           Break()         Ignore Shield
+#
+#           Damage()        Inflict (MAG*ATK) Damage to enemy
+#           Shield()        Gain (MAG*DEF) SP
+
+#           Boost(type)     Append Boost status to user for [type] cards
+#           Burn()          Append Burn status to enemy
+#           Burnself()      Burn status
+#           Freeze()      Cancel 1 execution
+#           Shock()       Reduce
+
+#           Negate()      Negate 1 execution
+#           Recover()
+#           Boost()       Increase (target) Card point for (turn) turns
+#           Resist()      Gain Resistance to (Fxn) Damage
+
+
+#       New Battleware:
+#           Ave's Guns
+#           SoftDrink
+
+# Draw Phase:
+
+#   Draw cards until 4
+# Battle Phase:
+#   Drop card to attack with
+
+# Return Phase:
+#   Return Dropped card to hand
+
+# RULES:
+#   Player loses when HP hits 0
+#   POW point declares card's damage to be reduced to opponent player
+#   When attacked:
+#       Player can discard Battleware with higher SPD to negate the attack.
+#       Make Status Variable an Array
+#       .append("Frozen")
+#       "Frozen" in Sts
+
+#       Browser image displaying "Hacked by ???"
+# TODO:
+# *Add more juice to the start
+# *Fan collection
+#   - Make it easy for them to "play" the game without downloading it (ie. trailer, screenshots)
+#
+# *Fan retention
+#   - Ask for mailing list registration
+#   - Link to website
+#   - Ask for a review/rating
+#
+##################
+
     # jump debug_menu
 image logo = "gui/logo.png"
 image white = Solid("#fff")

@@ -3,15 +3,53 @@ transform playerattack:
     linear 0.2 zoom 1.2 xpos (tarx+origx)/2 ypos (tary+origy)/2
     linear 0.2 zoom 1.0 xpos (tarx+origx)/2 ypos tary+((origy-tary)/2)
     linear 0.2 zoom 1.0 xpos origx ypos origy
-
+label damageleft:
+    play sound "sfx/Damage2.wav"
+    show damageeffect:
+        xalign 0.05
+        rotate -90
+    pause 0.5
+    hide damageeffect
+    return
+label damageright:
+    play sound "sfx/Damage2.wav"    
+    show damageeffect:
+        xalign 0.95
+        rotate 90 
+    pause 0.5
+    hide damageeffect
+    return
+play sound "sfx/noise.wav"
+label damageleftblocked:
+    play sound "sfx/noise.wav"
+    show damageeffect:
+        xalign 0.1
+        rotate -90
+    pause 0.5
+    hide damageeffect
+    return
+label damagerightblocked:
+    play sound "sfx/noise.wav"
+    show damageeffect:
+        xalign 0.9
+        rotate 90 
+    pause 0.5
+    hide damageeffect
+    return
+transform leapright:
+    linear 0.1 yoffset -40 xoffset 50
+    linear 0.1 xoffset 100 yoffset 0
+transform leapleft:
+    linear 0.1 yoffset -40 xoffset -50
+    linear 0.1 xoffset -100 yoffset 0
 # transform cardpos1:
 transform bumpleft:
     xoffset 0
-    linear 0.1 xoffset -40
+    linear 0.1 xoffset -80
     linear 0.1 xoffset 0
 transform bumpright:
     xoffset 0
-    linear 0.1 xoffset 40
+    linear 0.1 xoffset 80
     linear 0.1 xoffset 0
     
 transform sway:
@@ -147,7 +185,14 @@ transform cardflash_bright(image_path):
         xzoom 1.1 yzoom 1.1
         pause 0.2 
         linear 0.2 alpha 0.0 xzoom 1.0 yzoom 1.0
-
+transform landing:
+    yanchor 1.0 ypos 1.0
+    ease 0.2 yalign 0.08
+    ease 0.2 yalign 0.05
+transform jumpoff:
+    ease 0.2 yalign 0.05
+    ease 0.1 yanchor 1.2 ypos 0.0
+        
 #     
 # transform sidesteps_effect(image_path, start_pos, end_pos, duration):
 #     subpixel True

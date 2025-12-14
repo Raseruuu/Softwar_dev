@@ -632,7 +632,7 @@ label SDS_Encounter:
     h "I'll open it here on my phone, the site should be ok."
     h "Sweet, we really fixed it, heh!"
     l "We can actually order pizza?"
-    h "Yeah, if the staff got the memo, I'll give them a call."
+    h "Yeah, if the staff took notice. I'll go give them a call."
     j "If you could call them directly like that, there's no need for the online transaction, no?"
     h "We're testing it properly!"
     l "Let's just... roll with it ahehehe!"
@@ -644,9 +644,9 @@ label SDS_Encounter:
     j "I didn't know you liked pizza, Lisa."
     l "That rhymes!"
     j "?"
-    l "Oh!"
-    j "Hahahaha!"
+    j "Oh! You mean Pizza and Lisa."
     l "HAHAHAHAHA!"
+    j "HAHAHHAHAHA!"
     "A few minutes passed..."
     h "Great, looks like Cafella staff is ready for online transactions. Tell me what you guys like."
     h "Like I said, it's on me."
@@ -674,15 +674,18 @@ label SDS_Encounter:
     v "It's here, so quick! Gah!!"
     
     show CodeRed:
-        xalign 0.02
+        xalign 0.01
     show Vira:
         xalign 0.99
+    with dissolve
     $ Vira_w=False
     cv "An Antivirus?"
     v "And you are?"
     cv "Take a guess!"
     v "Virus Detected! Softwar imminent. Safeguards... Engage!"
     h "It's the armored virus! Get him!"
+    call damagerightblocked
+    show Vira at bumpright
     "Suddenly, Vira gets struck by a sword strike. Luckily, she had quickly put a barrier up."
     cv "A light barrier, huh."
     cv "I have just the weapon for that."
@@ -708,7 +711,8 @@ label SDS_Encounter:
     v "I..! Do have a weapon...! Take this!"
     call cardflash_story(DataBuster)
     "Vira lets out her DataBuster. It was a quick-draw shot!"
-    
+    call damageleftblocked
+    show CodeRed at bumpleft
     cv "Kuh!"
     cv "That didn't even leave a scratch."
     v "You just took the hit?!"
@@ -716,15 +720,27 @@ label SDS_Encounter:
     j "(Vira, Fall back!)"
     v "(Right!)"
     h "(He's a melee fighter! Keep up the ranged attack... we'll break him eventually!)"
-    
+    call cardflash_story(DataBuster)
     v"Haaah!!"
-    "The Virus took three.. four... seven shots.. And didn't even flinch! His armor really is formidable." 
+    
+    call damageleftblocked
+    show CodeRed at bumpleft
+    pause 0.3
+    call damageleftblocked
+    show CodeRed at bumpleft
+    pause 0.3
+    call damageleftblocked
+    show CodeRed at bumpleft
+    
+    "The Virus took three shots.. And didn't even flinch! His armor really is formidable." 
     cv "You're a coward.. But I respect the attempt."
     cv "It's my turn!!"
     "Rushing toward the retreating Vira, the armored Virus raised his sword.. "
     call cardflash_story(LambdaSaber)
     extend "The Lambda Saber. Its blade fluctuates more wildly than before."
     extend "From that position he leapt and unleashed downward swing!"
+    call damageright
+    show Vira at bumpright
     "The spikes of the wave pattern struck like lighting, hitting Vira from about seven meters away."
     v "Tsk!! You can reach this far even if it's a sword?  "
     cv "You're not getting away!"
@@ -739,6 +755,8 @@ label SDS_Encounter:
     "After quickly re-appearing, the Virus struck with a different sword."
     call cardflash_story(DataSaber)
     extend " It's an ordinary Datasaber. It wasn't the Lambda Saber this time."
+    call damagerightblocked
+    show Vira at leapright
     "The Light Barrier was disengaged at this point, but Vira blocked the slash attack with her parasol!"
     v "Tsk!"
     cv "Khh.. I closed the gap but... Heh. "
@@ -760,19 +778,27 @@ label SDS_Encounter:
     call cardflash_story(BruteForce)
     cv "I still have... my fists! "
     v "Brute Force, now?"
+    call damagerightblocked
+    show Vira at bumpright
+    call damagerightblocked
+    show Vira at bumpright
+    call damagerightblocked
+    show Vira at leapright
     "The Virus didn't stop rushing in, attack after attack. Vira held her ground, and eventually got some distance."
     call cardflash_story(DataBomb)
     v"Blow away!"
+    call damageleft
+    show Vira at bumpright
+    show CodeRed at leapleft
     cv "Tsk, a bomb?!"
-    show Vira:
-        ease 0.2 yalign 0.05
-        ease 0.1 yanchor 1.2 ypos 0.0
+    show Vira at jumpoff
         
     "Buying some time with that bomb, Vira took the high ground, far from where the Virus stood."
     "She takes aim while holding her Powersol open to the side."
     v "Gotcha!"
     "A gunshot! It would have hit, except this Virus had parried the bullet away with a wall-shaped sword..."
     call cardflash_story(BlockSaber)
+    call damageleftblocked
     extend "The BlockSaber!"
     cv "Come on, you're not the only one who can defend, now."
     v "Tsk. Well too bad! I've got so much more where that came from!"
@@ -785,20 +811,18 @@ label SDS_Encounter:
     h "No, that's her Powersol!"
     call cardflash_story(Powersol)
     v "Powersol Attack Mode!"
-    show Vira:
-        yanchor 1.0 ypos 1.0
-        ease 0.2 yalign 0.08
-        ease 0.2 yalign 0.05
+    show Vira at landing
     pause 0.2
-    
-    show CodeRed:
-        linear 0.1 yoffset -40 xoffset -50
-        linear 0.1 xoffset -100 yoffset 0
+    call damageleft
+    show CodeRed at leapleft
     with Shake((0, 0, 0, 0), 0.5, dist=40)
     cv "Sword against Sword, that's more like it!"
     v "This isn't a sword, but I can match you this way!"
     "Their weapons clashed repeatedly after Vira hit the ground.."
+    
     v "I've got you now, Powersol, Pierce!"
+    call damageleft
+    show CodeRed at leapleft
     "Her thrusting attack actually hit him directly this time. Right under his shoulder plate."
     "I can't see if it made a crack, but it did push him steps back, about 5 meters."
     "Impressive. This might be our chance! Vira seems to store energy from the Powersol's defensive mode for attack output.."
@@ -815,11 +839,14 @@ label SDS_Encounter:
     "The atmosphere around the Virus changes.. I don't know how he does it! "
     cv "I simply cannot.. lose!"
     show CodeRed at BurstTransfer_trans
+    show Vira with dissolve:
+        xoffset 0 
+        linear 0.2 yoffset -40
+        linear 0.1 yoffset 0
     v "That move again!"
     "He disappeared and re-emerged into close range with Vira! A new sword emerges in his palm. That means... another sword strike!"
-    show Vira:
-        linear 0.1 yoffset -40 xoffset 50
-        linear 0.1 xoffset 100 yoffset 0
+    call damagerightblocked
+    show Vira at leapright
     with Shake((0, 0, 0, 0), 0.5, dist=30)
     "She blocked the strike, but that maneuver just opens up for a flurry of more slashes."
     "She came prepared with her barriers, as usual."
@@ -850,6 +877,7 @@ label SDS_Encounter:
     cv "Re-appear, Lambda Saber! Hrrraaaaaggh!!!"
     "Again, the sword's blade split in half and revealed the fluctuating wave blade within. "
     "He's expanding its reach with more output?!"
+    call cardflash_story(Powersol)
     v "You're going all out, now? My Powersol shield... can still take this!"
     v "Gaahh!!"
     "What can I do... ?"
@@ -873,6 +901,7 @@ label SDS_Encounter:
         ease 0.2 yalign 0.08
         ease 0.2 yanchor 0.50 ypos 1.0
     pause 1.0
+    call damagerightblocked
     call cardflash_story(SaberDeflect)
     play music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
     i "Saber... Deflect!"
@@ -998,8 +1027,10 @@ label SDS_Encounter:
         zoom 0.75
     play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     show Ave with dissolve
+
     a "You cannot win against me. "
     a "I'm the Ultimate Antivirus!"
+
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"

@@ -364,9 +364,9 @@ init python:
     
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5),IfFunction("\"Data\" in Self_Status","Data","Self",[GiveToken("Burn",1)])],          4)
-    Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Attack(rangevalue=5)],          3)
+    Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Evade()],          3)
 #Force
-    BruteForce=   Card("BruteForce",     "Force",    0.20,     [Increase("ATK",0.25),While("\"IncreaseATK\" in Self_Status","IncreaseATK","Self",[Attack()])],      6)
+    BruteForce=   Card("BruteForce",     "Force",    0.20,     [Increase("ATK",0.25),While("\"IncreaseATK\" in Self_Status","IncreaseATK","Self",[Attack(),RemoveToken("IncreaseATK","Self")])],      4)
     DataForce=    Card("DataForce",      "Force",    0.25,      [Increase("ATK",0.25),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
     Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
@@ -388,7 +388,6 @@ init python:
     BusterSword=   Card("BusterSword",  "Sword",         1.0,     [Attack(),GiveToken("Saber",1)],   4)
     CupidArc=      Card("CupidArc",       "Bow",         1.0,     [Attack(),GainToken("Saber",1)],   4)
     DataArc=       Card("DataArc",       "Bow",          1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Flashbang=     Card("Flashbang",      "Bomb",        1.0,     [Attack(),GainToken("Saber",1)],   4)
     Gigamorph=     Card("Gigamorph",      "Power",       1.0,     [Attack(),GainToken("Saber",1)],   4)
     # DataBuster=    Card("DataBuster",      "Gun",        1.0,     [Attack(),GainToken("Saber",1)],   4)
     Bitbuster=     Card("Bitbuster",      "Gun",         0.5,     [Attack(rangevalue=7),ReduceBit(1)],   4)
@@ -664,7 +663,7 @@ init python:
         "content":[
             DataBuster,BurstTransfer,
             DataBuster,DataBuster,
-            DataBuster,Firewall,
+            DataBuster,Flashbang,
             Firewall,DataForce,
             Firewall,Firewall,
             DataBomb,DataBomb,
@@ -685,11 +684,11 @@ init python:
             LambdaSaber,LambdaSaber,
             BlockSaber,BlockSaber,
             BlockSaber,VirusFlame,
-            BreakSaber,BreakSaber,
+            BreakSaber,BruteForce,
             SaberAura,SaberAura,
             WormRetreat,WormHole,
             BurstTransfer,BurstTransfer,
-            DataDrill,WindBlast,
+            DataDrill,BruteForce,
             DataDrill,WindBlast,
             DataForce,DataForce
             ],

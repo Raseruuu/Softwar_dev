@@ -132,15 +132,34 @@ label script1_2_dialog1:
     i "So it is a dog! I wanna pet it!"
     "That's quite the human response, coming from you. Impressive."
     #Approaching Bitwulf Antivirus
-    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     $ Bitwulf_w=False
+
+    show ILY:
+        xanchor 1.0 xpos 0.0
+        ease 0.5 xalign 0.1
+    show Bitwulf:
+        linear 0.2 xpos 0.8
+    "ILY approaches the dog... "
+    $ ILY_m="O"
+    $ ILY_e="up"
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    
     b "Virus Detected!! Executing Termination Protocol..."
     $ Melissa_e="down"
     $ Melissa_m="open"
     
     mu "Watch out! They're on patrol on these hours."
     "Huh? who was that? It's another avatar!"
+    show black with Dissolve(0.2)
+    play sound "sfx/sfx_exp_short_hard9.wav"
+    show lightningbolt:
+        xalign 0.2 yalign 0.5
+    pause 0.3
+    hide black
+    hide lightningbolt
+    hide ILY
     "Suddenly, a flash of blue lightning strikes where ILY was standing!"
+    
     "I was about to raise my voice in surprise, until I realized she was safe from it."
     mu "That was close!"
     $ ILY_m ="frown"
@@ -172,7 +191,7 @@ label script1_2_dialog1:
     "*Gulps*"
     $ Melissa_e="up"
     $ Melissa_w=False
-    show Melissa with pixellate
+    show Melissa with dissolve
     m "I am the Melissa Virus. We're birds of a feather!"
     "Birds of a feather, huh? Wait, what does this mean for me?"
     "It seems like.. viruses are able to identify each other? I wonder how that works."

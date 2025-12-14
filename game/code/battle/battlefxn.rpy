@@ -170,6 +170,7 @@ label Damageenemy:
                 battle_done=True
             dmgdist = ((currentcard.MAG*100)/20)
             dmgdist = int(dmgdist*2)
+        hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
         show Enemy:
@@ -1192,20 +1193,20 @@ label Damageplayer:
 
             $ playerHP-=damagetoplayer
     
-    if playerHP <=0:
-        $ playerHP = 0
-        $ battle_done=True
-    $ dmgdist = ((currentcard.MAG*100)/20)
-    $ dmgdist = int(dmgdist*2)
-    show playerdmgpoint onlayer overlay
-    # show damagenoise
-    
-    call hurtnoise
-    hide damagenoise
-    hide screen battlestats
-    show screen battlestats
+        if playerHP <=0:
+            $ playerHP = 0
+            $ battle_done=True
+        $ dmgdist = ((currentcard.MAG*100)/20)
+        $ dmgdist = int(dmgdist*2)
+        show playerdmgpoint onlayer overlay
+        # show damagenoise
         
-    $ attackhit=True
+        call hurtnoise
+        hide damagenoise
+        hide screen battlestats
+        show screen battlestats
+            
+        $ attackhit=True
     hide screen battlestats
     show screen battlestats
     return

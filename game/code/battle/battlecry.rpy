@@ -224,7 +224,7 @@ init python:
                 token_quantity=token_quantity+1
         return token_quantity
 label battlecry:
-    
+    $ forcefinish=False
     python:
         burndmg = 0
         for fxns in EnmySts:
@@ -246,14 +246,14 @@ label battlecry:
         # or EnemyHP<=(damagetoenemy+burndmg) and 'Recover' not in PlayerFxn) and 'POW_Up' not in PlayerFxn:
             # voice "voice/ILY/ILY24B - Break down & disappear!.mp3"
           
-            if enemyName=="Vira" and not forcefinish:
+            if enemyName=="Vira":
               
                 voice "voice/ILY/ILY23B - This is the end, Vira.mp3"
                 $ anim_done=False
                 $ flashuser = "ILY"
                 call screen finishingflash("This is the end, Vira!\nPlease, Listen to me!")
               
-            if forcefinish:
+            elif forcefinish:
                 voice "voice/ILY/ILY09 - Finishing move.mp3"
                 $ anim_done=False
                 $ flashuser = "ILY"
