@@ -1,67 +1,6 @@
- #################
+#################
 #################
 
-# -SOFTWAR TO DO:
-# URVANG
-#   Add:
-#       Battleware Functions:
-
-#           Slash()         Increase Slash cards for 3 turns
-#           Bomb()          Increase Bomb cards for 3 turns
-#           Blast()         Increase Blast cards for 3 turns
-#           Break()         Ignore Shield
-#
-#           Damage()        Inflict (MAG*ATK) Damage to enemy
-#           Shield()        Gain (MAG*DEF) SP
-
-#           Boost(type)     Append Boost status to user for [type] cards
-#           Burn()          Append Burn status to enemy
-#           Burnself()      Burn status
-#           Freeze()      Cancel 1 execution
-#           Shock()       Reduce
-
-#           Negate()      Negate 1 execution
-#           Recover()
-#           Boost()       Increase (target) Card point for (turn) turns
-#           Resist()      Gain Resistance to (Fxn) Damage
-
-
-#       New Battleware:
-#           Ave's Guns
-#           SoftDrink
-
-# Draw Phase:
-
-#   Draw cards until 4
-# Battle Phase:
-#   Drop card to attack with
-
-# Return Phase:
-#   Return Dropped card to hand
-
-# RULES:
-#   Player loses when HP hits 0
-#   POW point declares card's damage to be reduced to opponent player
-#   SPD point declares card's order of execution in the battle phase
-
-#   When attacked:
-#       Player can discard Battleware with higher SPD to negate the attack.
-#       Make Status Variable an Array
-#       .append("Frozen")
-#       "Frozen" in Sts
-
-#       Browser image displaying "Hacked by ???"
-# TODO:
-# *Add more juice to the start
-# *Fan collection
-#   - Make it easy for them to "play" the game without downloading it (ie. trailer, screenshots)
-#
-# *Fan retention
-#   - Ask for mailing list registration
-#   - Link to website
-#   - Ask for a review/rating
-#
-##################
 ##################
 default game_over=False
 default battle_active=False
@@ -93,66 +32,66 @@ image Mouse = "images/computer/mouse.png"
 #image white_noise  = "images/computer/white_noise.png"
 #image white_noise2 = im.Flip("images/computer/white_noise.png", horizontal=True)
 image cafeoutside:
-    "images/Cafella/CoffeeShop_SATURATED_23-1.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_23-1.jpg"
     zoom 0.7
 image cafedoor:
-    "images/Cafella/CoffeeShop_SATURATED_22.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_22.jpg"
     zoom 0.7
 image cafeinside2:
-    "images/Cafella/CoffeeShop_SATURATED_24.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_24.jpg"
     zoom 0.7
 image cafeoutsideaftern:
-    "images/Cafella/CoffeeShop_AFTERN_30.jpg"
+    "images/BGs/Cafella/CoffeeShop_AFTERN_30.jpg"
     zoom 0.7
 image cafeinside:
-    "images/Cafella/CoffeeShop_SATURATED_25.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_25.jpg"
     zoom 0.7
 image cafetable:
-    "images/Cafella/CoffeeShop_SATURATED_29.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_29.jpg"
     zoom 0.7
 image cafeoutside2:
-    "images/Cafella/CoffeeShop_SATURATED_30-1.jpg"
+    "images/BGs/Cafella/CoffeeShop_SATURATED_30-1.jpg"
     zoom 0.7
 image JD_Bed:
-    "images/John's Room/Bed.jpg"
+    "images/BGs/John's Room/Bed.jpg"
     zoom 0.7
 image JD_Bed2:
-    "images/John's Room/Bed2.jpg"
+    "images/BGs/John's Room/Bed2.jpg"
     zoom 0.7
 image JD_Bed3:
-    "images/John's Room/Bed3.jpg"
+    "images/BGs/John's Room/Bed3.jpg"
     zoom 0.7
 image JD_Door:
-    "images/John's Room/Door.jpg"
+    "images/BGs/John's Room/Door.jpg"
     zoom 0.7
 image JD_Kitchen:
-    "images/John's Room/Kitchen.jpg"
+    "images/BGs/John's Room/Kitchen.jpg"
     zoom 0.7
 image JD_PC1:
-    "images/John's Room/PC1.jpg"
+    "images/BGs/John's Room/PC1.jpg"
     zoom 0.7
 image JD_PC2:
-    "images/John's Room/PC2.jpg"
+    "images/BGs/John's Room/PC2.jpg"
     zoom 0.7
 image JD_PCN:
-    "images/John's Room/Bedroom_NIGHT_09.jpg"
+    "images/BGs/John's Room/Bedroom_NIGHT_09.jpg"
     zoom 0.7
     
     
 image JD_Space1:
-    "images/John's Room/Space1.jpg"
+    "images/BGs/John's Room/Space1.jpg"
     zoom 0.7
 image JD_Space2:
-    "images/John's Room/Space2.jpg"
+    "images/BGs/John's Room/Space2.jpg"
     zoom 0.7
 image JD_Space2_night:
-    "images/John's Room/Space2_night.jpg"
+    "images/BGs/John's Room/Space2_night.jpg"
     zoom 0.7
 image JD_Space3:
-    "images/John's Room/Space3.jpg"
+    "images/BGs/John's Room/Space3.jpg"
     zoom 0.7
 image JD_Space3_night:
-    "images/John's Room/Space3_night.jpg"
+    "images/BGs/John's Room/Space3_night.jpg"
     zoom 0.7
 image redwebsite:
     "images/computer/Webpage.png"
@@ -204,18 +143,7 @@ transform bounce:
     linear 0.2 yoffset -20
     linear 0.2 yoffset 0
 
-## Flashback
-##  Kids Lisa Talks with John: Refer to each respectively: Girl, and Boy.
-    # Year 2000, before ILOVEYOU Virus spread
-    # Girl and Boy are 7 years old
-    # Boy asks girl about her parents' jobs
-    # Girl mentions her father's programming career.
-    # Girl explains programming
-    # Boy suggests to make programs that provide free Internet
-    # Boy explains his love for internet and games "It should be free for everyone!"
-    # Girl agrees.
-    # Boy declares future job to be a programmer.
-    # Girl declares the same.
+
 
 image Email="images/computer/E-mail.png"
 image whitewindow = "images/computer/whitewindow.png"
