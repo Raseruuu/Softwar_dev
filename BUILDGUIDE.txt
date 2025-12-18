@@ -5,3 +5,5 @@ DELETE:
 .zip
 .rar
 others
+
+CREATE WEBP IMAGE VERSIONS OF ALL PNGs, for Smaller file size.

@@ -183,10 +183,7 @@ label script1_2_dialog1:
     "Non-viruses? that means..."
     #unlock Shady Alley
     play music "bgm/ost/Serious_Noyemi_K.ogg"
-    scene battlebg
-    show scrollingBG at scroll
-    show battleroad:
-        yalign 1.0 xalign 0.5
+    call battlescene
     mu "I should introduce myself..."
     "*Gulps*"
     $ Melissa_e="up"
@@ -199,6 +196,7 @@ label script1_2_dialog1:
     m "We viruses, we look out for each other out here. "
     hide Melissa
     show Melissajump
+    $ renpy.pause(0.8,hard=True)
     extend "You can call me your big sister!"
     show Melissa
     hide Melissajump
@@ -307,6 +305,7 @@ label script1_2_dialog1:
     
     hide Melissa
     show Melissajump
+    $ renpy.pause(0.8,hard=True)
     m "Sisters always watch each other's backs!"
     show Melissa
     hide Melissajump

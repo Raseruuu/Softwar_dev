@@ -216,3 +216,17 @@ image Folders:
         #     linear 1.0 yoffset 2
         #     linear 1.0 yoffset -2
         #     repeat
+
+label desktopscene:
+    scene blue with Dissolve(0.2)
+    show Folders with dissolve
+    return
+
+label battlescene:
+    scene black with dissolve
+    pause 0.5
+    show scrollingBG at scroll
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    with pixellate
+    return

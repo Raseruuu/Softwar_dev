@@ -938,12 +938,16 @@ layeredimage Lisafull:
     always:
         "images/Characters/Lisa/Lisa_base.png"
     always:
-        "images/Characters/Lisa/Lisa_underwear_[Lisa_underwear].png"
+        # "images/Characters/Lisa/Lisa_underwear_[Lisa_underwear].png"
+        ConditionSwitch("Lisa_underwear!=''","images/Characters/Lisa/Lisa_underwear_[Lisa_underwear].png","Lisa_underwear==''",Null())
+
     always:
-        "images/Characters/Lisa/Lisa_dress_[Lisa_outfit].png"
+        # "images/Characters/Lisa/Lisa_dress_[Lisa_outfit].png"
+        ConditionSwitch("Lisa_outfit!=''","images/Characters/Lisa/Lisa_dress_[Lisa_outfit].png","Lisa_outfit==''",Null())
     always:
         "images/Characters/Lisa/Lisa_fronthair.png"
-        
+    always:
+        "images/Characters/Lisa/Lisa_shoes.png"
     always:
         WhileSpeaking(
             "Lisa",

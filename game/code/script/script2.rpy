@@ -361,8 +361,7 @@ label teammeeting:
     "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
     # h"(John, doe )"
     scene black
-    scene blue with Dissolve(0.2)
-    show Folders with dissolve
+    call desktopscene
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     "TODO: SHOW LOADING SCREEN INSTALLING VIRA"
 
@@ -402,8 +401,7 @@ label teammeeting:
     call battlev3(ILY,Vira)
     if playerHP<=0:
         return
-    scene blue with Dissolve(0.2)
-    show Folders with dissolve
+    call desktopscene
     $ Lisa_e="mad"
     $ Lisa_m="frown"
     "ILY's holding her ground...!"
@@ -467,12 +465,7 @@ label teammeeting:
     h "Let's get em!"
     $ playerHP=playerHPMax
 label SDS_Encounter:
-    scene black with dissolve
-    pause 0.5
-    show scrollingBG at scroll
-    show battleroad:
-        yalign 1.0 xalign 0.5
-    with pixellate
+    call battlescene
     # Part 2
     "Vira traversed the cyberworld version of Connecht city on her way to the location where our office is at."
     "Vira eventually meets the wolf antivirus from last night."
@@ -641,7 +634,7 @@ label SDS_Encounter:
 
     "I didn't expect to do all this today, but here we are."
     l "Pizza!!"
-    j "I didn't know you liked pizza, Lisa."
+    j "Lisa, I didn't know you liked pizza."
     l "That rhymes!"
     j "?"
     j "Oh! You mean Pizza and Lisa."
