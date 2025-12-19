@@ -1138,12 +1138,15 @@ label SDS_Encounter:
         xanchor 0.0 xpos 1.0
         easein 0.4 xalign 0.9
     a "The filth called the ILOVEYOU Virus...  Must disappear!"
-    show ILY at landing:
-        alpha 1.0 xalign 0.1 xoffset 0 
     show ILY:
-        yanchor 0.50
+        alpha 1.0 xalign 0.1 xoffset 0 
+        yanchor 1.0 ypos 1.0
+        ease 0.2 yalign 0.08
+        ease 0.2 ypos 1.0 yanchor 0.5 
+        
     i "I'm not the same as the Virus you once fought!"
     call cardflash_story(MailSaber)
+    # linear 0.3 yanchor 0.50
     i "Appear, MailSaber!!"
     $ Ave_m="tsk"
     call damagerightblocked
@@ -1152,7 +1155,7 @@ label SDS_Encounter:
     $ Ave_eyes="open"
     " Let alone my shield!"
     call cardflash_story(Firewall)
-    "A Wall! It's so thick. This'll be tough."
+    "A Wall! Just like Vira.. This'll be tough."
     $ Ave_m="frown"
     
     i "That's right... Mailsaber's power output is weak..."
@@ -1177,8 +1180,9 @@ label SDS_Encounter:
     i"I'll show you... "
     call cardflash_story(BurstTransfer)
     extend "My Burst Transfer!! !!"
-    show ILY at sidesteps_effect("ILY",0.0,1.0,0.3):
-        ypos 0.5 
+    hide ILY
+    show ILY at sidesteps_effect("ILY",0.0,1.5,0.3):
+        yanchor 0.50 ypos 0.5 
     call damageright4
     "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."
     call damageright
@@ -1202,7 +1206,10 @@ label SDS_Encounter:
     "The attack seemed to stop the Antivirus momentarily. Ave didn't have the strength to respond."
     i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
     "ILY hurried away in critical condition."
-    a""
+    $ Ave_w=True
+    j "(Hurry Up, ILY!)"
+    i "Roger that!"
+    hide ILY with dissolve
     a "Don't...! Grrr... I will.."
     "After minute or so... Ave recovers from the crater in the wall and proceeds to follow ILY's traces she left behind."
     a "You're not getting away!"

@@ -178,7 +178,9 @@ image lightningbolt:
     pause 0.05
     "images/battle/effects/bolt4.png"
     pause 0.05
-    
+image lightningbolt2:
+    "lightningbolt"
+    zoom 0.5
 
 screen checks:
     vbox:
@@ -234,15 +236,15 @@ label battlescene:
 
 
 image powerflow:
-    zoom 0.3 alpha 0.5 ypos 1.0 xalign 0.5
+    zoom 0.3 ypos 1.0 xalign 0.5
     "images/Characters/Code Red/powerflow_1.png"
-    pause 0.1
+    pause 0.03
     "images/Characters/Code Red/powerflow_2.png"
     pause 0.03
     "images/Characters/Code Red/powerflow_3.png"
     pause 0.03
     "images/Characters/Code Red/powerflow_4.png"
-    pause 0.1
+    pause 0.11
     
 label powerflow_animation:
     $ CodeRed_m="open"
