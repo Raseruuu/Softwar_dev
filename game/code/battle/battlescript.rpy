@@ -290,10 +290,32 @@ image battleroad = "images/battle/battleroad.png"
 
 transform BurstTransfer_trans:
     alpha 1.0
-    linear 0.2 alpha 0.0 xoffset 500 
+    parallel:
+        linear 0.4 xoffset 500 
+    parallel:
+        linear 0.1 alpha 0.0 xzoom 1.1
+        easein 0.1 xzoom 1.0
     pause 2.0
     alpha 0.0 xoffset -500
-    linear 0.2 alpha 1.0 xoffset 0
+    # linear 0.2 alpha 1.0 xoffset 0
+    parallel:
+        linear 0.4 xoffset 0 
+    parallel:
+        pause 0.2
+        linear 0.1 alpha 0.8 xzoom 1.1
+        easein 0.1 xzoom 1.0 alpha 1.0
+
+transform BurstTransfer_trans2:
+    alpha 1.0
+    parallel:
+        linear 0.4 xoffset 500 
+    parallel:
+        linear 0.1 alpha 0.0 xzoom 1.1
+        easein 0.1 xzoom 1.0
+        xoffset 0 
+
+
+
 image cardflasher:
     CardDisplay(currentcard)
 image cardflasher_temporary:

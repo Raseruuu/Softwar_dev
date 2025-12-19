@@ -308,7 +308,7 @@ init python:
     SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
-    RecursiveSlash=Card("RecursiveSlash",   "Sword",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
+    RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
     SaberAura=     Card("SaberAura",        "Sword",          0.5,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   8)
     HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [Increase("ATK",0.25),GainToken("Burn",1)],       2)
     ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)

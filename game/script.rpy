@@ -1,6 +1,17 @@
  #################
 #################
-
+## Flashback
+##  Kids Lisa Talks with John: Refer to each respectively: Girl, and Boy.
+    # Year 2000, before ILOVEYOU Virus spread
+    # Girl and Boy are 7 years old
+    # Boy asks girl about her parents' jobs
+    # Girl mentions her father's programming career.
+    # Girl explains programming
+    # Boy suggests to make programs that provide free Internet
+    # Boy explains his love for internet and games "It should be free for everyone!"
+    # Girl agrees.
+    # Boy declares future job to be a programmer.
+    # Girl declares the same.
 label test:
     "Test mode"
     menu:
@@ -69,6 +80,7 @@ label testdialog:
     a"Lorem Ipsum dolor sit amet consectetur adipiscing elit."
     # hide Ave
     return
+
 label Vtuber:
 
     $ game_over = False

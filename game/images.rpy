@@ -230,3 +230,39 @@ label battlescene:
         yalign 1.0 xalign 0.5
     with pixellate
     return
+
+
+
+image powerflow:
+    zoom 0.3 alpha 0.5 ypos 1.0 xalign 0.5
+    "images/Characters/Code Red/powerflow_1.png"
+    pause 0.1
+    "images/Characters/Code Red/powerflow_2.png"
+    pause 0.03
+    "images/Characters/Code Red/powerflow_3.png"
+    pause 0.03
+    "images/Characters/Code Red/powerflow_4.png"
+    pause 0.1
+    
+label powerflow_animation:
+    $ CodeRed_m="open"
+    $ CodeRed_e="down"
+    show battleroad at tremors
+    show powerflow at surgeofpower("powerflow"):
+        zoom 1.4 xalign 0.5 yoffset 100
+    show CodeRed at reddening:
+        xalign 0.5
+
+
+    show powerflow as powerflow2 at surgeofpower("powerflow"):
+        zoom 1.3 xalign 0.5 yoffset 120
+        # ypos 1.0 xalign 0.5
+    
+    return
+label hidepowerflow:
+    hide powerflow 
+    hide powerflow2
+    hide CodeRed
+    with dissolve_pixels
+    call battlescene 
+    return 

@@ -19,6 +19,22 @@ label damageright:
     pause 0.5
     hide damageeffect
     return
+label damageright4:
+    $ slashcount = 0
+    label damagerightagain:
+    play sound "sfx/Damage2.wav" volume 2.0   
+    show damageeffect:
+        xalign 0.95
+        rotate 90 
+    pause 0.5
+    hide damageeffect
+    $ slashcount+=1
+    
+    if slashcount >=4:
+        return
+    else:
+        jump damagerightagain
+    
 play sound "sfx/noise.wav"
 label damageleftblocked:
     play sound "sfx/noise.wav"
@@ -38,6 +54,9 @@ label damagerightblocked:
     return
 transform leapright:
     linear 0.1 yoffset -40 xoffset 50
+    linear 0.1 xoffset 100 yoffset 0
+transform leapright2:
+    linear 0.1 yoffset -40 xoffset 500
     linear 0.1 xoffset 100 yoffset 0
 transform leapleft:
     linear 0.1 yoffset -40 xoffset -50
@@ -192,7 +211,129 @@ transform landing:
 transform jumpoff:
     ease 0.2 yalign 0.05
     ease 0.1 yanchor 1.2 ypos 0.0
-        
+transform tremors:
+    
+    yoffset 1
+    pause 0.02
+    yoffset -1
+    pause 0.02
+    repeat
+transform tremors_side:
+    xoffset 2
+    pause 0.1
+    xoffset -2
+    pause 0.1
+    repeat
+transform reddening:
+    parallel:
+        yoffset 1
+        pause 0.02
+        yoffset -1
+        pause 0.02
+        repeat
+    parallel:
+
+        matrixcolor IdentityMatrix()
+        pause renpy.random.choice([1.0,2.0])
+        matrixcolor TintMatrix('#f00') 
+        pause 0.02
+        matrixcolor IdentityMatrix()
+        pause 0.02
+        matrixcolor TintMatrix('#f00') 
+        pause 0.06
+        matrixcolor IdentityMatrix()
+        pause 0.02
+
+
+    
+        repeat
+transform redlightning(image_path):
+    contains:
+        "lightning"
+
+transform surgeofpower():
+    
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.7 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+        linear 0.4 alpha 0.0
+        # repeat
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.2 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.4 alpha 0.0
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.4 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.3 alpha 0.0
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.5 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.3 alpha 0.0
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.8 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.3 alpha 0.0
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 1.0 
+        # pause renpy.random.choice([0.0,0.03,0.4])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.1 alpha 0.0
+    contains:
+        "powerflow"
+        transform_anchor True
+        alpha 1.0 yanchor 2.0 
+        # pause renpy.random.choice([0.0,0.01,0.02])
+        xoffset renpy.random.choice([-20,0,20])
+        yoffset 100+renpy.random.choice([-20,0,20])
+        rotate renpy.random.choice([-20,-10,0,10,20])
+        xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
+
+        linear 0.2 alpha 0.0
+    pause 0.2
+    repeat
+    
+
 #     
 # transform sidesteps_effect(image_path, start_pos, end_pos, duration):
 #     subpixel True

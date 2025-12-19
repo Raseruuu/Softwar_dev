@@ -414,9 +414,8 @@ label paidMelissa:
         $ map_active=False
         
         hide screen mapB
-        scene scrollingBG at scroll
-        show battleroad:
-            yalign 1.0 xalign 0.5
+        call battlescene
+
         $ Melissa_w=True
         m "Ah, Thanks. I may be your big sis, but hey, business is business!"
         j "(She's moneysmart, it looks like.)"
@@ -473,10 +472,7 @@ label paidMelissa:
     scene black with dissolve
     "ILY exits the Shady Alley area of the GRID."
     "Now that I can see the viruses' perspective, I kind of want to just leave them alone at peace."
-    
-    show scrollingBG at scroll
-    show battleroad:
-        yalign 1.0 xalign 0.5
+    call battlescene
     show ILY with dissolve:
         xalign 0.3
     $ ILY_w=False
@@ -499,9 +495,8 @@ label paidMelissa:
     j "You're a wha??"
 
     call battlev3(ILY, Worm)
-    scene scrollingBG at scroll
-    show battleroad:
-        yalign 1.0 xalign 0.5
+    call battlescene
+
     show ILY with dissolve:
         xalign 0.3
     show Worm:

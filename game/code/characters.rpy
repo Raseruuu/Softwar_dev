@@ -1605,7 +1605,7 @@ image side Melissa_side:
 #########
 image Ave:
     "AveFull"
-    yanchor 0.46 ypos 1.0 zoom 0.9 xalign 0.5 
+    yanchor 0.5 ypos 1.0 zoom 0.9 xalign 0.5 
 
     linear 1.0 yoffset 0
     pause .5
@@ -1627,14 +1627,15 @@ image AveFull:
                 ),
             "images/Characters/Ave/Ave_m[Ave_m].png"
             ),
+        
+        (0, 0), "Ave_eyes_[Ave_eyes]",#eyes
         (0, 0), "images/Characters/Ave/Ave_e[Ave_e].png",
 
-        (0, 0), "AveEyes",#eyes
         (0, 0), "images/Characters/Ave/Aveshades.png",
         )
     
     zoom 0.24
-image AveEyes:
+image Ave_eyes_open:
     choice:
         "images/Characters/Ave/Ave_eyes.png"
         pause 1.0
@@ -1664,6 +1665,55 @@ image AveEyes:
         "images/Characters/Ave/Ave_eyes.png"
         pause 1.5
     repeat
+image Ave_eyes_midclose:
+    choice:
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 5.0
+    choice:
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 4.0
+    choice:
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 1.5
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+    repeat
+image Ave_eyes_min:
+    choice:
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 1.0
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+    choice:
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 5.0
+    choice:
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 4.0
+    choice:
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 1.5
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 0.07
+        "images/Characters/Ave/Ave_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ave/Ave_eyes_min.png"
+        pause 1.5
+    repeat
+
 image Ave mouth:
     "images/Characters/Ave/Ave_mspeak1.png"
     pause .08

@@ -509,12 +509,15 @@ transform envanim:
 
 screen EnvRun:
     add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.65 xanchor 0.5 yanchor 0.5 at envanim
-screen EnvLoad:
+
+screen EnvRun2:
     add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.70 xanchor 0.5 yanchor 0.5 at envanim
-screen EnvOpt:
+screen EnvLoad:
     add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.75 xanchor 0.5 yanchor 0.5 at envanim
-screen EnvQuit:
+screen EnvOpt:
     add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.80 xanchor 0.5 yanchor 0.5 at envanim
+screen EnvQuit:
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.85 xanchor 0.5 yanchor 0.5 at envanim
 
 
 transform gamesize:
@@ -590,16 +593,14 @@ screen main_menu():
     timer 1.5 action Show("mainmenu_buttons")
 screen mainmenu_buttons:
     vbox:
-        xalign 0.9 yalign 0.785
+        spacing 1
+        xalign 0.9 ypos 0.625 yanchor 0.0
         at navigationtransform
-        textbutton "{color=000}Start( );{/color}" action Start(), Hide("EnvRun"), Hide("mainmenu_buttons") hovered Show("EnvRun") unhovered Hide("EnvRun")
+        textbutton "{color=000}Start();{/color}" action Start(), Hide("EnvRun"), Hide("mainmenu_buttons") hovered Show("EnvRun") unhovered Hide("EnvRun")
+        textbutton "{color=000}Campaign();{/color}" action Start("roguemode"), Hide("EnvRun"), Hide("mainmenu_buttons") hovered Show("EnvRun2") unhovered Hide("EnvRun2")
         textbutton "{color=000}Load( );{/color}" action ShowMenu("load"), Hide("EnvLoad"), Hide("mainmenu_buttons") hovered Show("EnvLoad") unhovered Hide("EnvLoad")
         textbutton "{color=000}Options( );{/color}"  action ShowMenu("preferences"), Hide("EnvOpt"), Hide("mainmenu_buttons") hovered Show("EnvOpt") unhovered Hide("EnvOpt")
         textbutton "{color=000}Quit( );{/color}" action Quit(confirm=not main_menu), Hide("EnvQuit"), Hide("mainmenu_buttons") hovered Show("EnvQuit") unhovered Hide("EnvQuit")
-
-
-
-
 
     # ## This ensures that any other menu screen is replaced.
     # tag menu

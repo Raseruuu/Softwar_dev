@@ -498,8 +498,8 @@ label SDS_Encounter:
     j "But now, FAIs are involved. It's so strange."
     "Some final few keystrokes to the command line, and we are in."
     
-    scene gridbglandscape1 with dissolve:
-        zoom 0.75
+    call battlescene
+
     h "Alright looks like everything is going nicely. This is perfect."
     "Lisa shoots him a concerned look."
     h "What? It's going pretty good so far right?"
@@ -656,8 +656,8 @@ label SDS_Encounter:
     h "I know what my best friend likes, toldya so, Lisa!"
     "What's going on? I'm usually awkward. When did we become so... close?"
     h "I've made the order. Let's go! What do we do now?"
-    scene gridbglandscape1 with dissolve:
-        zoom 0.75
+    call battlescene
+
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     show Vira:
         xalign 0.7
@@ -793,6 +793,8 @@ label SDS_Encounter:
     call cardflash_story(BlockSaber)
     call damageleftblocked
     extend "The BlockSaber!"
+    show CodeRed:
+        linear 0.2 xoffset 0
     cv "Come on, you're not the only one who can defend, now."
     v "Tsk. Well too bad! I've got so much more where that came from!"
     j "(Vira, If he defended this time, that means... He's still protecting his armor!)"
@@ -811,6 +813,8 @@ label SDS_Encounter:
     with Shake((0, 0, 0, 0), 0.5, dist=40)
     cv "Sword against Sword, that's more like it!"
     v "This isn't a sword, but I can match you this way!"
+    show CodeRed:
+        linear 0.2 xoffset 0
     "Their weapons clashed repeatedly after Vira hit the ground.."
     
     v "I've got you now, Powersol, Pierce!"
@@ -819,6 +823,8 @@ label SDS_Encounter:
     "Her thrusting attack actually hit him directly this time. Right under his shoulder plate."
     "I can't see if it made a crack, but it did push him steps back, about 5 meters."
     "Impressive. This might be our chance! Vira seems to store energy from the Powersol's defensive mode for attack output.."
+    show CodeRed:
+        linear 0.2 xoffset 0
     cv "Tsk, this Blocksaber isn't doing so well. I was hoping to put some more pressure."
     "At this moment, his Blocksaber expires into pixels in the air." 
     show CodeRed with dissolve:
@@ -834,8 +840,8 @@ label SDS_Encounter:
     show CodeRed at BurstTransfer_trans
     show Vira with dissolve:
         xoffset 0 
-        linear 0.2 yoffset -40
-        linear 0.1 yoffset 0
+        linear 0.3 yoffset -80
+        linear 0.2 yoffset 0
     v "That move again!"
     "He disappeared and re-emerged into close range with Vira! A new sword emerges in his palm. That means... another sword strike!"
     call damagerightblocked
@@ -936,8 +942,9 @@ label SDS_Encounter:
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
-    scene gridbglandscape1 with dissolve:
-        zoom 0.75
+    
+    
+    call battlescene
     
     c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
@@ -976,6 +983,8 @@ label SDS_Encounter:
     "Suddenly, a surge of power is felt across the server."
     "Vira and ILY" "What!?"
     v "No way, just like the Lambda Saber, his armor's opening up??"
+    # show CodeRed at surgeofpower("CodeRed")
+    call powerflow_animation
     c "I too, can break off restraints... even the restraints, I put up on myself..!"
     c "HHHRRRAAAAGGHH!!"
     "With a huge force from the Code Red Virus, ILY's e-mail restraints came undone!"
@@ -983,27 +992,39 @@ label SDS_Encounter:
     v"No, his Data signature is changing drastically."
     "The red glowing force expanded as a sphere, almost protecting... A transformation, about to happen!?"
     "ILY and Vira witnessed a new thing at this moment.."
+    j "What's going on here...?!"
+    i "I have no clue!"
     v "ILY, he's transforming! We need to stop the state transition! We should break the force-field!"
     i "Got it!"
-    "ILY quickly drew her blade and struck him. But the force-field repelled the attack."
-    "Vira raised her gun, and started shooting at the sphere.. It had no effect."
-    "Vira was about to strike with her parasol next, unitl out of the sphere, came a sudden laserbeam shooting Vira!"
+    "ILY quickly drew her blade and struck him."
+    call damagerightblocked
+    extend " But the force-field repelled the attack."
+
+    "Vira raised her gun, and started shooting at the sphere.." 
+    call damageleftblocked
+    extend "It had no effect."
+    "Vira was about to strike with her parasol next, unitl out of the sphere, came a sudden burst of aura shooting Vira!"
     "It was a direct hit, and it pushed Vira to the wall, knocking her out."
     l "Vira, no!!"
-    "Before ILY could come to her aid, the force-field suddenly disappeared. Remnants of the crimson energy dispersed in the air."
+    call hidepowerflow
+    "Before ILY could come to her aid, the tremors suddenly disappeared. Remnants of the crimson energy dispersed in the air."
     "It wasn't just the barrier... Code Red's body is nowhere to be found!"
-    j "What's going on here...?!"
+    j "He's gone!"
     j "It couldn't be another Burst Transfer, could it?"
 
     i "Are you okay?"
     v "Tsk! I'm fine! But Code Red is gone..!"
+    stop music
     i "!!"
+    i "He was... about to go all out."
+
     v "Look behind you ILY... A new... entity has arrived.. "
 
     aa "That'll be enough, now, Virus."
     i "!!"
     "A new entity...? It isn't Code Red?"
     "It wasn't Burst Transfer. Code Red must've logged out!"
+    play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
     show Ave
     aa "Antivirus... Vira? What's going on here?"
     aa "And... My target. The ILOVEYOU Virus!!"
@@ -1016,11 +1037,11 @@ label SDS_Encounter:
     call battlev3(ILY, Ave,turnlimit = 3)
     if playerHP<=0:
         return
-    scene gridbglandscape1 with dissolve:
-        zoom 0.75
+    call battlescene
+
     play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     show Ave with dissolve
-
+    $ Ave_w=False
     a "You cannot win against me. "
     a "I'm the Ultimate Antivirus!"
 
@@ -1029,60 +1050,159 @@ label SDS_Encounter:
     i "No... That's not it! People hacked SDS!"
     a "SDS or ADA, wherever a virus is, I will hunt, and delete!"
     i "Didn't you see the Code Red Virus? Back off! I came here to help Vira!"
+    $ Ave_eyes="min"
+    $ Ave_e="down2"
+    
     a "Shut up! Don't talk to me! That's preposterous!"
+    $ Ave_m="shout"
     a "You're a Virus, you're nothing but filth!"
     i "That's wrong!"
+    $ Ave_m="tsk"
+    show Ave at tremors_side
     a "You're the same Virus that deleted-... I can't forgive the likes of you!"
-    a "Begone! Bit Barrage!"
+    $ Ave_eyes="min"
+    hide Ave
+    show Ave with dissolve
+    $ Ave_eyes="open"
+    $ Ave_m="shout"
+    a "Begone!"
+    call cardflash_story(Bitbuster)
+    extend " Bit Buster!"
     i "AAAHH!!"
     "ILY endured the shots, blocking most of it with her sword."
-    "But Bit Barrage affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
+    "But Bit Buster affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
     "If that hits her again, ILY will... "
     "Somehow, we need to escape!"
     j "(ILY! Evade that one! Escape while you still can!)"
     i "(Escape?? But... I have to bring Vira!)"
     j "(Right... You got a point.)"
+    $ Ave_m="tsk"
     a "You're planning something... I won't let you! Hmph!"
+    show Ave at jumpoff
     i "(I won't run away, John! I've got this!)"
-    "Ave runs to her target, still unrelenting in her assault. They ran across many corridors in the server, she finds ILY, and pulls the trigger...! "
+    call battlescene
+
+    "Ave runs to her target, still unrelenting in her assault. "
+    show ILY:
+        xalign 0.1
+    
+    with dissolve
+    show Ave at landing:
+        xalign 0.9
+    "They ran across many corridors in the server, she finds ILY."
+    
+    " And pulls the trigger...! "
+    show ILY at BurstTransfer_trans2
     h "She disappeared!"
+    $ Ave_m="frown"
     a "Burst Transfer. No surprise."
+    $ Ave_e="down"
     a "Shame, since I can track your Burst Trajectory! Your heat signature will give your location away wherever you hide!"
+    call battlescene
+    
+    show ILY:
+        xalign 0.1
+    with dissolve
+    show Ave:
+        xanchor 0.0 xpos 1.0
+        easein 0.4 xalign 0.9
     "She spotted ILY shortly after."
+    $ Ave_e="down2"
+    $ Ave_m="shout"
+    
     a "Hah! Why don't you disappear for good now!"
     i "!!"
+    $ Ave_m="tsk"
     a "DELETE!!"
+    call cardflash_story(Bitbuster)
+    $ Ave_m="shout"
     "Ave's gun had released a powerful  blast."
-    "*POOF!* ILY's body was not on the scene. What was left there was a burning blade."
-    a "A Sword was used as a decoy? Tch, No!! I can't be fooled by the likes of you!!"
-    "She evaded the succeeding Bit Barrage!"
+    show ILY at BurstTransfer_trans2
+    "*POOF!* ILY's body was not on the scene."
+    show Ave:
+        easein 0.2 xalign 0.2
+    call cardflash_story(FlameSaber)
+    "What was left there was a burning blade."
+    $ Ave_m="O"
+
+    a "The heat of this Sword was used as a decoy? Tch, No!!"
+    $ Ave_m="tsk"
+
+    a "You dare..!!"
+    show Ave:
+        easein 0.1 xanchor 1.0 xpos 0.0
+    "She evaded the succeeding Bit Buster barrage!"
+    $ Ave_eyes="midclose"
+    $ Ave_m="frown"
+    show Ave:
+        xanchor 0.0 xpos 1.0
+        easein 0.4 xalign 0.9
     a "The filth called the ILOVEYOU Virus...  Must disappear!"
+    show ILY at landing:
+        alpha 1.0 xalign 0.1 xoffset 0 
+    show ILY:
+        yanchor 0.50
     i "I'm not the same as the Virus you once fought!"
+    call cardflash_story(MailSaber)
     i "Appear, MailSaber!!"
-    a "A mere Papercut sword! Tch! It'll take more than that to defeat me! Let alone my shield!"
-    "A new barrier! It's so thick, too! Its fortitude is much greater than Code Red's armor!"
+    $ Ave_m="tsk"
+    call damagerightblocked
+    a "A mere Papercut sword! Tch! It'll take more than that to defeat me!"
+    $ Ave_m="shout"
+    $ Ave_eyes="open"
+    " Let alone my shield!"
+    call cardflash_story(Firewall)
+    "A Wall! It's so thick. This'll be tough."
+    $ Ave_m="frown"
+    
     i "That's right... Mailsaber's power output is weak..."
     i "But thanks to the Email tokens I sent your way, For each one I retrieve, I gain an extra blade to attack with!"
+    $ Ave_eyes="midclose"
+    $ Ave_m="tsk"
+    
     a "Repeated strikes from one Battleware card? Grrrr..."
+   
     "Ave let out a desperate counterattack shot."
+    $ Ave_eyes="open"
+    $ Ave_m="shout"
+    call cardflash_story(DataBuster)
     a "Take this!!"
+
+    show ILY at BurstTransfer_trans
     "It missed."
-    i "I'll show you... My Burst Transfer!! I won't run from this battle!!"
+    show Ave:
+        easein 0.2 xalign 0.5
+    "You can't escape me!"
+    i "Huh!"
+    i"I'll show you... "
+    call cardflash_story(BurstTransfer)
+    extend "My Burst Transfer!! !!"
+    show ILY at sidesteps_effect("ILY",0.0,1.0,0.3):
+        ypos 0.5 
+    call damageright4
     "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."
+    call damageright
     "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target quickly from many meters away." 
+    call damageright4
     "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position."
+    call damageright4
     "She approached her from many directions in a spiraling flurry of attacks, and her blade clashed with her shields repeatedly."
     a "My shield is cracking?? No!!"
     "Five, Seven... Thirteen slashes!? ILY really set her up now!"
-
+    hide ILY
+    show ILY with dissolve:
+        xalign 0.1
     i "That's my kind of barrage! Now that your shield is broken, You're going to love this!"
     i "Virus Flame!!"
+    call cardflash_story(VirusFlame)
     a "Wha? At Point-blank!? GAAHHHH!!!" 
     "The flame attack was boosted by her Heartburn ability, which risked her overheating in exchange for more firepower."
+    show Ave at leapright2
     "Ave was slammed away into the wall by the impact of the explosion."
     "The attack seemed to stop the Antivirus momentarily. Ave didn't have the strength to respond."
     i "I'm sorry we can't meet in a more peaceful situation. I would have loved to chit-chat some more, but I'll take my leave now!"
     "ILY hurried away in critical condition."
+    a""
     a "Don't...! Grrr... I will.."
     "After minute or so... Ave recovers from the crater in the wall and proceeds to follow ILY's traces she left behind."
     a "You're not getting away!"

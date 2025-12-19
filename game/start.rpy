@@ -70,7 +70,7 @@ image Maoudamashii = "Maoudamashii.png"
 label start:
     # call cutscene_gunvar
     # call roguemode
-    call test
+    # call test
     call game_loop from _call_game_loop
     return
 label credits:

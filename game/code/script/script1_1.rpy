@@ -20,6 +20,8 @@ label download_complete:
         alpha 0.0
         linear 0.3 alpha 1.0
     return
+# init python-1:
+default persistent.has_met_ILY=False
 label script1:
     # jump test
     $ okdesktop = False
