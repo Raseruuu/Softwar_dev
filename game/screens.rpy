@@ -1686,7 +1686,7 @@ style pref_vbox:
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
 screen quick_menu():
-    variant "touch"
+    # variant "touch"
     zorder 200
 
     # hbox:
@@ -1701,7 +1701,7 @@ screen quick_menu():
         # textbutton _("Menu") action ShowMenu()
     image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
     hbox:
-        # style_prefix "quick"
+        style_prefix "quick"
 
         xalign 0.05
         yalign 0.0
