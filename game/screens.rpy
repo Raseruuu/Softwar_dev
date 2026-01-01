@@ -368,7 +368,36 @@ style choice_button is button:
 ##
 ## The quick menu is displayed in-game to provide easy access to the out-of-game
 ## menus.
+# screen quick_menu():
+#     # variant "touch"
+#     zorder 200
 
+#     # hbox:
+#     #     style_prefix "quick"
+
+#         # xalign 0.5
+#         # yalign 1.0
+#         #
+#         # textbutton _("Back") action Rollback()
+#         # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
+#         # textbutton _("Auto") action Preference("auto-forward", "toggle")
+#         # textbutton _("Menu") action ShowMenu()
+#     image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
+#     hbox:
+#         style_prefix "quick"
+
+#         xalign 0.05
+#         yalign 0.0
+#         # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
+#         textbutton _("{b}SOFTWAR{/b}")
+#         # textbutton _("History") action ShowMenu('history')
+#         # textbutton _("Back") action Rollback()
+
+#         textbutton _("Save") action ShowMenu('save')
+#         textbutton _("Load") action ShowMenu('load')
+#         textbutton _("Settings") action ShowMenu('preferences')
+#         textbutton _("Skip") action Skip(fast=True) alternate Skip(fast=True, confirm=True)
+#         textbutton _("Auto") action Preference("auto-forward", "toggle")
 screen quick_menu():
     # # Ensure this appears on top of other screens.
     zorder 200
@@ -391,7 +420,7 @@ screen quick_menu():
                     yalign 0.0
                     # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
                     textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
-                    textbutton _("Back") action Rollback() keyboard_focus False
+                    # textbutton _("Back") action Rollback() keyboard_focus False
                 
                     # textbutton _("History") action ShowMenu('history')
                     textbutton _("Save") action ShowMenu('save') keyboard_focus False
@@ -1685,36 +1714,7 @@ style pref_vbox:
 
 ## Since a mouse may not be present, we replace the quick menu with a version
 ## that uses fewer and bigger buttons that are easier to touch.
-screen quick_menu():
-    # variant "touch"
-    zorder 200
 
-    # hbox:
-    #     style_prefix "quick"
-
-        # xalign 0.5
-        # yalign 1.0
-        #
-        # textbutton _("Back") action Rollback()
-        # textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
-        # textbutton _("Auto") action Preference("auto-forward", "toggle")
-        # textbutton _("Menu") action ShowMenu()
-    image "images/computer/top_menu_ground.png" xalign 0.0 yalign 0.0
-    hbox:
-        style_prefix "quick"
-
-        xalign 0.05
-        yalign 0.0
-        # hotspot (  0,  66,  69, 354) action Hide("Console") hovered Show("Console"), Play("sound", "SFX/consshow.wav")  unhovered Hide("Console")
-        textbutton _("{b}SOFTWAR{/b}")
-        textbutton _("History") action ShowMenu('history')
-        textbutton _("Back") action Rollback()
-
-        textbutton _("Save") action ShowMenu('save')
-        textbutton _("Load") action ShowMenu('load')
-        textbutton _("Settings") action ShowMenu('preferences')
-        textbutton _("Skip") action Skip(fast=True) alternate Skip(fast=True, confirm=True)
-        textbutton _("Auto") action Preference("auto-forward", "toggle")
 
 style window:
     variant "small"

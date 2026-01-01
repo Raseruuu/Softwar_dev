@@ -25,7 +25,7 @@ init python:
         "Flashbang":Flashbang,
         "Gigamorph":Gigamorph,
         "DataBuster":DataBuster,
-        "Bitbuster":Bitbuster,
+        "BitBuster":BitBuster,
         "MachineBuster":MachineBuster,
         "Excalibrium":Excalibrium,
         "ILYFlash":ILYFlash,

@@ -284,6 +284,7 @@ transform alphatrans(value):
   alpha (value)
 screen mapB:
   timer 0.001 action If(playerHP==0 or game_over,true=Return(),false=None) repeat True
+  timer 0.2 action If(direction2!=None ,true=Return(direction),false=None) repeat True
   if map_visible==True:
     vbox:
       if linearmaptransform:
@@ -390,37 +391,40 @@ screen mapB:
           null height 10
 # MOBILE BUTTONS
     # if not anim_done:
-    
-#     image "gui/phone/buttonA.png":
-#         pos (0.96,0.8) at zoombutton
-#     image "gui/phone/buttonB.png":
-#         pos (0.9,0.9)  at zoombutton
-#     image "gui/phone/buttonX.png":
-#         pos (0.9,0.7) at zoombutton
-#     image "gui/phone/buttonY.png":
-#         pos (0.8,0.8)  at zoombutton
+    imagebutton idle "gui/phone/buttonX.png":
+        pos (0.86,0.68) at zoombutton
+        action Return("Pause")
+    imagebutton idle "gui/phone/buttonB.png":
+        pos (0.86,0.88)  at zoombutton
+        action Return("MapTalk")
+    imagebutton idle "gui/phone/buttonA.png":
+        pos (0.92,0.78) at zoombutton
+        action Return("OK")
+    imagebutton idle "gui/phone/buttonY.png":
+        pos (0.8,0.78)  at zoombutton
+        action Return("jump")
 # ##UNCOMMENT FOR MOBILE
-#     imagebutton idle "gui/phone/direction.png":
-#         hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
-#         unhovered SetVariable("direction2",None)
-#         action SetVariable("direction","up")#,Return("up")
-#         at rotate(0) pos (0.1,0.7)
-#     imagebutton idle "gui/phone/direction.png":
-#         hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
-#         unhovered SetVariable("direction2",None)
-#         action SetVariable("direction","down")#,Return("down")
-#         at rotate(180) pos (0.1,0.9)
-#     imagebutton idle "gui/phone/direction.png":
-#         hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
-#         unhovered SetVariable("direction2",None)
-#         action SetVariable("direction","left")#,Return("left")
-#         at rotate(270) pos (0.04,0.8)
-#     imagebutton idle "gui/phone/direction.png":
-#         hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
-#         unhovered SetVariable("direction2",None)
-#         action SetVariable("direction","right")#,Return("right")
-#         at rotate(90) pos (0.16,0.8) 
-
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","up"), Return("up")
+        at rotate(0) pos (0.08,0.66) 
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","down"), Return("down")
+        at rotate(180) pos (0.08,0.86)
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","left"), Return("left")
+        at rotate(270) pos (0.02,0.76)
+    imagebutton idle "gui/phone/direction.png":
+        hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
+        unhovered SetVariable("direction2",None)
+        action SetVariable("direction","right"), Return("right")
+        at rotate(90) pos (0.14,0.76) 
+    
     # frame:
     #     align (0.9,0.0)
     #     vbox:

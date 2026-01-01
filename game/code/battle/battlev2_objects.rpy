@@ -378,7 +378,7 @@ init python:
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Increase("ATK",0.25)],  2)
     Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Increase("ATK",0.25)])],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
-    Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
+    Cursorclaw=   Card("CursorClaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
     #newcards
     DrainShield=   Card("DrainShield",    "Shield",      1.0,     [Defend(),GainToken("Negate",1)],   4)
     FieryArc=      Card("FieryArc",       "Bow",         1.0,     [Attack(),GiveToken("Burn",1)],   4)
@@ -390,7 +390,7 @@ init python:
     DataArc=       Card("DataArc",       "Bow",          1.0,     [Attack(),GainToken("Saber",1)],   4)
     Gigamorph=     Card("Gigamorph",      "Power",       1.0,     [Attack(),GainToken("Saber",1)],   4)
     # DataBuster=    Card("DataBuster",      "Gun",        1.0,     [Attack(),GainToken("Saber",1)],   4)
-    Bitbuster=     Card("Bitbuster",      "Gun",         0.5,     [Attack(rangevalue=7),ReduceBit(1)],   4)
+    BitBuster=     Card("BitBuster",      "Gun",         0.5,     [Attack(rangevalue=7),ReduceBit(1)],   4)
     MachineBuster= Card("MachineBuster",      "Gun",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     Excalibrium=   Card("Excalibrium",      "Sword",     1.0,     [Attack(),GainToken("Saber",1)],   4)
     ILYFlash=      Card("ILYFlash",      "Power",        1.0,     [Attack(),GainToken("Saber",1)],   4)
@@ -506,8 +506,8 @@ init python:
             Shieldbit,Shieldbit,
             Shieldbit,Shieldbit,
             XAxess,Vslash,
-            Vslash,Bitbuster,
-            Bitbuster,Bitbuster],
+            Vslash,BitBuster,
+            BitBuster,BitBuster],
         "plugins":[]
         }
 
@@ -669,8 +669,8 @@ init python:
             DataBomb,DataBomb,
             Laserbeam,DataForce,
             BurstTransfer,Snipe,
-            FixerBeam,Bitbuster,
-            Bitbuster,Snipe,
+            FixerBeam,BitBuster,
+            BitBuster,Snipe,
             DataDrill,FixerBeam,
             Assault,Assault
             ],
@@ -825,7 +825,7 @@ define card_library={
     "BusterSword"     : {"card":BusterSword     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "CupidArc"        : {"card":CupidArc        ,"ID":'001',"rarity":"SR","color":"red","compatibility":"basic"},
     "Gigamorph"       : {"card":Gigamorph       ,"ID":'001',"rarity":"UR","color":"red","compatibility":"basic"},
-    "Bitbuster"       : {"card":Bitbuster       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
+    "BitBuster"       : {"card":BitBuster       ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "MachineBuster"   : {"card":MachineBuster   ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "Excalibrium"     : {"card":Excalibrium     ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
     "ILYFlash"        : {"card":ILYFlash        ,"ID":'001',"rarity": "R","color":"red","compatibility":"basic"},
