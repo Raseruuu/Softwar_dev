@@ -89,7 +89,7 @@ init python:
             # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             
-            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+            (9,10),"images/Cards/"+("Plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (0,0), AlphaMask(At("card_gradient",card_gradient_t),"images/Cards/Cardblank.png"),
             
             (14,258),
@@ -111,7 +111,7 @@ init python:
             # (11,184),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             # (11,204),At(Text( "{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}"+cardobj.NAME+"{/color}{/font}{/size}",style="cardshadows", layout="nobreak"),cardnametrans(cardobj.NAME)),
             
-            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+            (9,10),"images/Cards/"+("Plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (0,0), AlphaMask(At("card_gradient",card_gradient_t),"images/Cards/Cardblank.png"),
             
             (14,258),

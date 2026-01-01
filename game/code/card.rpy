@@ -82,9 +82,9 @@ init python:
     def CardDisplayNew(cardobj):
         return Composite(
             (225,325),
-            (0,0),"images/Cards/Cardblank.png",
+            (0,0),"images/Cards/CARDblank.png",
             
-            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+            (9,10),"images/Cards/"+("Plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (14,260),
                 FunctionList(cardobj.FXN),
             # (170,169),
@@ -130,9 +130,9 @@ init python:
     def CardDisplayNormal(cardobj):
         return Composite(
             (225,325),
-            (0,0),"images/Cards/Cardblank.png",
+            (0,0),"images/Cards/CARDblank.png",
             
-            (9,10),"images/Cards/"+("plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
+            (9,10),"images/Cards/"+("Plugins" if cardobj.TYPE=="Plugin" else "")+"/"+cardobj.NAME+".png",
             (14,258),
                 FunctionListNormal(cardobj.FXN),
             # (170,169),
@@ -166,7 +166,7 @@ screen Card(cardobj,position=(0.5,0.5),zoomvalue=1.0):
         style "cardframe"
         image Composite(
             (225,300),
-            (0,0),"images/Cards/Cardblank.png",
+            (0,0),"images/Cards/CARDblank.png",
             (10,10),"images/Cards/"+cardobj.NAME+".png",
             # (160,169),"images/Cards/cardbit/"+str(cardobj.COST)+".png"
             (170,169),At("images/Cards/cardbit/bit.png",zoomtrans(0.5))
@@ -200,9 +200,9 @@ screen choosecardv3(handcards):
                     if (not clickedcard[indexx]):
                         use Card(cardobj,((indexx*138 )+300,520),Return("card"+str(indexx+1)),0.6)
                     else:
-                        add "images/Cards/cardblank2.png" pos ((indexx*138 )+300,520)
+                        add "images/Cards/CARDblank2.png" pos ((indexx*138 )+300,520)
                 else:
-                    add "images/Cards/cardblank2.png" pos ((indexx*138 )+300,520)
+                    add "images/Cards/CARDblank2.png" pos ((indexx*138 )+300,520)
                 $indexx+=1
             if playerbattlecode!=[]:
                 imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95

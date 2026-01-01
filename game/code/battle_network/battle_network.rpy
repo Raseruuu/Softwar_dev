@@ -621,7 +621,7 @@ screen choosecardv4:
         key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
         key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     else:
-        add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
+        add "images/Cards/CARDblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
 return

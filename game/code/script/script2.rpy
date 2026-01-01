@@ -1066,7 +1066,7 @@ label SDS_Encounter:
     $ Ave_eyes="open"
     $ Ave_m="shout"
     a "Begone!"
-    call cardflash_story(Bitbuster)
+    call cardflash_story(BitBuster)
     extend " Bit Buster!"
     i "AAAHH!!"
     "ILY endured the shots, blocking most of it with her sword."
@@ -1114,7 +1114,7 @@ label SDS_Encounter:
     i "!!"
     $ Ave_m="tsk"
     a "DELETE!!"
-    call cardflash_story(Bitbuster)
+    call cardflash_story(BitBuster)
     $ Ave_m="shout"
     "Ave's gun had released a powerful  blast."
     show ILY at BurstTransfer_trans2
@@ -1181,7 +1181,7 @@ label SDS_Encounter:
     call cardflash_story(BurstTransfer)
     extend "My Burst Transfer!! !!"
     hide ILY
-    show ILY at sidesteps_effect("ILY",0.0,1.5,0.3):
+    show ILY at sidesteps_effectILY("ILY",0.0,1.5,0.3):
         yanchor 0.50 ypos 0.5 
     call damageright4
     "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."

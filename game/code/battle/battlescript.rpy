@@ -1,17 +1,17 @@
   # init python:
 
 image cardback:
-    "images/cards/cardback.png"
+    "images/Cards/cardback.png"
 image ring = "images/Cards/ring.png"
 image ring2 = "images/Cards/ring2.png"
 # image card1 = "images/Cards/[card1].png"
 # image card2 = "images/Cards/[card2].png"
-image fxnDMG = "images/cards/fxn-Damage.png"
-image fxnBRK = "images/cards/fxn-Break.png"
-image fxnTGT = "images/cards/fxn-Target.png"
-image fxnFRZ = "images/cards/fxn-Freeze.png"
-image fxnFW = "images/cards/fxn-Firewall.png"
-image fxnREC = "images/cards/fxn-Recover.png"
+image fxnDMG = "images/Cards/fxn-Damage.png"
+image fxnBRK = "images/Cards/fxn-Break.png"
+image fxnTGT = "images/Cards/fxn-Target.png"
+image fxnFRZ = "images/Cards/fxn-Freeze.png"
+image fxnFW = "images/Cards/fxn-Firewall.png"
+image fxnREC = "images/Cards/fxn-Recover.png"
 
 image Frzsts = "images/battle/Frozen.png"
 image Brksts = "images/battle/Broken.png"
@@ -330,7 +330,7 @@ image cardflasher_temporary:
 image card1:
     Composite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard1name].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard1name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard1FXN),
@@ -342,7 +342,7 @@ image card1:
 image card2:
     LiveComposite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard2name].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard2name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard2FXN),
@@ -354,7 +354,7 @@ image card2:
 image card3:
     Composite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard3name].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard3name]{/color}{/font}{/size}"),
         # (13,240),FunctionList(playercard3FXN),
@@ -367,7 +367,7 @@ image card3:
 image card4:
     LiveComposite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard4name].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard4name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard4FXN),
@@ -379,7 +379,7 @@ image card4:
 image card5:
     LiveComposite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,12 ),"images/Cards/[playercard5name].png",
         (11,214),Text("{color=#FFFF00}{font=font/adventpro-bold.ttf}{size=20}[playercard5name]{/color}{/font}{/size}"),
         (13,240),FunctionList(playercard5FXN),
@@ -405,28 +405,28 @@ image Trojan:
     "images/battle/Enemies/TrojanHorse.png"
     zoom 2.0
 image cardflip1:
-    "images/cards/cardback.png"
+    "images/Cards/cardback.png"
     xzoom 1.0
     linear 0.2 xzoom 0.0
     "card1"
     xzoom 0.0
     linear 0.2 xzoom 1.0
 image cardflip2:
-    "images/cards/cardback.png"
+    "images/Cards/cardback.png"
     xzoom 1.0
     linear 0.2 xzoom 0.0
     "card2"
     xzoom 0.0
     linear 0.2 xzoom 1.0
 image cardflip3:
-    "images/cards/cardback.png"
+    "images/Cards/cardback.png"
     xzoom 1.0
     linear 0.2 xzoom 0.0
     "card3"
     xzoom 0.0
     linear 0.2 xzoom 1.0
 image cardflip4:
-    "images/cards/cardback.png"
+    "images/Cards/cardback.png"
     xzoom 1.0
     linear 0.2 xzoom 0.0
     "card4"
@@ -595,8 +595,8 @@ image fxndescription:
     #     hbox:
     #         xalign 0.5 yalign 0.9
     #         for i in range(0,1):
-    #             imagebutton idle "images/cards/[myhand[i][1]]" action Return("card1") hovered Show("card1"),Play("sound","sfx/select.wav")
-            # imagebutton idle "images/cards/[i].png" action Hide("card2"), Return("card2") hovered Show("card2"),Play("sound","sfx/select.wav") unhovered Hide("card2") at card2pos
+    #             imagebutton idle "images/Cards/[myhand[i][1]]" action Return("card1") hovered Show("card1"),Play("sound","sfx/select.wav")
+            # imagebutton idle "images/Cards/[i].png" action Hide("card2"), Return("card2") hovered Show("card2"),Play("sound","sfx/select.wav") unhovered Hide("card2") at card2pos
 
 
 transform cardtrans:
