@@ -407,22 +407,22 @@ screen mapB:
     imagebutton idle "gui/phone/direction.png":
         hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
         unhovered SetVariable("direction2",None)
-        action SetVariable("direction","up"), Return("up")
+        action SetVariable("direction","up")#, Return("up")
         at rotate(0) pos (0.08,0.66) 
     imagebutton idle "gui/phone/direction.png":
         hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
         unhovered SetVariable("direction2",None)
-        action SetVariable("direction","down"), Return("down")
+        action SetVariable("direction","down")#, Return("down")
         at rotate(180) pos (0.08,0.86)
     imagebutton idle "gui/phone/direction.png":
         hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
         unhovered SetVariable("direction2",None)
-        action SetVariable("direction","left"), Return("left")
+        action SetVariable("direction","left")#, Return("left")
         at rotate(270) pos (0.02,0.76)
     imagebutton idle "gui/phone/direction.png":
         hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
         unhovered SetVariable("direction2",None)
-        action SetVariable("direction","right"), Return("right")
+        action SetVariable("direction","right")#, Return("right")
         at rotate(90) pos (0.14,0.76) 
     
     # frame:

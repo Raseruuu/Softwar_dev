@@ -1189,7 +1189,7 @@ label Damageplayer:
                 $ playerHP+=playerSP
                 $ playerSP = 0
         else:
-            play sound "sfx/damage2.wav"
+            play sound "sfx/Damage2.wav"
 
             $ playerHP-=damagetoplayer
     
