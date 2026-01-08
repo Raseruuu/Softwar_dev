@@ -20,7 +20,20 @@ init python:
     playerSPMax = ILYStatsnow["SPMax"]
     playerATK = ILYStatsnow["ATK"]
     playerDEF = ILYStatsnow["DEF"]
+init python:
+    enemyName = Ave.name
+    enemyHP = Ave.HP
 
+    # enemySP = EnemyFAIstats["SP"]
+    enemySP = 0
+    enemySPMax = Ave.SP
+    enemyDeck = Ave.deck["content"]
+    enemyPlugins =Ave.deck["plugins"]
+    enemyATK = Ave.ATK
+    enemyDEF = Ave.DEF
+    enemyATK_m = enemyATK
+    enemyDEF_m = enemyDEF
+    
     playerDeck = ILYStatsnow["Deck"]
     actual_playerDeck = playerDeck
     fxnindex=0
@@ -31,8 +44,9 @@ init python:
     enemyfirst =False
     map_active=False
     playerbattlecode=[]
-    
-
+init -1 python:
+    playerHP = 3000
+    enemyHP = 3000
 default playerPlugins =[]
 default battle_distance = 0
 transform flip_image:
@@ -1078,10 +1092,10 @@ screen choosecardv2:
                     ypos 0.98 yanchor 1.0
                     
             # elif clickedcard[cardindex]:
-            #     add "images/Cards/cardblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
+            #     add "images/Cards/CARDblank2.png" xpos cardxpos xanchor 0.5 yalign 0.945
             # else:
             #     add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 ypos 0.90 yanchor 0.5 at enlargehover_choosecard
-                # add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
+                # add "images/Cards/CARDblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
         
 
     if playerbattlecode!=[]:
@@ -1089,7 +1103,7 @@ screen choosecardv2:
         key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
         key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     else:
-        add "images/Cards/cardblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
+        add "images/Cards/CARDblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
 image card_deck = "images/Cards/card_deck.png"
@@ -1107,11 +1121,11 @@ screen Activate_Battleware:
         
         
         use handcardsscreen("drawphase")
-        # add "images/Cards/cardblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
-        # add "images/Cards/cardblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
-        # add "images/Cards/cardblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
-        # add "images/Cards/cardblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
-        # add "images/Cards/cardblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
+        # add "images/Cards/CARDblank2.png" xpos 0.26 xanchor 0.5 yalign 0.945
+        # add "images/Cards/CARDblank2.png" xpos 0.38 xanchor 0.5 yalign 0.945
+        # add "images/Cards/CARDblank2.png" xpos 0.5 xanchor 0.5  yalign 0.945
+        # add "images/Cards/CARDblank2.png" xpos 0.62 xanchor 0.5 yalign 0.945
+        # add "images/Cards/CARDblank2.png" xpos 0.74 xanchor 0.5 yalign 0.945
         add "card_deck" at zoomtrans(0.1),linger xalign 0.5 yalign 0.5
         
         text "{size=70}{b}DRAW!{/size}{/b}" xpos 0.5 xanchor 0.5 yalign 0.5 at alphablinking:

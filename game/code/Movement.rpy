@@ -390,40 +390,55 @@ screen mapB:
           text "Money: [Money] Zenny"
           null height 10
 # MOBILE BUTTONS
-    # if not anim_done:
-    imagebutton idle "gui/phone/buttonX.png":
-        pos (0.86,0.68) at zoombutton
-        action Return("Pause")
-    imagebutton idle "gui/phone/buttonB.png":
-        pos (0.86,0.88)  at zoombutton
-        action Return("MapTalk")
-    imagebutton idle "gui/phone/buttonA.png":
-        pos (0.92,0.78) at zoombutton
-        action Return("OK")
-    imagebutton idle "gui/phone/buttonY.png":
-        pos (0.8,0.78)  at zoombutton
-        action Return("jump")
 # ##UNCOMMENT FOR MOBILE
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","up")#, Return("up")
-        at rotate(0) pos (0.08,0.66) 
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","down")#, Return("down")
-        at rotate(180) pos (0.08,0.86)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","left")#, Return("left")
-        at rotate(270) pos (0.02,0.76)
-    imagebutton idle "gui/phone/direction.png":
-        hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
-        unhovered SetVariable("direction2",None)
-        action SetVariable("direction","right")#, Return("right")
-        at rotate(90) pos (0.14,0.76) 
+    if map_active:
+      imagebutton idle "gui/phone/buttonX.png":
+          pos (0.86,0.68) at zoombutton
+          action Return("Pause")
+      imagebutton idle "gui/phone/buttonB.png":
+          pos (0.86,0.88)  at zoombutton
+          action Return("MapTalk")
+      imagebutton idle "gui/phone/buttonA.png":
+          pos (0.92,0.78) at zoombutton
+          action Return("OK")
+      imagebutton idle "gui/phone/buttonY.png":
+          pos (0.8,0.78)  at zoombutton
+          action Return("jump")
+  
+      imagebutton idle "gui/phone/direction.png":
+          hovered SetVariable("direction","up"),SetVariable("direction2","up")#,Return("up")
+          unhovered SetVariable("direction2",None)
+          keyboard_focus False
+          action SetVariable("direction","up")#, Return("up")
+          activate_sound  ""
+          at rotate(0) , zoombutton2
+          pos (0.08,0.66) 
+          
+      imagebutton idle "gui/phone/direction.png":
+          hovered SetVariable("direction","down"),SetVariable("direction2","down")#,Return("down")
+          unhovered SetVariable("direction2",None)
+          action SetVariable("direction","down")#, Return("down")
+          keyboard_focus False
+          activate_sound  ""
+          at rotate(180) , zoombutton2
+          pos (0.08,0.86)
+      imagebutton idle "gui/phone/direction.png":
+          hovered SetVariable("direction","left"),SetVariable("direction2","left")#,Return("left")
+          unhovered SetVariable("direction2",None)
+          keyboard_focus False
+          action SetVariable("direction","left")#, Return("left")
+          activate_sound  ""
+          at rotate(270), zoombutton2
+          pos (0.02,0.76)
+      imagebutton idle "gui/phone/direction.png":
+          hovered SetVariable("direction","right"),SetVariable("direction2","right")#,Return("right")
+          unhovered SetVariable("direction2",None)
+          keyboard_focus False
+          action SetVariable("direction","right")#, Return("right")
+          activate_sound  ""
+          at rotate(90), zoombutton2
+          
+          pos (0.14,0.76) 
     
     # frame:
     #     align (0.9,0.0)
@@ -433,7 +448,9 @@ screen mapB:
     #         label "hold mouse":
     #             align (0.5,0.5)
 transform zoombutton:
-    zoom 0.1
+    zoom 0.12
+transform zoombutton2:
+    zoom 1.1
 style overworld_text:
     size 14
 screen npcsprite(sprites):

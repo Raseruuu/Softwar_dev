@@ -267,6 +267,11 @@ init python:
             "",
             ""
             )
+    def targetHPfxn():
+        
+        global enemyHP
+        en_HP= enemyHP
+        return en_HP
     # GainToken("E-mail")
 
     # Recover_EX = Fxn("Recover","EX","Recover all HP",,0)
@@ -295,7 +300,7 @@ init python:
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
     WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(),ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)]),],                  0)
-    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [Defend(),Attack()],   0)
+    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [ForInRange("x in range(0,target.HP/8)","targetHP/8",[Attack(8,absolute=True),])],   0)
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Increase("ATK",0.25),Increase("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
@@ -378,7 +383,7 @@ init python:
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Increase("ATK",0.25)],  2)
     Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Increase("ATK",0.25)])],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
-    Cursorclaw=   Card("CursorClaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
+    Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
     #newcards
     DrainShield=   Card("DrainShield",    "Shield",      1.0,     [Defend(),GainToken("Negate",1)],   4)
     FieryArc=      Card("FieryArc",       "Bow",         1.0,     [Attack(),GiveToken("Burn",1)],   4)

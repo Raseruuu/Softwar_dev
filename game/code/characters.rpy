@@ -913,7 +913,7 @@ image JohnFullside:
     "JohnFull"
     zoom 0.97
 image John sidew:
-    LiveCrop((242,38, 300,385), "JohnFullside")
+    Crop((242,38, 300,385), "JohnFullside")
     zoom 0.56
 
 image John:

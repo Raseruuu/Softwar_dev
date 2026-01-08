@@ -102,12 +102,15 @@ label Damageenemy:
     
     # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
-    
+    $ absolutedamage = currentcard_fxn_params[2]
     $ Power = (currentcardMAG)
-    if damagemultiplier=="POWR":
-        $ damagetoenemy=int(playerATK_m*Power)
-    elif damagemultiplier!="POWR": 
-        $ damagetoenemy=int(playerATK_m*damagemultiplier)
+    if absolutedamage:
+        $ damagetoenemy=int(damagemultiplier)
+    else: 
+        if damagemultiplier=="POWR":
+            $ damagetoenemy=int(playerATK_m*Power)
+        elif damagemultiplier!="POWR": 
+            $ damagetoenemy=int(playerATK_m*damagemultiplier)
     $ attackrange = currentcard_fxn_params[1]
     $ attackhit=True
     $ battle_distance_old=battle_distance
@@ -191,8 +194,9 @@ label Damageenemy:
             $ renpy.pause(0.2,hard=True)
         elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
             $ renpy.pause(0.25,hard=True)
-        elif "Eraser" in currentcardTYPE:
-            $ renpy.pause(0.01,hard=True)
+        elif "Eraser" or "GUNVAR" in currentcardTYPE:
+            
+            $ renpy.pause(0.2,hard=True)
         else:
             $ renpy.pause(0.6,hard=True)
         show Enemy:
@@ -731,6 +735,8 @@ label ForInRangePlayer:
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
+    if for_iterations=="targetHP/8":
+        $ for_iterations=enemyHP/8
     $ block_functions=FXN.params[1]
     # $ targetsts=FXN.params[2]
     # label WhileLoop:
@@ -1106,6 +1112,7 @@ label DoNothing:
     pass
     return
 label card_type_sfx:
+    
     if currentcardTYPE == "Sword":
         play sound "sfx/slash.wav" channel 1
     elif currentcardTYPE == "FireSword":
@@ -1117,6 +1124,7 @@ label card_type_sfx:
         play sound "sfx/Bust.wav" channel 1
     elif currentcardTYPE == "Gun":
         play sound "sfx/Bust.wav" channel 1
+
     else:
         $ attacknumber+=1
     if attacknumber<=3:
@@ -1463,6 +1471,24 @@ label Execution:
     show screen handcardsscreen
     #Index of looper
     call Concatenation
+    # call playbattlemusic(enemyName)
+    
+    show battlering:
+        xalign 0.5 ypos 0.20 yanchor 0.5
+        block:
+            rotate 0
+            linear 15.0 rotate 360
+            repeat
+    show curve:
+        xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+    show curve as curve2:
+        xpos 0.5 xanchor 1.0 ypos 0.17 yanchor 0.5
+        zoom -1.0
+
+    show battleroad:
+        yalign 1.0 xalign 0.5
+    show Enemy:
+        xalign 0.5 yanchor 0.32 ypos 0.3
     $ iterations =len(playerbattlecode)
     show screen phasemsg("EXECUTE")
     $ renpy.pause(0.5,hard=True)
