@@ -124,7 +124,7 @@ image white_noise:
 image cardpreviewcust:
     LiveComposite(
         (225,300),
-        (0,0),"images/Cards/Cardblank.png",
+        (0,0),"images/Cards/CARDblank.png",
         (11,14),"images/Cards/Datadrill.png",
         (11,219),Text("{color=#FFFF00}{font=font/Dejavusans.ttf}{size=20}DataDrill{/color}{/font}{/size}"),
         (17,244),Text("{color=#FFF}{font=font/Dejavusans.ttf}{size=20}Break();{/color}{/font}{/size}"),
@@ -235,8 +235,9 @@ label battlescene:
 
 
 
-image powerflow:
-    zoom 0.3 ypos 1.0 xalign 0.5
+image powerflowspike:
+    zoom 0.3 ypos 1.0 xalign 0.5 
+        
     "images/Characters/Code Red/powerflow_1.png"
     pause 0.03
     "images/Characters/Code Red/powerflow_2.png"
@@ -244,7 +245,14 @@ image powerflow:
     "images/Characters/Code Red/powerflow_3.png"
     pause 0.03
     "images/Characters/Code Red/powerflow_4.png"
-    pause 0.11
+    pause 0.11    
+image powerflow: 
+    "powerflowspike"
+    xzoom 1.0
+    linear 0.2 xzoom 0.92
+    
+       
+    
     
 label powerflow_animation:
     $ CodeRed_m="open"

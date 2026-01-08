@@ -253,17 +253,6 @@ transform redlightning(image_path):
 
 transform surgeofpower():
     
-    # contains:
-    #     "powerflow"
-    #     transform_anchor True
-    #     alpha 1.0 yanchor 1.7 
-    #     # pause renpy.random.choice([0.0,0.01,0.02])
-    #     xoffset renpy.random.choice([-20,0,20])
-    #     yoffset 100+renpy.random.choice([-20,0,20])
-    #     rotate renpy.random.choice([-20,-10,0,10,20])
-    #     xzoom renpy.random.choice([1.0,0.9,-0.9,-1.0])
-    #     linear 0.4 alpha 0.0
-        # repeat
    
     contains:
         "powerflow"
@@ -442,6 +431,7 @@ transform sidesteps_effectILY(image_path, start_pos, end_pos, duration):
             xalign start_pos alpha 0.1
             easein duration  xalign end_pos
             repeat 4
+            alpha 0.0
     contains:
         image_path
         xalign start_pos alpha 0.2 
@@ -454,6 +444,7 @@ transform sidesteps_effectILY(image_path, start_pos, end_pos, duration):
             xalign start_pos alpha 0.2 
             easein duration  xalign end_pos
             repeat 4
+            alpha 0.0
     contains:
         image_path
         xalign start_pos alpha 0.3  
@@ -466,6 +457,7 @@ transform sidesteps_effectILY(image_path, start_pos, end_pos, duration):
             xalign start_pos alpha 0.3 
             easein duration  xalign end_pos
             repeat 4
+            alpha 0.0
 
     contains:
         image_path
@@ -480,16 +472,23 @@ transform sidesteps_effectILY(image_path, start_pos, end_pos, duration):
             easein duration  xalign end_pos
 
             repeat 4
+            alpha 0.0
 
     contains:
         image_path
         xalign start_pos alpha 0.9 
         easein duration xalign end_pos
-        image_path
-        xalign end_pos alpha 0.9 
-        easein duration xalign start_pos
+        block:
+            image_path
+            xalign end_pos alpha 0.9 
+            easein duration xalign start_pos
+            image_path
+            xalign start_pos alpha 0.5 
+            easein duration  xalign end_pos
 
-        repeat 4
+            repeat 4
+            alpha 0.0
+    alpha 1.0
 transform sidesteps_effect_dodge(image_path, start_pos, end_pos,duration,y_anch=0.32,y_pos=0.3, ):
     subpixel True
     

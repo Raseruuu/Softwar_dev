@@ -1191,12 +1191,15 @@ label SDS_Encounter:
     "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position."
     call damageright4
     "She approached her from many directions in a spiraling flurry of attacks, and her blade clashed with her shields repeatedly."
-    a "My shield is cracking?? No!!"
+    hide ILY
+    show ILY with dissolve:
+        xalign 0.1 
+    "My shield is cracking?? No!!"
     "Five, Seven... Thirteen slashes!? ILY really set her up now!"
     hide ILY
     show ILY with dissolve:
         xalign 0.1
-    i "That's my kind of barrage! Now that your shield is broken, You're going to love this!"
+    i "I've got you! Now that your shield is broken, You're going to love this!"
     i "Virus Flame!!"
     call cardflash_story(VirusFlame)
     a "Wha? At Point-blank!? GAAHHHH!!!" 

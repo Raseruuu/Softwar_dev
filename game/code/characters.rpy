@@ -128,9 +128,9 @@ init -1 python:
     globals()["Lisa_m"] = "smile"
     globals()["Lisa_blush"]= False
     globals()["Lisa_w"] = True
-    globals()["Lisa_underwear"] = "red"
+    globals()["Lisa_underwear"] = "teal"
     globals()["Lisa_outfit"] = "uniform"
-    globals()["Lisa_glasses"] = False
+    globals()["Lisa_glasses"] = True
 
     globals()["Vira_m"] = "smile"
     globals()["Vira_e"] = "mad"
@@ -445,7 +445,7 @@ image side ILY_side:
     )
     zoom 0.38
 image ILYside2:
-    LiveCrop((200,60, 440,565), "ILYside3")
+    Crop((200,60, 440,565), "ILYside3")
 
 image ILYside3:
     "ILYFullBody"
@@ -919,7 +919,7 @@ image John sidew:
 image John:
     "JohnFull"
     zoom 0.85
-    yanchor 0.53 ypos 1.0 xalign 1.0
+    yanchor 0.53 ypos 1.0 xanchor 0.6
 
 
 image side John_side:
@@ -977,7 +977,7 @@ layeredimage Lisafull:
             "Lisa_glasses==True","images/Characters/Lisa/LisaGlasses.png",
             "Lisa_glasses==False",Null(),
             )
-    zoom 0.31
+    zoom 0.30
 image Lisa:
     "Lisafull"
     yanchor 0.0 ypos 0.01
@@ -1777,7 +1777,7 @@ image AveFullzoom:
     zoom 1.58
 image Icon_Ave:
     mesh True
-    LiveCrop((220,80, 520,700), "AveFullzoom")
+    Crop((220,80, 520,700), "AveFullzoom")
     zoom 0.22
 
 
@@ -1794,8 +1794,8 @@ image Icon_Ave:
 
 image Hilbert:
     "HilbertFull"
-    ypos 1.0 yanchor 0.56 zoom 0.92
-    # linear 1.0 yoffset 0
+    ypos 1.0 yanchor 0.58 zoom 0.89
+    # linear 1.0 yoffset 0OO 
     # pause .5
     # linear 1.0 yoffset 5
     # pause .5
@@ -1918,7 +1918,7 @@ image HilbertFull:
         )
     zoom 0.7
 image Hilbert sidew:
-    LiveCrop((120,24, 300,385), "HilbertFull")
+    Crop((120,24, 300,385), "HilbertFull")
     zoom 0.56
 
 
