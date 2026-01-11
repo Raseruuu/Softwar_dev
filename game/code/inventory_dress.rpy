@@ -17,9 +17,12 @@ init python:
     
     ArmorBikini = Item_dress("ArmorBikini","Underwear","The charming and beautiful knightess charges on!")
     Red_underwear=Item_dress("Red","Underwear","ILY's Default underwear.")
+    Red2_underwear=Item_dress("Red2","Underwear","ILY's Default underwear.")
     White_underwear = Item_dress("White","Underwear","Classic underwear.")
     Red_underwear=Item_dress("Red","Underwear","Default.")
-    
+    Sports_underwear=Item_dress("Sports","Underwear","Default.")
+    Straps_underwear=Item_dress("Straps","Underwear","Default.")
+
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! This one is a gift from Melissa.")
     
 
