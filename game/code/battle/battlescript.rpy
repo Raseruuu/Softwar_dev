@@ -340,7 +340,7 @@ image card1:
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].HIT]{/color}{/font}{/size}"),
         )
 image card2:
-    LiveComposite(
+    Composite(
         (225,300),
         (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard2name].png",
@@ -365,7 +365,7 @@ image card3:
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].HIT]{/color}{/font}{/size}"),
         )
 image card4:
-    LiveComposite(
+    Composite(
         (225,300),
         (0,0),"images/Cards/CARDblank.png",
         (11,12),"images/Cards/[playercard4name].png",

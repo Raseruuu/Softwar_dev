@@ -13,7 +13,7 @@
         Shark
         Sun fish 
         Flying Fish 
-    (UR - Ultra Rare Raity) 
+    (UR - Ultra Rare Rarity) 
         Gold fish (actual gold)
         Blobfish :)
         Leviathan
@@ -32,4 +32,7 @@ init python:
     
 label fishingstart(fishinglocation="beach"):
     
-    ""
+    "Fishing Start!"
+    call screen fishingscreen
+
+    return

@@ -70,11 +70,14 @@ label RemoveTokenEnemy:
     $ remove_target = currentcard_fxn_params[1]
     if remove_target=="Self":
         $ EnmySts.remove(token_name)
-        show screen tokenremove_anim(token_name)
+        show screen tokenremove_anim(token_name,"enemy")
         $ renpy.pause(0.4,hard=True)
         hide screen tokenremove_anim
     elif remove_target=="Enemy":
         $ PlayerSts.remove(token_name)
+        show screen tokenremove_anim(token_name,"player")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
     
     return
 label RemoveTokenPlayer:
@@ -86,12 +89,17 @@ label RemoveTokenPlayer:
     $ remove_target = currentcard_fxn_params[1]
     if remove_target=="Self":
         $ PlayerSts.remove(token_name)
+        show screen tokenremove_anim(token_name,"player")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
     elif remove_target=="Enemy":
         $ EnmySts.remove(token_name)
         
-        show screen tokenremove_anim(token_name)
+        show screen tokenremove_anim(token_name,"enemy")
+
         $ renpy.pause(0.4,hard=True)
         hide screen tokenremove_anim
+
     return
 label Damageenemy:
     
@@ -198,7 +206,7 @@ label Damageenemy:
             
             $ renpy.pause(0.2,hard=True)
         else:
-            $ renpy.pause(0.6,hard=True)
+            $ renpy.pause(0.8,hard=True)
         show Enemy:
             alpha 1.0
             xalign 0.5 yanchor 0.32 ypos 0.3
@@ -349,7 +357,7 @@ label Burnenemy:
     if "Drill" in currentcardTYPE:
         $ renpy.pause(0.2,hard=True)
     else:
-        $ renpy.pause(0.6,hard=True)
+        $ renpy.pause(0.8,hard=True)
     hide Brnsts
     
     return
@@ -497,7 +505,7 @@ label Burnself:
     if "Drill" in currentcardTYPE:
         $ renpy.pause(0.2,hard=True)
     else:
-        $ renpy.pause(0.6,hard=True)
+        $ renpy.pause(0.8,hard=True)
     hide Brnsts
     return
 label Emailenemy:
@@ -514,19 +522,20 @@ label Emailenemy:
 screen tokenappend_anim(tokenname):
     text "[tokenname]" at tokenappend_trans:
         style "statusoutlines"
-screen tokenremove_anim(tokenname):
-    text "[tokenname]" at tokenremove_trans:
+screen tokenremove_anim(tokenname,target):
+    text "[tokenname]" at tokenremove_trans(target):
         style "statusoutlines"
-transform tokenappend_trans:
+transform tokenappend_trans(appendtarget):
     zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.41 alpha 0.0
     linear 0.1 zoom 0.98 alpha 1.0
     pause 0.2
     ease 0.1 zoom 1.0 yoffset 24 alpha 0.0
-transform tokenremove_trans:
-    zoom 0.9 xalign 0.5 yanchor 1.0 ypos 0.41 alpha 1.0
+transform tokenremove_trans(removetarget):
+    zoom 0.9 xalign 0.5 yanchor 1.0 ypos (0.41 if removetarget=="enemy" else 0.97) alpha 1.0
     linear 0.1 zoom 1.0
     pause 0.2
     ease 0.1 zoom 1.2 yoffset -24 alpha 0.0
+
 label GiveToken:
     
     
@@ -730,13 +739,23 @@ label WhileTokenInStatusEnemy:
                     jump block_loop1
                 # jump WhileLoop
     return
+
 label ForInRangePlayer:
-#Enemy Activates For Loop
+#Player Activates For Loop
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
     if for_iterations=="targetHP/8":
         $ for_iterations=enemyHP/8
+    elif type(for_iterations)==list:
+        $ token_name = for_iterations[0]
+        $ target_list = for_iterations[1]
+        
+        if target_list=="Self_Status":
+            $ for_iterations=PlayerSts.count(token_name)
+        elif target_list=="Target_Status":
+            $ for_iterations=EnmySts.count(token_name)
+        
     $ block_functions=FXN.params[1]
     # $ targetsts=FXN.params[2]
     # label WhileLoop:
@@ -760,6 +779,16 @@ label ForInRangeEnemy:
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
+    if for_iterations=="targetHP/8":
+        $ for_iterations=playerHP/8
+    elif type(for_iterations)==list:
+        $ token_name = for_iterations[0]
+        $ target_list = for_iterations[1]
+        
+        if target_list=="Self_Status":
+            $ for_iterations=EnmySts.count(token_name)
+        elif target_list=="Target_Status":
+            $ for_iterations=PlayerSts.count(token_name)
     $ block_functions=FXN.params[1]
     # $ targetsts=FXN.params[2]
     # label WhileLoop:
@@ -776,7 +805,6 @@ label ForInRangeEnemy:
                 jump block_loop9
                 # jump WhileLoop
         $ for_index+=1  
-    
     return
 label IfTokenInStatusEnemy:
 #Enemy Activates If
@@ -1799,6 +1827,7 @@ init python:
     }
 label functioneffects(runfxnstring,params=[]):
     $ renpy.call(FxnDirectoryPlayer[runfxnstring])
+    pause 0.1
     return
 init python:
     FxnDirectoryEnemy={
@@ -1832,4 +1861,5 @@ init python:
     }
 label enemyfunctioneffects(runfxnstring):
     $ renpy.call(FxnDirectoryEnemy[runfxnstring])
+    pause 0.1
     return

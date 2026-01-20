@@ -170,7 +170,18 @@ init python:
             "Execute enclosed functions for each item in list",
             (iterations,fxns)
             )
-
+    # def ForCount(condition,token_name,list_name,fxns):
+    #     function1=fxns[0].code
+    #     codepart2=""
+    #     if len(fxns)==2:
+    #         function2=fxns[1]
+    #         codepart2="\n  "+str(function2.code)
+    #     return Fxn(
+    #         "ForCount",
+    #         "for("+str(condition)+"):\n  "+str(function1)+codepart2,
+    #         "Execute enclosed functions for each item in list",
+    #         (token_name,list_name,fxns)
+    #         )
     def IfFunction(condition,token_name,target,fxns):
         function1=fxns[0].code
         codepart2=""
@@ -329,8 +340,8 @@ init python:
     
     Katana=        Card("Katana",           "Sword",           0.7,      [Attack(),GainToken("Saber",3)],   4)
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [AttackSP(),Attack(),GainToken("Saber",1)],  3)
-    BlockSaber=    Card("BlockSaber",       "Sword",           0.25,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
-    LambdaSaber=   Card("LambdaSaber",      "Sword",           0.2,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
+    BlockSaber=    Card("BlockSaber",       "Sword",           0.5,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
+    LambdaSaber=   Card("LambdaSaber",      "Sword",           0.3,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(2),Attack()], 5)
     
     XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack()],            4)
@@ -371,7 +382,7 @@ init python:
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5),IfFunction("\"Data\" in Self_Status","Data","Self",[GiveToken("Burn",1)])],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Evade()],          3)
 #Force
-    BruteForce=   Card("BruteForce",     "Force",    0.20,     [Increase("ATK",0.25),While("\"IncreaseATK\" in Self_Status","IncreaseATK","Self",[Attack(),RemoveToken("IncreaseATK","Self")])],      4)
+    BruteForce=   Card("BruteForce",     "Force",    0.10,     [Increase("ATK",0.25),ForInRange("x in range(0,Self_Status.count(\"IncreaseATK\")",["IncreaseATK","Self_Status"],[Attack()])],  2)
     DataForce=    Card("DataForce",      "Force",    0.25,      [Increase("ATK",0.25),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
     Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
@@ -554,7 +565,7 @@ init python:
             VirusFlame,VirusFlame,
             VirusFlame,DataBuster,
             DataBuster,DataBuster,
-            DataForce,Vslash,
+            DataForce,BruteForce,
             DataBomb,Cursorclaw,
             Cursorclaw,Cursorclaw,
             Vslash,Vslash,
@@ -624,13 +635,13 @@ init python:
             Laserbeam,BurstTransfer,
             BurstTransfer,BurstTransfer,
             BurstTransfer,Vslash,
-            Vslash,Vslash,
+            Vslash,BruteForce,
             Tackle,Tackle,
             Tackle,Tackle,
             DataBomb,WindBlast,
             Vslash,WindBlast,
-            Vshot,Vshot,
-            Vshot,Vshot],
+            Vshot,BruteForce,
+            Vshot,BruteForce],
         "plugins":[]
         }
     decknibbler = {
@@ -690,11 +701,11 @@ init python:
             BlockSaber,BlockSaber,
             BlockSaber,VirusFlame,
             BreakSaber,BruteForce,
-            SaberAura,SaberAura,
+            SaberAura,BruteForce,
             WormRetreat,WormHole,
             BurstTransfer,BurstTransfer,
             DataDrill,BruteForce,
-            DataDrill,WindBlast,
+            DataDrill,BruteForce,
             DataForce,DataForce
             ],
         "plugins":[DigitalPressure,SuperArmor]

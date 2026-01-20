@@ -478,7 +478,7 @@ init -2 python:
         # (192,164):[Melissasprite],
         (192,164):[Melissasprite],
         (192,165):[Bellasprite],
-        (193,169):[Virasprite],
+        (193,169):[],
         (193,167):[Programkunsprite],
         (192,164):[Stellasprite],
         }
