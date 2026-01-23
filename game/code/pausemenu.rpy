@@ -558,11 +558,19 @@ screen pauselayout(scrname,spritevisible=True,notransform=False):
 
 
     if spritevisible:
-        image At("[playerName]",zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )) :
-            xpos 0.25 xanchor 0.5
-            ypos (0.2 if scrname=="CUSTOMIZE" else 0.4 ) yanchor 0.2
-            if not notransform:
-                at pausetrans1
+        # image At("[playerName]",zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )) :
+        #     xpos 0.25 xanchor 0.5
+        #     ypos (0.0 if scrname=="CUSTOMIZE" else 0.4 ) 
+        #     yanchor 0.3
+        #     if not notransform:
+        #         at pausetrans1
+
+        button:
+            xsize 400
+            background ("[playerName]")
+            yanchor 0.7 ypos (0.54 if scrname=="CUSTOMIZE" else 1.0 )  xpos 0.20 xanchor 0.5 
+            at pausetrans1, zoomtrans(0.5 if scrname=="CUSTOMIZE" else 1.0 )
+            action Return("R_player_talks")
 
     if scrname!="CUSTOMIZE":
         frame:

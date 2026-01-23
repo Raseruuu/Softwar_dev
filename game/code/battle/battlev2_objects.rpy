@@ -182,15 +182,20 @@ init python:
     #         "Execute enclosed functions for each item in list",
     #         (token_name,list_name,fxns)
     #         )
+    def enumerate_fxncodes(fxnlist):
+        fxncodestring=""
+        for fxnobjs in fxnlist:
+            fxncodestring =fxncodestring+fxnobjs.code+"\n"
+        return fxncodestring
     def IfFunction(condition,token_name,target,fxns):
-        function1=fxns[0].code
-        codepart2=""
-        if len(fxns)==2:
-            function2=fxns[1]
-            codepart2="\n  "+str(function2.code)
+        # function1=fxns[0].code
+        # codepart2=""
+        # if len(fxns)==2:
+        #     function2=fxns[1]
+        #     codepart2="\n  "+str(function2.code)
         return Fxn(
             "If",
-            "if ("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "if ("+str(condition)+"):\n  "+enumerate_fxncodes(fxns),
             "Execute enclosed functions if condition is True",
             (token_name,fxns,target)
             )
@@ -218,12 +223,16 @@ init python:
     #         "Attack",
     #         "attack(ATK*POWR)",
     #         "Deal Damage to target.")
-    def Attack(multiplier="POWR",rangevalue=1,absolute=False):
+    def Attack(multiplier="POWR",rangevalue=1,absolute=False,onhit=[]):
+
         return Fxn(
             "Attack",
-            ("attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attack("+str(multiplier)+",range="+str(rangevalue)+")"),
+            (("attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attack("+str(multiplier)+
+            ",range="+str(rangevalue)+")"))+
+            
+            (":\n  "+enumerate_fxncodes(onhit) if onhit!=[] else ""),
             "Deal damage to the target. Hits within the range of "+str(rangevalue)+".",
-            [multiplier,rangevalue,absolute]
+            [multiplier,rangevalue,absolute,onhit]
             )
     
     def AttackSP(multiplier="POWR",rangevalue=1,absolute=False):
@@ -310,7 +319,7 @@ init python:
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
-    WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(),ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)]),],                  0)
+    WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(onhit=[ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)])])],                  0)
     GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [ForInRange("x in range(0,target.HP/8)","targetHP/8",[Attack(8,absolute=True),])],   0)
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Increase("ATK",0.25),Increase("DEF",0.25)]),Attack(),],   0)
 
@@ -320,8 +329,8 @@ init python:
 
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
-    Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP)",7,[Attack(1,absolute=True),])],   8)
-    SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7),GiveToken("Email",3)],    2 )
+    Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP/8)","targetHP/8",[Attack(8,absolute=True),])],   8)
+    SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7,onhit=[GiveToken("Email",3)])],    2 )
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
     RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
@@ -349,7 +358,7 @@ init python:
     DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
 
     DataPiercer=   Card("DataPiercer",      "Spear",           1.0,      [Attack(),Defend(0.25)],   5)
-    WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=2),Push(2)],   3)
+    WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=2,onhit=[Push(2)]),],   3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 # Evasion cards
@@ -365,7 +374,7 @@ init python:
     ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),Push(3)],            3)
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
-    VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4),Burn(20)],               3)
+    VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[Burn(20)])],               3)
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
     VBlaze=        Card("VBlaze",           "Fire",           1.0,     [Attack(),Burn(40)],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)

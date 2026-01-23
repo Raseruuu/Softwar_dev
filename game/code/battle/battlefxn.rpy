@@ -111,6 +111,8 @@ label Damageenemy:
     # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
+    $ block_functions_ATK=currentcard_fxn_params[3]
+    # "ATTACK BLOCK [block_functions]"
     $ Power = (currentcardMAG)
     if absolutedamage:
         $ damagetoenemy=int(damagemultiplier)
@@ -124,7 +126,6 @@ label Damageenemy:
     $ battle_distance_old=battle_distance
     ## EVADE
     
-    ## NO EVADE
     # elif attackhit:
     if battle_distance>=attackrange:
             
@@ -164,6 +165,7 @@ label Damageenemy:
             xalign 0.5 yanchor 0.32 ypos 0.3 
         play sound "sfx/miss.wav"
         call battlemessage("EVADED")
+    # NO EVADE    
     else:
         call card_type_sfx
         call hurtnoise_enemy
@@ -211,6 +213,16 @@ label Damageenemy:
             alpha 1.0
             xalign 0.5 yanchor 0.32 ypos 0.3
         hide damageeffect
+        if block_functions_ATK !=[]:
+            $ block_count = 0
+            label block_loopatk:
+                $ runfxnstringatk = block_functions_ATK[block_count].name
+                $ currentcard_fxn_params=block_functions_ATK[block_count].params
+                call functioneffects(runfxnstringatk)
+                $ block_count+=1
+                if block_count<len(block_functions_ATK):
+                    jump block_loopatk
+        
     return
 label DamageSPplayer:
     # EVADE
@@ -1169,6 +1181,8 @@ label Damageplayer:
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
+    $ block_functions_ATK=currentcard_fxn_params[3]
+
     $ Power = (currentcardMAG)
     
     if absolutedamage:
@@ -1243,6 +1257,15 @@ label Damageplayer:
         show screen battlestats
             
         $ attackhit=True
+        if block_functions_ATK !=[]:
+            $ block_count = 0
+            label block_loopatkofenemy:
+                $ runfxnstringatkofenemy = block_functions_ATK[block_count].name
+                $ currentcard_fxn_params=block_functions_ATK[block_count].params
+                call functioneffects(runfxnstringatkofenemy)
+                $ block_count+=1
+                if block_count<len(block_functions_ATK):
+                    jump block_loopatkofenemy
     hide screen battlestats
     show screen battlestats
     return
@@ -1258,7 +1281,7 @@ label DeckChangePlayer:
     show screen battlestats
     return
 label DeckChangeEnemy:
-    "[enemyName]'s Deck is changed to \"GUNVAR\"."
+    info"[enemyName]'s Deck is changed to \"GUNVAR\"."
     $ enemyDeck=deckGUNVAR["content"]
     $ import random
     $ random.shuffle(enemyDeck)

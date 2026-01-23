@@ -87,14 +87,6 @@ label roguemode:
     scene mainbg with pixellate
     call screen CharacterCardSelect([ILY,Ave,CodeRed])
     $ playerobject=playerobjectset
-    # menu:
-    #     "Choose Your F.A.I. Fighter!"
-    #     "ILY":
-    #         $ playerobject=ILY
-    #     "Ave":
-    #         $ playerobject=Ave
-    #     "Code Red":
-    #         $ playerobject=CodeRed
     python:
         PFAI = playerobject
         if playerobject in r_Bosses:
@@ -142,6 +134,7 @@ label roguemode:
 
 
     elif playerName=="Ave":
+        $ inventory_dress=[]
         show Ave
         $ Lucida_m="frown"
         $ Lucida_w=True
@@ -154,6 +147,7 @@ label roguemode:
         lc "I don't doubt your abilities, but I urge you to take care."
         a "Affirmative, Ms. Lucida."
     elif playerName=="Code Red":
+        $ inventory_dress=[]
         show CodeRed
         c "An Undernet Labyrinth at the depths of Connecht City..."
         c "I know I usually fight for bounty and all, but this actually seems like a challenge I'd enjoy."
@@ -270,6 +264,8 @@ init python:
     Enemy=Node("Mob Virus", "Enemy","R_Enemy")
     StrongEnemy=Node("Rogue Virus", "StrongEnemy","R_StrongEnemy")
     Treasure=Node("Treasure", "Treasure","R_TreasureNode")
+    
+    Unknown=Node("Unknown", "Unknown","R_UnknownNode")
     Recovery=Node("Recovery", "Recovery","R_RecoveryNode")
     StellaShop=Node("Stella's Shop", "Shop","R_StellaShop")
     Boss=Node("Boss", "Boss","R_Boss")
@@ -387,6 +383,21 @@ label R_TreasureNode:
     "You got: [newcard]!"
     return
 
+label R_UnknownNode:
+    scene mainbg with dissolve_pixels
+    call showphasemsg("DATA TREASURE")
+    $ new_treasure=generate_treasures()
+    $ new_treasure_battleware_list = {item.NAME:shop_item(item.NAME,item,"Battleware",pricelist[item.NAME]) for item in new_treasure}
+    
+    call screen SelectNewTreasure(new_treasure_battleware_list)
+    
+    $ newcard=selected_treasure.name
+    $ currentcard=(selected_treasure.object)
+    play sound "sound/loadcard.wav"
+    show cardflasher with dissolve_pixels:
+        xalign 0.5 yalign 0.46
+    "You got: [newcard]!"
+    return
 screen playerwidget:
     button:
         xsize 400
@@ -504,7 +515,7 @@ label r_battlestart:
         nodes_path=[]
         ILY_m="smile3"
         used_nodes=[]
-        nodes_tpf=[Enemy]*10+[StrongEnemy]*2+[Treasure,Recovery,StellaShop]
+        nodes_tpf=[Enemy]*8+[StrongEnemy]*2+[Unknown,Unknown,Treasure,Recovery,StellaShop]
         treasurebattleware =[
             GearframeUnitron,
             NucleusVernier,
@@ -635,33 +646,19 @@ label r_talks_Ave_0:
 label r_talks_Ave_1:
     show Ave with dissolve
     $ Lucida_m="frown"
-    j "Why do you wear a heart-shaped monocle?"
-    a"Oh this? It's a tool to help me to understand more about others!"
-    $ Lucida_e="up"
-    j "So... battle analysis?"
-    i "Not just for battle! It's rose-colored, you know. It's poetic."
-    $ Lucida_m="O"
-    j "... Oh, I kind of get it now."
-
+    $ Lucida_e="down"
+    l "We're up against a horde of viruses now."
+    a "I can handle all of them no problem..."
+    l "Good."    
     return
 label r_talks_Ave_2:
     show Ave with dissolve
-    $ ILY_m = "frown"
-    $ ILY_e = "down"
-    i "The original version of me is roaming in this labyrinth."
-    $ John_m="frown"
-    $ John_e="mad"
+    a "Miss Lucida, I never got the chance to ask."
+    $ Lucida_m="frown"
+    $ Lucida_e="down"
+    l "We're up against a horde of viruses now."
+    a ""
     
-    j "Yikes. You think we can take her on?"
-    i "She's a ruthless one. "
-    $ ILY_m = "smile3"
-    $ ILY_e = "down"
-    extend "But she lacks the resolve of the romantic hero!"
-    i "She is the old me. I'm not about to back out against my past!"
-    j "Something tells me you're eager to prove her wrong."
-    $ John_m="smile"
-    j "That's good. But you have to stay focused."
-
     return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75
