@@ -368,16 +368,16 @@ init python:
 #SaberSkills 
     SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SkullCrush",       "SaberSkill",        0.75,       [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()])],   1)
+    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()])],   1)
 #Hammer 
-    ImpactHammer = Card("ImpactHammer",     "Hammer",       0.50,     [Attack(rangevalue=1),Push(3)],            3)
+    ImpactHammer = Card("ImpactHammer",     "Hammer",       1.5,     [Attack(rangevalue=1,onhit=[Push(3)])],            5)
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[Burn(20)])],               3)
     Pyrokinesis=    Card("Pyrokinesis",     "Fire",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),Increase("ATK",0.25)])],               1)
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
-    VBlaze=        Card("VBlaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[Burn(20)])],   4)
+    VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[Burn(20),Push(3)])],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
     WormBite=      Card("WormBite",         "Hole",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
     WormRetreat=    Card("WormRetreat",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(3)])],   3)
@@ -387,7 +387,9 @@ init python:
     Firewall=     Card("Firewall",       "Wall",    0.75,    [Defend(),Increase("DEF",0.25)],      4)
     FixerBeam=    Card("FixerBeam",       "Beam",    0.25,    [Recover(0.5),IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Recover(0.5)])],      4)
     Scan=           Card("Scan",       "Scan",    0.5,         [Defend(),Increase("DEF",0.25)],      4)
-    
+    # TurretDrones = 
+    TurretDrone=     Card("TurretDrone",       "Wall",    0.75,    [Defend(),Increase("DEF",0.25)],      4)
+
 #Bombs
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5),IfFunction("\"Data\" in Self_Status","Data","Self",[GiveToken("Burn",1)])],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Evade()],          3)
@@ -403,8 +405,8 @@ init python:
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Increase("ATK",0.25)],  2)
     Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Increase("ATK",0.25)])],       6)
-    Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20),NullFxn()],          8)
-    Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack(),NullFxn()],           2)
+    Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20)],          8)
+    Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack()],           2)
     #newcards
     DrainShield=   Card("DrainShield",    "Shield",      1.0,     [Defend(),GainToken("Negate",1)],   4)
     FieryArc=      Card("FieryArc",       "Bow",         1.0,     [Attack(),GiveToken("Burn",1)],   4)
@@ -434,7 +436,7 @@ init python:
     GUNVARKick=      Card("GUNVARKick","GUNVAR",  2.2,         [Attack(rangevalue=2)],   8)
     GUNVARBeam=      Card("GUNVARBeam","GUNVAR",  2.5,     [Attack(rangevalue=6)],   8)
     GUNVARShield=    Card("GUNVARShield","GUNVAR",  2.0,         [Defend()],   4)
-    Shotgun=         ("Shotgun",      "Gun",           1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Shotgun=         ("Shotgun",      "Gun",           1.0,     [Attack()],   4)
     SwordOfTruth =   Card("SwordOfTruth",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     SwordOfLies=     Card("SwordOfLies",      "Sword",           1.0,     [Attack(),GainToken("Saber",1)],   4)
     
