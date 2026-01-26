@@ -1207,7 +1207,7 @@ label date2:
         j"Did you look into my anime collection?"
         i"FAIs are really quick, so yes."
         # $ILY_p='1'
-        i"As for your request, Lisa... The answer is yes! I did save the files from my vicitm's computers."
+        i"As for your request, Lisa... The answer is yes! I did save the files from my victim's computers."
         # $ILY_p='0'
         j"Wait, does this mean you can really return the files you stole?"
         $ILY_m='frown'
