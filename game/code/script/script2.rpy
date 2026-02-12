@@ -938,6 +938,8 @@ label SDS_Encounter:
     c "Tsk. This isn't a game. My orders are to destroy, and destroy, I will!"
     i "Then it's a proper duel, now! I challenge you... My name is ILY! And your name... is Code Red!"
     c "Hrrraaaghh!"
+    "A battle of viruses... How will this play out?"
+    "His Lambda Saber emerged and activated immediately."
     
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
@@ -945,7 +947,6 @@ label SDS_Encounter:
     
     
     call battlescene
-    
     c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     j "The ranged attack plan is working, Hilbert!"
@@ -1017,9 +1018,7 @@ label SDS_Encounter:
     stop music
     i "!!"
     i "He was... about to go all out."
-
     v "Look behind you ILY... A new... entity has arrived.. "
-
     aa "That'll be enough, now, Virus."
     i "!!"
     "A new entity...? It isn't Code Red?"
@@ -1044,7 +1043,6 @@ label SDS_Encounter:
     $ Ave_w=False
     a "You cannot win against me. "
     a "I'm the Ultimate Antivirus!"
-
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"
@@ -1080,6 +1078,7 @@ label SDS_Encounter:
     a "You're planning something... I won't let you! Hmph!"
     show Ave at jumpoff
     i "(I won't run away, John! I've got this!)"
+
     call battlescene
 
     "Ave runs to her target, still unrelenting in her assault. "
@@ -1203,7 +1202,7 @@ label SDS_Encounter:
     i "Virus Flame!!"
     call cardflash_story(VirusFlame)
     a "Wha? At Point-blank!? GAAHHHH!!!" 
-    "The flame attack was boosted by her Heartburn ability, which risked her overheating in exchange for more firepower."
+    "The flame attack was boosted by her Heartburn ability, which risked overheating her, in exchange for more firepower."
     show Ave at leapright2
     "Ave was slammed away into the wall by the impact of the explosion."
     "The attack seemed to stop the Antivirus momentarily. Ave didn't have the strength to respond."
@@ -1225,7 +1224,7 @@ label SDS_Encounter:
     a "My only target now is the ILOVEYOU Virus."
     v "Well, too bad. She's gone now." 
     v "Sayonara, Ill-tempered hunter!"    
-    "Vira logged out briefly."
+    "Ave logged out briefly."
     "Phew! We made an escape! "
 
     # =============================
