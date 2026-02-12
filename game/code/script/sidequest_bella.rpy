@@ -20,7 +20,7 @@ label LunarLux_Sidequest:
         xalign 0.7 zoom 0.4
     show ILY
     t "Hey! You there! Have you seen a pink-haired girl around here?"
-    i "Ah! I found you! You're Bella's partner, Tetra!"
+    i "Ah! I found you! You must be Bella's robot partner, Tetra!"
     t "You've... You've seen Bella!"
     
     i "That's right, She had a really cool red space suit, and swirly hair, like Ice Cream!!"
@@ -31,6 +31,7 @@ label LunarLux_Sidequest:
     t "You seem kind."
     i "That's what my name is all about!"
     "Tetra and ILY arrive at Bella's location."
+
     scene black
     pause 0.5
     show scrollingBG at scroll
@@ -75,6 +76,7 @@ label LunarLux_Sidequest:
     be "How can we be sure we can trust you?"
     t "Um!!"
     t "ILY helped me find you! So I think that's cause enough to trust her!"
+    
     return
 
 
