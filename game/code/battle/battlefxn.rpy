@@ -81,7 +81,7 @@ label RemoveTokenEnemy:
     
     return
 label RemoveTokenPlayer:
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (len(currentcardFXN[fxnindex].params)>=5):
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -103,15 +103,18 @@ label RemoveTokenPlayer:
     return
 label Damageenemy:
     
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and len(currentcardFXN[fxnindex].params)>5):
+        $ block_functions_ATK=[]
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
-    
+    if currentcardFXN[fxnindex].name=="Attack" and len(currentcardFXN[fxnindex].params)>3:
+        $ block_functions_ATK=currentcard_fxn_params[3]
+    else:
+        $ block_functions_ATK=[]
     # if currentcard_fxn_params[0]!="POWR" and currentcard_fxn_params[0]: 
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
-    $ block_functions_ATK=currentcard_fxn_params[3]
     # "ATTACK BLOCK [block_functions]"
     $ Power = (currentcardMAG)
     if absolutedamage:
@@ -374,7 +377,7 @@ label Burnenemy:
     
     return
 label Retreatplayer(distanceamount=0):
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and len(currentcardFXN[fxnindex].params)<5):
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -383,7 +386,7 @@ label Retreatplayer(distanceamount=0):
     if distanceamount==0:
         $ distance_quantity = currentcard_fxn_params[0]
     else:
-        $ distance_quantity=distanceamount
+        $ distance_quantity = distanceamount
     python:
         for dist in range(0,distance_quantity):
             battle_distance=battle_distance+1
@@ -392,7 +395,7 @@ label Retreatplayer(distanceamount=0):
     call updatestats_player
     return
 label Retreatenemy(distanceamount=0):
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and len(currentcardFXN[fxnindex].params)<5):
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -549,9 +552,7 @@ transform tokenremove_trans(removetarget):
     ease 0.1 zoom 1.2 yoffset -24 alpha 0.0
 
 label GiveToken:
-    
-    
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and currentcardFXN[fxnindex].params[3]!=[]):
         pass
     else:  
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -574,7 +575,7 @@ label GiveToken:
     return
 label GainTokenPlayer:
     
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and currentcardFXN[fxnindex].params[3]!=[]):
         pass
     else:  
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -599,7 +600,7 @@ label GainTokenPlayer:
 
 label GainTokenEnemy:
     
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and currentcardFXN[fxnindex].params[3]!=[]):
         pass
     else:  
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -624,7 +625,7 @@ label GainTokenEnemy:
 
 label EvadeEnemy:
     
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If":
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or currentcardFXN[fxnindex].name=="If" or (currentcardFXN[fxnindex].name=="Attack" and currentcardFXN[fxnindex].params[3]!=[]):
         pass
     else:  
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
@@ -757,8 +758,8 @@ label ForInRangePlayer:
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
-    if for_iterations=="targetHP/8":
-        $ for_iterations=enemyHP/8
+    if for_iterations=="targetHP/80":
+        $ for_iterations=enemyHP/80
     elif type(for_iterations)==list:
         $ token_name = for_iterations[0]
         $ target_list = for_iterations[1]
@@ -791,8 +792,8 @@ label ForInRangeEnemy:
     $ runfxnstring = currentcardFXN[fxnindex].name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
-    if for_iterations=="targetHP/8":
-        $ for_iterations=playerHP/8
+    if for_iterations=="targetHP/80":
+        $ for_iterations=playerHP/80
     elif type(for_iterations)==list:
         $ token_name = for_iterations[0]
         $ target_list = for_iterations[1]
@@ -1175,14 +1176,20 @@ label card_type_sfx:
         play sound "sfx/sfx_exp_short_hard8.wav" 
     return
 label Damageplayer:
-    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For":
+    # if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or (len(currentcardFXN[fxnindex].params)>=5):
+    if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or (len(currentcardFXN[fxnindex].params)>5):
+        $ block_functions_ATK=[]
         pass
     else:    
         $ currentcard_fxn_params=currentcardFXN[fxnindex].params
+        
+
     $ damagemultiplier = currentcard_fxn_params[0]
     $ absolutedamage = currentcard_fxn_params[2]
-    $ block_functions_ATK=currentcard_fxn_params[3]
-
+    if currentcardFXN[fxnindex].name=="Attack" and len(currentcardFXN[fxnindex].params)>3:
+        $ block_functions_ATK=currentcard_fxn_params[3]
+    else:
+        $ block_functions_ATK=[]
     $ Power = (currentcardMAG)
     
     if absolutedamage:
@@ -1518,6 +1525,7 @@ screen handcardsscreen(phase="common"):
 label Execution:
     $ runnumber = 0
     $ attacknumber = 0
+    $ log_shown = False
     call remaininghand
     show screen handcardsscreen
     #Index of looper
@@ -1546,8 +1554,9 @@ label Execution:
     hide screen phasemsg
 
     label exec_loop:
-
+        
         $ currentcard = playerbattlecode[0]
+        call duel_log_append("card_played",currentcard,"player",PFAI)
         $ playerbattlecode.pop(0)
         # $ currentcard = (playerbattlecode[runnumber])
         $ currentcardFXN = currentcard.FXN
@@ -1574,7 +1583,9 @@ label Execution:
         $ fxnindex=0
         $ loopingcard=False
         $ execution_active=True
+        
         label runfunctions:
+            
             $ runfxnstring = currentcardFXN[fxnindex].name
             $ runfxnparam = currentcardFXN[fxnindex].params
             hide screen cardflashscreen2
@@ -1584,13 +1595,14 @@ label Execution:
             $fxnindex+=1
             if fxnindex<len(currentcardFXN):
                 jump runfunctions
-
+        
         hide screen cardflashscreen2
         hide ring
         $ execution_active=False
         $ fxnindex=0
         $ runnumber+=1
         if (runnumber<iterations) and (battle_done==False):
+            
             jump exec_loop
         else:
 
@@ -1704,6 +1716,7 @@ label enemyexecutecard:
         show screen cardflashscreenenemy2
         $ fxnindex=0
         $ execution_active=True
+        call duel_log_append("card_played",currentcard,"enemy",EFAI)
         label runfunctions2:
             $ runfxnstring = currentcardFXN[fxnindex].name
             hide screen cardflashscreenenemy2
@@ -1723,6 +1736,7 @@ label enemyexecutecard:
 default enemyhand=[]
 default enemyreturncards=[]
 label enemyattack:
+    $ log_shown = False
     $ enemyrunnumber = 0
     $ enemynumberofattacks = 5 #renpy.random.randint(1,3)+renpy.random.randint(0,2)
     
@@ -1732,7 +1746,9 @@ label enemyattack:
         for cardindex in range(0,5-len(enemyhand)):
             enemyhand.append(enemyDeck[0])
             enemyDeck.pop(0)
+            
     show screen phasemsg(enemyName+"'S TURN")
+    call duel_log_append("turn_change",None,"enemy",EFAI)
     $renpy.pause(0.9,hard=True)
     hide screen phasemsg
     
@@ -1757,7 +1773,7 @@ label enemyattack:
         # $ enemycardtoexecute = enemyDeck[0]
 
         $ currentcard = enemyhand[0]
-
+        
         # $ enemyhand.append(currentcard)
         # $ currentcard = (playerbattlecode[runnumber])
         $ currentcardFXN = currentcard.FXN
@@ -1788,16 +1804,14 @@ label enemyattack:
         # elif choicecount ==4:
         #   call enemyexecutecard
         # else:
+        
         call enemyexecutecard from _call_enemyexecutecard
         $ enemyreturncards.append(enemyhand[0])
         $ enemyhand.pop(0)
         $ enemyrunnumber+=1
-       
-
-
+        
         if enemyrunnumber<enemynumberofattacks and (battle_done==False):
             jump enemyattackloop
-
         else:
             python:
                 for returncard in enemyreturncards:

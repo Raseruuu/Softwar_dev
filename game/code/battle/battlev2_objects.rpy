@@ -320,7 +320,7 @@ init python:
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
     WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(onhit=[ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)])])],                  0)
-    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [ForInRange("x in range(0,target.HP/8)","targetHP/8",[Attack(8,absolute=True),])],   0)
+    GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [Recover(0.25),ForInRange("x in range(0,target.HP/8)","targetHP/80",[Attack(80,absolute=True),])],   0)
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Increase("ATK",0.25),Increase("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
@@ -329,7 +329,7 @@ init python:
 
 #ILY's cards
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
-    Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP/8)","targetHP/8",[Attack(8,absolute=True),])],   8)
+    Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP/8)","targetHP/80",[Attack(80,absolute=True),])],   8)
     SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7,onhit=[GiveToken("Email",3)])],    2 )
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)

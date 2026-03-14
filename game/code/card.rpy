@@ -63,38 +63,35 @@ init python:
                 code_lines = currentcodetext.split('\n')
                 for fxncodepart in code_lines:
 
-                    if fxnindex==function_index_local and execution_active:
+                    if fxnindex==function_index_local and execution_active and fxncodepart!="":
                         
                         fxns.append(
                             At(
                                 Text(
-                                    "{size=11}{u}{b}"+fxncodepart+
-                                    "{/size}{/u}{/b}", layout="nobreak",style="cardshadows2"),
+                                    "{size=11}{u}{b}"+fxncodepart+"{/size}{/u}{/b}", layout="nobreak",style="cardshadows2"),
                                     widthresize(1.0 if (len(fxncodepart)<(48)) else (cardnamewidth(11,fxncodepart,360,48)))))
                     else:
+                        if fxncodepart!="":
+                            fxns.append(
+                                At(
+                                    Text(
+                                        "{size=11}"+fxncodepart+"{/size}", layout="nobreak",style="cardshadows2"),
+                                        widthresize(1.0 if (len(fxncodepart)<(48)) else (cardnamewidth(11,fxncodepart,360,48))  )))
+
+            else:
+                if fxnindex==function_index_local and execution_active and cardfunction.code!="":
+                    fxns.append(
+                        At(
+                            Text(
+                                "{size=11}{u}{b}"+cardfunction.code+"{/size}{/u}{/b}", layout="nobreak",style="cardshadows2"),
+                                widthresize(1.0 if (len(cardfunction.code)<(48)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,360,48)))))
+                else:
+                    if cardfunction.code!="":
                         fxns.append(
                             At(
                                 Text(
-                                    "{size=11}"+fxncodepart+
-                                    "{/size}", layout="nobreak",style="cardshadows2"),
-                                    widthresize(1.0 if (len(fxncodepart)<(48)) else (cardnamewidth(11,fxncodepart,360,48))  )))
-
-            else:
-                if fxnindex==function_index_local and execution_active:
-                    
-                    fxns.append(
-                        At(
-                            Text(
-                                "{size=11}{u}{b}"+cardfunction.code+
-                                "{/size}{/u}{/b}", layout="nobreak",style="cardshadows2"),
-                                widthresize(1.0 if (len(cardfunction.code)<(48)) else 1.0 if ("for" in cardfunction.code) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,360,48)))))
-                else:
-                    fxns.append(
-                        At(
-                            Text(
-                                "{size=11}"+cardfunction.code+
-                                "{/size}", layout="nobreak",style="cardshadows2"),
-                                widthresize(1.0 if (len(cardfunction.code)<(48)) else 1.0 if ("for" in cardfunction.code and len(cardfunction.code)<70 ) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,360,48)))))
+                                    "{size=11}"+cardfunction.code+"{/size}", layout="nobreak",style="cardshadows2"),
+                                    widthresize(1.0 if (len(cardfunction.code)<(48)) else 1.0 if ("for" in cardfunction.code and len(cardfunction.code)<70 ) else 0.9 if ("while" in cardfunction.code or "if" in cardfunction.code) else (cardnamewidth(11,cardfunction.code,360,48)))))
 
         return VBox(*fxns,spacing=-2)
     def FunctionListNormal(FXN):
@@ -262,4 +259,4 @@ screen choosecardv3(handcards):
                 imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.95
                 key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
                 key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
-
+    

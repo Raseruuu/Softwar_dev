@@ -20,10 +20,10 @@ init python:
     Red2_underwear=Item_dress("Red2","Underwear","ILY's Default underwear.")
     White_underwear = Item_dress("White","Underwear","Classic underwear.")
     Red_underwear=Item_dress("Red","Underwear","Default.")
-    Sports_underwear=Item_dress("Sports","Underwear","Default.")
-    Straps_underwear=Item_dress("Straps","Underwear","Default.")
+    Sports_underwear=Item_dress("Sports","Underwear","Humans wear fitted clothes to ")
+    Straps_underwear=Item_dress("Straps","Underwear","This one keeps things together quite nicely.")
 
-    Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! This one is a gift from Melissa.")
+    Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! I can wear this leotard under my clothes. This one is a gift from Melissa.")
     
 
 
@@ -102,7 +102,7 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
                                     frame:
                                         xsize 60
                                         ysize 60
-                                        background "images/rpg/"+item.TYPE+".png"
+                                        background "images/rpg/armor/"+item.TYPE+".png"
                                         if (inventory_counts[item.NAME])!=1:
                                             foreground At(Text("{size=38}{b}x"+str(inventory_counts[item.NAME])+"{/size}{/b}"),bottomright)
 

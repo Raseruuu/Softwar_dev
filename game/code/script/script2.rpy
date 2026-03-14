@@ -359,7 +359,7 @@ label teammeeting:
     "I know this isn't some final version of the software, so she can't hand me a \"For Sale\" copy. Perhaps it requires faster transfer speeds then?"
     "Like.. It might be that Lisa wants to be sure that it works."
     "This Drive.. kinda looks really shiny. Where have I seen a unit like this one before?"
-    # h"(John, doe )"
+    
     scene black
     call desktopscene
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
@@ -396,8 +396,11 @@ label teammeeting:
     v "Error... Unfamiliar Virus Signature..."
     j "Vira, no! Don't attack ILY, She's on our side!"
     v "Viruses must be eliminated. SoftWar ENGAGE!"
-    i "No, don't fight me! We're supposed to be friends!"
-    v "I cannot disobey my... protocols. Delete!!!"
+    i "No, don't fight me! We're supposed to be friends! We should cooperate together!"
+    $ Vira_eyes="midclose"
+    v "I cannot disobey my... protocols."
+    $ Vira_eyes="open"
+    extend " Commencing Deletion!!!"
     call battlev3(ILY,Vira)
     if playerHP<=0:
         return

@@ -48,6 +48,10 @@ init -1 python:
     playerHP = 3000
     enemyHP = 3000
 default playerPlugins =[]
+
+default duel_log =[]
+default log_shown =False
+
 default battle_distance = 0
 transform flip_image:
     xzoom -1.0
@@ -139,6 +143,7 @@ screen battlestats():
             
             xalign 0.5
             text "{font=font/lucon.ttf}{size=18}{b}VS{/font}{/size}{/b}" xalign 0.5
+            
             frame:
                 style_prefix "bit"
                 xfill True
@@ -161,12 +166,9 @@ screen battlestats():
                         add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
                     text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
                     # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
-
-                
-    
+                textbutton "{font=font/lucon.ttf}{size=18}{b}Battle Log{/font}{/size}{/b}" xalign 0.98 action SetVariable("log_shown",not log_shown)
             
             
-
     frame:
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
@@ -422,6 +424,7 @@ screen battlestats():
 
                         add "images/Cards/Empty.png" at codesize
             null height 5
+  
             
 style battlestats_text is text:
     color "#fff"
@@ -655,6 +658,69 @@ label returncardfrombattlecode(cardobject,handindex):
     $ playerbattlecode.remove(cardobject)
     $ usedcards.remove(handindex)
     return
+label duel_log_append(category,card_used_object, card_user,user_object,function_name):
+    # Card
+    $ duel_log.append(
+        {
+            "category":category,
+            "card_used_object":card_used_object,
+            "card_user":card_user,
+            "user_object":user_object
+            "function_name":function_name
+            
+        })
+    
+    return
+screen duel_log_screen():
+    frame:
+        xalign 0.01 yalign 0.97
+        style_prefix "statsb"
+        xsize 260 ysize 340
+        # style "statusoutlines"
+        # ysize 700
+        viewport:
+            scrollbars "vertical"
+            draggable True
+            
+            vbox:
+            # scrolling True
+                spacing 4
+                xalign 0.5 yalign 0.5
+                for dlog_entry in duel_log:
+                    
+
+                    if dlog_entry["category"]=="card_played":
+
+                        if dlog_entry["card_user"]=="player":
+                            hbox:
+                                spacing 20
+                                add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                vbox:
+                                    text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                        elif dlog_entry["card_user"]=="enemy":
+                            hbox:
+                                spacing 20
+                                # add ""+[dlog_entry["user_object"].name]+""
+                                add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                vbox:
+                                    text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                                # add "Icon_"+dlog_entry["user_object"].name+""
+                    elif dlog_entry["category"]=="turn_change":
+                        frame:
+                            # style "pausestats"
+                            style_prefix "bit"
+                            xfill True
+                            text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
+                    elif dlog_entry["category"]=="function":
+                        frame:
+                            # style "pausestats"
+                            # style_prefix "bit"
+                            # xfill True
+                            text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
+
+
+            
+    
 
 label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
     if playerHP==0:
@@ -663,6 +729,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
     $ evasion_active=False
     $ execution_active=False
     $ playerhand=[]
+    $ duel_log =[]
     $ ILY_w=True
     $ ILY_m="frown"
     $ ILY_e="down"
@@ -842,6 +909,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
         # elif battle_done:
         #     call showphasemsg("BATTLE_END")
             call showphasemsg(playerName+"'S TURN")
+            call duel_log_append("turn_change",None,"player",PFAI)
             $renpy.pause(0.9,hard=True)
             hide screen phasemsg
             
@@ -1106,6 +1174,8 @@ screen choosecardv2:
         add "images/Cards/CARDblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
+    if log_shown:
+        use duel_log_screen
 image card_deck = "images/Cards/card_deck.png"
 image card_deck_draw :
     "images/Cards/card_deck_draw.png"
