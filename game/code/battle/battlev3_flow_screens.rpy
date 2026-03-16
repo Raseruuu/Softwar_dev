@@ -658,14 +658,14 @@ label returncardfrombattlecode(cardobject,handindex):
     $ playerbattlecode.remove(cardobject)
     $ usedcards.remove(handindex)
     return
-label duel_log_append(category,card_used_object, card_user,user_object,function_name):
+label duel_log_append(category,card_used_object, card_user,user_object,function_name=""):
     # Card
     $ duel_log.append(
         {
             "category":category,
             "card_used_object":card_used_object,
             "card_user":card_user,
-            "user_object":user_object
+            "user_object":user_object,
             "function_name":function_name
             
         })
