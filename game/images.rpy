@@ -267,7 +267,7 @@ label powerflow_animation:
     show powerflow as powerflow2 at surgeofpower("powerflow"):
         zoom 1.3 xalign 0.5 yoffset 120
         # ypos 1.0 xalign 0.5
-    
+    ""
     return
 label hidepowerflow:
     hide powerflow 

@@ -1525,7 +1525,7 @@ screen handcardsscreen(phase="common"):
 label Execution:
     $ runnumber = 0
     $ attacknumber = 0
-    $ log_shown = False
+    $ log_shown = True
     call remaininghand
     show screen handcardsscreen
     #Index of looper
@@ -1736,7 +1736,7 @@ label enemyexecutecard:
 default enemyhand=[]
 default enemyreturncards=[]
 label enemyattack:
-    $ log_shown = False
+    $ log_shown = True
     $ enemyrunnumber = 0
     $ enemynumberofattacks = 5 #renpy.random.randint(1,3)+renpy.random.randint(0,2)
     

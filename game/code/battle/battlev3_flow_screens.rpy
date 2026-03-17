@@ -50,7 +50,7 @@ init -1 python:
 default playerPlugins =[]
 
 default duel_log =[]
-default log_shown =False
+default log_shown =True
 
 default battle_distance = 0
 transform flip_image:
@@ -166,7 +166,7 @@ screen battlestats():
                         add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
                     text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
                     # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
-                textbutton "{font=font/lucon.ttf}{size=18}{b}Battle Log{/font}{/size}{/b}" xalign 0.98 action SetVariable("log_shown",not log_shown)
+                # textbutton "{font=font/lucon.ttf}{size=18}{b}Battle Log{/font}{/size}{/b}" xalign 0.98 action SetVariable("log_shown",not log_shown)
             
             
     frame:
@@ -676,47 +676,50 @@ screen duel_log_screen():
         xalign 0.01 yalign 0.97
         style_prefix "statsb"
         xsize 260 ysize 340
-        # style "statusoutlines"
-        # ysize 700
-        viewport:
-            scrollbars "vertical"
-            draggable True
+        vbox:
+            text "{b}BATTLE LOG{/b}" style_prefix "statsb"
             
-            vbox:
-            # scrolling True
-                spacing 4
-                xalign 0.5 yalign 0.5
-                for dlog_entry in duel_log:
-                    
+            # style "statusoutlines"
+            # ysize 700
+            viewport:
+                scrollbars "vertical"
+                draggable True
+                yinitial 1.0
+                vbox:
+                # scrolling True
+                    spacing 4
+                    xalign 0.5 yalign 0.5
+                    for dlog_entry in duel_log:
+                        
 
-                    if dlog_entry["category"]=="card_played":
+                        if dlog_entry["category"]=="card_played":
 
-                        if dlog_entry["card_user"]=="player":
-                            hbox:
-                                spacing 20
-                                add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
-                                vbox:
-                                    text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
-                        elif dlog_entry["card_user"]=="enemy":
-                            hbox:
-                                spacing 20
-                                # add ""+[dlog_entry["user_object"].name]+""
-                                add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
-                                vbox:
-                                    text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
-                                # add "Icon_"+dlog_entry["user_object"].name+""
-                    elif dlog_entry["category"]=="turn_change":
-                        frame:
-                            # style "pausestats"
-                            style_prefix "bit"
-                            xfill True
-                            text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
-                    elif dlog_entry["category"]=="function":
-                        frame:
-                            # style "pausestats"
-                            # style_prefix "bit"
-                            # xfill True
-                            text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
+                            if dlog_entry["card_user"]=="player":
+                                hbox:
+                                    spacing 20
+                                    add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                    vbox:
+                                        text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                            elif dlog_entry["card_user"]=="enemy":
+                                hbox:
+                                    spacing 20
+                                    # add ""+[dlog_entry["user_object"].name]+""
+                                    add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                    vbox:
+                                        text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                                    # add "Icon_"+dlog_entry["user_object"].name+""
+                        elif dlog_entry["category"]=="turn_change":
+                            frame:
+                                # style "pausestats"
+                                style_prefix "bit"
+                                xfill True
+                                text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
+                        elif dlog_entry["category"]=="function":
+                            frame:
+                                # style "pausestats"
+                                # style_prefix "bit"
+                                # xfill True
+                                text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
 
 
             
