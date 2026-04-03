@@ -544,12 +544,13 @@ label SDS_Encounter:
     scene gridbglandscape1 with dissolve:
         zoom 0.75
     play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
-    v "Tsk, a Laserbeam? my Light Barrier was shut down for only a split second."
+    v "Tsk, am optic beam? my Light Barrier was shut down for only a split second."
     v "You're a tricky little one aren't you! Take this!"
+    call cardflash_story(Databuster)
     v "All Clear, now! That wasn't much of a challenge." 
 
     v "Spywares are built to gather as much info as they can to send to its master network..."
-    v "I was going to try and track where it sends info to, but I found nothing from inside the spyware's body remains.."
+    
     l "That was spyware? That means.."
     j "That means someone's been watching this server."
     j "Hilbert, do you have any clues?"
@@ -565,6 +566,15 @@ label SDS_Encounter:
     j "Hacker... X? "
     l "That'd make things simpler."
     h "Like Vira said  earlier, just roll with it!"
+    v "Hush."
+    v "I was going to try and track where it sends info to, but I found nothing from inside the spyware's body remains.."
+    j "Smart thinking..."
+    h "So we can't get a lead on our Hacker X?"
+    v "I could perhaps try and piece the remains together."
+    l "The remains of the bug?"
+    h "Gross."
+    v "I'll keep it safe for now, It'll take a while to make sense of the shattered data."
+    "..."
     j "So...  Hacker X was watching for activity here?"
     v "Whoever was watching is now aware that SDS has an Antivirus."
     v "I dropped my light barrier earlier, so they must've had a clear image of me."
@@ -580,6 +590,7 @@ label SDS_Encounter:
     h "Me? I'm all for the company's interests! Come on!"
     j "I know it's neither of us 3."
     j "Obviously I was just stating a hypothesis, we're all in the same boat here."
+    h "So you're saying it's an inside-job."
     
     h "Hacker X might be up against our company's business, or trying to steal our info.. Or.. Tsk! I can't think of any other reason!"
     h "What other reason could there be to hack SDS?"
@@ -601,9 +612,13 @@ label SDS_Encounter:
     l "It was the Cafella Coffee Shop's marketplace website. They handle orders for deliveries through that portal."
     h "You know, for a coffee shop inside this 1 island city, I always questioned how useful this site would be."
     h "Turns out people do like Cafella's menu, and the increasing population of Connecht has demanded more customer service."
-    h "Oh right, It's also popular with the tourists."
-    j "It might also be because Cafella isn't just a coffee shop. They serve pizza there."
+    h "Oh right, It's also popular with the tourists. It's booming quite well."
+    l "The tourists! Connecht Island.. Also called the Link Island, we got foreigners from many directions visiting here!"
+    l "There are many other cafes around though, so it's still a great feat to be this successful, I think."
+    j "Cafella isn't just a coffee shop. They serve pizza there."
     h "You're right."
+    j "And it's no ordinary pizza either. I've tried it."
+    
     scene JD_Space2 with dissolve
     
     h "You think we can test the site after this? and order some pizza? My treat."
@@ -636,13 +651,7 @@ label SDS_Encounter:
 
 
     "I didn't expect to do all this today, but here we are."
-    l "Pizza!!"
-    j "Lisa, I didn't know you liked pizza."
-    l "That rhymes!"
-    j "?"
-    j "Oh! You mean Pizza and Lisa."
-    l "HAHAHAHAHA!"
-    j "HAHAHHAHAHA!"
+    l "Pizza!"
     "A few minutes passed..."
     h "Great, looks like Cafella staff is ready for online transactions. Tell me what you guys like."
     h "Like I said, it's on me."
@@ -688,6 +697,7 @@ label SDS_Encounter:
     v "What do you want with this company? You deployed spyware bugs here?"
     cv "I'm just doing my job!"
     v "So you won't spill the beans. Of course!"
+    extend "I'll just... have to make you!"
     play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     v "Initiating termination protocol!"
     cv "Haaaaah!!!"
@@ -913,7 +923,7 @@ label SDS_Encounter:
     i "This is nothing!" 
     "ILY did deflect it, but had to relinquish the blade quickly for another attack."
     i "I'm sorry, but I can't let you beat up my new friend!"
-    i "Alright, Battle protocol set!... SoftWar Engage!"
+    
     v "I was... going to handle him myself.."
     i "Even though you say that...I'll assure you, you can leave this to me!"
     cv "How are you able to.. You're... The ILOVEYOU Virus!"
@@ -925,7 +935,6 @@ label SDS_Encounter:
     "He materializes another sword."
     v  "There's more to him... I've analysed just which virus you are!"
     cv "After this much of a beating? Is that how Antiviruses work now? Pitiful!"
-    
     v "Shut up! \"CODE RED!\"! I figured out your true name! You're the Code Red Virus!" 
     cv "You... got it all wrong!"
     cv "Only an idiot would label a virus by some color code. "
@@ -943,7 +952,7 @@ label SDS_Encounter:
     c "Hrrraaaghh!"
     "A battle of viruses... How will this play out?"
     "His Lambda Saber emerged and activated immediately."
-    
+    i "Alright, Battle protocol set!... SoftWar Engage!"
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
@@ -1021,6 +1030,14 @@ label SDS_Encounter:
     stop music
     i "!!"
     i "He was... about to go all out."
+    v "He really disappeared."
+    j "What's going on...?"
+    l "Vira, will you please heal ILY now?"
+    v "Huh? I'll heal this Virus"
+    j "That's...  OK. Vira. Please do it."
+    v "Fine."
+    i "How come?"
+    l "I've got... a feeling.. maybe the fight isn't over.."
     v "Look behind you ILY... A new... entity has arrived.. "
     aa "That'll be enough, now, Virus."
     i "!!"
@@ -1070,8 +1087,8 @@ label SDS_Encounter:
     call cardflash_story(BitBuster)
     extend " Bit Buster!"
     i "AAAHH!!"
-    "ILY endured the shots, blocking most of it with her sword."
-    "But Bit Buster affects ILY's Bit output,  it prevents her from unleashing a full-blown attack."
+    "ILY endured the shots, blocking most of them with her sword."
+    "But Bit Buster affects ILY's Bit output, it prevents her from unleashing a full-blown attack."
     "If that hits her again, ILY will... "
     "Somehow, we need to escape!"
     j "(ILY! Evade that one! Escape while you still can!)"
@@ -1181,7 +1198,7 @@ label SDS_Encounter:
     i "Huh!"
     i"I'll show you... "
     call cardflash_story(BurstTransfer)
-    extend "My Burst Transfer!! !!"
+    extend "My Burst Transfer!!"
     hide ILY
     show ILY at sidesteps_effectILY("ILY",0.0,1.5,0.3):
         yanchor 0.50 ypos 0.5 
@@ -1196,7 +1213,7 @@ label SDS_Encounter:
     hide ILY
     show ILY with dissolve:
         xalign 0.1 
-    "My shield is cracking?? No!!"
+    a "My shield is cracking?? No!!"
     "Five, Seven... Thirteen slashes!? ILY really set her up now!"
     hide ILY
     show ILY with dissolve:
@@ -1204,7 +1221,7 @@ label SDS_Encounter:
     i "I've got you! Now that your shield is broken, You're going to love this!"
     i "Virus Flame!!"
     call cardflash_story(VirusFlame)
-    a "Wha? At Point-blank!? GAAHHHH!!!" 
+    a "Point-blank!? GAAHHHH!!!" 
     "The flame attack was boosted by her Heartburn ability, which risked overheating her, in exchange for more firepower."
     show Ave at leapright2
     "Ave was slammed away into the wall by the impact of the explosion."
