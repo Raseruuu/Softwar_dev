@@ -126,25 +126,25 @@ init -3 python:
     stage1=map_token(stage1)
     stageemptyroom = [
         'nnn111nnn',
-        'n111a111n',
+        'n11aaa11n',
         'n1000001n',
-        '110000011',
         '1c00000b1',
-        '110000011',
+        '1c00000b1',
+        '1c00000b1',
         'n1000001n',
-        'n111d111n',
+        'n11ddd11n',
         'nnn111nnn',
         ]
     stageemptyroom=map_token(stageemptyroom)
     stage3 = [
         'nnn111nnn',
-        'n111a111n',
+        'n11aaa11n',
         'n1000001n',
-        '110000011',
         '1c00000b1',
-        '110000011',
+        '1c00000b1',
+        '1c00000b1',
         'n1000001n',
-        'n111d111n',
+        'n11ddd11n',
         'nnn111nnn'
         ]
     stage3=map_token(stage3)
@@ -470,7 +470,7 @@ init -3 python:
     # stagek=map_token(stagek)
     stage_WestGateway=[
         'nnnnnnnnnnnnnnnnnn',
-        'n111111111111a111n',
+        'n11111111111aaa11n',
         'n10000000000rrr01n',
         'n10000000000rrr01n',
         'n10000000000rrr01n',
@@ -482,7 +482,7 @@ init -3 python:
         'n10000000000rrr01n',
         'n10000000000rrr01n',
         'n10000000000rrr01n',
-        'n111111111111d111n',
+        'n11111111111ddd11n',
         'nnnnnnnnnnnnnnnnnn'
     ]
     stage_WestGateway=map_token(stage_WestGateway)
@@ -516,7 +516,7 @@ init -3 python:
     stageAD=[
         
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
         'n100rrr001n',
@@ -524,33 +524,33 @@ init -3 python:
         'n100rrr001n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageAD=map_token(stageAD)
     stageABD=[
         
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
-        'n100rrrrr1n',
         'n100rrrrrbn',
-        'n100rrrrr1n',
+        'n100rrrrrbn',
+        'n100rrrrrbn',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageABD=map_token(stageABD)
     stageABC=[
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1rrrrrrr1n',
         'ncrrrrrrrbn',
-        'n1rrrrrrr1n',
+        'ncrrrrrrrbn',
+        'ncrrrrrrrbn',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -559,12 +559,12 @@ init -3 python:
     stageABC=map_token(stageABC)
     stageAB=[
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
-        'n100rrrrr1n',
         'n100rrrrrbn',
-        'n100rrrrr1n',
+        'n100rrrrrbn',
+        'n100rrrrrbn',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -573,12 +573,12 @@ init -3 python:
     stageAB=map_token(stageAB)
     stageAC=[
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1rrrrr001n',
         'ncrrrrr001n',
-        'n1rrrrr001n',
+        'ncrrrrr001n',
+        'ncrrrrr001n',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -590,9 +590,9 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        'n1rrrrrrr1n',
         'ncrrrrrrrbn',
-        'n1rrrrrrr1n',
+        'ncrrrrrrrbn',
+        'ncrrrrrrrbn',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -604,12 +604,12 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        'n100rrrrr1n',
         'n100rrrrrbn',
-        'n100rrrrr1n',
+        'n100rrrrrbn',
+        'n100rrrrrbn',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
 
@@ -619,26 +619,26 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        'n1rrrrr001n',
         'ncrrrrr001n',
-        'n1rrrrr001n',
+        'ncrrrrr001n',
+        'ncrrrrr001n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageCD=map_token(stageCD)
     stageACD=[
         'nnnnnnnnnnn',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1rrrrr001n',
         'ncrrrrr001n',
-        'n1rrrrr001n',
+        'ncrrrrr001n',
+        'ncrrrrr001n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageACD=map_token(stageACD)
@@ -647,12 +647,12 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        'n1rrrrrrr1n',
         'ncrrrrrrrbn',
-        'n1rrrrrrr1n',
+        'ncrrrrrrrbn',
+        'ncrrrrrrrbn',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageBCD=map_token(stageBCD)
@@ -661,18 +661,18 @@ init -3 python:
         'n1111111a1n',
         'n100000001n',
         'n100000001n',
-        'n1rrrrrrr1n',
         'ncrrrrrrrbn',
-        'n1rrrrrrr1n',
+        'ncrrrrrrrbn',
+        'ncrrrrrrrbn',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'nnnnnnnnnnn'
     ]
     stageBCD2=map_token(stageBCD2)
     stageA=[
         'n111111111n',
-        'n1111a1111n',
+        'n111aaa111n',
         'n100rrr001n',
         'n100rrr001n',
         'n100rrr001n',
@@ -689,9 +689,9 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        'n100rrrrr1n',
         'n100rrrrrbn',
-        'n100rrrrr1n',
+        'n100rrrrrbn',
+        'n100rrrrrbn',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -703,9 +703,9 @@ init -3 python:
         'n111111111n',
         'n100000001n',
         'n100000001n',
-        '11rrrrr001n',
-        '1crrrrr001n',
-        '11rrrrr001n',
+        'ncrrrrr001n',
+        'ncrrrrr001n',
+        'ncrrrrr001n',
         'n100000001n',
         'n100000001n',
         'n111111111n',
@@ -722,7 +722,7 @@ init -3 python:
         'n100rrr001n',
         'n100rrr001n',
         'n100rrr001n',
-        'n1111d1111n',
+        'n111ddd111n',
         'n111111111n'
     ]
     stageD=map_token(stageD)

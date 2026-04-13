@@ -1,40 +1,40 @@
-renpy.mask renpy.mask
-renpy.geometry renpy.mask
-renpy.geometry renpy.texture
-renpy.ftl
-renpy.dissolve renpy.dissolve
-renpy.alpha renpy.alpha renpy.solid
-renpy.alpha renpy.geometry renpy.matrixcolor renpy.texture
-watt.wave renpy.texture renpy.texture
-renpy.texture renpy.texture
-renpy.geometry renpy.imagedissolve
 renpy.alpha renpy.geometry renpy.mask renpy.matrixcolor
->>>>>>> Stashed changes
-renpy.alpha renpy.solid
-renpy.matrixcolor renpy.alpha renpy.alpha renpy.texture
-renpy.matrixcolor renpy.alpha renpy.matrixcolor renpy.texture
-renpy.matrixcolor renpy.alpha renpy.mask renpy.mask
-renpy.solid
-renpy.alpha renpy.matrixcolor renpy.texture
-renpy.alpha renpy.mask renpy.mask
-renpy.alpha renpy.geometry renpy.mask
-renpy.alpha renpy.geometry renpy.texture
 renpy.matrixcolor renpy.matrixcolor renpy.texture
-renpy.matrixcolor renpy.mask renpy.mask
-renpy.geometry renpy.solid
-renpy.alpha renpy.alpha renpy.texture
-renpy.alpha renpy.texture renpy.texture
-renpy.geometry renpy.mask renpy.matrixcolor
-<<<<<<< Updated upstream
-renpy.geometry renpy.matrixcolor renpy.texture
-renpy.matrixcolor renpy.alpha renpy.texture
-renpy.geometry renpy.texture watt.wave
-renpy.imagedissolve renpy.imagedissolve
+=======
+renpy.alpha renpy.solid
+renpy.alpha renpy.geometry renpy.solid
+renpy.alpha renpy.mask renpy.mask
+renpy.alpha renpy.geometry renpy.matrixcolor renpy.texture
+renpy.alpha renpy.matrixcolor renpy.texture
+renpy.alpha renpy.geometry renpy.texture
 renpy.alpha renpy.texture
+renpy.geometry renpy.solid
+renpy.alpha renpy.geometry renpy.mask
+renpy.alpha renpy.texture renpy.texture
+renpy.matrixcolor renpy.alpha renpy.alpha renpy.mask renpy.mask
+renpy.alpha renpy.alpha renpy.solid
+renpy.mask renpy.mask
+renpy.solid
+<<<<<<< Updated upstream
+renpy.imagedissolve renpy.imagedissolve
+renpy.matrixcolor renpy.alpha renpy.alpha renpy.texture
+renpy.geometry renpy.imagedissolve
+renpy.matrixcolor renpy.alpha renpy.texture
+renpy.ftl
 renpy.matrixcolor renpy.texture
 renpy.matrixcolor renpy.alpha renpy.alpha renpy.matrixcolor renpy.texture
-renpy.matrixcolor renpy.alpha renpy.alpha renpy.mask renpy.mask
-=======
-renpy.dissolve renpy.geometry
+renpy.matrixcolor renpy.alpha renpy.mask renpy.mask
+watt.wave renpy.texture renpy.texture
+renpy.geometry renpy.mask renpy.matrixcolor
+renpy.geometry renpy.texture
+renpy.matrixcolor renpy.alpha renpy.matrixcolor renpy.texture
 renpy.texture
-renpy.alpha renpy.geometry renpy.solid
+renpy.matrixcolor renpy.mask renpy.mask
+renpy.geometry renpy.mask
+renpy.alpha renpy.alpha renpy.texture
+renpy.texture renpy.texture
+renpy.dissolve renpy.geometry
+>>>>>>> Stashed changes
+renpy.dissolve renpy.dissolve
+renpy.geometry renpy.texture watt.wave
+renpy.geometry renpy.matrixcolor renpy.texture

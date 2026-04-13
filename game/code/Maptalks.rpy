@@ -213,7 +213,7 @@ label whatactor:
                     spritelabel=labels
         if actornum in samedialog:
             $ renpy.call("maptalk_"+str(spritelabel))
-        elif "dialog" not in spritelabel:
+        elif "dialog" not in spritelabel    :
             $ renpy.call("maptalk_"+str(spritelabel)+"_"+str(chapternum))
         $ map_active=True
         if "story" in spritelabel:
@@ -268,11 +268,14 @@ label MapTalk:
 ############## MELISSA PAY QUEST
         elif gameprogress==1:
             if maptalks==1:
-                i"We gotta pay Melissa 3000 Zenny, John!"
-                j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
-                j"How do we earn 3000 Zenny?"
-                i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
-
+                if infobroker_Melissa:
+                    i"We gotta pay Melissa 3000 Zenny, John!"
+                    j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
+                    j"How do we earn 3000 Zenny?"
+                    i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
+                else:
+                    j "Do you think Melissa can tell us how to pass through the gate without fighting Bitwulf?"
+                    i "We wouldn't know unless we try!"
             elif maptalks==2:
                 i"What do you think of Melissa?"
                 j"She's pretty hot stuff."
@@ -280,9 +283,6 @@ label MapTalk:
                 j"What's that reaction for?"
                 $ maptalks=0
       
-
-
-
         show screen mapB
         call screen mapA
         call Returns

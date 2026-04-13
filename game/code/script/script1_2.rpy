@@ -514,18 +514,44 @@ label paidMelissa:
     show ILY:
         ease 1.0 xoffset 200
     i "Ahh I found it! it's actually burning."
-    # $ renpy.call("GainItem",[Imperceptium]*4)
-    # $ new_treasure_battleware_list = {item.NAME: for item in new_treasure}
-    # $ 
     call GainItem([shop_item("Imperceptium",item,"Material",pricelist["Imperceptium"])]*4)
     "ILY picked up the burning imperceptium material."
-    i "Melissa says I just have to ingest this, and I'd be invisible!"
+    i "Melissa said that I just have to ingest this, and I'd be invisible!"
     j "I wonder if it will really work!"
     i "I trust that Melissa is telling the truth!"
-    
-    $ map_visible=False
-    "Chapter 1 End"
+    i "I'm gonna try it."
+    j "No stop!"
+    i "If I eat one of these, we'd still have 3 more, by the way."
+    j "The quantity of it doesn't really matter."
+    j "If you're thinking about testing it now, we'd have to postpone that. Get back."
+    i "Eh, already?"
+    j "I don't want you to have to fight Bitwulf at this time."
+    i "Oh!"
+    j "I just don't like losing. We still don't have a countermeasure if Imperceptium fails to cloak you."
+    "And... I'm waiting for Lisa's update on that Antivirus.. If she decides to meet again, I can't be caught drowsing."
+    i "I appreciate your concern.."
+    j "Wha? There's another reason. It's more that I'm tired."
+    j "Humans have to sleep at night-time."
+    i "I know that."
+    j "Then... just let me. "
+    i"Mmmmhh, fine. I won't eat the Imperceptium."
+    j"It's actually strange.. nevermind Melissa, I'm working with a virus today!"
+    j"Viruses are usually all trouble."
+    i"Ehh! I'm not a naughty Virus, I promise!"
+    j"Funny you say that."
+    j"You've been oddly cooperative today."
+    i"What did I tell you, I'm your personal assistant now!"
+    "For a program, she really seems supportive and easy to talk to."
 
+    
+    "After that little hunt, ILY came back to my desktop network and said a little goodbye before I shut down the PC."
+    scene JD_PCN with dissolve
+    
+    i"Good night, John!"
+    j"Huh. Good night, ILY."
+    scene black with dissolve
+    "It's a more relaxing night than yesterday, that's for sure."
+    $ map_visible=False
     return
 
 

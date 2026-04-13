@@ -333,7 +333,7 @@ default GRID_Original ={
         (190,167):deepcopy(stageABD),
         (191,167):deepcopy(stage_WestGateway),#BITWULF AREA Chapter2
         (192,167):deepcopy(stageAD),
-        (193,167):deepcopy(stageABD),
+        (193,167):deepcopy(stageAD),
         (194,167):deepcopy(stageACD),
         (195,167):deepcopy(stageBD),
 
@@ -479,7 +479,7 @@ init -2 python:
         (192,164):[Melissasprite],
         (192,165):[Bellasprite],
         (193,169):[],
-        (193,167):[Programkunsprite],
+        (193,167):[],
         (192,164):[Stellasprite],
         }
     mapspriteschapter0 = {

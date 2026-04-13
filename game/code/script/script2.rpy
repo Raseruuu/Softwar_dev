@@ -37,21 +37,11 @@ label script2:
     # $ mapeventschapter1={zzz
     # TODO: ADD Imperceptium Hunting section here!!
     # Need to fight one Virus and finish it with FIRE / BURN status
-    j"It's actually strange.. I'm working with a virus today.."
-    j"Viruses are usually all trouble."
-    i"Ehh! I'm not a naughty Virus, I promise!"
-    j"Funny you say that."
-    j"You've been oddly cooperative today."
-    i"What did I tell you, I'm your personal assistant now!"
-    "For a program, she really seems supportive and easy to talk to."
-    "So... I have to catch on some Z's and not be late!!"
     
-    scene JD_PCN with dissolve
-    j"Good night, ILY."
-    i"Good night, John!"
+    
 
 
-    scene black with dissolve
+    
 
 
 label teammeeting:
@@ -216,7 +206,7 @@ label teammeeting:
     play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
     $ Hilbert_m="frown"
     h "Don't you think it's crazy, what's been going on at my Dad's company?"
-    h "I bet some bot is involved with last night's events."
+    h "I bet some bot is involved with the previous night's events."
     j "!!!"
     "What does Hilbert know?"
     "I should ask him if he's heard of any clues about FAI. or the GRID."
@@ -238,7 +228,7 @@ label teammeeting:
     h "Ah! How'd you find that out? I had a hunch that John really was a super hacker."
     j "Am not. It's uhhh.. hard to explain."
     i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
-    i "And I'm also the virus that infected SDS with love letters last night. I'm sorry!"
+    i "And I'm also the virus that infected SDS with love letters on Valentines night. I'm sorry!"
     i "I am the ILOVEYOU Virus, but you can call me ILY!"
     h "No way."
     "She... just confessed? That... makes this kind of difficult."
@@ -279,12 +269,16 @@ label teammeeting:
     i "We crossed blades a few times as I drew out my own sword."
     i "I thought I had him, when I struck his side with a quick slash.. But the blade didn't faze him."
     i "I leapt far, but he caught up to me so quickly... That's why I had to activate my Virus Algorithm!"
+    j "Virus Algorithm? That's your e-mail attack?"
+    i "Yeah, it overrides the current network's operations, my absolute rewriting power!"
+    j "Gah.. I assume after an attack like that the knight Virus is gone now right?"
     $ Hilbert_m="frown"
     $ Hilbert_e="down"
     h "Not very chivalrous to attack a woman. He was but a coldblooded mercenary."
     j "You're way invested in the scenario now huh, Hilbert."
+    i "I... didn't get him. When I was loading my attack he saw it and logged out."
+    h "Coward..."
     "It's getting much clearer now, what happened at SDS... How does this help us fight back?"
-
     h "Then... If we have to deal with him..."
     j "Huh?"
     h "It's time to strategize!!"
