@@ -15,10 +15,10 @@ label script4:
     "When she did it for me i just accepted it as it was convenient and... huh? how did she know?"
     "That brain of hers might just be too smart for me. Yeah. She's a topnotcher after all."
     "Red Velvet.. i suppose I'll try that one out too."
-    "Ahh! I do know that she liked the spinach dip pizza we got last time, maybe I could order that one again. Yeah!"
+    "Ahh! I do know that she liked the ____________ pizza we got last time, maybe I could order that one again. Yeah!"
 
     "..."
-    "So i ended up getting 2 red velvet frappes and 1 whole spinach dip pizza. For sharing!"
+    "So I ended up getting 2 red velvet frappes and 1 whole ____________ pizza. For sharing!"
 
     "Yep... it's served already, but she's not here yet."
     "I try to resist eating the pizza for myself. I didn't open the box yet."
@@ -74,9 +74,7 @@ label script4:
     e "HUUUUH?!"
     "Yikes. Did i say that out loud?"
     "In response to that, she slammed at the table and stood up violently."
-    e "You dirty!"
-    e"You can't even look me in the eyes straight!"
-    "It's not my fault her breasts are distracting my view..."
-    e "Give me some of this you idiot."
+    e "!"
+    
 
     return
