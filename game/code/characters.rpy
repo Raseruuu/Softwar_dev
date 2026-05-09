@@ -440,7 +440,7 @@ image ILYjumpRpg:
 image side ILY_side:
 
     ConditionSwitch(
-        "ILY_w==True",LiveCrop((200,60, 440,565), (At("ILYFullBody", zoomtrans(0.9)))),
+        "ILY_w==True",Crop((200,60, 440,565), (At("ILYFullBody", zoomtrans(0.9)))),
         "ILY_w==False","Null_side"
     )
     zoom 0.38
@@ -453,7 +453,7 @@ image ILYside3:
 
 image Icon_ILY:
     mesh True
-    LiveCrop((230,80, 520,700), "ILYFullBody")
+    Crop((230,80, 520,700), "ILYFullBody")
     zoom 0.22
 
 
@@ -785,13 +785,13 @@ image ILYAlphaEyes:
 image side ILY_Alpha_side:
 
     ConditionSwitch(
-        "ILY_Alpha_w==True",LiveCrop((680,60, 440,565), (At("ILY_Alpha_FullBody", zoomtrans(0.9)))),
+        "ILY_Alpha_w==True",Crop((680,60, 440,565), (At("ILY_Alpha_FullBody", zoomtrans(0.9)))),
         "ILY_Alpha_w==False","Null_side"
     )
     zoom 0.38
 image Icon_ILY_Alpha:
     mesh True
-    LiveCrop((680,80, 520,700), "ILY_Alpha_FullBody")
+    Crop((680,80, 520,700), "ILY_Alpha_FullBody")
     zoom 0.22
 layeredimage ILY_Alpha_FullBody:
     always:
@@ -977,7 +977,7 @@ layeredimage Lisafull:
             "Lisa_glasses==True","images/Characters/Lisa/LisaGlasses.png",
             "Lisa_glasses==False",Null(),
             )
-    zoom 0.30
+    zoom 0.31
 image Lisa:
     "Lisafull"
     yanchor 0.0 ypos 0.01
@@ -990,7 +990,7 @@ image Lisafullside:
     "Lisafull"
     zoom 1.13
 image Lisa sidew:
-    LiveCrop((130,20, 300,385), "Lisafullside")
+    Crop((130,20, 300,385), "Lisafullside")
     zoom 0.56
 image side Lisa_side:
     ConditionSwitch(
@@ -1124,7 +1124,7 @@ image Lucidafullside:
     "Lucidafull"
     zoom 1.13
 image Lucida sidew:
-    LiveCrop((130,20, 300,385), "Lucidafullside")
+    Crop((130,20, 300,385), "Lucidafullside")
     zoom 0.56
 image side Lucida_side:
     ConditionSwitch(
@@ -1241,7 +1241,7 @@ image Virasmall:
     "ViraFull"
     zoom 2.0
 image Vira sidew:
-    LiveCrop((140,40, 300,385), "ViraFull")
+    Crop((140,40, 300,385), "ViraFull")
     zoom 0.56
     
 image side Vira_side:
@@ -1250,7 +1250,7 @@ image side Vira_side:
         "Vira_w==False","Null_side")
 
 image Icon_Vira:
-    LiveCrop((280,100, 520,700), "Virasmall")
+    Crop((280,100, 520,700), "Virasmall")
     
     zoom 0.22
 image ViraMouthsmile:
@@ -1319,7 +1319,7 @@ image ViraMouthfrown:
 image Icon_TrojanHorse:
 
     mesh True
-    LiveCrop((0,0, 520,700), "Trojan")
+    Crop((0,0, 520,700), "Trojan")
     zoom 0.25
 #########
 ## Code Red
@@ -1355,7 +1355,7 @@ image CodeRedFull:
     )
     
 image CodeRed sidew:
-    LiveCrop((140,40, 300,385), "CodeRedFull")
+    Crop((140,40, 300,385), "CodeRedFull")
     zoom 0.56
 image side CodeRed_side:
     ConditionSwitch(
@@ -1365,7 +1365,7 @@ image CodeRedFullzoomed:
     "CodeRedFull"
     zoom 1.6
 image Icon_Code Red:
-    LiveCrop((280,100, 520,700), "CodeRedFullzoomed")
+    Crop((280,100, 520,700), "CodeRedFullzoomed")
     zoom 0.22
 image CodeRed mouth:
     "images/Characters/Code Red/CODE RED_mopen1.png"
@@ -1590,7 +1590,7 @@ image MelissaFullBody:
         )
     zoom 0.22
 image Melissa sidew:
-    LiveCrop((75,30, 300,385), "MelissaFull")
+    Crop((75,30, 300,385), "MelissaFull")
     zoom 0.56
 
 
@@ -1765,7 +1765,7 @@ image AveMouthfrown:
     
     repeat
 image Ave sidew:
-    LiveCrop((150,40, 300,385), "AveFull")
+    Crop((150,40, 300,385), "AveFull")
     zoom 0.56
 image side Ave_side:
     ConditionSwitch(
@@ -1794,8 +1794,8 @@ image Icon_Ave:
 
 image Hilbert:
     "HilbertFull"
-    ypos 1.0 yanchor 0.58 zoom 0.89
-    # linear 1.0 yoffset 0OO 
+    ypos 1.0 yanchor 0.56 zoom 0.92
+    # linear 1.0 yoffset 0
     # pause .5
     # linear 1.0 yoffset 5
     # pause .5
@@ -1832,32 +1832,32 @@ image HilbertEyes:
     repeat
 image HilbertEyesLookaway:
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 1.0
-        "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway_midclose.png"
         pause 0.07
         "images/Characters/Hilbert/Hilbert_eyes_closed.png"
         pause 0.1
-        "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway_midclose.png"
         pause 0.07
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 5.0
     choice:
         "images/Characters/Hilbert/Hilbert_eyes.png"
         pause 4.0
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 1.5
-        "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway_midclose.png"
         pause 0.07
         "images/Characters/Hilbert/Hilbert_eyes_closed.png"
         pause 0.1
-        "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway_midclose.png"
         pause 0.07
         "images/Characters/Hilbert/Hilbert_eyes_closed.png"
         pause 0.1
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 1.5
     repeat
 image HilbertMouthsmile:
@@ -2061,7 +2061,7 @@ image NickFull:
         )
     zoom 0.7
 image Nick sidew:
-    LiveCrop((93,24, 300,385), "NickFull")
+    Crop((93,24, 300,385), "NickFull")
     zoom 0.56
 
 
@@ -2176,7 +2176,7 @@ layeredimage StonedFull:
     # zoom 0.93 xalign 0.5 
 
 image Stoned:
-    # (LiveCrop((479,0,611,2413),"StonedFull"))
+    # (Crop((479,0,611,2413),"StonedFull"))
     "StonedFull"
     # xoffset -200
     yanchor 0.58 ypos 1.0  zoom 0.56
@@ -2194,12 +2194,12 @@ image Stonedsmall:
     zoom 0.60
 image side Stoned_side:
     ConditionSwitch(
-            "Stoned_w==True",(LiveCrop((320,150,300,385),"Stonedsmall")),
+            "Stoned_w==True",(Crop((320,150,300,385),"Stonedsmall")),
             "Stoned_w==False","Null_side"
         )
     zoom 0.56
 image Stoned_icon:
-    (LiveCrop((327,150,280,280),"Stonedsmall"))
+    (Crop((327,150,280,280),"Stonedsmall"))
     zoom 0.4
 image Stoned_mhappy:
 
@@ -2283,7 +2283,7 @@ image Bitwulf:
     )
     zoom 0.25 xalign 0.5 yanchor 0.05 ypos 0.0
 image Bitwulfsmall:
-    (LiveCrop((260,90,300,385),At("Bitwulf",zoomtrans(0.8))))
+    (Crop((260,90,300,385),At("Bitwulf",zoomtrans(0.8))))
 image side Bitwulf_side:
     ConditionSwitch(
             "Bitwulf_w==True","Bitwulfsmall",
@@ -2291,7 +2291,7 @@ image side Bitwulf_side:
         )
     zoom 0.56
 image Bitwulf_icon:
-    (LiveCrop((260,90,280,280),"Bitwulfsmall"))
+    (Crop((260,90,280,280),"Bitwulfsmall"))
     zoom 0.4
 image Bitwulf_jaw1:
 
@@ -2403,7 +2403,7 @@ image BrainMouthfrown:
 image side Brain_side:
 
     ConditionSwitch(
-        "Brain_w==True",LiveCrop((964,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
+        "Brain_w==True",Crop((964,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
         "Brain_w==False","Null_side"
     )
     zoom 0.38
@@ -2606,7 +2606,7 @@ image Bella:
 image side Bella_side:
 
     ConditionSwitch(
-        "Bella_w==True",LiveCrop((230,60, 440,565), (At("BellaFullBody", zoomtrans(0.9)))),
+        "Bella_w==True",Crop((230,60, 440,565), (At("BellaFullBody", zoomtrans(0.9)))),
         "Bella_w==False","Null_side"
     )
     zoom 0.38
