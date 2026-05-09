@@ -54,7 +54,7 @@ label teammeeting:
     
     #Morning
     "Great, that's so much better. A good rest!!"
-    "Today... I'll meet with Lisa again. Right?"
+    "Today... Lisa might come here again. Right?"
     "I'll go get dressed and clean up a bit..."
     scene black with dissolve
     scene JD_Space2 with dissolve
@@ -63,11 +63,11 @@ label teammeeting:
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
     #E-mail from Lisa appears
     $ ILY_w=True
-    i"John!! You have 1 new unread e-mail! It's Lisa!"
+    i "John!! You have 1 new unread e-mail! It's Lisa!"
     # "Huh... Right. We were together yesterday..."
     "I wonder if it's true that her dad has a FAI Antivirus?"
-    j"Please open it, ILY!"
-    i"OK!"
+    j "Please open it, ILY!"
+    i "OK!"
     #(change to lnvl) for e-mail view
     #Show NVL window
     scene blue with Dissolve(0.2)
@@ -84,7 +84,6 @@ label teammeeting:
     emailnvl"I'm going to your place today."
     emailnvl"We have to install her as soon as possible!"
     nvl hide
-
 
     "So it's true. What luck! So we do have a chance at saving the company from that Virus."
     "Vira Internet Solutions... Of course! Their brand is quite popular for their age."
@@ -271,7 +270,7 @@ label teammeeting:
     i "I leapt far, but he caught up to me so quickly... That's why I had to activate my Virus Algorithm!"
     j "Virus Algorithm? That's your e-mail attack?"
     i "Yeah, it overrides the current network's operations, my absolute rewriting power!"
-    j "Gah.. I assume after an attack like that the knight Virus is gone now right?"
+    j "Gah.. I assume after an attack like that... The knight Virus is gone now right?"
     $ Hilbert_m="frown"
     $ Hilbert_e="down"
     h "Not very chivalrous to attack a woman. He was but a coldblooded mercenary."
@@ -1027,11 +1026,25 @@ label SDS_Encounter:
     v "He really disappeared."
     j "What's going on...?"
     l "Vira, will you please heal ILY now?"
-    v "Huh? I'll heal this Virus"
+    v "Huh? I'll heal this Virus?"
     j "That's...  OK. Vira. Please do it."
     v "Fine."
     i "How come?"
     l "I've got... a feeling.. maybe the fight isn't over.."
+    $ HPalreadyfull=playerHP==playerHPMax
+    $playerHP=playerHPMax
+    call cardflash_story(FixerBeam)
+    play sound "sfx/heal.ogg"
+    if HPalreadyfull:
+        "[playerName]'s Health Points are already full."
+    else:
+        "[playerName]'s Health Points have been restored."
+    v "There, all good?"
+    i "I'll heal you too!"
+    call cardflash_story(ChocolateBar)
+    play sound "sfx/heal.ogg"
+    v "Th-thanks..."
+
     v "Look behind you ILY... A new... entity has arrived.. "
     aa "That'll be enough, now, Virus."
     i "!!"
@@ -1196,23 +1209,28 @@ label SDS_Encounter:
     hide ILY
     show ILY at sidesteps_effectILY("ILY",0.0,1.5,0.3):
         yanchor 0.50 ypos 0.5 
+    show ILY:
+        yanchor 0.0 ypos 1.0
     call damageright4
-    "ILY begins a flurry of slash attacks, each relinquishing the Mail blades that were retrieved on the battlefield."
+    "ILY begins a flurry of slash attacks, each strike used each of the Mail blades that were retrieved on the battlefield."
     call damageright
     "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target quickly from many meters away." 
     call damageright4
     "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position."
     call damageright4
     "She approached her from many directions in a spiraling flurry of attacks, and her blade clashed with her shields repeatedly."
-    hide ILY
-    show ILY with dissolve:
+    
+    show ILY:
         xalign 0.1 
+    show Ave:
+        xalign 0.9 
+    with dissolve
     a "My shield is cracking?? No!!"
     "Five, Seven... Thirteen slashes!? ILY really set her up now!"
     hide ILY
     show ILY with dissolve:
         xalign 0.1
-    i "I've got you! Now that your shield is broken, You're going to love this!"
+    i "I've got you! Now that your shield is broken!"
     i "Virus Flame!!"
     call cardflash_story(VirusFlame)
     a "Point-blank!? GAAHHHH!!!" 
