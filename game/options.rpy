@@ -5,7 +5,7 @@
 ## may want to uncomment them when appropriate.
 
 ## Disable rollback
-define config.rollback_enabled = False
+define config.rollback_enabled = True
 
 define config.emphasize_audio_channels = [ 'voice']
 define config.default_music_volume = 0.5

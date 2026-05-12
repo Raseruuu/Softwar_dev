@@ -117,8 +117,8 @@ label script1_2_dialog1:
     i "Looks like this path takes us to Connecht City Cyber Square!"
     "A gate to the west from my home location... that sounds a lot like in real-life."
     "This Cyber Square area... must be a virtual version of the actual Square crossroad at the middle of Connecht."
-    "Just a few blocks away on the way to the island mount... is the IRL SDS office." 
-    j "So, You think this path is supposed to take us to SDS area?"
+    j "This is the East Gate of the Connecht Square. Just a few blocks away on the way to the island mount... is the IRL SDS office." 
+    j "So, this path is supposed to take us to SDS area."
     
     i "Oh? How would you know that?" 
     j "The virtual world here seems to mimic the real world locations. Albeit the components of each area are different."
@@ -177,7 +177,7 @@ label script1_2_dialog1:
     i "I didn't realize Antiviruses would be out here in the open like this!"
     i "That one was quite aggressive.."
     i "And you are a..."
-    "ILY and the blue-haired avatar have settled in a different area, far from the East Connecht Gate."
+    "ILY and the blue-haired avatar have settled in a different area, far from the East Gate of the Connecht Square."
     $ Melissa_m="smile"
     mu "We should be safe here. This zone is covered in anti-detection walls so it's practically invisible to non-viruses."
     "Non-viruses? that means..."
@@ -480,8 +480,11 @@ label paidMelissa:
     j "Let's go find that imperceptium!"
     
     "ILY quickly took off for the hunt."
-    i "Alrighty! I found a virus!"
     
+    i "Alrighty! I found a virus!"
+    $ John_e="mad"
+    show Worm with dissolve:
+        xalign 0.75 yalign 0.5 zoom 1.5
     j "Get ready for battle!"
     i "This one... it's a Worm!"
     j "How fascinating.. it isn't slithery and round like real world worms."
@@ -519,6 +522,7 @@ label paidMelissa:
     i "Melissa said that I just have to ingest this, and I'd be invisible!"
     j "I wonder if it will really work!"
     i "I trust that Melissa is telling the truth!"
+
     i "I'm gonna try it."
     j "No stop!"
     i "If I eat one of these, we'd still have 3 more, by the way."
@@ -526,26 +530,37 @@ label paidMelissa:
     j "If you're thinking about testing it now, we'd have to postpone that. Get back."
     i "Eh, already?"
     j "I don't want you to have to fight Bitwulf at this time."
+    $ ILY_m="O"
+    $ ILY_e="up"
     i "Oh!"
+    $ ILY_m ="frown"
+    $ ILY_e ="down"
+    
     j "I just don't like losing. We still don't have a countermeasure if Imperceptium fails to cloak you."
-    "And... I'm waiting for Lisa's update on that Antivirus.. If she decides to meet again, I can't be caught drowsing."
+    "And... I'm waiting for Lisa's update on that Antivirus.. If she decides to meet again, I can't be caught lacking sleep."
+    $ ILY_m ="frown"
+    $ ILY_e ="normal"
+    
     i "I appreciate your concern.."
     j "Wha? There's another reason. It's more that I'm tired."
     j "Humans have to sleep at night-time."
     i "I know that."
     j "Then... just let me. "
+    $ ILY_m ="O"
+    $ ILY_e ="up"
     i"Mmmmhh, fine. I won't eat the Imperceptium."
-    j"It's actually strange.. nevermind Melissa, I'm working with a virus today!"
+    j "Good."
+    j"It's actually strange.. Nevermind Melissa, I worked with a virus today."
     j"Viruses are usually all trouble."
+    $ ILY_m ="smile3"
+    $ ILY_e ="up"
     i"Ehh! I'm not a naughty Virus, I promise!"
-    j"Funny you say that."
-    j"You've been oddly cooperative today."
-    i"What did I tell you, I'm your personal assistant now!"
+    i"Also, I'm your personal assistant now!"
     "For a program, she really seems supportive and easy to talk to."
-
-    
     "After that little hunt, ILY came back to my desktop network and said a little goodbye before I shut down the PC."
     scene JD_PCN with dissolve
+    $ ILY_m ="smile3"
+    $ ILY_e ="up"
     
     i"Good night, John!"
     j"Huh. Good night, ILY."

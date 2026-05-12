@@ -522,9 +522,9 @@ screen mapA:
     # $ moving=False
     #CONTROLS
     timer 0.001 action If(map_active==False or playerHP==0 or game_over,true=Return(),false=None) repeat True
+    
+    #UNCOMMENT BEFORE BUILDING: DISABLE ROLLBACK
     python:
-      # if rollbackchanged:
-        # if rollbackchanged:
       config.rollback_enabled = False
     key 'K_UP'          action SetVariable("direction","up"),     Return("up")
     key 'K_DOWN'        action SetVariable("direction","down"),   Return("down")

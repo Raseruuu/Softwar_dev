@@ -35,14 +35,7 @@ label script2:
     "Chapter 2: A New Friend" #(Can change chapter name anytime)
     # call mapcall()
     # $ mapeventschapter1={zzz
-    # TODO: ADD Imperceptium Hunting section here!!
-    # Need to fight one Virus and finish it with FIRE / BURN status
-    
-    
-
-
-    
-
+   
 
 label teammeeting:
     #After this, John decides to review the day in his head and go to sleep.
@@ -320,6 +313,7 @@ label teammeeting:
     i "Hey Lisa! Welcome back!"
     l "I-ILY!!"
     h "And you're... closer to John than I am, now?! Sounds like you've been here before! I can't believe I've been set aside, John."
+    
     j "Woah slow down!"
     l "Wha!? It's just right to meet as workmates, we have an internship project together!"
     h "Actually... I'm more impressed that John invited you to his place. You're the actual top of our class! He must be quite the guy now. I should learn from him."
@@ -363,7 +357,7 @@ label teammeeting:
     "Lisa's father, who works there, made this all possible, even though this copy we have is still a test version."
     "Something about this seems really convenient, but I'll take it."
   
-    
+   
     "TODO: SHOW FULL LOADING SCREEN INSTALLING VIRA"
     "INSTALLATION COMPLETE"
     $ILY_w=True
@@ -389,6 +383,8 @@ label teammeeting:
     v "Error... Unfamiliar Virus Signature..."
     j "Vira, no! Don't attack ILY, She's on our side!"
     v "Viruses must be eliminated. SoftWar ENGAGE!"
+    $ ILY_m ="O"
+    $ ILY_e ="up"
     i "No, don't fight me! We're supposed to be friends! We should cooperate together!"
     $ Vira_eyes="midclose"
     v "I cannot disobey my... protocols."
@@ -428,8 +424,9 @@ label teammeeting:
     v "Yes. Ok then.."
     v "Er.. I... I did not lose that battle! I can still be of use, I can go all out in case you need me to."
     j "That's right Vira. Show us what you can do! We have to try to detect for traces of FAI Viruses in SDS."
+    j "SDS was attacked. We're certain that a FAI virus changed the contents of the website that was hosted in an SDS server."
     v "Show me where this SDS area is..!"
-    j "Right, ILY was able to explore the area yesterday."
+    j "Right, ILY was able to explore the area near there, yesterday."
     i "We could go there together!"
     v "Hold it! That's not going to work well. You're a virus! Nobody can see us together."
     v "Here's the plan: I'm going alone!"
@@ -445,6 +442,7 @@ label teammeeting:
     j "That's a step closer to identifying our enemy then."
     v "Like I said, I'm the antivirus here, so I'll handle it."
     v "I may not look it, but my defenses are still top-notch!"
+    $ Lisa_eyes = "open"
     l "I knew we can rely on you!"
     "Vira seems like she really knows her stuff."
     "If she didn't, that'd be disappointing. But I don't know if that's to be expected from a working prototype."
@@ -500,8 +498,8 @@ label SDS_Encounter:
     "Lisa shoots him a concerned look."
     h "What? It's going pretty good so far right?"
     j "Too early to say it right now."
-    l "Anything could still happen in a remote access, we don't know what happened back then either."
-    l "All the diagnostic runs turned back alright, but something could still go wrong."
+    l "Anything could still happen in remote access, we don't know what happened back then either."
+    # l "All the diagnostic runs can turn back alright, but something could still go wrong."
     $ ILY_w = True
     i "It's okay, I'm here if anything happens."
     j "I'm hoping we don't have to use ILY here."
@@ -534,12 +532,13 @@ label SDS_Encounter:
     v "(They're... Spyware. They've been watching, as I thought!)"
     $ playerHP=playerHPMax
     call battlev3(Vira,Spyware)
-    scene gridbglandscape1 with dissolve:
-        zoom 0.75
+    # scene gridbglandscape1 with dissolve:
+    #     zoom 0.75
+    call battlescene
     play music "bgm/ost/Discussion-RLD_05-by- NoyemiK_.mp3"
-    v "Tsk, am optic beam? my Light Barrier was shut down for only a split second."
+    v "Tsk, an optic beam? my Light Barrier was shut down for only a split second."
     v "You're a tricky little one aren't you! Take this!"
-    call cardflash_story(Databuster)
+    call cardflash_story(DataBuster)
     v "All Clear, now! That wasn't much of a challenge." 
 
     v "Spywares are built to gather as much info as they can to send to its master network..."
@@ -690,7 +689,7 @@ label SDS_Encounter:
     v "What do you want with this company? You deployed spyware bugs here?"
     cv "I'm just doing my job!"
     v "So you won't spill the beans. Of course!"
-    extend "I'll just... have to make you!"
+    extend " I'll just... have to make you!"
     play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
     v "Initiating termination protocol!"
     cv "Haaaaah!!!"
@@ -1208,9 +1207,7 @@ label SDS_Encounter:
     extend "My Burst Transfer!!"
     hide ILY
     show ILY at sidesteps_effectILY("ILY",0.0,1.5,0.3):
-        yanchor 0.50 ypos 0.5 
-    show ILY:
-        yanchor 0.0 ypos 1.0
+        yanchor 0.50 ypos 0.5 alpha 1.0 
     call damageright4
     "ILY begins a flurry of slash attacks, each strike used each of the Mail blades that were retrieved on the battlefield."
     call damageright

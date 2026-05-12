@@ -920,11 +920,11 @@ label date2:
         "All she's gonna do here is work on our website database with me."
         "How do I feel about this?"
         "I feel happy."
-        extend" It's not that I like her or anything, I just think I'm lucky to have a nice programmer girl as a friend."
-        "She's also very reliable and smart."
-        extend" The type you don't see just anywhere."
-        "She does remind me of an old internet friend I haven't seen in a while.."
-        "I have now introduced her to this, one hell of a program."
+        extend" I just think I'm lucky to have a nice programmer girl as a friend."
+        "She's also very reliable. She made most of the planning for this internshop project work out."
+        extend" She's the type you don't see just anywhere."
+        extend "I used to have old internet friend that was on her level of geekiness. That was a special case."
+        "I have now introduced her to this one hell of a program."
         "The sudden twist of events urged me to utter these words to Lisa:\n"
         extend "\"I love you\"."
         "Of course, we were talking about the ILOVEYOU Virus, but still."
@@ -1148,7 +1148,7 @@ label date2:
         play sound "sfx/sfx_coin_cluster6.wav"
         # $ ILY_p = '0'
         $ ILYSprite('smile3')
-        h"John, bro. Looks like SDS is compromised again! Check the website we put out."
+        h"John, bro. Looks like SDS is compromised again one of the servers isn't working, and it's the one we just finished! Check the website we put out."
         $ JohnSprite('frown')
         j"Again? This is getting too often."
         h"Don't blame me!"
@@ -1224,7 +1224,7 @@ label date2:
         i"I'll have to say, I didn't conquer the world this time."
         j"What are you saying... You mean, you were expecting Hilbert's PC to be attacked today?"
         i"Yes. I kept the PC's inactive so they can stay safe from the incoming attack."
-        i"It's such a shame that I didn't get to that one PC of Hilbert though."
+        i"It's such a shame that I didn't get to that one server that Hilbert just reported."
         j"Hold on, I don't understand."
         "What the heck. This virus..."
         j"It's like, ILY burnt down a part of the forest so the prevailing wildfire won't spread..."
@@ -1236,7 +1236,7 @@ label date2:
         j"No no no!!"
         $JohnSprite("mad")
         extend" Lisa's."
-        "I'll be in huge trouble if she shows {i}my{/i} files...!"
+        "I can't let Lisa see {i}my{/i} files...!"
         i"Sure thing, but we have to connect to the internet first."
         j"Hmph. Don't do anything suspicious."
         # $ILY_p='1'
@@ -1276,27 +1276,28 @@ label date2:
         j"With this, do you propose to stop further attacks to Hilbert and SDS?"
         i"Now that you're convinced that we have the files safe with me..."
         $ILY_m = 'smile3'
-        extend"Allow me to explain."
+        extend" Allow me to explain."
         scene JD_Bed3 with dissolve
         $ ILY_m="frown"
         i"Right now, if we reconnect Hilbert's computer to the internet, as well as the other members of SDS..."
         $ILY_m = 'smile'
-        i"I will be able to recover their data and give back their computers' lives."
+        i"I will be able to recover their data and get their computers working again."
         j"We'll have to tell them to fix their hardware up and try connecting, now don't we?"
         l"I'll call Hilbert now!"
         scene black with dissolve
         stop music fadeout 1
         "Lisa walks next to the window to make a call."
         "Hilbert Salcedo."
-        extend" The next leader of SDS, our classmate, and the man who lives right next to our server."
+        extend" The next leader of SDS, our classmate, and the man who lives right next to our servers."
         "If anyone had the ability to mess up the whole SDS company, It'd be anyone that has access to Hilbert's data."
         "It totally makes sense how he's the one being hacked right now."
         "Lisa had now prompted Hilbert to reconnect their computers..."
         scene JD_Space2 with dissolve
         play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg" fadein 1 loop
-        $ILY_m = 'frown'
+        $ ILY_m = 'frown'
         i"I've received traces of data left from the attacking virus."
         i"This virus has destroyed a total of 7 websites and servers from SDS now."
+        $ John_m = 'frown'
         j"Do you have data on what virus it is?"
         i"Based on the way it moves, I'd say it's a worm."
         i"You should see the website you guys made with Hilbert."
@@ -1352,8 +1353,10 @@ label date2:
         $ILY_m = 'smile3'
         $ILY_e = 'normal'
         i"Gotcha. As soon as they reconnect, they should be able to run their computers fine."
+        call whiteflash
+        pause 0.5
         i"I've turned off the switch that disables any inputs from the user."
-        j"So that's all it was all this time?"
+        j"That's it?"
         $ILY_m = 'smile'
         $ILY_e = 'up'
         i"Yep."
@@ -1411,12 +1414,15 @@ label date2:
         $Lisa_m = 'smile'
         $Lisa_e = 'normal'
         l"Yeah, I guess I am lucky!"
-        "Alright. I guess I can count Hilbert's problem as solved now.."
-        "It's finally time to work on the assignment now, right?"
-        j"So, now that SDS and Hilbert's problems have been dealt with for now, can we finally work on our assignment?"
-
-        l"Sure, John! The side quests are over."
-        j"Alright then."
+        "..."
+        "Alright. Nothing to do about that other than wait."
+        "How convenient. An AI Antivirus is just within reach because of her father..."
+        j "There's some hope for us, it looks like."
+        j "Since we can only wait for that anti-virus to arrive, can we finally work on our assignment?"
+        $ Lisa_eyes="closeup" 
+        l "Sure, John! The side quest seems to be over."
+        $ Lisa_eyes="open" 
+        j "Alright then."
         $Lisa_w = True
         scene JD_Space1 with dissolve
         "This is the main event. We can finally get something done now!"
@@ -1683,12 +1689,29 @@ label date2:
         i"You're gonna have to come with me!"
         j"O-kay.."
         i"So let me give you a tutorial."
-        j"I get it. Arrow keys for movement, 'Z' for action, probably triggers stuff like, talking to NPCs and getting items, right?"
+        $ ILY_m = 'frown'
+        $ ILY_e = 'down'
+        menu:
+            i"Are you listening?"
+            "Yes.":
+                $ ILY_m = 'smile3'
+
+                i"Good."
+            "I am.":
+                $ ILY_m = 'smile3'
+                i"You better listen."
+        $ ILY_e = 'normal'
+        i "On your Keyboard, Use the Arrow keys to direct my movement."
+        i "Press Z to interact with entities in the GRID."
+        i "Press S to access the menu."
+        i "Press X to talk to me!"
+        
+        
+        j"Alright, I get it."
         $ ILY_m = 'O'
-        i"How did you know?!"
-        j"Humans are an intelligent species."
+        i "Nice!"
         $ ILY_m = 'smile3'
-        i"Well, in addition to that, You can talk to me anytime by pressing 'X'."
+        
         j"Okay."
         
         j"There's one thing I am curious about since this crossroad area resembles the one we have IRL."

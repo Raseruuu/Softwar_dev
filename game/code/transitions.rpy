@@ -148,7 +148,12 @@ transform dance: #Dancing, flipping left and right
 
 
 
-
+label whiteflash:
+    show white :
+        alpha 1.0
+        ease 0.5 alpha 0.0
+    return
+        # Solid
 transform boing: #here I am
     yanchor 0.0
     ypos 1.0
@@ -224,6 +229,29 @@ transform tremors_side:
     xoffset -2
     pause 0.1
     repeat
+transform reddening:
+    parallel:
+        yoffset 1
+        pause 0.02
+        yoffset -1
+        pause 0.02
+        repeat
+    parallel:
+
+        matrixcolor IdentityMatrix()
+        pause renpy.random.choice([1.0,2.0])
+        matrixcolor TintMatrix('#f00') 
+        pause 0.02
+        matrixcolor IdentityMatrix()
+        pause 0.02
+        matrixcolor TintMatrix('#f00') 
+        pause 0.06
+        matrixcolor IdentityMatrix()
+        pause 0.02
+
+
+    
+        repeat
 transform reddening:
     parallel:
         yoffset 1
