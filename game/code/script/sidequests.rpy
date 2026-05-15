@@ -10,21 +10,21 @@ label milk_adventure:
     show battleroad:
         yalign 1.0 xalign 0.5
     show ILY
-    i"According to Melissa, this item can boost my stats."
-    i"How considerate of her!!"
-    i"I might be able to face some antivirus that decides to chase me if I could get even stronger!"
-    i"Time to open it!"
+    i "According to Melissa, this item can boost my stats."
+    i "How considerate of her!!"
+    i "I might be able to face some antivirus that decides to chase me if I could get even stronger!"
+    i "Time to open it!"
     $ILY_e="up"
-    i"... It's a drink?"
-    i"I use Energy cans often, but this one looks a bit different."
-    i"It looks like milk?"
+    i "... It's a drink?"
+    i "I use Energy cans often, but this one looks a bit different."
+    i "It looks like milk?"
     "ILY gulps the drink down and quickly finishes every drop of it."
     
     $ILY_e="up2"
-    i"u...uguu.."
+    i "u...uguu.."
     
     $ILY_m="frown"
-    i"I'm feeling a bit strange."
+    i "I'm feeling a bit strange."
     scene black with dissolve
     pause
     scene battlebg
@@ -32,8 +32,8 @@ label milk_adventure:
     show battleroad:
         yalign 1.0 xalign 0.5
     
-    i"Huh? Where am I?"
-    i"What's going on... My chest feels.. heavy."
+    i "Huh? Where am I?"
+    i "What's going on... My chest feels.. heavy."
     $ILY_e="up2"
     $ILY_m="O"
     $ EquipDress("outfit","UniformBig")
@@ -82,8 +82,16 @@ label milk_adventure:
     i"Coworker... cow.. orker.."
     i"!!!"
     sv"Great! Looks like you can get started already."
-    ""
-    ""
+    i "(What is this... some kind of contraption...)"
+    sv "These go here!"
+    i "Ah, not so fast, ,mmhh..."
+    i "(My breasts are exposed, now the contraption... Is attached now... How did I let this happen?)"
+    i "(Ahhh... It's made to milk my breasts... )"
+    sv "Looks like you need a little squeeze.."
+    i "O-okay, I'll just... Ah... it's coming out!"
+    i "(Ohhh, I'm being milked...)"
+    i "(It kinda... feels good...)"
+    
     ""
     return
 
