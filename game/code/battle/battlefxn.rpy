@@ -586,8 +586,9 @@ label GainTokenPlayer:
     label tokenquant_loop2:
         play sound "sfx/tokengain.mp3"
         $ PlayerSts=statusAppend(PlayerSts,token_name)
-        show text "{size=20}[token_name]{/size}":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
+        show text "{size=20}"+token_name+"{/size}" onlayer overlay:
+            
+            zoom 1.3 xpos 0.1 xanchor 0.5 yanchor 1.0 ypos 0.20 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -611,8 +612,8 @@ label GainTokenEnemy:
     label tokenquant_loop3:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
-        show text "{size=20}[token_name]{/size}":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
+        show text "{size=20}"+token_name+"{/size}" onlayer overlay:
+            zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -636,8 +637,8 @@ label EvadeEnemy:
     label tokenquant_loop4:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
-        show text "{size=20}[token_name]{/size}":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        show text "{size=20}"+token_name+"{/size}" onlayer overlay:
+            zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
