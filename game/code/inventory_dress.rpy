@@ -12,18 +12,22 @@ init python:
     CowGirl = Item_dress("CowGirl","Outfit","Something strange happened to ILY's breasts...")
     BikiniArmor = Item_dress("BikiniArmor","Outfit","The charming and beautiful knightess charges on!")
     SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spirit warriors that maintain order!")
-    BlackBelts = Item_dress("BlackBelts","Outfit","Cool fellows wear black!")
+    BlackBelts = Item_dress("BlackBelts","Outfit","Good guys still wear black!")
+    CasualRed = Item_dress("CasualRed","Outfit","Casual outfit ")
+    DarkQueen = Item_dress("DarkQueen","Outfit","Cool fellows wear black!")
+    MaidUniform = Item_dress("MaidUniform","Outfit","Cool fellows wear black!")
     
-    
+
     ArmorBikini = Item_dress("ArmorBikini","Underwear","The charming and beautiful knightess charges on!")
     Red_underwear=Item_dress("Red","Underwear","ILY's Default underwear.")
     Red2_underwear=Item_dress("Red2","Underwear","ILY's Default underwear.")
     White_underwear = Item_dress("White","Underwear","Classic underwear.")
     Red_underwear=Item_dress("Red","Underwear","Default.")
-    Sports_underwear=Item_dress("Sports","Underwear","Humans wear fitted clothes to ")
+    Sports_underwear=Item_dress("Sports","Underwear","Humans wear fitted clothes to move easily when doing physical activities!")
     Straps_underwear=Item_dress("Straps","Underwear","This one keeps things together quite nicely.")
-
+    Coworker_underwear=Item_dress("Coworker","Underwear","This is a special cow-print bikini I got from that one farm job I had.")
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! I can wear this leotard under my clothes. This one is a gift from Melissa.")
+    Mummy_underwear=Item_dress("mummy","Underwear","Mummies can revive after many years according to legend... Revive what?")
     
 
 
@@ -34,12 +38,18 @@ init python:
         PinkDress,
         Red_underwear,
         White_underwear,
+        Sports_underwear,
+        Straps_underwear,
+        Coworker_underwear,
 
-        # UniformBig,
-        # CowGirl,
-        # BikiniArmor,
-        # ArmorBikini,
-        # BlackBelts
+
+
+
+        UniformBig,
+        CowGirl,
+        BikiniArmor,
+        ArmorBikini,
+        BlackBelts,CasualRed,DarkQueen
         ]
     
     def EquipDress(dresstype,dressname):
@@ -54,6 +64,8 @@ init python:
                 globals()["ILY_underwear"]=""
             if dressname.lower()=="bikiniarmor":
                 globals()["ILY_underwear"]="ArmorBikini"
+            if dressname.lower()=="bladearmor":
+                globals()["ILY_underwear"]=""
             globals()["ILY_outfit"]=dressname.lower()
 
         elif dresstype.lower()=="underwear":

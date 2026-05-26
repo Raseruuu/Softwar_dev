@@ -614,7 +614,7 @@ label randomencounter:
     $ randomenemy = renpy.random.randint(0,100)
     $ safezone=(Where in safezones)
     # $safezone=True #for debugging
-    $ enemy_encounter = ((randomenemy >99) and (not safezone)) and (Here=="0")
+    $ enemy_encounter = ((randomenemy >95) and (not safezone)) and (Here=="0")
     if enemy_encounter == True:
         $ enemyvirus = renpy.random.choice([Keylogger,Ransomware,Rootkit,Worm,Spyware])
         # $ enemyvirus = renpy.random.choice([Vira])

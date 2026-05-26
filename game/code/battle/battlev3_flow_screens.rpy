@@ -124,8 +124,10 @@ screen VERSUS(playerName,enemyName):
 
 transform battlecode_trans(focused=False):
     xoffset 12
-    linear 0.2 xpos (0.49 if focused else 0.0) xanchor (0.5 if focused else 0.0) zoom (1.4 if focused else 1.0)
-
+    linear 0.2 xpos (0.49 if focused else 0.0)  xanchor (0.5 if focused else 0.0) zoom (1.4 if focused else 1.0) 
+# transform battlecode_ypos(focused=False):
+   
+    
     
 screen battlestats():
     
@@ -172,6 +174,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
+        at zoomtrans(0.75)
         # at alpha08
         # at xrotate
         vbox:
@@ -277,6 +280,7 @@ screen battlestats():
     frame:
         style_prefix "statsb"
         xpos 0.99 xanchor 1.0 yalign 0.01 xsize 380
+        at zoomtrans(0.75)
         # at alpha08
         vbox:
             hbox:
@@ -406,8 +410,9 @@ screen battlestats():
         # xpos 0.01 xanchor 0.0 ypos 0.60 yanchor 0.5
         # xpos 0.5 xanchor 0.5 ypos 0.60 yanchor 0.5
         # at alpha08
-        ypos 0.60 yanchor 0.5
-        at battlecode_trans(focused=battlecodestatus)
+        yanchor 0.5
+        ypos (0.55)
+        at battlecode_trans(focused=battlecodestatus), zoomtrans(0.75)
         
         vbox:
             vbox:

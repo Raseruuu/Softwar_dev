@@ -294,7 +294,7 @@ label script1_2_dialog1:
     j "(Melissa knows quite a lot... It's an odd feeling to hear all that from a Virus we just met.)"
     i "(John, I realized, that Melissa is taking a huge risk by helping us today.)"
     j "(You think?)"
-    i "(I don't know if she realized it, since she is a stray virus... but Viruses can be under command of humans now.)"
+    i "(I don't know if she realized it, since she is a stray virus... but Viruses can be under command of humans too.)"
     i "(If we decided, we can just send an antivirus to hunt them down anytime.)"
     i "(Melissa has set aside that risk just to help us.)"
     "I'm impressed that ILY can think this far into a trust issue."
@@ -360,7 +360,7 @@ label Melissascript2:
         j "Are we able to get that much over night?"
         i "Yeah, it should be easy enough, if I could just roam and bust some viruses!"
         j "Hurry up, then."
-        
+        jump needmorezenny
 
         return
 
@@ -388,7 +388,7 @@ label payMelissa:
                 jump paidMelissa2
 
         "Wait a minute!":
-
+            label needmorezenny:
             j"We need more Zenny."
             i"Stray viruses drop Zenny all the time when I beat them in Softwars."
             j"Right..."

@@ -269,9 +269,9 @@ label MapTalk:
         elif gameprogress==1:
             if maptalks==1:
                 if infobroker_Melissa:
-                    i"We gotta pay Melissa 3000 Zenny, John!"
+                    i"We gotta pay Melissa 1000 Zenny, John!"
                     j"Ah, right, If we don't get her that much, we'll never know how to pass through that Gate."
-                    j"How do we earn 3000 Zenny?"
+                    j"How do we earn 1000 Zenny?"
                     i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
                 else:
                     j "Do you think Melissa can tell us how to pass through the gate without fighting Bitwulf?"
