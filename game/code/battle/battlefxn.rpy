@@ -365,7 +365,7 @@ label Burnenemy:
     # $ EnmySts.append("Burn")
     $ EnmySts=statusAppend(EnmySts,"Burn")
     show Brnsts:
-        zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     call updatestats_enemy
@@ -513,7 +513,7 @@ label Burnself:
     # $ PlayerSts.append("Burn")
     $ PlayerSts=statusAppend(PlayerSts,"Burn")
     show Brnsts onlayer overlay:
-        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     # $ renpy.pause(0.6,hard=True)
@@ -586,8 +586,8 @@ label GainTokenPlayer:
     label tokenquant_loop2:
         play sound "sfx/tokengain.mp3"
         $ PlayerSts=statusAppend(PlayerSts,token_name)
-        show text "[token_name]":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        show text "{size=20}[token_name]{/size}":
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -612,7 +612,7 @@ label GainTokenEnemy:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}[token_name]{/size}":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.35 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
