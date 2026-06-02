@@ -11,7 +11,8 @@ init python:
             #FIFO First in, First out.
         stslist.append(statusstring)
         return stslist
-    
+default enemyHP_stay =enemyHP
+default playerHP_stay =playerHP
 image bit:
     "gui/Bit.png"
     zoom 4.0
@@ -170,6 +171,8 @@ label Damageenemy:
         call battlemessage("EVADED")
     # NO EVADE    
     else:
+        $ enemy_being_damaged=True
+        $ enemyHP_stay = enemyHP
         call card_type_sfx
         call hurtnoise_enemy
         python:
@@ -183,9 +186,10 @@ label Damageenemy:
 
             if enemyHP <=0:
                 enemyHP = 0
+                
                 battle_done=True
             dmgdist = ((currentcard.MAG*100)/20)
-            dmgdist = int(dmgdist*2)
+            dmgdist = int(dmgdist*2.5)
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
@@ -202,7 +206,7 @@ label Damageenemy:
             xoffset 0 yoffset 0
             linear 0.05 zoom 1.0
 
-        #   $ renpy.pause(0.6,hard=True)
+        $ renpy.pause(0.6,hard=True)
         if "Drill" in currentcardTYPE or "LambdaSaber" in currentcard.NAME :
             $ renpy.pause(0.2,hard=True)
         elif "MailSword" in currentcardTYPE or "RecursiveSlash" in currentcard.NAME:
@@ -215,7 +219,9 @@ label Damageenemy:
         show Enemy:
             alpha 1.0
             xalign 0.5 yanchor 0.32 ypos 0.3
+            
         hide damageeffect
+        $ enemy_being_damaged=False
         if block_functions_ATK !=[]:
             $ block_count = 0
             label block_loopatk:
@@ -225,7 +231,8 @@ label Damageenemy:
                 $ block_count+=1
                 if block_count<len(block_functions_ATK):
                     jump block_loopatk
-        
+    
+    
     return
 label DamageSPplayer:
     # EVADE
@@ -589,6 +596,7 @@ label GainTokenPlayer:
         show text "{size=20}"+token_name+"{/size}" onlayer overlay:
             
             zoom 1.3 xpos 0.1 xanchor 0.5 yanchor 1.0 ypos 0.20 alpha 1.0
+            pause 0.2
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -613,7 +621,7 @@ label GainTokenEnemy:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}"+token_name+"{/size}" onlayer overlay:
-            zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
+            zoom 1.3 xpos 0.9 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -638,7 +646,7 @@ label EvadeEnemy:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
         show text "{size=20}"+token_name+"{/size}" onlayer overlay:
-            zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
+            zoom 1.3 xpos 0.9 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
             linear 0.1 zoom 0.98
             linear 0.2 zoom 1.0 alpha 0.0
         $ renpy.pause(0.6,hard=True)
@@ -1176,7 +1184,11 @@ label card_type_sfx:
     else:
         play sound "sfx/sfx_exp_short_hard8.wav" 
     return
+default player_being_damaged=False
+default enemy_being_damaged=False
+
 label Damageplayer:
+    
     # if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or (len(currentcardFXN[fxnindex].params)>=5):
     if currentcardFXN[fxnindex].name=="While" or currentcardFXN[fxnindex].name=="If" or currentcardFXN[fxnindex].name=="For" or currentcardFXN[fxnindex].name=="ForInRange" or (len(currentcardFXN[fxnindex].params)>5):
         $ block_functions_ATK=[]
@@ -1233,7 +1245,8 @@ label Damageplayer:
         call battlemessage("EVADED")
         $ renpy.pause(0.1,hard=True)
     else:
-    
+        $ player_being_damaged = True
+        $ playerHP_stay= playerHP
         call card_type_sfx
         hide damagetheplayer
         show damageeffect as damagetheplayer:
@@ -1265,6 +1278,7 @@ label Damageplayer:
         show screen battlestats
             
         $ attackhit=True
+        $ player_being_damaged = False
         if block_functions_ATK !=[]:
             $ block_count = 0
             label block_loopatkofenemy:
@@ -1274,6 +1288,7 @@ label Damageplayer:
                 $ block_count+=1
                 if block_count<len(block_functions_ATK):
                     jump block_loopatkofenemy
+    
     hide screen battlestats
     show screen battlestats
     return
@@ -1865,7 +1880,7 @@ init python:
     }
 label functioneffects(runfxnstring,params=[]):
     $ renpy.call(FxnDirectoryPlayer[runfxnstring])
-    pause 0.1
+    pause 0.4
     return
 init python:
     FxnDirectoryEnemy={
@@ -1899,5 +1914,5 @@ init python:
     }
 label enemyfunctioneffects(runfxnstring):
     $ renpy.call(FxnDirectoryEnemy[runfxnstring])
-    pause 0.1
+    pause 0.4
     return

@@ -126,7 +126,11 @@ transform battlecode_trans(focused=False):
     xoffset 12
     linear 0.2 xpos (0.49 if focused else 0.0)  xanchor (0.5 if focused else 0.0) zoom (1.4 if focused else 1.0) 
 # transform battlecode_ypos(focused=False):
-   
+transform xsize_gradual_decrease_after_damage(stat_stay,stat_max,stat_value):
+    
+    xsize bar_size(stat_stay,stat_max,235)
+    pause 0.15
+    linear 0.25 xsize bar_size(stat_value,stat_max,235)
     
     
 screen battlestats():
@@ -187,27 +191,33 @@ screen battlestats():
                     text "{b}{size=24}[playerName]{/b}{/size}"
                     vbox:
                         fixed:
-                            ysize 24
+                            ysize 28
                             frame:
                                     style_prefix "healthbar_bg"
                                     xsize 235
-                                    ysize 24
+                                    ysize 28
+                            if player_being_damaged:
+                                frame:
+                                    yalign 0.5
+                                    style_prefix "healthbar_mid"
+                                    ysize 22
+                                    at xsize_gradual_decrease_after_damage(playerHP_stay,playerHPMax,playerHP)
                             frame:
                                 yalign 0.5
                                 style_prefix "healthbar"
                                 xsize bar_size(playerHP,playerHPMax,235)
                                 ysize 22
                             hbox:
-                                yalign 0.5 xalign 0.05
+                                yalign 0.5 xalign 0.01
                                 add "gui/HP_Heart.png" yalign 0.5 
                                 text "{b}[playerHP]/[playerHPMax]{/b}" style "HPbaroutlines" yalign 0.5 xpos 0.05
                         null height 10
                         fixed:
-                            ysize 24
+                            ysize 28
                             frame:
                                 style_prefix "healthbar2_bg"
                                 xsize 235
-                                ysize 24
+                                ysize 28
                             frame:
                                 yalign 0.5
                                 style_prefix "healthbar2"
@@ -215,7 +225,7 @@ screen battlestats():
                                 ysize 22
                             
                             hbox:
-                                yalign 0.5 xalign 0.05
+                                yalign 0.5 xalign 0.01
                                 add "gui/SP_Shield.png" yalign 0.5 
                                 text "{b}[playerSP]/[playerSPMax]{/b}" style "SPbaroutlines" yalign 0.5 xpos 0.05
                                 
@@ -298,41 +308,49 @@ screen battlestats():
                     text ("{b}{size=24}" + ("ILY" if (enemyName =="ILY_Alpha") else enemyName )+"{/b}{/size}") xalign 1.0
                     vbox:
                         fixed:
-                            ysize 24
+                            ysize 28
                             frame:
                                 
                                 style_prefix "healthbar_bg"
                                 xsize 235
                                 xalign 1.0 
-                                ysize 24
+                                ysize 28
+                            if enemy_being_damaged:
+                                frame:
+                                    yalign 0.5
+                                    xalign 1.0
+                                    style_prefix "healthbar_mid"
+                                    # xsize bar_size(enemyHP_stay,enemyHPMax,235)
+                                    ysize 22
+                                    at xsize_gradual_decrease_after_damage(enemyHP_stay,enemyHPMax,enemyHP)
                             frame:
                                 yalign 0.5
                                 xalign 1.0
                                 style_prefix "healthbar"
-                                
                                 xsize bar_size(enemyHP,enemyHPMax,235)
                                 ysize 22
                             
                             hbox:
-                                yalign 0.5 xalign 0.95
+                                yalign 0.5 xalign 0.99
                                 text "{b}[enemyHP]/[enemyHPMax]{/b}" style "HPbaroutlines" yalign 0.5 
                                 add "gui/HP_Heart.png" yalign 0.5 
                         null height 10
                         fixed:
-                            ysize 24
+                            ysize 28
                             frame:
                                 xalign 1.0
                                 style_prefix "healthbar2_bg"
                                 xsize 235
-                                ysize 24
+                                ysize 28
                             frame:
                                 yalign 0.5
                                 xalign 1.0
                                 style_prefix "healthbar2"
                                 xsize bar_size(enemySP,enemySPMax,235)
                                 ysize 22
+
                             hbox:
-                                yalign 0.5 xalign 0.95
+                                yalign 0.5 xalign 0.99
                                 text "{b}[enemySP]/[enemySPMax]{/b}" style "SPbaroutlines" yalign 0.5 xalign 0.95
                                 add "gui/SP_Shield.png" yalign 0.5 
                         null height 10
@@ -459,6 +477,14 @@ style stats_frame:
     top_padding 14
 style healthbar_frame is gui_frame:
     background Frame("gui/bar.png", 4, 4, tile=gui.frame_tile)
+    ysize 25
+
+    right_padding 0
+    left_padding 0
+    bottom_padding 0
+    top_padding 0
+style healthbar_mid_frame is gui_frame:
+    background Frame("gui/bar_mid.png", 4, 4, tile=gui.frame_tile)
     ysize 25
 
     right_padding 0
