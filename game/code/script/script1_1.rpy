@@ -485,25 +485,23 @@ label script1:
                 play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
 
                 $ ILYSprite("o")
-                i "That's true."
+                i "That's true. {nw}"
 
                 $ ILYSprite("smile")
                 extend" I'm not sure, myself! "
-                i"Maybe the system is meant to keep the bad viruses from causing too much trouble!"
+                i "Maybe the system is meant to keep the bad viruses from causing too much trouble!"
 
-                j"You speak as if viruses can be any good."
-                i"I'm a good virus!"
+                j "You speak as if viruses can be any good."
+                i "I'm a good virus!"
                 "Hmph. Viruses are pure evil."
 
                 $ ILYSprite("frown")
                 j "Not convinced."
 
-                $ ILYSprite("smile")
-                i "Personally, I think the Softwar system was made for a new generation of fun! Perhaps it was made for the Future AIs to gain a spotlight or two."
-                j "But we're talking about people who break rules all the time. Who's to say that hackers won't find a flaw in the Softwar system?"
+                j "Say, what if some hackers bypass the Softwar system?"
 
                 $ ILYSprite("smile3")
-                i "They might try, but we don't know if they'll succeed. The GRID is running on a deeper level than the regular interfaces."
+                i "They might try, but success is slim. The GRID is running on a deeper level than the regular interfaces."
 
                 j "Really..."
                 i "The GRID, FAIs, and the Softwar system were also built without the knowledge or permission of the government, so it's best not to tell others for now."
@@ -1099,7 +1097,7 @@ label date2:
         voice "voice/ILY22 - Giggle.mp3"
         extend " *giggles*"
         $ Lisa_m = 'smile'
-        l"It's like they're meant for each other."
+        # l"It's like they're meant for each other."
         show USBkun:
             linear 0.7 xalign 0.7
             pause .3
@@ -1133,14 +1131,15 @@ label date2:
         j"Okay.."
         l"I just find that this battle system is interesting!"
         j"But... the stakes.."
-        i"You should be more cheery now that I solved the problem."
+        $ILY_m="smile3"
+        i"I solved the problem! The files should be accessible now."
         j"Hmph.. You Viruses are troublesome creatures."
         $ JohnSprite('normal')
         j"I'm just glad our files are okay, Lisa."
         l"Let's work on it now!"
         "Alright, "
         extend"finally something more important is happening here,"
-        extend"not about Lisa and me..."
+        extend" not about Lisa and me..."
         play sound "sfx/Damage.wav"
         extend "\nI can finally get back to work!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         extend"\nOr so I thought."
@@ -1203,7 +1202,9 @@ label date2:
         $ILY_e='down'
         play music "bgm/ost/ILY's_Theme_game_by_Jan_Hehr.mp3"
         i"\"Just who the hell do you think I am?\""
-        l"That's an unusual line.."
+        $ Lisa_m="open"
+        $ Lisa_eyes="raised"
+        l"Wha..?"
         j"Did you look into my anime collection?"
         i"FAIs are really quick, so yes."
         # $ILY_p='1'

@@ -142,13 +142,13 @@ screen battlestats():
     frame:
         yalign 0.01
         xalign 0.5
-        xsize 520
-        ysize 80
+        xsize 710
+        ysize 72
         
         vbox:
             
             xalign 0.5
-            text "{font=font/lucon.ttf}{size=18}{b}VS{/font}{/size}{/b}" xalign 0.5
+            text "{font=font/lucon.ttf}{size=14}{b}VS{/font}{/size}{/b}" xalign 0.5
             
             frame:
                 style_prefix "bit"
@@ -158,7 +158,7 @@ screen battlestats():
                     xalign 0.5 
                     hbox:
                         xalign 0.5 
-                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
+                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.5)
                         null width 2
                         add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4),flip_image
                         null width 1
@@ -169,15 +169,15 @@ screen battlestats():
                         null width 1
                         add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
                         null width 2
-                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.6)
-                    text "{font=font/lucon.ttf}{size=14}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
+                        add "gui/distperson.png" yalign 0.5 at zoomtrans(0.5)
+                    text "{font=font/lucon.ttf}{size=12}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
                     # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
                 # textbutton "{font=font/lucon.ttf}{size=18}{b}Battle Log{/font}{/size}{/b}" xalign 0.98 action SetVariable("log_shown",not log_shown)
             
             
     frame:
         style_prefix "statsb"
-        xpos 0.01 xanchor 0.0 yalign 0.01 xsize 380
+        xpos 0.01 xanchor 0.0 yalign 0.01 xsize 420
         at zoomtrans(0.75)
         # at alpha08
         # at xrotate

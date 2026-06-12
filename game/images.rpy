@@ -93,6 +93,18 @@ image JD_Space3:
 image JD_Space3_night:
     "images/BGs/John's Room/Space3_night.jpg"
     zoom 0.7
+image classroom:
+    "images/BGs/College/classroom.png"
+    zoom 0.7
+image classroom_p:
+    "images/BGs/College/classroom_p.png"
+    zoom 0.7
+
+image classroom_l:
+    "images/BGs/College/classroom_l.png"
+    zoom 0.7
+
+
 image redwebsite:
     "images/computer/Webpage.png"
 image blackwindow:
@@ -122,7 +134,7 @@ image white_noise:
         pause 0.1
         repeat
 image cardpreviewcust:
-    LiveComposite(
+    Composite(
         (225,300),
         (0,0),"images/Cards/CARDblank.png",
         (11,14),"images/Cards/Datadrill.png",

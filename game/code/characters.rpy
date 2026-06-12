@@ -37,10 +37,11 @@ define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc"
 define j = Character("John", color = '#0b99f4', image = "John_side", callback = speaker("John"), ctc="ctc", ctc_position="fixed")
 define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", callback=speaker("Hilbert"), ctc="ctc", ctc_position="fixed")
 define l = Character("Lisa",color = '#992e2c', image = "Lisa_side", callback=speaker("Lisa"), ctc="ctc", ctc_position="fixed")
-define al = Character("Alicia",color = '#992e2c', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
+define al = Character("Alicia",color = '#3e78a6', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
 define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callback=speaker("Lucida"), ctc="ctc", ctc_position="fixed")
 define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
 
+#LunarLux
 define be = Character("Bella",callback=speaker("Bella"), color='#ff6992', image = "Bella_side", ctc="ctc", ctc_position="fixed")
 define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image = "Tetra_side", ctc="ctc", ctc_position="fixed")
 
@@ -160,6 +161,11 @@ init -1 python:
     globals()["Stoned_eyes"] = "open"
     globals()["Stoned_m"] = "happy"
     globals()["Stoned_w"] = True
+
+    globals()["Alicia_e"] = "normal"
+    globals()["Alicia_eyes"] = "open"
+    globals()["Alicia_m"] = "smile"
+    globals()["Alicia_w"] = True
 
     globals()["Bella_e"] = "normal"
     globals()["Bella_eyes"] = "open"
@@ -2608,6 +2614,181 @@ image side Bella_side:
     ConditionSwitch(
         "Bella_w==True",Crop((230,60, 440,565), (At("BellaFullBody", zoomtrans(0.9)))),
         "Bella_w==False","Null_side"
+    )
+    zoom 0.38
+
+#######
+
+
+image AliciaEyes:
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_open.png"
+        pause 1.0
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_open.png"
+        pause 5.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_open.png"
+        pause 4.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_open.png"
+        pause 1.5
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_open.png"
+        pause 1.5
+    repeat
+
+image Alicia_eyes_open:
+    "images/Characters/Alicia/Alicia_eyes_[Alicia_eyes].png"
+    pause 1.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_[Alicia_eyes].png"
+        pause 2.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_[Alicia_eyes].png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Alicia/Alicia_eyes_[Alicia_eyes].png"
+        pause 0.1
+
+        repeat 2
+    repeat
+image Alicia_eyes_midclose:
+    "images/Characters/Alicia/Alicia_eyes_midclose.png"
+    pause 1.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 2.0
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Alicia/Alicia_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Alicia/Alicia_eyes_midclose.png"
+        pause 0.15
+
+        repeat 2
+    repeat
+
+image AliciaMouthsmile:
+    "images/Characters/Alicia/Alicia_mmidopen.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_msmileopen.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mmidopen.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_msmile.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_mO2.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mO.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_mO4.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_msmile.png"
+    pause .08
+    repeat
+
+
+image AliciaMouthfrown:
+    "images/Characters/Alicia/Alicia_mO2.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mO.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_mO4.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mfrown.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mO2.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mO3.png"
+    pause .1
+    "images/Characters/Alicia/Alicia_mO2.png"
+    pause .08
+    "images/Characters/Alicia/Alicia_mfrown.png"
+    pause .1
+    repeat
+layeredimage AliciaFullBody:
+    always:
+        At("images/Characters/Alicia/Alicia_base.png",spritefix(0.5)) #pose
+    always:
+        ConditionSwitch(
+            "Alicia_eyes=='open'",
+            At("AliciaEyes",spritefix(0.5)),
+            "Alicia_eyes!='open'",
+            At("images/Characters/Alicia/Alicia_eyes_[Alicia_eyes].png",spritefix(0.5)),
+            )
+    always:
+        At("images/Characters/Alicia/Alicia_e[Alicia_e].png",spritefix(0.5))
+
+    always:
+        At(WhileSpeaking(
+            "Alicia",
+            ConditionSwitch(
+                "('smile' in Alicia_m)","AliciaMouthsmile",
+                "('smile' not in Alicia_m)","AliciaMouthfrown"
+                ),
+            "images/Characters/Alicia/Alicia_m[Alicia_m].png"
+            ),spritefix(0.5))
+
+    always:
+        At("images/Characters/Alicia/Alicia_glasses.png",spritefix(0.5))
+# image Alicia:
+image Alicia:
+    mesh True
+
+    "AliciaFullBody"
+    zoom 1.0
+    yanchor 0.40
+    ypos 1.0
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset 5
+    repeat
+image side Alicia_side:
+
+    ConditionSwitch(
+        "Alicia_w==True",Crop((260,140, 440,565), (At("AliciaFullBody", zoomtrans(1.4)))),
+        "Alicia_w==False","Null_side"
     )
     zoom 0.38
 

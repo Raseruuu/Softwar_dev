@@ -128,7 +128,7 @@ label script1_2_dialog1:
     "ILY pauses in the middle of traveling to the gate."
     show Bitwulf 
     i "Is that a dog?"
-    j "A very futuristic-looking guard dog, it would seem... "
+    j "A mecha guard dog.. "
     i "So it is a dog! I wanna pet it!"
     "That's quite the human response, coming from you. Impressive."
     #Approaching Bitwulf Antivirus
@@ -340,12 +340,18 @@ label Melissascript2:
     m "There is. Actually, They have a special maintenance period."
     m "Though, It's usually on weekends."
     "!!"
+    $ ILY_m="frown"
+    $ ILY_eyes="mclosed"
     i "The next weekend is far from now..."
     m "Actually, Would you like to know a little secret?"
+    $ ILY_eyes=""
+    $ ILY_m="O"
     i "A secret! What is it?"
     m "I'd tell you, But I'm actually an info-broker of sorts, I've already spilt a bunch of beans on you..."
     i "(What does that mean, John?)"
     j "(It means she is selling that info for buck. Information really is valuable after all. Especially in this world...)"
+    $ ILY_eyes=""
+    $ ILY_e="down"
     i "Then... how much is it?"
     m "I'll sell it to you for 1000 Zenny."
     j "Do we... have that much?"
@@ -358,8 +364,6 @@ label Melissascript2:
     else:
         i "We can't afford it..."
         j "Are we able to get that much over night?"
-        i "Yeah, it should be easy enough, if I could just roam and bust some viruses!"
-        j "Hurry up, then."
         jump needmorezenny
 
         return
@@ -388,8 +392,9 @@ label payMelissa:
                 jump paidMelissa2
 
         "Wait a minute!":
-            label needmorezenny:
             j"We need more Zenny."
+            label needmorezenny:
+            
             i"Stray viruses drop Zenny all the time when I beat them in Softwars."
             j"Right..."
             $ gridpos = [192,164]
