@@ -704,7 +704,7 @@ label duel_log_append(category,card_used_object, card_user,user_object,function_
     return
 screen duel_log_screen():
     frame:
-        xalign 0.01 yalign 0.97
+        xalign 0.99 yalign 0.97
         style_prefix "statsb"
         xsize 260 ysize 340
         vbox:
@@ -1081,17 +1081,19 @@ label BattleReturns:
     return
 
 screen Execute:
-    
+    $ config.rollback_enabled = True
     on "show":
         action Function(renpy.set_focus,"Execute", "Executebutton")
         
     imagebutton idle "gui/Execute.png" hover "gui/Execute_hover.png" action  Play("sound","sound/Execute.wav"), Return("Execute") xalign 0.5 yalign 0.95:
         id "Executebutton"
-    key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+    key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Rollback()
     key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     key 'K_RETURN' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     key 'K_KP_ENTER' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
-    imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
+    imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.71 xanchor 0.5 yalign 0.56
+        
+    # imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Rollback() hovered Play("sound","sfx/select.wav") 
     # key 'z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     # key 'Z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
 screen phasemsg(Message):
@@ -1157,6 +1159,10 @@ screen choosecardv2:
         $ config.rollback_enabled = True
     else:
         $ config.rollback_enabled = False
+    if playerbattlecode!=[]:
+        imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.71 xanchor 0.5 yalign 0.56
+        key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+        key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
         
     hbox:
         # xalign 0.5 yalign 0.92
@@ -1200,12 +1206,7 @@ screen choosecardv2:
                 # add "images/Cards/CARDblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
         
 
-    if playerbattlecode!=[]:
-        imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback() hovered Show("card6hover"), Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.86 xanchor 0.5 yalign 0.945
-        key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
-        key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
-    else:
-        add "images/Cards/CARDblank2.png" xpos 0.86 xanchor 0.5 yalign 0.945
+    
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
     if log_shown:
@@ -1261,7 +1262,7 @@ screen cardhover(cardobject,cardhoverxpos):
     image CardDisplay(cardobject) xanchor 0.5 xpos cardhoverxpos yalign 0.92 at cardtrans
 screen card6hover:
     # image "selectring" xanchor 0.5 xpos 0.86 yanchor 0.5 ypos 0.75
-    image "images/Cards/cardreturn.png" xanchor 0.5 xpos 0.86 yalign 0.945 at cardtrans2
+    image "images/Cards/cardreturn.png" xpos 0.7 xanchor 0.5 yalign 0.65 at cardtrans2
 
 
 image zenny:

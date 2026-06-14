@@ -456,7 +456,7 @@ style overworld_text:
 screen npcsprite(sprites):
     zorder sprites.position[1]
 
-    image "images/rpg/overworld/[sprites.name][sprites.direction].png" xpos 0.5 ypos 0.508:
+    image "images/rpg/overworld/characters/[sprites.name][sprites.direction].png" xpos 0.5 ypos 0.508:
         if linearmaptransform:
             at mover2((objxanchor-(sprites.position[0])*50),objyanchor-(sprites.position[1])*50), halftrans
         elif not linearmaptransform:

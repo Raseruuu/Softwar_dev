@@ -422,7 +422,7 @@ screen quick_menu():
                     textbutton _("{color=000}{b}SOFTWAR{/b}{/color}") keyboard_focus False
                     # textbutton _("Back") action Rollback() keyboard_focus False
                 
-                    # textbutton _("History") action ShowMenu('history')
+                    textbutton _("History") action ShowMenu('history')
                     textbutton _("Save") action ShowMenu('save') keyboard_focus False
                     textbutton _("Load") action ShowMenu('load') keyboard_focus False
                     textbutton _("Settings") action ShowMenu('preferences') keyboard_focus False

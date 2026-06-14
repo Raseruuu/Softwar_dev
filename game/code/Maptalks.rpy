@@ -66,12 +66,17 @@ label maptalk_Vira_1:
     call mapresume
     return
 label maptalk_ProgramKun_1:
-    $ILYSprite("smile")
-    "Program-kun""Aren't you just curious to see what's on the other side of this door?"
-    i"I'm curious too!"
-    "Program-kun""I'm so curious, that I can't move aside!"
+    $ILYSprite("O")
+    "Program-kun""Sorry, you can't pass here now... We're working on the highway!"
+    i"What's going on?"
+    "Program-kun""It's under maintenance!"
     $ILYSprite("mad")
     i"..."
+    "Program-kun""You gotta follow the rules!"
+    i"...{w} ... {w} Fine."
+    
+
+
     return
 default Stella_talk=0
 default shop_active=False

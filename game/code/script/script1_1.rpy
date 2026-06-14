@@ -1205,6 +1205,7 @@ label date2:
         $ Lisa_m="open"
         $ Lisa_eyes="raised"
         l"Wha..?"
+        $ Lisa_eyes="open"
         j"Did you look into my anime collection?"
         i"FAIs are really quick, so yes."
         # $ILY_p='1'
@@ -1384,10 +1385,12 @@ label date2:
         j"Damn."
         "This is a dead end. I don't want to lose my job, dammit. We gotta find one somehow."
         $Lisa_m = 'open'
+        $Lisa_eyes = 'raised'
         l"Ah... John!"
         $Lisa_w = False
         $Lisa_m = 'smile'
         $ okdesktop = False
+        $Lisa_eyes = 'open'
         scene JD_Bed3
         show Lisa
         with dissolve

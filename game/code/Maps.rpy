@@ -479,7 +479,7 @@ init -2 python:
         (192,164):[Melissasprite],
         (192,165):[Bellasprite],
         (193,169):[],
-        (193,167):[],
+        (193,167):[Programkunsprite,Programkunsprite2,Programkunsprite3],
         (192,164):[Stellasprite],
         }
     mapspriteschapter0 = {

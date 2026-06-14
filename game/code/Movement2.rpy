@@ -20,7 +20,9 @@ init -3 python:
     Bitwulf_C2 = SpriteinMap("Bitwulf",[2,7],'right',"Bitwulf2")
     Melissasprite2 = SpriteinMap("Melissa",[5,3],'down',"Melissa_story2")
     Stellasprite = SpriteinMap("Stella",[3,1],'down',"Stella")
-    Programkunsprite = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
+    Programkunsprite = SpriteinMap("ProgramKun",[8,4],'down',"Program-kun")
+    Programkunsprite2 = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
+    Programkunsprite3 = SpriteinMap("ProgramKun",[8,6],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[6,3],'down',"Bella")
     
 ### EVENTS

@@ -119,16 +119,19 @@ label script1_2_dialog1:
     "This Cyber Square area... must be a virtual version of the actual Square crossroad at the middle of Connecht."
     j "This is the East Gate of the Connecht Square. Just a few blocks away on the way to the island mount... is the IRL SDS office." 
     j "So, this path is supposed to take us to SDS area."
-    
+    $ ILYSprite("O")
     i "Oh? How would you know that?" 
     j "The virtual world here seems to mimic the real world locations. Albeit the components of each area are different."
     j "Like, this place is pretty empty in comparison!! And where are the cars?"
+    $ ILYSprite("smile3")
     i "... Nice observation, I wouldn't know that!"
+    $ ILY_m ="frown"
     i "Hmmm... "
     "ILY pauses in the middle of traveling to the gate."
     show Bitwulf 
     i "Is that a dog?"
     j "A mecha guard dog.. "
+    $ ILYSprite("smile3")
     i "So it is a dog! I wanna pet it!"
     "That's quite the human response, coming from you. Impressive."
     #Approaching Bitwulf Antivirus
@@ -352,6 +355,8 @@ label Melissascript2:
     j "(It means she is selling that info for buck. Information really is valuable after all. Especially in this world...)"
     $ ILY_eyes=""
     $ ILY_e="down"
+    $ ILY_m="frown"
+    
     i "Then... how much is it?"
     m "I'll sell it to you for 1000 Zenny."
     j "Do we... have that much?"
@@ -431,9 +436,10 @@ label paidMelissa:
         i "You're... laughing?"
         m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
         m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
+        $ ILY_m ="cheek"
         i "Uguu..."
         
-        
+        $ ILY_m ="smile"
         # $ map_active=False
         # $ game_over=True
         # jump mapresume
@@ -447,24 +453,35 @@ label paidMelissa:
     m "We're made of Data Materials. Us Viruses, we are composed of virus cells and tissues."
     m "Our composition allows us to utilize materials with special abilities."
     m "The special data material you want to find is called \"Imperceptium\"."
+    $ ILY_m ="smile3"
     i "Imperceptium! right!"
     m "Imperceptium is what Viruses use to stay hidden in the GRID!"
+    $ ILY_m ="O"
     i "Ah! That does sound like something I should have known."
     m "Imperceptium is hard to find as its surface projects a false image of its true appearance."
     m "Some like to say that it's in constant camouflage."
     m "Viruses can consume imperceptium to absorb that special trait, albeit for a limited time."
+    $ ILY_m ="frown"
     i "How do we find something that's practically invisible?"
     m "Stray wild viruses will drop them. But you can only see it once it's been seared in VirusFlame."
+    $ ILY_m ="O"
+    $ ILY_e ="up"
     i "Ah! VirusFlame?"
     m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
     m "You really are behind in all this, aren't you?"
+    $ ILY_m ="smile4"
+    $ ILY_e ="up2"
     i "Ah, I was just jogging my memory, Ahehehe!!"
     m "Hah! Well, do you plan on searching for it tonight?"
     # j "(ILY, what's stopping Melissa from making a run using Imperceptium?)" 
     # i "I have no idea. Maybe it's not in her interests right now? To pass by that "
     j"(Tonight... I assume it will take a while. Do viruses sleep?)"
+    $ ILY_m ="frown"
+    $ ILY_e ="normal"
     i"(No, us Viruses can stay active as long as we can.)"
-    j"(ILY, let's try to hunt for Imperceptium now.)"
+    j"(ILY, let's try to hunt for Imperceptium now. Let's go.)"
+    $ ILY_m ="frown"
+    $ ILY_e ="down"
     i "Yes! I'll hunt for Imperceptium tonight!"
     "If ILY stays here with the Viruses while I'm asleep, I don't know what could happen.{w} She has to leave them alone tonight."
     "This is the perfect excuse to disappear."
@@ -485,7 +502,11 @@ label paidMelissa:
     j "Let's go find that imperceptium!"
     
     "ILY quickly took off for the hunt."
-    
+    scene black with dissolve
+    call battlescene
+    show ILY with dissolve:
+        xalign 0.3
+    with dissolve
     i "Alrighty! I found a virus!"
     $ John_e="mad"
     show Worm with dissolve:
