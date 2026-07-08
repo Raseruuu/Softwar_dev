@@ -173,7 +173,7 @@ label Damageenemy:
     else:
         $ enemy_being_damaged=True
         $ enemyHP_stay = enemyHP
-        call card_type_sfx
+        call TYPE_sfx
         call hurtnoise_enemy
         python:
             if enemySP>0:
@@ -223,17 +223,49 @@ label Damageenemy:
         hide damageeffect
         $ enemy_being_damaged=False
         if block_functions_ATK !=[]:
-            $ block_count = 0
+            $ block_count_ATK = 0
             label block_loopatk:
-                $ runfxnstringatk = block_functions_ATK[block_count].name
-                $ currentcard_fxn_params=block_functions_ATK[block_count].params
+                $ runfxnstringatk = block_functions_ATK[block_count_ATK].name
+                $ currentcard_fxn_params=block_functions_ATK[block_count_ATK].params
                 call functioneffects(runfxnstringatk)
-                $ block_count+=1
-                if block_count<len(block_functions_ATK):
+                $ block_count_ATK+=1
+                if block_count_ATK<len(block_functions_ATK):
                     jump block_loopatk
     
     
     return
+
+label TYPE_sfx:
+    if currentcardTYPE == "Sword" or "Saber" in currentcardTYPE or "Sword" in currentcardTYPE:
+        play sound "sfx/slashswing.wav" channel 1
+        pause 0.02
+        play sound "sfx/slash4.wav" channel 1
+    elif "Sword" in currentcardTYPE:
+        play sound "sfx/slash2.wav" channel 1
+    elif currentcardTYPE == "Axe":
+        play sound "sfx/slash3.wav" channel 1
+    elif currentcardTYPE == "Gun":
+        play sound "sfx/gun2.wav" channel 1
+    elif currentcardTYPE == "Buster":
+        play sound "sfx/Bust.wav" channel 1
+    elif currentcardTYPE == "Bomb":
+        play sound "sfx/bomb.wav" channel 1
+    if currentcardTYPE == "Fire" or "Fire" in currentcardTYPE :
+        play sound "sfx/fire2.wav" channel 2
+    elif currentcardTYPE == "Wind":
+        play sound "sfx/wind.wav" channel 2
+    
+    
+    else:
+        $ attacknumber+=1
+    if attacknumber<=3:
+        play sound "sfx/sfx_exp_short_hard9.wav" 
+    elif attacknumber>3:    
+        play sound "sfx/sfx_exp_short_hard8.wav" 
+    else:
+        play sound "sfx/sfx_exp_short_hard8.wav" 
+    return
+
 label DamageSPplayer:
     # EVADE
     if "Evade" in PlayerSts:
@@ -246,19 +278,7 @@ label DamageSPplayer:
             $ Magnitude = (currentcardMAG)
             $ damagetoplayer=int(enemyATK_m*Magnitude)
             
-            if currentcardTYPE == "Sword":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "Axe":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "Fire":
-                play sound "sfx/Bust.wav"
-            elif currentcardTYPE == "Gun":
-                play sound "sfx/Bust.wav"
-            else:
-                if runnumber>1:
-                    play sound "sfx/sfx_exp_short_hard8.wav"
-                else:
-                    play sound "sfx/sfx_exp_short_hard9.wav"
+            call TYPE_sfx
             play sound "sfx/noise.wav" channel 1
             
             $ playerSP-=damagetoplayer
@@ -288,19 +308,7 @@ label DamageSPenemy:
         if enemySP>0:
             $ Magnitude = (currentcardMAG)
             $ damagetoenemy=int(playerATK_m*Magnitude)
-            if currentcardTYPE == "Sword":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "Axe":
-                play sound "sfx/slash.wav"
-            elif currentcardTYPE == "Fire":
-                play sound "sfx/Bust.wav"
-            elif currentcardTYPE == "Gun":
-                play sound "sfx/Bust.wav"
-            else:
-                if runnumber>1:
-                    play sound "sfx/sfx_exp_short_hard8.wav"
-                else:
-                    play sound "sfx/sfx_exp_short_hard9.wav"
+            call TYPE_sfx
             call hurtnoise_enemy
             $ enemySP-=damagetoenemy
             if enemySP<0:
@@ -330,19 +338,7 @@ label DamageSPselfenemy:
         $ Magnitude = (currentcardMAG)
         $ damagetoenemy=int(enemyATK_m*Power)
 
-        if currentcardTYPE == "Sword":
-            play sound "sfx/slash.wav"
-        elif currentcardTYPE == "Axe":
-            play sound "sfx/slash.wav"
-        elif currentcardTYPE == "Fire":
-            play sound "sfx/Bust.wav"
-        elif currentcardTYPE == "Gun":
-            play sound "sfx/Bust.wav"
-        else:
-            if runnumber>1:
-                play sound "sfx/sfx_exp_short_hard8.wav"
-            else:
-                play sound "sfx/sfx_exp_short_hard9.wav"
+        call TYPE_sfx
         call hurtnoise_enemy
         $ enemySP-=damagetoenemy
         if enemySP<0:
@@ -764,8 +760,12 @@ label WhileTokenInStatusEnemy:
 
 label ForInRangePlayer:
 #Player Activates For Loop
-    $ runfxnstring = currentcardFXN[fxnindex].name
-    $ FXN = currentcardFXN[fxnindex]
+    if currentcardFXN[fxnindex].name =="Attack":
+        $ targetfxn = currentcardFXN[fxnindex].params[3][block_count_ATK]
+    else:   
+        $ targetfxn =currentcardFXN[fxnindex]
+    $ runfxnstring = targetfxn.name
+    $ FXN = targetfxn
     $ for_iterations=FXN.params[0]
     if for_iterations=="targetHP/80":
         $ for_iterations=enemyHP/80
@@ -798,7 +798,11 @@ label ForInRangePlayer:
     return
 label ForInRangeEnemy:
 #Enemy Activates For Loop
-    $ runfxnstring = currentcardFXN[fxnindex].name
+    if currentcardFXN[fxnindex].name =="Attack":
+        $ targetfxn = currentcardFXN[fxnindex].params[3][block_count_ATK]
+    else:   
+        $ targetfxn =currentcardFXN[fxnindex]
+    $ runfxnstring = targetfxn.name
     $ FXN = currentcardFXN[fxnindex]
     $ for_iterations=FXN.params[0]
     if for_iterations=="targetHP/80":
@@ -1161,29 +1165,7 @@ label Shieldenemy:
 label DoNothing:
     pass
     return
-label card_type_sfx:
-    
-    if currentcardTYPE == "Sword":
-        play sound "sfx/slash.wav" channel 1
-    elif currentcardTYPE == "FireSword":
-        play sound "sfx/slash.wav"  channel 1
-        play sound "sfx/sfx_exp_short_hard8.wav" channel 2
-    elif currentcardTYPE == "Axe":
-        play sound "sfx/slash.wav" channel 1
-    elif currentcardTYPE == "Fire":
-        play sound "sfx/Bust.wav" channel 1
-    elif currentcardTYPE == "Gun":
-        play sound "sfx/Bust.wav" channel 1
 
-    else:
-        $ attacknumber+=1
-    if attacknumber<=3:
-        play sound "sfx/sfx_exp_short_hard9.wav" 
-    elif attacknumber>3:    
-        play sound "sfx/sfx_exp_short_hard8.wav" 
-    else:
-        play sound "sfx/sfx_exp_short_hard8.wav" 
-    return
 default player_being_damaged=False
 default enemy_being_damaged=False
 
@@ -1247,7 +1229,7 @@ label Damageplayer:
     else:
         $ player_being_damaged = True
         $ playerHP_stay= playerHP
-        call card_type_sfx
+        call TYPE_sfx
         hide damagetheplayer
         show damageeffect as damagetheplayer:
             yzoom 1.0 yoffset 400 zoom 2.0
@@ -1280,13 +1262,13 @@ label Damageplayer:
         $ attackhit=True
         $ player_being_damaged = False
         if block_functions_ATK !=[]:
-            $ block_count = 0
+            $ block_count_ATK = 0
             label block_loopatkofenemy:
-                $ runfxnstringatkofenemy = block_functions_ATK[block_count].name
-                $ currentcard_fxn_params=block_functions_ATK[block_count].params
+                $ runfxnstringatkofenemy = block_functions_ATK[block_count_ATK].name
+                $ currentcard_fxn_params=block_functions_ATK[block_count_ATK].params
                 call functioneffects(runfxnstringatkofenemy)
-                $ block_count+=1
-                if block_count<len(block_functions_ATK):
+                $ block_count_ATK+=1
+                if block_count_ATK<len(block_functions_ATK):
                     jump block_loopatkofenemy
     
     hide screen battlestats
@@ -1880,7 +1862,7 @@ init python:
     }
 label functioneffects(runfxnstring,params=[]):
     $ renpy.call(FxnDirectoryPlayer[runfxnstring])
-    pause 0.4
+    pause 0.2
     return
 init python:
     FxnDirectoryEnemy={
@@ -1914,5 +1896,5 @@ init python:
     }
 label enemyfunctioneffects(runfxnstring):
     $ renpy.call(FxnDirectoryEnemy[runfxnstring])
-    pause 0.4
+    pause 0.2
     return

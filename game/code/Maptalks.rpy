@@ -173,6 +173,19 @@ label maptalk_Tetra_1:
     "
 
     return
+label maptalk_Guy_cheese:
+    
+    "Guy" "OK, this is wild, I discovered this virtual world has food items.."
+    "Guy" "I'm trying to collect whatever I can, I have bread, some apples, tomatoes... and.. fish?"
+    "Guy" "Do you think this place has cheese too?"
+    i "How curious!"
+    j "(Cheese? It would be quite the interesting find. If the simulation follows real world facts... If cheese exists, milk does too.)"
+    i "If there's milk, then there's cheese too!"
+    "Guy" "You might be right. Never seen a cow either."
+
+    i "I'll come here if I find one!"
+    "Guy""Awesome!! I'll definitely pay you back!"
+    return
 label maptalk_Heart:
     # i"Would you like to restore HP?"
     $ ILY_m="smile3"

@@ -428,7 +428,7 @@ label paidMelissa:
 
         $ Melissa_w=True
         m "Ah, Thanks. I may be your big sis, but hey, business is business!"
-        j "(She's moneysmart, it looks like.)"
+        j "(She's moneysmart, that makes her more intelligent)"
         m "There's a special item you can use to get past their detectors."
         "!!!... That sounds really convenient."
         i "What kind of item is it?"
@@ -467,6 +467,7 @@ label paidMelissa:
     $ ILY_m ="O"
     $ ILY_e ="up"
     i "Ah! VirusFlame?"
+    call cardflash_story(VirusFlame)
     m "VirusFlame. You know, every Virus is capable of using that technique. {w}The one where you launch fire from the palm of your hands!"
     m "You really are behind in all this, aren't you?"
     $ ILY_m ="smile4"
@@ -516,6 +517,7 @@ label paidMelissa:
     j "How fascinating.. it isn't slithery and round like real world worms."
     i "What?"
     j "It's very geometric. It's an interesting design. Is it strong?"
+    $ ILY_e ="normal"
     i "Nah."
     i "They can open and close wormholes, no biggie. That'd be their most notable ability."
     j "No way!"
@@ -540,6 +542,7 @@ label paidMelissa:
     show Worm at kickedaway
     "Worm" "SKREEE!!"
     j "You did it!"
+    $ ILY_e ="up"
     show ILY:
         ease 1.0 xoffset 200
     i "Ahh I found it! it's actually burning."
@@ -547,13 +550,15 @@ label paidMelissa:
     "ILY picked up the burning imperceptium material."
     i "Melissa said that I just have to ingest this, and I'd be invisible!"
     j "I wonder if it will really work!"
+    $ ILY_e ="down"
     i "I trust that Melissa is telling the truth!"
-
+    
     i "I'm gonna try it."
     j "No stop!"
     i "If I eat one of these, we'd still have 3 more, by the way."
     j "The quantity of it doesn't really matter."
     j "If you're thinking about testing it now, we'd have to postpone that. Get back."
+    $ ILY_e ="up2"
     i "Eh, already?"
     j "I don't want you to have to fight Bitwulf at this time."
     $ ILY_m="O"
@@ -562,13 +567,14 @@ label paidMelissa:
     $ ILY_m ="frown"
     $ ILY_e ="down"
     
-    j "I just don't like losing. We still don't have a countermeasure if Imperceptium fails to cloak you."
-    "And... I'm waiting for Lisa's update on that Antivirus.. If she decides to meet again, I can't be caught lacking sleep."
+    j "I just don't like losing. We still don't have a countermeasure if the Imperceptium fails to cloak you."
     $ ILY_m ="frown"
     $ ILY_e ="normal"
     
     i "I appreciate your concern.."
-    j "Wha? There's another reason. It's more that I'm tired."
+    "And... I'm waiting for Lisa's update on that Antivirus.. If she decides to meet again, I can't be caught lacking sleep."
+    
+    j "There's another reason. It's more that I'm tired."
     j "Humans have to sleep at night-time."
     i "I know that."
     j "Then... just let me. "
@@ -587,7 +593,7 @@ label paidMelissa:
     scene JD_PCN with dissolve
     $ ILY_m ="smile3"
     $ ILY_e ="up"
-    
+    stop music
     i"Good night, John!"
     j"Huh. Good night, ILY."
     scene black with dissolve

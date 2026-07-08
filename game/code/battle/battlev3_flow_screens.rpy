@@ -1154,6 +1154,8 @@ label battlemessage(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
+    if log_shown:
+        use duel_log_screen
     if playerbattlecode!=[]:
         # if rollbackchanged:
         $ config.rollback_enabled = True
@@ -1209,8 +1211,7 @@ screen choosecardv2:
     
     # if hoverFXN!=[]:
     #     use card_tooltip_battle
-    if log_shown:
-        use duel_log_screen
+    
 image card_deck = "images/Cards/card_deck.png"
 image card_deck_draw :
     "images/Cards/card_deck_draw.png"

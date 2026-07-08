@@ -49,8 +49,8 @@ define te = Character("Tetra",callback=speaker("Tetra"), color='#ff6992', image 
 define i = Character("ILY",callback=speaker("ILY"), color='#f00', image = "ILY_side", ctc="ctc", ctc_position="fixed")
 define ia = Character("ILY Alpha",callback=speaker("ILY_Alpha"), color='#f00', image = "ILY_Alpha_side", ctc="ctc", ctc_position="fixed")
 define br= Character("Brain",callback=speaker("Brain"), color ='#f842d6',image ="Brain_side", ctc="ctc", ctc_position="fixed")
-define m = Character("Melissa",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
-define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40, image = "Stoned_side", ctc="ctc", ctc_position="fixed")
+define m = Character("Melissa",callback=speaker("Melissa"), color='#0252ff', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
+define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40,color='#7002ff', image = "Stoned_side", ctc="ctc", ctc_position="fixed")
 define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")
 
 # AntiViruses
@@ -896,7 +896,7 @@ image JohnMouthfrown:
     repeat
 image JohnFull:
     # "images/Characters/John/John_full.png"
-    LiveComposite(
+    Composite(
         (999,2353),
         (0, 0), At("images/Characters/John/John_base.png",zoomtrans(0.5)),
         (0, 0), WhileSpeaking(
@@ -1339,6 +1339,7 @@ image Code Red:
     pause .5
     repeat
 image CodeRed:
+    mesh True
     "CodeRedFull"
     yanchor 0.8  ypos 1.0 
     linear 1.0 yoffset 0
@@ -1348,6 +1349,7 @@ image CodeRed:
     repeat
 
 image CodeRedFull:
+    mesh True
     Composite(
         (714,1025),
         (0, 0), At("images/Characters/Code Red/CODE RED_base.png",zoomtrans(0.36)),
@@ -1361,6 +1363,7 @@ image CodeRedFull:
     )
     
 image CodeRed sidew:
+
     Crop((140,40, 300,385), "CodeRedFull")
     zoom 0.56
 image side CodeRed_side:
@@ -1577,7 +1580,7 @@ layeredimage MelissaFull:
 image MelissaFullBody:
     # "images/Characters/Melissa/Melissa_full.png"
     
-    LiveComposite(
+    Composite(
         (1956,5716),
         (0, 0), "images/Characters/Melissa/Melissa_base.png",
         (0, 0), WhileSpeaking(
@@ -2048,7 +2051,7 @@ image NickMouthfrown:
     repeat
 image NickFull:
     # "images/Characters/Nick/Nick_full.png"
-    LiveComposite(
+    Composite(
         (714,2076),
         (0, 0), "images/Characters/Nick/Nick_base.png",
         (0, 0), WhileSpeaking(
@@ -2170,7 +2173,7 @@ layeredimage StonedFull:
     
 # zoom 0.60
 
-    # LiveComposite(
+    # Composite(
     # (761,1695),
     # (0,0),"images/Characters/Stoned/Stoned_base.png",
     # (0,0),"images/Characters/Stoned/Stoned_e[Stoned_e].png",
@@ -2276,7 +2279,7 @@ image Bitwulf_eyes:
 
 
 image Bitwulf:
-    LiveComposite(
+    Composite(
     (5951,6324),
     (0,0),"images/Characters/Bitwulf/Bitwulf_eyes.png",
     (0,0),"images/Characters/Bitwulf/Bitwulf_base.png",
@@ -2327,8 +2330,8 @@ image Brain:
     mesh True
 
     "BrainFullBody"
-    zoom 0.5
-    yanchor 0.50
+    zoom 0.48
+    yanchor 0.41
     ypos 1.0
     linear 1.0 yoffset 0
     linear 1.0 yoffset 5
@@ -2409,7 +2412,7 @@ image BrainMouthfrown:
 image side Brain_side:
 
     ConditionSwitch(
-        "Brain_w==True",Crop((964,440, 440,565), At("BrainFullBody",zoomtrans(0.88))),
+        "Brain_w==True",Crop((964,440, 440,565), At("BrainFullBody",zoomtrans(0.68))),
         "Brain_w==False","Null_side"
     )
     zoom 0.38
@@ -2420,8 +2423,8 @@ layeredimage BrainFullBody:
         "images/Characters/Brain/Brain_backring.png"
     always:
         "images/Characters/Brain/Brain_backhair.png"
-    always:
-        "images/Characters/Brain/Brain_backcloth.png"
+    # always:
+    #     "images/Characters/Brain/Brain_backcloth.png"
     always:
         "images/Characters/Brain/Brain_body.png"
    

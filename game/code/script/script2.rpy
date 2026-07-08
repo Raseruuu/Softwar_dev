@@ -539,6 +539,7 @@ label SDS_Encounter:
     v "Tsk, an optic beam? my Light Barrier was shut down for only a split second."
     v "You're a tricky little one aren't you! Take this!"
     call cardflash_story(DataBuster)
+    
     v "All Clear, now! That wasn't much of a challenge." 
 
     v "Spywares are built to gather as much info as they can to send to its master network..."
@@ -889,8 +890,16 @@ label SDS_Encounter:
     "She can't keep blocking like this."
     j "(Hang in there Vira!!)"
     v "(R-roger!!)"
-    v "(My shield points are just about... to get depleted. 20 percent..)"
+    scene black with dissolve
 
+    scene battlebg2 with dissolve
+    i "John! I'm going!"
+    j "Tsk. I didn't"
+
+
+
+
+    v "(My shield points are just about... to get depleted. 20 percent..)"
     cv "It's over."
     cv "I'll destroy you!! Haaaaahhh!!!"
 
@@ -1246,7 +1255,7 @@ label SDS_Encounter:
     a "You're not getting away!"
     v "Looking for someone?"
     a "Vira?"
-    "Vira appeared at the exit of the server. It was that same gate Vira entered in. Vira defends ILY as she escapes promptly."
+    "Vira appeared at the exit of the server. It was that same gate Vira exited through. Vira defends ILY as she escapes promptly."
     a "How did you get there? And why are you allies with that filth?"
     v "You're the one that owes us explaining here!! I'm only protecting SDS!"
     a "Tsk. I won't fight you."
@@ -1255,7 +1264,6 @@ label SDS_Encounter:
     v "Sayonara, Ill-tempered hunter!"    
     "Ave logged out briefly."
     "Phew! We made an escape! "
-
     # =============================
 
     return
