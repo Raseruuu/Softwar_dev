@@ -1221,9 +1221,8 @@ label date2:
         l"Kept them safe from what?"
         $ILY_m='smile3'
         i"Well, you see, among viruses, I am special."
-        i"I heard there would be an attack around the people from \"SDS\"."
-        i"So I sent myself to their e-mails, and attempted to get to all the members."
-        i"I'll have to say, I didn't conquer the world this time."
+        i"I sensed an imminent virus attack around the servers from \"SDS\"."
+        i"So I sent myself to their e-mails, and attempted to get to their members."
         j"What are you saying... You mean, you were expecting Hilbert's PC to be attacked today?"
         i"Yes. I kept the PC's inactive so they can stay safe from the incoming attack."
         i"It's such a shame that I didn't get to that one server that Hilbert just reported."

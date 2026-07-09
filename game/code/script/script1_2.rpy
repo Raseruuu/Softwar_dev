@@ -417,29 +417,29 @@ label paidMelissa:
     
     m "You got the 1K Zenny?"
     jump payMelissa
-    label paidMelissa2:
-        $ gameprogress+=1
-        i "I got it! Here ya go!"
-        $ Money-=1000
-        $ map_active=False
-        
-        hide screen mapB
-        call battlescene
+label paidMelissa2:
+    $ gameprogress+=1
+    i "I got it! Here ya go!"
+    $ Money-=1000
+    $ map_active=False
+    
+    hide screen mapB
+    call battlescene
 
-        $ Melissa_w=True
-        m "Ah, Thanks. I may be your big sis, but hey, business is business!"
-        j "(She's moneysmart, that makes her more intelligent)"
-        m "There's a special item you can use to get past their detectors."
-        "!!!... That sounds really convenient."
-        i "What kind of item is it?"
-        m "Hahaha.."
-        i "You're... laughing?"
-        m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
-        m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
-        $ ILY_m ="cheek"
-        i "Uguu..."
-        
-        $ ILY_m ="smile"
+    $ Melissa_w=True
+    m "Ah, Thanks. I may be your big sis, but hey, business is business!"
+    j "(She's moneysmart, that makes her more intelligent)"
+    m "There's a special item you can use to get past their detectors."
+    "!!!... That sounds really convenient."
+    i "What kind of item is it?"
+    m "Hahaha.."
+    i "You're... laughing?"
+    m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
+    m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
+    $ ILY_m ="cheek"
+    i "Uguu..."
+    
+    $ ILY_m ="smile"
         # $ map_active=False
         # $ game_over=True
         # jump mapresume

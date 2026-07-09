@@ -336,7 +336,7 @@ image card1:
         (13,240),FunctionList(playercard1FXN),
         (165,175),"images/Cards/cardbit/[playercard1COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[0].MAG]{/color}{/size}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[0].POW]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[0].HIT]{/color}{/font}{/size}"),
         )
 image card2:
@@ -348,7 +348,7 @@ image card2:
         (13,240),FunctionList(playercard2FXN),
         (165,175),"images/Cards/cardbit/[playercard2COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[1].MAG]{/color}{/size}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[1].POW]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[1].HIT]{/color}{/font}{/size}"),
         )
 image card3:
@@ -361,7 +361,7 @@ image card3:
         (13,240),FunctionList(playercard3FXN),
         (165,175),"images/Cards/cardbit/[playercard3COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[2].MAG]{/color}{/size}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[2].POW]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[2].HIT]{/color}{/font}{/size}"),
         )
 image card4:
@@ -373,7 +373,7 @@ image card4:
         (13,240),FunctionList(playercard4FXN),
         (165,175),"images/Cards/cardbit/[playercard4COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[3].TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[3].MAG]{/color}{/size}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[3].POW]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[3].HIT]{/color}{/font}{/size}"),
         )
 image card5:
@@ -385,22 +385,15 @@ image card5:
         (13,240),FunctionList(playercard5FXN),
         (165,175),"images/Cards/cardbit/[playercard5COST].png",
         (165,237),Text("{color=#ffcc00}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].TYPE]{/color}{/font}{/size}"),
-        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[4].MAG]{/color}{/size}"),
+        (165,267),Text("{color=#ae81f2}{size=24}[playerhand[4].POW]{/color}{/size}"),
         # (185,273),Text("{color=#ae81f2}{font=font/adventpro-bold.ttf}{size=12}[playerhand[4].HIT]{/color}{/font}{/size}"),
         )
-init python:
-    def battle_distance_function(bd):
-        return 0.8-(bd/30)
-    def battle_distance_function2(bd):
-        return (bd*3.5)
+
+transform distance_trans(battle_dist):
+    zoom (1.5-(battle_dist*0.1+battle_dist*0.1))
+    yanchor 0.3
 image Enemy:
-    "images/battle/Enemies/[enemyName].png"
-    zoom battle_distance_function(battle_distance)
-    linear 0.2 zoom battle_distance_function(battle_distance)
-    # ypos -battle_distance_function2(battle_distance)
-    # linear 1.0 yoffset 10
-    # linear 1.0 yoffset -10
-    # repeat
+    At("images/battle/Enemies/[enemyName].png",distance_trans(battle_distance))
 image Trojan:
     "images/battle/Enemies/TrojanHorse.png"
     zoom 2.0

@@ -62,10 +62,13 @@ init python:
         elif dresstype.lower()=="outfit" and dressname!="Unequip":
             if dressname.lower()=="cowgirl" or dressname.lower()=="maid" :
                 globals()["ILY_underwear"]=""
+            elif globals()["ILY_underwear"]=="":
+                globals()["ILY_underwear"]="red"
             if dressname.lower()=="bikiniarmor":
                 globals()["ILY_underwear"]="ArmorBikini"
             if dressname.lower()=="bladearmor":
                 globals()["ILY_underwear"]=""
+            
             globals()["ILY_outfit"]=dressname.lower()
 
         elif dresstype.lower()=="underwear":

@@ -129,7 +129,7 @@ screen CombineMenu():
                                             hbox:
                                                 vbox:
                                                     text craftitem.object.NAME yalign 0.0
-                                                    text "{size=12}MAG = "+str(craftitem.object.MAG)+"\nBITS = "+str(craftitem.object.COST)+"{/size}" yalign 0.0
+                                                    text "{size=12}POW = "+str(craftitem.object.POW)+"\nBITS = "+str(craftitem.object.COST)+"{/size}" yalign 0.0
                                                     add FunctionList(craftitem.object.FXN)
                                                 null width 58
                                                 vbox:

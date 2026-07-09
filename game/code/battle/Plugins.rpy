@@ -39,9 +39,9 @@ label PluginExecution(plugin_set,plugin_user):
             # $ plugin_set.pop(0)
             # $ currentcard = (plugin_set[runnumber])
             $ currentcardFXN = currentcard.FXN
-            $ currentcardMAG = currentcard.MAG
+            $ currentcardPOW = currentcard.POW
             $ currentcardTYPE = ""
-            $ Magnitude = (currentcardMAG)
+            $ Magnitude = (currentcardPOW)
 
             $ damagetoenemy=int(playerATK_m*Magnitude)
             $ currentcardfunctions=[a.name for a in currentcardFXN]
@@ -71,12 +71,12 @@ label PluginExecution(plugin_set,plugin_user):
                 else:
                     hide screen cardflashscreenenemy2
                     show screen cardflashscreenenemy2
-                label hitloop_plugins:
-                    if plugin_user=="player":
-                        call functioneffects(runfxnstring)
-                    elif plugin_user=="enemy":
-                        # "This??"
-                        call enemyfunctioneffects(runfxnstring)
+            
+                if plugin_user=="player":
+                    call functioneffects(runfxnstring,currentcardFXN[fxnindex].params)
+                elif plugin_user=="enemy":
+                    # "This??"
+                    call enemyfunctioneffects(runfxnstring,currentcardFXN[fxnindex].params)
                 $fxnindex+=1
                 if fxnindex<len(currentcardFXN):
                     jump runfunctions_plugins

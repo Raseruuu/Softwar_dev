@@ -639,7 +639,7 @@ label SDS_Encounter:
     h "Yeah, if the staff took notice. I'll go give them a call."
     j "If you could call them directly like that, there's no need for the online transaction, no?"
     h "We're testing it properly!"
-    l "Let's just... roll with it ahehehe!"
+    l "Let's just... roll with it!"
     h "There! Ok, give me a moment!"
 
 
@@ -873,7 +873,7 @@ label SDS_Encounter:
     v "(I can convert the energy from the strikes I block into power, and unleash it back. But it has to be an attack from my Powersol.)"
     v "(If I could just... Hit him.)"
     "..."
-    "If she can power up enough... A well timed strike might just break into his armor, then!"
+    "If she can power up enough... A well-timed strike might just break into his armor, then!"
     j "(I've got a plan, Vira, you have to ready your Powersol, make it absorb as many attacks as you can. Reinforce it even more!)"
     cv "You had enough yet?"
     cv "Now..."
@@ -1017,8 +1017,8 @@ label SDS_Encounter:
     "Vira raised her gun, and started shooting at the sphere.." 
     call damageleftblocked
     extend "It had no effect."
-    "Vira was about to strike with her parasol next, unitl out of the sphere, came a sudden burst of aura shooting Vira!"
-    "It was a direct hit, and it pushed Vira to the wall, knocking her out."
+    "Vira was about to strike with her parasol next, until out of the sphere, came a sudden burst of aura, shooting Vira! "
+    extend"It was a direct hit, and it pushed Vira to the wall, knocking her out."
     l "Vira, no!!"
     call hidepowerflow
     "Before ILY could come to her aid, the tremors suddenly disappeared. Remnants of the crimson energy dispersed in the air."
@@ -1035,12 +1035,12 @@ label SDS_Encounter:
     j "What's going on...?"
     l "Vira, will you please heal ILY now?"
     v "Huh? I'll heal this Virus?"
-    j "That's...  OK. Vira. Please do it."
+    j "That's... a good idea. Yes, Vira. Please do it."
     v "Fine."
     i "How come?"
     l "I've got... a feeling.. maybe the fight isn't over.."
     $ HPalreadyfull=playerHP==playerHPMax
-    $playerHP=playerHPMax
+    $ playerHP=playerHPMax
     call cardflash_story(FixerBeam)
     play sound "sfx/heal.ogg"
     if HPalreadyfull:
@@ -1081,7 +1081,7 @@ label SDS_Encounter:
     i "Why are you attacking this server?"
     a "Is that not obvious? Because you're here!"
     i "No... That's not it! People hacked SDS!"
-    a "SDS or ADA, wherever a virus is, I will hunt, and delete!"
+    a "I don't care. Wherever a virus is, I will hunt, and delete!"
     i "Didn't you see the Code Red Virus? Back off! I came here to help Vira!"
     $ Ave_eyes="min"
     $ Ave_e="down2"
@@ -1123,7 +1123,7 @@ label SDS_Encounter:
     with dissolve
     show Ave at landing:
         xalign 0.9
-    "They ran across many corridors in the server, she finds ILY."
+    "They ran across many corridors in the server, then she finds ILY."
     
     " And pulls the trigger...! "
     show ILY at BurstTransfer_trans2

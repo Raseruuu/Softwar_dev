@@ -263,7 +263,7 @@ screen item_shop:
                                                 ysize 138
                                                 vbox:
                                                     text "{size=22}"+item.object.NAME+"{/size}" yalign 0.0
-                                                    text "{size=12}POWR = "+str(item.object.MAG)+"   BITS = "+str(item.object.COST)+"{/size}" yalign 0.0
+                                                    text "{size=12}POWR = "+str(item.object.POW)+"   BITS = "+str(item.object.COST)+"{/size}" yalign 0.0
 
                                                     add FunctionList(item.object.FXN)
 
@@ -362,7 +362,7 @@ screen ItemModal:
                         
                         vbox:
                             text item_selected.object.NAME yalign 0.0
-                            text "{size=12}POWR = "+str(item_selected.object.MAG)+"   BITS = "+str(item_selected.object.COST)+"{/size}" yalign 0.0
+                            text "{size=12}POWR = "+str(item_selected.object.POW)+"   BITS = "+str(item_selected.object.COST)+"{/size}" yalign 0.0
 
                             add FunctionList(item_selected.object.FXN)
 

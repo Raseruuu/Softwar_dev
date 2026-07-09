@@ -1,5 +1,6 @@
 
 init python:
+    enclosingfxnnames = ["For","While","If","Attack"]
     class FAI:
         def __init__(self,name,kind,HP,SP,ATK,DEF,deck,status):
             self.name=name
@@ -12,19 +13,19 @@ init python:
             self.deck = deck
             self.status = status
     class Card:
-        def __init__(self,NAME,TYPE,MAG,FXN,COST):
+        def __init__(self,NAME,TYPE,POW,FXN,COST):
             self.NAME = NAME
             self.TYPE = TYPE
-            self.MAG = MAG
+            self.POW = POW
             self.FXN = FXN
             self.COST = COST
 
 
     class Plugin:
-        def __init__(self,NAME,DESC,MAG,FXN,COST,TYPE="Plugin"):
+        def __init__(self,NAME,DESC,POW,FXN,COST,TYPE="Plugin"):
             self.NAME = NAME
             self.DESC = DESC
-            self.MAG = MAG
+            self.POW = POW
             self.FXN = FXN
             self.COST = COST
             self.TYPE = TYPE
@@ -48,13 +49,12 @@ init python:
     #         self.fxn = fxn
     #         self.rank = rank
     class Fxn:
-        def __init__(self,name,code,text,params=[]):
+        def __init__(self,name,code,text,params={}):
             self.name=name
             #code to display
             self.code=code
             self.text=text
             self.params=params
-            # self.displayname=name+"()"
     class BattleStatus:
         def __init__(self,name,text,magnitude):
             self.name=name
@@ -70,13 +70,13 @@ init python:
 #     ForEachEmail=Fxn("while E has Email:","Iterate enclosed function")
 #
 #
-#     Damage = Fxn("Damage(MAG)","Inflict Damage to enemy.")
-#     RemovEmailDamage = Fxn("  RemoveEmail()\n  Damage(MAG)","Remove Email. Inflict MAG * ATK Damage.")
-#     DamageSP = Fxn("DamageSP(MAG)","Inflict Damage to SP.")
-#     DamageSPself = Fxn("DamageSPself(MAG)","Inflict Damage to own SP.")
-#     Recover = Fxn("Recover(MAG)","Increase HP.")
-#     Shield = Fxn("Shield(MAG)","Increase SP.")
-#     Reflect = Fxn("Reflect(MAG)","Apply Reflect Status:{Negate incoming Damage; IncreaseATK;}")
+#     Damage = Fxn("Damage(POW)","Inflict Damage to enemy.")
+#     RemovEmailDamage = Fxn("  RemoveEmail()\n  Damage(POW)","Remove Email. Inflict POW * ATK Damage.")
+#     DamageSP = Fxn("DamageSP(POW)","Inflict Damage to SP.")
+#     DamageSPself = Fxn("DamageSPself(POW)","Inflict Damage to own SP.")
+#     Recover = Fxn("Recover(POW)","Increase HP.")
+#     Shield = Fxn("Shield(POW)","Increase SP.")
+#     Reflect = Fxn("Reflect(POW)","Apply Reflect Status:{Negate incoming Damage; IncreaseATK;}")
 #     Burn_Self = Fxn("Burnself()","Append Burn status to self.")
 #     IncreaseATK = Fxn("IncreaseATK()","Increase ATK")
 #     IncreaseDEF = Fxn("IncreaseDEF()","Increase DEF")
@@ -84,8 +84,8 @@ init python:
 #     HalfHP_self = Fxn("HalfHP_self()","Half current HP of self.")
 #     Evade = Fxn("NegateDmg()","Negate a Damage function once.")
 #     ReduceBit = Fxn("reduceBit","ReduceBit()","Reduce opponent's bit value by 1.")
-#     IncreaseGun = Fxn("IncreaseGun()","Increase  MAG of \"Gun\" type Battleware")
-#     IncreaseSword = Fxn("IncreaseSword()","Increase  MAG of \"Sword\" type Battleware")
+#     IncreaseGun = Fxn("IncreaseGun()","Increase  POW of \"Gun\" type Battleware")
+#     IncreaseSword = Fxn("IncreaseSword()","Increase  POW of \"Sword\" type Battleware")
 # #Tokens
 #
 #
@@ -98,96 +98,126 @@ init python:
             "Burn",
             "burn("+str(burndmg)+")",
             "Apply Burn status to target, Burn token deals "+str(burndmg)+" each turn.",
-            burndmg
+            {
+                "burndmg":burndmg
+            }
             )
     def BurnSelf(burndmg) :
-        return Fxn("BurnSelf","burnself()","Append Burn status to self.")
+        return Fxn(
+            "BurnSelf",
+            "burnself()",
+            "Append Burn status to self.",
+            {
+                "burndmg":burndmg
+            }
+            )
     def Evade(quantity=1):
         tokenname="Evade"
         return Fxn(
             "Evade",
             "evade("+str(quantity)+")",
             "Gain "+str(quantity)+" \"Evade\" token(s). This will allow you to evade Attack() functions.",
-            [tokenname,quantity])
+            {
+                "tokenname":tokenname,
+                "quantity":quantity,
+            }
+            )
     def GainToken(tokenname,quantity=1):
         return Fxn(
             "GainToken",
             "gainToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Gain "+str(quantity)+" \""+str(tokenname)+"\" token(s).",
-            [tokenname,quantity])
+            {
+                "tokenname":tokenname,
+                "quantity":quantity,
+            })
     def GiveToken(tokenname,quantity=1):
         return Fxn(
             "GiveToken",
             "giveToken(\""+str(tokenname)+"\","+str(quantity)+")",
             "Give a \""+str(tokenname)+"\" token(s).",
-            [tokenname,quantity])
+            {
+                "tokenname":tokenname,
+                "quantity":quantity,
+            }
+            )
     def Advance(quantity=1):
         return Fxn(
             "Advance",
             "advance("+str(quantity)+")",
             "Decrease distance by "+str(quantity)+".",
-            [quantity])
+            {
+                "quantity":quantity,
+            })
     def Retreat(quantity=1):
         return Fxn(
             "Retreat",
             "retreat("+str(quantity)+")",
             "Increase distance by "+str(quantity)+".",
-            [quantity])
+            {
+                "quantity":quantity,
+            })
     def Push(quantity=1):
         return Fxn(
             "Push",
             "push("+str(quantity)+")",
             "Push the enemy away!\nIncrease distance by "+str(quantity)+".",
-            [quantity])
+            {
+                "quantity":quantity,
+            })
 
     def ReduceBit(quantity=1):
         return Fxn(
             "ReduceBit",
             "reduceBit("+str(quantity)+")",
-            "Reduce opponent's bit value by "+str(quantity)+"."
+            "Reduce opponent's bit value by "+str(quantity)+".",
+            {
+                "quantity":quantity,
+            }
             )
-    def While(condition,token_name,target,fxns):
-        function1=fxns[0].code
-        codepart2=""
-        if len(fxns)==2:
-            function2=fxns[1]
-            codepart2="\n  "+str(function2.code)
+    def While(condition,tokenname,target,fxns,indents=0):
+        spaces=(indents*"  ")
+        fxncodestring=""
+        for fxnindex, fxnobjs in enumerate(fxns):
+            fxncodestring =fxncodestring+"  "+(spaces)+fxnobjs.code+"\n"
         return Fxn(
             "While",
-            "while("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "while("+str(condition)+"):\n"+fxncodestring,
             "Execute enclosed functions while condition is True",
-            (token_name,fxns,target)
+            {
+                "tokenname":tokenname,
+                "fxns":fxns,
+                "target":target,
+            }
             )
-    def ForInRange(condition,iterations,fxns):
-        function1=fxns[0].code
-        codepart2=""
-        if len(fxns)==2:
-            function2=fxns[1]
-            codepart2="\n  "+str(function2.code)
+    def ForInRange(condition,iterations,fxns,indents=0):
+        spaces=(indents*"  ")
+        fxncodestring=""
+        for fxnindex, fxnobjs in enumerate(fxns):
+            fxncodestring =fxncodestring+"  "+(spaces)+fxnobjs.code+"\n"
         return Fxn(
             "For",
-            "for("+str(condition)+"):\n  "+str(function1)+codepart2,
+            "for("+str(condition)+"):\n"+fxncodestring,
             "Execute enclosed functions for each item in list",
-            (iterations,fxns)
+            {
+                # "condition":condition,
+                "iterations":iterations,
+                "fxns":fxns,
+                # "target":target,
+            }
             )
-    # def ForCount(condition,token_name,list_name,fxns):
-    #     function1=fxns[0].code
-    #     codepart2=""
-    #     if len(fxns)==2:
-    #         function2=fxns[1]
-    #         codepart2="\n  "+str(function2.code)
-    #     return Fxn(
-    #         "ForCount",
-    #         "for("+str(condition)+"):\n  "+str(function1)+codepart2,
-    #         "Execute enclosed functions for each item in list",
-    #         (token_name,list_name,fxns)
-    #         )
-    def enumerate_fxncodes(fxnlist):
+  
+    def enumerate_fxncodes(fxnlist,inside_fxn=False,indents=0):
         fxncodestring=""
-        for fxnobjs in fxnlist:
-            fxncodestring =fxncodestring+fxnobjs.code+"\n"
+        
+        loopingfxn=(fxnlist[0].name=="If" or fxnlist[0].name=="For" or fxnlist[0].name=="While" or fxnlist[0].name=="Attack")
+        for fxnindex, fxnobjs in enumerate(fxnlist):
+            fxncodestring =fxncodestring+"  "+fxnobjs.code+"\n"
+            # else:
+            #     fxncodestring =fxncodestring+"  "+fxnobjs.code+"\n"
+            
         return fxncodestring
-    def IfFunction(condition,token_name,target,fxns):
+    def IfFunction(condition,tokenname,target,fxns):
         # function1=fxns[0].code
         # codepart2=""
         # if len(fxns)==2:
@@ -195,59 +225,84 @@ init python:
         #     codepart2="\n  "+str(function2.code)
         return Fxn(
             "If",
-            "if ("+str(condition)+"):\n  "+enumerate_fxncodes(fxns),
+            "if ("+str(condition)+"):\n"+enumerate_fxncodes(fxns),
             "Execute enclosed functions if condition is True",
-            (token_name,fxns,target)
+            {
+                "tokenname":tokenname,
+                "fxns":fxns,
+                "target":target,
+            }
             )
-    def Increase(statname,MAG):
+    def Increase(statname,POW):
         return Fxn(
             "Increase"+statname,
-            "increase(\""+str(statname)+"\","+str(MAG)+")",
-            "Increase "+str(statname)+" by "+str(MAG)+".",
-            [statname,MAG]
+            "increase(\""+str(statname)+"\","+str(POW)+")",
+            "Increase "+str(statname)+" by "+str(POW)+".",
+            
+            {
+                "statname":statname,
+                "POW":POW,
+            }
             )
-    def Decrease(statname,MAG):
+    def Decrease(statname,POW):
         return Fxn(
             "Decrease"+statname,
-            "decrease(\""+str(statname)+"\","+str(MAG)+")",
-            "Decrease "+str(statname)+" by "+str(MAG)+".",
-            [statname,MAG]
+            "decrease(\""+str(statname)+"\","+str(POW)+")",
+            "Decrease "+str(statname)+" by "+str(POW)+".",
+            {
+                "statname":statname,
+                "POW":POW,
+            }
             )
     def Freeze():
         return Fxn(
             "Freeze",
             "Freeze()",
-            "Apply Freeze status to target, \nFreeze token negates the execution of a card function.")
-    # def Attack():
-    #     return Fxn(
-    #         "Attack",
-    #         "attack(ATK*POWR)",
-    #         "Deal Damage to target.")
-    def Attack(multiplier="POWR",rangevalue=1,absolute=False,onhit=[]):
+            "Apply Freeze status to target, \nFreeze token negates the execution of a card function.",
+            {
+               
+            }
+            )
+
+    def Attack(multiplier="POWR",rangevalue=0,absolute=False,onhit=[]):
 
         return Fxn(
             "Attack",
             (("attack(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attack("+str(multiplier)+
             ",range="+str(rangevalue)+")"))+
             
-            (":\n  "+enumerate_fxncodes(onhit) if onhit!=[] else ""),
+            (":\n"+enumerate_fxncodes(onhit,(onhit[0].name in enclosingfxnnames)) if onhit!=[] else ""),
             "Deal damage to the target. Hits within the range of "+str(rangevalue)+".",
-            [multiplier,rangevalue,absolute,onhit]
+            {
+                "multiplier":multiplier,
+                "rangevalue":rangevalue,
+                "absolute":absolute,
+                "onhit":onhit
+            }
             )
     
-    def AttackSP(multiplier="POWR",rangevalue=1,absolute=False):
+    def AttackSP(multiplier="POWR",rangevalue=1,absolute=False,onhit=[]):
         return Fxn(
             "AttackSP",
-            ("attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attackSP("+str(multiplier)+",range="+str(rangevalue)+")"),
-            "Deal Damage to target's Shield Points only.Hits within the range of "+str(rangevalue)+"",
-            [multiplier,rangevalue,absolute]
+            ("attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attackSP("+str(multiplier)+",range="+str(rangevalue)+")")+
+            (":\n"+enumerate_fxncodes(onhit,(onhit[0].name in enclosingfxnnames)) if onhit!=[] else ""),
+            "Deal Damage to target's Shield Points only. Hits within the range of "+str(rangevalue)+"",
+            {
+                "multiplier":multiplier,
+                "rangevalue":rangevalue,
+                "absolute":absolute,
+                "onhit":onhit
+            }
             )
     def Defend(multiplier="POWR",absolute=False):
         return Fxn(
             "Defend",
             "defend(DEF*"+str(multiplier)+")",
             "Gain Shield Points.",
-            [multiplier,absolute]
+            {
+                "multiplier":multiplier,
+                "absolute":absolute,
+            }
             )
     
     def ReduceSPself(multiplier="POWR",absolute=False):
@@ -255,37 +310,46 @@ init python:
             "ReduceSPself",
             ("reduceSPself(DEF*"+str(multiplier)+")"),
             "Reduce Shield Points.",
-            [multiplier,absolute]
+            {
+                "multiplier":multiplier,
+                "absolute":absolute,
+            }
             )
     def DeckChange(deckName):
         return Fxn(
             "DeckChange",
             "deckChange(\""+deckName+"\")",
             "Changes the current battleware deck.",
-            deckName
+            {"deckName":deckName}
             )
-    def Recover(MAG):
+    def Recover(POW):
         return Fxn(
             "Recover",
             "recover(MAXHP*POWR)",
             "Recover (MAXHP*POWR) HP.",
-            MAG
+            {
+                "POW":POW,
+            }
             )
     #
  
-    def RemoveToken(token_name,target):
+    def RemoveToken(tokenname,target):
         return Fxn(
             "RemoveToken",
-            "removeToken(\""+token_name+"\",\""+target+"\")",
-            "Remove 1 \""+token_name+"\" token from target's status.",
-            (token_name,target)
+            "removeToken(\""+tokenname+"\",\""+target+"\")",
+            "Remove 1 \""+tokenname+"\" token from target's status.",
+            {
+                "tokenname":tokenname,
+                "target":target,
+            }
             )
 
     def NullFxn():
         return Fxn(
             "",
             "",
-            ""
+            "",
+            {}
             )
     def targetHPfxn():
         
@@ -305,8 +369,8 @@ init python:
     Average COST for functions
 
     BITS           1     2     3      4     5      6     7       8
-    MAG(Damage)    0.25  0.5   0.75   1.0   1.25   1.5   1.75    2.0
-    MAG(Shield)    0.5   0.75  1.0    1.25  1.5    1.75  2.0     2.25
+    POW(Damage)    0.25  0.5   0.75   1.0   1.25   1.5   1.75    2.0
+    POW(Shield)    0.5   0.75  1.0    1.25  1.5    1.75  2.0     2.25
     IncreaseATK                           *
     IncreaseDEF                           *
     FXN
@@ -316,10 +380,10 @@ init python:
     ##name              name                     TYPE               POWR        FXN List                      COST
     FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
     MailSaberPlus=    Card("MailSaberPlus",     "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
-    FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),Burn(20)],                   0)
+    FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),GiveToken("Burn",1)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
-    WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(onhit=[ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)])])],                  0)
+    WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(rangevalue=2,onhit=[ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)],indents=1)])],                  0)
     GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [Recover(0.25),ForInRange("x in range(0,target.HP/8)","targetHP/80",[Attack(80,absolute=True),])],   0)
     # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Increase("ATK",0.25),Increase("DEF",0.25)]),Attack(),],   0)
 
@@ -353,8 +417,8 @@ init python:
     LambdaSaber=   Card("LambdaSaber",      "Sword",           0.3,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(2),Attack()], 5)
     
-    XAxess=        Card("X-Axess",          "X",               0.75,     [AttackSP(),Attack(onhit=[Push(2)])],            4)
-    YAxess=        Card("Y-Axess",          "Y",               1.0,     [Attack(onhit=[Push(1)])],            3)
+    XAxess=        Card("X-Axess",          "Axe",               0.75,     [AttackSP(),Attack(onhit=[Push(2)])],            4)
+    YAxess=        Card("Y-Axess",          "Axe",               1.0,     [Attack(onhit=[Push(1)])],            3)
     DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
 
     DataPiercer=   Card("DataPiercer",      "Spear",           1.0,      [Attack(),Defend(0.25)],   5)
@@ -374,10 +438,10 @@ init python:
     ImpactHammer = Card("ImpactHammer",     "Hammer",       1.5,     [Attack(rangevalue=1,onhit=[Push(3)])],            5)
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
-    VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[Burn(20)])],               3)
+    VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[GiveToken("Burn",1)])],               3)
     Pyrokinesis=    Card("Pyrokinesis",     "Fire",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),Increase("ATK",0.25)])],               1)
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
-    VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[Burn(20),Push(3)])],   4)
+    VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[GiveToken("Burn",1),Push(3)])],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
     WormBite=      Card("WormBite",         "Hole",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
     WormRetreat=    Card("WormRetreat",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(3)])],   3)
@@ -399,7 +463,7 @@ init python:
    
     Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
     
-    DataDrill=    Card("DataDrill",       "Drill",   0.5,     [ForInRange("x in range(0,3)",3,[Attack()]) ,GainToken("Data",1)],       5)
+    DataDrill=    Card("DataDrill",       "Drill",   0.3,     [Attack(onhit=[ForInRange("x in range(0,5)",5,[Attack()])]) ,GainToken("Data",1)],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Increase("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
@@ -426,7 +490,7 @@ init python:
     ZSlash=        Card("ZSlash",          "Slash",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FreezeWave=    Card("FreezeWave",      "Wave",       1.0,     [Attack(),Freeze()],   4)
     FreezingBlade= Card("FreezingBlade",   "Sword",      1.0,     [Attack(),Freeze()],   4)
-    Salamandra=    Card("Salamandra",      "Sword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
+    Salamandra=    Card("Salamandra",      "FireSword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4) 
     GearframeUnitron= Card("GU-Gearframe Unitron","GU",  1.0,     [Advance(3),NullFxn()],   2)
     NucleusVernier=  Card("NV-Nautical Vanguard", "NV",    1.0,     [Advance(1),Increase("ATK",0.25)],   2)
@@ -482,17 +546,19 @@ init python:
         "name":"The Love Machine",
         "content":[
             VirusFlame,VirusFlame,
-            VirusFlame,Vslash,
+            VirusFlame,WindBlast,
             SpamAtk,SpamAtk,
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
             ChocolateBar,ChocolateBar,
             DataSaber,DataSaber,
-            DataSaber,MailSaber,
-            VirusFlame,RecursiveSlash,
+            DataSaber,DataSaber,
+            MailSaber,BlockSaber,
+            
+            WindBlast,RecursiveSlash,
             BlockSaber,SaberDeflect,
-            DataSaber,BlockSaber,
-            HeartBurn,HeartBurn,
+            WindBlast,WindBlast
+            # HeartBurn,HeartBurn,
             # GearframeUnitron,GearframeUnitron,
             # GearframeUnitron,GearframeUnitron,
             # NucleusVernier,NucleusVernier,
@@ -575,12 +641,12 @@ init python:
         "name":"Password Uncovered",
         "content":[
             VirusFlame,VirusFlame,
-            VirusFlame,DataBuster,
-            DataBuster,DataBuster,
+            VirusFlame,VirusFlame,
+            DataBomb,DataBuster,
             DataForce,BruteForce,
             DataBomb,Cursorclaw,
-            Cursorclaw,Cursorclaw,
-            Vslash,Vslash,
+            DataBomb,Cursorclaw,
+            VirusFlame,Vslash,
             Vslash,Vslash,
             Vshot,Vshot,
             Vshot,Vshot,

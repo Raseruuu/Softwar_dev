@@ -19,6 +19,6 @@ label game_loop:
     if not playerHP<=0:
         if not game_over:
             jump game_loop
-    if not game_over:
-        call credits
+    # if not game_over:
+    #     call credits
     return

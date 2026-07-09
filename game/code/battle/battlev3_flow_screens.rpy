@@ -52,7 +52,7 @@ default playerPlugins =[]
 default duel_log =[]
 default log_shown =True
 
-default battle_distance = 0
+default battle_distance = 2
 transform flip_image:
     xzoom -1.0
 transform xZoom(value):
@@ -170,7 +170,7 @@ screen battlestats():
                         add "gui/distarrow.png" yalign 0.5 at zoomtrans(0.4)
                         null width 2
                         add "gui/distperson.png" yalign 0.5 at zoomtrans(0.5)
-                    text "{font=font/lucon.ttf}{size=12}{b}DISTANCE=[battle_distance]{/font}{/size}{/b}" xalign 0.5
+                    text "{font=font/lucon.ttf}{size=12}{b}DISTANCE=[battle_distance]m{/font}{/size}{/b}" xalign 0.5
                     # text "{font=font/lucon.ttf}{size=11}{b}{/font}{/size}{/b}" xalign 0.5
                 # textbutton "{font=font/lucon.ttf}{size=18}{b}Battle Log{/font}{/size}{/b}" xalign 0.98 action SetVariable("log_shown",not log_shown)
             
@@ -429,7 +429,7 @@ screen battlestats():
         # xpos 0.5 xanchor 0.5 ypos 0.60 yanchor 0.5
         # at alpha08
         yanchor 0.5
-        ypos (0.55)
+        ypos (0.6)
         at battlecode_trans(focused=battlecodestatus), zoomtrans(0.75)
         
         vbox:
@@ -590,35 +590,35 @@ label drawcards:
         playercard1obj =playerhand[0]
         playercard1name = playerhand[0].NAME
         playercard1ATK = playerhand[0].TYPE
-        playercard1DEF = playerhand[0].MAG
+        playercard1DEF = playerhand[0].POW
         playercard1FXN = playerhand[0].FXN
         playercard1COST = playerhand[0].COST
 
         playercard2obj =playerhand[1]
         playercard2name = playerhand[1].NAME
         playercard2ATK = playerhand[1].TYPE
-        playercard2DEF = playerhand[1].MAG
+        playercard2DEF = playerhand[1].POW
         playercard2FXN = playerhand[1].FXN
         playercard2COST = playerhand[1].COST
 
         playercard3obj =playerhand[2]
         playercard3name = playerhand[2].NAME
         playercard3ATK = playerhand[2].TYPE
-        playercard3DEF = playerhand[2].MAG
+        playercard3DEF = playerhand[2].POW
         playercard3FXN = playerhand[2].FXN
         playercard3COST = playerhand[2].COST
 
         playercard4obj =playerhand[3]
         playercard4name = playerhand[3].NAME
         playercard4ATK = playerhand[3].TYPE
-        playercard4DEF = playerhand[3].MAG
+        playercard4DEF = playerhand[3].POW
         playercard4FXN = playerhand[3].FXN
         playercard4COST = playerhand[3].COST
 
         playercard5obj =playerhand[4]
         playercard5name =playerhand[4].NAME
         playercard5TYPE = playerhand[4].TYPE
-        playercard5MAG = playerhand[4].MAG
+        playercard5POW = playerhand[4].POW
         playercard5FXN = playerhand[4].FXN
         playercard5COST = playerhand[4].COST
 
@@ -640,23 +640,23 @@ label drawcards:
     # return
 image cardflash:
     "cardflasher"
-    xalign 0.5 ypos 0.70 yanchor 0.5 zoom 0.9
+    xalign 0.3 ypos 0.70 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.2
     linear 0.05 zoom 1.1
 image cardflash2:
     "cardflasher"
-    xalign 0.5 ypos 0.70 yanchor 0.5
+    xalign 0.3 ypos 0.70 yanchor 0.5
     zoom 1.1
     # linear 0.05 zoom 1.3
     # linear 0.05 zoom 1.2
 image cardflashenemy:
     "cardflasher"
-    xalign 0.5 ypos 0.38 yanchor 0.5 zoom 0.9
+    xalign 0.7 ypos 0.38 yanchor 0.5 zoom 0.9
     linear 0.05 zoom 1.2
     linear 0.05 zoom 1.1
 image cardflashenemy2:
     "cardflasher"
-    xalign 0.5 ypos 0.38 yanchor 0.5 
+    xalign 0.7 ypos 0.38 yanchor 0.5 
     zoom 1.1
 
 # define battlemusic_dict=
@@ -797,7 +797,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
         playerbitsmax=pbitsMax
         enemybitsmax=pbitsMax
         random.shuffle(playerDeck)
-        battle_distance = 0
+        battle_distance = 2
         battle_done = False
         enemyfirst =renpy.random.choice([True,False])
         map_active=False
@@ -1141,11 +1141,13 @@ transform phasetrans3:
         linear 0.1 xzoom 2.0 alpha 0.0
 
 label showphasemsg(msg):
+    play sound "sfx/phase.wav"
     show screen phasemsg(msg)
     $ renpy.pause(0.9,hard=True)
     hide screen phasemsg
     return
 label battlemessage(msg):
+    play sound "sfx/phase2.wav"
     show screen battlemessagescreen(msg)
     $ renpy.pause(0.8,hard=True)
     hide screen battlemessagescreen

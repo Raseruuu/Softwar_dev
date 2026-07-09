@@ -12,8 +12,8 @@
 #           Blast()         Increase Blast cards for 3 turns
 #           Break()         Ignore Shield
 #
-#           Damage()        Inflict (MAG*ATK) Damage to enemy
-#           Shield()        Gain (MAG*DEF) SP
+#           Damage()        Inflict (POW*ATK) Damage to enemy
+#           Shield()        Gain (POW*DEF) SP
 
 #           Boost(type)     Append Boost status to user for [type] cards
 #           Burn()          Append Burn status to enemy

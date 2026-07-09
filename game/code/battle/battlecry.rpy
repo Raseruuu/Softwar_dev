@@ -82,7 +82,7 @@ label battlecry_Ave:
         # $ damagecard = (currentcardFXN[0].name =="Attack" or currentcardFXN[1].name=="Attack")
         $ currentcardfunctions=[a.name for a in currentcardFXN]
         $ damagecard = ("attack" in currentcardfunctions) 
-        $ Magnitude = (currentcardMAG)
+        $ Magnitude = (currentcardPOW)
         $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
         if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
@@ -127,7 +127,7 @@ label battlecry_Melissa:
         $ currentcardfunctions=[a.name for a in currentcardFXN]
         $ damagecard = ("attack" in currentcardfunctions) 
           
-        $ Magnitude = (currentcardMAG)
+        $ Magnitude = (currentcardPOW)
         $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
         if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
@@ -149,7 +149,7 @@ label battlecry_CodeRed:
         $ currentcardfunctions=[a.name for a in currentcardFXN]
         $ damagecard = ("attack" in currentcardfunctions) 
         
-        $ Magnitude = (currentcardMAG)
+        $ Magnitude = (currentcardPOW)
         $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
         if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
@@ -186,7 +186,7 @@ label battlecry_Vira:
         $ currentcardfunctions=[a.name for a in currentcardFXN]
         $ damagecard = ("attack" in currentcardfunctions) 
         
-        $ Magnitude = (currentcardMAG)
+        $ Magnitude = (currentcardPOW)
         $ enemydamagetoplayer=int(enemyATK_m*Magnitude)+playerburndamage
         if (enemydamagetoplayer>=(playerHP+playerSP)) and (damagecard==True):
 
