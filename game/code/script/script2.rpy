@@ -1265,5 +1265,8 @@ label SDS_Encounter:
     "Ave logged out briefly."
     "Phew! We made an escape! "
     # =============================
-
+    "DEMO END>>>"
+    "DEMO END>>>"
+    "It's not actually supposed to end here yet, They are supposed to reflect on that battle and stuff before the Pizza arrives, and they take a pic together..."
+    "Thank you for playing the beta test ish thing!"
     return

@@ -390,8 +390,7 @@ image card5:
         )
 
 transform distance_trans(battle_dist):
-    zoom (1.5-(battle_dist*0.1+battle_dist*0.1))
-    yanchor 0.3
+    zoom (1.2-(battle_dist*0.1+battle_dist*0.05))
 image Enemy:
     At("images/battle/Enemies/[enemyName].png",distance_trans(battle_distance))
 image Trojan:

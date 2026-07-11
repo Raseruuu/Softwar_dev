@@ -186,7 +186,7 @@ label Damageenemy(params):
         $ enemy_evasion_active=False
         show Enemy:
             alpha 1.0
-            xalign 0.5 yanchor 0.32 ypos 0.3 
+            xalign 0.5 yanchor 0.3 ypos 0.3 
         call battlemessage("MISSED!")
         call Advance(params={"quantity":1})
         if battle_distance==0 and battle_distance_old>0:
@@ -205,7 +205,7 @@ label Damageenemy(params):
         pause 0.24
         $ enemy_evasion_active=False
         show Enemy:
-            xalign 0.5 yanchor 0.32 ypos 0.3 
+            xalign 0.5 yanchor 0.3 ypos 0.3 
         call battlemessage("EVADED")
     # NO EVADE    
     else:
@@ -248,7 +248,7 @@ label Damageenemy(params):
         call TYPE_delay
         show Enemy:
             alpha 1.0
-            xalign 0.5 yanchor 0.32 ypos 0.3
+            xalign 0.5 yanchor 0.3 ypos 0.3
             
         hide damageeffect
         $ enemy_being_damaged=False
@@ -278,7 +278,7 @@ label DamageSPplayer(params={}):
             $ damagetoplayer=int(enemyATK_m*Magnitude)
             
             call TYPE_sfx
-            play sound "sfx/noise.wav" 
+            play sound "sfx/noise.wav" channel 2
             
             $ playerSP-=damagetoplayer
             if playerSP<0:
@@ -331,7 +331,7 @@ label DamageSPenemy(params={}):
             $ renpy.pause(0.6,hard=True)
             show Enemy:
                 alpha 1.0
-                xalign 0.5 yanchor 0.32 ypos 0.3 
+                xalign 0.5 yanchor 0.3 ypos 0.3 
     return
 label DamageSPselfenemy(params={}):
     if enemySP>0:
@@ -361,7 +361,7 @@ label DamageSPselfenemy(params={}):
         $ renpy.pause(0.6,hard=True)
         show Enemy:
                 alpha 1.0
-                xalign 0.5 yanchor 0.32 ypos 0.3 
+                xalign 0.5 yanchor 0.3 ypos 0.3 
     return
 label Burnenemy:
     play sound "sfx/fire.wav"
@@ -605,8 +605,8 @@ label WhileTokenInStatusEnemy(params={}):
             $ block_count = 0
             label block_loop:
                 $ runfxnstring = block_functions[block_count].name
-                $ currentcard_fxn_params=block_functions[block_count].params
-                call enemyfunctioneffects(runfxnstring)
+                $ newfunctionparam=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring,newfunctionparam)
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop
@@ -617,8 +617,8 @@ label WhileTokenInStatusEnemy(params={}):
             $ block_count = 0
             label block_loop1:
                 $ runfxnstring = block_functions[block_count].name
-                $ currentcard_fxn_params=block_functions[block_count].params
-                call enemyfunctioneffects(runfxnstring)
+                $ newfunctionparam=block_functions[block_count].params
+                call enemyfunctioneffects(runfxnstring,newfunctionparam)
                 $ block_count+=1
                 if block_count<len(block_functions):
                     jump block_loop1
@@ -1048,7 +1048,7 @@ label Damageplayer(params={}):
         $ renpy.show("Enemy")
         $ attackhit=False
         # show Enemy:
-        #     xalign 0.5 yanchor 0.32 ypos 0.3
+        #     xalign 0.5 yanchor 0.3 ypos 0.3
         $ evasion_active=True
         play sound "sfx/miss.wav" channel 1
         pause 0.05
@@ -1078,7 +1078,7 @@ label Damageplayer(params={}):
         show damageeffect as damagetheplayer:
             yzoom 1.0 yoffset 400 zoom 2.0
         if playerSP>0:
-            play sound "sfx/noise.wav" channel 1
+            play sound "sfx/noise.wav" channel 2
             
             $ playerSP-=damagetoplayer
             if playerSP<0:
@@ -1377,7 +1377,7 @@ label Execution:
     # call playbattlemusic(enemyName)
     
     show battlering:
-        xalign 0.5 ypos 0.20 yanchor 0.5
+        xalign 0.5 ypos 0.4 yanchor 0.5
         block:
             rotate 0
             linear 15.0 rotate 360
@@ -1391,7 +1391,7 @@ label Execution:
     show battleroad:
         yalign 1.0 xalign 0.5
     show Enemy:
-        xalign 0.5 yanchor 0.32 ypos 0.3
+        xalign 0.5 yanchor 0.3 ypos 0.3
     $ iterations =len(playerbattlecode)
     show screen phasemsg("EXECUTE")
     $ renpy.pause(0.5,hard=True)
@@ -1498,7 +1498,7 @@ label PlayerEndPhase:
             $ renpy.pause(0.6,hard=True)
             show Enemy:
                 alpha 1.0
-                xalign 0.5 yanchor 0.32 ypos 0.3 
+                xalign 0.5 yanchor 0.3 ypos 0.3 
             hide Brnsts
     $ playerbits = playerbitsmax
     return
@@ -1694,7 +1694,7 @@ init python:
         "Evade":"EvadeEnemy",
         "Block":"BlockEnemy",
         "Retreat":"Retreat",
-        "Push":"Retreatenemy",
+        "Push":"Retreat",
         "Advance":"Advance",
         "Pull":"Advance",
         "DeckChange":"DeckChangeEnemy",

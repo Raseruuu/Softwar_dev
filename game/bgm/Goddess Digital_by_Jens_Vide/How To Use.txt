@@ -1,0 +1,5 @@
+How to use
+
+This music pack has two versions of every song: LOOPING .ogg versions and NOT LOOPING .mp3 versions.
+The LOOPING .ogg versions loop perfectly when they repeat, making them ideal as looping background music in games. When using this in your game, make sure that you set the song to repeat.
+The NOT LOOPING .mp3 versions do not loop, and instead have proper endings. This makes them ideal for games that shuffle between multiple songs in the same level.

@@ -985,7 +985,7 @@ label date2:
 
         scene battlebg with pixellate
         show battlering:
-            xalign 0.5 ypos 0.15 yanchor 0.5
+            xalign 0.5 ypos 0.4 yanchor 0.5
             block:
                 rotate 0
                 linear 15.0 rotate 360
@@ -1045,7 +1045,7 @@ label date2:
         show battleroad:
             yalign 1.0 xalign 0.5
         show Enemy:
-            xalign 0.5 yanchor 0.32 ypos 0.25
+            xalign 0.5 yanchor 0.3 ypos 0.25
 
         with pixellate
         i"John! I need your help! Let's destroy the Virus Together!"

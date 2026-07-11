@@ -284,7 +284,7 @@ label cutscene_gunvar:
     if battle_active:
         show screen battlestats
         show battlering:
-            xalign 0.5 ypos 0.20 yanchor 0.5
+            xalign 0.5 ypos 0.4 yanchor 0.5
             block:
                 rotate 0
                 linear 15.0 rotate 360
@@ -299,5 +299,5 @@ label cutscene_gunvar:
             yalign 1.0 xalign 0.5
         # if battle_active:
         show Enemy:
-            xalign 0.5 yanchor 0.32 ypos 0.3 
+            xalign 0.5 yanchor 0.3 ypos 0.3 
     return

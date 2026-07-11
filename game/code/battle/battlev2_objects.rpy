@@ -378,7 +378,7 @@ init python:
     """
 #Concatenations
     ##name              name                     TYPE               POWR        FXN List                      COST
-    FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(),GiveToken("Burn",3),GainToken("Saber",1) ],                   0)
+    FlameSaber=    Card("FlameSaber",           "FireSword",        1.75,    [Attack(rangevalue=1,onhit=[GiveToken("Burn",3)]),GainToken("Saber",1) ],                   0)
     MailSaberPlus=    Card("MailSaberPlus",     "MailSword",  0.5,    [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],                   0)
     FlameDrill=    Card("FlameDrill",           "FireDrill",        0.25,    [ForInRange("x in range(0,8)",8,[Attack()]),GiveToken("Burn",1)],                   0)
     FrostBuster=   Card("FrostBuster",          "IceGun",           1.75,    [Attack(),Freeze()],                   0)
@@ -432,7 +432,7 @@ init python:
 #SaberSkills 
     SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()])],   1)
+    SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()])],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()])],   1)
 #Hammer 
     ImpactHammer = Card("ImpactHammer",     "Hammer",       1.5,     [Attack(rangevalue=1,onhit=[Push(3)])],            5)
@@ -443,7 +443,7 @@ init python:
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
     VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[GiveToken("Burn",1),Push(3)])],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
-    WormBite=      Card("WormBite",         "Hole",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
+    WormBite=      Card("WormBite",         "Bite",           1.0,   [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(2)]),Attack()],   4)
     WormRetreat=    Card("WormRetreat",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Retreat(3)])],   3)
     WormAdvance=    Card("WormAdvance",      "Hole",         0.0,     [IfFunction("\"Hole\" in Self_Status","Hole","Self",[RemoveToken("Hole","Self"),Advance(3)]),Advance()],   1)
 
@@ -461,9 +461,9 @@ init python:
     BruteForce=   Card("BruteForce",     "Force",    0.10,     [Increase("ATK",0.25),ForInRange("x in range(0,Self_Status.count(\"IncreaseATK\")",["IncreaseATK","Self_Status"],[Attack()])],  2)
     DataForce=    Card("DataForce",      "Force",    0.25,      [Increase("ATK",0.25),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
-    Tackle=       Card("Tackle",      "Maneuver",        0.3,     [Advance(2),Attack()], 2)
+    Tackle=       Card("Tackle",        "Maneuver",        0.3,     [Advance(2),Attack()], 2)
     
-    DataDrill=    Card("DataDrill",       "Drill",   0.3,     [Attack(onhit=[ForInRange("x in range(0,5)",5,[Attack()])]) ,GainToken("Data",1)],       5)
+    DataDrill=    Card("DataDrill",       "Drill",   0.2,     [Attack(onhit=[ForInRange("x in range(0,5)",5,[Attack()])]) ,GainToken("Data",1)],       5)
     Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Increase("ATK",0.25)],        4)
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
@@ -849,7 +849,7 @@ init python:
     
     
     
-    Vira=FAI("Vira","Antivirus",3500,3500,450,550,deckvira,[])
+    Vira=FAI("Vira","Antivirus",3000,3000,450,550,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,4000,450,550,deckred,[])
     Bitwulf=FAI("Bitwulf","Antivirus",4000,4000,500,500,deckred,[])
     # Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])

@@ -39,17 +39,9 @@ init python:
         Red_underwear,
         White_underwear,
         Sports_underwear,
-        Straps_underwear,
-        Coworker_underwear,
-
-
-
-
-        UniformBig,
-        CowGirl,
-        BikiniArmor,
-        ArmorBikini,
-        BlackBelts,CasualRed,DarkQueen
+        MaidUniform,
+        BlackBelts,CasualRed,
+        Bloomers
         ]
     
     def EquipDress(dresstype,dressname):

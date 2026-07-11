@@ -843,7 +843,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
     call playbattlemusic(enemyName)
     
     show battlering:
-        xalign 0.5 ypos 0.20 yanchor 0.5
+        xalign 0.5 ypos 0.4 yanchor 0.5
         block:
             rotate 0
             linear 15.0 rotate 360
@@ -857,7 +857,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
     show battleroad:
         yalign 1.0 xalign 0.5
     show Enemy:
-        xalign 0.5 yanchor 0.32 ypos 0.3
+        xalign 0.5 yanchor 0.3 ypos 0.3
         
     call start_battlecry(playerName)
     call start_battlecry(enemyName)
@@ -1164,9 +1164,9 @@ screen choosecardv2:
     else:
         $ config.rollback_enabled = False
     if playerbattlecode!=[]:
-        imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.71 xanchor 0.5 yalign 0.56
-        key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
-        key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
+        imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") xpos 0.71 xanchor 0.5 yalign 0.62
+        key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Rollback()
+        key "x" action Play("sound","sound/Phase.wav"), Rollback()
         
     hbox:
         # xalign 0.5 yalign 0.92

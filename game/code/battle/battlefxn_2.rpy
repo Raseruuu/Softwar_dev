@@ -44,7 +44,7 @@ label Attack(params={}):
         $ enemy_evasion_active=False
         show Enemy:
             alpha 1.0
-            xalign 0.5 yanchor 0.32 ypos 0.3 
+            xalign 0.5 yanchor 0.3 ypos 0.3 
         call battlemessage("MISSED!")
         call Advance(params={"quantity":1})
         if battle_distance==0 and battle_distance_old>0:
@@ -63,7 +63,7 @@ label Attack(params={}):
         pause 0.24
         $ enemy_evasion_active=False
         show Enemy:
-            xalign 0.5 yanchor 0.32 ypos 0.3 
+            xalign 0.5 yanchor 0.3 ypos 0.3 
         call battlemessage("EVADED")
     # NO EVADE    
     else:
@@ -106,7 +106,7 @@ label Attack(params={}):
         call TYPE_delay
         show Enemy:
             alpha 1.0
-            xalign 0.5 yanchor 0.32 ypos 0.3
+            xalign 0.5 yanchor 0.3 ypos 0.3
             
         hide damageeffect
         $ enemy_being_damaged=False
@@ -139,6 +139,7 @@ label RemoveTokenPlayer(params={}):
         hide screen tokenremove_anim
     return
 label RemoveTokenEnemy(params={}):
+    $ paramsvar=params
     $ token_name = params["tokenname"]
     $ remove_target = params["target"]
     if remove_target=="Self":
