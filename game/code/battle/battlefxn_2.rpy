@@ -199,7 +199,7 @@ label GiveToken(params={}):
     label tokenquant_loop:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,token_name)
-        show screen tokenappend_anim(token_name)
+        show screen tokenappend_anim(token_name,"enemy")
         $ renpy.pause(0.4,hard=True)
         hide screen tokenappend_anim
         $ counter+=1
@@ -215,13 +215,9 @@ label GainTokenPlayer(params={}):
     label tokenquant_loop2:
         play sound "sfx/tokengain.mp3"
         $ PlayerSts=statusAppend(PlayerSts,token_name)
-        show text "{size=20}"+token_name+"{/size}" onlayer overlay:
-            
-            zoom 1.3 xpos 0.1 xanchor 0.5 yanchor 1.0 ypos 0.20 alpha 1.0
-            pause 0.2
-            linear 0.1 zoom 0.98
-            linear 0.2 zoom 1.0 alpha 0.0
-        $ renpy.pause(0.6,hard=True)
+        show screen tokenappend_anim(token_name,"player")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenappend_anim
         hide text
         $ counter+=1
         if counter<quantity:

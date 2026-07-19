@@ -154,6 +154,7 @@ label roguemode:
         c "Let's get this over with."
 
     scene gridbglandscape1 with pixellate:
+        xalign 0.5 yalign 0.5
         zoom 0.75
     $ Brain_w=False
     show Brain
@@ -200,7 +201,9 @@ label roguestage:
         if boss_index==1:
             call r_battlestart
     label newnodes:
-        play music "bgm/ost/Serious_Noyemi_K.ogg"
+        # play music "bgm/ost/Serious_Noyemi_K.ogg"
+        play music "bgm/Jens_Vide/Goddess-Digital-05 - Data Road.ogg"
+        
         scene mainbg 
         
         if Boss_defeated:
@@ -221,19 +224,7 @@ label roguestage:
             label Itemscreen_r:
                 $ noscreentransformsfornow=False
                 call screen Items
-                # if _return=="Return":
-                #     $ pausemenu =False
-                    
-                #     return
-                # elif _return!="Return":
-                #     # jump pauseshow
-                #     jump Itemscreen_r
                 
-                # if _return=="Open":
-                #     call OpenItem(messageview["sender"],messageview["subject"],messageview["body"]) from _call_OpenItem
-                #     jump Itemscreen_r
-                # elif _return!="Open":
-                #     jump Itemscreen_r
         elif _return=="deck_edit":
             python:
                 deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))

@@ -659,12 +659,6 @@ image cardflashenemy2:
     xalign 0.7 ypos 0.38 yanchor 0.5 
     zoom 1.1
 
-# define battlemusic_dict=
-#     {
-#         "Ave":"bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
-#         "Vira":"bgm/ost/BOSSBATTLE-A_by-Noyemi_K.ogg"
-        
-#         }
 label playbattlemusic(e_name):
     
     if e_name=="Ave":
@@ -677,7 +671,11 @@ label playbattlemusic(e_name):
         play music "bgm/ost/BOSSBATTLE-C_by_StarryMarshmell_0.ogg"
     elif e_name=="Melissa":
         play music "bgm/ost/BOSSBATTLE-M_by_Walter_Chamod.wav"
-    
+    elif e_name=="ILY_Alpha":
+        play music "bgm/Jens_Vide/Goddess-Gold-03. Thumos Beat - Loop.ogg"
+    elif e_name=="Bitwulf":
+        play music "bgm/ost/Bitwulf boss theme.wav"
+        
     else:
         
         play music ""+renpy.random.choice(["bgm/Fight_bgm_maoudamashii_cyber14.ogg","bgm/ost/BATTLE_Common_by_Walter_Chamod.wav"])
@@ -1091,7 +1089,7 @@ screen Execute:
     key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     key 'K_RETURN' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
     key 'K_KP_ENTER' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
-    imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.71 xanchor 0.5 yalign 0.56
+    imagebutton idle "images/Cards/cardreturn.png" hover "images/Cards/cardreturn_hover.png" action Play("sound","sound/Phase.wav"),  Rollback() hovered Play("sound","sfx/select.wav") unhovered Hide("card6hover") xpos 0.71 xanchor 0.5 yalign 0.62
         
     # imagebutton idle "images/Cards/cardreturn.png" action Play("sound","sound/Phase.wav"), Rollback() hovered Play("sound","sfx/select.wav") 
     # key 'z' action  Play("sound","sound/Execute.wav"), Hide("card6hover"),Return("Execute")
@@ -1141,13 +1139,13 @@ transform phasetrans3:
         linear 0.1 xzoom 2.0 alpha 0.0
 
 label showphasemsg(msg):
-    play sound "sfx/phase.wav"
+    play sound "sound/Phase.wav"
     show screen phasemsg(msg)
     $ renpy.pause(0.9,hard=True)
     hide screen phasemsg
     return
 label battlemessage(msg):
-    play sound "sfx/phase2.wav"
+    play sound "sound/Phase.wav"
     show screen battlemessagescreen(msg)
     $ renpy.pause(0.8,hard=True)
     hide screen battlemessagescreen

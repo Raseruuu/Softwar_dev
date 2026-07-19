@@ -281,7 +281,7 @@ init python:
             }
             )
     
-    def AttackSP(multiplier="POWR",rangevalue=1,absolute=False,onhit=[]):
+    def AttackSP(multiplier="POWR",rangevalue=0,absolute=False,onhit=[]):
         return Fxn(
             "AttackSP",
             ("attackSP(ATK*"+str(multiplier)+",range="+str(rangevalue)+")" if not absolute else "attackSP("+str(multiplier)+",range="+str(rangevalue)+")")+
@@ -395,7 +395,7 @@ init python:
     # FourAtk=      Card("DataSaber",         "Mail",           0.1,   [Attack(),Attack(),Attack(),Attack()],    2)
     Eraser=        Card("Eraser",           "Eraser",          1.0,     [ForInRange("x in range(0,target.HP/8)","targetHP/80",[Attack(80,absolute=True),])],   8)
     SpamAtk=       Card("SpamAtk",          "Mail",           0.1,      [Attack(rangevalue=7,onhit=[GiveToken("Email",3)])],    2 )
-    MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),NullFxn()],   4)
+    MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
     RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
     SaberAura=     Card("SaberAura",        "Sword",          0.5,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   8)
@@ -554,11 +554,10 @@ init python:
             DataSaber,DataSaber,
             DataSaber,DataSaber,
             MailSaber,BlockSaber,
-            
+            HeartBurn,HeartBurn,
             WindBlast,RecursiveSlash,
             BlockSaber,SaberDeflect,
-            WindBlast,WindBlast
-            # HeartBurn,HeartBurn,
+            # WindBlast,WindBlast
             # GearframeUnitron,GearframeUnitron,
             # GearframeUnitron,GearframeUnitron,
             # NucleusVernier,NucleusVernier,
@@ -585,7 +584,7 @@ init python:
             RecursiveSlash,SaberDeflect,
             Katana,RecursiveSlash,
             DataForce,DataForce],
-        "plugins":[]
+        "plugins":[RubyRevolver,FirstBarrier]
         }
     deckmelissa = {
         "name":"Avaricious Anomaly",
@@ -750,7 +749,7 @@ init python:
             DataBomb,DataBomb,
             Powersol,Powersol,
             Powersol,Powersol],
-        "plugins":[]
+        "plugins":[FirstBarrier]
         }
     deckave = {
         "name":"The Ultimate Antivirus",
@@ -773,8 +772,7 @@ init python:
     deckred = {
         "name":"Wave Sword Arts",
         "content":[
-            DataSaber,DataSaber,
-            DataSaber,DataSaber,
+            DataSaber,DataSaber,DataSaber,DataSaber,
             LambdaSaber,LambdaSaber,
             BlockSaber,BlockSaber,
             BlockSaber,VirusFlame,
@@ -849,7 +847,7 @@ init python:
     
     
     
-    Vira=FAI("Vira","Antivirus",3000,3000,450,550,deckvira,[])
+    Vira=FAI("Vira","Antivirus",3000,3000,450,500,deckvira,[])
     CodeRed=FAI("Code Red","Virus",4000,4000,450,550,deckred,[])
     Bitwulf=FAI("Bitwulf","Antivirus",4000,4000,500,500,deckred,[])
     # Sephiroth=FAI("Sephiroth","Virus",4000,4000,500,500,decksephiroth,[])

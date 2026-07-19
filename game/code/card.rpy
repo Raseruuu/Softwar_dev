@@ -252,14 +252,14 @@ screen choosecardv3(handcards):
                 key "K_BACKSPACE" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
                 key "x" action Play("sound","sound/Phase.wav"), Hide("card6hover"), Rollback()
     
-label run_function(fxn_object, user,target):
-    $ Function_Name = fxn_object.name
-    $ Function_Code = fxn_object.code
-    $ Function_Text = fxn_object.text
-    $ Function_Params = fxn_object.params
+# label run_function(fxn_object, user,target):
+#     $ Function_Name = fxn_object.name
+#     $ Function_Code = fxn_object.code
+#     $ Function_Text = fxn_object.text
+#     $ Function_Params = fxn_object.params
 
 
-    return
-label Testlabel(passed="Nothing",something=False):
-    "[passed][something]"
-    return
+#     return
+# label Testlabel(passed="Nothing",something=False):
+#     "[passed][something]"
+#     return

@@ -1261,12 +1261,11 @@ label SDS_Encounter:
     a "Tsk. I won't fight you."
     a "My only target now is the ILOVEYOU Virus."
     v "Well, too bad. She's gone now." 
-    v "Sayonara, Ill-tempered hunter!"    
+    v "Sayonara, Ill-tempered hunter!"   
+    a "Tsk.." 
     "Ave logged out briefly."
-    "Phew! We made an escape! "
+    "Phew! We made an escape!"
+
     # =============================
-    "DEMO END>>>"
-    "DEMO END>>>"
-    "It's not actually supposed to end here yet, They are supposed to reflect on that battle and stuff before the Pizza arrives, and they take a pic together..."
-    "Thank you for playing the beta test ish thing!"
+    ""
     return

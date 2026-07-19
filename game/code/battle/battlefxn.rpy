@@ -21,7 +21,7 @@ label TYPE_sfx:
         play sound "sfx/slashswing.wav" channel 1
         pause 0.02
         play sound "sfx/slash4.wav" channel 1
-    elif "Sword" in currentcardTYPE:
+    elif "Slash" in currentcardTYPE:
         play sound "sfx/slash2.wav" channel 1
     elif currentcardTYPE == "Axe":
         play sound "sfx/slash3.wav" channel 1
@@ -200,6 +200,9 @@ label Damageenemy(params):
         $ EnmySts.remove('Evade') 
         $ enemy_evasion_active=True
         pause 0.1
+        show screen tokenremove_anim("Evade","enemy")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
         play sound "sfx/miss.wav" channel 1
         show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
         pause 0.24
@@ -278,7 +281,7 @@ label DamageSPplayer(params={}):
             $ damagetoplayer=int(enemyATK_m*Magnitude)
             
             call TYPE_sfx
-            play sound "sfx/noise.wav" channel 2
+            play sound "sfx/noise.wav"
             
             $ playerSP-=damagetoplayer
             if playerSP<0:
@@ -465,14 +468,14 @@ label ReduceBit(params={}):
     $ renpy.pause(0.6,hard=True)
     hide Emailsts
     return
-screen tokenappend_anim(tokenname):
-    text "[tokenname]" at tokenappend_trans:
+screen tokenappend_anim(tokenname,target="player"):
+    text "[tokenname]" at tokenappend_trans(target):
         style "statusoutlines"
 screen tokenremove_anim(tokenname,target):
     text "[tokenname]" at tokenremove_trans(target):
         style "statusoutlines"
 transform tokenappend_trans(appendtarget):
-    zoom 1.3 xalign 0.5 yanchor 1.0 ypos 0.41 alpha 0.0
+    zoom 1.3 xalign 0.5 yanchor 1.0 ypos (0.41 if appendtarget=="enemy" else 0.97)alpha 0.0
     linear 0.1 zoom 0.98 alpha 1.0
     pause 0.2
     ease 0.1 zoom 1.0 yoffset 24 alpha 0.0
@@ -491,11 +494,9 @@ label GainTokenEnemy(params={}):
     label tokenquant_loop3:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,tokenname)
-        show text "{size=20}"+tokenname+"{/size}" onlayer overlay:
-            zoom 1.3 xpos 0.9 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
-            linear 0.1 zoom 0.98
-            linear 0.2 zoom 1.0 alpha 0.0
-        $ renpy.pause(0.6,hard=True)
+        show screen tokenappend_anim(tokenname,"enemy")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenappend_anim
         hide text
         $ counter+=1
         if counter<quantity:
@@ -511,35 +512,26 @@ label EvadeEnemy(params={}):
     label tokenquant_loop4:
         play sound "sfx/tokengain.mp3"
         $ EnmySts=statusAppend(EnmySts,tokenname)
-        show text "{size=20}"+tokenname+"{/size}" onlayer overlay:
-            zoom 1.3 xpos 0.9 xanchor 0.5 yanchor 1.0 ypos 0.22 alpha 1.0
-            linear 0.1 zoom 0.98
-            linear 0.2 zoom 1.0 alpha 0.0
-        $ renpy.pause(0.6,hard=True)
-        hide text
+        show screen tokenappend_anim(tokenname,"enemy")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenappend_anim
+
         $ counter+=1
         if counter<quantity:
             jump tokenquant_loop4
     return
 
 label EvadePlayer(params={}):
-    play sound "sfx/tokengain.mp3"
-    
-        # $ currentcard_fxn_params=currentcardFXN[fxnindex].params
-    # $ tokenname = currentcard_fxn_params[0]
     
     $ tokenname = params["tokenname"]
     $ quantity = params["quantity"]
-    # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop5:
-
+        play sound "sfx/tokengain.mp3"
         $ PlayerSts=statusAppend(PlayerSts,tokenname)
-        show text "{size=20}[tokenname]{/size}":
-            zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
-            linear 0.1 zoom 0.98
-            linear 0.2 zoom 1.0 alpha 0.0
-        $ renpy.pause(0.6,hard=True)
+        show screen tokenappend_anim(tokenname,"player")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenappend_anim
         hide text
         
         $ counter+=1
@@ -557,7 +549,7 @@ label IncreaseATK(params={}):
     $ PlayerSts=statusAppend(PlayerSts,"IncreaseATK")
     call updatestats_player
     show IncreaseATKsts onlayer overlay:
-        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.8 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
       
@@ -572,7 +564,7 @@ label IncreaseDEF(params={}):
     $ PlayerSts=statusAppend(PlayerSts,"IncreaseDEF")
     call updatestats_player from _call_updatestats_player_1
     show IncreaseDEFsts onlayer overlay:
-        zoom 1.3 xpos 0.15 xanchor 0.5 yanchor 1.0 ypos 0.45 alpha 1.0
+        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.8 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
@@ -1068,6 +1060,9 @@ label Damageplayer(params={}):
         pause 0.05
         $ evasion_active=False
         $ PlayerSts.remove('Evade')
+        show screen tokenremove_anim("Evade","player")
+        $ renpy.pause(0.4,hard=True)
+        hide screen tokenremove_anim
         call battlemessage("EVADED")
         $ renpy.pause(0.1,hard=True)
     else:
