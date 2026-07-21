@@ -139,6 +139,8 @@ screen battlestats():
     $ playerbitssecondhalf=(0 if playerbits<=int(playerbitsmax/2) else playerbits-playerbitsfirsthalf)
     $ enemybitsfirsthalf=(int(enemybitsmax/2) if (enemybits-int(enemybitsmax/2))>0 else enemybits)
     $ enemybitssecondhalf=(0 if enemybits<=int(enemybitsmax/2) else enemybits-enemybitsfirsthalf)
+    if log_shown:
+        use duel_log_screen
     frame:
         yalign 0.01
         xalign 0.5
@@ -179,7 +181,7 @@ screen battlestats():
         style_prefix "statsb"
         xpos 0.01 xanchor 0.0 yalign 0.01 xsize 420
         at zoomtrans(0.75)
-        # at alpha08
+        # , alpha08
         # at xrotate
         vbox:
             hbox:
@@ -700,13 +702,17 @@ label duel_log_append(category,card_used_object, card_user,user_object,function_
         })
     
     return
+screen CardTooltip(cardobj):
+    add CardDisplayNormal(cardobj) xalign 0.79 yalign 0.71
+
 screen duel_log_screen():
     frame:
         xalign 0.99 yalign 0.97
         style_prefix "statsb"
-        xsize 260 ysize 340
+        xsize 200 ysize 340
+        # at pausetrans5
         vbox:
-            text "{b}BATTLE LOG{/b}" style_prefix "statsb"
+            text "{b}BATTLE LOG{/b}" style_prefix "stats"
             
             # style "statusoutlines"
             # ysize 700
@@ -724,18 +730,46 @@ screen duel_log_screen():
                         if dlog_entry["category"]=="card_played":
 
                             if dlog_entry["card_user"]=="player":
-                                hbox:
-                                    spacing 20
-                                    add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
-                                    vbox:
-                                        text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                                
+                                button:
+                                    style_prefix "bit"
+                                    hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+
+                                    hbox:
+                                        spacing 10
+                                        
+                                        # image "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at shopcardsize
+                                        imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2)  hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                        
+                                        # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                        vbox:
+                                            textbutton " "+(dlog_entry["card_used_object"].NAME)+"" at zoomtrans(0.4) hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                            # # text "POWR = "+str(dlog_entry["card_used_object"].POW) at zoomtrans(0.5)
+                                            # text "  {size=12}POWR = "+str(dlog_entry["card_used_object"].POW)+"   BITS = "+str(dlog_entry["card_used_object"].COST)+"{/size}" yalign 0.0  at zoomtrans(0.75)
+
+                                            # frame:
+                                            #     style_prefix "bit"
+                                            #     add FunctionList(dlog_entry["card_used_object"].FXN) at zoomtrans(0.7)
                             elif dlog_entry["card_user"]=="enemy":
-                                hbox:
-                                    spacing 20
-                                    # add ""+[dlog_entry["user_object"].name]+""
-                                    add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
-                                    vbox:
-                                        text dlog_entry["card_used_object"].NAME at zoomtrans(0.6)
+                                
+                                    
+                                    button:
+                                        style_prefix "bit"
+                                        hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                        hbox:
+                                            spacing 10
+                                            imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2) 
+
+                                            # add ""+[dlog_entry["user_object"].name]+""
+                                            # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
+                                            vbox:
+                                                # text "  "+dlog_entry["card_used_object"].NAME+"" at zoomtrans(0.6)
+                                                textbutton " "+(dlog_entry["card_used_object"].NAME)+"" at zoomtrans(0.4) hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+
+                                        # text "  {size=12}POWR = "+str(dlog_entry["card_used_object"].POW)+"   BITS = "+str(dlog_entry["card_used_object"].COST)+"{/size}" yalign 0.0  at zoomtrans(0.75)
+                                        # frame:
+                                        #     style_prefix "bit"
+                                        #     add FunctionList(dlog_entry["card_used_object"].FXN) at zoomtrans(0.7)
                                     # add "Icon_"+dlog_entry["user_object"].name+""
                         elif dlog_entry["category"]=="turn_change":
                             frame:
@@ -750,7 +784,7 @@ screen duel_log_screen():
                                 # xfill True
                                 text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
 
-
+    # use CardTooltip
             
     
 
@@ -944,7 +978,8 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
             call duel_log_append("turn_change",None,"player",PFAI)
             $renpy.pause(0.9,hard=True)
             hide screen phasemsg
-            
+            $ log_shown=False
+
             call screen Activate_Battleware
             call remaininghand
             show screen handcardsscreen
@@ -952,6 +987,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
             call drawcards from _call_drawcards
             
             play sound "sound/Phase.wav" channel 1
+            $ log_shown=True
             pause 0.5
             python:
 
@@ -1154,8 +1190,8 @@ label battlemessage(msg):
 transform zoomBattlecards:
     zoom 0.6
 screen choosecardv2:
-    if log_shown:
-        use duel_log_screen
+    # if log_shown:
+    #     use duel_log_screen
     if playerbattlecode!=[]:
         # if rollbackchanged:
         $ config.rollback_enabled = True
@@ -1223,6 +1259,7 @@ transform draw_out:
     on hide:
         linear 0.4 xoffset 70 yoffset 100
 screen Activate_Battleware:
+
         use playerviewdraw
         
         

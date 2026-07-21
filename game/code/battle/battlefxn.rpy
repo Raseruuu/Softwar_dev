@@ -230,7 +230,7 @@ label Damageenemy(params):
                 
                 battle_done=True
             dmgdist = ((currentcard.POW*100)/20)
-            dmgdist = int(dmgdist*2.5)
+            dmgdist = int(dmgdist*2.7)
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
@@ -288,7 +288,7 @@ label DamageSPplayer(params={}):
                 $ playerSP=0
 
             $ dmgdist = ((currentcard.POW*100)/20)
-            $ dmgdist = int(dmgdist*2)
+            $ dmgdist = int(dmgdist*2.7)
 
             show playerdmgpoint onlayer overlay
             # call hurtnoise
@@ -317,7 +317,7 @@ label DamageSPenemy(params={}):
             if enemySP<0:
                 $ enemySP=0
             $ dmgdist = ((currentcard.POW*100)/20)
-            $ dmgdist = int(dmgdist*2)
+            $ dmgdist = int(dmgdist*2.7)
             show dmgpoint onlayer overlay
             show Enemy:
                 linear 0.05 zoom 0.94
@@ -347,7 +347,7 @@ label DamageSPselfenemy(params={}):
         if enemySP<0:
             $ enemySP=0
         $ dmgdist = ((currentcard.POW*100)/20)
-        $ dmgdist = int(dmgdist*2)
+        $ dmgdist = int(dmgdist*2.7)
         show dmgpoint
         show Enemy:
             linear 0.05 zoom 0.94

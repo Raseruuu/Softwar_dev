@@ -1331,8 +1331,9 @@ image Icon_TrojanHorse:
 ## Code Red
 #########
 image Code Red:
+    mesh True
     "CodeRedFull"
-    yanchor 0.8 ypos 1.0
+    yanchor 0.5 ypos 1.0
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1341,7 +1342,7 @@ image Code Red:
 image CodeRed:
     mesh True
     "CodeRedFull"
-    yanchor 0.8  ypos 1.0 
+    yanchor 0.5  ypos 1.0 
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1351,16 +1352,17 @@ image CodeRed:
 image CodeRedFull:
     mesh True
     Composite(
-        (714,1025),
-        (0, 0), At("images/Characters/Code Red/CODE RED_base.png",zoomtrans(0.36)),
-        (0, 0),At("images/Characters/Code Red/CODE RED_eyes.png",zoomtrans(0.36)),
-        (0, 0),At("images/Characters/Code Red/CODE RED_e[CodeRed_e].png",zoomtrans(0.36)),
+        (2030,4350),
+        (0, 0),"images/Characters/Code Red/CODE RED_base.png",
+        (0, 0),"images/Characters/Code Red/CODE RED_eyes.png",
+        (0, 0),"images/Characters/Code Red/CODE RED_e[CodeRed_e].png",
         (0, 0), WhileSpeaking(
             "CodeRed",
-            At("CodeRed mouth",zoomtrans(0.36)),
-            At("images/Characters/Code Red/CODE RED_mclosed.png",zoomtrans(0.36))
+            "CodeRed mouth",
+            "images/Characters/Code Red/CODE RED_mclosed.png"
         )
     )
+    zoom 0.35
     
 image CodeRed sidew:
 
@@ -1374,7 +1376,7 @@ image CodeRedFullzoomed:
     "CodeRedFull"
     zoom 1.6
 image Icon_Code Red:
-    Crop((280,100, 520,700), "CodeRedFullzoomed")
+    Crop((190,100, 520,700), "CodeRedFullzoomed")
     zoom 0.22
 image CodeRed mouth:
     "images/Characters/Code Red/CODE RED_mopen1.png"

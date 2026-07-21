@@ -655,27 +655,19 @@ label r_talks_Ave_2:
 
 
 label r_talks_CodeRed_0:
-    show Ave with dissolve
-    a "Have you optimized the battleware deck yet?"
-    a "Try some new cards out by using the Deck Construction menu!"
+    show CodeRed with dissolve
+    c  ""
+    hx ""
     return
 label r_talks_CodeRed_1:
-    show Ave with dissolve
-    $ Lucida_m="frown"
-    $ Lucida_e="down"
-    lc "We're up against a horde of viruses now."
-    a "I can handle all of them no problem..."
-    lc "Good."    
+    show CodeRed with dissolve
+    c ""
+    hx ""
     return
 label r_talks_CodeRed_2:
-    show Ave with dissolve
-    a "Miss Lucida, I never got the chance to ask."
-    $ Lucida_m="frown"
-    $ Lucida_e="down"
-    lc "What is it?"
-    a "Do you prefer pancakes or waffles?"
-    lc "???? Wha-??"
-    
+    show CodeRed with dissolve
+    c ""
+    hx ""
     return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75

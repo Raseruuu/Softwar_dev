@@ -745,6 +745,7 @@ transform pausetrans3:
 transform pausetrans4:
     xanchor 0.0
     ease 0.1 alpha 1.0 xanchor 1.0
+
 transform pausedim:
     alpha 0.0
     ease 0.3 alpha 0.77
