@@ -158,23 +158,28 @@ label maptalk_Bella_1:
     i"Got it!"
     return
 label maptalk_Tetra_1:
-    
+    $ ILY_m="O"
+    $ ILY_e="up"
     "Tetra" "I'm lost."
     i "Ah! By any chance are you the Red Robot named Tetra?"
     "Tetra" "Yes! how did you know?"
+    $ ILY_m="smile3"
+    $ ILY_e="up"
     i "A pink-haired girl with a sleek red battle suit was just looking for you!"
     "Tetra" "That must have been Bella!! "
+    $ ILY_m="O"
+    $ ILY_e="up"
     i "What happened? How did you get separated?"
     "Tetra" "We must have been split when we reached this narrow street while exploring."
     i"But this is the Undernet!!"
-    j "(Could it be that Tetra was tricked by some virus?)"
     "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
-    i "Let's go back!
-    "
+    j "(Could it be that Tetra was tricked by some virus?)"
+    i "Let's go back and see her!"
 
     return
 label maptalk_Guy_cheese:
-    
+    $ ILY_m="smile3"
+    $ ILY_e="up"
     "Guy" "OK, this is wild, I discovered this virtual world has food items.."
     "Guy" "I'm trying to collect whatever I can, I have bread, some apples, tomatoes... and.. fish?"
     "Guy" "Do you think this place has cheese too?"
@@ -186,6 +191,29 @@ label maptalk_Guy_cheese:
     i "I'll come here if I find one!"
     "Guy""Awesome!! I'll definitely pay you back!"
     return
+
+label maptalk_ProgramKun2:
+    $ ILY_m="smile3"
+    $ ILY_e="normal"
+    "Program-Kun" "Hey! Do you like the battle system so far?"
+    "Program-Kun" "Far... Far... Ahh! I remembered. {b}Short-range{/b} attacks will miss if the opponent is {b}too FAR{/b}."
+    i "The attack missed? A short-range attack?"
+    "Program-Kun" "Yeah.. You gotta watch out for the DISTANCE variable in battle!"
+    "Program-Kun" "If your battleware's {b}\"attack()\"{/b} function doesn't have enough {b}\"range\"{/b} to match the distance, your attack will {b}MISS!{/b}"
+    "Program-Kun" "Some examples of short-range attack Battleware are the Saber cards."
+    i "I see! How do I get the attacks to hit?"
+    "Program-Kun" "You would try to use the {b}\"advance()\"{/b} or {b}\"pull()\"{/b} functions!"
+    i "Alrighty! I use swords in my deck, so this will definitely be useful!"
+    "Program-Kun" "If you miss with an attack that has less than the current distance, you will move closer to the enemy, and the distance will automatically reduce."
+    $ ILY_m="O"
+    $ ILY_e="up"
+    i "Even if I don't use an advancing card? That's neat!"
+    
+    $ ILY_m="smile3"
+    $ ILY_e="up"
+    return
+
+
 label maptalk_Heart:
     # i"Would you like to restore HP?"
     $ ILY_m="smile3"
@@ -215,13 +243,11 @@ label maptalk_Melissa_story_1:
         call hideMapview
         jump payMelissa
         return
-      
-   
-define samedialog = ["Heart","Stella"]
-label whatactor:
 
+label whatactor:
+    # "[actornum]"
     
-    if len(actornum)>2:
+    if len(actornum)>=2:
         $ spritelabel=actornum
         $ pausemenu=True
         $ labels_in_spritelist=[sprite.dialogue for sprite in spritelist]
@@ -229,6 +255,7 @@ label whatactor:
             for labels in labels_in_spritelist:
                 if actornum in labels:
                     spritelabel=labels
+        # "[spritelabel]"
         if actornum in samedialog:
             $ renpy.call("maptalk_"+str(spritelabel))
         elif "dialog" not in spritelabel    :
@@ -242,13 +269,14 @@ label whatactor:
             # "over is game"
             return 
         else:
+            $ mapbuttons_visible= True
             call mapresume
         # else:
         #     $ renpy.call("maptalk_"+str(actornum))
 
     if game_over:
         return 
-    
+    $ mapbuttons_visible= True
     show screen mapB
     call screen mapA
     call Returns

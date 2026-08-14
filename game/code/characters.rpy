@@ -974,7 +974,8 @@ layeredimage Lisafull:
     always:
         
         ConditionSwitch(
-            "('close' in Lisa_eyes)","images/Characters/Lisa/Lisa_e[Lisa_eyes].png",
+            "(Lisa_eyes=='lookaway')","LisaEyesLookAway",
+            "('close' in Lisa_eyes)","images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png",
             "('close' not in Lisa_eyes)","LisaEyes",
             )
     always:
@@ -1010,11 +1011,11 @@ image LisaEyes:
     choice:
         "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.0
-        "images/Characters/Lisa/Lisa_eclose1.png"
+        "images/Characters/Lisa/Lisa_eyes_close1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclosedown.png"
+        "images/Characters/Lisa/Lisa_eyes_closedown.png"
         pause 0.1
-        "images/Characters/Lisa/Lisa_eclose1.png"
+        "images/Characters/Lisa/Lisa_eyes_close1.png"
         pause 0.07
     choice:
         "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
@@ -1025,18 +1026,38 @@ image LisaEyes:
     choice:
         "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.5
-        "images/Characters/Lisa/Lisa_eclose1.png"
+        "images/Characters/Lisa/Lisa_eyes_close1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclosedown.png"
+        "images/Characters/Lisa/Lisa_eyes_closedown.png"
         pause 0.1
-        "images/Characters/Lisa/Lisa_eclose1.png"
+        "images/Characters/Lisa/Lisa_eyes_close1.png"
         pause 0.07
-        "images/Characters/Lisa/Lisa_eclosedown.png"
+        "images/Characters/Lisa/Lisa_eyes_closedown.png"
         pause 0.1
         "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
         pause 1.5
     repeat
 
+image LisaEyesLookAway:
+    choice:
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
+        pause 1.0
+        "images/Characters/Lisa/Lisa_eyes_closedown.png"
+        pause 0.1
+    choice:
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
+        pause 5.0
+    choice:
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
+        pause 4.0
+    choice:
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
+        pause 1.5
+        "images/Characters/Lisa/Lisa_eyes_closedown.png"
+        pause 0.1
+        "images/Characters/Lisa/Lisa_eyes_[Lisa_eyes].png"
+        pause 1.5
+    repeat
 image LisaMouthsmile:
     "images/Characters/Lisa/Lisa_mopen1.png"
     pause .1

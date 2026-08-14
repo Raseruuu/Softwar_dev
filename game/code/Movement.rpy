@@ -50,6 +50,7 @@ init python:
   RightisActor = (objectright!='0') and (direction == 'right')
   FacingActor = (UpisActor or DownisActor) or (LeftisActor or RightisActor)
 default gridpos = [192,168]
+default mapbuttons_visible=True
 label initializemapvariables:
     python:
         gridpos = [192,168]
@@ -213,6 +214,8 @@ default repeat_x = "Repeat"
 default repeat_y = "Repeat"
 
 label mapresume:
+    $ mapbuttons_visible= True
+
     if game_over==True:
       return
     $ map_visible=True
@@ -283,8 +286,10 @@ image shock:
 transform alphatrans(value):
   alpha (value)
 screen mapB:
+  
   timer 0.001 action If(playerHP==0 or game_over,true=Return(),false=None) repeat True
   timer 0.2 action If(direction2!=None ,true=Return(direction),false=None) repeat True
+  
   if map_visible==True:
     vbox:
       if linearmaptransform:
@@ -391,7 +396,7 @@ screen mapB:
           null height 10
 # MOBILE BUTTONS
 # ##UNCOMMENT FOR MOBILE
-    if map_active:
+    if map_active and mapbuttons_visible:
       imagebutton idle "gui/phone/buttonX.png":
           pos (0.86,0.68) at zoombutton
           action Return("Pause")
@@ -521,6 +526,7 @@ init python:
 screen mapA:
     # $ moving=False
     #CONTROLS
+    $ mapbuttons_visible= True
     timer 0.001 action If(map_active==False or playerHP==0 or game_over,true=Return(),false=None) repeat True
     
     #UNCOMMENT BEFORE BUILDING: DISABLE ROLLBACK
@@ -635,6 +641,7 @@ label Returns:
 #   if not running:
 
     if map_active:
+      
       if (_return=="running"):
         if not Running:
             $ Running = True
@@ -696,10 +703,13 @@ label Returns:
       if FacingActor:
         if (_return=="OK"):
           # "this ain't happening"
+          $ mapbuttons_visible= False
           jump whatactor
           # return
       if (_return=="MapTalk"):
+          $ mapbuttons_visible= False
           call MapTalk
+          $ mapbuttons_visible= True
           return
       if (_return=="Pause"):
           # "Pause"

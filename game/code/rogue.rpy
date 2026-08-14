@@ -202,7 +202,7 @@ label roguestage:
             call r_battlestart
     label newnodes:
         # play music "bgm/ost/Serious_Noyemi_K.ogg"
-        play music "bgm/Jens_Vide/Goddess-Digital-05 - Data Road.ogg"
+        play music "bgm/Jens_Vide/Goddess-Digital-01 - Petra.ogg"
         
         scene mainbg 
         
@@ -297,7 +297,8 @@ label R_Enemy:
     
     if playerHP==0:
         $ game_over=True
-    call R_TreasureNode
+    else:
+        call R_TreasureNode
     return
 label R_StrongEnemy:
     call showphasemsg("ENCOUNTER: Rare Virus")
@@ -307,7 +308,8 @@ label R_StrongEnemy:
     call battlev3(playerobject,enemyobject)
     if playerHP==0:
         $ game_over=True
-    call R_TreasureNode
+    else:
+        call R_TreasureNode
     return
 init python:
     def choosetreasurecard(cardtreasure):
@@ -506,7 +508,7 @@ label r_battlestart:
         nodes_path=[]
         ILY_m="smile3"
         used_nodes=[]
-        nodes_tpf=[Enemy]*8+[StrongEnemy]*2+[Unknown,Unknown,Treasure,Recovery,StellaShop]
+        nodes_tpf=[Enemy]*7+[StrongEnemy]*2+[Unknown,Unknown,Treasure,Recovery,Recovery,StellaShop]
         treasurebattleware =[
             GearframeUnitron,
             NucleusVernier,
@@ -526,6 +528,15 @@ label r_battlestart:
             DataBomb,
             WindBlast,
             Tackle,
+            XAxess,
+            YAxess,
+            DataMining,
+            StepSaber,
+            DataSaber,
+            BurstTransfer,
+            Pyrokinesis,
+            BruteForce
+
             ]
         treasure_tpf=treasurebattleware
         nodes_path.append([Enemy])
@@ -541,9 +552,6 @@ label r_battlestart:
             nodes_path.append(newnoderow)
         nodes_path.append([Boss])
         # r_Bosses.remove(playerobject)
-        
-
-
     return
 init python:
     def nodechoices(pos_tuple):
@@ -656,18 +664,22 @@ label r_talks_Ave_2:
 
 label r_talks_CodeRed_0:
     show CodeRed with dissolve
-    c  ""
-    hx ""
+    c  "Preparations... Let's try some new cards in the Deck Construction Menu."
+    # hx ""
     return
 label r_talks_CodeRed_1:
     show CodeRed with dissolve
-    c ""
-    hx ""
+    hx "..."
+    c "..."
+    hx "Carry on."
+    c "... Alright."
+    
+    
     return
 label r_talks_CodeRed_2:
     show CodeRed with dissolve
-    c ""
-    hx ""
+    c "Is there a reason why I gotta traverse all the stages, I can probably fly to the finish if I put some gas to it."
+    hx "Shush. I'm assessing the enemies' moves. We're infiltrating the Labyrinth properly."
     return
 screen roguenodeselect():
     # text str(node_current) xalign 0.75 yalign 0.75

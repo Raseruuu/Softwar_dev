@@ -43,7 +43,15 @@ init python:
         "DataBomb":2000,
         "WindBlast":2000,
         "Tackle":2000,
-        "Imperceptium":1000
+        "Imperceptium":1000,
+        "X-Axess":1000,
+        "Y-Axess":1000,
+        "DataMining":1000,
+        "StepSaber":1000,
+        "DataSaber":1000,
+        "BurstTransfer":1000,
+        "Pyrokinesis":1000,
+        "BruteForce":1000,
     }
 
     item_list = [SoftDrink,SmallEnergy,MediumEnergy] #Unlocker

@@ -202,6 +202,11 @@ label script1:
     i "HELLO, USER! I am the ILOVEYOU virus!"
     i "Call me ILY! "
     extend "I'm signing up to be your personal assistant!\nI'd like to confirm your name!"
+    
+    call showphasemsg("Chapter 1") #(Can change chapter name anytime)
+    call showphasemsg("A New Host",delay=2.0)
+    
+    
     "Am I really awake? A virus is signing up to be my assistant. That's kinda sweet."
     i"Should I just call you master then?"
     "ILY, huh. The envelope on her head reminds me of last night's e-mail. I'm supposed to be mad now, but this is quite interesting."
@@ -522,17 +527,20 @@ label script1:
 
                 $ ILYSprite("o")
                 j "That's good to know, ILY."
-                i "Have you accepted your fate?"
-                j "I still can't trust you yet."
+                j "Hmmm.... I still can't trust you yet."
 
                 $ ILYSprite("smile3")
                 i "Of course you can trust me! Trust is an essential part of love!"
-
+                j"There are some things you have to do for me to trust you."
+                "Damn, I never thought I'd see the day when I say such words... to a program. "
+            "No More Questions":
+                "Looks like she's trying to be my assistant. She's capable of engaging in hacking battles. I'm either in a huge pickle, or she'll be of use in some capacity."
+                "The ILOVEYOU Virus..."
+                
         
 
 label date1:
-    j"There are some things you have to do for me to trust you."
-    "Damn, I never thought I'd see the day when I say such words... to a program. "
+    
     "I'm actually being a huge idiot for buying into what this virus says."
     "Back in the year 2000,{w=.3}{nw}"
     extend" the ILOVEYOU Virus destroyed a heck load of PCs."
@@ -784,7 +792,7 @@ label date2:
         l"You told me she looked harmless! Maybe she's a kind virus, you know?"
         "A kind virus. Like that'll ever exist."
         j"So you'll beg to her personally?"
-        $ Lisa_eyes="closeup" 
+        $ Lisa_eyes="closedup" 
         l"I'm gonna talk with her, woman to woman."
         "More like, woman to program."
         $ Lisa_eyes="open" 
@@ -1070,7 +1078,7 @@ label date2:
         l"Do your best, ILY!"
         # call demo_battle_vs_trojanhorse
 
-        call battlev3(ILY,Trojan) from _call_battlev3
+        call battlev3(ILY,Trojan,battledist=0) from _call_battlev3
         if playerHP<=0:
             return
         scene blue
@@ -1422,7 +1430,7 @@ label date2:
         "How convenient. An AI Antivirus is just within reach because of her father..."
         j "There's some hope for us, it looks like."
         j "Since we can only wait for that anti-virus to arrive, can we finally work on our assignment?"
-        $ Lisa_eyes="closeup" 
+        $ Lisa_eyes="closedup" 
         l "Sure, John! The side quest seems to be over."
         $ Lisa_eyes="open" 
         j "Alright then."

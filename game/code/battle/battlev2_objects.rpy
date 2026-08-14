@@ -415,13 +415,14 @@ init python:
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [AttackSP(),Attack(),GainToken("Saber",1)],  3)
     BlockSaber=    Card("BlockSaber",       "Sword",           0.5,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
     LambdaSaber=   Card("LambdaSaber",      "Sword",           0.3,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
-    StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(2),Attack()], 5)
+    StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(3),Attack()], 5)
     
+    BlackBars=     Card("BlackBars",        "Bar",               1.6,     [],            4)
     XAxess=        Card("X-Axess",          "Axe",               0.75,     [AttackSP(),Attack(onhit=[Push(2)])],            4)
     YAxess=        Card("Y-Axess",          "Axe",               1.0,     [Attack(onhit=[Push(1)])],            3)
     DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
 
-    DataPiercer=   Card("DataPiercer",      "Spear",           1.0,      [Attack(),Defend(0.25)],   5)
+    DataPiercer=   Card("DataPiercer",      "Spear",           1.0,      [Attack(rangevalue=2),Defend(0.25)],   5)
     WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=2,onhit=[Push(2)]),],   3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
@@ -439,7 +440,7 @@ init python:
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[GiveToken("Burn",1)])],               3)
-    Pyrokinesis=    Card("Pyrokinesis",     "Fire",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),Increase("ATK",0.25)])],               1)
+    Pyrokinesis=    Card("Pyrokinesis",     "PowerUp",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),Increase("ATK",0.25)])],               1)
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
     VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[GiveToken("Burn",1),Push(3)])],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
@@ -546,7 +547,7 @@ init python:
         "name":"The Love Machine",
         "content":[
             VirusFlame,VirusFlame,
-            VirusFlame,WindBlast,
+            VirusFlame,StepSaber,
             SpamAtk,SpamAtk,
             SpamAtk,SpamAtk,
             SpamAtk,DataSaber,
@@ -555,7 +556,7 @@ init python:
             DataSaber,DataSaber,
             MailSaber,BlockSaber,
             HeartBurn,HeartBurn,
-            WindBlast,RecursiveSlash,
+            Pyrokinesis,RecursiveSlash,
             BlockSaber,SaberDeflect,
             # WindBlast,WindBlast
             # GearframeUnitron,GearframeUnitron,
@@ -573,9 +574,9 @@ init python:
         "name":"Deceitful Love",
         "content":[
             VirusFlame,VirusFlame,
-            VirusFlame,DataSaber,
+            StepSaber,DataSaber,
             Laserbeam,Laserbeam,
-            Laserbeam,Laserbeam,
+            StepSaber,StepSaber,
             SaberDeflect,DataSaber,
             DataSaber,DataSaber,
             SaberDeflect,SaberDeflect,
@@ -590,14 +591,14 @@ init python:
         "name":"Avaricious Anomaly",
         "content":[
             VirusFlame,VirusFlame,
-            VirusFlame,DataSaber,
+            DataBomb,DataSaber,
             DataSaber,DataSaber,
             Vslash,Vslash,
             Vslash,DataBuster,
             DataBuster,DataBuster,
             SpamAtk,DataForce,
             Shieldbit,Shieldbit,
-            Shieldbit,Shieldbit,
+            StepSaber,WindBlast,
             XAxess,Vslash,
             Vslash,BitBuster,
             BitBuster,BitBuster],
@@ -732,8 +733,8 @@ init python:
             Vshot,Vshot,
             Vslash,WindBlast,
             Vslash,WindBlast,
-            Vshot,Vshot,
-            Vshot,Vshot],
+            BruteForce,BruteForce,
+            BruteForce,BruteForce],
         "plugins":[]
         }
     deckvira = {
@@ -745,7 +746,7 @@ init python:
             DataBuster,DataBuster,
             Shieldbit,Shieldbit,
             Shieldbit,Shieldbit,
-            Shieldbit,DataBomb,
+            DataDrill,DataBomb,
             DataBomb,DataBomb,
             Powersol,Powersol,
             Powersol,Powersol],
@@ -775,7 +776,7 @@ init python:
             DataSaber,DataSaber,DataSaber,DataSaber,
             LambdaSaber,LambdaSaber,
             BlockSaber,BlockSaber,
-            BlockSaber,VirusFlame,
+            StepSaber,VirusFlame,
             BreakSaber,BruteForce,
             SaberAura,BruteForce,
             WormRetreat,WormHole,

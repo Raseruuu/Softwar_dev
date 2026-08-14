@@ -108,6 +108,23 @@ label pauseshow:
         # return
     elif _return=="Plugins":
         "This Feature Has Not Yet Been Implemented."
+        # label Pluginscreen:
+        #     $ noscreentransformsfornow=False
+        #     call screen Plugins_view
+        #     if _return=="Battleware_Edit":
+        #         python:
+        #             deck_unedited=copy.deepcopy(sorted( deckcurrent,key=lambda x: x.NAME, reverse=False))
+        #             card_inventory_unedited=copy.deepcopy(sorted( card_inventory,key=lambda x: x.NAME, reverse=False))
+        #         label Plugins_edit_screen:
+        #             call screen Plugins_Edit
+        #             if _return=="SaveDeck":
+        #                 call SaveDeck
+        #             elif _return=="UnsaveDeck":
+        #                 call UnsaveDeck
+
+        #             else:
+        #                 jump Plugins_edit_screen
+        #             return
         # jump pauseshow
         # label Plugins_screen:
         #     call screen Plugins
@@ -421,7 +438,7 @@ screen Battleware_Edit():
     use pauselayout("DECK EDIT",False,True)
 
     # use Card(currentcard,(50,217),1.0)
-    add CardDisplay(currentcard):
+    add CardDisplayNormal(currentcard):
         xpos 50 ypos 192 xanchor 0.0 yanchor 0.0
     frame:
         xpadding 20

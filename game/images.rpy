@@ -28,6 +28,10 @@ init python:
 
     dissolve_heart = ImageDissolve("images/computer/transition_heart_wide.png", 0.5)
     dissolve_pixels = ImageDissolve("images/computer/transition_pixels.png", 0.8)
+
+
+image CG1Pizza= "images/CG/CG1_pizza.png"
+
 image Mouse = "images/computer/mouse.png"
 #image white_noise  = "images/computer/white_noise.png"
 #image white_noise2 = im.Flip("images/computer/white_noise.png", horizontal=True)
@@ -76,8 +80,16 @@ image JD_PC2:
 image JD_PCN:
     "images/BGs/John's Room/Bedroom_NIGHT_09.jpg"
     zoom 0.7
-    
-    
+image JD_PC2_Afternoon:
+    "images/BGs/John's Room/Bedroom_AFTERN_09.jpg"
+    zoom 0.7
+image JD_Space2_Afternoon:
+    "images/BGs/John's Room/Bedroom_AFTERN_08.jpg"
+    zoom 0.7
+image JD_Space3_Afternoon:
+    "images/BGs/John's Room/Bedroom_AFTERN_16.jpg"
+    zoom 0.7    
+
 image JD_Space1:
     "images/BGs/John's Room/Space1.jpg"
     zoom 0.7

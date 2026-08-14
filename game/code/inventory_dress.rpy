@@ -12,22 +12,23 @@ init python:
     CowGirl = Item_dress("CowGirl","Outfit","Something strange happened to ILY's breasts...")
     BikiniArmor = Item_dress("BikiniArmor","Outfit","The charming and beautiful knightess charges on!")
     SoulReaper = Item_dress("SoulReaper","Outfit","Uniform worn by spirit warriors that maintain order!")
-    BlackBelts = Item_dress("BlackBelts","Outfit","Good guys still wear black!")
-    CasualRed = Item_dress("CasualRed","Outfit","Casual outfit ")
-    DarkQueen = Item_dress("DarkQueen","Outfit","Cool fellows wear black!")
-    MaidUniform = Item_dress("MaidUniform","Outfit","Cool fellows wear black!")
-    
+    BlackBelts = Item_dress("BlackBelts","Outfit","What is this style called? I like it!")
+    CasualRed = Item_dress("CasualRed","Outfit","Casual outfit.")
+    DarkQueen = Item_dress("DarkQueen","Outfit","The Darkness from within reveals itself...")
+    MaidUniform = Item_dress("MaidUniform","Outfit","I'm your maid now! Goshujin-sama!")
+    Transporter = Item_dress("Transporter","Outfit","I am a transporter from the wasteland ~!")
+    Mummy = Item_dress("Mummy","Outfit","Mummies can revive after many years according to legend...")
 
     ArmorBikini = Item_dress("ArmorBikini","Underwear","The charming and beautiful knightess charges on!")
     Red_underwear=Item_dress("Red","Underwear","ILY's Default underwear.")
-    Red2_underwear=Item_dress("Red2","Underwear","ILY's Default underwear.")
+    Red2_underwear=Item_dress("Red2","Underwear","This one is red too.")
     White_underwear = Item_dress("White","Underwear","Classic underwear.")
-    Red_underwear=Item_dress("Red","Underwear","Default.")
     Sports_underwear=Item_dress("Sports","Underwear","Humans wear fitted clothes to move easily when doing physical activities!")
     Straps_underwear=Item_dress("Straps","Underwear","This one keeps things together quite nicely.")
     Coworker_underwear=Item_dress("Coworker","Underwear","This is a special cow-print bikini I got from that one farm job I had.")
     Bunny_underwear=Item_dress("Bunny","Underwear","A popular Bunny suit! I can wear this leotard under my clothes. This one is a gift from Melissa.")
-    Mummy_underwear=Item_dress("mummy","Underwear","Mummies can revive after many years according to legend... Revive what?")
+    Mummy_underwear=Item_dress("Mummy","Underwear","Mummies can revive after many years according to legend...")
+    Bodysuit_underwear=Item_dress("Bodysuit","Underwear","This one covers the entire body. It's really tight but also sturdy somehow! Almost like it replaces ILY's skin.")
     
 
 
@@ -41,7 +42,11 @@ init python:
         Sports_underwear,
         MaidUniform,
         BlackBelts,CasualRed,
-        Bloomers
+        Bloomers,
+        BikiniArmor,
+        ArmorBikini,
+        Transporter,
+        Bodysuit_underwear
         ]
     
     def EquipDress(dresstype,dressname):
@@ -49,6 +54,7 @@ init python:
         currentunderwear= globals()["ILY_underwear"]
         if dressname=="Unequip":
             globals()["ILY_outfit"]=""
+            globals()["ILY_stockings"]=""
             if currentunderwear=="":
                 globals()["ILY_underwear"]="Red"
         elif dresstype.lower()=="outfit" and dressname!="Unequip":
@@ -58,8 +64,22 @@ init python:
                 globals()["ILY_underwear"]="red"
             if dressname.lower()=="bikiniarmor":
                 globals()["ILY_underwear"]="ArmorBikini"
+
+            if dressname.lower()=="mummy":
+                globals()["ILY_underwear"]="mummy"
             if dressname.lower()=="bladearmor":
                 globals()["ILY_underwear"]=""
+            if dressname.lower()=="bloomers":
+                globals()["ILY_stockings"]="socks"
+            if dressname.lower()=="maiduniform":
+                globals()["ILY_stockings"]=""
+            if dressname.lower()=="uniform":
+                globals()["ILY_stockings"]="stockings"
+            if dressname.lower()=="garden":
+                globals()["ILY_stockings"]=""
+            if dressname.lower()=="transporter":
+                globals()["ILY_underwear"]="bodysuit"
+            
             
             globals()["ILY_outfit"]=dressname.lower()
 
@@ -71,6 +91,14 @@ init python:
         # elif dressname=="Unequip":
         # renpy.notify(dressname+" is now equipped.")
         return    
+default dress_select="Outfit"
+init python:
+    def dress_sort(dress_list,d_selection="Outfit"):
+        new_dress_list=[]
+        for dress_item in dress_list:
+            if dress_item.TYPE==d_selection:
+                new_dress_list.append(dress_item)
+        return new_dress_list
 screen Items_dress(itemsmode="CUSTOMIZE"):
     python:
         if itemsmode=="CUSTOMIZE":
@@ -79,6 +107,7 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
             for x in inventory_dress:
                 if (x.NAME not in [y.NAME for y in inventory_objects]):
                     inventory_objects.append(x)
+            filtered_inventory_dress=dress_sort(inventory_objects)
         
     use pauselayout(itemsmode)
     frame:
@@ -86,54 +115,109 @@ screen Items_dress(itemsmode="CUSTOMIZE"):
         top_padding 32
         if not noscreentransformsfornow:
             at pausetrans2
-        viewport:
-            scrollbars "vertical"
-            mousewheel True
-            draggable True
+        vbox:
+            spacing 14
             hbox:
+                button:
+                    frame:
+                        if dress_select=="Outfit": 
+                            style_prefix "bit"
+                        text "Outfit"
+                    action SetVariable("dress_select","Outfit")
+                button:
+                    frame:
+                        if dress_select=="Underwear": 
+                            style_prefix "bit"
+                        text "Underwear"
+                    action SetVariable("dress_select","Underwear")
+            viewport:
+                scrollbars "vertical"
+                mousewheel True
+                draggable True
+                if dress_select=="Outfit":
+                    hbox:
 
-                grid 1 20:
-                    xspacing 16
-                    for item in inventory_objects:
-                        button:
-                            xsize 600
-                            ymaximum 86
-                            frame:
-                                xpadding 12
-                                ypadding 12
-                                idle_background Frame("gui/framefxn.png",10,10)
-                                hover_background Frame("gui/framefxn2.png",10,10)
+                        grid 1 len(dress_sort(inventory_objects,"Outfit")):
+                            xspacing 16
 
-                                hbox:
-                                    xalign 0.0 yalign 0.5
+                            for item in dress_sort(inventory_objects,"Outfit"):
+                                button:
+                                    xsize 600
+                                    ymaximum 86
                                     frame:
-                                        xsize 60
-                                        ysize 60
-                                        background "images/rpg/armor/"+item.TYPE+".png"
-                                        if (inventory_counts[item.NAME])!=1:
-                                            foreground At(Text("{size=38}{b}x"+str(inventory_counts[item.NAME])+"{/size}{/b}"),bottomright)
+                                        xpadding 12
+                                        ypadding 12
+                                        idle_background Frame("gui/framefxn.png",10,10)
+                                        hover_background Frame("gui/framefxn2.png",10,10)
+                                        
+                                        hbox:
+                                            xalign 0.0 yalign 0.5
+                                            frame:
+                                                xsize 60
+                                                ysize 60
+                                                background "images/rpg/armor/"+item.TYPE+".png"
+                                                if (inventory_counts[item.NAME])!=1:
+                                                    foreground At(Text("{size=38}{b}x"+str(inventory_counts[item.NAME])+"{/size}{/b}"),bottomright)
 
-                                    null width 10
+                                            null width 10
+                                            frame:
+                                                background Null()
+                                                xsize 480
+                                                ysize 50
+                                                vbox:
+                                                    text "{size=16}{b}"+item.NAME+"{/size}{/b}{size=12}\n"+item.DESC+"{/size}" yalign 0.5
+                                            transclude
+                                    if itemsmode=="CUSTOMIZE":
+                                        action Function(EquipDress,item.TYPE,item.NAME)
+                                    else:
+                                        action NullAction()
+
+
+                                        # text item.NAME
+                            # for itemfiller in range(0,40-len(inventory)):
+                            
+                        null width 10
+                elif dress_select=="Underwear":
+                    hbox:
+
+                        grid 1 len(dress_sort(inventory_objects,"Underwear")):
+                            xspacing 16
+
+                            for item in dress_sort(inventory_objects,"Underwear"):
+                                button:
+                                    xsize 600
+                                    ymaximum 86
                                     frame:
-                                        background Null()
-                                        xsize 480
-                                        ysize 50
-                                        vbox:
-                                            text "{size=16}{b}"+item.NAME+"{/size}{/b}{size=12}\n"+item.DESC+"{/size}" yalign 0.5
-                                    transclude
-                            if itemsmode=="CUSTOMIZE":
-                                action Function(EquipDress,item.TYPE,item.NAME)
-                            else:
-                                action NullAction()
+                                        xpadding 12
+                                        ypadding 12
+                                        idle_background Frame("gui/framefxn.png",10,10)
+                                        hover_background Frame("gui/framefxn2.png",10,10)
+                                        
+                                        hbox:
+                                            xalign 0.0 yalign 0.5
+                                            frame:
+                                                xsize 60
+                                                ysize 60
+                                                background "images/rpg/armor/"+item.TYPE+".png"
+                                                if (inventory_counts[item.NAME])!=1:
+                                                    foreground At(Text("{size=38}{b}x"+str(inventory_counts[item.NAME])+"{/size}{/b}"),bottomright)
+
+                                            null width 10
+                                            frame:
+                                                background Null()
+                                                xsize 480
+                                                ysize 50
+                                                vbox:
+                                                    text "{size=16}{b}"+item.NAME+"{/size}{/b}{size=12}\n"+item.DESC+"{/size}" yalign 0.5
+                                            transclude
+                                    if itemsmode=="CUSTOMIZE":
+                                        action Function(EquipDress,item.TYPE,item.NAME)
+                                    else:
+                                        action NullAction()
 
 
-                                # text item.NAME
-                    # for itemfiller in range(0,40-len(inventory)):
-                    for itemfiller in range(0,20-len(inventory_objects)):
-                        null width 600
-                        
-
-                null width 10
+                            
+                        null width 10
     frame:
         if not noscreentransformsfornow:
             at pausetrans1

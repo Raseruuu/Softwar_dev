@@ -15,7 +15,18 @@ label prescript1_2:
     return
 
 
-
+transform damageanim(dmgdistance):
+    linear 0.1 zoom 0.96
+    xoffset (dmgdistance) yoffset (dmgdistance) alpha 0.7
+    pause .05
+    xoffset (dmgdistance*-1) yoffset (dmgdistance*-1) alpha 0.8
+    pause .05
+    xoffset (dmgdistance) yoffset (dmgdistance) alpha 1.0
+    pause 0.1
+    xoffset ((dmgdistance*-1)-2) yoffset ((dmgdistance)-2)
+    pause 0.05
+    xoffset 0 yoffset 0
+    linear 0.1 zoom 1.0
 label script1_2:
     if gameprogress==0:
         call script1_2_map1
@@ -426,7 +437,8 @@ label paidMelissa2:
     hide screen mapB
     call battlescene
 
-    $ Melissa_w=True
+    $ Melissa_w=False
+    show Melissa with dissolve
     m "Ah, Thanks. I may be your big sis, but hey, business is business!"
     j "(She's moneysmart, that makes her more intelligent)"
     m "There's a special item you can use to get past their detectors."
@@ -437,6 +449,7 @@ label paidMelissa2:
     m "Since you did pay me, I'll tell you. But I do find it funny that you wouldn't know about this."
     m "You're just like me, but you seem inexperienced. This is some basic fundamental stuff."
     $ ILY_m ="cheek"
+    $ ILY_e ="down"
     i "Uguu..."
     
     $ ILY_m ="smile"
@@ -446,6 +459,7 @@ label paidMelissa2:
         # return
     # return
     m "Alright, Listen!"
+    $ ILY_e ="normal"
     i "Yes!"
     m "The GRID we reside in is composed of a lot of things."
     m "Every entity is not merely built with values inside variables, or a collection of points plotted on 3D space."
@@ -454,6 +468,7 @@ label paidMelissa2:
     m "Our composition allows us to utilize materials with special abilities."
     m "The special data material you want to find is called \"Imperceptium\"."
     $ ILY_m ="smile3"
+    $ ILY_e ="up"
     i "Imperceptium! right!"
     m "Imperceptium is what Viruses use to stay hidden in the GRID!"
     $ ILY_m ="O"
@@ -513,8 +528,8 @@ label paidMelissa2:
     show Worm with dissolve:
         xalign 0.75 yalign 0.5 zoom 1.5
     j "Get ready for battle!"
-    i "This one... it's a Worm!"
-    j "How fascinating.. it isn't slithery and round like real world worms."
+    i "This one... It's a Worm!"
+    j "How fascinating.. It isn't slithery and round like real world worms."
     i "What?"
     j "It's very geometric. It's an interesting design. Is it strong?"
     $ ILY_e ="normal"

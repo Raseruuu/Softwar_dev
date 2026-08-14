@@ -12,10 +12,11 @@ label Plugins_Run:
         call PluginExecution(enemyplugin,"enemy")
     return
 
-screen plugins_view:
+screen Plugins_view:
     # frame:
 
     use pauselayout()
+
 
 label PluginExecution(plugin_set,plugin_user):
     $ runnumber = 0

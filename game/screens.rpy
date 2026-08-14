@@ -141,6 +141,7 @@ init python:
         return Null()
 screen say(who, what):
     $ config.rollback_enabled=False
+    
     style_prefix "say"
     if say_shop_mode:
         key "dismiss" action Return()
@@ -537,17 +538,17 @@ transform envanim:
 
 
 screen EnvRun:
-    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.65 xanchor 0.5 yanchor 0.5 at envanim
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.625 xanchor 0.5 yanchor 0.5 at envanim
 
 screen EnvLoad:
-    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.70 xanchor 0.5 yanchor 0.5 at envanim
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.675 xanchor 0.5 yanchor 0.5 at envanim
     
 screen EnvRun2:
-    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.75 xanchor 0.5 yanchor 0.5 at envanim
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.725 xanchor 0.5 yanchor 0.5 at envanim
 screen EnvOpt:
-    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.80 xanchor 0.5 yanchor 0.5 at envanim
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.775 xanchor 0.5 yanchor 0.5 at envanim
 screen EnvQuit:
-    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.85 xanchor 0.5 yanchor 0.5 at envanim
+    add "gui/main_menu/Envelope.png" xpos 0.75 ypos 0.825 xanchor 0.5 yanchor 0.5 at envanim
 
 
 transform gamesize:
@@ -624,14 +625,18 @@ screen main_menu():
 screen mainmenu_buttons:
     vbox:
         spacing 1
-        xalign 0.9 ypos 0.625 yanchor 0.0
+        xalign 0.97 ypos 0.6 yanchor 0.0
         at navigationtransform
         textbutton "{color=000}Start();{/color}" action Start(), Hide("EnvRun"), Hide("mainmenu_buttons") hovered Show("EnvRun") unhovered Hide("EnvRun")
         textbutton "{color=000}Load( );{/color}" action ShowMenu("load"), Hide("EnvLoad"), Hide("mainmenu_buttons") hovered Show("EnvLoad") unhovered Hide("EnvLoad")
-        textbutton "{color=000}Labyrinth();{/color}" action Start("roguemode"), Hide("EnvRun2"), Hide("mainmenu_buttons") hovered Show("EnvRun2") unhovered Hide("EnvRun2")
+        textbutton "{color=000}CyberLabyrinth();{/color}" action Start("roguemode"), Hide("EnvRun2"), Hide("mainmenu_buttons") hovered Show("EnvRun2") unhovered Hide("EnvRun2")
         textbutton "{color=000}Options( );{/color}"  action ShowMenu("preferences"), Hide("EnvOpt"), Hide("mainmenu_buttons") hovered Show("EnvOpt") unhovered Hide("EnvOpt")
         textbutton "{color=000}Quit( );{/color}" action Quit(confirm=not main_menu), Hide("EnvQuit"), Hide("mainmenu_buttons") hovered Show("EnvQuit") unhovered Hide("EnvQuit")
-
+        null height 20
+        frame:
+            background Null()
+            xalign 0.5 yalign 0.5
+            imagebutton idle At("gui/itchio.png",zoomtrans(0.054)) hover At("gui/itchio.png",zoomtrans(0.06)) action OpenURL("https:/zankizuna.itch.io/softwar") xalign 0.5 yalign 0.5
     # ## This ensures that any other menu screen is replaced.
     # tag menu
 

@@ -4,7 +4,7 @@ init -3 python:
             self.name=name
             self.position = position
             self.direction = direction
-            self.dialogue = dialogue
+            self.dialogue = dialogue #Label
     class EventInMap:
         def __init__(self,type,positionlist,label):
             self.type=type
@@ -24,6 +24,10 @@ init -3 python:
     Programkunsprite2 = SpriteinMap("ProgramKun",[8,5],'down',"Program-kun")
     Programkunsprite3 = SpriteinMap("ProgramKun",[8,6],'down',"Program-kun")
     Bellasprite = SpriteinMap("Bella",[6,3],'down',"Bella")
+    Takasprite = SpriteinMap("Taka",[7,5],'down',"npc_deck_discuss")
+    Herbysprite = SpriteinMap("Herby",[8,5],'down',"npc_concatenation_discuss")
+    Aisprite = SpriteinMap("Ai",[3,3],'down',"Ai")
+    ProgramKun2 = SpriteinMap("ProgramKun2",[7,3],'down',"ProgramKun2")
     
 ### EVENTS
     Chapter2unlockdoor = EventInMap("storyevent",[[4,2]],"a")
@@ -45,10 +49,18 @@ init -3 python:
         [2,10],[3,10],[4,10],[5,10],[6,10],[7,10],[8,10],
         [8,9],[8,8],[8,7],[8,6],[8,5]
         ],"script3-1")
+      
+   
+define samedialog = ["Heart","Stella","Ai","Taka","Herby","ProgramKun2"]
 default spritelist = []
 ## Adds sprites on to the map 
 default eventlist = []
 ## Adds Event [!] icons to the map for calling screens
+
+
+
+
+
 
 label chapter_map_events:
     if chapternum==2:
@@ -111,5 +123,4 @@ label mapcallquest():
     $ILY_w = False
     hide screen mapB
     hide screen mapA
-
     return

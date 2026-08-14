@@ -691,6 +691,10 @@ label returncardfrombattlecode(cardobject,handindex):
     return
 label duel_log_append(category,card_used_object, card_user,user_object,function_name=""):
     # Card
+    $ log_shown=False
+    $ log_shown=True
+    hide screen battlestats
+    show screen battlestats
     $ duel_log.append(
         {
             "category":category,
@@ -725,8 +729,6 @@ screen duel_log_screen():
                     spacing 4
                     xalign 0.5 yalign 0.5
                     for dlog_entry in duel_log:
-                        
-
                         if dlog_entry["category"]=="card_played":
 
                             if dlog_entry["card_user"]=="player":
@@ -739,7 +741,8 @@ screen duel_log_screen():
                                         spacing 10
                                         
                                         # image "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at shopcardsize
-                                        imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2)  hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                        if len(duel_log)<20:
+                                            imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2)  hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
                                         
                                         # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
                                         vbox:
@@ -758,8 +761,8 @@ screen duel_log_screen():
                                         hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
                                         hbox:
                                             spacing 10
-                                            imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2) 
-
+                                            if len(duel_log)<20:
+                                                imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2) 
                                             # add ""+[dlog_entry["user_object"].name]+""
                                             # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
                                             vbox:
@@ -783,12 +786,12 @@ screen duel_log_screen():
                                 # style_prefix "bit"
                                 # xfill True
                                 text "{size=16}{b}"+dlog_entry["user_object"].name+"'s Turn"+"{/size}{/b}" 
-
+                    null height 20
     # use CardTooltip
             
     
 
-label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
+label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=2):
     if playerHP==0:
         return
     $ quick_menu=False
@@ -829,7 +832,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100):
         playerbitsmax=pbitsMax
         enemybitsmax=pbitsMax
         random.shuffle(playerDeck)
-        battle_distance = 2
+        battle_distance = battledist
         battle_done = False
         enemyfirst =renpy.random.choice([True,False])
         map_active=False
@@ -1174,10 +1177,10 @@ transform phasetrans3:
     on hide:
         linear 0.1 xzoom 2.0 alpha 0.0
 
-label showphasemsg(msg):
+label showphasemsg(msg,delay=0.9):
     play sound "sound/Phase.wav"
     show screen phasemsg(msg)
-    $ renpy.pause(0.9,hard=True)
+    $ renpy.pause(delay,hard=True)
     hide screen phasemsg
     return
 label battlemessage(msg):

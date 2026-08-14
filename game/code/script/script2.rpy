@@ -32,7 +32,8 @@
 label script2:
     call hideMapview
     $ map_visible=True
-    "Chapter 2: A New Friend" #(Can change chapter name anytime)
+    call showphasemsg("Chapter 2") #(Can change chapter name anytime)
+    call showphasemsg("Heroic Hacker Party",2.0)
     # call mapcall()
     # $ mapeventschapter1={zzz
    
@@ -222,6 +223,8 @@ label teammeeting:
     i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
     i "And I'm also the virus that infected SDS with love letters on Valentines night. I'm sorry!"
     i "I am the ILOVEYOU Virus, but you can call me ILY!"
+    $ Hilbert_m="frown"
+    $ Hilbert_e="down"
     h "No way."
     "She... just confessed? That... makes this kind of difficult."
     $ Hilbert_m="frown"
@@ -532,6 +535,8 @@ label SDS_Encounter:
     v "(They're... Spyware. They've been watching, as I thought!)"
     $ playerHP=playerHPMax
     call battlev3(Vira,Spyware)
+    if playerHP==0:
+        return
     # scene gridbglandscape1 with dissolve:
     #     zoom 0.75
     call battlescene
@@ -891,20 +896,52 @@ label SDS_Encounter:
     j "(Hang in there Vira!!)"
     v "(R-roger!!)"
     scene black with dissolve
-
-    scene battlebg2 with dissolve
+    stop music
+    call battlescene
+    $ John_m="frown"
+    $ ILY_w=False
+    show ILY
     i "John! I'm going!"
-    j "Tsk. I didn't"
+    i "I have to help Vira!"
+    j "Gah! What about the West Gateway? Bitwulf is guarding that area.."
+    i "I'll try the Impercemptium. It has to work!"
+    j "Tch... Fine.. Make your way out!"
+    call battlescene
+    show ILY:
+        xalign 0.5 
+    with dissolve
+    i "Here goes!"
+    show ILY:
+        linear 0.8 alpha 0.05 
+    "ILY Ingested the Imperceptium rock... She's... disappeared?"
+    show ILY:
+        xpos 1.0 xanchor 0.0
+        linear 0.5 xpos 0.6
+    show Bitwulf:
+        xpos 0.2
+        xzoom -1.0
+    with dissolve
+    
+    hide Bitwulf with dissolve
+    
+    hide ILY with easeoutleft
+    "No way. That actually worked!"
 
 
 
-
+    call battlescene
+    play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
+    show CodeRed:
+        xalign 0.01
+    show Vira:
+        xalign 0.99
     v "(My shield points are just about... to get depleted. 20 percent..)"
     cv "It's over."
     cv "I'll destroy you!! Haaaaahhh!!!"
 
-    
+    $ ILY_w=True
     i "Not if I can help it!"
+    $ ILY_w=False
     show Vira:
         linear 0.1 xoffset 100
     show CodeRed:
@@ -919,7 +956,7 @@ label SDS_Encounter:
     play music "bgm/ost/BOSSBATTLE-V-Loop_by-StarryMarshmell_0.ogg"
     i "Saber... Deflect!"
     
-    "Just in time! ILY deflected that last strike with the Lambda Saber." 
+    "Just in time! ILY deflected that last strike from the Lambda Saber." 
     i "I'll take you on..! Kuh!"
     i "This is nothing!" 
     "ILY did deflect it, but had to relinquish the blade quickly for another attack."
@@ -936,7 +973,7 @@ label SDS_Encounter:
     "He materializes another sword."
     v  "There's more to him... I've analysed just which virus you are!"
     cv "After this much of a beating? Is that how Antiviruses work now? Pitiful!"
-    v "Shut up! \"CODE RED!\"! I figured out your true name! You're the Code Red Virus!" 
+    v "Shut up! \"CODE RED!\"! I figured out your True Name! A worm.. You're the Code Red Virus!" 
     cv "You... got it all wrong!"
     cv "Only an idiot would label a virus by some color code. "
     v "You didn't have to throw shade on those people who named you, man."
@@ -953,22 +990,49 @@ label SDS_Encounter:
     c "Hrrraaaghh!"
     "A battle of viruses... How will this play out?"
     "His Lambda Saber emerged and activated immediately."
+    label battlecodered:
+        
     i "Alright, Battle protocol set!... SoftWar Engage!"
     call battlev3(ILY, CodeRed)
     if playerHP<=0:
         return
-    
+    label battlecodered2:
+        
     
     call battlescene
     c "Crossing blades with you was interesting for a while, but... Can't you fight a little more head-on?"
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     j "The ranged attack plan is working, Hilbert!"
+    $ ILY_m="frown"
+    $ ILY_e="down"
+    $ ILY_w = False
+    $ CodeRed_w=False
+    show ILY:
+        xalign 0.1
+    show CodeRed:
+        xalign 0.9
+
     i "I knew you were tough..!"
     c "Spam Attack, huh... This kind of attack is only getting on... my nerves!!"
-    i "Go, my E-mails! Affection Infection!"
+    i "Go, my E-mails!"
+    show white:
+        alpha 1.0
+        linear 0.2 alpha 0.0
+    extend" Affection Infection!"
+    show CodeRed:
+        xoffset -2
+        pause 0.1
+        xoffset 2
+        pause 0.1
+        repeat
     c "Wha? I can't move!"
     "It's restrained him!!"
+
     i "What's wrong? Can't proceed?"
+    show CodeRed with Dissolve(0.5):
+        pause 0.5 
+        linear 0.2 yoffset 50
+
     "Code Red was on his knees."
     c "No!"
     i "The multitude of e-mail tokens I sent your way is infecting your system now!"
@@ -977,20 +1041,53 @@ label SDS_Encounter:
     c "I've no time for romantic babble! Stop fighting dirty!" 
     $ ILY_e="down"
     $ ILY_m="smile"
-    i "Ohohoho! You should know, we're viruses, we always fight dirty!"
+    i "Ohohoho! We're viruses, we always fight dirty!"
     c "Kuh!"
     $ ILY_m="frown"
     i "Just so you know, I'm only doing this to stop you from destroying everything!"
     i "Do it, Vira!!"
     $ Vira_w=True
     v"Powersol, Attack Mode!! Full blast!"
-    "Vira unleashes the stored power from the strikes her Powersol endured."
+    show white:
+        alpha 1.0
+        linear 0.2 alpha 0.0
+    "Vira unleashed the stored power from the strikes her Powersol endured."
+    call battlescene
+    show CodeRed:
+        xalign 0.5
+        choice:
+            xoffset -2 yoffset -2
+            pause 0.1
+        choice:
+            xoffset 2 yoffset -2
+            pause 0.1
+        choice:
+            xoffset -2 yoffset 2
+            pause 0.1
+        choice:
+            xoffset 2 yoffset 2
+            pause 0.1
+        parallel:
+            choice:
+                alpha 0.6
+            choice:
+                alpha 0.7
+            choice:
+                alpha 0.9
+            choice:
+                alpha 1.0
+            choice:
+                alpha 1.0
+                
+                
+        repeat
+        
     c "GRRRrraaaghh!!"
     "It struck him and pierced his armor.. "
     v "That does it!"
     "His body is almost fading, and bugging out.. Could this be it?"
     c "No... I can't lose to the likes of... you."
-    
+    $ ILY_w = True
     c "My mission is.. to destroy!!"
     i "I don't understand what you are fighting for here! Stop wrecking people's livelihood!"
     c "I still... have one trick up my sleeve... "
@@ -998,6 +1095,8 @@ label SDS_Encounter:
     "Vira and ILY" "What!?"
     v "No way, just like the Lambda Saber, his armor's opening up??"
     # show CodeRed at surgeofpower("CodeRed")
+    show CodeRed:
+        alpha 1.0
     call powerflow_animation
     c "I too, can break off restraints... even the restraints, I put up on myself..!"
     c "HHHRRRAAAAGGHH!!"
@@ -1005,12 +1104,12 @@ label SDS_Encounter:
     "A huge bolt of red light suddenly struck the server."
     v"No, his Data signature is changing drastically."
     "The red glowing force expanded as a sphere, almost protecting... A transformation, about to happen!?"
-    "ILY and Vira witnessed a new thing at this moment.."
     j "What's going on here...?!"
     i "I have no clue!"
     v "ILY, he's transforming! We need to stop the state transition! We should break the force-field!"
     i "Got it!"
     "ILY quickly drew her blade and struck him."
+    
     call damagerightblocked
     extend " But the force-field repelled the attack."
 
@@ -1020,6 +1119,7 @@ label SDS_Encounter:
     "Vira was about to strike with her parasol next, until out of the sphere, came a sudden burst of aura, shooting Vira! "
     extend"It was a direct hit, and it pushed Vira to the wall, knocking her out."
     l "Vira, no!!"
+    play sound "sound/loadcard.wav"
     call hidepowerflow
     "Before ILY could come to her aid, the tremors suddenly disappeared. Remnants of the crimson energy dispersed in the air."
     "It wasn't just the barrier... Code Red's body is nowhere to be found!"
@@ -1071,6 +1171,10 @@ label SDS_Encounter:
     call battlev3(ILY, Ave,turnlimit = 3)
     if playerHP<=0:
         return
+    label Avebattle1:
+
+    $ ILY_m="frown"
+    $ ILY_e="down"
     call battlescene
 
     play music "bgm/ost/Battle_Theme_by_Jan_Hehr.mp3" volume 1.5
@@ -1113,7 +1217,7 @@ label SDS_Encounter:
     a "You're planning something... I won't let you! Hmph!"
     show Ave at jumpoff
     i "(I won't run away, John! I've got this!)"
-
+    
     call battlescene
 
     "Ave runs to her target, still unrelenting in her assault. "
@@ -1172,6 +1276,7 @@ label SDS_Encounter:
         xanchor 0.0 xpos 1.0
         easein 0.4 xalign 0.9
     a "The filth called the ILOVEYOU Virus...  Must disappear!"
+    $ ILY_w=False
     show ILY:
         alpha 1.0 xalign 0.1 xoffset 0 
         yanchor 1.0 ypos 1.0
@@ -1187,11 +1292,11 @@ label SDS_Encounter:
     a "A mere Papercut sword! Tch! It'll take more than that to defeat me!"
     $ Ave_m="shout"
     $ Ave_eyes="open"
-    " Let alone my shield!"
+    " Hah!"
     call cardflash_story(Firewall)
     "A Wall! Just like Vira.. This'll be tough."
     $ Ave_m="frown"
-    
+    label Avebattle2:
     i "That's right... Mailsaber's power output is weak..."
     i "But thanks to the Email tokens I sent your way, For each one I retrieve, I gain an extra blade to attack with!"
     $ Ave_eyes="midclose"
@@ -1218,12 +1323,16 @@ label SDS_Encounter:
     show ILY at sidesteps_effectILY("ILY",0.0,1.5,0.3):
         yanchor 0.50 ypos 0.5 alpha 1.0 
     call damageright4
+    show Ave at damageanim(20)
     "ILY begins a flurry of slash attacks, each strike used each of the Mail blades that were retrieved on the battlefield."
     call damageright
+    show Ave at damageanim(20)
     "Combined with Burst Transfer, ILY was able to strike quickly and travel to her target quickly from many meters away." 
     call damageright4
+    show Ave at damageanim(20)
     "Each slash was a line drawn from one point to another, by which all lines alternatively coincided with Ave's position."
     call damageright4
+    show Ave at damageanim(20)
     "She approached her from many directions in a spiraling flurry of attacks, and her blade clashed with her shields repeatedly."
     
     show ILY:
@@ -1252,20 +1361,131 @@ label SDS_Encounter:
     hide ILY with dissolve
     a "Don't...! Grrr... I will.."
     "After minute or so... Ave recovers from the crater in the wall and proceeds to follow ILY's traces she left behind."
+    hide Ave
+    $ Ave_w=False
+    $ Vira_e="mad"
+    $ Vira_m="frown"
+    show Ave with dissolve:
+        xalign 0.9
+            
     a "You're not getting away!"
+    show Vira with dissolve:
+        xalign 0.1
     v "Looking for someone?"
     a "Vira?"
     "Vira appeared at the exit of the server. It was that same gate Vira exited through. Vira defends ILY as she escapes promptly."
     a "How did you get there? And why are you allies with that filth?"
+    $ Vira_m="O"
     v "You're the one that owes us explaining here!! I'm only protecting SDS!"
+    $ Vira_m="frown"
+    $ Ave_m="frown"
     a "Tsk. I won't fight you."
+    
     a "My only target now is the ILOVEYOU Virus."
     v "Well, too bad. She's gone now." 
-    v "Sayonara, Ill-tempered hunter!"   
+    v "Sayonara, Ill-tempered hunter!"
+    play sound "sound/loadcard.wav"
+    hide Vira with dissolve_pixels
+    "Vira logged out."
+    show Ave:
+        linear 0.5 xalign 0.5
     a "Tsk.." 
+    $ Ave_m="frown"
+    a "I'll get you next time... Worm..."
+    play sound "sound/loadcard.wav"
+    hide Ave with dissolve_pixels
+    
     "Ave logged out briefly."
+    stop music
+    scene black with dissolve
     "Phew! We made an escape!"
-
+    label AfterBattle1:
     # =============================
-    ""
+    $ ILY_w=True
+    $ Vira_w=True
+    $ John_m="frown"
+    $ Lisa_m="frown"
+    $ Hilbert_m="frown"
+    play music "bgm/ost/Serious_Noyemi_K.ogg"  fadeout 1 loop
+    scene JD_Space2_Afternoon with dissolve
+    h "GUYS!? What the hell just happened?"
+    h "It was going so smoothly!!"
+    h "Code Red totally lost there!! We had him!"
+    l "Then... Ave... Antivirus?"
+    j "I'm at a loss for words... They were... formidable."
+    scene JD_PC2_Afternoon with dissolve
+    j "Uh... are you two alright? S-status?"
+    i "Present! All clear!"
+    v "I'm fine."
+    h "Whew."
+    j "Vira, Are you still able to monitor SDS?"
+    v "Well, the website would tell you that it still functions well. Anytime you wish, I can go back there anytime to check."
+    v "I'm positive that there aren't any more spyware bugs..."
+    $ ILY_m="frown"
+    i "If... Vira meets Code Red there again...?"
+    h "Gahh! Will he attack again? When would it end?"
+    j "Tch... I don't know. There's a whole lot of things we don't know."
+    l "Hacker X... "
+    h "There's X, and there's... Ave."
+    j "Someone knowledgable with FAI sent Ave Antivirus. That's what is bothering me.."
+    j "Ave Antivirus is seeking to delete ILY, apparently."
+    j "Some other person is working to help SDS? Who?"
+    h "I'm the CEO's son, and even I don't know."
+    scene JD_Space3_Afternoon with dissolve
+    "We brood over the situation for a bit.. The atmosphere was getting a little grim."
+    "It's also getting dark. "
+    stop music
+    "*DoorBell Rings*"
+    play music "bgm/Peace_bgm_maoudamashii_acoustic38.ogg"
+    $ Hilbert_m="smile"
+    h "Wha. Oh!! It's the Pizza!! I almost forgot about it!"
+    j "I'll go get the door."
+    l "Great timing."
+    j "Oh right, Hilbert! Come here! The payment!"
+    h "Right!"
+    l "Let me hold the drinks."
+    j "Yeah! The Frappes!"
+    h "We gotta cheer up! This should be our victory feast!"
+    h "We might not know the entire situation.. But we did beat Code Red! SDS is gonna be fine!"
+    j "That's one way to put it."
+    $ Lisa_m="smile"
+    $ Lisa_eyes="closedup"
+    l "Yum!!"
+    "Everyone" "Thanks for the meal!"
+    $ John_m="smile"
+    j "Let's dig in!"
+
+    h "I'll go take a pic of us!"
+    
+    show CG1Pizza at truecenter :
+        zoom 0.5
+    show white:
+        alpha 1.0
+        linear 0.2 alpha 0.0
+    "Wait, gah!"
+    j "..."
+    h "It's a good pic!"
+    $ Lisa_m="open"
+    $ Lisa_eyes="raised"
+    l "..."
+    $ Lisa_m="smile"
+    $ Lisa_eyes="closedup"
+    l "..."
+    h  "How's that? The \"Heroic Hacking Party!\"!\n We saved SDS for the day!"
+    j "Heroic wha-"
+    h "That's us!"
+    $ Lisa_m="open"
+    $ Lisa_eyes="raised"
+    l "I'm not opposed to it,"
+    $ Lisa_m="smile"
+    $ Lisa_eyes="lookaway"
+    extend" I guess!"
+    "Heh. Alrighty then."
+    $ John_eyes="closed"
+    $ John_m="smile"
+    j "Okay.. Heroic Hacking Party... For the day.."
+    scene black
+
+    
+    "DEMO OVER! THANK YOU FOR PLAYING SOFTWAR!"
     return

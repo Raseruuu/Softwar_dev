@@ -39,9 +39,9 @@ label TYPE_sfx:
         play sound "sfx/wind.wav" channel 1
     $ attacknumber+=1
     if attacknumber<=3:
-        play sound "sfx/sfx_exp_short_hard9.wav" 
+        play sound "sfx/Damage2.wav"
     elif attacknumber>3:    
-        play sound "sfx/sfx_exp_short_hard8.wav" 
+        play sound "sfx/sfx_exp_short_hard8.wav"  
     else:
         play sound "sfx/sfx_exp_short_hard8.wav" 
     return
@@ -1665,7 +1665,7 @@ init python:
     }
 label functioneffects(runfxnstring,params={}):
     $ renpy.call(FxnDirectoryPlayer[runfxnstring],params)
-    pause 0.01
+    pause 0.005
     return
 init python:
     FxnDirectoryEnemy={
@@ -1699,5 +1699,5 @@ init python:
     }
 label enemyfunctioneffects(runfxnstring,params={}):
     $ renpy.call(FxnDirectoryEnemy[runfxnstring],params)
-    pause 0.01
+    pause 0.005
     return
