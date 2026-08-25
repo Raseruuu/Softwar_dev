@@ -15,7 +15,7 @@ init python:
   Running = True
   direction = 'down'
   linearmaptransform=False
-
+  actornum = '0'
 
   boxsheet = stagehome
   Where = "Home"
