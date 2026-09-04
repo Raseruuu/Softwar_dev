@@ -202,6 +202,8 @@ label roguestage:
             call r_battlestart
     label newnodes:
         # play music "bgm/ost/Serious_Noyemi_K.ogg"
+
+        call r_battlestart
         play music "bgm/Jens_Vide/Goddess-Digital-01 - Petra.ogg"
         
         scene mainbg 
@@ -503,6 +505,8 @@ label R_Boss:
     
     
     return
+# init python:
+default nodes_tpf=[Enemy]*7+[StrongEnemy]*2+[Unknown,Unknown,Treasure,Recovery,Recovery,StellaShop]
 label r_battlestart:
     python:
         nodes_path=[]

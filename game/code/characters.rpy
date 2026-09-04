@@ -988,11 +988,11 @@ layeredimage Lisafull:
 image Lisa:
     "Lisafull"
     yanchor 0.0 ypos 0.01
-    # linear 1.0 yoffset 0
-    # pause .5
-    # linear 1.0 yoffset 5
-    # pause .5
-    # repeat
+    linear 1.0 yoffset 0
+    pause 1.0
+    linear 1.0 yoffset 3
+    pause 1.0
+    repeat
 image Lisafullside:
     "Lisafull"
     zoom 1.13
@@ -1827,11 +1827,11 @@ image Icon_Ave:
 image Hilbert:
     "HilbertFull"
     ypos 1.0 yanchor 0.56 zoom 0.92
-    # linear 1.0 yoffset 0
-    # pause .5
-    # linear 1.0 yoffset 5
-    # pause .5
-    # repeat
+    linear 1.0 yoffset 0
+    pause 1.0
+    linear 1.0 yoffset 3
+    pause 1.0
+    repeat
 image HilbertEyes:
     choice:
         "images/Characters/Hilbert/Hilbert_eyes.png"
@@ -2804,11 +2804,13 @@ image Alicia:
     mesh True
 
     "AliciaFullBody"
-    zoom 1.0
-    yanchor 0.40
+    zoom 0.86
+    yanchor 0.52
     ypos 1.0
     linear 1.0 yoffset 0
-    linear 1.0 yoffset 5
+    pause 1.0
+    linear 1.0 yoffset 3
+    pause 1.0
     repeat
 image side Alicia_side:
 

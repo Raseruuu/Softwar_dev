@@ -175,11 +175,12 @@ transform fxn_frame_pos(tooltip_position):
 screen card_tooltip_battle:
 
     frame:
-        at fxn_frame_pos(tool_position())
-        # xpos 0.44 xanchor 0.0 ypos 0.94 yanchor 1.0
+        # at fxn_frame_pos(tool_position())
+        xpos 0.01 xanchor 0.0 ypos 0.4 yanchor 0.0
         xsize 420
         ysize 180
         add FunctionListDescript(hoverFXN) 
+        at zoomtrans(0.75)
 
 screen card_tooltip:
 
@@ -245,7 +246,7 @@ label ReadMessage(sender,subject,message):
     # show screen pauselayout("EMAIL",True,True)
     nvl clear
     emailnvl"{b}[subject]{/b}\n\n{i}From:{/i} [sender]\n\n[message]"
-
+    nvl clear
     return
 screen Mailbox:
     # use pauselayout("INBOX",True,True)

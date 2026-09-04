@@ -1248,8 +1248,8 @@ screen choosecardv2:
         
 
     
-    # if hoverFXN!=[]:
-    #     use card_tooltip_battle
+    if hoverFXN!=[]:
+        use card_tooltip_battle
     
 image card_deck = "images/Cards/card_deck.png"
 image card_deck_draw :
