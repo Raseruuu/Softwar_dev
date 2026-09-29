@@ -84,13 +84,13 @@ label Attack(params={}):
                 enemyHP = 0
                 
                 battle_done=True
-            dmgdist = ((currentcard.POW*100)/20)
-            dmgdist = int(dmgdist*2.5)
+            dmgdist = ((damagetoenemy)/50)
+            # dmgdist = int(dmgdist*2.5)
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
         show Enemy:
-            linear 0.05 zoom 0.94
+            linear 0.05 zoom 0.94-(dmgdist/100)
             xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
             pause .05
             xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8

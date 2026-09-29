@@ -1427,7 +1427,7 @@ label SDS_Encounter:
     j "Tch... I don't know. There's a whole lot of things we don't know."
     l "Hacker X... "
     h "There's X, and there's... Ave."
-    j "Someone knowledgable with FAI sent Ave Antivirus. That's what is bothering me.."
+    j "Someone knowledgable with FAI sent Ave Antivirus. That's what's bothering me.."
     j "Ave Antivirus is seeking to delete ILY, apparently."
     j "Some other person is working to help SDS? Who?"
     h "I'm the CEO's son, and even I don't know."

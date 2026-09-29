@@ -140,11 +140,12 @@ init python:
         showsideimage=False
         return Null()
 screen say(who, what):
-    $ config.rollback_enabled=False
+    # $ config.rollback_enabled=False
     
     style_prefix "say"
     if say_shop_mode:
         key "dismiss" action Return()
+    
     window:
         if say_shop_mode:
             pos(541,525) anchor (0,0)
@@ -159,10 +160,16 @@ screen say(who, what):
 
                 style "namebox"
                 text who id "who"
-
+        
         text what id "what":
             if say_shop_mode:
                 xmaximum 400
+            if what=="()":
+                at alphatrans(0.0)
+        if what=="()":
+            at alphatrans(0.0)
+    # text what:
+    #     at alphatrans(0.0)
     # if say_shop_mode:
     #     timer 3.25 action Hide('say')
     ## If there's a side image, display it above the text. Do not display on the

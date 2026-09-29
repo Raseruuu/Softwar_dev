@@ -229,20 +229,20 @@ label Damageenemy(params):
                 enemyHP = 0
                 
                 battle_done=True
-            dmgdist = ((currentcard.POW*100)/20)
-            dmgdist = int(dmgdist*2.7)
+            dmgdist = ((damagetoenemy)/10)
+            dmgdist = int(dmgdist*3.0)
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
         show Enemy:
-            linear 0.05 zoom 0.94
+            linear 0.05 zoom 0.9-(dmgdist/100)
             xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
             pause .05
             xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
             pause .05
             xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
             pause 0.05
-            xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+            xoffset ((dmgdist*-1)-4) yoffset ((dmgdist)-4)
             pause 0.05
             xoffset 0 yoffset 0
             linear 0.05 zoom 1.0
@@ -288,7 +288,7 @@ label DamageSPplayer(params={}):
                 $ playerSP=0
 
             $ dmgdist = ((currentcard.POW*100)/20)
-            $ dmgdist = int(dmgdist*2.7)
+            $ dmgdist = int(dmgdist*3)
 
             show playerdmgpoint onlayer overlay
             # call hurtnoise
@@ -1518,7 +1518,7 @@ label EnemyEndPhase:
                 $ battle_done=True
             # $ EnmySts.remove('burn')
             $ dmgdist = (burndmg/20)
-            $ dmgdist = int(dmgdist*2)
+            $ dmgdist = int(dmgdist*3)
             $ damagetoplayer = burndmg
             show Brnsts:
                 zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 0.5 ypos 0.75 alpha 1.0
@@ -1693,7 +1693,6 @@ init python:
         "Advance":"Advance",
         "Pull":"Advance",
         "DeckChange":"DeckChangeEnemy",
-        
         # "":"",
         "":"DoNothing"
     }

@@ -741,12 +741,12 @@ screen duel_log_screen():
                                         spacing 10
                                         
                                         # image "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at shopcardsize
-                                        if len(duel_log)<20:
-                                            imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2)  hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                        # if len(duel_log)<20:
+                                        imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2)  hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
                                         
                                         # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
                                         vbox:
-                                            textbutton " "+(dlog_entry["card_used_object"].NAME)+"" at zoomtrans(0.4) hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
+                                            textbutton ""+(dlog_entry["card_used_object"].NAME)+"" at zoomtrans(0.4) hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
                                             # # text "POWR = "+str(dlog_entry["card_used_object"].POW) at zoomtrans(0.5)
                                             # text "  {size=12}POWR = "+str(dlog_entry["card_used_object"].POW)+"   BITS = "+str(dlog_entry["card_used_object"].COST)+"{/size}" yalign 0.0  at zoomtrans(0.75)
 

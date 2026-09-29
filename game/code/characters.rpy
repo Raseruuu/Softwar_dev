@@ -27,7 +27,7 @@ init python:
     #     showchar("ILY","left")
 
 
-define narrator = Character(ctc="ctc", ctc_position="fixed", callback=speaker("N"))
+define narrator = Character(ctc="ctc", ctc_position="fixed", callback=speaker("N"), what_prefix="(",what_suffix=")")
 define name_only = Character( color = '#fff',ctc="ctc", ctc_position="fixed", callback=speaker("N"))
 define emailnvl = Character("", color = '#0b99f4',kind=nvl, callback = speaker("John"))
 define u = Character("???",color = '#fff', callback=speaker("N"), ctc="ctc", ctc_position="fixed")
