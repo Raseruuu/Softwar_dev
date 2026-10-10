@@ -607,7 +607,7 @@ label date1:
     show Lisa with dissolve:
         xalign 0.5
     "Lisa Fairfield."
-    extend" A genius programmer girl. We're batchmates currently taking internship at Hilbert's family company."
+    extend" She's the best. We're batchmates currently taking internship at Hilbert's family company."
     "We've been working on this website for a client for quite a while now."
     "I'm seeing her today for our job at the Salcedo Dev studio."
     "She also said that she'll tell me something important."
@@ -999,9 +999,9 @@ label date2:
                 linear 15.0 rotate 360
                 repeat
         show curve:
-            xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 0.0 ypos 0.38 yanchor 0.5
         show curve as curve2:
-            xpos 0.5 xanchor 1.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 1.0 ypos 0.3962 yanchor 0.5
             zoom -1.0
 
         show battleroad:
@@ -1046,9 +1046,9 @@ label date2:
                 linear 15.0 rotate 360
                 repeat
         show curve:
-            xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 0.0 ypos 0.38 yanchor 0.5
         show curve as curve2:
-            xpos 0.5 xanchor 1.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 1.0 ypos 0.3962 yanchor 0.5
             zoom -1.0
         show battleroad:
             yalign 1.0 xalign 0.5
@@ -1056,11 +1056,31 @@ label date2:
             xalign 0.5 yanchor 0.3 ypos 0.25
 
         with pixellate
-        i"John! I need your help! Let's destroy the Virus Together!"
+        i"John! I need your help! Let's destroy the Virus together!"
+        call ILY_Draws_Sword
+
+        show battlering:
+            xalign 0.5 ypos 0.15 yanchor 0.5
+            block:
+                rotate 0
+                linear 15.0 rotate 360
+                repeat
+        show curve:
+            xpos 0.5 xanchor 0.0 ypos 0.38 yanchor 0.5
+        show curve as curve2:
+            xpos 0.5 xanchor 1.0 ypos 0.3962 yanchor 0.5
+            zoom -1.0
+        show battleroad:
+            yalign 1.0 xalign 0.5
+        show Enemy:
+            xalign 0.5 yanchor 0.3 ypos 0.25
+
+        with pixellate
         $ currentcard=(DataSaber)
         show cardflasher:
             xalign 0.5 yalign 0.46
         i"In a Softwar, we use Battleware!!"
+        
         j"A sword?"
         $ ILY_m = 'smile'
         i"The sword is the weapon of the romantic hero!"
@@ -1532,7 +1552,7 @@ label date2:
         j"This looks so much better than before, Lisa."
         j"Well done."
         l"We did great today."
-        "Agreed. She's really a genius."
+        "Agreed. Of course, Lisa is great at what she does. Goes without saying."
         l"That was really fun."
         l"I guess that's one of our assignments down!"
         j"You're gonna have to go home for now."
@@ -1734,7 +1754,7 @@ label date2:
         j"Alright, let's explore the area then."
 
         ## TODO: Make Mission/Quest Screen
-        "Mission: Direct ILY to the West Area until you reach the \"Connecht Square\""
+        "{b}Mission: Direct ILY to the West Area until you reach the \"Connecht Square\"{/b}"
 
 
         jump script1_2

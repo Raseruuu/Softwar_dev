@@ -89,18 +89,45 @@ label Attack(params={}):
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
-        show Enemy:
-            linear 0.05 zoom 0.94-(dmgdist/100)
-            xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
-            pause .05
-            xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
-            pause .05
-            xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
-            pause 0.05
-            xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
-            pause 0.05
-            xoffset 0 yoffset 0
-            linear 0.05 zoom 1.0
+        if damagetoenemy>=1000:
+            show Enemy at intense_glitch:
+                linear 0.05 zoom 0.94-(dmgdist/100)
+                xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+                pause .05
+                xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+                pause .05
+                xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+                pause 0.05
+                xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+                pause 0.05
+                xoffset 0 yoffset 0
+                linear 0.05 zoom 1.0
+        elif damagetoenemy>=500 and damagetoenemy<999:
+            show Enemy at normal_glitch:
+                linear 0.05 zoom 0.94-(dmgdist/100)
+                xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+                pause .05
+                xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+                pause .05
+                xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+                pause 0.05
+                xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+                pause 0.05
+                xoffset 0 yoffset 0
+                linear 0.05 zoom 1.0
+        else:
+            show Enemy at subtle_glitch:
+                linear 0.05 zoom 0.94-(dmgdist/100)
+                xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
+                pause .05
+                xoffset (dmgdist*-1) yoffset (dmgdist*-1) alpha 0.8
+                pause .05
+                xoffset (dmgdist) yoffset (dmgdist) alpha 1.0
+                pause 0.05
+                xoffset ((dmgdist*-1)-2) yoffset ((dmgdist)-2)
+                pause 0.05
+                xoffset 0 yoffset 0
+                linear 0.05 zoom 1.0
 
         $ renpy.pause(0.6,hard=True)
         call TYPE_delay

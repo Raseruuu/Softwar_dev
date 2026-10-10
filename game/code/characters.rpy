@@ -37,6 +37,7 @@ define info = Character("INFO",callback=speaker("INFO"), color='#fff', ctc="ctc"
 define j = Character("John", color = '#0b99f4', image = "John_side", callback = speaker("John"), ctc="ctc", ctc_position="fixed")
 define h = Character("Hilbert",color = '#f7941d', image = "Hilbert_side", callback=speaker("Hilbert"), ctc="ctc", ctc_position="fixed")
 define l = Character("Lisa",color = '#992e2c', image = "Lisa_side", callback=speaker("Lisa"), ctc="ctc", ctc_position="fixed")
+define e = Character("Ellie",color = '#f19e04', image = "Ellie_side", callback=speaker("Ellie"), ctc="ctc", ctc_position="fixed")
 define al = Character("Alicia",color = '#3e78a6', image = "Alicia_side", callback=speaker("Alicia"), ctc="ctc", ctc_position="fixed")
 define lc = Character("Lucida",color = '#405f82', image = "Lucida_side", callback=speaker("Lucida"), ctc="ctc", ctc_position="fixed")
 define n = Character("Nick",callback=speaker("Nick"), color='#4e813b', image ="Nick_side", ctc="ctc", ctc_position="fixed")
@@ -121,6 +122,9 @@ init -1 python:
     globals()["Nick_w"] = True
     globals()["HackerX_w"] = True
     # Nick_m
+    globals()["Ellie_e"] = "down"
+    globals()["Ellie_m"] = "frown"
+    globals()["Ellie_w"] = True
 
     # globals()["HackerX_w"] = True
 
@@ -214,11 +218,12 @@ init -1 python:
     def ILY_outfit_function():
         global ILY_outfit
         # Clothes Damage function
-        if playerHP<=playerHPMax/8:
-            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/8 else "")+".png"
         # elif playerHP>playerHPMax/8:
         #     ILY_outfit =""
         #     return "Null"
+        if playerHP<=playerHPMax/8:
+            return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+("_damaged" if playerHP<=playerHPMax/8 else "")+".png"
+            
         else:
             return "images/Characters/ILY/Full/ILY_v2_"+ILY_outfit+".png"
     
@@ -232,6 +237,8 @@ init -1 python:
             globals()["showsideimage"]=John_w
         elif (name == "Hilbert"):
             globals()["showsideimage"]=Hilbert_w
+        elif (name == "Ellie"):
+            globals()["showsideimage"]=Ellie_w
         elif (name == "Melissa"):
             globals()["showsideimage"]=Melissa_w
         elif (name == "Stoned"):
@@ -246,6 +253,8 @@ init -1 python:
             globals()["showsideimage"]=ILY_Alpha_w
         elif (name == "Lisa"):
             globals()["showsideimage"]=Lisa_w
+        elif (name == "Alicia"):
+            globals()["showsideimage"]=Alicia_w
         elif (name == "Lucida"):
             globals()["showsideimage"]=Lucida_w
         elif (name == "Ave"):
@@ -2820,3 +2829,180 @@ image side Alicia_side:
     )
     zoom 0.38
 
+
+#######
+
+
+image EllieEyes:
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_open.png"
+        pause 1.0
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.07
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_open.png"
+        pause 5.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_open.png"
+        pause 4.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_open.png"
+        pause 1.5
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.07
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_open.png"
+        pause 1.5
+    repeat
+
+image Ellie_eyes_open:
+    "images/Characters/Ellie/Ellie_eyes_[Ellie_eyes].png"
+    pause 1.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_[Ellie_eyes].png"
+        pause 2.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_[Ellie_eyes].png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Ellie/Ellie_eyes_[Ellie_eyes].png"
+        pause 0.1
+
+        repeat 2
+    repeat
+image Ellie_eyes_midclose:
+    "images/Characters/Ellie/Ellie_eyes_midclose.png"
+    pause 1.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 2.0
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 3.0
+    choice:
+
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.1
+
+    choice:
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.05
+        "images/Characters/Ellie/Ellie_eyes_closed.png"
+        pause 0.1
+        "images/Characters/Ellie/Ellie_eyes_midclose.png"
+        pause 0.15
+
+        repeat 2
+    repeat
+
+image EllieMouthsmile:
+    "images/Characters/Ellie/Ellie_mmidopen.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_msmileopen.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mmidopen.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_msmile.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_mO2.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mO.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_mO4.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_msmile.png"
+    pause .08
+    repeat
+
+
+image EllieMouthfrown:
+    "images/Characters/Ellie/Ellie_mO2.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mO.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_mO4.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mfrown.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mO2.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mO3.png"
+    pause .1
+    "images/Characters/Ellie/Ellie_mO2.png"
+    pause .08
+    "images/Characters/Ellie/Ellie_mfrown.png"
+    pause .1
+    repeat
+layeredimage EllieFullBody:
+    always:
+        At("images/Characters/Ellie/Ellie_base.png",spritefix(0.5)) #pose
+    always:
+        ConditionSwitch(
+            "Ellie_eyes=='open'",
+            At("EllieEyes",spritefix(0.5)),
+            "Ellie_eyes!='open'",
+            At("images/Characters/Ellie/Ellie_eyes_[Ellie_eyes].png",spritefix(0.5)),
+            )
+    always:
+        At("images/Characters/Ellie/Ellie_e[Ellie_e].png",spritefix(0.5))
+
+    always:
+        At(WhileSpeaking(
+            "Ellie",
+            ConditionSwitch(
+                "('smile' in Ellie_m)","EllieMouthsmile",
+                "('smile' not in Ellie_m)","EllieMouthfrown"
+                ),
+            "images/Characters/Ellie/Ellie_m[Ellie_m].png"
+            ),spritefix(0.5))
+
+    always:
+        At("images/Characters/Ellie/Ellie_glasses.png",spritefix(0.5))
+# image Ellie:
+image Ellie:
+    mesh True
+
+    "EllieFullBody"
+    zoom 0.86
+    yanchor 0.52
+    ypos 1.0
+    linear 1.0 yoffset 0
+    pause 1.0
+    linear 1.0 yoffset 3
+    pause 1.0
+    repeat
+image side Ellie_side:
+
+    ConditionSwitch(
+        "Ellie_w==True",Crop((260,140, 440,565), (At("EllieFullBody", zoomtrans(1.4)))),
+        "Ellie_w==False","Null_side"
+    )
+    zoom 0.38

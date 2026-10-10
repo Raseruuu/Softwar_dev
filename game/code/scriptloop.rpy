@@ -6,7 +6,7 @@ label game_loop:
 
     #Chapter Novel_Mode
     if not game_over:
-        if chapternum>=3:
+        if chapternum>=4:
             scene black
             "Demo Over."
             "Thank  You for playing SOFTWAR!"

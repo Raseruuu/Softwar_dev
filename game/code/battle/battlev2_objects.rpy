@@ -398,7 +398,7 @@ init python:
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
     RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    SaberAura=     Card("SaberAura",        "Sword",          0.5,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   8)
+    SaberAura=     Card("SaberAura",        "Sword",          0.0,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   5)
     HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [Increase("ATK",0.25),GainToken("Burn",1)],       2)
     ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)
 
@@ -415,7 +415,7 @@ init python:
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [AttackSP(),Attack(),GainToken("Saber",1)],  3)
     BlockSaber=    Card("BlockSaber",       "Sword",           0.5,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
     LambdaSaber=   Card("LambdaSaber",      "Sword",           0.3,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
-    StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(3),Attack()], 5)
+    StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(2),Attack()], 5)
     
     BlackBars=     Card("BlackBars",        "Bar",               1.6,     [],            4)
     XAxess=        Card("X-Axess",          "Axe",               0.75,     [AttackSP(),Attack(onhit=[Push(2)])],            4)

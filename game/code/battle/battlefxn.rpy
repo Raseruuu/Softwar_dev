@@ -234,7 +234,7 @@ label Damageenemy(params):
         hide damageeffect
         show damageeffect
         show dmgpoint onlayer overlay
-        show Enemy:
+        show Enemy at subtle_glitch:
             linear 0.05 zoom 0.9-(dmgdist/100)
             xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
             pause .05
@@ -319,7 +319,7 @@ label DamageSPenemy(params={}):
             $ dmgdist = ((currentcard.POW*100)/20)
             $ dmgdist = int(dmgdist*2.7)
             show dmgpoint onlayer overlay
-            show Enemy:
+            show Enemy at normal_glitch:
                 linear 0.05 zoom 0.94
                 xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
                 pause .05
@@ -349,7 +349,7 @@ label DamageSPselfenemy(params={}):
         $ dmgdist = ((currentcard.POW*100)/20)
         $ dmgdist = int(dmgdist*2.7)
         show dmgpoint
-        show Enemy:
+        show Enemy at normal_glitch:
             linear 0.05 zoom 0.94
             xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
             pause .05
@@ -1378,11 +1378,10 @@ label Execution:
             linear 15.0 rotate 360
             repeat
     show curve:
-        xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 0.0 ypos 0.38 yanchor 0.5
     show curve as curve2:
-        xpos 0.5 xanchor 1.0 ypos 0.17 yanchor 0.5
+        xpos 0.5 xanchor 1.0 ypos 0.3962 yanchor 0.5
         zoom -1.0
-
     show battleroad:
         yalign 1.0 xalign 0.5
     show Enemy:
@@ -1478,7 +1477,7 @@ label PlayerEndPhase:
 
             show dmgpointb onlayer overlay
             call hurtnoise_enemy
-            show Enemy:
+            show Enemy at subtle_glitch:
                 linear 0.1 zoom 0.96
                 xoffset (dmgdist) yoffset (dmgdist) alpha 0.7
                 pause .05

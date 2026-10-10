@@ -210,7 +210,7 @@ label teammeeting:
     h "Wait, like viruses that are like, smart? Hmmmm... not really."
     h "But I've heard of A.I. Anti-Viruses."
     j "So you do know something!"
-    h "Well I kinda pieced together that there might be an advancement of Virus technology somewhere that makes AI Antiviruses necessary.."
+    h "Well, I kinda pieced together that there might be an advancement of Virus technology somewhere that makes AI Antiviruses necessary.."
     j "..."
     "How do I tell him properly that ILY is also a virus, on top of being AI..."
     h "Artificial Intelligence is going to be everywhere now, is it?"
@@ -221,7 +221,7 @@ label teammeeting:
     h "Ah! How'd you find that out? I had a hunch that John really was a super hacker."
     j "Am not. It's uhhh.. hard to explain."
     i "It takes one to know one! I'm an what you call a FAI, Future Artificial Intelligence!"
-    i "And I'm also the virus that infected SDS with love letters on Valentines night. I'm sorry!"
+    i "And I'm also the virus that infected SDS with love letters on Valentine's night. I'm sorry!"
     i "I am the ILOVEYOU Virus, but you can call me ILY!"
     $ Hilbert_m="frown"
     $ Hilbert_e="down"
@@ -1053,7 +1053,7 @@ label SDS_Encounter:
         linear 0.2 alpha 0.0
     "Vira unleashed the stored power from the strikes her Powersol endured."
     call battlescene
-    show CodeRed:
+    show CodeRed at subtle_glitch:
         xalign 0.5
         choice:
             xoffset -2 yoffset -2
@@ -1165,9 +1165,11 @@ label SDS_Encounter:
     v "Watch out!!"
     "Antivirus? Now?? "
     i "Gah! Who are you?"
+    $ Ave_w=False
     a "Ave Antivirus.. Executing termination protocol!!"
     i "I won't back down!"
     $ playerHP=playerHPMax
+    $ Ave_w=True
     call battlev3(ILY, Ave,turnlimit = 3)
     if playerHP<=0:
         return
@@ -1363,6 +1365,7 @@ label SDS_Encounter:
     "After minute or so... Ave recovers from the crater in the wall and proceeds to follow ILY's traces she left behind."
     hide Ave
     $ Ave_w=False
+    $ Vira_w=False
     $ Vira_e="mad"
     $ Vira_m="frown"
     show Ave with dissolve:
@@ -1371,6 +1374,7 @@ label SDS_Encounter:
     a "You're not getting away!"
     show Vira with dissolve:
         xalign 0.1
+    
     v "Looking for someone?"
     a "Vira?"
     "Vira appeared at the exit of the server. It was that same gate Vira exited through. Vira defends ILY as she escapes promptly."
@@ -1484,8 +1488,10 @@ label SDS_Encounter:
     $ John_eyes="closed"
     $ John_m="smile"
     j "Okay.. Heroic Hacking Party... For the day.."
+    "We ended the day on a good note at least."
+    "I'm so relieved that SDS is better now."
     scene black
-
+    "After that party... After the \"Heroic Hacking Party\" was established..."
     
-    "DEMO OVER! THANK YOU FOR PLAYING SOFTWAR!"
+    # "DEMO OVER! THANK YOU FOR PLAYING SOFTWAR!"
     return

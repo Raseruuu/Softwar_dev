@@ -20,21 +20,25 @@ label pauseshow:
         label FAI_menu:
         call screen FAI_menu
         if _return=="Customize":
-            label FAICustomizescreen:
-                $ noscreentransformsfornow=False
-                call screen Items_dress
-                # if _return=="Battleware_Edit":
-                   
-                #     label Battleware_edit_screen:
-                #         call screen Battleware_Edit
-                #         if _return=="SaveDeck":
-                #             call SaveDeck
-                #         elif _return=="UnsaveDeck":
-                #             call UnsaveDeck
+            if playerName!="ILY":
+                "Can't customize [playerName]."
+            else:
 
-                #         else:
-                #             jump Battleware_edit_screen
-                        # return
+                label FAICustomizescreen:
+                    $ noscreentransformsfornow=False
+                    call screen Items_dress
+                    # if _return=="Battleware_Edit":
+                    
+                    #     label Battleware_edit_screen:
+                    #         call screen Battleware_Edit
+                    #         if _return=="SaveDeck":
+                    #             call SaveDeck
+                    #         elif _return=="UnsaveDeck":
+                    #             call UnsaveDeck
+
+                    #         else:
+                    #             jump Battleware_edit_screen
+                            # return
         elif _return=="ActiveFAI":
             "Switch FAI: Select a FAI other than ILY"
             

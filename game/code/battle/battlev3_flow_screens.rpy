@@ -761,8 +761,8 @@ screen duel_log_screen():
                                         hovered Show("CardTooltip",cardobj=dlog_entry["card_used_object"]) unhovered Hide("CardTooltip") action Hide("CardTooltip")
                                         hbox:
                                             spacing 10
-                                            if len(duel_log)<20:
-                                                imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2) 
+                                            
+                                            imagebutton idle "images/Cards/"+dlog_entry["card_used_object"].NAME+".png" at zoomtrans(0.2) 
                                             # add ""+[dlog_entry["user_object"].name]+""
                                             # add CardDisplayNormal(dlog_entry["card_used_object"]) at zoomtrans(0.2)
                                             vbox:
@@ -884,11 +884,10 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
             linear 15.0 rotate 360
             repeat
     show curve:
-        xpos 0.5 xanchor 0.0 ypos 0.15 yanchor 0.5
+            xpos 0.5 xanchor 0.0 ypos 0.38 yanchor 0.5
     show curve as curve2:
-        xpos 0.5 xanchor 1.0 ypos 0.17 yanchor 0.5
+        xpos 0.5 xanchor 1.0 ypos 0.3962 yanchor 0.5
         zoom -1.0
-
     show battleroad:
         yalign 1.0 xalign 0.5
     show Enemy:
@@ -1042,7 +1041,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
                     call lose from _call_lose_1
                 else:
                     play music "bgm/bgm_maoudamashii_cyber16.mp3"
-                    show Enemy:
+                    show Enemy at intense_glitch:
                         linear 0.15 zoom 0.94
                         xoffset 0.12 yoffset 0.2 alpha 0.5
                         pause .05
