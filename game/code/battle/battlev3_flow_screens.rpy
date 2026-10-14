@@ -1350,7 +1350,7 @@ label win:
         ypos 0.04 xalign 0.6
     show wintext() as wintext2 at vmarquee(wintext())
     show winplayer at zoomtrans(0.20), pausetrans1:
-        xpos 0.27 xanchor 0.6 ypos 0.1 yanchor 0.0 
+        xpos 0.29 xanchor 0.6 ypos 0.1 yanchor 0.0 
         matrixcolor TintMatrix("#051231") *ContrastMatrix(0.0)
         pause 0.5
         linear 0.3 xoffset -30 yoffset 20

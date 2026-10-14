@@ -542,7 +542,7 @@ label paidMelissa2:
 
     call battlev3(ILY, Worm)
     call battlescene
-
+    $ ILY_w=False
     show ILY with dissolve:
         xalign 0.3
     show Worm:

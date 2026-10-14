@@ -398,7 +398,6 @@ init python:
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
     RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    SaberAura=     Card("SaberAura",        "Sword",          0.0,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   5)
     HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [Increase("ATK",0.25),GainToken("Burn",1)],       2)
     ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)
 
@@ -408,33 +407,42 @@ init python:
     SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7)],           2)
     # Snipe=         Card("Snipe",            "Gun",            0.0,      [Increase("ATK",0.25),Retreat(2)],       6)
 #Swords and Blades  
-    FiberSword=    Card("FiberSword",      "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
+    FiberSword=    Card("FiberSword",       "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
     DataSaber=     Card("DataSaber",        "Sword",           1.0,      [Attack(),Defend(0.25),GainToken("Saber",1),],   4)
+    Dagger=        Card("Dagger",           "Blade",           0.4,      [Attack(),GainToken("Blade",1)],   2)
+    QuickBlade=    Card("QuickBlade",       "Blade",           0.2,      [Attack(),GainToken("Blade",1)],   1)
+    ThrowBlade=    Card("ThrowBlade",       "Blade",           0.2,      [IfFunction("\"Blade\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),GiveToken("Blade",1),Attack(rangevalue=5)])],   1)
     
+
     Katana=        Card("Katana",           "Sword",           0.7,      [Attack(),GainToken("Saber",3)],   4)
     BreakSaber=    Card("BreakSaber",       "Sword",           0.5,      [AttackSP(),Attack(),GainToken("Saber",1)],  3)
     BlockSaber=    Card("BlockSaber",       "Sword",           0.5,     [Attack(),Defend(0.75),GainToken("Saber",1)],    4)
     LambdaSaber=   Card("LambdaSaber",      "Sword",           0.3,     [ForInRange("x in range(0,3)",3,[Attack(),Attack(0.1,rangevalue=7)]),GainToken("Saber",1)], 4)
     StepSaber=     Card("StepSaber",        "Sword",           0.5,     [Advance(2),Attack()], 5)
     
-    BlackBars=     Card("BlackBars",        "Bar",               1.6,     [],            4)
+#SaberSkills 
+    SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
+    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
+    SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP(),Attack()])],   1)
+    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()])],   1)
+    SaberAura=     Card("SaberAura",        "SaberSkill",             0.0,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   5)
+    BladeSabers=     Card("BladeSabers",    "SaberSkill",        0.0,   [While("\"Blade\" in Self_Status","Blade","Self",[RemoveToken("Blade","Self"),GainToken("Saber",1)])],   1)
+
+## OTHER
+    BlackBars=     Card("BlackBars",        "Bar",               1.6,     [Decrease("ATK",0.25),Decrease("ATK",0.25)],            4)
     XAxess=        Card("X-Axess",          "Axe",               0.75,     [AttackSP(),Attack(onhit=[Push(2)])],            4)
     YAxess=        Card("Y-Axess",          "Axe",               1.0,     [Attack(onhit=[Push(1)])],            3)
     DataMining=    Card("DataMining",       "Mining",          0.50,     [Attack(),GainToken("Data",1)],            3)
 
     DataPiercer=   Card("DataPiercer",      "Spear",           1.0,      [Attack(rangevalue=2),Defend(0.25)],   5)
-    WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=2,onhit=[Push(2)]),],   3)
+    WindBlast=     Card("WindBlast",        "Wind",            0.4,      [Attack(rangevalue=4,onhit=[Push(2)]),],   3)
     
     #ZAxess=       Card("Z-Axess",        "Z",      0.25,     [DamageSP,Damage],        1)
 # Evasion cards
     BurstTransfer=      Card("BurstTransfer",         "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
     BurstTransferTurbo= Card("BurstTransferTurbo",    "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
-    
-#SaberSkills 
-    SaberDeflect=  Card("SaberDeflect",     "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Defend()]),NullFxn()],   1)
-    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
-    SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()])],   1)
-    MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()])],   1)
+    BurstAccel=      Card("BurstAccel",               "Maneuver",      0.0,   [IfDistance("",[])],          2)
+
 #Hammer 
     ImpactHammer = Card("ImpactHammer",     "Hammer",       1.5,     [Attack(rangevalue=1,onhit=[Push(3)])],            5)
 # Virus Exclusive
@@ -532,7 +540,7 @@ init python:
 ######################
 #####Plugins:#########
 ######################
-    FirstBarrier=Plugin("First Barrier", "Initial Defense!",0.5, [Defend()],4)
+    FirstBarrier=Plugin("First Barrier", "Initial Defense!",1.0, [Defend()],4)
     RubyRevolver=Plugin("Ruby Revolver", "ILY's magical spinning bracelet!",0.25, [GainToken("Saber",1),GiveToken("Email",1)],4)
     Analysis=Plugin("Analysis", "Examine the target.",0.25, [GainToken("Data",1),Evade()],4)
     SpiderAmulet=Plugin("Spider Amulet", "Why a spider? Because it looks cute!",0.25, [Increase("ATK",0.1)],4)
@@ -540,6 +548,7 @@ init python:
     DigitalPressure=Plugin("Digital Pressure","Let your power overflow!!",0.2,[Attack(rangevalue=10)], 4)
     SnipeSensor=Plugin("SnipeSensor","!",1.0,[Attack()], 8)
     SuperArmor=Plugin("SuperArmor", "Initial Defense!",0.25, [Increase("DEF",0.25),Defend()],4)
+    KineticVision=Plugin("KineticVision", "See the world in slow-motion.",0.25, [Evade(),Evade()],4)
     #BEFORE BUILD:
     ##CHANGE TO DEFAULT TO AVOID ERRORS
     # [default deckdefault]
@@ -595,14 +604,14 @@ init python:
             DataSaber,DataSaber,
             Vslash,Vslash,
             Vslash,DataBuster,
-            DataBuster,DataBuster,
+            DataBomb,RecursiveSlash,
             SpamAtk,DataForce,
-            Shieldbit,Shieldbit,
+            BlockSaber,Shieldbit,
             StepSaber,WindBlast,
-            XAxess,Vslash,
-            Vslash,BitBuster,
-            BitBuster,BitBuster],
-        "plugins":[]
+            XAxess,YAxess,
+            BurstTransfer,BurstTransfer,
+            BurstTransfer,BurstTransfer],
+        "plugins":[KineticVision]
         }
 
     # deckdefault = [
@@ -722,7 +731,7 @@ init python:
             Vshot,BruteForce],
         "plugins":[]
         }
-    decknibbler = {
+    decknibblebug = {
         "name":"What's Up",
         "content":[
             Vshot,Vshot,
@@ -840,11 +849,11 @@ init python:
     
     Trojan=     FAI("TrojanHorse",  "Virus",2000,   2000,   400,    250,    decktrojan,[])
     Keylogger=  FAI("Keylogger",    "Virus",600,    600,    300,    250,    deckkeylogger,[])
-    Ransomware= FAI("Ransomware",   "Virus",1600,    600,    300,    250,    deckransomware,[])
-    Rootkit=    FAI("Rootkit",      "Virus",1500,    700,    300,    250,    deckrootkit,[])
-    Worm=       FAI("Worm",         "Virus",1000,    800,    300,    250,    deckworm,[])
+    Ransomware= FAI("Ransomware",   "Virus",1600,    600,    300,    250,   deckransomware,[])
+    Rootkit=    FAI("Rootkit",      "Virus",1500,    700,    300,    250,   deckrootkit,[])
+    Worm=       FAI("Worm",         "Virus",1000,    800,    300,    250,   deckworm,[])
     Spyware=    FAI("Spyware",      "Virus",800,    800,    300,    250,    deckspyware,[])
-    Nibbler=    FAI("Nibbler",      "Virus",800,    800,    300,    250,    decknibbler,[])
+    Nibblebug=    FAI("Nibblebug",      "Virus",800,    800,    300,    250,decknibblebug,[])
     
     
     

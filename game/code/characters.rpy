@@ -122,7 +122,8 @@ init -1 python:
     globals()["Nick_w"] = True
     globals()["HackerX_w"] = True
     # Nick_m
-    globals()["Ellie_e"] = "down"
+    globals()["Ellie_e"] = "normal"
+    globals()["Ellie_eyes"] = "open"
     globals()["Ellie_m"] = "frown"
     globals()["Ellie_w"] = True
 
@@ -2927,7 +2928,7 @@ image EllieMouthsmile:
     "images/Characters/Ellie/Ellie_mmidopen.png"
     pause .1
     "images/Characters/Ellie/Ellie_msmileopen.png"
-    pause .08
+    pause .1
     "images/Characters/Ellie/Ellie_mmidopen.png"
     pause .1
     "images/Characters/Ellie/Ellie_msmile.png"
@@ -2936,7 +2937,7 @@ image EllieMouthsmile:
     pause .08
     "images/Characters/Ellie/Ellie_mO.png"
     pause .1
-    "images/Characters/Ellie/Ellie_mO4.png"
+    "images/Characters/Ellie/Ellie_mO2.png"
     pause .08
     "images/Characters/Ellie/Ellie_msmile.png"
     pause .08
@@ -2948,22 +2949,37 @@ image EllieMouthfrown:
     pause .08
     "images/Characters/Ellie/Ellie_mO.png"
     pause .1
-    "images/Characters/Ellie/Ellie_mO4.png"
+    "images/Characters/Ellie/Ellie_mO2.png"
     pause .08
     "images/Characters/Ellie/Ellie_mfrown.png"
     pause .08
-    "images/Characters/Ellie/Ellie_mO2.png"
+    "images/Characters/Ellie/Ellie_mmidopen.png"
     pause .08
-    "images/Characters/Ellie/Ellie_mO3.png"
+    "images/Characters/Ellie/Ellie_mO4.png"
     pause .1
-    "images/Characters/Ellie/Ellie_mO2.png"
+    "images/Characters/Ellie/Ellie_mmidopen.png"
     pause .08
     "images/Characters/Ellie/Ellie_mfrown.png"
     pause .1
     repeat
 layeredimage EllieFullBody:
     always:
-        At("images/Characters/Ellie/Ellie_base.png",spritefix(0.5)) #pose
+        At("images/Characters/Ellie/Ellie_sleeves_back.png",spritefix(0.5)) #pose
+    always:
+        At("images/Characters/Ellie/Ellie_body.png",spritefix(0.5)) #pose
+    always:
+        At("images/Characters/Ellie/Ellie_collar.png",spritefix(0.5)) #pose
+    
+    always:
+        At("images/Characters/Ellie/Ellie_underwear_red.png",spritefix(0.5)) #pose
+    always:
+        At("images/Characters/Ellie/Ellie_head.png",spritefix(0.5)) #pose
+    
+    always:
+        At("images/Characters/Ellie/Ellie_outfit_sig.png",spritefix(0.5)) #pose
+    always:
+        At("images/Characters/Ellie/Ellie_fronthair.png",spritefix(0.5)) #pose
+    
     always:
         ConditionSwitch(
             "Ellie_eyes=='open'",
@@ -2984,15 +3000,15 @@ layeredimage EllieFullBody:
             "images/Characters/Ellie/Ellie_m[Ellie_m].png"
             ),spritefix(0.5))
 
-    always:
-        At("images/Characters/Ellie/Ellie_glasses.png",spritefix(0.5))
+    # always:
+    #     At("images/Characters/Ellie/Ellie_glasses.png",spritefix(0.5))
 # image Ellie:
 image Ellie:
     mesh True
 
     "EllieFullBody"
-    zoom 0.86
-    yanchor 0.52
+    zoom 0.58
+    yanchor 0.50
     ypos 1.0
     linear 1.0 yoffset 0
     pause 1.0
@@ -3002,7 +3018,7 @@ image Ellie:
 image side Ellie_side:
 
     ConditionSwitch(
-        "Ellie_w==True",Crop((260,140, 440,565), (At("EllieFullBody", zoomtrans(1.4)))),
+        "Ellie_w==True",Crop((290,60, 440,565), (At("EllieFullBody", zoomtrans(0.99)))),
         "Ellie_w==False","Null_side"
     )
     zoom 0.38

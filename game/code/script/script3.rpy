@@ -41,10 +41,10 @@ label script3:
 # 1. Alicia did regular visits to the orphanage as part of her school program she is a part of. Raising children for various industries. Alicia and others taught them computer studies. A chain of interests followed where John and Nick continued to study computer science.
 # 2. Alicia adopted John only. But Nick was supposed to be adopted too. Nevertheless, John treats Nick as his brother. Nick was old enough to decide to leave the orphanage probably at 13(?) after leaving, he became distant, but he continued to train, even coinciding in SDS. 
 # 3. Alicia has a connection with Professor Mirai, who started the FAI project
-    play music "bgm/Town2.ogg"
+    play music "bgm/ost/ChinWilla/Assembly by ChinWilla.mp3"
     scene classroom with pixellate
     "Back at Uni."
-    "Before class starts... I spot Hilbert in the room, suddenly, he leaps out of his seat. He's approaching me, who just got past the door."
+    "Class hasn't started yet. I spot Hilbert in the room, suddenly, he leaps out of his seat. He's approaching me, who just got past the door."
     show Hilbert
     $ Hilbert_w = False
     $ Lisa_w = False
@@ -156,11 +156,18 @@ label script3:
     al "I'll be doing finishing touches on it still, so come back to me tomorrow!"
     h "Woah! What is it exactly?"
     "There are plenty of questions dancing in my head right now."
+    "I better ask before she leaves!"
+    j "Wait, "
     al "Well, I'll be seeing y'all next time!"
 
     scene black
 
 ## VIRA CHECK UP
+
+
+## VIRA gets leads on Hacker X from the remains of the Spyware bug
+# LEADS TO investigation toward Connecht Square.
+
 
 
 
@@ -190,100 +197,152 @@ label script3:
     "She's not here yet."
     scene cafeinside with dissolve
     "I might be able to repay her now for that last time I was late."
-    "But… will it be okay if I ordered a drink before she came? Like she did for me?"
+    "But... will it be okay if I ordered a drink before she came? Like she did for me?"
     "That time, she guessed correctly what flavor I like to buy from this place." 
-    "I don't know if she would appreciate me doing that for her. I know the drink she got was… this one! Red Velvet?"
+    "I don't know if she would appreciate me doing that for her. I know the drink she got was... this one! Red Velvet?"
 
     "What would she think? Is that weird? Like I'm stalking her?"
-    "When she did it for me, I just accepted it, because it was convenient and… huh? How did she know?"
+    "When she did it for me, I just accepted it, because it was convenient and... huh? How did she know?"
     "That brain of hers might just be too smart for me. Yeah. She's the best after all."
-    "And she wouldn't… stalk me."
-    "Red Velvet.. i suppose I'll try that one out too."
+    "And she wouldn't... stalk me."
+    "Red Velvet.. I suppose I'll try that one out too."
     "I wonder if she would appreciate this.. Croissant. Yeah! A bit random, but who doesn't like croissants?"
-
-    "…"
-    "So i ended up getting 2 red velvet frappes and 2 croissants!"
-
-    "Yep… it's served already, but she's not here yet."
+    scene cafeinside2 with dissolve
+    "..."
+    "So I ended up getting 2 red velvet frappes and 2 croissants!"
+    scene black with dissolve
+    scene cafetable with dissolve
+    "Yep... it's served already, but she's not here yet."
     "I got to try my red velvet frappe. It's really good. I hadn't tried this flavor before."
     "Aaand just like that, I drank all of it."
-    "I took some time to myself.. Until…"
+    "I took some time to myself.. Until..."
     "Someone entered the cafe! Is it her?"
-    "It's not Lisa. She's… approaching here?"
-    "She looks like… Ellie? Lisa's roommate."
-    "She attends the same classes as me. Mostly. I don't take much note about other people so that's all I know. She's beautiful too. But Lisa is more perfect, I think."
-    "Come to think of it, they're usually together, so where's Lisa?"
+    "It's not Lisa. She's... approaching here?"
+    "It's Ellie. Lisa's roommate."
+    "Hmmm... They're usually together, so where's Lisa?"
     show Ellie with dissolve
+    $ Ellie_w=False
     e "So you're really here."
-    j "…"
+    j "..."
     e"You waiting for someone? I will sit here now."
     j "Ah! G-go ahead!"
     "She lands her elbows on the table, locks her fingers together, then rests her chin on them. Then she gives me a gaze like that of a detective skimming for any signs of criminal activity. At least that is what it feels like."
     "My upper body retreats back insinctively, in response to her leering eyes."
     "I can't help but notice her nice, partially exposed breasts. In front of me. I hope she doesn't notice me glancing at them."
     e "John."
-    j "Uhh what can i do for you?"
+    j "Uhh what can I do for you?"
+    stop music
     e "Lisa isn't coming today."
+    $ Ellie_e = "down"
     e "You can forget about your little date here."
     j "Wha- did something happen? Is she okay?"
+    $ Ellie_eyes="midclose"
+    $ Ellie_m="O3"
     e "You stay away from her that's what!"
     j "B-but the pastry! A-and this drink!"
+    $ Ellie_m="midopen"
+    $ Ellie_eyes="open"
     e "Guh!"
     j  "Where is she?"
+    $ Ellie_m="O3"
     e "Why do you care!"
+    $ Ellie_m="frown"
     e "I-I forbid you!"
     j "Forbid? But we were-"
-    e "Why were you together? And that was… your house?!"
+    e "Why were you together? And that was... your house?!"
+    
     j "Huh?! She's just! It's work! The internship!"
+    
     j "Hilbert was with us! There was some trou-"
-    e "You were….!!"
+    $ Ellie_e="down"
+    $ Ellie_m="midopen"
+    e "You were....!!"
+    $ Ellie_m="frown"
     j "I can explain!!"
+    play music "bgm/Enemy_bgm_maoudamashii_cyber19.ogg"
+    $ Ellie_eyes="midclose"
     "Her leering straight to my soul intensifies, Like she is judging me.. I think that's what her squinting eyes and lowering brows mean, at least."
     e "I don't trust men like you."
     e "I bet you're thinking something nasty right now!"
     j "What!!"
     "She got worked up.. just what is her problem with me?"
-    j "uhhh… will you calm down? "
+    j "uhhh... will you calm down? "
     extend "Please?"
     "I push the plate closer to her."
-    j "You can… take this. Though this was supposed to be for Lis-"
-    e "Huh?! You idiot, you bought this for her, don't just give it to-…"
+    j "You can... take this. Though this was supposed to be for Lis-"
+    $ Ellie_eyes="midclose"
+    $ Ellie_e="1up"
+    $ Ellie_m="O3"
+    e "Huh?! You idiot, you bought this for her, don't just give it to-..."
+    $ Ellie_m="frown"
     j "But you said she isn't coming here anymore."
-    e "She's busy with her swimming sessions now. The swim club needs her for the upcoming festival!"
-    j "Ah. Of course... So yeah I guess you can have the crois-"
+    # e "She's busy with her swimming sessions now. The swim club needs her for the upcoming festival!"
+    $ Ellie_e="normal"
+    $ Ellie_eyes="open"
+
+    e "She's busy with Miss Alicia. I dunno what it is, I suppose she's needed for the upcoming festival!"
+    j "Ah. Of course... The festival... "
+    j "So yeah I guess you can have the crois-"
     e "What's your deal? Don't think you can sway me with.."
     j "You can have the drink too.."
+    $ Ellie_eyes="open"
+    $ Ellie_e="normal"
     "She takes a bite."
     "I can sense she is enjoying the croissant."
 
     "After a while of munching she resumes her little speech."
-    e "Tch. Listen!" 
-    e "You didn't do anything with Lisa that's.. that's…"
+    play music "bgm/Cafella_bgm_maoudamashii_acoustic51.mp3"
+    $ Ellie_eyes="closed"
+    
+    $ Ellie_e="down"
+    e "Tch. Listen!"
+    $ Ellie_eyes="open"
+
+    e "You didn't do anything with Lisa that's.. that's..."
     j "Like I said, it's work! The internship!"
     e "I saw your photo together! What the heck was that?"
     j "Hilbert posted it??"
     "That idiot.. Now I'm in trouble."
-    e "In your house!!…. With… Hilbert??"
+    $ Ellie_e="1up"
+
+    e "In your house!!.... With... Hilbert??"
+    $ Ellie_e="down"
+
     j "What are you implying?!"
-    j "… Are you even listening to me?"
+    j "... Are you even listening to me?"
     j "We solved some problems together.. does that suffice? It was.. complicated!"
     j "And it was her that said we should work on the thing at my place."
+
+    $ Ellie_eyes="midclose"
+
     "She gives me a glare. Again."
     j "I refused, of course! But she... insisted!"
     e"Wha?" 
     e "You refused? You don't have the hots for Lisa?"
     j "I do!"
+    $ Ellie_eyes="midclose"
+    $ Ellie_e="1up"
+    $ Ellie_m="O3"
+    with Shake((0, 0, 0, 0), 0.5, dist=20)
+    play sound "sfx/Damage2.wav"
+
     e "HUUUUH?!"
     "Yikes. Did I say that out loud?"
-    "In response to that, she slammed her palms at the table and stood up violently."
-    e "You dirty!"
-    e"You can't even look me in the eyes straight!"
-    j "But that's not..!"
-    e "Okay… what do you like about her?"
+    $ Ellie_eyes="closed"
+    $ Ellie_e="down"
+    $ Ellie_m="frown"
+
+    pause
+    e "As.. expected, I suppose."
+    $ Ellie_eyes="open"
+
+    e"Look me in the eyes!"
     j "Ah!"
-    "Ellie sat down."
+    e "Okay... what do you like about her?"
+    j "Ah!"
+    "Ellie fixed her posture."
     e "Go on. Tell me."
-    "She's…"
+    "She's..."
     j "She's an amazing person.. Lisa is.."
     e "Hold it. Nevermind. I don't want to hear you admit that you like her body, or her beauty. Or that she's smart."
     j "I haven't even-"
@@ -307,14 +366,20 @@ label script3:
     e "Huh?"
     j "You seem to really care about Lisa."
     e"Don't flatter me."
-    e "You did get this treat for her didn't you? That's quite something. I can chill with that."
+    $ Ellie_m="smile"
+    $ Ellie_e="normal"
 
+    e "You did get this treat for her didn't you? That's quite something. I can chill with that."
+    e "Red Velvet... Is her favorite, too. So that's good on you."
     "She can chill with it? So is she fine with me trying to date Lisa?"
     e "I'm also impressed that you're not scared to admit that you like her."
+    scene cafeoutside2 with dissolve
     "I'm impressed at myself holding this conversation long enough, too. I thought I was gonna die."
     "She paused and looked away for a bit. She's thinking really deeply about this..."
 
     "Her words are also getting more clear to me. She's showing a side of her that's a lot different from what she lets on in her outside appearance."
+    scene cafetable with dissolve
+    show Ellie with dissolve
     e "We're old enough. We're adults now, right? We can talk about this kind of stuff? About where we go after studying?"
     e "About... Love and life-long partners?"
     "Wha..."
@@ -329,7 +394,7 @@ label script3:
     j "Wha?"
 
     e "I... I... piece it together yourself, genius."
-    "What does she mean? Life-long partner... Not me.."
+    "What does she mean? \"Life-long partner\"... Not me.."
     "Him? She's interested in Hilbert?"
     j "Hi-Hilbert?"
     e "Yeah.."
@@ -344,20 +409,22 @@ label script3:
     j "Ouch?"
     "She continues munching the croissant, almost finishing it."
     e "Time is limited, I know. So I think we have to... Hurry up."
-    e "After our graduation... I don't want to... be alone, or just go separate ways. That's something my sister told me was inevitable."
-
-
-    "She's right... Lisa wasn't here in Connecht from Christmas break til New Years season.. after getting her degree, she might just fly back to Germany...!"
+    e "After our graduation... I don't want to... be alone, or just go separate ways. That's something my sister told me was inevitable. Maybe with the wrong attitude, it is."
+    e "So.. Let's both make our moves already."
+    "She's right... Lisa wasn't here in Connecht from Christmas break til New Year's... after getting her degree, she might just fly back to Germany...!"
     j "Th-thank you, Ellie.. for telling me all this."
     e "Wha? Why are you bowing your head?! You're the one with the treats!"
     e "Hmmm... Let me order some food here. I'm not quite done with you yet."
     e "We got a deal now! Tell me all about the  activities you were doing yesterday. What happened at your internship! And... what was Hilbert like..?"
     j "There's quite a bit!! Do I have to narrate all the details?"
     e "Yes."
-
+    hide Ellie with dissolve 
     "I'm beginning to understand Ellie more..."
     "I thought she just hated my guts... I was just overthinking things, huh? Apparently she was just  interested in Hilbert."
-
+    scene black with dissolve
+    
+    scene cafeoutside2 with dissolve
+    $ Ellie_w=True
     "So... since she asked for it, I narrated to her what happened at SDS. And about ILY. I decided it's okay to tell her about FAI viruses being the cause of the internship project halting."
     e "A what?! An AI Virus?"
 
@@ -365,7 +432,7 @@ label script3:
     "I continued to elaborate about the situation with Lisa and Hilbert who were infected by ILY.  About ILY and her odd directive to be my assistant..."
 
     e "I love you... Virus? Ahh! I remember! Hmmmm..."
-    j " Sorry to ramble so much..."
+    j "Sorry to ramble so much..."
     "Ellie is in deep thought."
     e "You received it from Lisa, so doesn't that make her your prime suspect? For the ILOVEYOU Virus thing?"
     j "Wh-what? But she was also infected! I don't think Lisa would..!"
@@ -385,35 +452,17 @@ label script3:
     e "Save? What happened?"
     j "We encountered a virus. It messed up the web server for this Cafe's online market!"
     j "It was tough, but we managed to fight the virus off and restore the web server!"
-    j "We worked together nicely there, so Hilbert took that picture after we solved the case! Now he thinks we're some kind of heroic hacker party."
+    show CG1Pizza with dissolve:
+        zoom 0.5
+        xalign 0.5 yalign 0.5
+    j "We worked together nicely there, so Hilbert took that picture after we solved the case! Now he thinks we're some kind of \"Heroic Hacker Party\"."
+    
     e "... He's so corny."
     j "You think so too, huh!?"
-
+    hide CG1Pizza with dissolve
     "So... that conversation was pretty long, and took us the whole afternoon.  It turns out Ellie is easy to talk to, and she opened my eyes too."
     "What could Lisa be thinking?"
     "If she turns out to be the one behind ILY, it's a really strange way to..."
     "It can't be, right?"
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-## Get leads on Hacker X from the remains of the Spyware bug
-
-
-
 
     return
