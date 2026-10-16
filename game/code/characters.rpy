@@ -53,9 +53,12 @@ define br= Character("Brain",callback=speaker("Brain"), color ='#f842d6',image =
 define m = Character("Melissa",callback=speaker("Melissa"), color='#0252ff', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
 define s = Character("Stella",callback=speaker("Stoned"),what_slow_cps=40,color='#7002ff', image = "Stoned_side", ctc="ctc", ctc_position="fixed")
 define c = Character("Code Red",callback=speaker("CodeRed"), color='#f00',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")
+define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#074c8c',image ="CodeRed_side", ctc="ctc", ctc_position="fixed")
 
 # AntiViruses
 define a = Character("Ave",callback=speaker("Ave"), color='#ff8a00', image ="Ave_side", ctc="ctc", ctc_position="fixed")
+define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00',  image ="Ave_side",ctc="ctc", ctc_position="fixed")
+
 define b = Character("Bitwulf",callback=speaker("Bitwulf"),what_slow_cps=40, image = "Bitwulf_side", ctc="ctc", ctc_position="fixed")
 define v = Character("Vira",callback=speaker("Vira"), color ='#f53f76',image ="Vira_side", ctc="ctc", ctc_position="fixed")
 define t = Character("Tabby",callback=speaker("Tabby"), color ='#fff',image ="Tabby_side", ctc="ctc", ctc_position="fixed")
@@ -67,8 +70,6 @@ define t = Character("Tabby",callback=speaker("Tabby"), color ='#fff',image ="Ta
 define mu = Character("???",callback=speaker("Melissa"), color='#ff8a00', image ="Melissa_side", ctc="ctc", ctc_position="fixed")
 
 define hx = Character("Hacker X",color = '#088', image = "HackerX_side", ctc="ctc", ctc_position="fixed",callback=speaker("HackerX"))
-define cv = Character("Virus Boy",callback=speaker("CodeRed"), color='#074c8c', ctc="ctc", ctc_position="fixed")
-define aa = Character("Antivirus Girl",callback=speaker("Ave"), color='#ff8a00', ctc="ctc", ctc_position="fixed")
 
 
 
@@ -114,6 +115,7 @@ init -1 python:
     globals()["John_w"] = True
 
     globals()["Hilbert_e"] = "down"
+    globals()["Hilbert_eyes"] = "open"
     globals()["Hilbert_m"] = "frown"
     globals()["Hilbert_w"] = True
 
@@ -648,36 +650,6 @@ image ILYEyes1:
         pause 1.5
     repeat
 
-image ILYEyes2:
-    choice:
-        "images/Characters/ILY/ILY_2eyes.png"
-        pause 1.0
-        "images/Characters/ILY/ILY_2eyesmclosed.png"
-        pause 0.07
-        "images/Characters/ILY/ILY_2eyesclosed.png"
-        pause 0.1
-        "images/Characters/ILY/ILY_2eyesmclosed.png"
-        pause 0.07
-    choice:
-        "images/Characters/ILY/ILY_2eyes.png"
-        pause 8.0
-    choice:
-        "images/Characters/ILY/ILY_2eyes.png"
-        pause 4.0
-    choice:
-        "images/Characters/ILY/ILY_2eyes.png"
-        pause 1.5
-        "images/Characters/ILY/ILY_2eyesmclosed.png"
-        pause 0.07
-        "images/Characters/ILY/ILY_2eyesclosed.png"
-        pause 0.1
-        "images/Characters/ILY/ILY_2eyesmclosed.png"
-        pause 0.07
-        "images/Characters/ILY/ILY_2eyesclosed.png"
-        pause 0.1
-        "images/Characters/ILY/ILY_2eyes.png"
-        pause 1.5
-    repeat
 
 image ILYMouthsmile:
     "images/Characters/ILY/ILY_mmidopen.png"
@@ -1460,7 +1432,7 @@ image Melissajump:
     mesh True
     "MelissaFull base_jump"
     yanchor 0.50 ypos 1.0 zoom 0.9
-    ease 0.35 yoffset -30
+    ease 0.35 yoffset -40
     pause 0.1
     ease 0.1 yoffset 5
     ease 0.2 yoffset 0
@@ -1474,7 +1446,7 @@ image Melissajumping:
     "MelissaFull base_jump"
     yanchor 0.50 ypos 1.0 zoom 0.9
     mesh True
-    ease 0.3 yoffset -30
+    ease 0.3 yoffset -40
     pause 0.1
     ease 0.3 yoffset 5
     ease 0.15 yoffset 0
@@ -1756,16 +1728,6 @@ image Ave_eyes_min:
         pause 1.5
     repeat
 
-image Ave mouth:
-    "images/Characters/Ave/Ave_mspeak1.png"
-    pause .08
-    "images/Characters/Ave/Ave_mspeak2.png"
-    pause .1
-    "images/Characters/Ave/Ave_mspeak1.png"
-    pause .08
-    "images/Characters/Ave/Ave_mfrown.png"
-    pause .08
-    repeat
 
 image AveMouthsmile:
     "images/Characters/Ave/Ave_msmile2.png"
@@ -1827,12 +1789,7 @@ image Icon_Ave:
 ## Hilbert
 #########
 
-# image side Hilbert_side:
-#     "images/Characters/Hilbert/Hilbertb.png"
-#     zoom 0.38
-    # ConditionSwitch(
-    #     "Lisa_w==True","Lisa sidew",
-    #     "Lisa_w==False",Null(width=100))
+
 
 image Hilbert:
     "HilbertFull"
@@ -1842,9 +1799,10 @@ image Hilbert:
     linear 1.0 yoffset 3
     pause 1.0
     repeat
-image HilbertEyes:
+
+image Hilbert_eyes_open:
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_[Hilbert_eyes].png"
         pause 1.0
         "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
         pause 0.07
@@ -1853,13 +1811,13 @@ image HilbertEyes:
         "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
         pause 0.07
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_[Hilbert_eyes].png"
         pause 5.0
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_[Hilbert_eyes].png"
         pause 4.0
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_[Hilbert_eyes].png"
         pause 1.5
         "images/Characters/Hilbert/Hilbert_eyes_midclose.png"
         pause 0.07
@@ -1869,10 +1827,12 @@ image HilbertEyes:
         pause 0.07
         "images/Characters/Hilbert/Hilbert_eyes_closed.png"
         pause 0.1
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_[Hilbert_eyes].png"
         pause 1.5
     repeat
-image HilbertEyesLookaway:
+image Hilbert_eyes_midclose:
+    "Hilbert_eyes_open"
+image Hilbert_eyes_lookaway:
     choice:
         "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 1.0
@@ -1886,7 +1846,7 @@ image HilbertEyesLookaway:
         "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
         pause 5.0
     choice:
-        "images/Characters/Hilbert/Hilbert_eyes.png"
+        "images/Characters/Hilbert/Hilbert_eyes_open.png"
         pause 4.0
     choice:
         "images/Characters/Hilbert/Hilbert_eyes_lookaway.png"
@@ -1955,7 +1915,7 @@ image HilbertFull:
 
             ),
         (0, 0), At("images/Characters/Hilbert/Hilbert_eyebrows_[Hilbert_e].png",spritefix(0.5)),
-        (0, 0), At("HilbertEyes",spritefix(0.5))#eyes
+        (0, 0), At("Hilbert_eyes_[Hilbert_eyes]",spritefix(0.5))#eyes
         # (0, 0), "images/Characters/Hilbert/Hilbertshades.png",
         )
     zoom 0.7

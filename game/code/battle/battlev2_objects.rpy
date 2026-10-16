@@ -441,7 +441,7 @@ init python:
 # Evasion cards
     BurstTransfer=      Card("BurstTransfer",         "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
     BurstTransferTurbo= Card("BurstTransferTurbo",    "Maneuver",      0.0,   [Evade(1), IfFunction("\"Data\" in Self_Status","Data","Self",[RemoveToken("Data","Self"),Evade(1)])],          2)
-    BurstAccel=      Card("BurstAccel",               "Maneuver",      0.0,   [IfDistance("",[])],          2)
+    # BurstAccel=      Card("BurstAccel",               "Maneuver",      0.0,   [],          2)
 
 #Hammer 
     ImpactHammer = Card("ImpactHammer",     "Hammer",       1.5,     [Attack(rangevalue=1,onhit=[Push(3)])],            5)

@@ -25,10 +25,7 @@
 # ILY is able to escape deletion
 # """    
 # ###
-label script3:
-    call hideMapview
-    
-    
+
 #  Alicia debut part
 # 1. Establish her relationship with John
 # 2. Adoptive Mother
@@ -41,6 +38,13 @@ label script3:
 # 1. Alicia did regular visits to the orphanage as part of her school program she is a part of. Raising children for various industries. Alicia and others taught them computer studies. A chain of interests followed where John and Nick continued to study computer science.
 # 2. Alicia adopted John only. But Nick was supposed to be adopted too. Nevertheless, John treats Nick as his brother. Nick was old enough to decide to leave the orphanage probably at 13(?) after leaving, he became distant, but he continued to train, even coinciding in SDS. 
 # 3. Alicia has a connection with Professor Mirai, who started the FAI project
+    
+label script3:
+    call hideMapview
+    
+    call showphasemsg("Chapter 3") #(Can change chapter name anytime)
+    call showphasemsg("Hurry Up",2.0)
+    
     play music "bgm/ost/ChinWilla/Assembly by ChinWilla.mp3"
     scene classroom with pixellate
     "Back at Uni."
@@ -53,14 +57,20 @@ label script3:
     $ Hilbert_m = "frown" 
     $ John_m = "frown"
     j "Okay, but not now, we still have a regular class to finish."
+    $ Hilbert_eyes = "lookaway" 
     h "I'm half-excited and half-anxious about it. What if she scolds us?"
     
     j "Right..."
     h "We botched the security of the company by clumsily opening emails... and.. ahhh!!!"
     j "Do you think she'll understand since it was Valentines and such?"
+    $ Hilbert_eyes = "open" 
+    $ Hilbert_e = "up" 
     h "Valentines? The situation just makes us look like lovesick idiots."
     "Lisa... is a lovesick idiot?"
     j "I'm about to explain the ILY situation on my PC to one more person... I'm going to lose it.."
+    $ Hilbert_eyes = "open"
+    $ Hilbert_e = "down"
+    $ Hilbert_m = "smile"   
     h "Since ILY isn't much danger at all, Miss Alicia might be more open about her. Whatchu think?"
     h"Do we have to tell her what happened with Code Red? Seems like that's where the more vital part comes along!"
     j "I guess we shoo'd that Virus away successfully. But.. Ave.. She said she was targeting ILY."
@@ -72,10 +82,12 @@ label script3:
         ease 0.5 xalign 0.20
     show Hilbert:
         ease 0.5 xalign 0.80
-    h "Lisa! We're going to... make our report! To Miss Alicia! After class! In person!"
+    h "Lisa! We're going to... make our report! To Miss Alicia! After class!"
     l "Oh! Is that so? Hmmmm. I was... going to tell her in person too!"
     h "So you can join us?"
     l "Well, I e-mailed her my report already. I wrote it last night."
+    $ Hilbert_e = "up" 
+    $ Hilbert_m = "frown" 
     h "Whaa?"
     j "How much of the internship trouble was in there?"
     l "She knows most of what happened already. I think."
@@ -113,18 +125,28 @@ label script3:
     al "You got your PCs hacked... "
     al "By a love letter trap..."
     j "... Yeah."
+    $ Hilbert_eyes = "midclose"
+    $ Hilbert_e = "up2"
+    $ Hilbert_m = "frown"   
     h "How embarassing..."
     al "Lisa filled me in on the events. No need to get embarassed. I'm also not in any position to scold you."
     j "..."
 
     al "Hey! It's fine, it's Valentines season so that kind of thing could work on me too!"
+    $ Hilbert_e = "up"
+    
+    $ Hilbert_eyes = "open" 
+    $ Hilbert_m = "frown_open" 
     h "Huh?"
+
+    $ Hilbert_m = "frown" 
     h "Wait, Miss Alicia is still single?"
     al "Y-yes.."
     al "Now you're embarrassing me.."
     al "I'm only John's adoptive mother. I'm still young, I can still..."
     j "Y-yeah.."
     h "John's adoptive mother..? After all these years I only just found out about this?"
+    $ Hilbert_e = "down"
     h "Wait, John! I'm letting it sink in just now. You're a top student, of course! You kept it a secret?"
     j "Well, not like there's any reason to bring it up."
     al "John would never address me as his mom though.. I'm a little hurt."
@@ -193,6 +215,7 @@ label script3:
     "Nice, I'm much earlier than I was before."
     "Last night, Lisa e-mailed Miss Alicia..."
     "Of course, there's one more person she e-mailed! It was me. She's so thoughtful."
+    "What will it be this time?"
     "She told me to meet here. But..."
     "She's not here yet."
     scene cafeinside with dissolve
@@ -265,7 +288,7 @@ label script3:
     e "I don't trust men like you."
     e "I bet you're thinking something nasty right now!"
     j "What!!"
-    "She got worked up.. just what is her problem with me?"
+    "She got worked up.. Just what is her problem with me?"
     j "uhhh... will you calm down? "
     extend "Please?"
     "I push the plate closer to her."

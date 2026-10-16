@@ -54,8 +54,18 @@ image ILY_Sword_Draw:
         pause .2
         "images/CG/ILY_Anim_1/ILYAnim25.png"
         pause 1.0 
-        
-        
+image CodeRedLambdaSaber:
+    zoom 0.39 xalign 0.5 yalign 0.5
+    block:
+        "images/CG/CodeRed_LambdaSaber/CodeRedlambdasaber_1.png"
+        pause .08
+        "images/CG/CodeRed_LambdaSaber/CodeRedlambdasaber_2.png"
+        pause .08  
+        "images/CG/CodeRed_LambdaSaber/CodeRedlambdasaber_3.png"
+        pause .08  
+        "images/CG/CodeRed_LambdaSaber/CodeRedlambdasaber_4.png"
+        pause .08         
+        repeat
         
         
     
@@ -82,4 +92,17 @@ label ILY_Draws_Sword:
     # jump ILY_Draws_Sword
     hide ILY_Sword_Draw
     $ quick_menu = True
+    return
+
+
+
+
+
+label CodeRedLambdaSaber:
+    show CodeRedLambdaSaber  
+    show white:
+        alpha 1.0
+        linear 0.5 alpha 0.0
+    
+
     return

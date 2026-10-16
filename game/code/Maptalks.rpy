@@ -148,6 +148,7 @@ label maptalk_Virus_1:
     hide screen mapA
     hide screen mapB
     return
+default sq_met_Bella=False
 label maptalk_Bella_1:
     # elif actornum == 'Bella':
     # "Bella""Hello ILY from SOFTWAR."
@@ -156,25 +157,29 @@ label maptalk_Bella_1:
     i"A Red Robot named Tetra? huh... Sorry, I didn't see her."
     be"Please tell me if you find her!"
     i"Got it!"
+    $ sq_met_Bella=True
     return
 label maptalk_Tetra_1:
-    $ ILY_m="O"
-    $ ILY_e="up"
-    "Tetra" "I'm lost."
-    i "Ah! By any chance are you the Red Robot named Tetra?"
-    "Tetra" "Yes! how did you know?"
-    $ ILY_m="smile3"
-    $ ILY_e="up"
-    i "A pink-haired girl with a sleek red battle suit was just looking for you!"
-    "Tetra" "That must have been Bella!! "
-    $ ILY_m="O"
-    $ ILY_e="up"
-    i "What happened? How did you get separated?"
-    "Tetra" "We must have been split when we reached this narrow street while exploring."
-    i"But this is the Undernet!!"
-    "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
-    j "(Could it be that Tetra was tricked by some virus?)"
-    i "Let's go back and see her!"
+    if sq_met_Bella:
+        $ ILY_m="O"
+        $ ILY_e="up"
+        "Tetra" "I'm lost."
+        i "Ah! By any chance are you the Red Robot named Tetra?"
+        "Tetra" "Yes! how did you know?"
+        $ ILY_m="smile3"
+        $ ILY_e="up"
+        i "A pink-haired girl with a sleek red battle suit was just looking for you!"
+        "Tetra" "That must have been Bella!! "
+        $ ILY_m="O"
+        $ ILY_e="up"
+        i "What happened? How did you get separated?"
+        "Tetra" "We must have been split when we reached this narrow street while exploring."
+        i"But this is the Undernet!!"
+        "Tetra" "The Undernet? Yikes! So that's why I saw a bunch of viruses everyhwere!"
+        j "(Could it be that Tetra was tricked by some virus?)"
+        i "Let's go back and see her!"
+    else:
+        "Tetra" "Where is she..."
 
     return
 label maptalk_Guy_cheese:
@@ -198,9 +203,9 @@ label maptalk_ProgramKun2:
     "Program-Kun" "Hey! Do you like the battle system so far?"
     "Program-Kun" "Far... Far... Ahh! I remembered. {b}Short-range{/b} attacks will miss if the opponent is {b}too FAR{/b}."
     i "A short-range attack?"
-    "Program-Kun" "Yeah.. some {b}\"attack()\"{/b} functions will have \" range=0 \". That's a short-range attack."
-    extend " You gotta watch out for the DISTANCE variable in battle!"
-    "Program-Kun" "If your battleware's {b}\"attack()\"{/b} function doesn't have enough {b}\"range\"{/b} to match the distance, your attack will {b}MISS!{/b}"
+    "Program-Kun" "Yeah.. some {b}\"attack()\"{/b} functions will have the parameter {b}\"range=0 \"{/b}. That's a short-range attack."
+    extend " \nYou gotta watch out for the {b}DISTANCE{/b} variable in battle!"
+    "Program-Kun" "If your battleware's {b}\"attack()\"{/b} function doesn't have enough {b}\"range\"{/b} to match or exceed the distance, your attack will {b}MISS!{/b}"
     "Program-Kun" "Some examples of short-range attack Battleware are the Saber cards."
     i "I see! How do I get the attacks to hit?"
     "Program-Kun" "You would try to use the {b}\"advance()\"{/b} or {b}\"pull()\"{/b} functions!"

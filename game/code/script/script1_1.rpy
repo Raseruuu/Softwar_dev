@@ -105,46 +105,18 @@ label script1:
     "I program software all day. I should have known better!"
     "I blame my lack of sleep. I've been up for 30 hours working on this project.. and others... and I'm still not done."
 
-    "This looks like the end of my computer. "
-    extend "And my career. "
-    extend "And any hopes of me finishing college."
-
+    "This looks like the end of my computer. I was so close to finishing the internship hours, too."
     "My computer was destroyed by an e-mail virus."
-    "Next Tuesday is when we launch the big stuff. But it looks like I'm getting fired!"
-    j "Why didn't I make a backup?!"
-    "Forget a few hours, that's weeks worth of work!"
+    "Next Tuesday is when we launch the big stuff. Am I getting fired from my internship? Is that a thing that happens?"
+    j "Everything I've written before this is on my cloud storage, so that's fine. My more recent work is lost, though."
+    "Recent... as in... A week's worth of work!"
 
-    play sound "sfx/sfx_damage_hit4.wav"
-    "*Esc* " with Shake((0, 0, 0, 0), 0.5, dist=10)
-    play sound "sfx/sfx_damage_hit4.wav"
-    extend "*spacebar* " with Shake((0, 0, 0, 0), 0.5, dist=10)
-    play sound "sfx/sfx_damage_hit4.wav"
-    extend "*Enter* " with Shake((0, 0, 0, 0), 0.5, dist=10)
-    j "{i}sigh{/i}"
 
     hide ILOVEYOU with Dissolve(2.0)
     scene JD_Space2_night with dissolve
     "I go to the window to get some fresh air."
-    "Hhmmmmmm... Ughhhhh.."
+    "Hhmmmmmm... Ughhhhh... Relax."
 
-    play sound "sfx/sfx_coin_cluster6.wav"
-    "I look at my phone and notice a new text."
-    "It's Hilbert Salcedo, my pal from school."
-    h "Real funny, dude. For a second, I thought I got a love letter from a hottie."
-    h "Had fun yanking my chain?"
-    j "What are you talking about?"
-    h "You sent me an email called \"My confession...<3\"."
-    h "Haven't read it yet, just give me a sec."
-
-    "What, a love letter? That's stupid, I didn't send--"
-    "Wait...  Damn. It's that virus! It's sending itself to my contacts!"
-    "\"Bro, don't open the attachment! It's a virus!\""
-    "I hit the send button, but..."
-
-    play sound "sfx/sfx_coin_cluster6.wav"
-    h "What the heck man, my PC's not working! I'm getting this stupid message on my screen that won't go away."
-    "Too late. He's suffering just like me now. I bet every one of my contacts is experiencing the same crap."
-    "Hilbert restarted his PC. But I already knew that was pointless."
     scene JD_PCN with dissolve
     $renpy.pause(0.8,hard=True)
     scene black with dissolve
@@ -173,7 +145,7 @@ label script1:
     pause 0.5
     $ JohnSprite("frown")
     j "Woah!"
-    "The screen lights up and reveals a new app."
+    "The screen lights up and reveals a new app...?"
     $ JohnSprite("normal")
     play sound "sfx/Damage.wav"
     j "Hell yeah! My PC still works!" with Shake((0, 0, 0, 0), 0.5, dist=5)
@@ -293,21 +265,17 @@ label script1:
                 $ q1_else="else "
                 $ ILYSprite("smile3")
                 $ JohnSprite("normal")
-
-                j "You're a pretty well done program."
+                "The voice recognition and response system on this is quite well-done."
+                j "You're a pretty good program."
                 i "Isn't it a little too early for you to be evaluating my performance?"
-                j "In the eyes of a programmer, you're already amazing."
+                j "In the eyes of a programmer, you're already impressive. "
                 voice "voice/ILY22C - Giggle.mp3"
-                i "Do you love me?"
-
-                $ ILYSprite("frown")
-                $ JohnSprite("mad")
-                j "No."
-                i "..."
+                i "You flatter me!"
                 j "Say.."
                 voice "voice/ILY01 - It's ILY~.mp3"
-                i"It's ILY~!"
-                j"What happens if I disconnect my computer from the internet now?"
+                i "It's ILY~!"
+                $ JohnSprite("mad")
+                j "I-ILY.. What happens if I disconnect my computer from the internet now?"
 
                 $ ILYSprite("smile3")
                 i "That's fine by me. Go on, try it."
@@ -315,18 +283,19 @@ label script1:
                 show screen notifwindow("{color=#000}Disconnected from the Internet.{/color}")
                 "*Disconnects internet connection*"
                 hide screen notifwindow
-                i "Awww, now I can't go surfing."
-                "Huh, she works fine even without an internet connection."
+                i "Awww, now I can't go surfing. Did you think I'd stop working after you did?"
+                "Huh, she works fine even without an internet connection. That means this isn't some API link to some faraway server."
                 i "Hey, this is fine, too. Being disconnected from the world means that only the two of us are in this room."
                 "Two of us? I'm alone in this room. There's no \"two of us\"."
+                "Its responses are a little too human, what's going on here?"
                 "Moving on..."
                 j "How exactly are you going to be my assistant?"
 
                 $ ILYSprite("smile")
                 i "I have full control over your PC! Any time you wanna command me to do stuff, just speak over the mic, I'll get it done!"
 
-                i "I'm a product of the Future Artificial Intelligence, or FAI Project!"
-                i "FAI programs are powerful like this, but only a few are like me."
+                i "I'm a product of the \"{b}Future Artificial Intelligence{/b}\", or FAI Project!"
+                # i "FAI programs are powerful like this, but only a few are like me."
 
                 $ ILYSprite("smile3", 0)
                 j "This \"FAI project\" stuff. Who made it? Who is your creator?"
@@ -382,51 +351,18 @@ label script1:
                 j "What did you do to my PC?"
                 i "I made some changes before downloading myself here!"
                 i "First of all, despite infecting your computer and all, your computer is safe and usable."
-                "I still need to make the site modifications, and my deadline is next Tuesday. That's a huge relief, but why though?"
+                "Safe, huh?"
+                "I still need to make the site modifications, and my deadline is next Tuesday. If it's really fine, that's a huge relief, but why though?"
                 j "Why would you spare my computer?"
                 i "Because ILOVEYOU."
-                j "So what about Hilbert's computer? Is that fine as well?"
-                i "Nope, it's still down."
-                j "So why is it just my computer that's okay?"
-                i "I already said it's because ILOVEYOU."
-
-                "This thing has a habit of dodging questions..."
-                j "What other changes did you make?"
-                i "Since I take up 14.3 gigabytes, I deleted some stuff."
-                "I let that sink in a little bit."
-                "Hold on a sec..."
-                play sound "sfx/Damage.wav"
-                "My disk is almost full. Did she just say she deleted 14.3 gigabytes!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
-                i "You look terrible. Well I deleted 10.56709 GB from your drive to be exact."
-                "Keep... Calm..."
-                j "What did you delete?"
-
+                j "That's... Whatever."
+                i "Second, well! I cleared some files from your PC! Don't worry about lag!"
+                j "Huh!? You deleted some files?"
+                i "Don't worry! It's the useless kind, like temporary records, redundant files, cache, and your games, too!"
+                j "Whaa! Not my games! It was a nice collection... Though I could re-download them, I still have to remember each one."
+                j "I guess... It's fine."
                 $ ILYSprite("smile")
-                i "A folder called \"G\" and another one called \"H\"."
-
-                $ ILYSprite("o")
-                play sound "sfx/Damage.wav"
-                "G AND H!?" with Shake((0, 0, 0, 0), 0.5, dist=5)
-
-                $ ILYSprite("frown")
-                j "Why those?"
-
-                $ ILYSprite("smile3")
-                voice "voice/ILY22C - Giggle.mp3"
-                i "They were on the top of the list of folders with most useless files with the biggest size!"
-                "So she checked out my files. How does she even classify what's useless and not?"
-                i "You look upset."
-                i "I believe \"G\" stands for \"Games\", and \"H\" stands for \"He--"
-                j "Wait. Don't say it."
-                play sound "sfx/Damage2.wav"
-                "My precious collection!! " with Shake((0, 0, 0, 0), 0.5, dist=5)
-                extend"But now it's gone. I had a few time-killing games and... well, that \"H\" folder..."
-                j "I'm fine with it. It's okay to delete those files, as long as that's all."
-                i "I didn't delete anything work-related."
-                j "That's perfect. Let's move on."
-
-                $ ILYSprite("smile")
-                i "Oh yeah, the third thing! You should know about the GRID!"
+                i "Oh yeah! The third thing, You should know about the GRID!"
                 i "Every FAI program is a package to set up the computer for the GRID!"
                 "The GRID...? I'll have to ask about that."
                 $q1_read_pc = True
@@ -436,51 +372,41 @@ label script1:
                 $ ILYSprite("smile3")
                 j "What's this GRID all about?"
                 i "The GRID is the name for the place we cyberpeople step into!"
-                i "As I've said earlier, this PC can now access the GRID. FAI programs installed can automatically access the GRID."
-                i "I'm a FAI virus, so naturally, here I am. This desktop now is the GRID version of what you've been using."
-                i "Not every program can enter the GRID."
-                i "Think of it as another dimension aside from the usual interface you see on the computer."
+                i "This PC is now using the GRID! Think of it as another dimension aside from the usual interface you see on the computer."
 
                 "How come I've never heard of any of this before? It almost sounds like a conspiracy."
                 i "If you ever get attacked by a regular virus, it's easy to get infected if you don't have an antivirus."
-                i "However, if you get attacked by FAI virus such as myself, you're definitely getting infected."
-                "That's exactly what happened."
-
-                j "So an antivirus is useless against FAI viruses?"
-                i "It really depends. You can survive an attack if you meet these two conditions:"
-                i "First, the antivirus must exist in the grid, or be a FAI antivirus."
-                i "Second, the antivirus must be stronger than I am, or be able to beat me in a cyber battle, called a Softwar."
-                j "I see."
+                i "But FAI Viruses are on a different level, so FAI Antiviruses are needed to stop them. That's if... They can win in a {b}SOFTWAR{/b}!"
+                
+                j "A Softwar, huh."
                 if q1_read_ily:
                     "It all falls back to this Softwar battle."
+                "If I can get a FAI Antivirus, it could try and delete this one?"
                 i "Since I have control of your computer, I won't allow you to install an antivirus."
                 "Damn. She saw through me."
                 j "If I understand correctly... The GRID is a place only FAI programs can get into, so it's isolated space from the one regular programs reside in."
                 j "So the Softwar is a GRID-exclusive battle of programs... Right?"
                 i "Correct! You're easy to pick up on things."
+                j "What's G.R.I.D. stand for?"
+                i "Geo-Replica Internet Dimension!"
+                j "Catchy. That explains things."
                 if q1_read_ily:
                     i "I should definitely start telling you about this Softwar."
                 $q1_read_grid = True
                 jump question1_demo
 
             "[q_Softwar]" if q1_read_ily and q1_read_grid:
-                j "Alright. Tell me about Softwar. You sounded serious when you mentioned it earlier."
+                j "Alright. Tell me about \"Softwar\". You sounded serious when you mentioned it earlier."
 
-                i "Only FAIs can take part in Softwars. They are battles between programs."
+                i "In the GRID of any network, a Softwar can happen.. It's basically a battle between 2 programs! Between 2 FAIs!"
                 i "Technically, it's really a game,"
                 $ ILYSprite("frown")
 
                 extend " but the stakes are quite serious!"
                 "A battle game, huh."
                 $ ILYSprite("mad")
-                i "A Softwar goes like this. A virus, with or without a user, may be transported to a target computer system."
-                i "The antivirus, living inside the target computer system, will intercept the arrival of that virus, and hope to delete it!"
-                i "If the virus gets deleted, then the target computer is safe! Otherwise, the target will be subject to the terror of that virus."
-                j "So it's like storming a castle."
-                i "Yes, the Attackers are viruses, and the castle is the target computer system, the Defenders."
-                i "So there are 2 sides to this battle. Attackers and Defenders."
-                "I don't like the idea of being an Attacker, even though I have an intelligent virus with me..."
-
+                i "Viruses are usually the Attackers, and Antiviruses can act as Defenders. Though the roles can switch at any time. Whoever wins can manipulate things within that system they're in!"
+                "I don't like the idea of being an Attacker, even though a virus with me..."
                 j "Why would such a game exist?"
                 $ ILYSprite("smile3")
                 i "Softwar gives everybody a chance to protect themselves from hackers!"
@@ -490,7 +416,7 @@ label script1:
                 play music "bgm/Relax_bgm_maoudamashii_healing15.ogg"  fadeout 1 loop
 
                 $ ILYSprite("o")
-                i "That's true. {nw}"
+                i "That's true."
 
                 $ ILYSprite("smile")
                 extend" I'm not sure, myself! "
@@ -531,28 +457,44 @@ label script1:
 
                 $ ILYSprite("smile3")
                 i "Of course you can trust me! Trust is an essential part of love!"
-                j"There are some things you have to do for me to trust you."
+                j "Trust is something you earn."
                 "Damn, I never thought I'd see the day when I say such words... to a program. "
+                $ q1_read_softwar=True
             "No More Questions":
-                "Looks like she's trying to be my assistant. She's capable of engaging in hacking battles. I'm either in a huge pickle, or she'll be of use in some capacity."
-                "The ILOVEYOU Virus..."
+                "Looks like she's trying to be my assistant."
+                
+                j "Talk about a bother... What can you even do as my assistant?"
+                i "ILY, at your service! You can count on me! "
+                if not q1_read_pc:
+                    extend "I have full control of your PC! "
+                if not q1_read_ily:
+                    extend "I am a hacking tool, too! "
+                if not q1_read_grid:
+                    extend "I'll keep watch here in the GRID, in case any hacking threats appear!"
+
+                i "I'll fight for you! I'm quite unstoppable in a {b}SOFTWAR{/b}! "
+                j "Softwar..?"
+                i "Our cyber battle system! You'll see it when it comes up, but don't worry!"
+                j "Yikes!"
+                "ILY, huh."
+                "She's capable of engaging in hacking battles. I'm either in a huge pickle, or she'll be of use in some capacity."
+                
                 
         
 
 label date1:
     
-    "I'm actually being a huge idiot for buying into what this virus says."
-    "Back in the year 2000,{w=.3}{nw}"
-    extend" the ILOVEYOU Virus destroyed a heck load of PCs."
-    extend" To think this program would call herself by that name...{w=.3}{nw}"
-    extend" It's driving me crazy."
-    "This PC is all I have,"
-    extend" so I'll have to make do with all this."
+    # "I'm actually being a huge idiot for buying into what this virus says."
+    # "Back in the year 2000,{w=.3}{nw}"
+    # extend" the ILOVEYOU Virus destroyed a heck load of PCs."
+    # extend" To think this program would call herself by that name...{w=.3}{nw}"
+    # extend" It's driving me crazy."
+    "This PC is all I have, so I'll have to make do with all this."
     "More importantly, I have an appointment today."
     $ ILYSprite("O")
     j"ILY, I have someone to meet today."
     i"May I ask who?"
-    "It's Lisa Fairfield."
+    "It's Lisa."
     $ JohnSprite('mad')
     j"Lisa.. is a friend from uni."
     $ ILYSprite("O")
@@ -595,25 +537,16 @@ label date1:
     $ILY_m='smile3'
     i"Well, have a lovely day, John! Good luck with Lisa."
     hide ILY with dissolve_pixels
-    $ okdesktop = False
-    pause .5
+    
     scene black with dissolve
-    j"Wait a sec, did you just say--{w=.5}{nw}"
-    j"Got shut down already, huh."
-    extend" Did she say \"Lisa\"?"
-    "She said her name."
-    extend" Lisa."
 
     show Lisa with dissolve:
         xalign 0.5
     "Lisa Fairfield."
     extend" She's the best. We're batchmates currently taking internship at Hilbert's family company."
-    "We've been working on this website for a client for quite a while now."
-    "I'm seeing her today for our job at the Salcedo Dev studio."
+    "We've been working on this website for a client for quite a while now. I'm seeing her today for our job at the Salcedo Dev studio."
     "She also said that she'll tell me something important."
     extend" I wonder what that is..."
-    "I hope it's something exciting, like a new programming contest."
-    extend" I'd love to join a Hackathon soon."
     hide Lisa with dissolve
     scene JD_PC1
     play music "bgm/downtime_bgm_maoudamashii_8bit17.mp3"
@@ -623,7 +556,7 @@ label date2:
         "Lisa had been away, since last December."
         "She'd been scheduling for us to see each other for over a month now, actually."
         "Lisa... Inviting me to meet at a cafe..."
-        "Now that I think about it, this does sound like a date,{w=.3} given the month,"
+        "Now that I think about it, this does sound like a date,{w=.3} given it's February 15..."
         play sound "sfx/Damage.wav"
         extend " we could be mistaken for a couple!" with Shake((0, 0, 0, 0), 0.5, dist=5)
         "What am I thinking?"
@@ -720,7 +653,7 @@ label date2:
         scene cafeoutside2 with dissolve
         "After that, we discussed a lot."
         "Time passed quickly as I stared at her, jotting down notes regarding our assignment."
-        "We've sipped our last drops of coffee."
+        "We've also consumed the frappes completely."
         $ Lisa_e="normal"
         $ Lisa_m="smile"
         $Lisa_w = True
@@ -817,9 +750,7 @@ label date2:
         j"Like, the network of communication for multiple duplicates of the same virus?"
         l"Yes. Maybe if they'd used some kind of system like that, ILY would've been able to keep all the files we've lost."
         "All the files we've lost..."
-        play sound "sfx/Damage2.wav"
-        extend"including \"G\" and \"H\"?" with Shake((0, 0, 0, 0), 0.5, dist=5)
-        $JohnSprite('mad')
+        $ JohnSprite('mad')
         j"Despite being a Virus and all, that'd be really hard to do."
         j"Internet connection and speed aren't guaranteed, especially when the screen's all black with just ILOVEYOU on it."
         $ John_e='normal'
@@ -1165,17 +1096,15 @@ label date2:
         $ JohnSprite('normal')
         j"I'm just glad our files are okay, Lisa."
         l"Let's work on it now!"
-        "Alright, "
-        extend"finally something more important is happening here,"
-        extend" not about Lisa and me..."
+        "Alright, finally something more important is happening here, not about Lisa and me..."
         play sound "sfx/Damage.wav"
-        extend "\nI can finally get back to work!" with Shake((0, 0, 0, 0), 0.5, dist=10)
-        extend"\nOr so I thought."
+        "I can finally get back to work!" with Shake((0, 0, 0, 0), 0.5, dist=10)
+        "Or so I thought."
         "Just after I open the folder containing Lisa's files, my phone rings."
         play sound "sfx/sfx_coin_cluster6.wav"
         # $ ILY_p = '0'
         $ ILYSprite('smile3')
-        h"John, bro. Looks like SDS is compromised again one of the servers isn't working, and it's the one we just finished! Check the website we put out."
+        h"John, bro. Looks like SDS is compromised. One of the servers isn't working, and it's the one we just finished! Check the website we put out."
         $ JohnSprite('frown')
         j"Again? This is getting too often."
         h"Don't blame me!"
@@ -1316,6 +1245,7 @@ label date2:
         scene black with dissolve
         stop music fadeout 1
         "Lisa walks next to the window to make a call."
+        show Hilbert with dissolve
         "Hilbert Salcedo."
         extend" The next leader of SDS, our classmate, and the man who lives right next to our servers."
         "If anyone had the ability to mess up the whole SDS company, It'd be anyone that has access to Hilbert's data."
@@ -1712,7 +1642,7 @@ label date2:
         i"This is the GRID!"
         i"Listen John, and listen carefully!"
         j"Gotcha."
-        i"Basically here is where we are in the grid. Our home location, (192,168)!"
+        i"Basically here is where we are in the GRID. Our home location, (192,168)!"
         "The GRID cyberspace huh.. So it follows a cartesian plane system."
         j"It's so empty.. what do we even do in here?"
         i"Lots of things. But I'm not going to spoil!"

@@ -78,6 +78,7 @@ label teammeeting:
     emailnvl"I'm going to your place today."
     emailnvl"We have to install her as soon as possible!"
     nvl hide
+    nvl clear
 
     "So it's true. What luck! So we do have a chance at saving the company from that Virus."
     "Vira Internet Solutions... Of course! Their brand is quite popular for their age."
@@ -709,9 +710,17 @@ label SDS_Encounter:
     v "My barrier got slashed through!? It almost hit me. That weapon... Identifying Battleware.."
     call cardflash_story(LambdaSaber)
     v "It's a Lambda Saber! It's messing with the lightwave membrane!"
+    call speedspikebg
+    call CodeRedLambdaSaber
     "The energy blade fluctuates like a sound wave visualiser. It's terrible.."
     "You can get pricked just by being close to it. But when swung... It's like a chainsaw!"
     cv "Knowing your enemy's weapon means nothing... Unless you have a weapon of your own to match it! Hrrrraaaghh!"
+    call battlescene
+    show CodeRed:
+        xalign 0.01
+    show Vira:
+        xalign 0.99
+    with dissolve
     v "I..! Do have a weapon...! Take this!"
     call cardflash_story(DataBuster)
     "Vira lets out her DataBuster. It was a quick-draw shot!"
@@ -824,6 +833,7 @@ label SDS_Encounter:
     with Shake((0, 0, 0, 0), 0.5, dist=40)
     cv "Sword against Sword, that's more like it!"
     v "This isn't a sword, but I can match you this way!"
+    h "She just closed her umbrella, huh!"
     show CodeRed:
         linear 0.2 xoffset 0
     "Their weapons clashed repeatedly after Vira hit the ground.."
@@ -982,6 +992,7 @@ label SDS_Encounter:
     cv "That's not..."
 
     v "And your modus operandi with the website you tampered with, it matches perfectly with Code Red, from 2001!!"
+    $ CodeRed_w=False
     c "So you found out my name, so what?"
     i "Now that I know who you are, I challenge you to a duel!"
     c "A duel?"
@@ -1423,7 +1434,7 @@ label SDS_Encounter:
     v "I'm fine."
     h "Whew."
     j "Vira, Are you still able to monitor SDS?"
-    v "Well, the website would tell you that it still functions well. Anytime you wish, I can go back there anytime to check."
+    v "Well, the website would tell you that it still functions well. Anytime you wish, I can go back there to check."
     v "I'm positive that there aren't any more spyware bugs..."
     $ ILY_m="frown"
     i "If... Vira meets Code Red there again...?"
@@ -1447,6 +1458,8 @@ label SDS_Encounter:
     l "Great timing."
     j "Oh right, Hilbert! Come here! The payment!"
     h "Right!"
+    $ Lisa_eyes="raised"
+    $ Lisa_e="up"
     l "Let me hold the drinks."
     j "Yeah! The Frappes!"
     h "We gotta cheer up! This should be our victory feast!"
@@ -1488,10 +1501,10 @@ label SDS_Encounter:
     $ John_eyes="closed"
     $ John_m="smile"
     j "Okay.. Heroic Hacking Party... For the day.."
+    scene black with dissolve
     "We ended the day on a good note at least."
     "I'm so relieved that SDS is better now."
-    scene black
-    "After that party... After the \"Heroic Hacking Party\" was established..."
+    
     
     # "DEMO OVER! THANK YOU FOR PLAYING SOFTWAR!"
     return
