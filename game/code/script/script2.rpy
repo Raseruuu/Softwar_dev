@@ -707,20 +707,23 @@ label SDS_Encounter:
     
     v  "That's... Aghh!!"
     cv "Heh!"
-    v "My barrier got slashed through!? It almost hit me. That weapon... Identifying Battleware.."
+    v "My barrier got slashed through!? It almost hit me. "
+    "That weapon... Identifying Battleware.."
     call cardflash_story(LambdaSaber)
     v "It's a Lambda Saber! It's messing with the lightwave membrane!"
     call speedspikebg
     call CodeRedLambdaSaber
+    "The Lambda Saber."
     "The energy blade fluctuates like a sound wave visualiser. It's terrible.."
     "You can get pricked just by being close to it. But when swung... It's like a chainsaw!"
-    cv "Knowing your enemy's weapon means nothing... Unless you have a weapon of your own to match it! Hrrrraaaghh!"
+    
     call battlescene
     show CodeRed:
         xalign 0.01
     show Vira:
         xalign 0.99
     with dissolve
+    cv "Knowing your enemy's weapon means nothing... Unless you have a weapon of your own to match it! Hrrrraaaghh!"
     v "I..! Do have a weapon...! Take this!"
     call cardflash_story(DataBuster)
     "Vira lets out her DataBuster. It was a quick-draw shot!"

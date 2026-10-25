@@ -1588,7 +1588,7 @@ label date2:
 
         $ILY_w = False
         show ILY at sidesteps_effect("ILY", 0.5, 0.1, 0.25):
-            xalign 0.5 
+            xalign 0.5 ypos 1.0
         i"Waaaahh! I'm free!!"
         hide ILY
         $ okdesktop = False

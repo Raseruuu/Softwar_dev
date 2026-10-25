@@ -14,6 +14,7 @@
     # Girl declares the same.
 label test:
     "Test mode"
+    call shunpo_repeated
     menu:
         "Select mode"
         "Story":

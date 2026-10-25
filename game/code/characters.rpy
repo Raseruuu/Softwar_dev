@@ -1424,7 +1424,7 @@ image Melissa:
     repeat
 image Icon_Melissa:
     mesh True
-    Crop((210,80, 520,700), At("MelissaFullBody",zoomtrans(1.5)))
+    Crop((210,80, 520,700), At("MelissaFull",zoomtrans(1.5)))
     zoom 0.22
 
 
@@ -1519,6 +1519,15 @@ image MelissaMouthfrown:
     "images/Characters/Melissa/Melissa_mopen1.png"
     pause .1
     repeat
+
+image Melissa_base_breath:
+    "images/Characters/Melissa/Melissa_base_down1.png"
+    pause 0.5
+    "images/Characters/Melissa/Melissa_base.png"
+    pause 1.5
+    "images/Characters/Melissa/Melissa_base_down1.png"
+    pause 1.0
+    repeat
 image Melissa_base_jump:
     "images/Characters/Melissa/Melissa_base_down1.png"
     pause 0.05
@@ -1582,27 +1591,6 @@ layeredimage MelissaFull:
         "MelissaEyes"
     zoom 0.22
     
-image MelissaFullBody:
-    # "images/Characters/Melissa/Melissa_full.png"
-    
-    Composite(
-        (1956,5716),
-        (0, 0), "images/Characters/Melissa/Melissa_base.png",
-        (0, 0), WhileSpeaking(
-            "Melissa",
-            ConditionSwitch(
-                "('smile' in Melissa_m)","MelissaMouthsmile",
-                "('smile' not in Melissa_m)","MelissaMouthfrown"
-            ),
-            "images/Characters/Melissa/Melissa_m[Melissa_m].png"
-
-
-            ),
-        (0, 0), "images/Characters/Melissa/Melissa_e[Melissa_e].png",
-        (0, 0), "MelissaEyes"#eyes
-        # (0, 0), "images/Characters/Melissa/Melissashades.png",
-        )
-    zoom 0.22
 image Melissa sidew:
     Crop((75,30, 300,385), "MelissaFull")
     zoom 0.56

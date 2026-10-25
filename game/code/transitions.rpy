@@ -35,7 +35,7 @@ label damageright4:
     else:
         jump damagerightagain
     
-play sound "sfx/noise.wav"
+    # play sound "sfx/noise.wav"
 label damageleftblocked:
     play sound "sfx/noise.wav"
     show damageeffect:
@@ -229,7 +229,7 @@ transform tremors_side:
     xoffset -2
     pause 0.1
     repeat
-transform reddening:
+transform reddening2:
     parallel:
         yoffset 1
         pause 0.02
@@ -380,7 +380,7 @@ transform surgeofpower():
 
 
 
-transform sidesteps_effect(image_path, start_pos, end_pos, duration):
+transform sidesteps_effect(image_path, start_pos=100, end_pos=400, duration=0.1):
     subpixel True
 
     contains:

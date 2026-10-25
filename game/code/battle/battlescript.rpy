@@ -288,23 +288,26 @@ image battlering = "images/battle/battlering.webp"
 image battleroad = "images/battle/battleroad.png"
 # image TrojanH = "TrojanHsmall.png"
 
-transform BurstTransfer_trans:
-    alpha 1.0
+transform BurstTransfer_trans(x_offset=0):
+    alpha 1.0 
     parallel:
         linear 0.4 xoffset 500 
     parallel:
         linear 0.1 alpha 0.0 xzoom 1.1
         easein 0.1 xzoom 1.0
-    pause 2.0
-    alpha 0.0 xoffset -500
-    # linear 0.2 alpha 1.0 xoffset 0
-    parallel:
-        linear 0.4 xoffset 0 
-    parallel:
-        pause 0.2
-        linear 0.1 alpha 0.8 xzoom 1.1
-        easein 0.1 xzoom 1.0 alpha 1.0
-
+    
+        
+    # pause 1.0
+    # alpha 0.0 xoffset -500
+    # # linear 0.2 alpha 1.0 xoffset 0
+    # parallel:
+    #     linear 0.4 xoffset (0+x_offset) 
+    # parallel:
+    #     pause 0.2
+    #     linear 0.1 alpha 0.8 xzoom 1.1
+    #     easein 0.1 xzoom 1.0 alpha 1.0
+    # pause 0.5
+    # repeat
 transform BurstTransfer_trans2:
     alpha 1.0
     parallel:
@@ -313,8 +316,108 @@ transform BurstTransfer_trans2:
         linear 0.1 alpha 0.0 xzoom 1.1
         easein 0.1 xzoom 1.0
         xoffset 0 
+transform BT_spam(image_path):
+    subpixel True
+    
+    contains:
+        image_path
+        # $new_position=
+        # xalign (renpy.random.randint(10,90))/100
+        xalign renpy.random.choice([0.1,0.3,0.5,0.7,0.9])
+        xoffset -100
+        pause 0.2
+        linear 0.1 alpha 1.0 xoffset 0
+        parallel:
+            glitch("intense", "ghost", "thick")    
+        parallel:
+            linear 0.1 xoffset 100 
+        parallel:
+            linear 0.1 alpha 0.0 xzoom 1.1
+            easein 0.05 xzoom 1.0    
+    pause 0.4
+    repeat
+transform BT_spam_LR(image_path,start_xpos=0.1,end_xpos=0.9):
+    subpixel True
+    contains:
+        image_path
+        xanchor 0.5
+        # $new_position=
+        # xpos (renpy.random.randint(10,90))/100
+        xpos start_xpos
+        # xoffset -100
+        pause 0.18
+        linear 0.1 alpha 1.0 xoffset 0
+        parallel:
+            # glitch("intense", "ghost", "thick") 
+            matrixcolor TintMatrix('#556cb4') 
+            alpha 0.6
+        # pause renpy.random.choice([1.0,2.0])   
+        parallel:
+            ease 0.2 xoffset (40 if start_xpos>end_xpos else -40)
+        parallel:
+            linear 0.3 alpha 0.0 
+            easein 0.05 xzoom 1.0   
+
+    contains:
+        image_path
+        xanchor 0.5
+        # $new_position=
+        # xpos (renpy.random.randint(10,90))/100
+        xpos start_xpos
+        # xoffset -100
+        pause 0.2
+        linear 0.1 alpha 1.0 xoffset 0
+        parallel:
+            glitch("intense", "ghost", "thick")    
+        parallel:
+            
+            linear 0.1 xoffset (100 if start_xpos<end_xpos else -100)
+        parallel:
+            linear 0.1 alpha 0.0 xzoom 1.1
+            easein 0.05 xzoom 1.0   
+
+    contains:
+        image_path
+        alpha 0.0  xanchor 0.5 xzoom 1.1 
+        pause 0.4
+        xanchor 0.5 xpos end_xpos xzoom 1.1
+        xoffset (-100 if start_xpos<end_xpos else 100)
+        pause 0.2
+        easein 0.1 alpha 1.0 xoffset 0 xzoom 1.0
 
 
+    # pause 1.5
+    # repeat
+label shunpo_repeated:
+    play music "bgm/ost/Serious_Noyemi_K.ogg"
+    $ ILY_m="frown"
+    $ ILY_e="down"
+    call battlescene
+    label shunpo_repeated2:
+    "Start"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.2,0.6)
+    "1"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.6,0.3) 
+    "2"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.3,0.8)
+    
+    "3"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.8,0.4) 
+    "4"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.4,0.7)
+    "5"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_spam_LR("ILY",0.7,0.2) 
+    # $ shunpo_repeats+=1
+    # if shunpo_repeats>=30:
+    #     jump shunpo_repeated
+    jump shunpo_repeated2
+    return
 
 image cardflasher:
     CardDisplay(currentcard)
@@ -469,33 +572,6 @@ label Enemydisappear:
     hide Enemy
     return
 
-# label TurnEnd:
-
-
-#     ##RETURN CARDS FROM HAND TO DECK
-#     # if selectedcard=="card1":
-#     if len(myhand) >=1:
-#         $ mydeck.append(myhand[0])
-#     if len(myhand) >=2:
-#         $ mydeck.append(myhand[1])
-#     if len(myhand) >=3:
-#         $ mydeck.append(myhand[2])
-#     if len(myhand) >=4:
-#         $ mydeck.append(myhand[3])
-#     $ decknum = len(mydeck)
-#     if len(Enmyhand) >=1:
-#         $ Enmydeck.append(Enmyhand[0])
-#     if len(Enmyhand) >=2:
-#         $ Enmydeck.append(Enmyhand[1])
-#     if len(Enmyhand) >=3:
-#         $ Enmydeck.append(Enmyhand[2])
-#     if len(Enmyhand) >=4:
-#         $ Enmydeck.append(Enmyhand[3])
-#     # "deck = [mydeck]\nhand = [myhand]"
-#     return
-
-# show cardbacks at deck as cardbacks2
-# show cardbacks at deck as cardbacks1
 init -2 python:
     def bar_size(value,maxvalue, barwidth):
         barsize = int(barwidth*float(value)/float(maxvalue))
@@ -505,17 +581,7 @@ init -2 python:
 
 transform fxnicon:
     zoom 0.07
-        #hbox:
-        #    null height 30 width 20
-        #    add "Icon_Ily"
-        #    null height 30 width 20
-        #    vbox:
-        #        text "Ily"
-        #        hbox:
-        #            text "{size=18}HP:{/size}"
-        #            null width 150
-        #        add "images/battle/bar.png" at barwidth(Ily_HP,Ily_HPmax)
-        #        text "[Ily_HP]/[ILY_HPmax]"
+       
 style battlestats_frame is gui_frame:
     background Frame("gui/frame.png", 64, 64, tile=gui.frame_tile)
     right_padding 16
@@ -566,29 +632,6 @@ image curve:
 screen decknum:
     text "{color=#FFF}Deck: [decknum]{/color}" xpos 1162 xalign 0.5 ypos 400 yanchor 1.0
 
-
-#
-#
-image fxndescription:
-    ConditionSwitch(
-        "'Freeze' in fxnpreview",Text("Add Freeze to Attack (x1)."),
-        "'Burn' in fxnpreview",Text("Add Burn to Attack (x4). Effect fades each turn."),
-        "'Break' in fxnpreview",Text("Break weaker Battleware. if Break succeeds: Negate attack ."),
-        "'TripleHit' in fxnpreview",Text("Decrease Target HP 3 times."),
-        "'DoubleHit' in fxnpreview",Text("Decrease Target HP 2 times."),
-        "'Recover' in fxnpreview",Text("Increase Self HP."),
-        "'POWR_Up' in fxnpreview",Text("Increase Self POWR for 3 turns."),
-        # "'SPD_Up' in fxnpreview",Text("Increase Self SPD for 3 turns."),
-        "'Saber_Up' in fxnpreview",Text("Increase Self \"Saber\" named Battleware POW for 3 turns. Effect fades each turn."),
-        "'Damage' in fxnpreview",Text("Decrease Target HP.")
-        )
-
-    # frame:
-    #     hbox:
-    #         xalign 0.5 yalign 0.9
-    #         for i in range(0,1):
-    #             imagebutton idle "images/Cards/[myhand[i][1]]" action Return("card1") hovered Show("card1"),Play("sound","sfx/select.wav")
-            # imagebutton idle "images/Cards/[i].png" action Hide("card2"), Return("card2") hovered Show("card2"),Play("sound","sfx/select.wav") unhovered Hide("card2") at card2pos
 
 
 transform cardtrans:
