@@ -1,7 +1,7 @@
 label Plugins_Run:
     $ playerplugin=playerPlugins
     $ enemyplugin=enemyPlugins
-    show screen phasemsg("INITIALIZE!")
+    # call showphasemsg("INITIALIZE!")
     hide screen phasemsg
     if enemyfirst: 
         

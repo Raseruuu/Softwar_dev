@@ -386,7 +386,7 @@ init python:
     Waveslash=     Card("Waveslash",            "SwordWave",        1.75,    [Attack(),NullFxn()],                  0)
     WindSaber=     Card("WindSaber",            "WindSword",        1.0,    [Attack(rangevalue=2,onhit=[ForInRange("x in range(0,3)",3,[Push(),Attack(0.15,rangevalue=4)],indents=1)])],                  0)
     GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  1.0,    [Recover(0.25),ForInRange("x in range(0,target.HP/8)","targetHP/80",[Attack(80,absolute=True),])],   0)
-    # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[Increase("ATK",0.25),Increase("DEF",0.25)]),Attack(),],   0)
+    # GUNVAR=        Card("Virtual Mobile Armor GUNVAR",   "GUNVAR",  3.0,     [ForInRange("x in range(0,7)",enemyHP,[GainToken("IncreaseATK",1),Increase("DEF",0.25)]),Attack(),],   0)
 
     # GUNVAR=        Card("Mobile Suit GUNVAR",   "GUNVAR",           1.0,     [Attack(),NullFxn()],   0)
     Concatenations=[FlameSaber,FlameDrill,FrostBuster,Waveslash,WindSaber,GUNVAR]
@@ -399,14 +399,14 @@ init python:
     MailSaber=     Card("MailSaber",        "Sword",          0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),Attack()]),GainToken("Saber",1)],   4)
     AffectionInfection=Card("AffectionInfection","Infection", 0.25,     [While("\"Email\" in Target_status","Email","Enemy",[RemoveToken("Email","Enemy"),RemoveToken("Email","Enemy"),Decrease("ATK",0.25)])],   6)
     RecursiveSlash=Card("RecursiveSlash",   "SaberSkill",          0.5,      [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Attack()]),NullFxn()],   4)
-    HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [Increase("ATK",0.25),GainToken("Burn",1)],       2)
+    HeartBurn=     Card("HeartBurn",        "PowerUp",        0.2,    [GainToken("IncreaseATK",1),GainToken("Burn",1)],       2)
     ChocolateBar=  Card("ChocolateBar",     "Chocolate",      0.25,    [Recover(0.25),NullFxn()],          2)
 
 #Ave's cards    
     FiberBuster=   Card("FiberBuster",      "Gun",            0.75,     [Attack(rangevalue=7,)],              4)
     DataBuster=    Card("DataBuster",       "Gun",            0.75,     [Attack(rangevalue=7)],              3)
     SparkBuster=   Card("SparkBuster",      "Gun",            0.25,      [Attack(rangevalue=7)],           2)
-    # Snipe=         Card("Snipe",            "Gun",            0.0,      [Increase("ATK",0.25),Retreat(2)],       6)
+    # Snipe=         Card("Snipe",            "Gun",            0.0,      [GainToken("IncreaseATK",1),Retreat(2)],       6)
 #Swords and Blades  
     FiberSword=    Card("FiberSword",       "Sword",           0.5,     [GainToken("Saber",1),Advance(4),Attack()], 3)
     DataSaber=     Card("DataSaber",        "Sword",           1.0,      [Attack(),Defend(0.25),GainToken("Saber",1),],   4)
@@ -426,7 +426,7 @@ init python:
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()]),NullFxn()],   1)
     SkullCrush=  Card("SkullCrush",       "SaberSkill",          0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP(),Attack()])],   1)
     MomentumSlash= Card("MomentumSlash",    "SaberSkill",        0.75,     [IfFunction("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),AttackSP()])],   1)
-    SaberAura=     Card("SaberAura",        "SaberSkill",             0.0,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),Increase("ATK",0.25)]),NullFxn()],   5)
+    SaberAura=     Card("SaberAura",        "SaberSkill",             0.0,   [While("\"Saber\" in Self_Status","Saber","Self",[RemoveToken("Saber","Self"),GainToken("IncreaseATK",1)]),NullFxn()],   5)
     BladeSabers=     Card("BladeSabers",    "SaberSkill",        0.0,   [While("\"Blade\" in Self_Status","Blade","Self",[RemoveToken("Blade","Self"),GainToken("Saber",1)])],   1)
 
 ## OTHER
@@ -449,7 +449,7 @@ init python:
 # Virus Exclusive
     Vshot=         Card("V-Shot",           "Gun",          0.6,         [Attack(rangevalue=7),NullFxn()],           3)
     VirusFlame=    Card("V-Flame",          "Fire",         0.5,         [Attack(rangevalue=4,onhit=[GiveToken("Burn",1)])],               3)
-    Pyrokinesis=    Card("Pyrokinesis",     "PowerUp",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),Increase("ATK",0.25)])],               1)
+    Pyrokinesis=    Card("Pyrokinesis",     "PowerUp",         0.5,         [IfFunction("\"Burn\" in Self_Status","Burn","Self",[RemoveToken("Burn","Self"),GainToken("IncreaseATK",1)])],               1)
     Vslash=        Card("V-Slash",          "Slash",        0.5,         [Attack(),NullFxn()],              2)
     VBlaze=        Card("V-Blaze",           "Fire",           1.0,     [Attack(rangevalue=4,onhit=[GiveToken("Burn",1),Push(3)])],   4)
     WormHole=      Card("WormHole",         "Hole",           1.0,     [ReduceSPself(0.15),GainToken("Hole",1),Evade(1)],   1)
@@ -468,17 +468,17 @@ init python:
     DataBomb=     Card("DataBomb",       "Bomb",     1.0,     [Retreat(),Attack(rangevalue=5),IfFunction("\"Data\" in Self_Status","Data","Self",[GiveToken("Burn",1)])],          4)
     Flashbang=    Card("Flashbang",      "Bomb",     0.0,     [Retreat(),Evade()],          3)
 #Force
-    BruteForce=   Card("BruteForce",     "Force",    0.10,     [Increase("ATK",0.25),ForInRange("x in range(0,Self_Status.count(\"IncreaseATK\")",["IncreaseATK","Self_Status"],[Attack()])],  2)
-    DataForce=    Card("DataForce",      "Force",    0.25,      [Increase("ATK",0.25),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
+    BruteForce=   Card("BruteForce",     "Force",    0.10,     [GainToken("IncreaseATK",1),ForInRange("x in range(0,Self_Status.count(\"IncreaseATK\")",["IncreaseATK","Self_Status"],[Attack()])],  2)
+    DataForce=    Card("DataForce",      "Force",    0.25,      [GainToken("IncreaseATK",1),Increase("DEF",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Recover(0.5)])],       4)
    
     Tackle=       Card("Tackle",        "Maneuver",        0.3,     [Advance(2),Attack()], 2)
     
-    DataDrill=    Card("DataDrill",       "Drill",   0.2,     [Attack(onhit=[ForInRange("x in range(0,5)",5,[Attack()])]) ,GainToken("Data",1)],       5)
-    Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),Increase("ATK",0.25)],        4)
+    DataDrill=    Card("DataDrill",       "Drill",   0.4,     [Attack(onhit=[Attack(),Attack()]) ,GainToken("Data",1)],       5)
+    Powersol=     Card("Powersol",        "Wall",    1.0,     [Defend(),GainToken("IncreaseATK",1)],        4)
     Shieldbit=    Card("Shieldbit",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
     RadioShield=  Card("RadioShield",       "Shield",    0.25,     [Defend(),NullFxn()],          1)
-    Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),Increase("ATK",0.25)],  2)
-    Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),Increase("ATK",0.25),IfFunction("\"Data\" in Self_Status","Data","Self",[Increase("ATK",0.25)])],       6)
+    Assault=      Card("Assault",       "Tech",    0.25,       [Advance(),GainToken("IncreaseATK",1)],  2)
+    Snipe=        Card("Snipe",           "Gun",    0.0,     [Retreat(2),GainToken("IncreaseATK",1),IfFunction("\"Data\" in Self_Status","Data","Self",[GainToken("IncreaseATK",1)])],       6)
     Laserbeam=    Card("Laserbeam",       "Gun",    2.0,      [Attack(rangevalue=20)],          8)
     Cursorclaw=   Card("Cursorclaw",      "Claw",    0.5,   [Attack()],           2)
     #newcards
@@ -503,7 +503,7 @@ init python:
     Salamandra=    Card("Salamandra",      "FireSword",      1.0,     [Attack(),GainToken("Saber",1)],   4)
     FlameFists=    Card("FlameFists",      "Fist",       1.0,     [Attack(),GainToken("Saber",1)],   4) 
     GearframeUnitron= Card("GU-Gearframe Unitron",  "GU",  1.0,     [Advance(3)],   2)
-    NucleusVernier=  Card("NV-Nautical Vanguard",   "NV",  1.0,     [Advance(1),Increase("ATK",0.25)],   2)
+    NucleusVernier=  Card("NV-Nautical Vanguard",   "NV",  1.0,     [Advance(1),GainToken("IncreaseATK",1)],   2)
     AccelRiser=      Card("AR-Accel Riser",         "AR",  1.0,     [Retreat(2),Evade()],   4)
     GUNVARSaber=     Card("GUNVARSaber","GUNVAR",  2.3,         [Attack(rangevalue=2)],   8)
     GUNVARFist=      Card("GUNVARFist","GUNVAR",  2.1,         [Attack(rangevalue=2)],   8)

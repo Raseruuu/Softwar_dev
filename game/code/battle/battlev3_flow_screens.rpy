@@ -131,8 +131,10 @@ transform xsize_gradual_decrease_after_damage(stat_stay,stat_max,stat_value):
     xsize bar_size(stat_stay,stat_max,235)
     pause 0.15
     linear 0.25 xsize bar_size(stat_value,stat_max,235)
-    
-    
+default playerbits=8
+default playerbitsmax=8
+default enemybits=8
+default enemybitsmax=8
 screen battlestats():
     
     $ playerbitsfirsthalf=(int(playerbitsmax/2) if (playerbits-int(playerbitsmax/2))>0 else playerbits)
@@ -790,8 +792,7 @@ screen duel_log_screen():
     # use CardTooltip
             
     
-
-label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=2):
+label battle_initial(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=2):
     if playerHP==0:
         return
     $ quick_menu=False
@@ -816,7 +817,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
     else:
         $ playerDeck = PFAI.deck["content"]
     $ actual_playerDeck = deckcurrent
-    
+
     $ playerPlugins = playerPlugins =PFAI.deck["plugins"]
     $ first_turn_done =False
 
@@ -866,6 +867,86 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
         enemyATK_m = enemyATK
         enemyDEF_m = enemyDEF
         random.shuffle(enemyDeck)
+    return
+label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=2,stay_stats=False):
+    if playerHP==0:
+        return
+    if stay_stats:
+        pass
+    else:
+        
+        $ quick_menu=False
+        $ evasion_active=False
+        $ execution_active=False
+        $ playerhand=[]
+        $ duel_log =[]
+        $ ILY_w=True
+        $ ILY_m="frown"
+        $ ILY_e="down"
+        $ ILY_p="0"
+        $ battle_active=True
+        $ battle_done=False
+        $ playerName = PFAI.name
+        # $ playerSP = PFAI.SP
+        $ playerSP = 0
+        $ playerATK = PFAI.ATK
+        $ playerDEF = PFAI.DEF
+        # if playerName == "ILY":
+        if playerobject.name==PFAI.name:
+            $ playerDeck = copy.deepcopy(deckcurrent)
+        else:
+            $ playerDeck = PFAI.deck["content"]
+        $ actual_playerDeck = deckcurrent
+        
+        $ playerPlugins = playerPlugins =PFAI.deck["plugins"]
+        $ first_turn_done =False
+
+        python:
+            hcount=0
+            vcount=0
+            ahcount=0
+            avcount=0
+
+            playerbits = pbitsMax
+            enemybits= ebitsMax
+            
+            playerbitsmax=pbitsMax
+            enemybitsmax=pbitsMax
+            random.shuffle(playerDeck)
+            battle_distance = battledist
+            battle_done = False
+            enemyfirst =renpy.random.choice([True,False])
+            map_active=False
+            playerbattlecode=[]
+            playerATK_m = playerATK
+            playerDEF_m = playerDEF
+            EnmySts = []
+            PlayerSts = []
+            # PlayerFAIstats = ILYStatsnow
+            EnemyFAIstats = {
+                "name":EFAI.name,
+                "HP":EFAI.HP,
+                "HPMAX":EFAI.SP,
+                "SP":EFAI.SP,
+                "SPMAX":EFAI.SP,
+                "Deck":EFAI.deck,
+                "ATK":EFAI.ATK,
+                "DEF":EFAI.DEF
+
+            }
+            enemyName = EnemyFAIstats["name"]
+            enemyHP = EnemyFAIstats["HP"]
+            enemyHPMax = EnemyFAIstats["HP"]
+            # enemySP = EnemyFAIstats["SP"]
+            enemySP = 0
+            enemySPMax = EnemyFAIstats["SPMAX"]
+            enemyDeck = EnemyFAIstats["Deck"]["content"]
+            enemyPlugins =EFAI.deck["plugins"]
+            enemyATK = EnemyFAIstats["ATK"]
+            enemyDEF = EnemyFAIstats["DEF"]
+            enemyATK_m = enemyATK
+            enemyDEF_m = enemyDEF
+            random.shuffle(enemyDeck)
     # call battlebg_animation
     if enemyName in boss_list:
         call speedspikebg
@@ -910,7 +991,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
     python:
         import copy 
         playerPlugins = copy.deepcopy(PFAI.deck["plugins"])
-    show screen phasemsg("PLUGIN PHASE")
+    call showphasemsg("PLUGIN PHASE") 
     $ renpy.pause(0.9,hard=True)
     hide screen phasemsg
     call Plugins_Run
@@ -921,7 +1002,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
         hide screen battlestats
         show screen battlestats
         $ turncount += 1
-        show screen phasemsg("CYCLE #" + str(turncount))
+        call showphasemsg("CYCLE #" + str(turncount))
         $ renpy.pause(0.9,hard=True)
         hide screen phasemsg
         if turncount>=turnlimit:
@@ -939,7 +1020,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
                 jump battleloop
             elif battle_done:
 
-                show screen phasemsg("BATTLE_END")
+                call showphasemsg("BATTLE_END")
                 $ renpy.pause(0.9,hard=True)
                 hide screen phasemsg
                 hide screen battlestats
@@ -948,7 +1029,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
                     call lose 
                     return
                 elif turnlimit_over:
-                    show screen phasemsg("BATTLE_INTERRUPTED")
+                    call showphasemsg("BATTLE_INTERRUPTED")
                     $ renpy.pause(0.9,hard=True)
                     hide screen phasemsg
                     hide screen battlestats
@@ -1023,7 +1104,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
             if not battle_done:
                 jump battleloop
             elif turnlimit_over:
-                show screen phasemsg("BATTLE_INTERRUPTED")
+                call showphasemsg("BATTLE_INTERRUPTED")
                 $ renpy.pause(0.9,hard=True)
                 hide screen phasemsg
                 hide screen battlestats
@@ -1032,7 +1113,7 @@ label battlev3(PFAI=ILY,EFAI=Ave,pbitsMax=8,ebitsMax=8,turnlimit=100,battledist=
             elif battle_done:
                 hide screen handcardsscreen
                 $ playerDeck = sorted( actual_playerDeck,key=lambda x: x.NAME, reverse=False)
-                show screen phasemsg("BATTLE_END")
+                call showphasemsg("BATTLE_END")
                 $ renpy.pause(0.9,hard=True)
                 hide screen phasemsg
                 hide screen battlestats
@@ -1342,7 +1423,7 @@ label win:
     #   xalign 0.0
     $ battle_done = True
     $ quick_menu=True
-    show screen phasemsg("VICTORY!")
+    call showphasemsg("VICTORY!")
     pause 0.8
     scene winbg with dissolve_pixels
     hide screen phasemsg

@@ -549,11 +549,13 @@ label IncreaseATK(params={}):
     $ PlayerSts=statusAppend(PlayerSts,"IncreaseATK")
     call updatestats_player
     show IncreaseATKsts onlayer overlay:
-        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.8 alpha 1.0
+        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.9 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
-      
+    show screen tokenappend_anim("IncreaseATK","player")
+    # $ renpy.pause(0.4,hard=True)
     $ renpy.pause(0.6,hard=True)
+    hide screen tokenappend_anim
     hide text
     return
 label IncreaseDEF(params={}):
@@ -564,10 +566,12 @@ label IncreaseDEF(params={}):
     $ PlayerSts=statusAppend(PlayerSts,"IncreaseDEF")
     call updatestats_player from _call_updatestats_player_1
     show IncreaseDEFsts onlayer overlay:
-        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.8 alpha 1.0
+        zoom 1.3 xpos 0.5 xanchor 0.5 yanchor 1.0 ypos 0.9 alpha 1.0
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
+    show screen tokenappend_anim("IncreaseATK","player")
     $ renpy.pause(0.6,hard=True)
+    hide screen tokenappend_anim
     hide IncreaseDEFsts
     return
 # label IncreasePOWenemy:
@@ -789,7 +793,7 @@ label IncreaseATKenemy(params={}):
         linear 0.1 zoom 0.98
         linear 0.2 zoom 1.0 alpha 0.0
     $ renpy.pause(0.6,hard=True)
-    hide IncreaseDEFsts
+    hide IncreaseATKsts
     return
 label IncreaseDEFenemy(params={}):
     play sound "sfx/sfx_sounds_powerup16.wav"
@@ -1056,13 +1060,16 @@ label Damageplayer(params={}):
         # $ renpy.show("Icon_[playerName]", at_list=([sidesteps_effect_dodge("Icon_[playerName]", 0.5, renpy.random.choice([0.6,0.4]), 0.12)]))
         $ evasion_active=True
         
+        
         play sound "sfx/miss.wav" channel 1
         pause 0.05
         $ evasion_active=False
-        $ PlayerSts.remove('Evade')
-        show screen tokenremove_anim("Evade","player")
+        # call RemoveToken({"Evade","Player"})
+        call RemoveTokenPlayer({"tokenname":"Evade","target":"Self"})
+        # $ PlayerSts.remove('Evade')
+        # show screen tokenremove_anim("Evade","player")
         $ renpy.pause(0.4,hard=True)
-        hide screen tokenremove_anim
+        # hide screen tokenremove_anim
         call battlemessage("EVADED")
         $ renpy.pause(0.1,hard=True)
     else:
@@ -1103,11 +1110,11 @@ label Damageplayer(params={}):
         if block_functions_ATK !=[]:
             $ block_count_ATK = 0
             label block_loopatkofenemy:
-                $ runfxnstringatkofenemy = block_functions_ATK[block_count_ATK].name
-                $ newfunctionparam=block_functions_ATK[block_count_ATK].params
+                $ runfxnstringatkofenemy = params["onhit"][block_count_ATK].name
+                $ newfunctionparam=params["onhit"][block_count_ATK].params
                 call enemyfunctioneffects(runfxnstringatkofenemy,params=newfunctionparam)
                 $ block_count_ATK+=1
-                if block_count_ATK<len(block_functions_ATK):
+                if block_count_ATK<len(params["onhit"]):
                     jump block_loopatkofenemy
     
     hide screen battlestats
@@ -1359,7 +1366,67 @@ screen handcardsscreen(phase="common"):
         # else:
         #     add CardDisplay(playercardobj) xpos cardxpos xanchor 0.5 yalign 0.92 at zoomBattlecards
         #     add "images/Cards/cardblank2.png" at alpha08 xpos cardxpos xanchor 0.5 yalign 0.945
+label Execute_1card(solo_card_object):
+    $ runnumber = 0
+    $ attacknumber = 0
+    $ iterations = 1
+    $ log_shown = True
 
+    label exec_loop_solo:
+        
+        $ currentcard = solo_card_object
+        call duel_log_append("card_played",currentcard,"player",PFAI)
+        # $ playerbattlecode.pop(0)
+        # $ currentcard = (playerbattlecode[runnumber])
+        $ currentcardFXN = currentcard.FXN
+        $ currentcardPOW = currentcard.POW
+        $ currentcardTYPE = currentcard.TYPE
+        $ Power = (currentcardPOW)
+        $ damagetoenemy=int(playerATK_m*Power)
+        $ currentcardfunctions=[a.name for a in currentcardFXN]
+        $ damagecard = ("attack" in currentcardfunctions) 
+        
+        hide screen battlestats
+        show screen battlestats
+        call battlecry
+        # show ring onlayer overlay:
+        #     zoom 0.0 xalign 0.5 ypos 0.7 yanchor 0.5 rotate 0
+        #     linear 0.15 zoom 1.4 rotate 180 alpha 0.8
+
+        # show cardflash onlayer overlay
+        play sound "sound/swing.wav"
+        call screen cardflashscreen
+        show screen cardflashscreen2
+        
+        ##
+        $ fxnindex=0
+        $ loopingcard=False
+        $ execution_active=True
+        
+        label runfunctions_solo:
+            
+            $ runfxnstring = currentcardFXN[fxnindex].name
+            $ runfxnparam = currentcardFXN[fxnindex].params
+            hide screen cardflashscreen2
+            show screen cardflashscreen2
+            call functioneffects(runfxnstring,runfxnparam)
+            $fxnindex+=1
+            if fxnindex<len(currentcardFXN):
+                jump runfunctions_solo
+        
+        hide screen cardflashscreen2
+        hide ring
+        $ execution_active=False
+        $ fxnindex=0
+        $ runnumber+=1
+        if (runnumber<iterations) and (battle_done==False):
+            
+            jump exec_loop_solo
+        
+        # hide screen handcardsscreen
+
+    
+    return
 
 label Execution:
     $ runnumber = 0
@@ -1387,7 +1454,7 @@ label Execution:
     show Enemy:
         xalign 0.5 yanchor 0.3 ypos 0.3
     $ iterations =len(playerbattlecode)
-    show screen phasemsg("EXECUTE")
+    call showphasemsg("EXECUTE")
     $ renpy.pause(0.5,hard=True)
     hide screen phasemsg
 
@@ -1584,7 +1651,7 @@ label enemyattack:
             enemyhand.append(enemyDeck[0])
             enemyDeck.pop(0)
             
-    show screen phasemsg(enemyName+"'S TURN")
+    call showphasemsg(enemyName+"'S TURN")
     call duel_log_append("turn_change",None,"enemy",EFAI)
     $renpy.pause(0.9,hard=True)
     hide screen phasemsg

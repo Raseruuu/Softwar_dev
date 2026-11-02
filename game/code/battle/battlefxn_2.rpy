@@ -55,9 +55,11 @@ label Attack(params={}):
     if "Evade" in EnmySts:
     #     $ attackhit=False
     # if not attackhit:
-        $ EnmySts.remove('Evade') 
+        # $ EnmySts.remove('Evade') 
+        call RemoveTokenPlayer({"tokenname":"Evade","target":"Enemy"})
         $ enemy_evasion_active=True
         pause 0.1
+        
         play sound "sfx/miss.wav" channel 1
         show Enemy at sidesteps_effect_dodge("Enemy", 0.5, renpy.random.choice([0.6,0.4]), 0.12)
         pause 0.24
@@ -137,14 +139,14 @@ label Attack(params={}):
             
         hide damageeffect
         $ enemy_being_damaged=False
-        if block_functions_ATK !=[]:
+        if params["onhit"] !=[]:
             $ block_count_ATK = 0
             label block_loop_atk:
-                $ runfxnstringatk = block_functions_ATK[block_count_ATK].name
-                $ newfunctionparam=block_functions_ATK[block_count_ATK].params
+                $ runfxnstringatk = params["onhit"][block_count_ATK].name
+                $ newfunctionparam=params["onhit"][block_count_ATK].params
                 call functioneffects(runfxnstringatk,newfunctionparam)
                 $ block_count_ATK+=1
-                if block_count_ATK<len(block_functions_ATK):
+                if block_count_ATK<len(params["onhit"]):
                     jump block_loop_atk
     return
 
@@ -152,6 +154,8 @@ label RemoveTokenPlayer(params={}):
     
     $ token_name = params["tokenname"]
     $ remove_target = params["target"]
+    play sound "sfx/tokenloss.mp3"
+    
     if remove_target=="Self":
         $ PlayerSts.remove(token_name)
         show screen tokenremove_anim(token_name,"player")
@@ -169,6 +173,8 @@ label RemoveTokenEnemy(params={}):
     $ paramsvar=params
     $ token_name = params["tokenname"]
     $ remove_target = params["target"]
+    play sound "sfx/tokenloss.mp3"
+
     if remove_target=="Self":
         $ EnmySts.remove(token_name)
         show screen tokenremove_anim(token_name,"enemy")
@@ -224,11 +230,16 @@ label GiveToken(params={}):
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop:
-        play sound "sfx/tokengain.mp3"
-        $ EnmySts=statusAppend(EnmySts,token_name)
-        show screen tokenappend_anim(token_name,"enemy")
-        $ renpy.pause(0.4,hard=True)
-        hide screen tokenappend_anim
+        if token_name=="IncreaseATK":
+            call IncreaseATKenemy(params)
+        elif token_name=="IncreaseDEF":
+            call IncreaseDEFenemy(params)
+        else:
+            play sound "sfx/tokengain.mp3"
+            $ EnmySts=statusAppend(EnmySts,token_name)
+            show screen tokenappend_anim(token_name,"enemy")
+            $ renpy.pause(0.4,hard=True)
+            hide screen tokenappend_anim
         $ counter+=1
         if counter<quantity:
             jump tokenquant_loop
@@ -240,12 +251,17 @@ label GainTokenPlayer(params={}):
     # $ EnmySts.append("Burn")
     $ counter=0
     label tokenquant_loop2:
-        play sound "sfx/tokengain.mp3"
-        $ PlayerSts=statusAppend(PlayerSts,token_name)
-        show screen tokenappend_anim(token_name,"player")
-        $ renpy.pause(0.4,hard=True)
-        hide screen tokenappend_anim
-        hide text
+        if token_name=="IncreaseATK":
+            call IncreaseATK(params)
+        elif token_name=="IncreaseDEF":
+            call IncreaseATK(params)
+        else: 
+            play sound "sfx/tokengain.mp3"
+            $ PlayerSts=statusAppend(PlayerSts,token_name)
+            show screen tokenappend_anim(token_name,"player")
+            $ renpy.pause(0.4,hard=True)
+            hide screen tokenappend_anim
+            hide text
         $ counter+=1
         if counter<quantity:
             jump tokenquant_loop2

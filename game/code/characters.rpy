@@ -1124,11 +1124,12 @@ layeredimage Lucidafull:
 image Lucida:
     "Lucidafull"
     yanchor 0.0 ypos 0.01
-    # linear 1.0 yoffset 0
-    # pause .5
-    # linear 1.0 yoffset 5
-    # pause .5
-    # repeat
+    # ypos 1.0
+    linear 1.0 yoffset 0
+    pause 1.0
+    linear 1.0 yoffset 3
+    pause 1.0
+    repeat
 image Lucidafullside:
     "Lucidafull"
     zoom 1.13
@@ -1928,11 +1929,11 @@ image side HackerX_side:
 image Nick:
     "NickFull"
     ypos 1.0 yanchor 0.52 #zoom 0.9
-    # linear 1.0 yoffset 0
-    # pause .5
-    # linear 1.0 yoffset 5
-    # pause .5
-    # repeat
+    linear 1.0 yoffset 0
+    pause .5
+    linear 1.0 yoffset 5
+    pause .5
+    repeat
 image NickEyes:
     choice:
         "images/Characters/Nick/Nick_eyes.png"
@@ -2948,9 +2949,6 @@ layeredimage EllieFullBody:
             "images/Characters/Ellie/Ellie_m[Ellie_m].png"
             ),spritefix(0.5))
 
-    # always:
-    #     At("images/Characters/Ellie/Ellie_glasses.png",spritefix(0.5))
-# image Ellie:
 image Ellie:
     mesh True
 

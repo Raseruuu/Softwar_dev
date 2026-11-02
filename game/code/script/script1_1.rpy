@@ -943,7 +943,7 @@ label date2:
             xalign 0.88 yalign 0.5
 
         show Trojan:
-            xalign 0.8 yalign 0.5  zoom 0.82
+            xalign 0.8 yalign 0.5  zoom 0.75
         show USBkun:
             xalign 0.12 yalign 0.5 xzoom -1.0
         # $ ILY_p = '0'
@@ -957,18 +957,22 @@ label date2:
         i"Here we are. This is USB GATE AREA 1!"
         play sound "sfx/Damage.wav"
         j"What is this, a hostage taking?" with Shake((0, 0, 0, 0), 0.5, dist=10)
-        uk"PLEASE HELP US. The Trojan Virus is gonna overwrite all of the files in the USB!"
+        uk"PLEASE HELP US. THE TROJAN VIRUS IS ABOUT TO OVERWRITE THE FILES IN THE USB DRIVE!"
         play sound "sfx/Damage2.wav"
         j"What do we do now? Do you shoot it?" with Shake((0, 0, 0, 0), 0.5, dist=5)
         play sound "sfx/Damage.wav"
         j"If you miss, you might hit the program!" with Shake((0, 0, 0, 0), 0.5, dist=10)
         show Trojan with ease:
-            xalign 0.6 yalign 0.5 zoom 0.82
-        "The Trojan approaches ILY anyway, and here I was getting worried over the threat that the Trojan would harm the poor program."
+            xalign 0.6 yalign 0.5 zoom 0.75
+        $ Lisa_m="open2"
+        $ Lisa_eyes="raised"
+        l "The Trojan Virus!!"
+        j "It's moved closer?"
         "Maybe this Future AI... isn't very intelligent?"
         $ ILY_w = True
-        $ okdesktop = False
+        # $ okdesktop = False
         $ enemyName = "Trojan Horse"
+        $ battle_distance=0
         scene battlebg
         show battlering:
             xalign 0.5 ypos 0.15 yanchor 0.5
@@ -984,10 +988,12 @@ label date2:
         show battleroad:
             yalign 1.0 xalign 0.5
         show Enemy:
-            xalign 0.5 yanchor 0.3 ypos 0.25
-
+            xalign 0.5 yanchor 0.3 ypos 0.3
         with pixellate
-        i"John! I need your help! Let's destroy the Virus together!"
+        
+        i"John! I need your help! Let's stop the Virus together!"
+       
+        
         call ILY_Draws_Sword
 
         show battlering:
@@ -1004,32 +1010,63 @@ label date2:
         show battleroad:
             yalign 1.0 xalign 0.5
         show Enemy:
-            xalign 0.5 yanchor 0.3 ypos 0.25
-
+            xalign 0.5 yanchor 0.3 ypos 0.3
         with pixellate
         $ currentcard=(DataSaber)
         show cardflasher:
             xalign 0.5 yalign 0.46
         i"In a Softwar, we use Battleware!!"
-        
         j"A sword?"
         $ ILY_m = 'smile'
         i"The sword is the weapon of the romantic hero!"
-        j"How are we going about this?"
-        i"I gain 8 bits and 5 cards every turn, each card in my hand will cost Bits."
-        i"You choose from those 5 cards which cards to use in a turn."
-        i"Once you've expended enough bits, you can Execute the queue of cards!"
-        j"I have to call the shots?"
-        i"Of course! You're my operator!"
-        hide screen Card
-        i"After our turn, It'll be the enemy's chance to attack, so let's strike with all the data we have!"
+        call battle_initial(ILY,Trojan,battledist=0)
+        show screen battlestats
+        j "The virus is closing in! How does this battle system work?"
+        i "This is the Datasaber! "
+        $ ILY_e = 'up'
+        i "As you can see, the Battleware cards have functions! This sword can both {b}attack(){/b} and {b}defend(){/b}."
+        i "It's a melee weapon, indicated by its attack's {b}range{/b} value.\n{w}The {b}DISTANCE{/b} is currently at 0, so it will surely hit!"
+        $ ILY_e = 'normal'
+        
+        i "If the {b}DISTANCE{/b} increases, my swords will likely miss."
+        j "The attack function has a range parameter? \n{w}It's written in some special code. So this is a hacking system after all."
+        hide cardflasher
+        j "Alright, a weapon to strike and defend with, and a distance from the opponent to watch out for."
+        $ ILY_e = 'down'
+        
+        i "It's better to show you how it runs!"
+        call Execute_1card(DataSaber)
+        i "Normally, you would need to use BITS to make a move. We have 8 every turn."
+        extend " And... A selection of 5 cards from our shuffled deck."
+        j "Did you just cheat the first strike?"
+        $ ILY_m="cheek"
+        i "Shush!"
+        $ ILY_m="O"
+        extend " Any way! "
+        $ ILY_m="frown"
+        extend "Our goal would be to deplete the enemy's HP to 0."
+        j "Sounds basic enough."
+        i "There's plenty more to a Softwar. But I'll explain later!"
+        $ ILY_m="O"
+        i "Now you have to finish the rest of the battle with me!"
+        
+        # i "Select cards "
+        # i"Once you've expended enough bits, you can Execute the queue of cards!"
+        j "I have to call the shots?"
+        i "Of course! You're my operator!"
+        
+        # i"After our turn, It'll be the enemy's chance to attack, so let's strike with all the data we have!"
         j"Got it!"
         $ Lisa_m = 'frown'
         $ Lisa_e = 'mad'
+        $ Lisa_eyes='open'
         l"Do your best, ILY!"
         # call demo_battle_vs_trojanhorse
 
-        call battlev3(ILY,Trojan,battledist=0) from _call_battlev3
+        call battlev3(
+            ILY,Trojan,
+            battledist=0,
+            stay_stats=True)
         if playerHP<=0:
             return
         scene blue
