@@ -108,12 +108,12 @@ image JD_Space3_night:
 image classroom:
     "images/BGs/College/classroom.png"
     zoom 0.7
-image classroom_p:
-    "images/BGs/College/classroom_p.png"
+image classroom_prof:
+    "images/BGs/College/classroom_prof.png"
     zoom 0.7
 
-image classroom_l:
-    "images/BGs/College/classroom_l.png"
+image classroom_desk:
+    "images/BGs/College/classroom_desk.png"
     zoom 0.7
 
 

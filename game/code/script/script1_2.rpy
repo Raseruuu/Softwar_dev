@@ -608,6 +608,7 @@ label paidMelissa2:
     scene JD_PCN with dissolve
     $ ILY_m ="smile3"
     $ ILY_e ="up"
+    $ ILY_w =True
     stop music
     i"Good night, John!"
     j"Huh. Good night, ILY."

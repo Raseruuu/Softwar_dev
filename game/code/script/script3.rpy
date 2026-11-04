@@ -100,18 +100,20 @@ label script3:
     $ Alicia_w = False
     show Alicia with dissolve    
     #"Insert Technobabble here"
+    
     "Miss Alicia manages to catch everyone's attention in class even in our final semester... She's always been my mentor ever since. And it's no mistake. I do like being in her class."
     scene black with dissolve
-    scene classroom
-    show Alicia with dissolve    
+    scene classroom_desk
     "Soon after, the lecture was over."
+    $ Alicia_w=True
     al"Hope y'all got that. This lesson will be included in your final exam! It's very soon. I'm going to see y'all in graduation, Okay? You can do it!"
     al "Any questions?"
     # "Somebody" "Miss Alicia, what about the upcoming festival?"
 
     al "Okay, if there aren't any more questions, class is dismissed!!"
+    $ Alicia_w=False
     scene black with dissolve
-    scene classroom with dissolve
+    scene classroom_prof with dissolve
     show Alicia with dissolve    
     $ Hilbert_w = True
     $ Lisa_w = True
@@ -139,21 +141,30 @@ label script3:
     $ Hilbert_m = "frown_open" 
     h "Huh?"
 
-    $ Hilbert_m = "frown" 
+    $ Hilbert_m = "smile"
+    $ Hilbert_eyes = "lookaway"
+     
     h "Wait, Miss Alicia is still single?"
+    $ Hilbert_eyes = "open" 
+
     al "Y-yes.."
     al "Now you're embarrassing me.."
-    al "I'm only John's adoptive mother. I'm still young, I can still..."
+    al "Sure, I'm John's legal guardian... But I'm only his adoptive mother. I'm still young, I can still..."
     j "Y-yeah.."
+    $ Hilbert_m = "frown_open"
     h "John's adoptive mother..? After all these years I only just found out about this?"
     $ Hilbert_e = "down"
-    h "Wait, John! I'm letting it sink in just now. You're a top student, of course! You kept it a secret?"
+    $ Hilbert_m = "frown"
+
+    h "Wait, John! I'm letting it sink in just now. You're a top student, of course! Professor Alicia had taught you all these years as your mom, huh! You kept it a secret?"
     j "Well, not like there's any reason to bring it up."
     al "John would never address me as his mom though.. I'm a little hurt."
     j "Gah! Wh-what.."
     al "My son!!"
     #John : (-_-)
+    $ Lisa_blush=True
     l "..."
+    $ Lisa_blush=False
     al "Getting back on track.. You're with the ILOVEYOU Virus now, huh?"
     j "She calls herself ILY, and she decided to be my... assistant."
     j "She is also called an F.A.I.. If you know what this means."
@@ -163,6 +174,9 @@ label script3:
     h "How much does Miss Alicia know?!"
     al "I'm sure you guys are curious.. Let's just say I dabble with FAI too, and I have used my own FAI Antivirus as well!"
     "!!!"
+    h "... John! You could've asked your mom, this whole time!"
+    j "We're not always together, it's c-complicated..."
+    l "I shared some info with Miss Alicia, but it turns out she knows a thing or two about the new Viruses."
     # Alicia Serious
     al "ILY isn't that kind of virus. On top of being able to trick users with her Virus Algorithm, she is virtually unbeatable in Softwars. She doesn't stroll around looking for a master to serve."
     "Amazing.. She really is an expert. As expected of Miss Alicia..."
@@ -175,12 +189,79 @@ label script3:
     j "Ah. Is that so..."
     al "But there's something I wanted to try! You see I've been working with the engineers on a little project for FAIs."
     j "!! For FAIs?"
-    al "I'll be doing finishing touches on it still, so come back to me tomorrow!"
-    h "Woah! What is it exactly?"
-    "There are plenty of questions dancing in my head right now."
-    "I better ask before she leaves!"
-    j "Wait, "
-    al "Well, I'll be seeing y'all next time!"
+    al "It took a few months... It's not done yet... I'm quite proud of it, though I couldn't share it with many people!"
+    h "Woah what's this about?"
+    al "Curious now? Hehehe!"
+    j "Actually, I've got a few questions..."
+    h "Ah, right, this is perfect.. There's been much trouble, so we'd like to hear your advice."
+    al "Ah, very well.. Let's hear them!"
+    $ q2_read_Maeve  = False
+    $ q2_read_Antiviruses   = False
+    $ q2_read_Ave = False
+    $ q2_read_Reapers = False
+    $ q2_Reapers="???"
+    label Alicia_questions:
+        
+        menu:
+            "What should I ask Miss Alicia about?"
+            "Her \"Little Project\"" if not q2_read_Maeve:
+                j"Miss Alicia, I'd like to hear some more about that \"Little Project\" for FAIs..."
+                $ q2_read_Maeve = True
+                al "Really... It's top secret you know! But... I've invested so much into it... "
+                al "Should I share it with y'all this early? Ahhh you already know about FAIs and the GRID, so..."
+                l "She's mumbling to herself...?"
+                h "Seems like she's been keeping the project a secret for a long time."
+                al "Well... Can you take a guess what the project is?"
+                j "A guess.. Hm, you first, Hilbert."
+                h "We have 2 clues! That it's for FAIs and the engineering division is involved in development, right?"
+                l "..."
+                j "Yeah, those are the clues."
+                h "I say it's an VR system for the GRID! So you can meet the FAIs in person, sorta!"
+                j "Woah, that doesn't sound like a bad guess."
+                al"Nice one, Hilbert! But it's wrong... I haven't touched VR equipment before!"
+                al"But that should be doable in the future, I'll keep that in mind."
+                j "Hmmm... Do you have a guess, Lisa?"
+                l "Oh me? I'm not so sure.. I don't know what device feature for FAIs can be made that isn't already existent in a PC."
+                j "Gah.. feature... A feature the PC doesn't have?"
+                j "Like.. bringing it around in.. your pocket? Or is that just me coz I only own a desktop..."
+                al"Ah! That's the correct answer!"
+                j "Wha!? So... it's a mobile."
+                al"A mobile device that houses FAI!"
+                l "Woah, John guessed it right!"
+                h "I wish it was the VR one, but this kind of sounds exciting!"
+                h "So.. does this project have a name?"
+                al "I'm calling it the \"Mobile Apparatus Encapsulating Virtual Entity\". Or MAEVE for short!"
+                al "Well, that's it, I'll go over its features after we "
+                jump Alicia_questions
+            
+            "Antiviruses" if not q2_read_Antiviruses:
+                j "Miss Alicia, you've worked with an FAI Antivirus before?"
+
+                $ q2_read_Antiviruses = True
+                $ q2_Reapers = "Reapers" if q2_read_Ave else "???"
+                jump Alicia_questions
+            "Ave" if not q2_read_Ave:
+                j"We met an Antivirus apparently on the hunt for ILY..."
+                h"ILY definitely was a target. Thankfully, She was able to fight and flee safely.."
+                al "Ah! So you've used ILY to defend SDS from a Virus, right? "
+                j "Yes."
+                l "Somehow! "
+                al "Some other person deployed an Antivirus after you did?"
+                al "What was the name of this Antivirus?"
+                j "Ave."
+                al "Ave, is it?"
+                al "... I have some idea where this antivirus might've come from."
+                al "Ave is a special one. She's "
+                $ q2_read_Ave = True
+                $ q2_Reapers = "Reapers" if q2_read_Antiviruses else "???"
+                jump Alicia_questions
+            "[q2_Reapers]" if q2_read_Ave and q2_read_Antiviruses:
+                j"Who are the Reapers?"
+                $ q2_read_Reapers = True
+                al ""
+                # jump Alicia_questions
+        
+        al "Well, I'll be seeing y'all next time!"
 
     scene black
 
@@ -382,8 +463,11 @@ label script3:
     j "But..! That was just work!"
     e "I don't know, OK? You're not half bad when it comes to looks and you score high consistently in your class."
     e "Someone like you wouldn't have time to stalk her or anything.."
+    $ Ellie_eyes="closed"
+    e "I think, what I meant to say is that I do trust you."
     j "..."
     "Safe!!"
+    $ Ellie_eyes="open"
     e "Lisa has been my roomie, and her bestie... But I don't know much about her as deeply as I'd wish. It really surprised me. Seeing her with you guys."
     j "You're a kind friend."
     e "Huh?"
@@ -406,33 +490,54 @@ label script3:
     e "We're old enough. We're adults now, right? We can talk about this kind of stuff? About where we go after studying?"
     e "About... Love and life-long partners?"
     "Wha..."
+    $ Ellie_m="frown"
+    $ Ellie_eyes="closed"
     e "I take back what I said."
     j "!!! ... Which one?"
+    $ Ellie_m="smile"
+    $ Ellie_eyes="open"
+    $ Ellie_e="normal"
     e "That you're forbidden from meeting her."
     j "Oh."
     e "Just... Let me join if you do meet."
     j "Huh? Of course! You can join and keep watch of Lisa! I won't do anything strange!"
     e "Idiot.. Go do whatever with Lisa."
+    $ Ellie_m="frown"
     e "But, this isn't about Lisa anymore..."
     j "Wha?"
-
+    $ Ellie_e="1up"
+    $ Ellie_m="O3"
+    
     e "I... I... piece it together yourself, genius."
     "What does she mean? \"Life-long partner\"... Not me.."
     "Him? She's interested in Hilbert?"
     j "Hi-Hilbert?"
+    $ Ellie_m="smile"
+    $ Ellie_e="normal"
     e "Yeah.."
     j "I don't think I should ask why?"
     # Ellie blushes
     e "Hilbert was... kind to me. He left a good impression, OK?"
     e "He's just... nice. I'd say he's not like other dudes."
-    j "Hilbert... Yeah. He is kind. I owe him this internship."
+    j "Hilbert... Yeah. He is kind. I owe him my internship."
 
     j "Why now? We're about to graduate..."
+    
+    $ Ellie_e="1up"
     e "I could say the same about you!! You're awfully late in making a move at Lisa. If you really like her."
     j "Ouch?"
+    $ Ellie_e="normal"
+
+    $ Ellie_eyes="closed"
     "She continues munching the croissant, almost finishing it."
-    e "Time is limited, I know. So I think we have to... Hurry up."
+    e "Time is limited, I know. So I think we have to... "
+    $ Ellie_eyes="open"
+    extend "Hurry up."
+    $ Ellie_m="frown"
+
     e "After our graduation... I don't want to... be alone, or just go separate ways. That's something my sister told me was inevitable. Maybe with the wrong attitude, it is."
+    $ Ellie_m="smile"
+    
     e "So.. Let's both make our moves already."
     "She's right... Lisa wasn't here in Connecht from Christmas break til New Year's... after getting her degree, she might just fly back to Germany...!"
     j "Th-thank you, Ellie.. for telling me all this."
@@ -453,6 +558,7 @@ label script3:
 
     "Here we go again..."
     "I continued to elaborate about the situation with Lisa and Hilbert who were infected by ILY.  About ILY and her odd directive to be my assistant..."
+    $ Ellie_m="frown"
 
     e "I love you... Virus? Ahh! I remember! Hmmmm..."
     j "Sorry to ramble so much..."
@@ -462,7 +568,7 @@ label script3:
     e "Well that's easy to say without evidence, it's not like you saw her PC. Isn't her dad a big-shot in some antivirus company? She might just know about all this from the start, you know..."
     j "I never thought of it that way...!"
     j "But..!"
-    e "Don't really have solid proof. Lisa is kind of a strange one, I admit. She's unpredictable even speaking as her bestie."
+    e "Don't really have solid proof. Lisa is kind of a strange one, I'll admit. She's unpredictable, even speaking as her bestie."
     e "Don't confront her about that. Since we're not certain."
     j  "I'll think about it.."
     "Now I'm the one who is in deep thought!"
@@ -473,7 +579,7 @@ label script3:
     "What Ellie really wants to hear in all this is all about Hilbert's involvement."
     j "We couldn't have saved the internship without Hilbert."
     e "Save? What happened?"
-    j "We encountered a virus. It messed up the web server for this Cafe's online market!"
+    j "We encountered a different virus. It messed up the web server for this Cafe's online market!"
     j "It was tough, but we managed to fight the virus off and restore the web server!"
     show CG1Pizza with dissolve:
         zoom 0.5
@@ -481,11 +587,11 @@ label script3:
     j "We worked together nicely there, so Hilbert took that picture after we solved the case! Now he thinks we're some kind of \"Heroic Hacker Party\"."
     
     e "... He's so corny."
-    j "You think so too, huh!?"
+    j "You think so too, huh?"
     hide CG1Pizza with dissolve
-    "So... that conversation was pretty long, and took us the whole afternoon.  It turns out Ellie is easy to talk to, and she opened my eyes too."
+    "So... that conversation was pretty long.  It turns out Ellie is easy to talk to, and she opened my eyes too."
     "What could Lisa be thinking?"
     "If she turns out to be the one behind ILY, it's a really strange way to..."
     "It can't be, right?"
-
+    
     return

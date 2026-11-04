@@ -261,20 +261,21 @@ label battlecry:
         else :
             $ vcount=vcount+1
             if vcount == 1:
-                voice "voice/ILY/ILY26 - I won't let you.mp3"
-                i"I won't let you!"
+                voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
+                i"Nnnhhhh!"
             elif vcount == 2:
-                voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
-                i"This attack, receive it!"
-            elif vcount == 3:
                 voice "voice/ILY/ILY05D - Swing heavy sword sounds.mp3"
                 i"Hnnngg--Yah!"
+            elif vcount == 3:
+                voice "voice/ILY/ILY08 - This attack, receive it!.mp3"
+                i"This attack, receive it!"
             elif vcount == 4:
                 voice "voice/ILY/ILY05C - Swing medium sword sounds.mp3"
                 i"Hnnngg--Hah!"
             elif vcount >= 5:
-                voice "voice/ILY/ILY05 - Swing light sword sounds.mp3"
-                i"Nnnhhhh!"
+                
+                voice "voice/ILY/ILY26 - I won't let you.mp3"
+                i"I won't let you!"
                 $ vcount=0
         
     if playerName=="Code Red":

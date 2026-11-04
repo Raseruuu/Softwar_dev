@@ -975,7 +975,7 @@ label date2:
         $ battle_distance=0
         scene battlebg
         show battlering:
-            xalign 0.5 ypos 0.15 yanchor 0.5
+            xalign 0.5 ypos 0.4 yanchor 0.5
             block:
                 rotate 0
                 linear 15.0 rotate 360
@@ -997,7 +997,7 @@ label date2:
         call ILY_Draws_Sword
 
         show battlering:
-            xalign 0.5 ypos 0.15 yanchor 0.5
+            xalign 0.5 ypos 0.4 yanchor 0.5
             block:
                 rotate 0
                 linear 15.0 rotate 360

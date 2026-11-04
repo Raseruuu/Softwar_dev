@@ -336,11 +336,12 @@ transform BT_spam(image_path):
             easein 0.05 xzoom 1.0    
     pause 0.4
     repeat
-transform BT_spam_LR(image_path,start_xpos=0.1,end_xpos=0.9):
-    subpixel True
+transform BT_LR(image_path,start_xpos=0.2,end_xpos=0.8,cust_yanchor = 0.5):
+    # subpixel True
     contains:
         image_path
-        xanchor 0.5
+        # xanchor 0.5
+        yanchor cust_yanchor ypos 1.0
         # $new_position=
         # xpos (renpy.random.randint(10,90))/100
         xpos start_xpos
@@ -360,10 +361,11 @@ transform BT_spam_LR(image_path,start_xpos=0.1,end_xpos=0.9):
 
     contains:
         image_path
-        xanchor 0.5
+        # xanchor 0.5
+        yanchor cust_yanchor ypos 1.0
         # $new_position=
         # xpos (renpy.random.randint(10,90))/100
-        xpos start_xpos
+        xpos start_xpos 
         # xoffset -100
         pause 0.2
         linear 0.1 alpha 1.0 xoffset 0
@@ -378,9 +380,11 @@ transform BT_spam_LR(image_path,start_xpos=0.1,end_xpos=0.9):
 
     contains:
         image_path
-        alpha 0.0  xanchor 0.5 xzoom 1.1 
+        # xanchor 0.5
+        yanchor cust_yanchor ypos 1.0 
+        alpha 0.0 xzoom 1.1   
         pause 0.4
-        xanchor 0.5 xpos end_xpos xzoom 1.1
+        xpos end_xpos  xzoom 1.1
         xoffset (-100 if start_xpos<end_xpos else 100)
         pause 0.2
         easein 0.1 alpha 1.0 xoffset 0 xzoom 1.0
@@ -396,23 +400,23 @@ label shunpo_repeated:
     label shunpo_repeated2:
     "Start"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.2,0.6)
+    show ILY at BT_LR("ILY",0.2,0.6)
     "1"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.6,0.3) 
+    show ILY at BT_LR("ILY",0.6,0.3) 
     "2"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.3,0.8)
+    show ILY at BT_LR("ILY",0.3,0.8)
     
     "3"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.8,0.4) 
+    show ILY at BT_LR("ILY",0.8,0.4) 
     "4"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.4,0.7)
+    show ILY at BT_LR("ILY",0.4,0.7)
     "5"
     play sound "sfx/bt.mp3"
-    show ILY at BT_spam_LR("ILY",0.7,0.2) 
+    show ILY at BT_LR("ILY",0.7,0.2) 
     # $ shunpo_repeats+=1
     # if shunpo_repeats>=30:
     #     jump shunpo_repeated

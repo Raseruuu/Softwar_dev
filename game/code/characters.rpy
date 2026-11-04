@@ -1337,7 +1337,7 @@ image Icon_TrojanHorse:
 image Code Red:
     mesh True
     "CodeRedFull"
-    yanchor 0.5 ypos 1.0
+    yanchor 0.5 ypos 1.0 #xanchor 0.5
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
@@ -1345,28 +1345,36 @@ image Code Red:
     repeat
 image CodeRed:
     mesh True
-    "CodeRedFull"
-    yanchor 0.5  ypos 1.0 
+    "CodeRedFull" 
+    yanchor 0.5  ypos 1.0#  xanchor 0.5
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
     pause .5
     repeat
 
-image CodeRedFull:
-    mesh True
-    Composite(
-        (2030,4350),
-        (0, 0),"images/Characters/Code Red/CODE RED_base.png",
-        (0, 0),"images/Characters/Code Red/CODE RED_eyes.png",
-        (0, 0),"images/Characters/Code Red/CODE RED_e[CodeRed_e].png",
-        (0, 0), WhileSpeaking(
+layeredimage CodeRedFull:
+    always:
+        "images/Characters/Code Red/CODE RED_base.png"
+    always:
+        "images/Characters/Code Red/CODE RED_eyes.png"
+    always:
+        "images/Characters/Code Red/CODE RED_e[CodeRed_e].png"
+    always:
+        WhileSpeaking(
             "CodeRed",
             "CodeRed mouth",
             "images/Characters/Code Red/CODE RED_mclosed.png"
         )
-    )
+    # Composite(
+    #     (2030,4350),
+    #     (0, 0),"images/Characters/Code Red/CODE RED_base.png",
+    #     (0, 0),"images/Characters/Code Red/CODE RED_eyes.png",
+    #     (0, 0),"images/Characters/Code Red/CODE RED_e[CodeRed_e].png",
+    #     (0, 0), 
+    # )
     zoom 0.35
+    
     
 image CodeRed sidew:
 
@@ -2315,9 +2323,7 @@ image Brain:
     zoom 0.48
     yanchor 0.41
     ypos 1.0
-    linear 1.0 yoffset 0
-    linear 1.0 yoffset 5
-    repeat
+    
 
 
 
@@ -2399,19 +2405,35 @@ image side Brain_side:
     )
     zoom 0.38
 
-
+image Brain_armorbits:
+    "images/Characters/Brain/Brain_armorbits.png"
+    linear 2.0 yoffset 0
+    linear 2.0 yoffset 12
+    # linear 1.5 yoffset -10
+    
+    repeat
+transform floating(length=10):
+    linear 1.0 yoffset 0
+    linear 1.0 yoffset length
+    repeat
 layeredimage BrainFullBody:
     always:
         "images/Characters/Brain/Brain_backring.png"
     always:
         "images/Characters/Brain/Brain_backhair.png"
+        
+        at floating(5)
     # always:
     #     "images/Characters/Brain/Brain_backcloth.png"
     always:
         "images/Characters/Brain/Brain_body.png"
-   
+        at floating
+    always:
+        "Brain_armorbits"
+        at floating        
     always:
         "images/Characters/Brain/Brain_face.png"
+        at floating       
     
     always:
         ConditionSwitch(
@@ -2420,10 +2442,13 @@ layeredimage BrainFullBody:
             "Brain_eyes!='open'",
             "images/Characters/Brain/Brain_eyes_[Brain_eyes].png",
             )
+        at floating       
     always:
         "images/Characters/Brain/Brain_eyebrows_[Brain_e].png"
+        at floating       
     always:
         "images/Characters/Brain/Brain_helmet.png"
+        at floating       
     always:
         WhileSpeaking(
             "Brain",
@@ -2433,6 +2458,12 @@ layeredimage BrainFullBody:
                 ),
             "images/Characters/Brain/Brain_mouth[Brain_m].png"
             )
+        at floating
+
+
+
+
+
 image BellaEyes:
     choice:
         "images/Characters/Bella/Bella_eyes_open.png"

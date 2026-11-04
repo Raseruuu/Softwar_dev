@@ -335,9 +335,9 @@ label MapTalk:
                 j"What's that reaction for?"
                 $ maptalks=0
       
-        show screen mapB
-        call screen mapA
-        call Returns
+        # show screen mapB
+        # call screen mapA
+        # call Returns
         return
     else:
         show screen mapB

@@ -668,7 +668,8 @@ label SDS_Encounter:
     "What's going on? I'm usually awkward. When did we become so... close?"
     h "I've made the order. Let's go! What do we do now?"
     call battlescene
-
+    $ Vira_w=False
+    $ CodeRed_w=False
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     show Vira:
         xalign 0.7
@@ -683,6 +684,13 @@ label SDS_Encounter:
         xalign 0.99
     with dissolve
     $ Vira_w=False
+    $ Lisa_w=True
+    $ Lisa_eyes="raised"
+    $ Lisa_m="open"
+    
+    
+    l "Agh! Danger! That's him!"
+    j "!!?"
     cv "An Antivirus?"
     v "And you are?"
     cv "Take a guess!"
@@ -702,8 +710,11 @@ label SDS_Encounter:
     cv "Haaaaah!!!"
     "As Vira charges up for an attack, the Virus unleashed something from his sword..."
     "It seemed like a normal double-edge at first.."
-    
+    call speedspikebg
+    call CodeRedLambdaSaber
     "Its blade split in half from the middle of its edges, then from the crack emerged a wave-like energy blade."
+    $ Vira_w=True
+    $ CodeRed_w=True
     
     v  "That's... Aghh!!"
     cv "Heh!"
@@ -711,13 +722,15 @@ label SDS_Encounter:
     "That weapon... Identifying Battleware.."
     call cardflash_story(LambdaSaber)
     v "It's a Lambda Saber! It's messing with the lightwave membrane!"
-    call speedspikebg
-    call CodeRedLambdaSaber
+    
     "The Lambda Saber."
     "The energy blade fluctuates like a sound wave visualiser. It's terrible.."
     "You can get pricked just by being close to it. But when swung... It's like a chainsaw!"
+    $ Vira_w=False
+    $ CodeRed_w=False
     
     call battlescene
+
     show CodeRed:
         xalign 0.01
     show Vira:
@@ -753,7 +766,7 @@ label SDS_Encounter:
     cv "It's my turn!!"
     "Rushing toward the retreating Vira, the armored Virus raised his sword.. "
     call cardflash_story(LambdaSaber)
-    extend "The Lambda Saber. Its blade fluctuates more wildly than before."
+    "The Lambda Saber. Its blade fluctuates more wildly than before. "
     extend "From that position he leapt and unleashed downward swing!"
     call damageright
     show Vira at bumpright
@@ -762,20 +775,30 @@ label SDS_Encounter:
     cv "You're not getting away!"
     v "That's my line!! You intruder!!"
     j "Shoot him! He's in range!"
+
+    show CodeRed:
+        linear 0.3 xpos 0.2 xanchor 0.5 xoffset 0
     cv "I'm done playing around. Fuh!!"
-    show CodeRed at BurstTransfer_trans
+    # show CodeRed at BurstTransfer_trans
+    
+    show CodeRed at BT_LR("CodeRed",0.2,0.7,cust_yanchor = 0.73)
+        
+    show Vira:
+        linear 0.2 xalign 0.15
     v "He disappea- Ackhh!"
     h "No way, teleportation?"
     v "No..  You're able to do... that?"
     cv "You fool, why wouldn't I be able to? Hragh!"
     "After quickly re-appearing, the Virus struck with a different sword."
     call cardflash_story(DataSaber)
-    extend " It's an ordinary Datasaber. It wasn't the Lambda Saber this time."
+    extend " It's an ordinary Datasaber."
     call damagerightblocked
-    show Vira at leapright
+    show Vira at leapleft
     "The Light Barrier was disengaged at this point, but Vira blocked the slash attack with her parasol!"
     v "Tsk!"
     cv "Khh.. I closed the gap but... Heh. "
+    show Vira:
+        xzoom -1.0
     v "Yeah, duh! I'm an Antivirus! My expertise is defense!"
     cv "You're lucky I changed blades. This fight would've been over."
     v "You're blaming the limits of your weapon system now for not finishing me off? How funny."
@@ -783,9 +806,15 @@ label SDS_Encounter:
     call cardflash_story(Powersol)
     v "This is my Powersol! My arsenal of shields will block everything you throw at me. So, bring it!!" 
     cv "That's just perfect. I'll enjoy destroying that petty shield of yours!"
-    show CodeRed at BurstTransfer_trans
+    play sound "sfx/bt.mp3"
+    show CodeRed at BT_LR("CodeRed",0.7,0.2,cust_yanchor = 0.73)
+    pause 0.4
+    call damageleftblocked
+    show Vira at leapright
     "Then he did it again. A swift teleport to close the gap! Just what is this move?"
-
+    show Vira:
+        xzoom 1.0
+        ease 0.2 xalign 0.7
     cv "Your parasol shield can only hold up enough times."
     call cardflash_story(Firewall)
     v "I know, so here's my Firewall!"
@@ -802,9 +831,12 @@ label SDS_Encounter:
     show Vira at leapright
     "The Virus didn't stop rushing in, attack after attack. Vira held her ground, and eventually got some distance."
     call cardflash_story(DataBomb)
+    show Vira:
+        linear 0.4 xalign 0.84
     v"Blow away!"
     call damageleft
-    show Vira at bumpright
+    
+    # show Vira at bumpright
     show CodeRed at leapleft
     cv "Tsk, a bomb?!"
     show Vira at jumpoff
@@ -861,8 +893,9 @@ label SDS_Encounter:
     
     "The atmosphere around the Virus changes.. I don't know how he does it! "
     cv "I simply cannot.. lose!"
-    show CodeRed at BurstTransfer_trans
-    show Vira with dissolve:
+    
+    show CodeRed at BT_LR("CodeRed",0.2,0.5,cust_yanchor = 0.73)
+    show Vira:
         xoffset 0 
         linear 0.3 yoffset -80
         linear 0.2 yoffset 0
@@ -882,6 +915,11 @@ label SDS_Encounter:
     cv "Heh. Pathetic, if true."
     v "I'll be able to do that sort of thing... when I'm done with you!"
     cv "It's not gonna change a thing, either way. "
+    show Vira at jumpoff
+    pause 0.4
+    call battlescene
+    show Vira at landing:
+        xalign 0.5
     j "(What's this Burst Transfer technique all about?)"
     v "(It's an technique that is essentially re-allocation of processing power into sending the avatar's data to a target destination in a sudden burst!)"
     v "(I haven't gotten to learn it yet. It's an advanced form of regular movement in this world.)"
@@ -891,10 +929,21 @@ label SDS_Encounter:
     v "(I can convert the energy from the strikes I block into power, and unleash it back. But it has to be an attack from my Powersol.)"
     v "(If I could just... Hit him.)"
     "..."
+    show Vira:
+        linear 0.4 xpos 0.0 xanchor 1.0
     "If she can power up enough... A well-timed strike might just break into his armor, then!"
+    show CodeRed:
+        xalign 0.01
+    show Vira:
+        xalign 0.99
+    with dissolve
     j "(I've got a plan, Vira, you have to ready your Powersol, make it absorb as many attacks as you can. Reinforce it even more!)"
     cv "You had enough yet?"
     cv "Now..."
+    call speedspikebg
+    call CodeRedLambdaSaber
+    $ Vira_w=True
+    $ CodeRed_w=True
     "Oh no. The Battleware weapon cycle system.. It's back...!"
     call cardflash_story(LambdaSaber)
     cv "Re-appear, Lambda Saber! Hrrraaaaaggh!!!"
@@ -926,7 +975,7 @@ label SDS_Encounter:
     i "Here goes!"
     show ILY:
         linear 0.8 alpha 0.05 
-    "ILY Ingested the Imperceptium rock... She's... disappeared?"
+    "ILY Ingested the Imperceptium rock... She's... disappeared!"
     show ILY:
         xpos 1.0 xanchor 0.0
         linear 0.5 xpos 0.6
@@ -941,7 +990,8 @@ label SDS_Encounter:
     "No way. That actually worked!"
 
 
-
+    $ Vira_w=False
+    $ CodeRed_w=False
     call battlescene
     play music "bgm/Pre-Fight_bgm_maoudamashii_cyber01.ogg"
     show CodeRed:
@@ -972,7 +1022,7 @@ label SDS_Encounter:
     "Just in time! ILY deflected that last strike from the Lambda Saber." 
     i "I'll take you on..! Kuh!"
     i "This is nothing!" 
-    "ILY did deflect it, but had to relinquish the blade quickly for another attack."
+    "ILY did deflect it, but had to discard the broken blade."
     i "I'm sorry, but I can't let you beat up my new friend!"
     
     v "I was... going to handle him myself.."
@@ -984,7 +1034,7 @@ label SDS_Encounter:
     cv "You don't know who I am... of course."
     extend "I'm just here to destroy."
     "He materializes another sword."
-    v  "There's more to him... I've analysed just which virus you are!"
+    v  "There's more to him... I've analyzed just which virus you are!"
     cv "After this much of a beating? Is that how Antiviruses work now? Pitiful!"
     v "Shut up! \"CODE RED!\"! I figured out your True Name! A worm.. You're the Code Red Virus!" 
     cv "You... got it all wrong!"
@@ -1005,9 +1055,25 @@ label SDS_Encounter:
     "A battle of viruses... How will this play out?"
     "His Lambda Saber emerged and activated immediately."
     label battlecodered:
-        
+    call battlescene
+    show CodeRed
+    $ Vira_w=True
+    $ ILY_w=True
+    $ CodeRed_w=True
+    v "Do you think you can get through his armor?"
+    i "My firepower can possibly pierce it, but I need time to power it up!"
+    
+    
+    call battle_initial(ILY,CodeRed,battledist=4)
+    show screen battlestats
+    j "Vira, are you able to help ILY?"
+    
+    v "Help.. this Virus? Well, I gotta, now! I'll give you my support! Use these Battleware! Get him!" 
+    call Execute_1card(Powersol)
+    call Execute_1card(Firewall)
     i "Alright, Battle protocol set!... SoftWar Engage!"
-    call battlev3(ILY, CodeRed)
+    hide screen battlestats
+    call battlev3(ILY, CodeRed,stay_stats=True)
     if playerHP<=0:
         return
     label battlecodered2:
@@ -1429,6 +1495,7 @@ label SDS_Encounter:
     h "GUYS!? What the hell just happened?"
     h "It was going so smoothly!!"
     h "Code Red totally lost there!! We had him!"
+    $ Lisa_eyes="open"
     l "Then... Ave... Antivirus?"
     j "I'm at a loss for words... They were... formidable."
     scene JD_PC2_Afternoon with dissolve
