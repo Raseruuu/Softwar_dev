@@ -476,8 +476,10 @@ image Icon_ILY:
 
 
 image ILY:
+    
+    At("ILYsprite",uniform_size())
+image ILYsprite:
     mesh True
-
     "ILYFullBody"
     zoom 0.5
     yanchor 0.50
@@ -486,33 +488,8 @@ image ILY:
     linear 1.0 yoffset 5
     repeat
 
-image ILYold:
-    "ILYFull"
-    zoom 0.5
-    yalign 0.1 xalign 0.0
-    linear 1.0 yoffset -10
-    linear 1.0 yoffset 10
-    repeat
-image ILYnew:
-    "ILYFullBody"
-    zoom 0.5
-    yalign 0.1
 
-image ILY big:
-    "ILYFullBody"
-    zoom 0.75
-    yalign 0.1
-    linear 1.0 yoffset -10
-    linear 1.0 yoffset 10
-    repeat
 
-image ILY small:
-    "ILYFullBody"
-    zoom 0.3
-    yalign 0.3
-    linear 1.0 yoffset 0
-    linear 1.0 yoffset 5
-    repeat
 transform spritefix(deg):
     zoom deg
     xoffset 60
@@ -1219,9 +1196,9 @@ image LucidaMouthfrown:
 ## Vira
 #########
 
-image Vira large:
+image Virasprite:
     "ViraFull"
-    yalign 0.05
+    yanchor 0.69 ypos 1.0
     linear 1.0 yoffset -5
     pause .5
     linear 1.0 yoffset 5
@@ -1229,8 +1206,8 @@ image Vira large:
     repeat
 
 image Vira:
-    "Vira large"
-    # zoom 0.25
+    At("Virasprite",uniform_size())
+    
 
 image ViraFull:
     Composite(
@@ -1335,24 +1312,19 @@ image Icon_TrojanHorse:
 ## Code Red
 #########
 image Code Red:
+    At("CodeRedSprite",uniform_size())
+image CodeRed:
+    "Code Red"
+
+image CodeRedSprite:
     mesh True
     "CodeRedFull"
-    yanchor 0.5 ypos 1.0 #xanchor 0.5
+    yanchor 0.5 ypos 1.0
     linear 1.0 yoffset 0
     pause .5
     linear 1.0 yoffset 5
     pause .5
     repeat
-image CodeRed:
-    mesh True
-    "CodeRedFull" 
-    yanchor 0.5  ypos 1.0#  xanchor 0.5
-    linear 1.0 yoffset 0
-    pause .5
-    linear 1.0 yoffset 5
-    pause .5
-    repeat
-
 layeredimage CodeRedFull:
     always:
         "images/Characters/Code Red/CODE RED_base.png"

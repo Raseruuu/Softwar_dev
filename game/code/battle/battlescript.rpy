@@ -336,22 +336,32 @@ transform BT_spam(image_path):
             easein 0.05 xzoom 1.0    
     pause 0.4
     repeat
-transform BT_LR(image_path,start_xpos=0.2,end_xpos=0.8,cust_yanchor = 0.5):
+transform BT_LR(child, start_xpos=0.2,end_xpos=0.8,cust_yanchor=0.5):
     # subpixel True
-    contains:
-        image_path
+    # animation
+    # block:
+    # animation
+        # animation
+
         # xanchor 0.5
-        yanchor cust_yanchor ypos 1.0
-        # $new_position=
-        # xpos (renpy.random.randint(10,90))/100
-        xpos start_xpos
+        
+        # ypos 1.0 
+    
+    contains:
+        # 
+        child
+        
+        # xanchor 0.5 #yanchor 0.5
+        xalign start_xpos 
+        yalign 0.5
+        # yanchor 0.5 ypos 1.0
         # xoffset -100
         pause 0.18
         linear 0.1 alpha 1.0 xoffset 0
         parallel:
             # glitch("intense", "ghost", "thick") 
             matrixcolor TintMatrix('#556cb4') 
-            alpha 0.6
+            alpha 0.8
         # pause renpy.random.choice([1.0,2.0])   
         parallel:
             ease 0.2 xoffset (40 if start_xpos>end_xpos else -40)
@@ -360,12 +370,14 @@ transform BT_LR(image_path,start_xpos=0.2,end_xpos=0.8,cust_yanchor = 0.5):
             easein 0.05 xzoom 1.0   
 
     contains:
-        image_path
-        # xanchor 0.5
-        yanchor cust_yanchor ypos 1.0
-        # $new_position=
-        # xpos (renpy.random.randint(10,90))/100
-        xpos start_xpos 
+        # animation
+        child
+        # yanchor 0.5  ypos 0.5#ypos 1.0
+        yalign 0.5
+
+        # animation
+        #yanchor 0.5
+        xalign start_xpos 
         # xoffset -100
         pause 0.2
         linear 0.1 alpha 1.0 xoffset 0
@@ -373,21 +385,25 @@ transform BT_LR(image_path,start_xpos=0.2,end_xpos=0.8,cust_yanchor = 0.5):
             glitch("intense", "ghost", "thick")    
         parallel:
             
-            linear 0.1 xoffset (100 if start_xpos<end_xpos else -100)
+            linear 0.2 xoffset (100 if start_xpos<end_xpos else -100)
         parallel:
-            linear 0.1 alpha 0.0 xzoom 1.1
+            linear 0.2 alpha 0.0 xzoom 1.1
             easein 0.05 xzoom 1.0   
-
     contains:
-        image_path
-        # xanchor 0.5
-        yanchor cust_yanchor ypos 1.0 
-        alpha 0.0 xzoom 1.1   
+        # animation
+        child
+    # block: 
+        yalign 0.5
+        # yanchor 0.73 ypos 0.5
+        # xanchor 0.5 #yanchor 0.5
+        xanchor 0.5
+        alpha 0.0 xzoom 1.1 
         pause 0.4
-        xpos end_xpos  xzoom 1.1
+        xalign end_xpos  xzoom 1.1
         xoffset (-100 if start_xpos<end_xpos else 100)
         pause 0.2
         easein 0.1 alpha 1.0 xoffset 0 xzoom 1.0
+    
 
 
     # pause 1.5
@@ -398,25 +414,28 @@ label shunpo_repeated:
     $ ILY_e="down"
     call battlescene
     label shunpo_repeated2:
-    "Start"
-    play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.2,0.6)
-    "1"
-    play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.6,0.3) 
-    "2"
-    play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.3,0.8)
+    show ILY:
+        xalign 0.2
     
-    "3"
     play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.8,0.4) 
-    "4"
+    show ILY at BT_LR(start_xpos=0.2,end_xpos=0.6)
+    "0.6"
     play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.4,0.7)
-    "5"
+    show ILY at BT_LR(start_xpos=0.6,end_xpos=0.3) 
+    "0.3"
     play sound "sfx/bt.mp3"
-    show ILY at BT_LR("ILY",0.7,0.2) 
+    show ILY at BT_LR(start_xpos=0.3,end_xpos=0.8)
+    
+    "0.8"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_LR(start_xpos=0.8,end_xpos=0.4) 
+    "0.4"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_LR(start_xpos=0.4,end_xpos=0.7)
+    "0.7"
+    play sound "sfx/bt.mp3"
+    show ILY at BT_LR(start_xpos=0.7,end_xpos=0.2) 
+    "0.2"
     # $ shunpo_repeats+=1
     # if shunpo_repeats>=30:
     #     jump shunpo_repeated

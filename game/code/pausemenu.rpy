@@ -540,14 +540,16 @@ transform marquee(image_path):
         linear 3.0 xpos 0.0 xanchor 1.0
         repeat
 transform marquee2:
+    animation
     #on show:
-        pause 0.7
-        xpos 1.0 xanchor 0.0
-        linear 6.0 xpos 0.0 xanchor 1.0
+    pause 0.7
+    xpos 1.0 xanchor 0.0
+    linear 6.0 xpos 0.0 xanchor 1.0
 
-        repeat
+    repeat
 transform vmarquee(image_path):
     #on show:
+    animation
     contains:
         image_path
         rotate 90 xalign 0.8
@@ -561,6 +563,7 @@ transform vmarquee(image_path):
         linear 3.0 ypos 0.0 yanchor 1.0
         repeat
 transform zoomtrans(zoomvalue):
+    animation
     zoom zoomvalue
 screen pauselayout(scrname,spritevisible=True,notransform=False):
     $ mydeckname = mydeck["name"]

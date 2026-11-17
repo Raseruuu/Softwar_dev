@@ -327,7 +327,7 @@ label MapTalk:
                     i"Leave it to me! Let me bust some viruses! FAI viruses drop them when you beat them in a SoftWar."
                 else:
                     j "Do you think Melissa can tell us how to pass through the gate without fighting Bitwulf?"
-                    i "We wouldn't know unless we try!"
+                    i "Let's ask her about it!"
             elif maptalks==2:
                 i"What do you think of Melissa?"
                 j"She's pretty hot stuff."
