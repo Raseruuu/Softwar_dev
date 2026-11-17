@@ -249,7 +249,7 @@ label desktopscene:
     return
 
 label battlescene:
-    scene black with dissolve
+    scene black with Dissolve(0.5)
     pause 0.5
     show scrollingBG at scroll
     show battleroad:

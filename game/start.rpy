@@ -126,8 +126,7 @@ label credits:
     pause 3.0
     show text "Ren'py Visual Novel Engine\n\nVersion "+renpy.version() with dissolve
     pause 3.0
-    show text "Tom Rothamel aka Pytom\n\nRen'py Visual Novel Engine" with dissolve
-    pause 3.0
+    
     show text "Ren'py Discord Server\n\nSpecial Thanks" with dissolve
     pause 3.0
     show text "AMA Computer College Fairview, Philippines\n\nSpecial Thanks" with dissolve

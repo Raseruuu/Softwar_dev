@@ -677,17 +677,17 @@ label SDS_Encounter:
     h "Crap, talk about perfect timing."
 
     v "It's here, so quick! Gah!!"
-    
-    show CodeRed:
-        xalign 0.01
+    $ sprites_size=0.8
     show Vira:
-        xalign 0.99
+        xalign 0.9
+    show CodeRed:
+        xalign 0.1
     with dissolve
     $ Vira_w=False
     $ Lisa_w=True
     $ Lisa_eyes="raised"
     $ Lisa_m="open"
-    
+    $ CodeRed_w=False
     
     l "Agh! Danger! That's him!"
     j "!!?"
@@ -698,7 +698,7 @@ label SDS_Encounter:
     h "It's the armored virus! Get him!"
     call damagerightblocked
     show Vira at bumpright
-    "Suddenly, Vira gets struck by a sword strike. Luckily, she had quickly put a barrier up."
+    "Suddenly, Vira gets struck by a sword. Luckily, she had quickly put a barrier up."
     cv "A light barrier, huh."
     cv "I have just the weapon for that."
     v "What do you want with this company? You deployed spyware bugs here?"
@@ -730,11 +730,12 @@ label SDS_Encounter:
     $ CodeRed_w=False
     
     call battlescene
-
     show CodeRed:
-        xalign 0.01
+        xalign 0.1
     show Vira:
-        xalign 0.99
+        xalign 0.9
+    
+    
     with dissolve
     cv "Knowing your enemy's weapon means nothing... Unless you have a weapon of your own to match it! Hrrrraaaghh!"
     v "I..! Do have a weapon...! Take this!"
@@ -748,6 +749,9 @@ label SDS_Encounter:
     cv "This is pathetic."
     j "(Vira, Fall back!)"
     v "(Right!)"
+    show Vira:
+        ease 0.5 xoffset -10
+        ease 0.6 xpos 1.0 xanchor 0.0
     h "(He's a melee fighter! Keep up the ranged attack... we'll break him eventually!)"
     call cardflash_story(DataBuster)
     v"Haaah!!"
@@ -766,25 +770,36 @@ label SDS_Encounter:
     cv "It's my turn!!"
     "Rushing toward the retreating Vira, the armored Virus raised his sword.. "
     call cardflash_story(LambdaSaber)
-    "The Lambda Saber. Its blade fluctuates more wildly than before. "
+    call speedspikebg
+    call CodeRedLambdaSaber
+    "The Lambda Saber's blade fluctates more wildly than before. "
     extend "From that position he leapt and unleashed downward swing!"
+    call battlescene
     call damageright
-    show Vira at bumpright
+    show Vira at leapright
     "The spikes of the wave pattern struck like lighting, hitting Vira from about seven meters away."
+    show Vira at leapright:
+        linear 0.3 xalign 0.7
+    
     v "Tsk!! You can reach this far even if it's a sword?  "
+    $CodeRed_w=True
     cv "You're not getting away!"
     v "That's my line!! You intruder!!"
     j "Shoot him! He's in range!"
-
+    $CodeRed_w=False
     show CodeRed:
-        linear 0.3 xpos 0.2 xanchor 0.5 xoffset 0
+        xanchor 1.0 xpos 0.0
+        linear 0.2 xalign 0.1 xoffset 0
+        
     cv "I'm done playing around. Fuh!!"
     # show CodeRed at BurstTransfer_trans
-    
-    show CodeRed at BT_LR("CodeRed",0.2,0.7,cust_yanchor = 0.73)
+    play sound "sfx/bt.mp3"
+    show CodeRed at BT_LR(start_xpos=0.1,end_xpos=0.9,cust_yanchor = 0.73)
         
     show Vira:
         linear 0.2 xalign 0.15
+    
+    pause 0.8
     v "He disappea- Ackhh!"
     h "No way, teleportation?"
     v "No..  You're able to do... that?"
@@ -807,14 +822,15 @@ label SDS_Encounter:
     v "This is my Powersol! My arsenal of shields will block everything you throw at me. So, bring it!!" 
     cv "That's just perfect. I'll enjoy destroying that petty shield of yours!"
     play sound "sfx/bt.mp3"
-    show CodeRed at BT_LR("CodeRed",0.7,0.2,cust_yanchor = 0.73)
+    show CodeRed at BT_LR("CodeRed",0.7,0.15,cust_yanchor = 0.73)
     pause 0.4
     call damageleftblocked
-    show Vira at leapright
-    "Then he did it again. A swift teleport to close the gap! Just what is this move?"
-    show Vira:
-        xzoom 1.0
+    show Vira at leapright:
         ease 0.2 xalign 0.7
+    "Then he did it again. A swift teleport to close the gap! Just what is this move?"
+    show Vira at leapright:
+        xzoom 1.0
+        ease 0.2 xalign 0.86
     cv "Your parasol shield can only hold up enough times."
     call cardflash_story(Firewall)
     v "I know, so here's my Firewall!"
@@ -832,8 +848,9 @@ label SDS_Encounter:
     "The Virus didn't stop rushing in, attack after attack. Vira held her ground, and eventually got some distance."
     call cardflash_story(DataBomb)
     show Vira:
-        linear 0.4 xalign 0.84
+        linear 0.4 xalign 0.99
     v"Blow away!"
+    play sound "sfx/bomb.wav" channel 1
     call damageleft
     
     # show Vira at bumpright
@@ -848,9 +865,10 @@ label SDS_Encounter:
     call cardflash_story(BlockSaber)
     call damageleftblocked
     extend "The BlockSaber!"
-    show CodeRed:
-        linear 0.2 xoffset 0
+    call battlescene
+    show CodeRed
     cv "Come on, you're not the only one who can defend, now."
+    $ Vira_w=True
     v "Tsk. Well too bad! I've got so much more where that came from!"
     j "(Vira, If he defended this time, that means... He's still protecting his armor!)"
     j "(There's a limit to how much he can take!)"
@@ -861,16 +879,21 @@ label SDS_Encounter:
     h "No, that's her Powersol!"
     call cardflash_story(Powersol)
     v "Powersol Attack Mode!"
-    show Vira at landing
+    $ Vira_w=False
+    show Vira at landing:
+        xalign 0.8
+    pause 0.1
+    show Vira at right,leapright
     pause 0.2
     call damageleft
-    show CodeRed at leapleft
+    show CodeRed at leapleft:
+        ease 0.4 xalign 0.2
     with Shake((0, 0, 0, 0), 0.5, dist=40)
     cv "Sword against Sword, that's more like it!"
     v "This isn't a sword, but I can match you this way!"
     h "She just closed her umbrella, huh!"
     show CodeRed:
-        linear 0.2 xoffset 0
+        linear 0.5 xoffset 0
     "Their weapons clashed repeatedly after Vira hit the ground.."
     
     v "I've got you now, Powersol, Pierce!"
@@ -880,7 +903,7 @@ label SDS_Encounter:
     "I can't see if it made a crack, but it did push him steps back, about 5 meters."
     "Impressive. This might be our chance! Vira seems to store energy from the Powersol's defensive mode for attack output.."
     show CodeRed:
-        linear 0.2 xoffset 0
+        linear 0.2 xalign 0.1
     cv "Tsk, this Blocksaber isn't doing so well. I was hoping to put some more pressure."
     "At this moment, his Blocksaber expires into pixels in the air." 
     show CodeRed with dissolve:
@@ -893,17 +916,24 @@ label SDS_Encounter:
     
     "The atmosphere around the Virus changes.. I don't know how he does it! "
     cv "I simply cannot.. lose!"
-    
-    show CodeRed at BT_LR("CodeRed",0.2,0.5,cust_yanchor = 0.73)
+    play sound "sfx/bt.mp3"
+    show CodeRed at BT_LR(start_xpos=0.1,end_xpos=0.5,cust_yanchor = 0.73)
     show Vira:
         xoffset 0 
-        linear 0.3 yoffset -80
+        linear 0.3 yoffset -90
         linear 0.2 yoffset 0
-    v "That move again!"
-    "He disappeared and re-emerged into close range with Vira! A new sword emerges in his palm. That means... another sword strike!"
+    pause 0.5
+    
+    v "That move again!{nw}"
+    
     call damagerightblocked
     show Vira at leapright
+    show CodeRed at leapleft:
+        xalign 0.5
     with Shake((0, 0, 0, 0), 0.5, dist=30)
+
+    "He disappeared and re-emerged into close range with Vira! It was a quick slash."
+    
     "She blocked the strike, but that maneuver just opens up for a flurry of more slashes."
     "She came prepared with her barriers, as usual."
     v "Grrr!! Would you stop teleporting!"
@@ -920,8 +950,12 @@ label SDS_Encounter:
     call battlescene
     show Vira at landing:
         xalign 0.5
+    pause 0.4
+    hide Vira
+    show Vira
     j "(What's this Burst Transfer technique all about?)"
-    v "(It's an technique that is essentially re-allocation of processing power into sending the avatar's data to a target destination in a sudden burst!)"
+    
+    v "(It's a technique that is essentially re-allocation of processing power into sending the avatar's data to a target destination in a sudden burst!)"
     v "(I haven't gotten to learn it yet. It's an advanced form of regular movement in this world.)"
     v "(I'd be able to evade much easier if I could.)"
     j "(Right now he uses Burst Transfer to close the gap, and evade at the same time. Speed covers both attack and defense. It's tough.)"
@@ -966,6 +1000,12 @@ label SDS_Encounter:
     i "John! I'm going!"
     i "I have to help Vira!"
     j "Gah! What about the West Gateway? Bitwulf is guarding that area.."
+
+
+
+
+
+    
     i "I'll try the Impercemptium. It has to work!"
     j "Tch... Fine.. Make your way out!"
     call battlescene
